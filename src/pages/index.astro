@@ -1,6 +1,17 @@
 ---
-// src/pages/posts/ 内のすべてのMarkdown記事を自動取得
-const posts = await Astro.glob('./posts/*.md');
+// Vite標準の import.meta.glob を使用して Markdown 記事を自動取得
+const postImports = import.meta.glob<{
+  frontmatter: {
+    title: string;
+    pubDate: string;
+    description: string;
+    tags?: string[];
+  };
+  url: string;
+}>('./posts/*.md', { eager: true });
+
+// 取得したオブジェクトを配列に変換
+const posts = Object.values(postImports);
 
 // 日付（pubDate）の新しい順に並び替え
 posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
@@ -99,7 +110,7 @@ const pageTitle = "AI Auto Tech Blog";
 
     <main>
       {posts.length === 0 ? (
-        <p>記事を読み込んでいます...</p>
+        <p>記事が見つかりません。</p>
       ) : (
         <ul class="post-list">
           {posts.map((post) => (
