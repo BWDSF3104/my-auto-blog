@@ -14,11 +14,11 @@ if not GEMINI_API_KEY:
 # クライアントの初期化
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# 試行するモデルの優先順位リスト（503混雑時に自動で次のモデルに切替）
+# 2026年現在利用可能な有効モデルの優先リスト（404モデル排除済み）
 MODELS_TO_TRY = [
-    "gemini-3.6-flash",
-    "gemini-2.5-flash",
-    "gemini-1.5-flash",
+    "gemini-3.8-flash",      # エラーメッセージ推奨の最新高速モデル
+    "gemini-3.6-flash",      # 汎用主力モデル
+    "gemini-3.1-flash-lite"  # 軽量フォールバックモデル
 ]
 
 # 過去の生成済み記事タイトルを取得する関数（被り防止用）
@@ -36,9 +36,9 @@ def get_existing_titles(posts_dir="src/pages/posts"):
                 titles.append(match.group(1))
     return titles
 
-# 503エラーや混雑に対応する自動リトライ＆フォールバック呼び出し関数
+# 自動リトライ＆アクティブモデルへのフォールバック関数
 def generate_content_with_retry(prompt):
-    max_retries = 3  # 各モデルでの最大リトライ回数
+    max_retries = 3  # 503エラー時のモデルごとの最大リトライ回数
 
     for model_name in MODELS_TO_TRY:
         for attempt in range(1, max_retries + 1):
@@ -49,14 +49,26 @@ def generate_content_with_retry(prompt):
                     contents=prompt,
                 )
                 return response
-            except (errors.ServerError, errors.APIError, Exception) as e:
-                print(f"⚠️ エラーが発生しました ({model_name}): {e}")
+
+            except errors.APIError as e:
+                err_str = str(e)
+                # 404 NOT_FOUND（モデルが存在しない/非推奨）の場合はリトライせず即座に次のモデルへ
+                if "404" in err_str or "NOT_FOUND" in err_str:
+                    print(f"⚠️ モデル {model_name} は利用不可(404)です。次のモデルへ切り替えます。")
+                    break
+
+                # 503 UNAVAILABLE（混雑・一時的エラー）の場合は待機して再試行
+                print(f"⚠️ APIエラーが発生しました ({model_name}): {e}")
                 if attempt < max_retries:
-                    wait_time = 5 * (2 ** (attempt - 1))  # 5秒、10秒、20秒と待機時間を増やす（指数バックオフ）
+                    wait_time = 5 * (2 ** (attempt - 1))  # 5秒、10秒、20秒...
                     print(f"🕒 {wait_time}秒間待機して再試行します...")
                     time.sleep(wait_time)
                 else:
                     print(f"❌ モデル {model_name} でのリトライ上限に達しました。次のモデルを試します。")
+
+            except Exception as e:
+                print(f"予期せぬエラー: {e}")
+                break
 
     raise RuntimeError("すべてのモデルおよび再試行が失敗しました。")
 
@@ -108,11 +120,10 @@ tags: ["Tech", "AI"]
 （全体のまとめ）
 """
 
-    # 自動リトライ・フォールバック機能付きでAPIを実行
     response = generate_content_with_retry(prompt)
     content = response.text.strip()
 
-    # 余分なコードブロック装飾の除外処理
+    # コードブロック装飾の除外処理
     if content.startswith("```"):
         lines = content.splitlines()
         if lines[0].startswith("```"):
