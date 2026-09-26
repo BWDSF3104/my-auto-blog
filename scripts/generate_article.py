@@ -1,56 +1,90 @@
 import os
+import glob
+import re
 import datetime
-import google.generativeai as genai
+from google import genai  # 最新の標準SDK
 
-# 1. APIキーの設定
+# 1. APIキーの設定確認
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY is not set in environment variables.")
 
-genai.configure(api_key=GEMINI_API_KEY)
+# クライアントの初期化
+client = genai.Client(api_key=GEMINI_API_KEY)
+
+# 過去の生成済み記事タイトルを取得する関数（被り防止用）
+def get_existing_titles(posts_dir="src/pages/posts"):
+    titles = []
+    if not os.path.exists(posts_dir):
+        return titles
+    
+    md_files = glob.glob(os.path.join(posts_dir, "*.md"))
+    for filepath in md_files:
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+            match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+            if match:
+                titles.append(match.group(1))
+    return titles
 
 def generate_post():
-    # 2. モデルの指定（高速かつ無料枠が十分な gemini-1.5-flash）
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    
     today = datetime.datetime.now()
     today_str = today.strftime("%Y-%m-%d")
-    time_str = today.strftime("%Y-%m-%d %H:%M:%S")
 
-    # 3. AIに渡す指示文（プロンプト）
+    # 重複回避用の過去タイトルリスト取得
+    existing_titles = get_existing_titles()
+    if existing_titles:
+        past_topics_text = "\n".join([f"- {t}" for t in existing_titles[-30:]])
+        ng_instruction = f"""
+【重要：重複の禁止】
+以下のタイトル・テーマはすでに作成済みです。これらと内容や切り口が重複しない、完全に新しいテーマ・トピックを選定してください。
+--- すでに存在する記事 ---
+{past_topics_text}
+---------------------------
+"""
+    else:
+        ng_instruction = ""
+
     prompt = f"""
-    あなたはWEBエンジニア兼技術ブロガーです。
-    最新のWeb技術、AI、またはプログラミングに関する役立つ解説記事を1つ作成してください。
+あなたはWeb技術・AI分野に精通したプロのライターです。
+最新のWeb開発、プログラミング、またはAI技術に関する実用的な解説記事を1つ作成してください。
 
-    【出力フォーマット指定】
-    必ず以下のYAML Frontmatterヘッダー形式から始めてください。
-    余計な挨拶文や ```markdown などのコードブロック囲みは含めないでください。
+{ng_instruction}
 
-    ---
-    title: "記事のタイトルをここに"
-    pubDate: "{today_str}"
-    description: "記事の短い要約（80〜120文字程度）"
-    author: "AI Writer"
-    tags: ["Tech", "AI"]
-    ---
+【出力フォーマット指定】
+必ず以下のYAML Frontmatterヘッダー形式から始めてください。
+余計な挨拶文や ```markdown などのコードブロック囲みは含めないでください。
 
-    # 記事のタイトル
+---
+title: "記事のタイトル"
+pubDate: "{today_str}"
+description: "記事の短い要約（80〜120文字程度）"
+author: "AI Writer"
+tags: ["Tech", "AI"]
+---
 
-    ## はじめに
-    （導入文を詳しく記述）
+# 記事のタイトル
 
-    ## 主要なポイント・解説
-    （具体的なコード例やメリットなどを解説）
+## はじめに
+（導入文）
 
-    ## まとめ
-    （全体のまとめ）
-    """
+## 詳細解説
+（具体例やコード例、メリットなどを分かりやすく解説）
 
-    print("Gemini APIへ記事生成をリクエスト中...")
-    response = model.generate_content(prompt)
+## まとめ
+（全体のまとめ）
+"""
+
+    print("Gemini API (gemini-3.6-flash) へ記事生成をリクエスト中...")
+    
+    # 最新モデル gemini-3.6-flash を指定
+    response = client.models.generate_content(
+        model='gemini-3.6-flash',
+        contents=prompt,
+    )
     content = response.text.strip()
 
-    # コードブロック（```）で囲まれて返ってきた場合の整形処理
+    # 余分なコードブロック装飾の除外処理
     if content.startswith("```"):
         lines = content.splitlines()
         if lines[0].startswith("```"):
@@ -59,11 +93,9 @@ def generate_post():
             lines = lines[:-1]
         content = "\n".join(lines)
 
-    # 4. AstroのコンテンツディレクトリにMarkdownとして保存
-    output_dir = "src/pages/posts" # Astroの標準的なルーティング先
+    output_dir = "src/pages/posts"
     os.makedirs(output_dir, exist_ok=True)
     
-    # ユニークなファイル名を設定（例: 2026-09-27-post.md）
     filename = f"{today_str}-auto-post.md"
     filepath = os.path.join(output_dir, filename)
 
