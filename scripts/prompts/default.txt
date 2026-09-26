@@ -20,8 +20,6 @@ author: "AI Writer"
 tags: ["Tech", "AI"]
 ---
 
-# 記事のタイトル
-
 ## はじめに
 （導入文）
 

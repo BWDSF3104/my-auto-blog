@@ -19,8 +19,6 @@ author: "AI Specialist"
 tags: ["AI", "LLM", "Python"]
 ---
 
-# 記事のタイトル
-
 ## 概要と背景
 
 ## 技術的メカニズム・特徴
