@@ -2,7 +2,9 @@ import os
 import glob
 import re
 import datetime
-from google import genai  # 最新の標準SDK
+import time
+from google import genai
+from google.genai import errors
 
 # 1. APIキーの設定確認
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -11,6 +13,13 @@ if not GEMINI_API_KEY:
 
 # クライアントの初期化
 client = genai.Client(api_key=GEMINI_API_KEY)
+
+# 試行するモデルの優先順位リスト（503混雑時に自動で次のモデルに切替）
+MODELS_TO_TRY = [
+    "gemini-3.6-flash",
+    "gemini-2.5-flash",
+    "gemini-1.5-flash",
+]
 
 # 過去の生成済み記事タイトルを取得する関数（被り防止用）
 def get_existing_titles(posts_dir="src/pages/posts"):
@@ -26,6 +35,30 @@ def get_existing_titles(posts_dir="src/pages/posts"):
             if match:
                 titles.append(match.group(1))
     return titles
+
+# 503エラーや混雑に対応する自動リトライ＆フォールバック呼び出し関数
+def generate_content_with_retry(prompt):
+    max_retries = 3  # 各モデルでの最大リトライ回数
+
+    for model_name in MODELS_TO_TRY:
+        for attempt in range(1, max_retries + 1):
+            try:
+                print(f"Gemini API ({model_name}) へ記事生成をリクエスト中... (試行 {attempt}/{max_retries})")
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                )
+                return response
+            except (errors.ServerError, errors.APIError, Exception) as e:
+                print(f"⚠️ エラーが発生しました ({model_name}): {e}")
+                if attempt < max_retries:
+                    wait_time = 5 * (2 ** (attempt - 1))  # 5秒、10秒、20秒と待機時間を増やす（指数バックオフ）
+                    print(f"🕒 {wait_time}秒間待機して再試行します...")
+                    time.sleep(wait_time)
+                else:
+                    print(f"❌ モデル {model_name} でのリトライ上限に達しました。次のモデルを試します。")
+
+    raise RuntimeError("すべてのモデルおよび再試行が失敗しました。")
 
 def generate_post():
     today = datetime.datetime.now()
@@ -75,13 +108,8 @@ tags: ["Tech", "AI"]
 （全体のまとめ）
 """
 
-    print("Gemini API (gemini-3.6-flash) へ記事生成をリクエスト中...")
-    
-    # 最新モデル gemini-3.6-flash を指定
-    response = client.models.generate_content(
-        model='gemini-3.6-flash',
-        contents=prompt,
-    )
+    # 自動リトライ・フォールバック機能付きでAPIを実行
+    response = generate_content_with_retry(prompt)
     content = response.text.strip()
 
     # 余分なコードブロック装飾の除外処理
