@@ -22,7 +22,7 @@ MODELS_TO_TRY = [
 ]
 
 # 過去の生成済み記事タイトルを取得する関数（被り防止用）
-def get_existing_titles(posts_dir="src/pages/posts"):
+def get_existing_titles(posts_dir="src/content/posts"):
     titles = []
     if not os.path.exists(posts_dir):
         return titles
