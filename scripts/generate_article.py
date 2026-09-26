@@ -36,6 +36,18 @@ def get_existing_titles(posts_dir="src/pages/posts"):
                 titles.append(match.group(1))
     return titles
 
+# プロンプトファイルを外部から読み込む関数
+def load_prompt_template(prompt_type="default"):
+    prompt_path = os.path.join("scripts", "prompts", f"{prompt_type}.txt")
+    
+    # 指定のプロンプトがない場合はdefault.txtをフォールバックとして利用
+    if not os.path.exists(prompt_path):
+        print(f"⚠️ 指定されたプロンプト '{prompt_type}' が見つかりません。'default.txt' を使用します。")
+        prompt_path = os.path.join("scripts", "prompts", "default.txt")
+
+    with open(prompt_path, "r", encoding="utf-8") as f:
+        return f.read()
+
 # 自動リトライ＆アクティブモデルへのフォールバック関数
 def generate_content_with_retry(prompt):
     max_retries = 3
@@ -72,7 +84,6 @@ def generate_content_with_retry(prompt):
 
 def generate_post():
     now = datetime.datetime.now()
-    # メタデータ用（日時表示）とファイル名用（時分秒追加）の文字列を作成
     pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
@@ -90,35 +101,15 @@ def generate_post():
     else:
         ng_instruction = ""
 
-    prompt = f"""
-あなたはWeb技術・AI分野に精通したプロのライターです。
-最新のWeb開発、プログラミング、またはAI技術に関する実用的な解説記事を1つ作成してください。
+    # 環境変数から使用するプロンプト種別を取得（デフォルトは 'default'）
+    prompt_type = os.environ.get("PROMPT_TYPE", "default")
+    template = load_prompt_template(prompt_type)
 
-{ng_instruction}
-
-【出力フォーマット指定】
-必ず以下のYAML Frontmatterヘッダー形式から始めてください。
-余計な挨拶文や ```markdown などのコードブロック囲みは含めないでください。
-
----
-title: "記事のタイトル"
-pubDate: "{pub_date_str}"
-description: "記事の短い要約（80〜120文字程度）"
-author: "AI Writer"
-tags: ["Tech", "AI"]
----
-
-# 記事のタイトル
-
-## はじめに
-（導入文）
-
-## 詳細解説
-（具体例やコード例、メリットなどを分かりやすく解説）
-
-## まとめ
-（全体のまとめ）
-"""
+    # テンプレート内の変数を置換
+    prompt = template.format(
+        ng_instruction=ng_instruction,
+        pub_date_str=pub_date_str
+    )
 
     response = generate_content_with_retry(prompt)
     content = response.text.strip()
@@ -135,14 +126,13 @@ tags: ["Tech", "AI"]
     output_dir = "src/pages/posts"
     os.makedirs(output_dir, exist_ok=True)
     
-    # ファイル名に「YYYY-MM-DD-HHMMSS」を使用（同日内の複数投稿に対応）
     filename = f"{file_timestamp}-auto-post.md"
     filepath = os.path.join(output_dir, filename)
 
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(content)
 
-    print(f"記事が正常に生成されました: {filepath}")
+    print(f"記事が正常に生成されました ({prompt_type}): {filepath}")
 
 if __name__ == "__main__":
     generate_post()
