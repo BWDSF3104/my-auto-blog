@@ -1,11 +1,123 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// src/pages/posts/ 内のすべてのMarkdown記事を自動取得
+const posts = await Astro.glob('./posts/*.md');
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// 日付（pubDate）の新しい順に並び替え
+posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+
+const pageTitle = "AI Auto Tech Blog";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        line-height: 1.6;
+        color: #222;
+        background-color: #f8fafc;
+      }
+      header {
+        border-bottom: 2px solid #e2e8f0;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #0f172a;
+        margin: 0 0 0.5rem 0;
+      }
+      .subtitle {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .post-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .post-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .post-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      .post-title {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.35rem;
+      }
+      .post-title a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .post-title a:hover {
+        text-decoration: underline;
+      }
+      .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 0.75rem;
+      }
+      .post-description {
+        margin: 0;
+        color: #334155;
+        font-size: 0.95rem;
+      }
+      .tag {
+        background: #eff6ff;
+        color: #2563eb;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{pageTitle}</h1>
+      <p class="subtitle">Gemini API ＆ GitHub Actions による完全自動生成技術ブログ</p>
+    </header>
+
+    <main>
+      {posts.length === 0 ? (
+        <p>記事を読み込んでいます...</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li class="post-card">
+              <h2 class="post-title">
+                <a href={post.url}>{post.frontmatter.title}</a>
+              </h2>
+              <div class="post-meta">
+                <span>📅 {post.frontmatter.pubDate}</span>
+                {post.frontmatter.tags && post.frontmatter.tags.map((tag: string) => (
+                  <span class="tag">#{tag}</span>
+                ))}
+              </div>
+              <p class="post-description">{post.frontmatter.description}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </main>
+  </body>
+</html>
