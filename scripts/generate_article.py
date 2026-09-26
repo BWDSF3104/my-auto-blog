@@ -123,7 +123,7 @@ def generate_post():
             lines = lines[:-1]
         content = "\n".join(lines)
 
-    output_dir = "src/pages/posts"
+    output_dir = "src/content/posts"
     os.makedirs(output_dir, exist_ok=True)
     
     filename = f"{file_timestamp}-auto-post.md"

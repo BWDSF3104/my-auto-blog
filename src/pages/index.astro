@@ -1,5 +1,5 @@
 ---
-// Vite標準の import.meta.glob を使用して Markdown 記事を自動取得
+// 変更前: import.meta.glob<...>( './posts/*.md', { eager: true });
 const postImports = import.meta.glob<{
   frontmatter: {
     title: string;
@@ -8,15 +8,20 @@ const postImports = import.meta.glob<{
     tags?: string[];
   };
   url: string;
-}>('./posts/*.md', { eager: true });
+}>('../content/posts/*.md', { eager: true });
 
-// 取得したオブジェクトを配列に変換
-const posts = Object.values(postImports);
+// リンク用URLの整形処理を少し調整
+const posts = Object.entries(postImports).map(([path, module]) => {
+  const filename = path.split('/').pop()?.replace('.md', '') || '';
+  return {
+    ...module,
+    url: `/posts/${filename}`
+  };
+});
 
-// 日付（pubDate）の新しい順に並び替え
 posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 
-const pageTitle = "AI Auto Tech Blog";
+const pageTitle = "BWD's AI Auto Tech Blog";
 ---
 
 <html lang="ja">
