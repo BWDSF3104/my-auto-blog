@@ -1,0 +1,85 @@
+name: Auto Generate Content and Deploy to GitHub Pages
+
+on:
+  # 1. 毎日自動実行（cron指定: UTC時間なので 日本時間 8:00 にする場合は 前日23:00 UTC）
+  schedule:
+    - cron: '0 23 * * *'
+  
+  # 2. 手動でテスト実行できるようにする設定
+  workflow_dispatch:
+
+# 権限の設定（リポジトリの書き込みとGitHub Pagesへのデプロイ権限）
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 同時実行の制御
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # --- ジョブ1: AI記事生成 ＆ Git Commit ---
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install google-generativeai
+
+      - name: Run generation script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/generate_article.py
+
+      - name: Commit and push generated article
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/pages/posts/
+          
+          # 新しい記事がある場合のみコミットしてPush
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post [skip ci]" && git push)
+
+  # --- ジョブ2: Astroサイト構築 ＆ GitHub Pagesへ配信 ---
+  build-and-deploy:
+    needs: generate # 記事生成が終わってから実行
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 最新のコミット（生成された記事）を取得
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
