@@ -12,7 +12,6 @@
 余計な挨拶文や ```markdown などのコードブロック囲みは含めないでください。
 
 ---
-layout: "../../layouts/PostLayout.astro"
 title: "記事のタイトル"
 pubDate: "{pub_date_str}"
 description: "記事の短い要約（80〜120文字程度）"
