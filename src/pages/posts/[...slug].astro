@@ -1,0 +1,30 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  // src/pages/posts/ 配下の全 Markdown ファイルを取得
+  const postImports = import.meta.glob<{
+    file: string;
+    frontmatter: any;
+    Content: any;
+  }>('./*.md', { eager: true });
+
+  return Object.values(postImports).map((post) => {
+    // ファイル名（例: 2026-09-27-120000-auto-post.md）から slug（URL）を抽出
+    const filename = post.file.split('/').pop() || '';
+    const slug = filename.replace('.md', '');
+
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content, frontmatter } = post;
+---
+
+<PostLayout frontmatter={frontmatter}>
+  <Content />
+</PostLayout>
