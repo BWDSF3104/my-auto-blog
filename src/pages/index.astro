@@ -10,12 +10,12 @@ const postImports = import.meta.glob<{
   url: string;
 }>('../content/posts/*.md', { eager: true });
 
-// リンク用URLの整形処理を少し調整
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const posts = Object.entries(postImports).map(([path, module]) => {
   const filename = path.split('/').pop()?.replace('.md', '') || '';
   return {
     ...module,
-    url: `/posts/${filename}`
+    url: `${baseUrl}/posts/${filename}`
   };
 });
 
