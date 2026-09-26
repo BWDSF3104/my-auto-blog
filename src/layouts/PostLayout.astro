@@ -1,0 +1,43 @@
+---
+const { frontmatter } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{frontmatter.title}</title>
+    <meta name="description" content={frontmatter.description} />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen py-10 px-4">
+    <main class="max-w-3xl mx-auto bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200/80">
+      <a href="/" class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 mb-6 transition-colors">
+        ← 記事一覧に戻る
+      </a>
+      
+      <header class="mb-8 pb-6 border-b border-slate-200">
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+          {frontmatter.title}
+        </h1>
+        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+          <time datetime={frontmatter.pubDate}>📅 {frontmatter.pubDate}</time>
+          <span>✍️ {frontmatter.author}</span>
+          {frontmatter.tags && (
+            <div class="flex gap-1.5 ml-auto">
+              {frontmatter.tags.map((tag: string) => (
+                <span class="bg-blue-50 text-blue-600 px-2.5 py-0.5 rounded-full text-xs font-semibold">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </header>
+
+      <!-- Markdown本文：proseクラスにより綺麗に装飾される -->
+      <article class="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-xl prose-pre:bg-slate-900">
+        <slot />
+      </article>
+    </main>
+  </body>
+</html>
