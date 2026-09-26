@@ -14,11 +14,11 @@ if not GEMINI_API_KEY:
 # クライアントの初期化
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# 2026年現在利用可能な有効モデルの優先リスト（404モデル排除済み）
+# 利用可能な有効モデルの優先リスト
 MODELS_TO_TRY = [
-    "gemini-3.8-flash",      # エラーメッセージ推奨の最新高速モデル
-    "gemini-3.6-flash",      # 汎用主力モデル
-    "gemini-3.1-flash-lite"  # 軽量フォールバックモデル
+    "gemini-3.8-flash",
+    "gemini-3.6-flash",
+    "gemini-3.1-flash-lite"
 ]
 
 # 過去の生成済み記事タイトルを取得する関数（被り防止用）
@@ -38,7 +38,7 @@ def get_existing_titles(posts_dir="src/pages/posts"):
 
 # 自動リトライ＆アクティブモデルへのフォールバック関数
 def generate_content_with_retry(prompt):
-    max_retries = 3  # 503エラー時のモデルごとの最大リトライ回数
+    max_retries = 3
 
     for model_name in MODELS_TO_TRY:
         for attempt in range(1, max_retries + 1):
@@ -52,15 +52,13 @@ def generate_content_with_retry(prompt):
 
             except errors.APIError as e:
                 err_str = str(e)
-                # 404 NOT_FOUND（モデルが存在しない/非推奨）の場合はリトライせず即座に次のモデルへ
                 if "404" in err_str or "NOT_FOUND" in err_str:
                     print(f"⚠️ モデル {model_name} は利用不可(404)です。次のモデルへ切り替えます。")
                     break
 
-                # 503 UNAVAILABLE（混雑・一時的エラー）の場合は待機して再試行
                 print(f"⚠️ APIエラーが発生しました ({model_name}): {e}")
                 if attempt < max_retries:
-                    wait_time = 5 * (2 ** (attempt - 1))  # 5秒、10秒、20秒...
+                    wait_time = 5 * (2 ** (attempt - 1))
                     print(f"🕒 {wait_time}秒間待機して再試行します...")
                     time.sleep(wait_time)
                 else:
@@ -73,8 +71,10 @@ def generate_content_with_retry(prompt):
     raise RuntimeError("すべてのモデルおよび再試行が失敗しました。")
 
 def generate_post():
-    today = datetime.datetime.now()
-    today_str = today.strftime("%Y-%m-%d")
+    now = datetime.datetime.now()
+    # メタデータ用（日時表示）とファイル名用（時分秒追加）の文字列を作成
+    pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
+    file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
     # 重複回避用の過去タイトルリスト取得
     existing_titles = get_existing_titles()
@@ -102,7 +102,7 @@ def generate_post():
 
 ---
 title: "記事のタイトル"
-pubDate: "{today_str}"
+pubDate: "{pub_date_str}"
 description: "記事の短い要約（80〜120文字程度）"
 author: "AI Writer"
 tags: ["Tech", "AI"]
@@ -135,7 +135,8 @@ tags: ["Tech", "AI"]
     output_dir = "src/pages/posts"
     os.makedirs(output_dir, exist_ok=True)
     
-    filename = f"{today_str}-auto-post.md"
+    # ファイル名に「YYYY-MM-DD-HHMMSS」を使用（同日内の複数投稿に対応）
+    filename = f"{file_timestamp}-auto-post.md"
     filepath = os.path.join(output_dir, filename)
 
     with open(filepath, "w", encoding="utf-8") as f:
