@@ -2,8 +2,8 @@ name: Auto Generate Content and Deploy to GitHub Pages
 
 on:
   schedule:
-    - cron: '0 23 * * *' # 毎日 日本時間 8:00 に実行
-  workflow_dispatch: # 手動実行用
+    - cron: '0 23 * * *' # 豈取律 譌･譛ｬ譎る俣 8:00 縺ｫ螳溯｡?
+  workflow_dispatch: # 謇句虚螳溯｡檎畑
 
 permissions:
   contents: write
@@ -15,8 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # --- 1. AI記事生成 ＆ Git Commit ---
-# --- 1. AI記事生成 ＆ Git Commit ---
+  # --- 1. AI險倅ｺ狗函謌? ?ｼ? Git Commit ---
   generate:
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +32,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install google-genai gradio_client pillow pillow-avif-plugin
 
+      # -------------------------------------------------------
+      # 1-A. 險ｭ螳壻ｸ崎ｦ√た繝ｼ繧ｹ縺九ｉ繝医Ξ繝ｳ繝峨ヨ繝斐ャ繧ｯ繧貞庶髮?
+      #      ?ｼ?HackerNews / Reddit / e621 / RSS / GitHub Search?ｼ?
+      #      蜃ｺ蜉?: data/latest_topics.json
+      # -------------------------------------------------------
+      - name: Fetch trending topics (no API key required)
+        env:
+          # GITHUB_TOKEN 縺ｯ Actions 蜀?縺ｧ閾ｪ蜍墓署萓帙＆繧後ｋ?ｼ医Ξ繝ｼ繝亥宛髯千ｷｩ蜥?: 1,000req/h?ｼ?
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p data
+          python scripts/fetch_topics.py
+
+      # -------------------------------------------------------
+      # 1-B. Gemini 縺ｧ繧ｱ繝｢繝主ｰ剰ｪｬ繧堤函謌?
+      #      fetch_topics.py 縺檎函謌舌＠縺? data/latest_topics.json 繧貞盾辣ｧ縺励※繝医Ξ繝ｳ繝峨ｒ豕ｨ蜈･
+      # -------------------------------------------------------
       - name: Run generation script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -46,13 +62,15 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # ディレクトリを安全に追加
+          # 繝?繧｣繝ｬ繧ｯ繝医Μ繧貞ｮ牙?ｨ縺ｫ霑ｽ蜉?
           git add src/content/posts/
           [ -d "public/images" ] && git add public/images/
+          # 繝医Ξ繝ｳ繝雨SON繧ゅさ繝溘ャ繝茨ｼ亥ｷｮ蛻?遒ｺ隱咲畑繝ｻ莉ｻ諢擾ｼ?
+          [ -f "data/latest_topics.json" ] && git add data/latest_topics.json
           
           git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git push)          
 
-  # --- 2. Astroサイト構築 ＆ GitHub Pagesへ配信 ---
+  # --- 2. Astro繧ｵ繧､繝域ｧ狗ｯ? ?ｼ? GitHub Pages縺ｸ驟堺ｿ｡ ---
   build-and-deploy:
     needs: generate
     runs-on: ubuntu-latest

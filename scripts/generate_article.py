@@ -1,5 +1,6 @@
 import os
 import glob
+import json
 import re
 from datetime import datetime, timezone, timedelta
 import time
@@ -473,9 +474,58 @@ def generate_content_with_retry(prompt):
 
 
 # --------------------------------------------------
+# トレンドトピック注入ヘルパー
+# --------------------------------------------------
+TOPICS_JSON_PATH = os.path.join("data", "latest_topics.json")
+
+def _append_trending_topics(ng_instruction: str, prompt_type: str) -> str:
+    """
+    data/latest_topics.json が存在する場合、prompt_type に応じたカテゴリの
+    トレンドタイトルを ng_instruction の末尾へ付加する。
+    ファイルが存在しない場合は元の ng_instruction をそのまま返す。
+    """
+    if not os.path.exists(TOPICS_JSON_PATH):
+        print(f"[topics] {TOPICS_JSON_PATH} が見つかりません。トレンド注入をスキップします。")
+        return ng_instruction
+
+    try:
+        with open(TOPICS_JSON_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"[topics] JSON 読み込み失敗: {e}")
+        return ng_instruction
+
+    # prompt_type に合わせてカテゴリを選択
+    if prompt_type in ("kemono_story", "novel", "story"):
+        categories = ["kemono", "pokemon"]
+    else:
+        categories = ["tech", "kemono", "pokemon"]
+
+    by_cat = data.get("by_category", {})
+    selected_titles: list[str] = []
+    for cat in categories:
+        for item in by_cat.get(cat, [])[:5]:  # 各カテゴリ最大5件
+            title = item.get("title", "").strip()
+            source = item.get("source", "")
+            if title:
+                selected_titles.append(f"[{source}] {title}")
+
+    if not selected_titles:
+        return ng_instruction
+
+    trend_block = (
+        "\n\n【参考：今日のトレンドトピック（インスピレーション源として活用してください）】\n"
+        + "\n".join(f"- {t}" for t in selected_titles)
+    )
+    print(f"[topics] {len(selected_titles)} 件のトレンドをプロンプトに注入しました")
+    return ng_instruction + trend_block
+
+
+# --------------------------------------------------
 # メイン処理
 # --------------------------------------------------
 def generate_post():
+
     # 日本時間（JST = UTC+9）の定義
     JST = timezone(timedelta(hours=9))
     now = datetime.now(JST)
@@ -500,12 +550,16 @@ def generate_post():
     else:
         ng_instruction = ""
 
+    # 1.5. 収集済みトレンドトピックをプロンプトに注入（fetch_topics.py が生成した JSON を参照）
+    ng_instruction = _append_trending_topics(ng_instruction, prompt_type)
+
     # 2. テキスト記事の生成
     template = load_prompt_template(prompt_type)
     prompt = template.format(
         ng_instruction=ng_instruction,
         pub_date_str=pub_date_str
     )
+
 
     response = generate_content_with_retry(prompt)
     content = response.text.strip()
