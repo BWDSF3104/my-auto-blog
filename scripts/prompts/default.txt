@@ -18,7 +18,13 @@ pubDate: "{pub_date_str}"
 description: "記事の短い要約（80〜120文字程度）"
 author: "AI Writer"
 tags: ["Tech", "AI"]
+image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
 ---
+
+【Frontmatter内の image_prompt の指定ルール】
+・この記事の技術テーマを視覚的に表現する英語のキーワード（カンマ区切り）を出力してください。
+・キャラクター種族（wolf, fox, cat, dragon など）と、アクション・背景（coding, server room, holding glowing sphere など）を含めてください。
+・画質指定（masterpiece等）やスタイル指定（kemono等）は含めないでください。
 
 ## はじめに
 （導入文）

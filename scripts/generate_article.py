@@ -15,6 +15,8 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY is not set in environment variables.")
 
+HF_TOKEN = os.environ.get("HF_TOKEN")
+
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 MODELS_TO_TRY = [
@@ -26,6 +28,10 @@ MODELS_TO_TRY = [
 HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
 
+# 画像プロンプトの固定ベース・フォールバック指定
+BASE_QUALITY_PROMPT = "masterpiece, best quality, kemono, anthro, 1boy, solo"
+DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
+
 
 # --------------------------------------------------
 # 画像生成関数
@@ -34,10 +40,10 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
     """HF Space APIを呼び出して画像を生成し、public/images/ に保存してURLパスを返す"""
     try:
         print(f"🎨 画像生成開始: {prompt}")
-        hf_client = Client(HF_SPACE_ID)
+        hf_client = Client(HF_SPACE_ID, hf_token=HF_TOKEN)
         
         temp_image_path = hf_client.predict(
-            prompt=f"masterpiece, best quality, {prompt}",
+            prompt=prompt,
             negative_prompt="lowres, bad quality, worst quality, deformed",
             model_id="cagliostrolab/animagine-xl-3.1",
             steps=25,
@@ -92,6 +98,17 @@ def load_prompt_template(prompt_type="default"):
 
 
 # --------------------------------------------------
+# 記事テキストから画像プロンプトを抽出する関数
+# --------------------------------------------------
+def extract_image_prompt(markdown_content: str) -> str:
+    """MarkdownのFrontmatterから image_prompt の値を抽出する"""
+    match = re.search(r'^image_prompt:\s*["\']?(.*?)["\']?$', markdown_content, re.MULTILINE)
+    if match and match.group(1):
+        return match.group(1).strip()
+    return DEFAULT_SITUATION
+
+
+# --------------------------------------------------
 # Gemini API 呼び出し
 # --------------------------------------------------
 def generate_content_with_retry(prompt):
@@ -126,12 +143,7 @@ def generate_post():
     pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
-    # 1. 画像の生成
-    image_filename = f"{file_timestamp}-header.png"
-    image_prompt = "1boy, wolf, kemono, anthro, stylish jacket, sitting at desk with laptop, tech room"
-    image_url = generate_and_save_image(image_prompt, image_filename)
-
-    # 2. 重複防止設定
+    # 1. 重複防止設定
     existing_titles = get_existing_titles()
     if existing_titles:
         past_topics_text = "\n".join([f"- {t}" for t in existing_titles[-30:]])
@@ -139,7 +151,7 @@ def generate_post():
     else:
         ng_instruction = ""
 
-    # 3. テキスト記事の生成
+    # 2. テキスト記事の生成
     prompt_type = os.environ.get("PROMPT_TYPE", "default")
     template = load_prompt_template(prompt_type)
     prompt = template.format(
@@ -159,9 +171,25 @@ def generate_post():
             lines = lines[:-1]
         content = "\n".join(lines)
 
-    # 4. Frontmatterに image フィールドを追加挿入
-    if image_url and "---" in content:
-        content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
+    # 3. 記事本文から画像用シチュエーションプロンプトを抽出して画像生成
+    image_filename = f"{file_timestamp}-header.png"
+    dynamic_situation = extract_image_prompt(content)
+    print(f"💡 抽出されたシチュエーション: {dynamic_situation}")
+
+    full_image_prompt = f"{BASE_QUALITY_PROMPT}, {dynamic_situation}"
+    image_url = generate_and_save_image(full_image_prompt, image_filename)
+
+    # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入)
+    if image_url:
+        if re.search(r'^image_prompt:.*$', content, re.MULTILINE):
+            content = re.sub(
+                r'^image_prompt:.*$', 
+                f'image: "{image_url}"', 
+                content, 
+                flags=re.MULTILINE
+            )
+        elif "---" in content:
+            content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
 
     # 5. 保存
     output_dir = "src/content/posts"
