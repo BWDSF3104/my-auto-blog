@@ -59,8 +59,8 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
                 "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed", # Negative Prompt
                 25,                                                     # Steps
                 5.0,                                                    # Guidance Scale (Nova系最適値)
-                1152,                                                   # Width (WEB記事向け横長)
-                768,                                                    # Height
+                960,                                                   # Width (WEB記事向け横長)
+                640,                                                    # Height
                 api_name="/predict"
             )
             
