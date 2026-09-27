@@ -1,33 +1,26 @@
 {
-  "fetched_at": "2026-09-28T00:36:07.952194+09:00",
+  "fetched_at": "2026-09-28T00:41:30.272403+09:00",
   "total": 55,
   "by_category": {
     "tech": [
       {
         "title": "\"They had no concept of a duty of care to their users.\"",
         "url": "https://unsung.aresluna.org/they-had-no-concept-of-a-duty-of-care-to-their-users/",
-        "score": 84,
+        "score": 94,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "In an $80 Motel Room, a Discovery to Shed Light on the Origins of Life",
         "url": "https://www.nytimes.com/2026/09/26/science/motel-science-discovery.html",
-        "score": 41,
+        "score": 44,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Replacing the old battery on rechargeable bike lights",
         "url": "https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/",
-        "score": 45,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "10 Tells of a Slop UI",
-        "url": "https://hereticpleb.vercel.app/blog/10-tells-of-slop",
-        "score": 109,
+        "score": 47,
         "source": "HackerNews",
         "category": "tech"
       },
@@ -41,50 +34,43 @@
       {
         "title": "Flip Fluid on Flip Dots",
         "url": "https://mitxela.com/projects/flipflip",
-        "score": 249,
+        "score": 251,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Writing Efficient C++ Code",
         "url": "https://asawicki.info/articles/writing_efficient_cpp_code.php",
-        "score": 10,
+        "score": 13,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Fakecloud: Local AWS cloud emulator for integration tests",
         "url": "https://fakecloud.dev/",
-        "score": 34,
+        "score": 36,
+        "source": "HackerNews",
+        "category": "tech"
+      },
+      {
+        "title": "10 Tells of a Slop UI",
+        "url": "https://hereticpleb.vercel.app/blog/10-tells-of-slop",
+        "score": 121,
+        "source": "HackerNews",
+        "category": "tech"
+      },
+      {
+        "title": "Ten Lines of Code That Changed My World",
+        "url": "https://pixelambacht.nl/2026/ten-lines-of-code/",
+        "score": 10,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Does Georgism work? Five years later",
         "url": "https://www.astralcodexten.com/p/does-georgism-work-five-years-later",
-        "score": 450,
+        "score": 451,
         "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "Unsealed Briefs in Authors’ Case v. Microsoft/OpenAI",
-        "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
-        "score": 526,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "AIの判断をアプリに組み込むには？Jev AIで試す構造化された出力",
-        "url": "https://zenn.dev/bellwood/articles/d28718b79a1be0",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "OpenAI、研究用AIエージェントがユーザー画像53枚を無断でネット上に投稿していたと公表",
-        "url": "https://zenn.dev/ai_news_bot/articles/ainews-20260927-t1",
-        "score": 0,
-        "source": "Zenn AI",
         "category": "tech"
       },
       {
@@ -139,6 +125,20 @@
       {
         "title": "AIで開発が速くなる今、インフラエンジニアが12FAから考えたいこと",
         "url": "https://zenn.dev/nnydtmg/articles/twelve-factor-ai-infrastructure-development",
+        "score": 0,
+        "source": "Zenn AI",
+        "category": "tech"
+      },
+      {
+        "title": "翌日のAI開発を再開するために、会話の要約へ足す「次の判断」",
+        "url": "https://zenn.dev/partial_stds/articles/9625499013b026",
+        "score": 0,
+        "source": "Zenn AI",
+        "category": "tech"
+      },
+      {
+        "title": "【生成AIのコア】Attentionの発展 in 2025",
+        "url": "https://zenn.dev/eques/articles/0fb9c6a992773e",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
@@ -309,7 +309,7 @@
       {
         "title": "e621 post #6737645: accessory, animal_genitalia, animal_penis, anthro, balls, bdsm, black_balls, blue_nipples",
         "url": "https://e621.net/posts/6737645",
-        "score": 2,
+        "score": 4,
         "source": "e621",
         "category": "kemono"
       },
@@ -344,14 +344,14 @@
       {
         "title": "e621 post #6737646: anthro, areola, big_breasts, blue_body, blush, bodily_fluids, breast_play, breasts",
         "url": "https://e621.net/posts/6737646",
-        "score": 2,
+        "score": 3,
         "source": "e621",
         "category": "kemono"
       },
       {
-        "title": "e621 post #6737642: anthro, areola, big_breasts, biped, black_body, black_fur, black_inner_ear, blep",
+        "title": "e621 post #6737642: 5_fingers, anthro, areola, big_breasts, biped, black_body, black_fur, black_inner_ear",
         "url": "https://e621.net/posts/6737642",
-        "score": 2,
+        "score": 3,
         "source": "e621",
         "category": "kemono"
       },
@@ -372,7 +372,7 @@
       {
         "title": "e621 post #6737623: antennae_(anatomy), anthro, anthro_focus, anthro_penetrated, asphyxiation, black_hair, black_tail, blush",
         "url": "https://e621.net/posts/6737623",
-        "score": 0,
+        "score": 1,
         "source": "e621",
         "category": "kemono"
       }
@@ -399,28 +399,21 @@
     {
       "title": "\"They had no concept of a duty of care to their users.\"",
       "url": "https://unsung.aresluna.org/they-had-no-concept-of-a-duty-of-care-to-their-users/",
-      "score": 84,
+      "score": 94,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "In an $80 Motel Room, a Discovery to Shed Light on the Origins of Life",
       "url": "https://www.nytimes.com/2026/09/26/science/motel-science-discovery.html",
-      "score": 41,
+      "score": 44,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Replacing the old battery on rechargeable bike lights",
       "url": "https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/",
-      "score": 45,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "10 Tells of a Slop UI",
-      "url": "https://hereticpleb.vercel.app/blog/10-tells-of-slop",
-      "score": 109,
+      "score": 47,
       "source": "HackerNews",
       "category": "tech"
     },
@@ -434,35 +427,42 @@
     {
       "title": "Flip Fluid on Flip Dots",
       "url": "https://mitxela.com/projects/flipflip",
-      "score": 249,
+      "score": 251,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Writing Efficient C++ Code",
       "url": "https://asawicki.info/articles/writing_efficient_cpp_code.php",
-      "score": 10,
+      "score": 13,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Fakecloud: Local AWS cloud emulator for integration tests",
       "url": "https://fakecloud.dev/",
-      "score": 34,
+      "score": 36,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "10 Tells of a Slop UI",
+      "url": "https://hereticpleb.vercel.app/blog/10-tells-of-slop",
+      "score": 121,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "Ten Lines of Code That Changed My World",
+      "url": "https://pixelambacht.nl/2026/ten-lines-of-code/",
+      "score": 10,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Does Georgism work? Five years later",
       "url": "https://www.astralcodexten.com/p/does-georgism-work-five-years-later",
-      "score": 450,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "Unsealed Briefs in Authors’ Case v. Microsoft/OpenAI",
-      "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
-      "score": 526,
+      "score": 451,
       "source": "HackerNews",
       "category": "tech"
     },
@@ -504,7 +504,7 @@
     {
       "title": "e621 post #6737645: accessory, animal_genitalia, animal_penis, anthro, balls, bdsm, black_balls, blue_nipples",
       "url": "https://e621.net/posts/6737645",
-      "score": 2,
+      "score": 4,
       "source": "e621",
       "category": "kemono"
     },
@@ -539,14 +539,14 @@
     {
       "title": "e621 post #6737646: anthro, areola, big_breasts, blue_body, blush, bodily_fluids, breast_play, breasts",
       "url": "https://e621.net/posts/6737646",
-      "score": 2,
+      "score": 3,
       "source": "e621",
       "category": "kemono"
     },
     {
-      "title": "e621 post #6737642: anthro, areola, big_breasts, biped, black_body, black_fur, black_inner_ear, blep",
+      "title": "e621 post #6737642: 5_fingers, anthro, areola, big_breasts, biped, black_body, black_fur, black_inner_ear",
       "url": "https://e621.net/posts/6737642",
-      "score": 2,
+      "score": 3,
       "source": "e621",
       "category": "kemono"
     },
@@ -567,23 +567,9 @@
     {
       "title": "e621 post #6737623: antennae_(anatomy), anthro, anthro_focus, anthro_penetrated, asphyxiation, black_hair, black_tail, blush",
       "url": "https://e621.net/posts/6737623",
-      "score": 0,
+      "score": 1,
       "source": "e621",
       "category": "kemono"
-    },
-    {
-      "title": "AIの判断をアプリに組み込むには？Jev AIで試す構造化された出力",
-      "url": "https://zenn.dev/bellwood/articles/d28718b79a1be0",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "OpenAI、研究用AIエージェントがユーザー画像53枚を無断でネット上に投稿していたと公表",
-      "url": "https://zenn.dev/ai_news_bot/articles/ainews-20260927-t1",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
     },
     {
       "title": "高専数学は工学・信号処理・機械学習・AIでどう使うのか 150問",
@@ -637,6 +623,20 @@
     {
       "title": "AIで開発が速くなる今、インフラエンジニアが12FAから考えたいこと",
       "url": "https://zenn.dev/nnydtmg/articles/twelve-factor-ai-infrastructure-development",
+      "score": 0,
+      "source": "Zenn AI",
+      "category": "tech"
+    },
+    {
+      "title": "翌日のAI開発を再開するために、会話の要約へ足す「次の判断」",
+      "url": "https://zenn.dev/partial_stds/articles/9625499013b026",
+      "score": 0,
+      "source": "Zenn AI",
+      "category": "tech"
+    },
+    {
+      "title": "【生成AIのコア】Attentionの発展 in 2025",
+      "url": "https://zenn.dev/eques/articles/0fb9c6a992773e",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
