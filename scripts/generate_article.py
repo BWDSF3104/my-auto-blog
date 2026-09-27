@@ -51,7 +51,7 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
     for attempt in range(1, max_retries + 1):
         try:
             print(f"🎨 画像生成開始 (試行 {attempt}/{max_retries}): {prompt}")
-            hf_client = Client(HF_SPACE_ID, hf_token=HF_TOKEN)
+            hf_client = Client(HF_SPACE_ID, token=HF_TOKEN)
             
             # API引数を app.py の Interface 定義順に渡す
             temp_image_path = hf_client.predict(
