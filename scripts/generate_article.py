@@ -3,7 +3,8 @@ import glob
 import re
 import datetime
 import time
-import shutil
+from PIL import Image
+import pillow_avif
 from google import genai
 from google.genai import errors
 from gradio_client import Client
@@ -37,12 +38,10 @@ DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop,
 # 画像生成関数
 # --------------------------------------------------
 def generate_and_save_image(prompt: str, output_filename: str) -> str:
-    """HF Space APIを呼び出して画像を生成し、public/images/ に保存してURLパスを返す"""
-    # ディレクトリ事前作成（画像生成失敗時でも Git Add エラーを防ぐ）
+    """HF Space APIを呼び出して画像を生成し、public/images/ にAVIF形式で保存してURLパスを返す"""
     save_dir = os.path.join("public", "images")
     os.makedirs(save_dir, exist_ok=True)
     
-    # フォルダ内にダミー用 .gitkeep を作成
     gitkeep_path = os.path.join(save_dir, ".gitkeep")
     if not os.path.exists(gitkeep_path):
         open(gitkeep_path, 'w').close()
@@ -53,27 +52,37 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
             print(f"🎨 画像生成開始 (試行 {attempt}/{max_retries}): {prompt}")
             hf_client = Client(HF_SPACE_ID, token=HF_TOKEN)
             
-            # API引数を app.py の Interface 定義順に渡す (Prompt, Negative, Steps, CFG, Width, Height)
             temp_image_path = hf_client.predict(
-                prompt,                                                  # Prompt
-                "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed", # Negative Prompt
-                25,                                                     # Steps
-                5.0,                                                    # Guidance Scale (Nova系最適値)
-                960,                                                   # Width (WEB記事向け横長)
-                640,                                                    # Height
+                prompt,
+                "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed",
+                25,
+                5.0,
+                960,
+                640,
                 api_name="/predict"
             )
             
-            target_path = os.path.join(save_dir, output_filename)
-            shutil.copy(temp_image_path, target_path)
-            print(f"🖼️ 画像保存成功: {target_path}")
+            # 拡張子を .avif に変更して保存パスを作成
+            output_filename_avif = os.path.splitext(output_filename)[0] + ".avif"
+            target_path = os.path.join(save_dir, output_filename_avif)
             
-            return f"{BASE_URL}/images/{output_filename}"
+            # --- AVIF変換・保存処理 (リサイズなし) ---
+            with Image.open(temp_image_path) as img:
+                # 透過チャンネル（RGBA/P）がある場合はRGBに変換
+                if img.mode in ("RGBA", "P"):
+                    img = img.convert("RGB")
+                
+                # quality=80 は画質をほぼ劣化させずに容量を軽量化できる推奨設定
+                img.save(target_path, "AVIF", quality=80)
+            
+            print(f"🖼️ AVIF画像保存成功: {target_path}")
+            
+            return f"{BASE_URL}/images/{output_filename_avif}"
 
         except Exception as e:
             print(f"⚠️ 画像生成試行 {attempt} 失敗: {e}")
             if attempt < max_retries:
-                time.sleep(15) # ZeroGPUスリープ解除・コールドスタート復帰待ち
+                time.sleep(15)
 
     print("⚠️ 画像生成を断念し、画像なしで記事のみ出力します。")
     return ""
