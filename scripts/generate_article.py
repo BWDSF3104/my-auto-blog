@@ -28,8 +28,8 @@ MODELS_TO_TRY = [
 HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
 
-# 画像プロンプトの固定ベース・フォールバック指定
-BASE_QUALITY_PROMPT = "masterpiece, best quality, kemono, anthro, 1boy, solo"
+# 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
+BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detailed, furry, anthro"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
 
@@ -53,12 +53,14 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
             print(f"🎨 画像生成開始 (試行 {attempt}/{max_retries}): {prompt}")
             hf_client = Client(HF_SPACE_ID, token=HF_TOKEN)
             
-            # API引数を app.py の Interface 定義順に渡す
+            # API引数を app.py の Interface 定義順に渡す (Prompt, Negative, Steps, CFG, Width, Height)
             temp_image_path = hf_client.predict(
                 prompt,                                                  # Prompt
-                "lowres, bad quality, worst quality, deformed",          # Negative Prompt
+                "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed", # Negative Prompt
                 25,                                                     # Steps
-                7.0,                                                    # Guidance Scale
+                5.0,                                                    # Guidance Scale (Nova系最適値)
+                1152,                                                   # Width (WEB記事向け横長)
+                768,                                                    # Height
                 api_name="/predict"
             )
             
