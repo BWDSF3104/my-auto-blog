@@ -45,10 +45,13 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add src/content/posts/ public/images/
           
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git push)
+          # ディレクトリを安全に追加
+          git add src/content/posts/
+          [ -d "public/images" ] && git add public/images/
           
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git push)          
+
   # --- 2. Astroサイト構築 ＆ GitHub Pagesへ配信 ---
   build-and-deploy:
     needs: generate

@@ -38,33 +38,43 @@ DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop,
 # --------------------------------------------------
 def generate_and_save_image(prompt: str, output_filename: str) -> str:
     """HF Space APIを呼び出して画像を生成し、public/images/ に保存してURLパスを返す"""
-    try:
-        print(f"🎨 画像生成開始: {prompt}")
-        hf_client = Client(HF_SPACE_ID, hf_token=HF_TOKEN)
-        
-        temp_image_path = hf_client.predict(
-            prompt=prompt,
-            negative_prompt="lowres, bad quality, worst quality, deformed",
-            model_id="cagliostrolab/animagine-xl-3.1",
-            steps=25,
-            guidance_scale=7.0,
-            api_name="/predict"
-        )
-        
-        # Astroの静的ファイル公開用ディレクトリ (public/images/)
-        save_dir = os.path.join("public", "images")
-        os.makedirs(save_dir, exist_ok=True)
-        
-        target_path = os.path.join(save_dir, output_filename)
-        shutil.copy(temp_image_path, target_path)
-        print(f"🖼️ 画像保存成功: {target_path}")
-        
-        # GitHub Pagesに対応した絶対パスを返却
-        return f"{BASE_URL}/images/{output_filename}"
+    # ディレクトリ事前作成（画像生成失敗時でも Git Add エラーを防ぐ）
+    save_dir = os.path.join("public", "images")
+    os.makedirs(save_dir, exist_ok=True)
+    
+    # フォルダ内にダミー用 .gitkeep を作成
+    gitkeep_path = os.path.join(save_dir, ".gitkeep")
+    if not os.path.exists(gitkeep_path):
+        open(gitkeep_path, 'w').close()
 
-    except Exception as e:
-        print(f"⚠️ 画像生成エラー (画像なしで続行します): {e}")
-        return ""
+    max_retries = 2
+    for attempt in range(1, max_retries + 1):
+        try:
+            print(f"🎨 画像生成開始 (試行 {attempt}/{max_retries}): {prompt}")
+            hf_client = Client(HF_SPACE_ID, hf_token=HF_TOKEN)
+            
+            # API引数を app.py の Interface 定義順に渡す
+            temp_image_path = hf_client.predict(
+                prompt,                                                  # Prompt
+                "lowres, bad quality, worst quality, deformed",          # Negative Prompt
+                25,                                                     # Steps
+                7.0,                                                    # Guidance Scale
+                api_name="/predict"
+            )
+            
+            target_path = os.path.join(save_dir, output_filename)
+            shutil.copy(temp_image_path, target_path)
+            print(f"🖼️ 画像保存成功: {target_path}")
+            
+            return f"{BASE_URL}/images/{output_filename}"
+
+        except Exception as e:
+            print(f"⚠️ 画像生成試行 {attempt} 失敗: {e}")
+            if attempt < max_retries:
+                time.sleep(15) # ZeroGPUスリープ解除・コールドスタート復帰待ち
+
+    print("⚠️ 画像生成を断念し、画像なしで記事のみ出力します。")
+    return ""
 
 
 # --------------------------------------------------
