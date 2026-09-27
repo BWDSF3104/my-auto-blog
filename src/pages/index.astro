@@ -5,7 +5,7 @@ const postImports = import.meta.glob<{
     pubDate: string;
     description: string;
     tags?: string[];
-    image?: string; // ★ 追加
+    image?: string;
   };
   url: string;
 }>('../content/posts/*.md', { eager: true });
@@ -21,7 +21,7 @@ const posts = Object.entries(postImports).map(([path, module]) => {
 
 posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 
-const pageTitle = "BWD's AI Auto Tech Blog";
+const pageTitle = "BWD's AI Auto Blog";
 ---
 
 <html lang="ja">
@@ -141,7 +141,7 @@ const pageTitle = "BWD's AI Auto Tech Blog";
   <body>
     <header>
       <h1>{pageTitle}</h1>
-      <p class="subtitle">Gemini API ＆ GitHub Actions による完全自動生成技術ブログ</p>
+      <p class="subtitle">Gemini API ＆ GitHub Actions による完全自動生成ブログ</p>
     </header>
 
     <main>

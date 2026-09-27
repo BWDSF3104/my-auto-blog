@@ -55,10 +55,10 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
             temp_image_path = hf_client.predict(
                 prompt,
                 "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed",
-                25,
+                18,
                 5.0,
-                960,
-                640,
+                896,
+                512,
                 api_name="/predict"
             )
             
