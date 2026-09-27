@@ -19,7 +19,7 @@ const { frontmatter } = Astro.props;
         <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
           {frontmatter.title}
         </h1>
-        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-6">
           <time datetime={frontmatter.pubDate}>📅 {frontmatter.pubDate}</time>
           <span>✍️ {frontmatter.author}</span>
           {frontmatter.tags && (
@@ -32,9 +32,17 @@ const { frontmatter } = Astro.props;
             </div>
           )}
         </div>
+
+        {/* アイキャッチ画像の表示 */}
+        {frontmatter.image && (
+          <img 
+            src={frontmatter.image} 
+            alt={frontmatter.title} 
+            class="w-full h-auto max-h-96 object-cover rounded-xl border border-slate-200"
+          />
+        )}
       </header>
 
-      <!-- Markdown本文：proseクラスにより綺麗に装飾される -->
       <article class="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-xl prose-pre:bg-slate-900">
         <slot />
       </article>
