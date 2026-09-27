@@ -19,6 +19,7 @@ title: "記事のタイトル"
 pubDate: "{pub_date_str}"
 description: "記事の短い要約（80〜120文字程度）"
 author: "AI Writer"
+prompt_type: "default"
 tags: ["Tech", "AI"]
 image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
 ---

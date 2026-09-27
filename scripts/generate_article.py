@@ -96,21 +96,85 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
 
 
 # --------------------------------------------------
-# 過去タイトル取得
+# 過去記事情報の取得・重複防止
 # --------------------------------------------------
-def get_existing_titles(posts_dir="src/content/posts"):
-    titles = []
+def get_existing_posts(posts_dir="src/content/posts"):
+    """
+    既存の全記事からタイトル、日付、prompt_type（系統）を抽出して新しい順（降順）にソートして返す。
+    """
+    posts = []
     if not os.path.exists(posts_dir):
-        return titles
+        return posts
     
     md_files = glob.glob(os.path.join(posts_dir, "*.md"))
     for filepath in md_files:
-        with open(filepath, "r", encoding="utf-8") as f:
-            content = f.read()
-            match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-            if match:
-                titles.append(match.group(1))
-    return titles
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+            if not title_match:
+                continue
+            title = title_match.group(1).strip()
+
+            date_match = re.search(r'^pubDate:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+            pub_date = date_match.group(1).strip() if date_match else os.path.basename(filepath)
+
+            # 系統（prompt_type）判定
+            type_match = re.search(r'^prompt_type:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+            if type_match:
+                p_type = type_match.group(1).strip()
+            else:
+                # 既存記事用のフォールバック推測（author, tags, character定義から判定）
+                if 'author: "AI Storyteller"' in content or 'tags: ["Kemono"' in content or 'character_1:' in content:
+                    p_type = "kemono_story"
+                else:
+                    p_type = "default"
+
+            posts.append({
+                "title": title,
+                "pub_date": pub_date,
+                "prompt_type": p_type
+            })
+        except Exception as e:
+            print(f"⚠️ 記事ファイル読み込みスキップ ({filepath}): {e}")
+            continue
+
+    # 日付降順（新しい順）にソート
+    posts.sort(key=lambda x: x["pub_date"], reverse=True)
+    return posts
+
+
+def get_recent_titles_by_type(current_prompt_type: str, posts_dir="src/content/posts") -> list[str]:
+    """
+    同系統の記事から直近のタイトルを指定件数分取得する。
+    物語生成（kemono_story等）の場合は直近5件程度、通常記事は直近30件。
+    """
+    LIMITS_BY_TYPE = {
+        "kemono_story": 5,  # 物語系は直近5件に緩和
+        "default": 30       # 技術記事などは直近30件
+    }
+    limit = LIMITS_BY_TYPE.get(current_prompt_type, 10)
+
+    posts = get_existing_posts(posts_dir)
+
+    # 物語系とみなす系統一覧
+    story_types = {"kemono_story", "novel", "story"}
+
+    same_type_titles = []
+    for p in posts:
+        post_type = p["prompt_type"]
+        is_same = False
+        if current_prompt_type in story_types and post_type in story_types:
+            is_same = True
+        elif current_prompt_type == post_type:
+            is_same = True
+
+        if is_same:
+            same_type_titles.append(p["title"])
+
+    print(f"📚 同系統（{current_prompt_type}）の過去記事を {len(same_type_titles)} 件検出（直近 {min(len(same_type_titles), limit)} 件を参照）")
+    return same_type_titles[:limit]
 
 
 # --------------------------------------------------
@@ -367,16 +431,24 @@ def generate_post():
     pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
-    # 1. 重複防止設定
-    existing_titles = get_existing_titles()
-    if existing_titles:
-        past_topics_text = "\n".join([f"- {t}" for t in existing_titles[-30:]])
-        ng_instruction = f"【重要：重複の禁止】\n以下のタイトル・テーマは作成済みです:\n{past_topics_text}"
+    # 1. プロンプトタイプ決定と同系統の重複防止設定
+    prompt_type = os.environ.get("PROMPT_TYPE", "default")
+    recent_titles = get_recent_titles_by_type(prompt_type)
+
+    if recent_titles:
+        past_topics_text = "\n".join([f"- {t}" for t in recent_titles])
+        if prompt_type in ("kemono_story", "novel", "story"):
+            ng_instruction = (
+                f"【直近の執筆作品（テーマ・展開被り防止）】\n"
+                f"直近で以下の物語を作成済みです。これらとシチュエーションや展開が極力被らないよう、新しいテーマで作成してください:\n"
+                f"{past_topics_text}"
+            )
+        else:
+            ng_instruction = f"【重要：重複の禁止】\n以下のタイトル・テーマは作成済みです:\n{past_topics_text}"
     else:
         ng_instruction = ""
 
     # 2. テキスト記事の生成
-    prompt_type = os.environ.get("PROMPT_TYPE", "default")
     template = load_prompt_template(prompt_type)
     prompt = template.format(
         ng_instruction=ng_instruction,
@@ -412,7 +484,7 @@ def generate_post():
     print(f"🎨 ヘッダー画像合成プロンプト: {full_image_prompt}")
     image_url = generate_and_save_image(full_image_prompt, image_filename)
 
-    # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入)
+    # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入、prompt_typeの記録)
     if image_url:
         if re.search(r'^image_prompt:.*$', content, re.MULTILINE):
             content = re.sub(
@@ -423,6 +495,10 @@ def generate_post():
             )
         elif "---" in content:
             content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
+
+    # 系統情報（prompt_type）をFrontmatterに付与（次回以降の同系統判定の精度向上）
+    if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:
+        content = content.replace("---", f"---\nprompt_type: \"{prompt_type}\"", 1)
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
     content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES)

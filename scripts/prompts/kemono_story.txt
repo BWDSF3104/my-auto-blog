@@ -1,5 +1,5 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-ケモノ（獣人・アンソロ・Feral）キャラクターたちが活躍するファンタジー、SF、または日常の短編物語を作成してください。
+ケモノ（獣人・アンソロ・Feral）キャラクターたちが活躍するファンタジー、SF、TF(ジャンル）、TSF（性転換フィクション）、または日常などから単一または複数のテーマを選択し短編物語を作成してください。
 同性愛・異性愛・相棒関係・クローンによる自分同士などからランダムにテーマを選択してください。
 登場キャラクターは1人、または2人（バディ・カップル・ライバル等）を中心に設定してください。
 
@@ -24,6 +24,7 @@ title: "物語のタイトル"
 pubDate: "{pub_date_str}"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
+prompt_type: "kemono_story"
 tags: ["Kemono", "Novel", "Fantasy"]
 character_1: "1boy, blue wolf, golden eyes, white chest fur, wearing red scarf"
 character_2: "1boy, black panther, emerald eyes, wearing leather vest"
