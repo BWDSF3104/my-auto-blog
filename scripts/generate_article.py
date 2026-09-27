@@ -1,7 +1,7 @@
 import os
 import glob
 import re
-import datetime
+from datetime import datetime, timezone, timedelta
 import time
 from PIL import Image
 import pillow_avif
@@ -360,7 +360,10 @@ def generate_content_with_retry(prompt):
 # メイン処理
 # --------------------------------------------------
 def generate_post():
-    now = datetime.datetime.now()
+    # 日本時間（JST = UTC+9）の定義
+    JST = timezone(timedelta(hours=9))
+    now = datetime.now(JST)
+
     pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 

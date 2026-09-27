@@ -38,7 +38,7 @@ const { frontmatter } = Astro.props;
         <img 
           src={frontmatter.image} 
           alt={frontmatter.title} 
-          class="w-[85%] sm:max-w-md h-auto aspect-[3/2] object-cover rounded-xl border border-slate-200 mx-auto block mb-6"
+          class="w-[85%] sm:max-w-md max-w-full h-auto aspect-[3/2] object-cover rounded-xl border border-slate-200 mx-auto block mb-6"
         />
       )}
       </header>
@@ -47,5 +47,27 @@ const { frontmatter } = Astro.props;
         <slot />
       </article>
     </main>
+
+    <style is:global>
+      /* 記事内のすべての画像（アイキャッチ・本文挿絵含む）を親要素内に収める */
+      article img,
+      .post-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 0.75rem; /* 12px */
+      }
+
+      /* スマホ表示時に記事本文・画像の左右に適切なパディングを確保 */
+      article {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+    </style>
   </body>
 </html>
