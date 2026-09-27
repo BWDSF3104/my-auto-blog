@@ -394,6 +394,58 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 
 
 # --------------------------------------------------
+# アフィリエイトリンク自動挿入
+# --------------------------------------------------
+def inject_affiliate_links(content: str) -> str:
+    """
+    記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
+    """
+    if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
+        return content
+
+    import urllib.parse
+
+    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
+    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
+
+    # Frontmatterからタイトルやタグを抽出
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    title = title_match.group(1).strip() if title_match else "小説"
+
+    # タグがあれば最初のタグ、無ければタイトルからキーワード抽出
+    tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
+    keyword = None
+    if tags_match:
+        tag_items = [t.strip().strip('"\'') for t in tags_match.group(1).split(',') if t.strip()]
+        if tag_items:
+            keyword = tag_items[0]
+
+    if not keyword:
+        cleaned = re.sub(r'[【】「」『』\[\]()（）\s]', ' ', title).strip()
+        words = [w for w in cleaned.split() if len(w) > 1]
+        keyword = words[0] if words else "おすすめ書籍"
+
+    encoded_kw = urllib.parse.quote(keyword)
+    amazon_url = f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+    rakuten_url = f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+
+    affiliate_section = f"""
+
+---
+
+### 📚 テーマ関連のおすすめアイテム・書籍
+この記事のテーマ（**{keyword}**）に関連する作品や人気アイテムをチェック！
+
+- 📦 [Amazonで「{keyword}」関連作品・アイテムを探す]({amazon_url})
+- 🛍️ [楽天市場で「{keyword}」関連アイテムを探す]({rakuten_url})
+
+<small style="color: #64748b;">※ 当サイトはアフィリエイト広告（Amazonアソシエイト・楽天アフィリエイト等）を利用して収益を得ています。</small>
+"""
+    return content.strip() + "\n" + affiliate_section
+
+
+
+# --------------------------------------------------
 # Gemini API 呼び出し
 # --------------------------------------------------
 def generate_content_with_retry(prompt):
@@ -502,6 +554,9 @@ def generate_post():
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
     content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES)
+
+    # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
+    content = inject_affiliate_links(content)
 
     # 6. 保存
     output_dir = "src/content/posts"

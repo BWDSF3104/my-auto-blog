@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://BWDSF3104.github.io/my-auto-blog/sitemap.xml
+

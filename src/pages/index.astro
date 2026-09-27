@@ -22,14 +22,37 @@ const posts = Object.entries(postImports).map(([path, module]) => {
 posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 
 const pageTitle = "BWD's AI Auto Blog";
+const siteDescription = "Gemini API × GitHub Actions による自動生成技術＆ストーリーブログ";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = posts[0]?.frontmatter.image
+  ? (posts[0].frontmatter.image.startsWith('http') ? posts[0].frontmatter.image : new URL(posts[0].frontmatter.image, Astro.site).href)
+  : new URL(`${baseUrl}/favicon.svg`, Astro.site).href;
 ---
 
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <link rel="icon" href={`${baseUrl}/favicon.ico`} />
+    <link rel="alternate" type="application/rss+xml" title={`${pageTitle} RSS Feed`} href={`${baseUrl}/rss.xml`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
+    <meta name="description" content={siteDescription} />
+
+    <!-- OGP (Open Graph Protocol) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={pageTitle} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <style>
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
