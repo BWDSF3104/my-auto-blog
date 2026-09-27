@@ -33,14 +33,14 @@ const { frontmatter } = Astro.props;
           )}
         </div>
 
-        {/* アイキャッチ画像の表示 */}
-        {frontmatter.image && (
-          <img 
-            src={frontmatter.image} 
-            alt={frontmatter.title} 
-            class="w-full h-auto max-h-96 object-cover rounded-xl border border-slate-200"
-          />
-        )}
+      {/* src/layouts/PostLayout.astro */}
+      {frontmatter.image && (
+        <img 
+          src={frontmatter.image} 
+          alt={frontmatter.title} 
+          class="w-full max-w-md sm:max-w-full h-auto aspect-[3/2] object-cover rounded-xl border border-slate-200 mx-auto block mb-6"
+        />
+      )}
       </header>
 
       <article class="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-xl prose-pre:bg-slate-900">
