@@ -126,6 +126,157 @@ def load_prompt_template(prompt_type="default"):
 
 
 # --------------------------------------------------
+# キャラクター設定抽出関数
+# --------------------------------------------------
+def extract_character_prompts(markdown_content: str) -> dict[str, str]:
+    """
+    MarkdownのFrontmatterからキャラクター定義（character_1, character_2, character_prompt等）を抽出する。
+    返り値の例: {'character_1': '1boy, blue wolf, ...', 'character_2': '1boy, black panther, ...'}
+    """
+    characters = {}
+
+    # 1. character_1: "...", character_2: "..." などを抽出
+    char_matches = re.finditer(
+        r'^\s*character_?(\d+|[a-zA-Z0-9_-]+)\s*:\s*["\']?(.*?)["\']?\s*$',
+        markdown_content,
+        re.MULTILINE
+    )
+    for m in char_matches:
+        suffix = m.group(1).lower()
+        val = m.group(2).strip()
+        val = re.sub(r'\s*#.*$', '', val).strip().strip('"\'')
+        if not val:
+            continue
+        if suffix in ("prompt", "prompts"):
+            key = "character_1"
+        else:
+            num_match = re.search(r'\d+', suffix)
+            key = f"character_{num_match.group(0)}" if num_match else f"character_{suffix}"
+        
+        if key not in characters:
+            characters[key] = val
+
+    # 2. 単一 character_prompt: "..." のフォールバック
+    if not characters:
+        single_match = re.search(
+            r'^\s*character_prompt\s*:\s*["\']?(.*?)["\']?\s*$',
+            markdown_content,
+            re.MULTILINE
+        )
+        if single_match and single_match.group(1):
+            val = single_match.group(1).strip()
+            val = re.sub(r'\s*#.*$', '', val).strip().strip('"\'')
+            if val:
+                characters["character_1"] = val
+
+    # 3. YAMLリスト形式 characters:\n  - "..." のフォールバック
+    if not characters:
+        list_match = re.search(
+            r'^\s*characters:\s*\n((?:\s*-\s*.*?\n)+)',
+            markdown_content,
+            re.MULTILINE
+        )
+        if list_match:
+            lines = list_match.group(1).strip().splitlines()
+            for idx, line in enumerate(lines, start=1):
+                val = re.sub(r'^\s*-\s*', '', line).strip().strip('"\'')
+                val = re.sub(r'\s*#.*$', '', val).strip()
+                if val:
+                    characters[f"character_{idx}"] = val
+
+    return characters
+
+
+# --------------------------------------------------
+# プロンプト合成関数（複数キャラ対応）
+# --------------------------------------------------
+def compose_image_prompt(raw_prompt: str, characters: dict[str, str]) -> str:
+    """
+    指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
+    BASE_QUALITY_PROMPT + キャラクター外見 + シチュエーション を合成する。
+    """
+    raw_prompt = raw_prompt.strip().strip('"\'“”')
+    
+    # 括弧 [character_1, ...] の検出
+    bracket_match = re.search(r'\[(.*?)\]', raw_prompt)
+    target_chars = []
+    clean_situation = raw_prompt
+
+    if bracket_match:
+        tag_content = bracket_match.group(1)
+        # 括弧部分をシチュエーションから除去
+        clean_situation = raw_prompt.replace(bracket_match.group(0), "").strip().strip(', ')
+        
+        # タグ内のキャラ指定を分割して解析 (カンマや空白等)
+        parts = re.split(r'[,&、\s]+', tag_content)
+        for part in parts:
+            part = part.strip()
+            if not part:
+                continue
+            num_match = re.search(r'\d+', part)
+            if num_match:
+                char_key = f"character_{num_match.group(0)}"
+                if char_key in characters and char_key not in target_chars:
+                    target_chars.append(char_key)
+            else:
+                for k in characters:
+                    if part.lower() in k.lower() and k not in target_chars:
+                        target_chars.append(k)
+
+    # ターゲットキャラが指定されていない場合のフォールバック
+    if not target_chars:
+        if "character_1" in characters:
+            target_chars.append("character_1")
+        elif characters:
+            target_chars.append(next(iter(characters.keys())))
+
+    # 選択されたキャラのプロンプトリスト
+    selected_char_prompts = [characters[k] for k in target_chars if k in characters]
+
+    # キャラ定義が無い場合（技術記事など）
+    if not selected_char_prompts:
+        parts = [BASE_QUALITY_PROMPT]
+        if clean_situation:
+            parts.append(clean_situation)
+        return ", ".join(parts)
+
+    # 1人の場合
+    if len(selected_char_prompts) == 1:
+        char_desc = selected_char_prompts[0]
+        parts = [BASE_QUALITY_PROMPT, char_desc]
+        if clean_situation:
+            parts.append(clean_situation)
+        return ", ".join(parts)
+
+    # 2人以上の場合: 全体カウントタグ（2boys, 1boy and 1girl, 2characters等）を計算
+    boys_count = sum(1 for p in selected_char_prompts if re.search(r'\b(1boy|boy|male)\b', p, re.IGNORECASE))
+    girls_count = sum(1 for p in selected_char_prompts if re.search(r'\b(1girl|girl|female)\b', p, re.IGNORECASE))
+    total_count = len(selected_char_prompts)
+
+    if boys_count == total_count:
+        count_tag = f"{total_count}boys"
+    elif girls_count == total_count:
+        count_tag = f"{total_count}girls"
+    elif boys_count > 0 and girls_count > 0 and (boys_count + girls_count == total_count):
+        count_tag = f"{boys_count}boy{'s' if boys_count > 1 else ''}, {girls_count}girl{'s' if girls_count > 1 else ''}"
+    else:
+        count_tag = f"{total_count}characters"
+
+    # 各キャラ定義から単独カウントタグ（1boy, 1girl等）を除去して整理
+    cleaned_char_descs = []
+    for p in selected_char_prompts:
+        cleaned_p = re.sub(r'^\s*(?:1boy|1girl|1other|male|female)\s*,\s*', '', p, flags=re.IGNORECASE).strip()
+        cleaned_char_descs.append(cleaned_p)
+
+    char_combined = ", ".join(cleaned_char_descs)
+    parts = [BASE_QUALITY_PROMPT, count_tag, char_combined]
+    if clean_situation:
+        parts.append(clean_situation)
+
+    return ", ".join(parts)
+
+
+# --------------------------------------------------
 # 記事テキストから画像プロンプトを抽出する関数
 # --------------------------------------------------
 def extract_image_prompt(markdown_content: str) -> str:
@@ -139,7 +290,7 @@ def extract_image_prompt(markdown_content: str) -> str:
 # --------------------------------------------------
 # 本文内画像の抽出・生成・置換処理
 # --------------------------------------------------
-def process_inline_images(content: str, file_timestamp: str, max_images: int = MAX_INLINE_IMAGES) -> str:
+def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES) -> str:
     """本文内の <!-- IMAGE_PROMPT: "..." --> を検出し、画像生成してMarkdown画像記法に置換する"""
     matches = list(INLINE_IMAGE_PATTERN.finditer(content))
     if not matches:
@@ -157,14 +308,15 @@ def process_inline_images(content: str, file_timestamp: str, max_images: int = M
             continue
 
         filename = f"{file_timestamp}-inline-{idx}.png"
-        full_prompt = f"{BASE_QUALITY_PROMPT}, {raw_prompt}"
+        full_prompt = compose_image_prompt(raw_prompt, characters)
 
-        print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 生成開始: {raw_prompt}")
+        print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 合成プロンプト: {full_prompt}")
         image_url = generate_and_save_image(full_prompt, filename)
 
         if image_url:
             # 成功時: 前後に空行を入れてMarkdown画像タグに置換
-            replacement = f"\n\n![{raw_prompt}]({image_url})\n\n"
+            alt_text = re.sub(r'\[.*?\]', '', raw_prompt).strip().strip(', ') or "Illustration"
+            replacement = f"\n\n![{alt_text}]({image_url})\n\n"
             content = content.replace(full_tag, replacement, 1)
         else:
             # 失敗時: 痕跡を残さないよう削除
@@ -240,12 +392,21 @@ def generate_post():
             lines = lines[:-1]
         content = "\n".join(lines)
 
-    # 3. 記事本文から画像用シチュエーションプロンプトを抽出して画像生成
+    # 3. 記事本文からキャラクター設定と画像用シチュエーションプロンプトを抽出して画像生成
+    characters = extract_character_prompts(content)
+    if characters:
+        print(f"👤 検出されたキャラクター設定 ({len(characters)}体):")
+        for k, v in characters.items():
+            print(f"   - {k}: {v}")
+    else:
+        print("👤 キャラクター設定は検出されませんでした（単発シチュエーションで生成します）")
+
     image_filename = f"{file_timestamp}-header.png"
     dynamic_situation = extract_image_prompt(content)
-    print(f"💡 抽出されたシチュエーション: {dynamic_situation}")
+    print(f"💡 抽出されたヘッダー用シチュエーション: {dynamic_situation}")
 
-    full_image_prompt = f"{BASE_QUALITY_PROMPT}, {dynamic_situation}"
+    full_image_prompt = compose_image_prompt(dynamic_situation, characters)
+    print(f"🎨 ヘッダー画像合成プロンプト: {full_image_prompt}")
     image_url = generate_and_save_image(full_image_prompt, image_filename)
 
     # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入)
@@ -261,7 +422,7 @@ def generate_post():
             content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
-    content = process_inline_images(content, file_timestamp, max_images=MAX_INLINE_IMAGES)
+    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES)
 
     # 6. 保存
     output_dir = "src/content/posts"

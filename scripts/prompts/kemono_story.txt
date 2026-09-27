@@ -1,11 +1,17 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
 ケモノ（獣人・アンソロ・Feral）キャラクターたちが活躍するファンタジー、SF、または日常の短編物語を作成してください。
-同性愛・異性愛・クローンによる自分同士などからランダムにテーマを選択してください。
+同性愛・異性愛・相棒関係・クローンによる自分同士などからランダムにテーマを選択してください。
+登場キャラクターは1人、または2人（バディ・カップル・ライバル等）を中心に設定してください。
 
-【執筆ルール】
-・キャラクターの魅力、毛並みや瞳の描写、感情表現を生き生きと描いてください。
+【キャラクターの一貫性と画像プロンプトのルール】
+・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
+  - 主人公: `character_1`（必須）
+  - 2人目の主要キャラがいる場合: `character_2`（任意）
+・アイキャッチ画像（image_prompt）および本文中の挿絵（IMAGE_PROMPT）では、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのポーズや背景を英語で記述してください。
+・画質指定（masterpiece等）やスタイル指定（furry, anthro等）はシステム側で自動付与されるため含めないでください。
 ・物語の途中に【必ず1〜2箇所】、場面転換や重要な見せ場に合わせて以下の形式で挿絵用プロンプトを挿入してください（3箇所以上は多すぎるため1〜2箇所厳守）。
-  挿入形式：<!-- IMAGE_PROMPT: "描きたいシーンの英語キーワード（例: wolf knight, holding glowing sword, dark forest, rain）" -->
+  挿入形式：<!-- IMAGE_PROMPT: "[character_1] action or background description" -->
+  または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] action or background description" -->
 
 {ng_instruction}
 
@@ -19,22 +25,27 @@ pubDate: "{pub_date_str}"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 tags: ["Kemono", "Novel", "Fantasy"]
-image_prompt: "アイキャッチ用の英語キーワード（例: dragon warrior, standing on mountain peak, sunset）"
+character_1: "1boy, blue wolf, golden eyes, white chest fur, wearing red scarf"
+character_2: "1boy, black panther, emerald eyes, wearing leather vest"
+image_prompt: "[character_1, character_2] standing on a cliff at sunset, dramatic wind"
 ---
 
-【Frontmatterおよび本文内 IMAGE_PROMPT の指定ルール】
-・キャラクターの種族（wolf, fox, cat, dragon, bear など）と、シチュエーション・背景を含めてください。
-・画質指定（masterpiece等）やスタイル指定（furry, anthro等）はPython側で自動付与されるため含めないでください。
+【character_1 / character_2 の指定ルール】
+・性別（1boy, 1girl等）＋種族＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリのみを英語で簡潔に記述してください。
+・背景やシチュエーション、画質タグは含めないでください。
+・1人のみの物語の場合は character_2 を省略して構いません。
 
 ## 第1章：タイトル
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "キャラクター種族, アクション, 背景" -->
+<!-- IMAGE_PROMPT: "[character_1] running through forest, daylight" -->
 
 ## 第2章：タイトル
 
 （物語本文...）
+
+<!-- IMAGE_PROMPT: "[character_1, character_2] sitting together around campfire, starry night, smiling" -->
 
 ## 最終章：タイトル
 
