@@ -37,7 +37,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          PROMPT_TYPE: "ai_deep"
+          PROMPT_TYPE: "kemono_story"
         run: |
           python scripts/generate_article.py
 

@@ -28,10 +28,17 @@ MODELS_TO_TRY = [
 
 HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
+MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "2"))
 
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detailed, furry, anthro"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
+
+# 本文内画像プレースホルダーの正規表現 (例: <!-- IMAGE_PROMPT: "..." -->)
+INLINE_IMAGE_PATTERN = re.compile(
+    r'<!--\s*IMAGE_PROMPT:\s*(.*?)\s*-->',
+    re.IGNORECASE
+)
 
 
 # --------------------------------------------------
@@ -130,6 +137,47 @@ def extract_image_prompt(markdown_content: str) -> str:
 
 
 # --------------------------------------------------
+# 本文内画像の抽出・生成・置換処理
+# --------------------------------------------------
+def process_inline_images(content: str, file_timestamp: str, max_images: int = MAX_INLINE_IMAGES) -> str:
+    """本文内の <!-- IMAGE_PROMPT: "..." --> を検出し、画像生成してMarkdown画像記法に置換する"""
+    matches = list(INLINE_IMAGE_PATTERN.finditer(content))
+    if not matches:
+        return content
+
+    print(f"📷 本文内画像プロンプトを {len(matches)} 箇所検出 (上限: {max_images} 枚)")
+
+    for idx, match in enumerate(matches, start=1):
+        full_tag = match.group(0)
+        raw_prompt = match.group(1).strip().strip('"\'“”')
+
+        # 上限枚数を超えたタグは削除
+        if idx > max_images:
+            content = content.replace(full_tag, "", 1)
+            continue
+
+        filename = f"{file_timestamp}-inline-{idx}.png"
+        full_prompt = f"{BASE_QUALITY_PROMPT}, {raw_prompt}"
+
+        print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 生成開始: {raw_prompt}")
+        image_url = generate_and_save_image(full_prompt, filename)
+
+        if image_url:
+            # 成功時: 前後に空行を入れてMarkdown画像タグに置換
+            replacement = f"\n\n![{raw_prompt}]({image_url})\n\n"
+            content = content.replace(full_tag, replacement, 1)
+        else:
+            # 失敗時: 痕跡を残さないよう削除
+            content = content.replace(full_tag, "", 1)
+
+    # 念のため残存したタグがあれば消去
+    content = INLINE_IMAGE_PATTERN.sub("", content)
+    # 連続する過剰な改行を整理
+    content = re.sub(r'\n{3,}', '\n\n', content)
+    return content
+
+
+# --------------------------------------------------
 # Gemini API 呼び出し
 # --------------------------------------------------
 def generate_content_with_retry(prompt):
@@ -212,7 +260,10 @@ def generate_post():
         elif "---" in content:
             content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
 
-    # 5. 保存
+    # 5. 本文内画像の抽出・生成とMarkdown置換
+    content = process_inline_images(content, file_timestamp, max_images=MAX_INLINE_IMAGES)
+
+    # 6. 保存
     output_dir = "src/content/posts"
     os.makedirs(output_dir, exist_ok=True)
     

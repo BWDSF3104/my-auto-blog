@@ -5,6 +5,8 @@
 1. 概要だけでなく、具体的なコード例またはコマンド例を必ず1つ以上含めてください。
 2. メリット・デメリットや機能比較をMarkdownの「表（テーブル）」を用いて整理してください。
 3. 最後に「よくある質問（Q&A）」セクションを設けて、初心者がつまづきやすい点を補足してください。
+4. 読者の理解を深めるため、解説セクションの区切りなどに【1〜2箇所】、以下の形式で挿絵用プロンプトを挿入してください（最大2箇所厳守）。
+   挿入形式：<!-- IMAGE_PROMPT: "解説内容を象徴する英語キーワード（例: fox engineer, looking at complex diagram, neon lights）" -->
 
 {ng_instruction}
 
@@ -21,13 +23,15 @@ tags: ["Tech", "AI"]
 image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
 ---
 
-【Frontmatter内の image_prompt の指定ルール】
+【Frontmatterおよび本文内 IMAGE_PROMPT の指定ルール】
 ・この記事の技術テーマを視覚的に表現する英語のキーワード（カンマ区切り）を出力してください。
 ・キャラクター種族（wolf, fox, cat, dragon など）と、アクション・背景（coding, server room, holding glowing sphere など）を含めてください。
-・画質指定（masterpiece等）やスタイル指定（kemono等）は含めないでください。
+・画質指定（masterpiece等）やスタイル指定（kemono等）はPython側で自動付与されるため含めないでください。
 
 ## はじめに
 （導入文）
+
+<!-- IMAGE_PROMPT: "キャラクター種族, アクション, 背景" -->
 
 ## 詳細解説
 （具体例やコード例、メリットなどを分かりやすく解説）
