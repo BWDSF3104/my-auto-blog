@@ -1,0 +1,31 @@
+{
+  // 自動承認機能全体の基本設定
+  "kilocode.autoApprove.enabled": true,
+  "kilocode.autoApprove.maxConsecutiveRequests": 20, // 無限ループ防止用の連続自動実行上限
+
+  // 自動実行を拒否・要手動確認にする危険コマンド（正規表現・前方一致パターン）
+  "kilocode.autoApprove.deniedCommands": [
+    "^rm\\s+-rf",           // ルートや広範囲の再帰的削除
+    "^sudo",                // 管理者権限の昇格
+    "^git\\s+push.*--force", // Gitの強制フッシュ
+    "^git\\s+reset\\s+--hard", // Gitの未コミット変更破棄
+    "^git\\s+clean\\s+-fd",  // 追跡外ファイルの強制削除
+    "^mkfs",                // フォーマットコマンド
+    "^dd",                  // 低レベルディスク書き込み
+    "^chmod\\s+-R\\s+777",  // 全員への完全権限付与
+    "^shutdown",            // システム停止
+    "^reboot",              // システム再起動
+    "^curl.*|\\s*sh",       // 外部スクリプトの直接パイプ実行
+    "^wget.*|\\s*bash"
+  ],
+
+  // 自動実行を許可する安全なコマンドリスト（ホワイトリスト運用の場合）
+  "kilocode.autoApprove.allowedCommands": [
+    "^npm\\s+(test|run\\s+build|run\\s+dev|run\\s+lint)",
+    "^pnpm\\s+(test|build|dev)",
+    "^yarn\\s+(test|build|dev)",
+    "^git\\s+(status|diff|log|branch)",
+    "^ls",
+    "^pwd"
+  ]
+}

@@ -1,0 +1,9 @@
+# Terminal Safety Rules
+
+1. NEVER execute destructive terminal commands without explicit user confirmation.
+2. The following commands are strictly forbidden in autonomous mode:
+   - `rm -rf` or any unrecoverable deletion
+   - `git push --force` or modifying remote history
+   - `sudo` commands or system-level actions
+   - Modifying files outside the current workspace root
+3. Always verify tests pass (`npm test`) after editing code, but do not touch production infrastructure.
