@@ -712,6 +712,72 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 
 
 # --------------------------------------------------
+# 2-pass 生成: 下書きの精製
+# --------------------------------------------------
+REFINE_PROMPT_TECH = """あなたは技術記事の編集者です。以下の下書き記事を精製してください。
+
+【精製指示】
+1. 導入部のフックを強化し、読者の興味を引く表現にしてください。
+2. 技術解説の正確性を保ちつつ、分かりやすさと具体性を高めてください。
+3. コード例にコメントが不足している場合は補完してください。
+4. 専門用語の解説が不十分な場合は補足してください。
+5. 比較表の項目が不十分であれば補強してください。
+6. FAQセクションの実用性を高めてください。
+7. 全体のテンポと読みやすさを改善してください。
+8. Frontmatter、IMAGE_PROMPT、AFFILIATE、AFF_PRODUCT のタグはそのまま維持してください。
+9. 記事の構造（見出し階層）は維持してください。
+
+精製した記事全体を出力してください。"""
+
+REFINE_PROMPT_STORY = """あなたは小説の編集者です。以下の下書き物語を精製してください。
+
+【精製指示】
+1. 情景描写を五感（視覚・聴覚・嗅覚・触覚・味覚）で豊かにしてください。
+2. 「示して語らず（show, don't tell）」の原則を適用し、感情を直接説明する部分を動作・表情・環境描写に変換してください。
+3. 対話を自然にし、各キャラクターの独自の口調・語尾を明確にしてください。
+4. クライマックスの緊張感と結末の余韻を強化してください。
+5. テンポの管理: 重要な場面は細かく、通過点は簡潔に整えてください。
+6. キャラクターの設定（外見・性格・関係性）の一貫性を確認し、矛盾があれば修正してください。
+7. 世界観の詳細さを高め、読者の没入感を向上させてください。
+8. Frontmatter、IMAGE_PROMPT、AFFILIATE のタグはそのまま維持してください。
+9. 記事の構造（章構成）は維持してください。
+
+精製した物語全体を出力してください。"""
+
+
+def refine_content(draft: str, prompt_type: str) -> str:
+    """
+    下書き記事を2回目のGemini API呼び出しで精製する。
+    技術記事と物語で異なる精製プロンプトを使用する。
+    """
+    if prompt_type in ("kemono_story", "novel", "story"):
+        refine_prompt = REFINE_PROMPT_STORY + f"\n\n【下書き】\n{draft}"
+    else:
+        refine_prompt = REFINE_PROMPT_TECH + f"\n\n【下書き】\n{draft}"
+
+    try:
+        print("✨ 2-pass 精製中...")
+        response = generate_content_with_retry(refine_prompt)
+        refined = response.text.strip()
+
+        # コードブロック装飾の除外
+        if refined.startswith("```"):
+            lines = refined.splitlines()
+            if lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines[-1].startswith("```"):
+                lines = lines[:-1]
+            refined = "\n".join(lines)
+
+        print("✨ 精製完了")
+        return refined.strip()
+    except Exception as e:
+        print(f"⚠️ 精製パスでエラーが発生しました: {e}")
+        print("⚠️ 下書きのまま続行します")
+        return draft
+
+
+# --------------------------------------------------
 # Gemini API 呼び出し
 # --------------------------------------------------
 def generate_content_with_retry(prompt):
@@ -929,6 +995,9 @@ def generate_post():
         if lines[-1].startswith("```"):
             lines = lines[:-1]
         content = "\n".join(lines)
+
+    # 2.5 2-pass 精製: 下書きを精製して質を高める
+    content = refine_content(content, prompt_type)
 
     # 3. 記事本文からキャラクター設定と画像用シチュエーションプロンプトを抽出して画像生成
     characters = extract_character_prompts(content)
