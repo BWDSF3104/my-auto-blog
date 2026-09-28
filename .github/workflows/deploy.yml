@@ -30,6 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
           pip install google-genai gradio_client pillow pillow-avif-plugin
 
       # -------------------------------------------------------
