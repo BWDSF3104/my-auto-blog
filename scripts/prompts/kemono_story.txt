@@ -8,7 +8,9 @@
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
 ・アイキャッチ画像（image_prompt）および本文中の挿絵（IMAGE_PROMPT）では、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのポーズや背景を英語で記述してください。
-・画質指定（masterpiece等）やスタイル指定（furry, anthro等）はシステム側で自動付与されるため含めないでください。
+・画質指定（masterpiece等）はシステム側で自動付与されるため含めないでください。
+・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください（例: "watercolor, soft pastel, gentle lighting" や "pixel art, retro, 16-bit style"）。記事内の全画像はこのスタイルで統一されます。
+・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
 ・物語の途中に【必ず1〜2箇所】、場面転換や重要な見せ場に合わせて以下の形式で挿絵用プロンプトを挿入してください（3箇所以上は多すぎるため1〜2箇所厳守）。
   挿入形式：<!-- IMAGE_PROMPT: "[character_1] action or background description" -->
   または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] action or background description" -->
@@ -30,6 +32,7 @@ description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
 tags: ["Kemono", "Novel", "Fantasy"]
+art_style: "anime style, illustration, cel shading, vibrant colors"
 character_1: "1boy, blue wolf, golden eyes, white chest fur, wearing red scarf"
 character_2: "1boy, black panther, emerald eyes, wearing leather vest"
 image_prompt: "[character_1, character_2] standing on a cliff at sunset, dramatic wind"
@@ -38,6 +41,7 @@ image_prompt: "[character_1, character_2] standing on a cliff at sunset, dramati
 【character_1 / character_2 の指定ルール】
 ・性別（1boy, 1girl等）＋種族＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリのみを英語で簡潔に記述してください。
 ・背景やシチュエーション、画質タグは含めないでください。
+・外見はSFWにしてください。
 ・1人のみの物語の場合は character_2 を省略して構いません。
 
 ## 第1章：タイトル

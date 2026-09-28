@@ -111,15 +111,15 @@ const schemaOrgJSONLD = {
 
       {/* アイキャッチ画像 */}
       {frontmatter.image && (
-        <img 
-          src={frontmatter.image} 
-          alt={frontmatter.title} 
-          class="w-full max-w-md h-auto aspect-[3/2] object-cover rounded-xl border border-slate-200 mx-auto block mb-6"
+        <img
+          src={frontmatter.image}
+          alt={frontmatter.title}
+          class="post-image"
         />
       )}
       </header>
 
-      <article class="prose prose-slate max-w-none text-left prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-xl prose-img:mx-auto prose-img:shadow-sm prose-img:border prose-img:border-slate-200 prose-pre:bg-slate-900">
+      <article class="prose prose-slate max-w-none text-left prose-headings:font-bold prose-a:text-blue-600 prose-pre:bg-slate-900">
         <slot />
       </article>
 
@@ -166,13 +166,18 @@ const schemaOrgJSONLD = {
     </main>
 
     <style is:global>
-      /* アイキャッチ・本文内画像を親コンテナ内に収める */
-      header img,
+      /* 記事内画像の統一スタイル（アイキャッチ・本文内画像共通） */
+      .post-image,
       article img {
         max-width: 100%;
+        width: 100%;
         height: auto;
         display: block;
+        margin: 0 auto 1.5rem auto;
         border-radius: 0.75rem; /* 12px */
+        border: 1px solid #e2e8f0; /* slate-200 */
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); /* shadow-sm */
+        object-fit: cover;
       }
 
       /* 記事本文は左揃えにし、親のパディングに揃える */

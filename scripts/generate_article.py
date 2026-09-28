@@ -35,7 +35,10 @@ MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "2"))
 MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
-BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detailed, furry, anthro"
+# SFWタグを常に付与して安全な画像生成を強制
+# アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
+BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detailed, furry, anthro, safe for work, wholesome, family-friendly"
+DEFAULT_ART_STYLE = "anime style, illustration, cel shading, vibrant colors"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
 # 本文内画像プレースホルダーの正規表現 (例: <!-- IMAGE_PROMPT: "..." -->)
@@ -77,7 +80,7 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
             
             temp_image_path = hf_client.predict(
                 prompt,
-                "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed",
+                "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed, nsfw, explicit, nude, nudity, sexual, erotic, pornographic, gore, blood, violent, inappropriate",
                 18,
                 5.0,
                 896,
@@ -268,12 +271,22 @@ def extract_character_prompts(markdown_content: str) -> dict[str, str]:
 
 
 # --------------------------------------------------
+# アートスタイル抽出関数
+# --------------------------------------------------
+def extract_art_style(markdown_content: str) -> str:
+    """MarkdownのFrontmatterから art_style の値を抽出する"""
+    match = re.search(r'^art_style:\s*["\']?(.*?)["\']?$', markdown_content, re.MULTILINE)
+    if match and match.group(1):
+        return match.group(1).strip()
+    return DEFAULT_ART_STYLE
+
+# --------------------------------------------------
 # プロンプト合成関数（複数キャラ対応）
 # --------------------------------------------------
-def compose_image_prompt(raw_prompt: str, characters: dict[str, str]) -> str:
+def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
     """
     指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
-    BASE_QUALITY_PROMPT + キャラクター外見 + シチュエーション を合成する。
+    BASE_QUALITY_PROMPT + アートスタイル + キャラクター外見 + シチュエーション を合成する。
     """
     raw_prompt = raw_prompt.strip().strip('"\'“”')
     
@@ -315,7 +328,7 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str]) -> str:
 
     # キャラ定義が無い場合（技術記事など）
     if not selected_char_prompts:
-        parts = [BASE_QUALITY_PROMPT]
+        parts = [BASE_QUALITY_PROMPT, art_style]
         if clean_situation:
             parts.append(clean_situation)
         return ", ".join(parts)
@@ -323,7 +336,7 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str]) -> str:
     # 1人の場合
     if len(selected_char_prompts) == 1:
         char_desc = selected_char_prompts[0]
-        parts = [BASE_QUALITY_PROMPT, char_desc]
+        parts = [BASE_QUALITY_PROMPT, art_style, char_desc]
         if clean_situation:
             parts.append(clean_situation)
         return ", ".join(parts)
@@ -349,7 +362,7 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str]) -> str:
         cleaned_char_descs.append(cleaned_p)
 
     char_combined = ", ".join(cleaned_char_descs)
-    parts = [BASE_QUALITY_PROMPT, count_tag, char_combined]
+    parts = [BASE_QUALITY_PROMPT, art_style, count_tag, char_combined]
     if clean_situation:
         parts.append(clean_situation)
 
@@ -370,7 +383,7 @@ def extract_image_prompt(markdown_content: str) -> str:
 # --------------------------------------------------
 # 本文内画像の抽出・生成・置換処理
 # --------------------------------------------------
-def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES) -> str:
+def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES, art_style: str = DEFAULT_ART_STYLE) -> str:
     """本文内の <!-- IMAGE_PROMPT: "..." --> を検出し、画像生成してMarkdown画像記法に置換する"""
     matches = list(INLINE_IMAGE_PATTERN.finditer(content))
     if not matches:
@@ -388,7 +401,7 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
             continue
 
         filename = f"{file_timestamp}-inline-{idx}.png"
-        full_prompt = compose_image_prompt(raw_prompt, characters)
+        full_prompt = compose_image_prompt(raw_prompt, characters, art_style)
 
         print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 合成プロンプト: {full_prompt}")
         image_url = generate_and_save_image(full_prompt, filename)
@@ -930,7 +943,10 @@ def generate_post():
     dynamic_situation = extract_image_prompt(content)
     print(f"💡 抽出されたヘッダー用シチュエーション: {dynamic_situation}")
 
-    full_image_prompt = compose_image_prompt(dynamic_situation, characters)
+    article_art_style = extract_art_style(content)
+    print(f"🎨 記事のアートスタイル: {article_art_style}")
+
+    full_image_prompt = compose_image_prompt(dynamic_situation, characters, article_art_style)
     print(f"🎨 ヘッダー画像合成プロンプト: {full_image_prompt}")
     image_url = generate_and_save_image(full_image_prompt, image_filename)
 
@@ -958,7 +974,7 @@ def generate_post():
             content = content.replace("---", f"---\n{sources_block}", 1)
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
-    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES)
+    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style)
 
     # 5.4 本文内アフィリエイトプレースホルダーの実リンク置換
     content = process_inline_affiliates(content)

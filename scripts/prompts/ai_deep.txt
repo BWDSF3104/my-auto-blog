@@ -19,13 +19,16 @@ pubDate: "{pub_date_str}"
 description: "記事の短い要約（80〜120文字程度）"
 author: "AI Writer"
 tags: ["Tech", "AI"]
+art_style: "anime style, illustration, cel shading, vibrant colors"
 image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
 ---
 
 【Frontmatterおよび本文内 IMAGE_PROMPT の指定ルール】
 ・この記事の技術テーマを視覚的に表現する英語のキーワード（カンマ区切り）を出力してください。
 ・キャラクター種族（wolf, fox, cat, dragon など）と、アクション・背景（coding, server room, holding glowing sphere など）を含めてください。
-・画質指定（masterpiece等）やスタイル指定（kemono等）はPython側で自動付与されるため含めないでください。
+・画質指定（masterpiece等）はPython側で自動付与されるため含めないでください。
+・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください（例: "watercolor, soft pastel, gentle lighting" や "pixel art, retro, 16-bit style"）。記事内の全画像はこのスタイルで統一されます。
+・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
 
 ## 概要と背景
 
