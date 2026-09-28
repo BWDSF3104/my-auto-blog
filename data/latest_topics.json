@@ -1,76 +1,76 @@
 {
-  "fetched_at": "2026-09-29T05:34:00.148714+09:00",
+  "fetched_at": "2026-09-29T06:09:09.913550+09:00",
   "ttl_hours": 24,
-  "total": 44,
+  "total": 46,
   "by_category": {
     "tech": [
       {
-        "title": "Sonnet 5.5",
-        "url": "https://www.anthropic.com/claude-sonnet-5-5",
-        "score": 372,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
         "title": "Pirating the Pirates",
         "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
-        "score": 290,
+        "score": 320,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Parley: Federated, decentralised chat that speaks plain IRC",
         "url": "https://git.mills.io/prologic/parley",
-        "score": 265,
+        "score": 270,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Hijacking the PS5's RTMP stream",
         "url": "https://yashgarg.dev/posts/hijacking-ps5-rtmp-stream/",
-        "score": 133,
+        "score": 146,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "MicroLLM Lab – Try 7 tiny LLM's in the browser",
         "url": "https://stateofutopia.com/experiments/microllmlab/",
-        "score": 54,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "GrapheneOS – When an app is slow",
-        "url": "https://blog.wirelessmoves.com/2026/09/grapheneos-when-an-app-is-slow.html",
-        "score": 49,
+        "score": 71,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Joseph Szabo’s pictures of American adolescents",
         "url": "https://www.newyorker.com/culture/photo-booth/the-teen-portraits-that-captivated-sofia-coppola",
-        "score": 46,
+        "score": 57,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "SB 923 is Law: CCPA deletion rights now reach third-party data",
-        "url": "https://www.getprivisy.com/blog/sb-923-ccpa-right-to-delete-signed",
-        "score": 30,
+        "title": "World Labs Is Joining AMD",
+        "url": "https://www.worldlabs.ai/blog/amd-announcement",
+        "score": 27,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Launch HN: Vespper (YC F24) – SOTA Docx MCP",
-        "url": "https://www.vespper.com/blog/launching-vespper-docx-mcp",
-        "score": 23,
+        "title": "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms",
+        "url": "https://github.com/firelex/jeff",
+        "score": 26,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "First Steps of the PLC Organization – Independent Public Ledger of Credentials",
-        "url": "https://blog.plcred.org/3mwlphq42d227",
-        "score": 21,
+        "title": "Palantir founder purchases large swath of forest in Sweden",
+        "url": "https://www.arctictoday.com/palantir-founder-purchases-large-swath-of-forest-in-sweden/",
+        "score": 19,
+        "source": "HackerNews",
+        "category": "tech"
+      },
+      {
+        "title": "12,000-year-old Göbeklitepe burials explain scattered bones",
+        "url": "https://archaeologymag.com/2026/09/gobeklitepe-burials-hundreds-of-scattered-bones/",
+        "score": 15,
+        "source": "HackerNews",
+        "category": "tech"
+      },
+      {
+        "title": "Scientists solve 1840s space weather mystery",
+        "url": "https://arstechnica.com/science/2026/09/scientists-solve-1840s-space-weather-mystery/",
+        "score": 11,
         "source": "HackerNews",
         "category": "tech"
       },
@@ -215,29 +215,29 @@
         "category": "tech"
       },
       {
-        "title": "やってくれたなGemini、こんこんと説教することになった早朝の話",
-        "url": "https://qiita.com/shu15511551/items/11086edcd6d1d146e06a",
+        "title": "Anthropic の Claude 約950エージェントが酵素システム「ART」を探索:約20万→3,500→20・機能は未解明・査読前",
+        "url": "https://qiita.com/quotidia/items/dc5e5ecefd8d5c7bbebd",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "「AIが暴走した」で止めていいのか――OpenAIエージェント事案を一次情報まで分解する",
-        "url": "https://qiita.com/BugiAK/items/7bba5192069096261a59",
+        "title": "AI には「答え」と「論点」のどちらを出してもらうほうが役に立つ？",
+        "url": "https://qiita.com/e99h2121/items/3d990f5223c79efe4026",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "Claude Sonnet 5.5がリリース、Sonnet 5からの5つの破壊的変更まとめ",
-        "url": "https://qiita.com/picnic/items/874ab4adee5e33f34bd6",
+        "title": "語彙枯渇サバイバル 〜沈黙の呪いと、私と、辞書〜",
+        "url": "https://qiita.com/lemonIN/items/c30e97587fbc911761c2",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "Claude Sonnet 5.5登場、Sonnet 5比で30%高速・コスト最大30%減",
-        "url": "https://qiita.com/picnic/items/e5c402c5dbc88d709235",
+        "title": "Autopilot が最高だった...私の Vibe Coding の常識が、また変わった! タスク分割の Prompt はもう要らない。トークンと時間を半日溶かして分かったこと",
+        "url": "https://qiita.com/dahatake/items/81df308d05c131eb8cb6",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
@@ -275,7 +275,7 @@
       {
         "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
         "url": "https://e621.net/posts/6740154",
-        "score": 14,
+        "score": 16,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
@@ -283,23 +283,39 @@
       {
         "title": "e621 post #6739681: abdominal_bulge, after_vore, anthro, anthro_pred, arm_tuft, belly, big_belly, big_ears",
         "url": "https://e621.net/posts/6739681",
-        "score": 14,
+        "score": 15,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
       },
       {
-        "title": "e621 post #6740385: armor, cybernetics, display_face, feral, machine, metallic_body, science_fiction, simple_background",
-        "url": "https://e621.net/posts/6740385",
+        "title": "e621 post #6740455: abs, anthro, arm_hair, barazoku, biceps, big_muscles, big_pecs, body_hair",
+        "url": "https://e621.net/posts/6740455",
+        "score": 7,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "q"
+      },
+      {
+        "title": "e621 post #6740508: abs, anthro, beach, blush, book, butt, duo, exclamation_point",
+        "url": "https://e621.net/posts/6740508",
         "score": 3,
         "source": "e621",
         "category": "kemono",
-        "rating": "s"
+        "rating": "q"
       },
       {
-        "title": "e621 post #6740427: ambiguous_gender, black_body, black_fur, black_nose, blue_body, blue_ears, blue_fur, blush",
-        "url": "https://e621.net/posts/6740427",
+        "title": "e621 post #6740471: accessory, anthro, areola, biped, black_butt, breasts, brown_hair, butt",
+        "url": "https://e621.net/posts/6740471",
         "score": 1,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "q"
+      },
+      {
+        "title": "e621 post #6740527: ambiguous_gender, blue_eyes, facial_horn, feral, horn, nose_horn, open_mouth, scales",
+        "url": "https://e621.net/posts/6740527",
+        "score": 0,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -325,98 +341,106 @@
   },
   "all": [
     {
-      "title": "Sonnet 5.5",
-      "url": "https://www.anthropic.com/claude-sonnet-5-5",
-      "score": 372,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
       "title": "Pirating the Pirates",
       "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
-      "score": 290,
+      "score": 320,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Parley: Federated, decentralised chat that speaks plain IRC",
       "url": "https://git.mills.io/prologic/parley",
-      "score": 265,
+      "score": 270,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Hijacking the PS5's RTMP stream",
       "url": "https://yashgarg.dev/posts/hijacking-ps5-rtmp-stream/",
-      "score": 133,
+      "score": 146,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "MicroLLM Lab – Try 7 tiny LLM's in the browser",
       "url": "https://stateofutopia.com/experiments/microllmlab/",
-      "score": 54,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "GrapheneOS – When an app is slow",
-      "url": "https://blog.wirelessmoves.com/2026/09/grapheneos-when-an-app-is-slow.html",
-      "score": 49,
+      "score": 71,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Joseph Szabo’s pictures of American adolescents",
       "url": "https://www.newyorker.com/culture/photo-booth/the-teen-portraits-that-captivated-sofia-coppola",
-      "score": 46,
+      "score": 57,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "SB 923 is Law: CCPA deletion rights now reach third-party data",
-      "url": "https://www.getprivisy.com/blog/sb-923-ccpa-right-to-delete-signed",
-      "score": 30,
+      "title": "World Labs Is Joining AMD",
+      "url": "https://www.worldlabs.ai/blog/amd-announcement",
+      "score": 27,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Launch HN: Vespper (YC F24) – SOTA Docx MCP",
-      "url": "https://www.vespper.com/blog/launching-vespper-docx-mcp",
-      "score": 23,
+      "title": "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms",
+      "url": "https://github.com/firelex/jeff",
+      "score": 26,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "First Steps of the PLC Organization – Independent Public Ledger of Credentials",
-      "url": "https://blog.plcred.org/3mwlphq42d227",
-      "score": 21,
+      "title": "Palantir founder purchases large swath of forest in Sweden",
+      "url": "https://www.arctictoday.com/palantir-founder-purchases-large-swath-of-forest-in-sweden/",
+      "score": 19,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
       "url": "https://e621.net/posts/6740154",
-      "score": 14,
+      "score": 16,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
+    },
+    {
+      "title": "12,000-year-old Göbeklitepe burials explain scattered bones",
+      "url": "https://archaeologymag.com/2026/09/gobeklitepe-burials-hundreds-of-scattered-bones/",
+      "score": 15,
+      "source": "HackerNews",
+      "category": "tech"
     },
     {
       "title": "e621 post #6739681: abdominal_bulge, after_vore, anthro, anthro_pred, arm_tuft, belly, big_belly, big_ears",
       "url": "https://e621.net/posts/6739681",
-      "score": 14,
+      "score": 15,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
     },
     {
-      "title": "e621 post #6740385: armor, cybernetics, display_face, feral, machine, metallic_body, science_fiction, simple_background",
-      "url": "https://e621.net/posts/6740385",
+      "title": "Scientists solve 1840s space weather mystery",
+      "url": "https://arstechnica.com/science/2026/09/scientists-solve-1840s-space-weather-mystery/",
+      "score": 11,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "e621 post #6740455: abs, anthro, arm_hair, barazoku, biceps, big_muscles, big_pecs, body_hair",
+      "url": "https://e621.net/posts/6740455",
+      "score": 7,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "q"
+    },
+    {
+      "title": "e621 post #6740508: abs, anthro, beach, blush, book, butt, duo, exclamation_point",
+      "url": "https://e621.net/posts/6740508",
       "score": 3,
       "source": "e621",
       "category": "kemono",
-      "rating": "s"
+      "rating": "q"
     },
     {
       "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
@@ -426,9 +450,17 @@
       "category": "pokemon"
     },
     {
-      "title": "e621 post #6740427: ambiguous_gender, black_body, black_fur, black_nose, blue_body, blue_ears, blue_fur, blush",
-      "url": "https://e621.net/posts/6740427",
+      "title": "e621 post #6740471: accessory, anthro, areola, biped, black_butt, breasts, brown_hair, butt",
+      "url": "https://e621.net/posts/6740471",
       "score": 1,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "q"
+    },
+    {
+      "title": "e621 post #6740527: ambiguous_gender, blue_eyes, facial_horn, feral, horn, nose_horn, open_mouth, scales",
+      "url": "https://e621.net/posts/6740527",
+      "score": 0,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -574,29 +606,29 @@
       "category": "tech"
     },
     {
-      "title": "やってくれたなGemini、こんこんと説教することになった早朝の話",
-      "url": "https://qiita.com/shu15511551/items/11086edcd6d1d146e06a",
+      "title": "Anthropic の Claude 約950エージェントが酵素システム「ART」を探索:約20万→3,500→20・機能は未解明・査読前",
+      "url": "https://qiita.com/quotidia/items/dc5e5ecefd8d5c7bbebd",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "「AIが暴走した」で止めていいのか――OpenAIエージェント事案を一次情報まで分解する",
-      "url": "https://qiita.com/BugiAK/items/7bba5192069096261a59",
+      "title": "AI には「答え」と「論点」のどちらを出してもらうほうが役に立つ？",
+      "url": "https://qiita.com/e99h2121/items/3d990f5223c79efe4026",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "Claude Sonnet 5.5がリリース、Sonnet 5からの5つの破壊的変更まとめ",
-      "url": "https://qiita.com/picnic/items/874ab4adee5e33f34bd6",
+      "title": "語彙枯渇サバイバル 〜沈黙の呪いと、私と、辞書〜",
+      "url": "https://qiita.com/lemonIN/items/c30e97587fbc911761c2",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "Claude Sonnet 5.5登場、Sonnet 5比で30%高速・コスト最大30%減",
-      "url": "https://qiita.com/picnic/items/e5c402c5dbc88d709235",
+      "title": "Autopilot が最高だった...私の Vibe Coding の常識が、また変わった! タスク分割の Prompt はもう要らない。トークンと時間を半日溶かして分かったこと",
+      "url": "https://qiita.com/dahatake/items/81df308d05c131eb8cb6",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
