@@ -81,6 +81,13 @@ GITHUB_SEARCH_QUERIES = [
     "pokemon+language:typescript",
 ]
 
+# Bluesky 検索キーワード
+BLUESKY_SEARCHES = [
+    {"query": "LLM AI", "category": "tech"},
+    {"query": "kemono furry art", "category": "kemono"},
+    {"query": "pokemon", "category": "pokemon"},
+]
+
 # --------------------------------------------------
 # ユーティリティ
 # --------------------------------------------------
@@ -224,10 +231,30 @@ def _categorize_subreddit(sub: str) -> str:
     return "other"
 
 
+def _is_nsfw_post(post: dict) -> bool:
+    """e621 投稿が NSFW（rating: explicit）または既知の NSFW タグを含む場合 True"""
+    rating = post.get("rating", "")
+    if rating == "e":
+        return True
+    nsfw_tags = {
+        "sexual", "sex", "bare_legs", "bare_thighs", "bare_hips", "bare_butt",
+        "breast_exposure", "genital_exposure", "penis", "vagina", "ass",
+        "boobs", "pussy", "dicexdick", "bare_chest", "exposed_nipple",
+        "loli", "shota", "underage", "rape", "non_consecutive",
+    }
+    all_tags = set()
+    for tag_list in post.get("tags", {}).values():
+        all_tags.update(tag_list)
+    if all_tags & nsfw_tags:
+        return True
+    return False
+
+
 def collect_e621(limit_per_tag: int = 5) -> list[dict]:
-    """e621 の公開 REST API で最新投稿を取得する（認証不要）。"""
+    """e621 の公開 REST API で最新投稿を取得する（認証不要）。NSFW 投稿はフィルタする。"""
     headers = {"User-Agent": USER_AGENT}
     results = []
+    filtered = 0
 
     for tag_query in E621_TAGS:
         print(f"[e621] Fetching tag: {tag_query}...")
@@ -238,6 +265,9 @@ def collect_e621(limit_per_tag: int = 5) -> list[dict]:
             continue
         posts = data.get("posts", [])
         for post in posts:
+            if _is_nsfw_post(post):
+                filtered += 1
+                continue
             pid = post.get("id")
             tags_general = post.get("tags", {}).get("general", [])
             species_tags = post.get("tags", {}).get("species", [])
@@ -245,12 +275,15 @@ def collect_e621(limit_per_tag: int = 5) -> list[dict]:
             results.append({
                 "title": f"e621 post #{pid}: {tag_summary}",
                 "url": f"https://e621.net/posts/{pid}",
-                "score": post.get("score", {}).get("total", 0),
+                "score": post.get("score", 0) if isinstance(post.get("score"), int) else post.get("score", {}).get("total", 0),
                 "source": "e621",
                 "category": "kemono",
+                "rating": post.get("rating", "q"),
             })
         time.sleep(1.0)  # e621 推奨: 1req/s
 
+    if filtered:
+        print(f"  [NSFW] {filtered} 件の投稿をフィルタしました")
     print(f"  -> {len(results)} e621 posts collected")
     return results
 
@@ -316,6 +349,39 @@ def _categorize_github_query(query: str) -> str:
     return "tech"
 
 
+def collect_bluesky(limit_per_query: int = 5) -> list[dict]:
+    """Bluesky (AT Protocol) の公開検索エンドポイントで投稿を検索する（認証不要）。"""
+    results = []
+
+    for search in BLUESKY_SEARCHES:
+        query = search["query"]
+        category = search["category"]
+        print(f"[Bluesky] Searching: {query}...")
+        encoded = urllib.parse.quote(query)
+        url = f"https://public.api.bsky.app/xrpc/app.bsky.unspecced.searchPostsLazy?q={encoded}&limit={limit_per_query}"
+        data = fetch_json(url, headers={"User-Agent": USER_AGENT})
+        if not data:
+            continue
+        posts = data.get("posts", [])
+        for post in posts:
+            uri = post.get("uri", "")
+            cid = post.get("cid", "")
+            record = post.get("record", {})
+            text = record.get("text", "")[:200]
+            author = post.get("author", {}).get("handle", "unknown")
+            results.append({
+                "title": f"@{author}: {text[:80]}",
+                "url": f"https://bsky.app/profile/{author}/post/{uri.split(':')[-1] if ':' in uri else uri}",
+                "score": 0,
+                "source": "Bluesky",
+                "category": category,
+            })
+        time.sleep(0.5)
+
+    print(f"  -> {len(results)} Bluesky posts collected")
+    return results
+
+
 # --------------------------------------------------
 # メイン処理
 # --------------------------------------------------
@@ -359,6 +425,12 @@ def main():
         all_topics.extend(collect_github_trending(limit_per_query=5))
     except Exception as e:
         print(f"[ERROR] GitHub: {e}")
+
+    # 6. Bluesky
+    try:
+        all_topics.extend(collect_bluesky(limit_per_query=5))
+    except Exception as e:
+        print(f"[ERROR] Bluesky: {e}")
 
     # カテゴリ別に整理（score降順でソート）
     output = {

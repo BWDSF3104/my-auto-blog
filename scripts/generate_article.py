@@ -32,6 +32,7 @@ MODELS_TO_TRY = [
 HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
 MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "2"))
+MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detailed, furry, anthro"
@@ -399,9 +400,10 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 # --------------------------------------------------
 # アフィリエイトリンク自動挿入
 # --------------------------------------------------
-def inject_affiliate_links(content: str) -> str:
+def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> str:
     """
     記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
+    trend_keywords が指定された場合はトレンドベースのキーワードを優先。
     """
     if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
         return content
@@ -411,36 +413,52 @@ def inject_affiliate_links(content: str) -> str:
     amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
 
-    # Frontmatterからタイトルやタグを抽出
-    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    title = title_match.group(1).strip() if title_match else "小説"
+    keywords_to_use: list[str] = []
 
-    # タグがあれば最初のタグ、無ければタイトルからキーワード抽出
-    tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
-    keyword = None
-    if tags_match:
-        tag_items = [t.strip().strip('"\'') for t in tags_match.group(1).split(',') if t.strip()]
-        if tag_items:
-            keyword = tag_items[0]
+    # trend_keywords が優先
+    if trend_keywords:
+        seen = set()
+        for kw in trend_keywords:
+            kw_clean = kw.strip()
+            if kw_clean and kw_clean not in seen and len(kw_clean) >= 2:
+                seen.add(kw_clean)
+                keywords_to_use.append(kw_clean)
+                if len(keywords_to_use) >= 2:
+                    break
 
-    if not keyword:
-        cleaned = re.sub(r'[【】「」『』\[\]()（）\s]', ' ', title).strip()
-        words = [w for w in cleaned.split() if len(w) > 1]
-        keyword = words[0] if words else "おすすめ書籍"
+    # trend_keywords がない場合は既存の tags 抽出ロジックにフォールバック
+    if not keywords_to_use:
+        title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+        title = title_match.group(1).strip() if title_match else "小説"
 
-    encoded_kw = urllib.parse.quote(keyword)
-    amazon_url = f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
-    rakuten_url = f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+        tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
+        keyword = None
+        if tags_match:
+            tag_items = [t.strip().strip('"\'') for t in tags_match.group(1).split(',') if t.strip()]
+            if tag_items:
+                keyword = tag_items[0]
+
+        if not keyword:
+            cleaned = re.sub(r'[【】「」『』\[\]()（）\s]', ' ', title).strip()
+            words = [w for w in cleaned.split() if len(w) > 1]
+            keyword = words[0] if words else "おすすめ書籍"
+
+        keywords_to_use = [keyword]
+
+    links_html = ""
+    for kw in keywords_to_use:
+        encoded_kw = urllib.parse.quote(kw)
+        amazon_url = f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+        rakuten_url = f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+        links_html += f"\n- 📦 [Amazonで「{kw}」を探す]({amazon_url})"
+        links_html += f"\n- 🛍️ [楽天市場で「{kw}」を探す]({rakuten_url})"
 
     affiliate_section = f"""
 
 ---
 
 ### 📚 テーマ関連のおすすめアイテム・書籍
-この記事のテーマ（**{keyword}**）に関連する作品や人気アイテムをチェック！
-
-- 📦 [Amazonで「{keyword}」関連作品・アイテムを探す]({amazon_url})
-- 🛍️ [楽天市場で「{keyword}」関連アイテムを探す]({rakuten_url})
+この記事のテーマに関連する作品や人気アイテムをチェック！{links_html}
 
 <small style="color: #64748b;">※ 当サイトはアフィリエイト広告（Amazonアソシエイト・楽天アフィリエイト等）を利用して収益を得ています。</small>
 """
@@ -505,52 +523,97 @@ def _check_topics_ttl(data: dict) -> bool:
     return False
 
 
-def _append_trending_topics(ng_instruction: str, prompt_type: str) -> str:
+def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str, list[str], list[str]]:
     """
     data/latest_topics.json が存在する場合、prompt_type に応じたカテゴリの
     トレンドタイトルを score 降順で選択して ng_instruction の末尾へ付加する。
-    ファイルが存在しない場合は元の ng_instruction をそのまま返す。
+    第2要素としてアフィリエイト用のトレンドキーワードリストを返す。
+    第3要素として frontmatter 用のソースURLリストを返す。
+    ファイルが存在しない場合は元の ng_instruction と空リストを返す。
     """
     if not os.path.exists(TOPICS_JSON_PATH):
         print(f"[topics] {TOPICS_JSON_PATH} が見つかりません。トレンド注入をスキップします。")
-        return ng_instruction
+        return ng_instruction, [], []
 
     try:
         with open(TOPICS_JSON_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
     except Exception as e:
         print(f"[topics] JSON 読み込み失敗: {e}")
-        return ng_instruction
+        return ng_instruction, [], []
 
     # TTL検証
     _check_topics_ttl(data)
 
-    # prompt_type に合わせてカテゴリを選択
+    # prompt_type に合わせてカテゴリを選択（カテゴリ厳格化）
     if prompt_type in ("kemono_story", "novel", "story"):
         categories = ["kemono", "pokemon"]
+    elif prompt_type == "default":
+        categories = ["tech"]
     else:
         categories = ["tech", "kemono", "pokemon"]
 
     by_cat = data.get("by_category", {})
     selected_titles: list[str] = []
+    affiliate_keywords: list[str] = []
+    trend_source_urls: list[str] = []
+    story_mode = prompt_type in ("kemono_story", "novel", "story")
     for cat in categories:
         # score 降順でソートしてから上位5件を選択
         items = sorted(by_cat.get(cat, []), key=lambda t: t.get("score", 0), reverse=True)
         for item in items[:5]:  # 各カテゴリ最大5件
+            # スコアしきい値フィルタ
+            if item.get("score", 0) < MIN_SCORE_THRESHOLD:
+                continue
+            # カテゴリ厳格化: 物語モードでは Safe 評価の e621 投稿のみを注入
+            if story_mode and item.get("source") == "e621" and item.get("rating") != "s":
+                continue
             title = item.get("title", "").strip()
             source = item.get("source", "")
+            url = item.get("url", "")
             if title:
                 selected_titles.append(f"[{source}] {title}")
+                if url:
+                    trend_source_urls.append(url)
+            # アフィリエイトキーワードは tech カテゴリのみから抽出
+            if cat == "tech" and title:
+                kw = _extract_affiliate_keyword(title)
+                if kw:
+                    affiliate_keywords.append(kw)
 
     if not selected_titles:
-        return ng_instruction
+        return ng_instruction, affiliate_keywords, trend_source_urls
 
     trend_block = (
         "\n\n【参考：今日のトレンドトピック（インスピレーション源として活用してください）】\n"
         + "\n".join(f"- {t}" for t in selected_titles)
     )
     print(f"[topics] {len(selected_titles)} 件のトレンドをプロンプトに注入しました")
-    return ng_instruction + trend_block
+    if affiliate_keywords:
+        print(f"[affiliate] {len(affiliate_keywords)} 件のトレンドキーワードを抽出しました")
+    return ng_instruction + trend_block, affiliate_keywords, trend_source_urls
+
+
+def _extract_affiliate_keyword(title: str) -> str | None:
+    """
+    トレンドタイトルからアフィリエイト検索用のキーワードを1つ抽出する。
+    英語の固有名詞（製品名・技術名）を優先し、日本語の場合は主要語を抽出。
+    """
+    # e621 などのタイトルは除外
+    if title.startswith("e621"):
+        return None
+    # GitHub リポジトリ形式 "owner/repo: description" → description 側から
+    if ":" in title:
+        title = title.split(":", 1)[1].strip() if title.split(":", 1)[1].strip() else title.split(":", 1)[0].strip()
+    # 長すぎる場合は短縮
+    if len(title) > 50:
+        words = title.split()
+        title = " ".join(words[:5])
+    # 意味のあるキーワードか判定（2文字以上）
+    cleaned = re.sub(r'[^\w\s\u3000-\u9fff]', ' ', title).strip()
+    if len(cleaned) < 2:
+        return None
+    return cleaned[:30]
 
 
 # --------------------------------------------------
@@ -583,7 +646,7 @@ def generate_post():
         ng_instruction = ""
 
     # 1.5. 収集済みトレンドトピックをプロンプトに注入（fetch_topics.py が生成した JSON を参照）
-    ng_instruction = _append_trending_topics(ng_instruction, prompt_type)
+    ng_instruction, trend_keywords, trend_source_urls = _append_trending_topics(ng_instruction, prompt_type)
 
     # 2. テキスト記事の生成
     template = load_prompt_template(prompt_type)
@@ -638,11 +701,18 @@ def generate_post():
     if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:
         content = content.replace("---", f"---\nprompt_type: \"{prompt_type}\"", 1)
 
+    # トレンド参照URLをFrontmatterに記録（出典追跡用）
+    if trend_source_urls and "---" in content:
+        sources_yaml = "\n".join(f"  - {url}" for url in trend_source_urls[:10])
+        sources_block = f"trend_sources:\n{sources_yaml}"
+        if not re.search(r'^trend_sources:', content, re.MULTILINE):
+            content = content.replace("---", f"---\n{sources_block}", 1)
+
     # 5. 本文内画像の抽出・生成とMarkdown置換
     content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES)
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
-    content = inject_affiliate_links(content)
+    content = inject_affiliate_links(content, trend_keywords=trend_keywords)
 
     # 6. 保存
     output_dir = "src/content/posts"
