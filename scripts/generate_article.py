@@ -478,10 +478,35 @@ def generate_content_with_retry(prompt):
 # --------------------------------------------------
 TOPICS_JSON_PATH = os.path.join("data", "latest_topics.json")
 
+def _check_topics_ttl(data: dict) -> bool:
+    """
+    TTL検証: fetched_at から経過時間が ttl_hours を超えているかチェック。
+    超過時はTrueを返し、警告を出力する。
+    """
+    fetched_at_str = data.get("fetched_at", "")
+    if not fetched_at_str:
+        print("[topics] fetched_at が存在しません。TTL検証をスキップします。")
+        return False
+
+    try:
+        fetched_at = datetime.fromisoformat(fetched_at_str)
+        if fetched_at.tzinfo is None:
+            fetched_at = fetched_at.replace(tzinfo=timezone(timedelta(hours=9)))
+        now = datetime.now(timezone(timedelta(hours=9)))
+        ttl_hours = data.get("ttl_hours", 24)
+        elapsed = (now - fetched_at).total_seconds() / 3600
+        if elapsed > ttl_hours:
+            print(f"[topics] 注意: トピックスデータが {elapsed:.1f} 時間前（TTL {ttl_hours}h を超過）です。最新データを取得してください。")
+            return True
+    except Exception as e:
+        print(f"[topics] TTL検証でエラーが発生しました: {e}")
+    return False
+
+
 def _append_trending_topics(ng_instruction: str, prompt_type: str) -> str:
     """
     data/latest_topics.json が存在する場合、prompt_type に応じたカテゴリの
-    トレンドタイトルを ng_instruction の末尾へ付加する。
+    トレンドタイトルを score 降順で選択して ng_instruction の末尾へ付加する。
     ファイルが存在しない場合は元の ng_instruction をそのまま返す。
     """
     if not os.path.exists(TOPICS_JSON_PATH):
@@ -495,6 +520,9 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> str:
         print(f"[topics] JSON 読み込み失敗: {e}")
         return ng_instruction
 
+    # TTL検証
+    _check_topics_ttl(data)
+
     # prompt_type に合わせてカテゴリを選択
     if prompt_type in ("kemono_story", "novel", "story"):
         categories = ["kemono", "pokemon"]
@@ -504,7 +532,9 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> str:
     by_cat = data.get("by_category", {})
     selected_titles: list[str] = []
     for cat in categories:
-        for item in by_cat.get(cat, [])[:5]:  # 各カテゴリ最大5件
+        # score 降順でソートしてから上位5件を選択
+        items = sorted(by_cat.get(cat, []), key=lambda t: t.get("score", 0), reverse=True)
+        for item in items[:5]:  # 各カテゴリ最大5件
             title = item.get("title", "").strip()
             source = item.get("source", "")
             if title:

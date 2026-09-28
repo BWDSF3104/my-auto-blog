@@ -25,6 +25,7 @@ from datetime import datetime, timezone, timedelta
 # --------------------------------------------------
 OUTPUT_PATH = os.path.join("data", "latest_topics.json")
 USER_AGENT = "my-auto-blog/1.0 (https://github.com)"  # Reddit / e621 用
+TTL_HOURS = 24  # データの有効期間（時間）
 
 # 収集する Subreddit 一覧（認証不要）
 REDDIT_SUBS = [
@@ -357,9 +358,10 @@ def main():
     except Exception as e:
         print(f"[ERROR] GitHub: {e}")
 
-    # カテゴリ別に整理
+    # カテゴリ別に整理（score降順でソート）
     output = {
         "fetched_at": now.isoformat(),
+        "ttl_hours": TTL_HOURS,
         "total": len(all_topics),
         "by_category": {
             "tech": [],
@@ -367,7 +369,7 @@ def main():
             "pokemon": [],
             "other": [],
         },
-        "all": all_topics,
+        "all": sorted(all_topics, key=lambda t: t.get("score", 0), reverse=True),
     }
     for topic in all_topics:
         cat = topic.get("category", "other")
@@ -375,6 +377,9 @@ def main():
             output["by_category"][cat].append(topic)
         else:
             output["by_category"]["other"].append(topic)
+    # 各カテゴリ内をscore降順でソート
+    for cat in output["by_category"]:
+        output["by_category"][cat].sort(key=lambda t: t.get("score", 0), reverse=True)
 
     # 出力
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
