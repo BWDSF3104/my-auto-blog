@@ -575,8 +575,8 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
                 selected_titles.append(f"[{source}] {title}")
                 if url:
                     trend_source_urls.append(url)
-            # アフィリエイトキーワードは tech カテゴリのみから抽出
-            if cat == "tech" and title:
+            # アフィリエイトキーワードは全カテゴリから抽出
+            if cat in ("tech", "kemono", "pokemon") and title:
                 kw = _extract_affiliate_keyword(title)
                 if kw:
                     affiliate_keywords.append(kw)
