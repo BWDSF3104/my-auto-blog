@@ -44,6 +44,18 @@ INLINE_IMAGE_PATTERN = re.compile(
     re.IGNORECASE
 )
 
+# 本文内アフィリエイトプレースホルダーの正規表現 (例: <!-- AFFILIATE: "kw" | "anchor" -->)
+INLINE_AFFILIATE_PATTERN = re.compile(
+    r'<!--\s*AFFILIATE:\s*"([^"]+)"\s*\|\s*"([^"]+)"\s*-->',
+    re.IGNORECASE
+)
+
+# 比較表内の商品リンクプレースホルダー (例: <!-- AFF_PRODUCT: "keyword" -->)
+INLINE_AFF_PRODUCT_PATTERN = re.compile(
+    r'<!--\s*AFF_PRODUCT:\s*"([^"]+)"\s*-->',
+    re.IGNORECASE
+)
+
 
 # --------------------------------------------------
 # 画像生成関数
@@ -398,12 +410,185 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 
 
 # --------------------------------------------------
+# 本文内アフィリエイトプレースホルダーの置換
+# --------------------------------------------------
+def process_inline_affiliates(content: str) -> str:
+    """
+    本文内の <!-- AFFILIATE: "keyword" | "anchor" --> を検出し、
+    Amazon・楽天の検索リンクに置換する。
+    """
+    matches = list(INLINE_AFFILIATE_PATTERN.finditer(content))
+    if not matches:
+        return content
+
+    import urllib.parse
+
+    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
+    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
+
+    # 記事タイトルをUTM用に取り出す
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
+
+    print(f"🔗 本文内アフィリエイトプレースホルダーを {len(matches)} 箇所検出")
+
+    for idx, match in enumerate(matches, start=1):
+        full_tag = match.group(0)
+        keyword = match.group(1).strip()
+        anchor = match.group(2).strip()
+        encoded_kw = urllib.parse.quote(keyword)
+
+        amazon_url = (
+            f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+        rakuten_url = (
+            f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+
+        # 自然な文章内に埋め込む形式: 主にAmazonリンクをアンカーテキストとして、楽天はフッター注釈
+        replacement = (
+            f"[{anchor}]({amazon_url})"
+            f" （[楽天もチェック]({rakuten_url})）"
+        )
+        content = content.replace(full_tag, replacement, 1)
+        print(f"   🔗 アフィリエイトリンク {idx}: 「{anchor}」→ {keyword}")
+
+    # 連続する過剰な改行を整理
+    content = re.sub(r'\n{3,}', '\n\n', content)
+    return content
+
+
+# --------------------------------------------------
+# 比較表内の商品リンクプレースホルダーの置換
+# --------------------------------------------------
+def process_inline_products(content: str) -> str:
+    """
+    比較表内の <!-- AFF_PRODUCT: "keyword" --> を検出し、
+    Amazon・楽天の検索リンクボタンに置換する。
+    """
+    matches = list(INLINE_AFF_PRODUCT_PATTERN.finditer(content))
+    if not matches:
+        return content
+
+    import urllib.parse
+
+    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
+    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
+
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
+
+    print(f"🛒 比較表内商品プレースホルダーを {len(matches)} 箇所検出")
+
+    for idx, match in enumerate(matches, start=1):
+        full_tag = match.group(0)
+        keyword = match.group(1).strip()
+        encoded_kw = urllib.parse.quote(keyword)
+
+        amazon_url = (
+            f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+        rakuten_url = (
+            f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+
+        # 比較表内に埋め込むコンパクトなリンク形式
+        replacement = f"[Amazon]({amazon_url}) | [楽天]({rakuten_url})"
+        content = content.replace(full_tag, replacement, 1)
+        print(f"   🛒 商品リンク {idx}: {keyword}")
+
+    return content
+
+
+# --------------------------------------------------
 # アフィリエイトリンク自動挿入
 # --------------------------------------------------
+
+# 無意味なキーワードのフィルタリスト（アフィリエイト検索に不適切な語）
+_AFFILIATE_BAD_PREFIXES = (
+    "a ", "an ", "the ", "how to", "what is", "why ", "best ",
+    "top ", "new ", "latest", "review", "tutorial", "guide ",
+    "e621", "github", "repo ", "repository", "source code",
+    "open source", "free ", "download", "install", "setup ",
+)
+
+# キーワード改善辞書：一般的なタグ → 購買意欲の高い検索語
+_KEYWORD_ENHANCEMENT = {
+    "tech": "プログラミング 入門書",
+    "ai": "AI 入門 書籍",
+    "kemono": "ケモノ 図鑑",
+    "pokemon": "ポケモン 公式",
+    "novel": "ライトノベル おすすめ",
+    "fantasy": "ファンタジー 小説",
+    "game": "ゲーム 周辺機器",
+    "programming": "プログラミング 本",
+    "web": "Web開発 書籍",
+    "javascript": "JavaScript 本",
+    "python": "Python 本",
+    "rust": "Rust 本",
+    "react": "React 書籍",
+    "vue": "Vue.js 本",
+    "next": "Next.js 書籍",
+    "docker": "Docker 入門",
+    "linux": "Linux 本",
+    "css": "CSS 本",
+    "html": "HTML 本",
+}
+
+
+def _is_affiliate_bad_keyword(kw: str) -> bool:
+    """アフィリエイト検索に適さないキーワードを判定"""
+    kw_lower = kw.lower().strip()
+    if len(kw_lower) < 2:
+        return True
+    for prefix in _AFFILIATE_BAD_PREFIXES:
+        if kw_lower.startswith(prefix):
+            return True
+    # 半角英数字のみで構成され、かつスペースを含む場合は検索不适
+    if re.match(r'^[a-zA-Z0-9\s]+$', kw) and kw.count(' ') > 3:
+        return True
+    return False
+
+
+def _improve_keyword(kw: str, prompt_type: str) -> str:
+    """
+    キーワードを購買意欲の高い検索語に改善する。
+    技術系は「入門書」「本」などを付与、物語系は関連グッズに転換。
+    """
+    kw_lower = kw.lower().strip()
+
+    # 辞書で直接マッチする場合は改善語を使用
+    for key, improved in _KEYWORD_ENHANCEMENT.items():
+        if key in kw_lower:
+            return improved
+
+    # prompt_type に応じてサフィックスを付与
+    if prompt_type in ("default",):
+        # 技術記事: 書籍・グッズを検索
+        if re.match(r'^[a-zA-Z]+$', kw):
+            return f"{kw} 書籍"
+        return f"{kw} 関連グッズ"
+    elif prompt_type in ("kemono_story", "novel", "story"):
+        # 物語系: 関連作品・グッズ
+        return f"{kw} 関連作品"
+
+    return kw
+
+
 def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> str:
     """
     記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
     trend_keywords が指定された場合はトレンドベースのキーワードを優先。
+
+    改善点:
+    - キーワード品質のフィルタリングと改善
+    - UTM パラメータによるトラッキング
+    - 複数のプラットフォーム対応
+    - 購買意欲を促すCTA文言
     """
     if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
         return content
@@ -413,23 +598,32 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
     amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
 
+    # prompt_type を取得（キーワード改善用）
+    type_match = re.search(r'^prompt_type:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    prompt_type = type_match.group(1).strip() if type_match else "default"
+
     keywords_to_use: list[str] = []
 
-    # trend_keywords が優先
+    # trend_keywords が優先（品質フィルタ付き）
     if trend_keywords:
         seen = set()
         for kw in trend_keywords:
             kw_clean = kw.strip()
-            if kw_clean and kw_clean not in seen and len(kw_clean) >= 2:
-                seen.add(kw_clean)
-                keywords_to_use.append(kw_clean)
-                if len(keywords_to_use) >= 2:
-                    break
+            if _is_affiliate_bad_keyword(kw_clean):
+                continue
+            if kw_clean in seen:
+                continue
+            seen.add(kw_clean)
+            # キーワード改善
+            improved = _improve_keyword(kw_clean, prompt_type)
+            keywords_to_use.append(improved)
+            if len(keywords_to_use) >= 3:
+                break
 
-    # trend_keywords がない場合は既存の tags 抽出ロジックにフォールバック
+    # trend_keywords がない、またはフィルタで全て除外された場合は tags 抽出にフォールバック
     if not keywords_to_use:
         title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-        title = title_match.group(1).strip() if title_match else "小説"
+        title = title_match.group(1).strip() if title_match else ""
 
         tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
         keyword = None
@@ -441,24 +635,62 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
         if not keyword:
             cleaned = re.sub(r'[【】「」『』\[\]()（）\s]', ' ', title).strip()
             words = [w for w in cleaned.split() if len(w) > 1]
-            keyword = words[0] if words else "おすすめ書籍"
+            keyword = words[0] if words else None
 
-        keywords_to_use = [keyword]
+        if keyword:
+            keywords_to_use = [_improve_keyword(keyword, prompt_type)]
+        else:
+            # 最終フォールバック
+            if prompt_type in ("kemono_story", "novel", "story"):
+                keywords_to_use = ["ライトノベル おすすめ"]
+            else:
+                keywords_to_use = ["プログラミング 入門書"]
+
+    # UTM トラッキングパラメータ
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
 
     links_html = ""
     for kw in keywords_to_use:
         encoded_kw = urllib.parse.quote(kw)
-        amazon_url = f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
-        rakuten_url = f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+
+        # Amazon: 検索リンク + UTM
+        amazon_url = (
+            f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+
+        # Rakuten: 検索リンク
+        rakuten_url = (
+            f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+
         links_html += f"\n- 📦 [Amazonで「{kw}」を探す]({amazon_url})"
         links_html += f"\n- 🛍️ [楽天市場で「{kw}」を探す]({rakuten_url})"
+
+    # 複数キーワードがある場合はセクションを分割
+    sections = ""
+    if len(keywords_to_use) > 1:
+        # 1つ目のキーワードはメインCTAとして強調
+        kw0 = keywords_to_use[0]
+        encoded_kw0 = urllib.parse.quote(kw0)
+        main_amazon = (
+            f"https://www.amazon.co.jp/s?k={encoded_kw0}&tag={amazon_tag}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+        sections = f"""
+<div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; padding: 16px 20px; margin: 16px 0; text-align: center;">
+<p style="font-size: 1.1em; font-weight: bold; margin: 0 0 12px 0;">🔥 「{kw0}」の今すぐチェックできるおすすめアイテム</p>
+<a href="{main_amazon}" style="display: inline-block; background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1em;">Amazonで確認する →</a>
+</div>"""
 
     affiliate_section = f"""
 
 ---
 
 ### 📚 テーマ関連のおすすめアイテム・書籍
-この記事のテーマに関連する作品や人気アイテムをチェック！{links_html}
+この記事のテーマに関連する作品や人気アイテムをチェック！{sections}{links_html}
 
 <small style="color: #64748b;">※ 当サイトはアフィリエイト広告（Amazonアソシエイト・楽天アフィリエイト等）を利用して収益を得ています。</small>
 """
@@ -597,18 +829,35 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
 def _extract_affiliate_keyword(title: str) -> str | None:
     """
     トレンドタイトルからアフィリエイト検索用のキーワードを1つ抽出する。
-    英語の固有名詞（製品名・技術名）を優先し、日本語の場合は主要語を抽出。
+    購買意欲のある検索語になるよう、固有名詞・製品名・技術名を優先。
+    品質フィルタは inject_affiliate_links 側で実施するため、ここでは粗抽出。
     """
     # e621 などのタイトルは除外
     if title.startswith("e621"):
         return None
-    # GitHub リポジトリ形式 "owner/repo: description" → description 側から
+    # GitHub リポジトリ形式 "owner/repo: description" → repo名側を抽出
     if ":" in title:
-        title = title.split(":", 1)[1].strip() if title.split(":", 1)[1].strip() else title.split(":", 1)[0].strip()
-    # 長すぎる場合は短縮
+        before_colon = title.split(":", 1)[0].strip()
+        after_colon = title.split(":", 1)[1].strip()
+        # "owner/repo" 形式の場合、repo名を抽出
+        if "/" in before_colon:
+            parts = before_colon.split("/")
+            repo_name = parts[-1].strip()
+            # repo名が意味のある名前（2-20文字）の場合使用
+            if 2 <= len(repo_name) <= 20:
+                return repo_name
+        # 説明側が長すぎる場合は短縮
+        if after_colon and len(after_colon) > 0:
+            title = after_colon
+    # 長すぎる場合は主要語を抽出
     if len(title) > 50:
         words = title.split()
-        title = " ".join(words[:5])
+        # 固有名詞候補（大文字始まり）を優先
+        capitalized = [w for w in words if w[0].isupper() if len(w) > 1]
+        if capitalized:
+            title = " ".join(capitalized[:3])
+        else:
+            title = " ".join(words[:4])
     # 意味のあるキーワードか判定（2文字以上）
     cleaned = re.sub(r'[^\w\s\u3000-\u9fff]', ' ', title).strip()
     if len(cleaned) < 2:
@@ -710,6 +959,12 @@ def generate_post():
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
     content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES)
+
+    # 5.4 本文内アフィリエイトプレースホルダーの実リンク置換
+    content = process_inline_affiliates(content)
+
+    # 5.45 比較表内商品プレースホルダーの実リンク置換
+    content = process_inline_products(content)
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
     content = inject_affiliate_links(content, trend_keywords=trend_keywords)

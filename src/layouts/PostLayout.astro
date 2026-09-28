@@ -123,8 +123,8 @@ const schemaOrgJSONLD = {
         <slot />
       </article>
 
-      <!-- 関連商品・アフィリエイトエリア -->
-      <section class="mt-10 pt-6 border-t border-slate-200">
+      <!-- 関連商品・アフィリエイトエリア（フォールバック: 本文にアフィリエイトブロックがない場合のみ表示） -->
+      <section class="mt-10 pt-6 border-t border-slate-200 affiliate-fallback">
         <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">
           関連する商品・書籍を探す
         </h3>
@@ -133,7 +133,9 @@ const schemaOrgJSONLD = {
             href={amazonSearchUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            class="flex items-center justify-between p-3.5 rounded-xl border border-amber-200 bg-amber-50/60 hover:bg-amber-100/80 transition-colors text-amber-900 font-medium text-sm shadow-xs no-underline"
+            class="affiliate-link flex items-center justify-between p-3.5 rounded-xl border border-amber-200 bg-amber-50/60 hover:bg-amber-100/80 transition-colors text-amber-900 font-medium text-sm shadow-xs no-underline"
+            data-platform="amazon"
+            data-keyword={relatedKeyword}
           >
             <span>📦 Amazonで「{relatedKeyword}」を探す</span>
             <span class="text-xs text-amber-700 bg-amber-200/60 px-2 py-0.5 rounded-full">PR ↗</span>
@@ -142,7 +144,9 @@ const schemaOrgJSONLD = {
             href={rakutenSearchUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            class="flex items-center justify-between p-3.5 rounded-xl border border-rose-200 bg-rose-50/60 hover:bg-rose-100/80 transition-colors text-rose-900 font-medium text-sm shadow-xs no-underline"
+            class="affiliate-link flex items-center justify-between p-3.5 rounded-xl border border-rose-200 bg-rose-50/60 hover:bg-rose-100/80 transition-colors text-rose-900 font-medium text-sm shadow-xs no-underline"
+            data-platform="rakuten"
+            data-keyword={relatedKeyword}
           >
             <span>🛍️ 楽天市場で「{relatedKeyword}」を探す</span>
             <span class="text-xs text-rose-700 bg-rose-200/60 px-2 py-0.5 rounded-full">PR ↗</span>
@@ -177,6 +181,71 @@ const schemaOrgJSONLD = {
         text-align: left;
         box-sizing: border-box;
       }
+
+      /* 本文内アフィリエイトリンクのスタイル */
+      article a[href*="amazon.co.jp"],
+      article a[href*="rakuten.co.jp"] {
+        color: #d97706;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: #fcd34d;
+        text-underline-offset: 3px;
+        transition: color 0.15s;
+      }
+      article a[href*="amazon.co.jp"]:hover,
+      article a[href*="rakuten.co.jp"]:hover {
+        color: #b45309;
+      }
+
+      /* フォールバックセクション: 本文にアフィリエイトブロックがあれば非表示 */
+      .affiliate-fallback {
+        display: none;
+      }
     </style>
+
+    <script>
+      // 本文にアフィリエイトブロックがある場合、フォールバックセクションを表示
+      document.addEventListener('DOMContentLoaded', () => {
+        const article = document.querySelector('article');
+        const fallback = document.querySelector('.affiliate-fallback');
+        if (article && fallback) {
+          const hasAffiliate = article.querySelector('a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]');
+          if (!hasAffiliate) {
+            fallback.style.display = 'block';
+          }
+        }
+
+        // アフィリエイトリンクのクリックトラッキング
+        document.querySelectorAll('a[data-platform]').forEach(link => {
+          link.addEventListener('click', (e) => {
+            const platform = link.getAttribute('data-platform');
+            const keyword = link.getAttribute('data-keyword');
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'affiliate_click', {
+                'event_category': 'affiliate',
+                'event_label': platform,
+                'keyword': keyword
+              });
+            }
+            console.log(`[Affiliate Click] platform=${platform} keyword=${keyword}`);
+          });
+        });
+
+        // 本文内のアフィリエイトリンクもトラッキング
+        document.querySelectorAll('article a[href*="amazon.co.jp"], article a[href*="rakuten.co.jp"]').forEach(link => {
+          link.addEventListener('click', () => {
+            const hostname = new URL(link.href, location.href).hostname;
+            const platform = hostname.includes('amazon') ? 'amazon' : 'rakuten';
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'affiliate_click', {
+                'event_category': 'affiliate_inline',
+                'event_label': platform
+              });
+            }
+            console.log(`[Affiliate Inline Click] platform=${platform} url=${link.href}`);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
