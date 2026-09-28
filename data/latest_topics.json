@@ -1,270 +1,271 @@
 {
-  "fetched_at": "2026-09-28T10:27:54.684905+09:00",
+  "fetched_at": "2026-09-29T03:48:00.762808+09:00",
+  "ttl_hours": 24,
   "total": 55,
   "by_category": {
     "tech": [
       {
         "title": "When did Google get so weird?",
         "url": "https://sancho.bearblog.dev/google-weird/",
-        "score": 752,
+        "score": 1705,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Ember-1",
-        "url": "https://fireworks.ai/blog/ember-1",
-        "score": 348,
+        "title": "Parley: Federated, decentralised chat that speaks plain IRC",
+        "url": "https://git.mills.io/prologic/parley",
+        "score": 248,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Self-parking car using generic algorithm (2021)",
-        "url": "https://trekhleb.dev/blog/2021/self-parking-car-evolution/",
-        "score": 3,
+        "title": "Pirating the Pirates",
+        "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
+        "score": 174,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Lunar Terminator Paradox",
-        "url": "https://notes.secretsauce.net/notes/2026/09/27_lunar-terminator-paradox.html",
-        "score": 42,
+        "title": "Claude Sonnet 5.5",
+        "url": "https://www.anthropic.com/claude-sonnet-5-5",
+        "score": 163,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Alan Kay's answer to “Did the ENIAC have a BIOS”?",
-        "url": "https://www.quora.com/Did-the-ENIAC-have-a-BIOS/answer/Alan-Kay-11",
-        "score": 67,
+        "title": "Definitely not Windows (Win 11 parody)",
+        "url": "https://definitelynotwindows.com/",
+        "score": 114,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "There is more to code review than (automatable) detection",
-        "url": "https://www.adaptivecapacitylabs.com/2026/08/24/there-is-more-to-code-review-than-automatable-detection/",
-        "score": 61,
+        "title": "Hijacking the PS5's RTMP Stream",
+        "url": "https://yashgarg.dev/posts/hijacking-ps5-rtmp-stream/",
+        "score": 89,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "The state of SIMD in Rust in 2026",
-        "url": "https://shnatsel.github.io/state-of-simd-rust-2026/",
-        "score": 93,
+        "title": "Show HN: HN.watch – Videos of all Hacker News posts",
+        "url": "https://hn.watch/",
+        "score": 59,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Show HN: Lofi Cities – Pixel-art city nights with browser-generated lofi",
-        "url": "https://loficities.com/",
-        "score": 167,
+        "title": "So long Google, and thanks for all the nudes",
+        "url": "https://lecaro.me/20260921-google-less.html",
+        "score": 43,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Don't couple your Go code to GitHub",
-        "url": "https://iain.rocks/blog/dont-couple-your-go-code-to-github",
-        "score": 144,
+        "title": "GrapheneOS – When an App Is Slow",
+        "url": "https://blog.wirelessmoves.com/2026/09/grapheneos-when-an-app-is-slow.html",
+        "score": 10,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Self-Hosting on the Dark Web",
-        "url": "https://david.alvarezrosa.com/posts/self-hosting-on-the-dark-web/",
-        "score": 50,
+        "title": "Launch HN: Vespper (YC F24) – SOTA Docx MCP",
+        "url": "https://www.vespper.com/blog/launching-vespper-docx-mcp",
+        "score": 10,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "非エンジニアが一人で330億トークン超：実務AI運用の工夫とリアル",
-        "url": "https://zenn.dev/choujiya/articles/0808b145f7d170",
+        "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
+        "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "変更に強いRSpecの書き方 ─ AIがspecを書く時代のレビューと設計",
-        "url": "https://zenn.dev/nightonly/articles/f76badce22807a",
+        "title": "Claude CodeがAGENTS.mdに対応、CLAUDE.mdがあると読まれない条件を整理",
+        "url": "https://zenn.dev/ainewsdaily/articles/20260928_claude_code_t1",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "今日の技術トレンド",
-        "url": "https://zenn.dev/bambampurin/articles/2026-09-06-tech-daily",
+        "title": "Claude Code に同じ失敗を6回された話：再発を数えて「ルール」を「仕組み」に変える",
+        "url": "https://zenn.dev/takuyaauto/articles/d9db23c55571dd",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "AI組織の多様性は、探索空間を補完できるのか",
-        "url": "https://zenn.dev/k_aiga/articles/001_ai_diversity_search_space_complementarity",
+        "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
+        "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "CAFE(S) フレームワークの5つの観点でコンテキストを見直す",
-        "url": "https://zenn.dev/matsunaopen/articles/cafes-context-quality",
+        "title": "Claude Code と Codex を二人体制で回す ― 個人開発のハーネス実践記録",
+        "url": "https://zenn.dev/twinharness/books/claude-code-codex-duo-harness",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "Codexの代わりにPi Coding AgentでOpenAIモデルを使用したメモ",
-        "url": "https://zenn.dev/scirexs/articles/193c91cde0834f",
+        "title": "AI が書いたコードを誰が見る？ 別の AI にレビューを任せる運用",
+        "url": "https://zenn.dev/twinharness/articles/cross-review-by-another-ai",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "開発未経験の2人がClaude Codeで機能を足す前提で、フックに止めさせたことと技術選定",
-        "url": "https://zenn.dev/shoma_endo/articles/20260927-670ecc94",
+        "title": "Codex の使用上限に3か月で80回。止まった仕事を再開する方法",
+        "url": "https://zenn.dev/twinharness/articles/ai-usage-limit-resumable-workflow",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "話題の Jev（TypeSafe）で業務依頼の振り分けを試したら、正解率 22% だった",
-        "url": "https://zenn.dev/y3chi5z/articles/jev-typesafe-request-routing-trial",
+        "title": "🦙 ALPACA-FW #07｜開発ルールを機械契約のCatalogにしたワケ",
+        "url": "https://zenn.dev/alpaca_village/articles/alpaca-fw-07-catalog-contract",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "ChatGPT・Gemini・Claudeの「定期実行」、無料/有料/非搭載で分かれた",
-        "url": "https://zenn.dev/every_ai_recipe/articles/ai-scheduled-task-3-services-check",
+        "title": "IAPを案件へ入れる前に、架空例で共有文の変化を確かめる",
+        "url": "https://zenn.dev/partial_stds/articles/e6cff1b40d479b",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "コメントの返信が『会話が続く返信』と『そこで終わる返信』に分かれる理由",
-        "url": "https://zenn.dev/limit_lab_works/articles/reply-generates-second-round",
+        "title": "AIの記憶を10000ターンまで増やしたら、「記憶」ではなく「経路」が増えた",
+        "url": "https://zenn.dev/mitsukida/articles/670d8138cf3921",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "常駐型AIチャットエージェントの「誰が本当に話しているか」を検証するリクエスター認証設計",
-        "url": "https://zenn.dev/hach/articles/chat-agent-requester-identity-verification-design",
+        "title": "React ウェブアプリで帳票PDFの個人情報を自動で墨消しする",
+        "url": "https://zenn.dev/apryse_blog/articles/4c8d73fb98dc4a",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "要約から書いたら、原文と10か所ちがっていた — LLM の報告は、原文の証拠にならない",
-        "url": "https://zenn.dev/kuu_dqx/articles/report-is-not-evidence",
+        "title": "RX 5500 XTからV100S×4まで、4台の計算機でローカルLLMを測り比べた話",
+        "url": "https://zenn.dev/c4n4242/articles/75659aebdd62d4",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "PDFの改行は折り返しか、段落の終わりか ― 文字の座標で見分けてAIに渡す",
-        "url": "https://zenn.dev/okinawasoftware/articles/5357ee6c5ec36f",
+        "title": "画像認識AIはVLMに置き換わる？ ―― 専用モデルから汎用モデルへの進化と評価指標",
+        "url": "https://zenn.dev/highreso_tech/articles/957e98a5c5014f",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "自作の「ラン全体シミュレーター」が、ただの平均値に負けた話",
-        "url": "https://zenn.dev/canaiclimbspire/articles/001_sim_lost_to_average",
+        "title": "RLVRを理解する②──DatabricksでのSQL生成品質向上例",
+        "url": "https://zenn.dev/gixo/articles/rlvr-databricks-text2sql-tao",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "Opus 5.5を使いこなす27のポイント｜公式ガイドの要点まとめ（アプリ／Claude Code）",
-        "url": "https://zenn.dev/karashizuke/articles/opus-5-5-guide",
+        "title": "行列も微分も使わずにTransformerを説明するサイトを作ってもらったら、そのまま10Mパラメータの日本語SLMまで出てきた話",
+        "url": "https://zenn.dev/nextbeat/articles/2026-09-no-matrix-transformer-slm",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "RAGの検索・生成パイプラインを実装目線で整理する",
-        "url": "https://zenn.dev/kas_blog/articles/20260509-llm-23-rag",
+        "title": "AIツールの更新で結果が変わったときに役立つ「評価ログ」の作り方",
+        "url": "https://zenn.dev/aiai_tool/articles/78e27715010ee7",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "中国語が混ざる4Bモデルを、27Bからの蒸留で日本語化した（混入18%→0%、数学は落ちず）",
-        "url": "https://zenn.dev/atemoya/articles/bd05a6a7d3f535",
+        "title": "AI組織に必要なのは「賢いAI」ではなく、「不確実なAIを扱える設計の仕組み」ではないか",
+        "url": "https://zenn.dev/k_aiga/articles/002_engineering_system_for_uncertain_ai",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "RAGのリランキングを実装する — Cross-Encoderで検索精度を実測比較",
-        "url": "https://zenn.dev/yukihayama/articles/rag-rerank-cross-encoder",
+        "title": "答えは合っているのに不正解？ LLMベンチマークの点数はどう決まるのか",
+        "url": "https://zenn.dev/sun_asterisk/articles/39c9a38680aeef",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "RAGの基本と設計・評価を学ぶ実践ガイド",
-        "url": "https://zenn.dev/yun_bow/books/95ad28d3438f4d",
+        "title": "Jevを8,800回叩いて較正を測った ── 「確率を信じるな」は半分まちがいだった",
+        "url": "https://zenn.dev/ryok/articles/jev-calibration-handson",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "Qwen Code は Codex・Claude Code と何が違う？ 全コマンドと使いどころ",
-        "url": "https://zenn.dev/takuh/articles/4b129d67b03496",
+        "title": "Z.ai Coding PlanをCodexアプリで使う",
+        "url": "https://zenn.dev/t_tokunaga/articles/2026-09-23-codex-switch-zai-coding-plan",
         "score": 0,
         "source": "Zenn LLM",
         "category": "tech"
       },
       {
-        "title": "Claudeに920万件規模のニュース記事を解析させた事例が話題に【大規模データ分析】",
-        "url": "https://qiita.com/nolanlover0527/items/47134185e8e5fae78158",
+        "title": "AIエージェントは「画面専用」を卒業する？ Holo4がGUI・コード・MCP・APIを1モデルで横断",
+        "url": "https://qiita.com/sin-aiagent/items/c9ba569283a09740044c",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "MySQLのINSERT IGNOREは重複以外のエラーも黙らせる：11種類の対象エラーと安全な置き換え方",
-        "url": "https://qiita.com/Kujira_AI/items/0d6f4db7282b3c706089",
+        "title": "[Jev] Jevnoid: Web知識を捕食・自律進化するデジタル生命体を作ってみた",
+        "url": "https://qiita.com/yam_dev/items/f28ead348407fe9a100b",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "CLAUDE.mdの設計パターン集 ― チーム開発で『再現性のある指示』を書くための7つの型",
-        "url": "https://qiita.com/hikariclaude01/items/fdd772f6dfb0a78391aa",
+        "title": "GitHub Copilotアプリにローカルサンドボックスが入った。OSが守れないなら、シェルは動かない",
+        "url": "https://qiita.com/yusei-onodera/items/916b66dc960a76280eb4",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "【GitHub日報】AIエージェント管理TUI登場、エージェントメモリ学習基盤も急伸 — 2026-09-28",
-        "url": "https://qiita.com/Git_Dayori/items/6a694fc9d6f03a580e9d",
+        "title": "AIは平気で古いコードを書く——最新に矯正する5つの運用パターン【チートシート付】",
+        "url": "https://qiita.com/fuji1009_REBELL/items/006b922be8fc537d4f9d",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
       },
       {
-        "title": "PIL で生成した図の文字は、目視だけでははみ出しを取り切れなかった——3 件見逃し → レイアウト検査 4 種で 0",
-        "url": "https://qiita.com/sumitsuke/items/e5db53d441037a93134f",
+        "title": "Python と SQLite で AI の長期記憶を履歴から現在状態へ再構成する",
+        "url": "https://qiita.com/ynakayama/items/6c5ad6dc9bf351bc567f",
         "score": 0,
         "source": "Qiita Python",
         "category": "tech"
       },
       {
-        "title": "【海外テック動向】RustのSIMD最前線から作業用Webツール、アラン・ケイの歴史的回答まで",
-        "url": "https://qiita.com/tanakanekosuke/items/2b2bbed3a168267a64b1",
+        "title": "Claude Codeで会社のURLからPVを作る手順（BGMは聴かずに作曲、Gemini TTSはスキル化）",
+        "url": "https://qiita.com/masakai/items/0243d15c276fae7bb3c7",
         "score": 0,
         "source": "Qiita Python",
         "category": "tech"
       },
       {
-        "title": "EDINETの訂正有報を半年取りこぼし、yfinanceは429制限… 30日スキャン＋差分キャッシュで作り直した話",
-        "url": "https://qiita.com/akkyey/items/12a8df355ee895ed73d4",
+        "title": "n8nのワークフローJSONがインポートできない — 接続が消える原因5つを、Pythonの検証コードで先に潰す",
+        "url": "https://qiita.com/yukihayama/items/9031f95cfad78926732f",
         "score": 0,
         "source": "Qiita Python",
         "category": "tech"
       },
       {
-        "title": "SAST は LLM の出力を「信頼できない入力」として扱う",
-        "url": "https://qiita.com/SokoP/items/51f4230189d92550fafc",
+        "title": "アーキテクチャとは",
+        "url": "https://qiita.com/gunaid123/items/7ef61723c8dac2f0f3fd",
         "score": 0,
         "source": "Qiita Python",
         "category": "tech"
@@ -272,123 +273,123 @@
     ],
     "kemono": [
       {
-        "title": "e621 post #6738756: 4_fingers, :<, ahoge, anthro, arm_tuft, asian_clothing, big_tail, biped",
-        "url": "https://e621.net/posts/6738756",
-        "score": 2,
+        "title": "e621 post #6739696: 4_toes, 5_fingers, anal, anal_penetration, anthro, anthro_on_anthro, anthro_penetrated, anthro_penetrating",
+        "url": "https://e621.net/posts/6739696",
+        "score": 23,
         "source": "e621",
         "category": "kemono"
       },
       {
-        "title": "e621 post #6738742: >_<, after_transformation, ahoge, anthro, armor, arms_tied, arms_tied_behind_back, army_helmet",
-        "url": "https://e621.net/posts/6738742",
-        "score": 1,
+        "title": "e621 post #6740187: anthro, clothed, clothing, dialogue, duo, eyebrows, fingers, freckles",
+        "url": "https://e621.net/posts/6740187",
+        "score": 16,
         "source": "e621",
         "category": "kemono"
       },
       {
-        "title": "e621 post #6738601: anklet, anthro, beach, big_breasts, bikini, blue_eyes, blue_hair, breast_squish",
-        "url": "https://e621.net/posts/6738601",
-        "score": 21,
+        "title": "e621 post #6739681: abdominal_bulge, after_vore, anthro, anthro_pred, arm_tuft, belly, big_belly, big_ears",
+        "url": "https://e621.net/posts/6739681",
+        "score": 13,
         "source": "e621",
         "category": "kemono"
       },
       {
-        "title": "e621 post #6738377: anthro, big_breasts, big_tail, biped, black_claws, black_clothing, black_nose, black_sweater",
-        "url": "https://e621.net/posts/6738377",
-        "score": 7,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738296: :<, anthro, banknote, big_breasts, big_tail, biped, black_nose, breasts",
-        "url": "https://e621.net/posts/6738296",
-        "score": 9,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738819: animal_genitalia, anthro, avian_caruncle, between_legs, blue_body, blue_fur, blush, bodily_fluids",
-        "url": "https://e621.net/posts/6738819",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738818: 3_fingers, 3_toes, animal_genitalia, animal_penis, anthro, band_(marking), biped, black_markings",
-        "url": "https://e621.net/posts/6738818",
-        "score": 1,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738817: amber_eyes, ambiguous_penetration, anthro, anthro_on_anthro, arms_around_tail, avian_caruncle, bed, blue_body",
-        "url": "https://e621.net/posts/6738817",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738816: 3_fingers, 3_toes, accessory, anthro, bag, bedroom_eyes, belly, blue_body",
-        "url": "https://e621.net/posts/6738816",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738804: anthro, areola, belly, big_belly, big_breasts, body_inflation, breasts, clothed",
-        "url": "https://e621.net/posts/6738804",
-        "score": 2,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738820: animal_genitalia, anus, bath, bathing, bathroom, bathtub, bedroom_eyes, big_breasts",
-        "url": "https://e621.net/posts/6738820",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738803: animal_genitalia, anthro, anus, balls, balls_on_face, blue_bandana, blue_body, blue_fur",
-        "url": "https://e621.net/posts/6738803",
-        "score": 9,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738798: female, female/female, hyper-zero, solo, generation_6_pokemon, humanoid, legendary_pokemon, pokemon_(species)",
-        "url": "https://e621.net/posts/6738798",
-        "score": 1,
-        "source": "e621",
-        "category": "kemono"
-      },
-      {
-        "title": "e621 post #6738774: anthro, big_breasts, blush, breast_curtains, breasts, cleavage, clothed, clothing",
-        "url": "https://e621.net/posts/6738774",
+        "title": "e621 post #6739682: accident, anthro, anus, blush, bodily_fluids, clothed, clothing, desperation",
+        "url": "https://e621.net/posts/6739682",
         "score": 12,
         "source": "e621",
         "category": "kemono"
       },
       {
-        "title": "e621 post #6738762: 4_fingers, accessory, anthro, big_breasts, black_body, black_fur, blonde_hair, breasts",
-        "url": "https://e621.net/posts/6738762",
-        "score": 3,
+        "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
+        "url": "https://e621.net/posts/6740154",
+        "score": 10,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6739672: accident, anthro, anus, blush, bodily_fluids, clothed, clothing, desperation",
+        "url": "https://e621.net/posts/6739672",
+        "score": 10,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740218: abs, anthro, biceps, big_muscles, big_pecs, biped, blue_body, claws",
+        "url": "https://e621.net/posts/6740218",
+        "score": 2,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740155: anthro, black_clothing, black_nose, black_shirt, black_topwear, blue_boots, blue_bottomwear, blue_clothing",
+        "url": "https://e621.net/posts/6740155",
+        "score": 2,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740219: annoyed, anthro, belt, black_hair, black_nose, blue_boots, blue_clothing, blue_footwear",
+        "url": "https://e621.net/posts/6740219",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740172: animal_genitalia, bodily_fluids, cum, cum_inside, cum_overflow, duo, female, feral",
+        "url": "https://e621.net/posts/6740172",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740220: anthro, big_tail, blue_body, blue_fur, bodily_fluids, claws, cum, devious_grin",
+        "url": "https://e621.net/posts/6740220",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740197: after_sex, anthro, balls, big_penis, black_body, black_eyes, blush, bodily_fluids",
+        "url": "https://e621.net/posts/6740197",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740190: anthro, balls, big_balls, big_penis, black_body, blush, bodily_fluids, body_worship",
+        "url": "https://e621.net/posts/6740190",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740170: anthro, balls, big_penis, black_body, black_eyes, bodily_fluids, body_worship, clenched_teeth",
+        "url": "https://e621.net/posts/6740170",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6740222: anthro, armor, claws, female, feral, horn, reins, scales",
+        "url": "https://e621.net/posts/6740222",
+        "score": 0,
         "source": "e621",
         "category": "kemono"
       }
     ],
     "pokemon": [
       {
-        "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
-        "url": "https://github.com/Ahmadsadin36/pokedex",
-        "score": 0,
+        "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
+        "url": "https://github.com/ivi-vink/Akkamon",
+        "score": 2,
         "source": "GitHub",
         "category": "pokemon"
       },
       {
-        "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
-        "url": "https://github.com/ivi-vink/Akkamon",
-        "score": 2,
+        "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
+        "url": "https://github.com/Ahmadsadin36/pokedex",
+        "score": 0,
         "source": "GitHub",
         "category": "pokemon"
       }
@@ -399,370 +400,377 @@
     {
       "title": "When did Google get so weird?",
       "url": "https://sancho.bearblog.dev/google-weird/",
-      "score": 752,
+      "score": 1705,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Ember-1",
-      "url": "https://fireworks.ai/blog/ember-1",
-      "score": 348,
+      "title": "Parley: Federated, decentralised chat that speaks plain IRC",
+      "url": "https://git.mills.io/prologic/parley",
+      "score": 248,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Self-parking car using generic algorithm (2021)",
-      "url": "https://trekhleb.dev/blog/2021/self-parking-car-evolution/",
-      "score": 3,
+      "title": "Pirating the Pirates",
+      "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
+      "score": 174,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Lunar Terminator Paradox",
-      "url": "https://notes.secretsauce.net/notes/2026/09/27_lunar-terminator-paradox.html",
-      "score": 42,
+      "title": "Claude Sonnet 5.5",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "score": 163,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Alan Kay's answer to “Did the ENIAC have a BIOS”?",
-      "url": "https://www.quora.com/Did-the-ENIAC-have-a-BIOS/answer/Alan-Kay-11",
-      "score": 67,
+      "title": "Definitely not Windows (Win 11 parody)",
+      "url": "https://definitelynotwindows.com/",
+      "score": 114,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "There is more to code review than (automatable) detection",
-      "url": "https://www.adaptivecapacitylabs.com/2026/08/24/there-is-more-to-code-review-than-automatable-detection/",
-      "score": 61,
+      "title": "Hijacking the PS5's RTMP Stream",
+      "url": "https://yashgarg.dev/posts/hijacking-ps5-rtmp-stream/",
+      "score": 89,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "The state of SIMD in Rust in 2026",
-      "url": "https://shnatsel.github.io/state-of-simd-rust-2026/",
-      "score": 93,
+      "title": "Show HN: HN.watch – Videos of all Hacker News posts",
+      "url": "https://hn.watch/",
+      "score": 59,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Show HN: Lofi Cities – Pixel-art city nights with browser-generated lofi",
-      "url": "https://loficities.com/",
-      "score": 167,
+      "title": "So long Google, and thanks for all the nudes",
+      "url": "https://lecaro.me/20260921-google-less.html",
+      "score": 43,
       "source": "HackerNews",
       "category": "tech"
     },
     {
-      "title": "Don't couple your Go code to GitHub",
-      "url": "https://iain.rocks/blog/dont-couple-your-go-code-to-github",
-      "score": 144,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "Self-Hosting on the Dark Web",
-      "url": "https://david.alvarezrosa.com/posts/self-hosting-on-the-dark-web/",
-      "score": 50,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "e621 post #6738756: 4_fingers, :<, ahoge, anthro, arm_tuft, asian_clothing, big_tail, biped",
-      "url": "https://e621.net/posts/6738756",
-      "score": 2,
+      "title": "e621 post #6739696: 4_toes, 5_fingers, anal, anal_penetration, anthro, anthro_on_anthro, anthro_penetrated, anthro_penetrating",
+      "url": "https://e621.net/posts/6739696",
+      "score": 23,
       "source": "e621",
       "category": "kemono"
     },
     {
-      "title": "e621 post #6738742: >_<, after_transformation, ahoge, anthro, armor, arms_tied, arms_tied_behind_back, army_helmet",
-      "url": "https://e621.net/posts/6738742",
-      "score": 1,
+      "title": "e621 post #6740187: anthro, clothed, clothing, dialogue, duo, eyebrows, fingers, freckles",
+      "url": "https://e621.net/posts/6740187",
+      "score": 16,
       "source": "e621",
       "category": "kemono"
     },
     {
-      "title": "e621 post #6738601: anklet, anthro, beach, big_breasts, bikini, blue_eyes, blue_hair, breast_squish",
-      "url": "https://e621.net/posts/6738601",
-      "score": 21,
+      "title": "e621 post #6739681: abdominal_bulge, after_vore, anthro, anthro_pred, arm_tuft, belly, big_belly, big_ears",
+      "url": "https://e621.net/posts/6739681",
+      "score": 13,
       "source": "e621",
       "category": "kemono"
     },
     {
-      "title": "e621 post #6738377: anthro, big_breasts, big_tail, biped, black_claws, black_clothing, black_nose, black_sweater",
-      "url": "https://e621.net/posts/6738377",
-      "score": 7,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738296: :<, anthro, banknote, big_breasts, big_tail, biped, black_nose, breasts",
-      "url": "https://e621.net/posts/6738296",
-      "score": 9,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738819: animal_genitalia, anthro, avian_caruncle, between_legs, blue_body, blue_fur, blush, bodily_fluids",
-      "url": "https://e621.net/posts/6738819",
-      "score": 0,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738818: 3_fingers, 3_toes, animal_genitalia, animal_penis, anthro, band_(marking), biped, black_markings",
-      "url": "https://e621.net/posts/6738818",
-      "score": 1,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738817: amber_eyes, ambiguous_penetration, anthro, anthro_on_anthro, arms_around_tail, avian_caruncle, bed, blue_body",
-      "url": "https://e621.net/posts/6738817",
-      "score": 0,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738816: 3_fingers, 3_toes, accessory, anthro, bag, bedroom_eyes, belly, blue_body",
-      "url": "https://e621.net/posts/6738816",
-      "score": 0,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738804: anthro, areola, belly, big_belly, big_breasts, body_inflation, breasts, clothed",
-      "url": "https://e621.net/posts/6738804",
-      "score": 2,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738820: animal_genitalia, anus, bath, bathing, bathroom, bathtub, bedroom_eyes, big_breasts",
-      "url": "https://e621.net/posts/6738820",
-      "score": 0,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738803: animal_genitalia, anthro, anus, balls, balls_on_face, blue_bandana, blue_body, blue_fur",
-      "url": "https://e621.net/posts/6738803",
-      "score": 9,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738798: female, female/female, hyper-zero, solo, generation_6_pokemon, humanoid, legendary_pokemon, pokemon_(species)",
-      "url": "https://e621.net/posts/6738798",
-      "score": 1,
-      "source": "e621",
-      "category": "kemono"
-    },
-    {
-      "title": "e621 post #6738774: anthro, big_breasts, blush, breast_curtains, breasts, cleavage, clothed, clothing",
-      "url": "https://e621.net/posts/6738774",
+      "title": "e621 post #6739682: accident, anthro, anus, blush, bodily_fluids, clothed, clothing, desperation",
+      "url": "https://e621.net/posts/6739682",
       "score": 12,
       "source": "e621",
       "category": "kemono"
     },
     {
-      "title": "e621 post #6738762: 4_fingers, accessory, anthro, big_breasts, black_body, black_fur, blonde_hair, breasts",
-      "url": "https://e621.net/posts/6738762",
-      "score": 3,
+      "title": "GrapheneOS – When an App Is Slow",
+      "url": "https://blog.wirelessmoves.com/2026/09/grapheneos-when-an-app-is-slow.html",
+      "score": 10,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "Launch HN: Vespper (YC F24) – SOTA Docx MCP",
+      "url": "https://www.vespper.com/blog/launching-vespper-docx-mcp",
+      "score": 10,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
+      "url": "https://e621.net/posts/6740154",
+      "score": 10,
       "source": "e621",
       "category": "kemono"
     },
     {
-      "title": "非エンジニアが一人で330億トークン超：実務AI運用の工夫とリアル",
-      "url": "https://zenn.dev/choujiya/articles/0808b145f7d170",
+      "title": "e621 post #6739672: accident, anthro, anus, blush, bodily_fluids, clothed, clothing, desperation",
+      "url": "https://e621.net/posts/6739672",
+      "score": 10,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740218: abs, anthro, biceps, big_muscles, big_pecs, biped, blue_body, claws",
+      "url": "https://e621.net/posts/6740218",
+      "score": 2,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740155: anthro, black_clothing, black_nose, black_shirt, black_topwear, blue_boots, blue_bottomwear, blue_clothing",
+      "url": "https://e621.net/posts/6740155",
+      "score": 2,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
+      "url": "https://github.com/ivi-vink/Akkamon",
+      "score": 2,
+      "source": "GitHub",
+      "category": "pokemon"
+    },
+    {
+      "title": "e621 post #6740219: annoyed, anthro, belt, black_hair, black_nose, blue_boots, blue_clothing, blue_footwear",
+      "url": "https://e621.net/posts/6740219",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740172: animal_genitalia, bodily_fluids, cum, cum_inside, cum_overflow, duo, female, feral",
+      "url": "https://e621.net/posts/6740172",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740220: anthro, big_tail, blue_body, blue_fur, bodily_fluids, claws, cum, devious_grin",
+      "url": "https://e621.net/posts/6740220",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740197: after_sex, anthro, balls, big_penis, black_body, black_eyes, blush, bodily_fluids",
+      "url": "https://e621.net/posts/6740197",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740190: anthro, balls, big_balls, big_penis, black_body, blush, bodily_fluids, body_worship",
+      "url": "https://e621.net/posts/6740190",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740170: anthro, balls, big_penis, black_body, black_eyes, bodily_fluids, body_worship, clenched_teeth",
+      "url": "https://e621.net/posts/6740170",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6740222: anthro, armor, claws, female, feral, horn, reins, scales",
+      "url": "https://e621.net/posts/6740222",
+      "score": 0,
+      "source": "e621",
+      "category": "kemono"
+    },
+    {
+      "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
+      "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "変更に強いRSpecの書き方 ─ AIがspecを書く時代のレビューと設計",
-      "url": "https://zenn.dev/nightonly/articles/f76badce22807a",
+      "title": "Claude CodeがAGENTS.mdに対応、CLAUDE.mdがあると読まれない条件を整理",
+      "url": "https://zenn.dev/ainewsdaily/articles/20260928_claude_code_t1",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "今日の技術トレンド",
-      "url": "https://zenn.dev/bambampurin/articles/2026-09-06-tech-daily",
+      "title": "Claude Code に同じ失敗を6回された話：再発を数えて「ルール」を「仕組み」に変える",
+      "url": "https://zenn.dev/takuyaauto/articles/d9db23c55571dd",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "AI組織の多様性は、探索空間を補完できるのか",
-      "url": "https://zenn.dev/k_aiga/articles/001_ai_diversity_search_space_complementarity",
+      "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
+      "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "CAFE(S) フレームワークの5つの観点でコンテキストを見直す",
-      "url": "https://zenn.dev/matsunaopen/articles/cafes-context-quality",
+      "title": "Claude Code と Codex を二人体制で回す ― 個人開発のハーネス実践記録",
+      "url": "https://zenn.dev/twinharness/books/claude-code-codex-duo-harness",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "Codexの代わりにPi Coding AgentでOpenAIモデルを使用したメモ",
-      "url": "https://zenn.dev/scirexs/articles/193c91cde0834f",
+      "title": "AI が書いたコードを誰が見る？ 別の AI にレビューを任せる運用",
+      "url": "https://zenn.dev/twinharness/articles/cross-review-by-another-ai",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "開発未経験の2人がClaude Codeで機能を足す前提で、フックに止めさせたことと技術選定",
-      "url": "https://zenn.dev/shoma_endo/articles/20260927-670ecc94",
+      "title": "Codex の使用上限に3か月で80回。止まった仕事を再開する方法",
+      "url": "https://zenn.dev/twinharness/articles/ai-usage-limit-resumable-workflow",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "話題の Jev（TypeSafe）で業務依頼の振り分けを試したら、正解率 22% だった",
-      "url": "https://zenn.dev/y3chi5z/articles/jev-typesafe-request-routing-trial",
+      "title": "🦙 ALPACA-FW #07｜開発ルールを機械契約のCatalogにしたワケ",
+      "url": "https://zenn.dev/alpaca_village/articles/alpaca-fw-07-catalog-contract",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "ChatGPT・Gemini・Claudeの「定期実行」、無料/有料/非搭載で分かれた",
-      "url": "https://zenn.dev/every_ai_recipe/articles/ai-scheduled-task-3-services-check",
+      "title": "IAPを案件へ入れる前に、架空例で共有文の変化を確かめる",
+      "url": "https://zenn.dev/partial_stds/articles/e6cff1b40d479b",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "コメントの返信が『会話が続く返信』と『そこで終わる返信』に分かれる理由",
-      "url": "https://zenn.dev/limit_lab_works/articles/reply-generates-second-round",
+      "title": "AIの記憶を10000ターンまで増やしたら、「記憶」ではなく「経路」が増えた",
+      "url": "https://zenn.dev/mitsukida/articles/670d8138cf3921",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "常駐型AIチャットエージェントの「誰が本当に話しているか」を検証するリクエスター認証設計",
-      "url": "https://zenn.dev/hach/articles/chat-agent-requester-identity-verification-design",
+      "title": "React ウェブアプリで帳票PDFの個人情報を自動で墨消しする",
+      "url": "https://zenn.dev/apryse_blog/articles/4c8d73fb98dc4a",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "要約から書いたら、原文と10か所ちがっていた — LLM の報告は、原文の証拠にならない",
-      "url": "https://zenn.dev/kuu_dqx/articles/report-is-not-evidence",
+      "title": "RX 5500 XTからV100S×4まで、4台の計算機でローカルLLMを測り比べた話",
+      "url": "https://zenn.dev/c4n4242/articles/75659aebdd62d4",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "PDFの改行は折り返しか、段落の終わりか ― 文字の座標で見分けてAIに渡す",
-      "url": "https://zenn.dev/okinawasoftware/articles/5357ee6c5ec36f",
+      "title": "画像認識AIはVLMに置き換わる？ ―― 専用モデルから汎用モデルへの進化と評価指標",
+      "url": "https://zenn.dev/highreso_tech/articles/957e98a5c5014f",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "自作の「ラン全体シミュレーター」が、ただの平均値に負けた話",
-      "url": "https://zenn.dev/canaiclimbspire/articles/001_sim_lost_to_average",
+      "title": "RLVRを理解する②──DatabricksでのSQL生成品質向上例",
+      "url": "https://zenn.dev/gixo/articles/rlvr-databricks-text2sql-tao",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "Opus 5.5を使いこなす27のポイント｜公式ガイドの要点まとめ（アプリ／Claude Code）",
-      "url": "https://zenn.dev/karashizuke/articles/opus-5-5-guide",
+      "title": "行列も微分も使わずにTransformerを説明するサイトを作ってもらったら、そのまま10Mパラメータの日本語SLMまで出てきた話",
+      "url": "https://zenn.dev/nextbeat/articles/2026-09-no-matrix-transformer-slm",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "RAGの検索・生成パイプラインを実装目線で整理する",
-      "url": "https://zenn.dev/kas_blog/articles/20260509-llm-23-rag",
+      "title": "AIツールの更新で結果が変わったときに役立つ「評価ログ」の作り方",
+      "url": "https://zenn.dev/aiai_tool/articles/78e27715010ee7",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "中国語が混ざる4Bモデルを、27Bからの蒸留で日本語化した（混入18%→0%、数学は落ちず）",
-      "url": "https://zenn.dev/atemoya/articles/bd05a6a7d3f535",
+      "title": "AI組織に必要なのは「賢いAI」ではなく、「不確実なAIを扱える設計の仕組み」ではないか",
+      "url": "https://zenn.dev/k_aiga/articles/002_engineering_system_for_uncertain_ai",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "RAGのリランキングを実装する — Cross-Encoderで検索精度を実測比較",
-      "url": "https://zenn.dev/yukihayama/articles/rag-rerank-cross-encoder",
+      "title": "答えは合っているのに不正解？ LLMベンチマークの点数はどう決まるのか",
+      "url": "https://zenn.dev/sun_asterisk/articles/39c9a38680aeef",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "RAGの基本と設計・評価を学ぶ実践ガイド",
-      "url": "https://zenn.dev/yun_bow/books/95ad28d3438f4d",
+      "title": "Jevを8,800回叩いて較正を測った ── 「確率を信じるな」は半分まちがいだった",
+      "url": "https://zenn.dev/ryok/articles/jev-calibration-handson",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "Qwen Code は Codex・Claude Code と何が違う？ 全コマンドと使いどころ",
-      "url": "https://zenn.dev/takuh/articles/4b129d67b03496",
+      "title": "Z.ai Coding PlanをCodexアプリで使う",
+      "url": "https://zenn.dev/t_tokunaga/articles/2026-09-23-codex-switch-zai-coding-plan",
       "score": 0,
       "source": "Zenn LLM",
       "category": "tech"
     },
     {
-      "title": "Claudeに920万件規模のニュース記事を解析させた事例が話題に【大規模データ分析】",
-      "url": "https://qiita.com/nolanlover0527/items/47134185e8e5fae78158",
+      "title": "AIエージェントは「画面専用」を卒業する？ Holo4がGUI・コード・MCP・APIを1モデルで横断",
+      "url": "https://qiita.com/sin-aiagent/items/c9ba569283a09740044c",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "MySQLのINSERT IGNOREは重複以外のエラーも黙らせる：11種類の対象エラーと安全な置き換え方",
-      "url": "https://qiita.com/Kujira_AI/items/0d6f4db7282b3c706089",
+      "title": "[Jev] Jevnoid: Web知識を捕食・自律進化するデジタル生命体を作ってみた",
+      "url": "https://qiita.com/yam_dev/items/f28ead348407fe9a100b",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "CLAUDE.mdの設計パターン集 ― チーム開発で『再現性のある指示』を書くための7つの型",
-      "url": "https://qiita.com/hikariclaude01/items/fdd772f6dfb0a78391aa",
+      "title": "GitHub Copilotアプリにローカルサンドボックスが入った。OSが守れないなら、シェルは動かない",
+      "url": "https://qiita.com/yusei-onodera/items/916b66dc960a76280eb4",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "【GitHub日報】AIエージェント管理TUI登場、エージェントメモリ学習基盤も急伸 — 2026-09-28",
-      "url": "https://qiita.com/Git_Dayori/items/6a694fc9d6f03a580e9d",
+      "title": "AIは平気で古いコードを書く——最新に矯正する5つの運用パターン【チートシート付】",
+      "url": "https://qiita.com/fuji1009_REBELL/items/006b922be8fc537d4f9d",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
     },
     {
-      "title": "PIL で生成した図の文字は、目視だけでははみ出しを取り切れなかった——3 件見逃し → レイアウト検査 4 種で 0",
-      "url": "https://qiita.com/sumitsuke/items/e5db53d441037a93134f",
+      "title": "Python と SQLite で AI の長期記憶を履歴から現在状態へ再構成する",
+      "url": "https://qiita.com/ynakayama/items/6c5ad6dc9bf351bc567f",
       "score": 0,
       "source": "Qiita Python",
       "category": "tech"
     },
     {
-      "title": "【海外テック動向】RustのSIMD最前線から作業用Webツール、アラン・ケイの歴史的回答まで",
-      "url": "https://qiita.com/tanakanekosuke/items/2b2bbed3a168267a64b1",
+      "title": "Claude Codeで会社のURLからPVを作る手順（BGMは聴かずに作曲、Gemini TTSはスキル化）",
+      "url": "https://qiita.com/masakai/items/0243d15c276fae7bb3c7",
       "score": 0,
       "source": "Qiita Python",
       "category": "tech"
     },
     {
-      "title": "EDINETの訂正有報を半年取りこぼし、yfinanceは429制限… 30日スキャン＋差分キャッシュで作り直した話",
-      "url": "https://qiita.com/akkyey/items/12a8df355ee895ed73d4",
+      "title": "n8nのワークフローJSONがインポートできない — 接続が消える原因5つを、Pythonの検証コードで先に潰す",
+      "url": "https://qiita.com/yukihayama/items/9031f95cfad78926732f",
       "score": 0,
       "source": "Qiita Python",
       "category": "tech"
     },
     {
-      "title": "SAST は LLM の出力を「信頼できない入力」として扱う",
-      "url": "https://qiita.com/SokoP/items/51f4230189d92550fafc",
+      "title": "アーキテクチャとは",
+      "url": "https://qiita.com/gunaid123/items/7ef61723c8dac2f0f3fd",
       "score": 0,
       "source": "Qiita Python",
       "category": "tech"
@@ -771,13 +779,6 @@
       "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
       "url": "https://github.com/Ahmadsadin36/pokedex",
       "score": 0,
-      "source": "GitHub",
-      "category": "pokemon"
-    },
-    {
-      "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
-      "url": "https://github.com/ivi-vink/Akkamon",
-      "score": 2,
       "source": "GitHub",
       "category": "pokemon"
     }
