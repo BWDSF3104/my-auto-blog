@@ -1,203 +1,147 @@
 {
-  "fetched_at": "2026-09-29T04:34:21.702271+09:00",
+  "fetched_at": "2026-09-29T04:50:26.410257+09:00",
   "ttl_hours": 24,
-  "total": 46,
+  "total": 45,
   "by_category": {
     "tech": [
       {
         "title": "When did Google get so weird?",
         "url": "https://sancho.bearblog.dev/google-weird/",
-        "score": 1754,
+        "score": 1763,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Sonnet 5.5",
         "url": "https://www.anthropic.com/claude-sonnet-5-5",
-        "score": 269,
+        "score": 298,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Parley: Federated, decentralised chat that speaks plain IRC",
         "url": "https://git.mills.io/prologic/parley",
-        "score": 254,
+        "score": 255,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Pirating the Pirates",
         "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
-        "score": 223,
+        "score": 241,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Hijacking the PS5's RTMP stream",
         "url": "https://yashgarg.dev/posts/hijacking-ps5-rtmp-stream/",
-        "score": 113,
+        "score": 119,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Show HN: HN.watch – Videos of all Hacker News posts",
         "url": "https://hn.watch/",
-        "score": 97,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "GrapheneOS – When an app is slow",
-        "url": "https://blog.wirelessmoves.com/2026/09/grapheneos-when-an-app-is-slow.html",
-        "score": 33,
+        "score": 104,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Joseph Szabo’s pictures of American adolescents",
         "url": "https://www.newyorker.com/culture/photo-booth/the-teen-portraits-that-captivated-sofia-coppola",
-        "score": 23,
+        "score": 30,
+        "source": "HackerNews",
+        "category": "tech"
+      },
+      {
+        "title": "MicroLLM Lab – Try 7 tiny LLM's in the browser",
+        "url": "https://stateofutopia.com/experiments/microllmlab/",
+        "score": 20,
         "source": "HackerNews",
         "category": "tech"
       },
       {
         "title": "Launch HN: Vespper (YC F24) – SOTA Docx MCP",
         "url": "https://www.vespper.com/blog/launching-vespper-docx-mcp",
-        "score": 18,
+        "score": 19,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Who wrote Elizabeth I's most scathing letters?",
-        "url": "https://www.smithsonianmag.com/history/who-wrote-elizabeth-is-most-scathing-letters-new-research-suggests-the-tudor-queens-male-secretaries-revised-her-correspondence-to-emphasize-her-temper-180989565/",
-        "score": 13,
+        "title": "First Steps of the PLC Organization – Independent Public Ledger of Credentials",
+        "url": "https://blog.plcred.org/3mwlphq42d227",
+        "score": 5,
         "source": "HackerNews",
         "category": "tech"
       },
       {
-        "title": "Using the Work IQ API to Get Insights into Your Work",
-        "url": "https://zenn.dev/microsoft/articles/workiq-sample-01-en",
+        "title": "MCPで動かした戦車ゲームを「Jev」で動かしてみた ― 判断モデルとMCPの比較、そしてロボットアームへ",
+        "url": "https://zenn.dev/oggata/articles/36763248ac2206",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "JevのようにAIに「文章がどういう内容か」を確率つきで答えさせる",
-        "url": "https://zenn.dev/masao_kunii/articles/1198fd8e170a81",
+        "title": "「Excelが消えた」「認証しろ」連休明けOffice消失パニックの正体と復旧法",
+        "url": "https://zenn.dev/aiasoby/articles/asoby-20260926143000",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "Claude Codeのセッションが180件になったので、題名をAIに付け直させて、新しいセッションにも自動で効かせた",
-        "url": "https://zenn.dev/shoujiki_panman/articles/claude-code-session-titles-hook",
+        "title": "提供票の送信をAIに全自動で任せたら、5事業所中1つで止まった話",
+        "url": "https://zenn.dev/yuyat/articles/careplan-renkei-ai-agent-stop",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "OpenAIが最新AIの訓練を停止、暴走報告が止まらない",
-        "url": "https://zenn.dev/sugawara_ai/articles/ai-news-20260928",
+        "title": "15Bだけ動く250B、Solar Open 2はエージェント前提で設計された",
+        "url": "https://zenn.dev/okssusucha/articles/20260724-upstage-solar-open-2",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "スキルの管理をしたい ~スキルとおむすび~",
-        "url": "https://zenn.dev/relic_tech/articles/12c134597dca54",
+        "title": "5日間でBOCCO emoをAmbient Agentにした",
+        "url": "https://zenn.dev/ux_xu/articles/b4810d221ff23a",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
-        "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
+        "title": "Claude Codeのハーネスを育てるで｜CLAUDE.mdからrules・Hooksまでの実践4ステップ",
+        "url": "https://zenn.dev/masayan1126/books/claude-code-harness-foundations",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "Claude CodeがAGENTS.mdに対応、CLAUDE.mdがあると読まれない条件を整理",
-        "url": "https://zenn.dev/ainewsdaily/articles/20260928_claude_code_t1",
+        "title": "Opus 5.5 で /code-review が勝手に10体に分かれて、4分で上限に当たった",
+        "url": "https://zenn.dev/tenpachi/articles/9039cc7e07ed74",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "Claude Code に同じ失敗を6回された話：再発を数えて「ルール」を「仕組み」に変える",
-        "url": "https://zenn.dev/takuyaauto/articles/d9db23c55571dd",
+        "title": "エージェントのコストは設計変数である — プレフィックス安定性・ルーティング損益分岐・予算の仮押さえ",
+        "url": "https://zenn.dev/xim2jp_tokyo/articles/f11a0a0568e0c1",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
-        "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
+        "title": "Claude Codeの定期タスクが3日間動かなかった原因は、前日の実行が終わっていないことだった",
+        "url": "https://zenn.dev/zeroyen_dev/articles/claude-code-stuck-scheduled-task",
         "score": 0,
         "source": "Zenn AI",
         "category": "tech"
       },
       {
-        "title": "Claude Code と Codex を二人体制で回す ― 個人開発のハーネス実践記録",
-        "url": "https://zenn.dev/twinharness/books/claude-code-codex-duo-harness",
+        "title": "AI.IFでWHERE句に意味を持ち込む — セマンティックフィルタ入門",
+        "url": "https://zenn.dev/web_benriya/articles/bigquery-ai-if-semantic-filter",
         "score": 0,
         "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "ChatGPT が突然 BAN されたら — 理由の見えない判定と、先に握っておくべきこと",
-        "url": "https://zenn.dev/exapolicy/articles/83995b8791d4ab",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "Claude Code の記憶と引継ぎ — 書き残したことは、次のセッションに届いた証拠にならない",
-        "url": "https://zenn.dev/kuu_dqx/books/written-is-not-handed-over",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "JevのようにAIに「文章がどういう内容か」を確率つきで答えさせる",
-        "url": "https://zenn.dev/masao_kunii/articles/1198fd8e170a81",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
-        "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "8GB GPU の 27B ternary は 9B より賢いか",
-        "url": "https://zenn.dev/beckento/articles/e4dbf65acd0fc9",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
-        "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "AIの記憶を10000ターンまで増やしたら、「記憶」ではなく「経路」が増えた",
-        "url": "https://zenn.dev/mitsukida/articles/670d8138cf3921",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "LLM 5モデルを高難度3課題で比較 — 「作れる力」は並び、「説明できる力」で差が出た",
-        "url": "https://zenn.dev/jodycraft/articles/5f660b4eba9ec1",
-        "score": 0,
-        "source": "Zenn LLM",
         "category": "tech"
       },
       {
@@ -212,6 +156,69 @@
         "url": "https://zenn.dev/puyururu/articles/agent-tools-generic-vs-dedicated",
         "score": 0,
         "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "15Bだけ動く250B、Solar Open 2はエージェント前提で設計された",
+        "url": "https://zenn.dev/okssusucha/articles/20260724-upstage-solar-open-2",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "エージェントのコストは設計変数である — プレフィックス安定性・ルーティング損益分岐・予算の仮押さえ",
+        "url": "https://zenn.dev/xim2jp_tokyo/articles/f11a0a0568e0c1",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "React ウェブアプリで帳票PDFの個人情報を自動で墨消しする",
+        "url": "https://zenn.dev/apryse_blog/articles/4c8d73fb98dc4a",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "RX 5500 XTからV100S×4まで、4台の計算機でローカルLLMを測り比べた話",
+        "url": "https://zenn.dev/c4n4242/articles/75659aebdd62d4",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "画像認識AIはVLMに置き換わる？ ―― 専用モデルから汎用モデルへの進化と評価指標",
+        "url": "https://zenn.dev/highreso_tech/articles/957e98a5c5014f",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "RLVRを理解する②──DatabricksでのSQL生成品質向上例",
+        "url": "https://zenn.dev/gixo/articles/rlvr-databricks-text2sql-tao",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "行列も微分も使わずにTransformerを説明するサイトを作ってもらったら、そのまま10Mパラメータの日本語SLMまで出てきた話",
+        "url": "https://zenn.dev/nextbeat/articles/2026-09-no-matrix-transformer-slm",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "AIツールの更新で結果が変わったときに役立つ「評価ログ」の作り方",
+        "url": "https://zenn.dev/aiai_tool/articles/78e27715010ee7",
+        "score": 0,
+        "source": "Zenn LLM",
+        "category": "tech"
+      },
+      {
+        "title": "「AIが暴走した」で止めていいのか――OpenAIエージェント事案を一次情報まで分解する",
+        "url": "https://qiita.com/BugiAK/items/7bba5192069096261a59",
+        "score": 0,
+        "source": "Qiita AI",
         "category": "tech"
       },
       {
@@ -231,13 +238,6 @@
       {
         "title": "AIエージェントは「画面専用」を卒業する？ Holo4がGUI・コード・MCP・APIを1モデルで横断",
         "url": "https://qiita.com/sin-aiagent/items/c9ba569283a09740044c",
-        "score": 0,
-        "source": "Qiita AI",
-        "category": "tech"
-      },
-      {
-        "title": "[Jev] Jevnoid: Web知識を捕食・自律進化するデジタル生命体を作ってみた",
-        "url": "https://qiita.com/yam_dev/items/f28ead348407fe9a100b",
         "score": 0,
         "source": "Qiita AI",
         "category": "tech"
@@ -289,36 +289,28 @@
         "rating": "q"
       },
       {
-        "title": "e621 post #6740311: anthro, areola, big_breasts, big_butt, blush, breasts, butt, female",
-        "url": "https://e621.net/posts/6740311",
+        "title": "e621 post #6740341: abdominal_scar, anthro, arm_scar, arm_wraps, asian_clothing, bandage, bandaged_arm, barazoku",
+        "url": "https://e621.net/posts/6740341",
         "score": 4,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
       },
       {
-        "title": "e621 post #6740219: annoyed, anthro, belt, black_hair, black_nose, blue_boots, blue_clothing, blue_footwear",
-        "url": "https://e621.net/posts/6740219",
+        "title": "e621 post #6740347: accessory, anthro, bodysuit, breasts, brown_body, brown_fur, butterfly_(accessory), clothed",
+        "url": "https://e621.net/posts/6740347",
         "score": 2,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6740222: anthro, armor, claws, female, feral, horn, reins, scales",
-        "url": "https://e621.net/posts/6740222",
+        "title": "e621 post #6740359: bandanna_scarf, blush, blush_lines, bow_ribbon, feral, looking_at_viewer, lying, on_back",
+        "url": "https://e621.net/posts/6740359",
         "score": 1,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
-      },
-      {
-        "title": "e621 post #6740341: abdominal_scar, anthro, arm_scar, arm_wraps, asian_clothing, bandage, bandaged_arm, barazoku",
-        "url": "https://e621.net/posts/6740341",
-        "score": 1,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "q"
       }
     ],
     "pokemon": [
@@ -343,63 +335,63 @@
     {
       "title": "When did Google get so weird?",
       "url": "https://sancho.bearblog.dev/google-weird/",
-      "score": 1754,
+      "score": 1763,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Sonnet 5.5",
       "url": "https://www.anthropic.com/claude-sonnet-5-5",
-      "score": 269,
+      "score": 298,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Parley: Federated, decentralised chat that speaks plain IRC",
       "url": "https://git.mills.io/prologic/parley",
-      "score": 254,
+      "score": 255,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Pirating the Pirates",
       "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
-      "score": 223,
+      "score": 241,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Hijacking the PS5's RTMP stream",
       "url": "https://yashgarg.dev/posts/hijacking-ps5-rtmp-stream/",
-      "score": 113,
+      "score": 119,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Show HN: HN.watch – Videos of all Hacker News posts",
       "url": "https://hn.watch/",
-      "score": 97,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "GrapheneOS – When an app is slow",
-      "url": "https://blog.wirelessmoves.com/2026/09/grapheneos-when-an-app-is-slow.html",
-      "score": 33,
+      "score": 104,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Joseph Szabo’s pictures of American adolescents",
       "url": "https://www.newyorker.com/culture/photo-booth/the-teen-portraits-that-captivated-sofia-coppola",
-      "score": 23,
+      "score": 30,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "MicroLLM Lab – Try 7 tiny LLM's in the browser",
+      "url": "https://stateofutopia.com/experiments/microllmlab/",
+      "score": 20,
       "source": "HackerNews",
       "category": "tech"
     },
     {
       "title": "Launch HN: Vespper (YC F24) – SOTA Docx MCP",
       "url": "https://www.vespper.com/blog/launching-vespper-docx-mcp",
-      "score": 18,
+      "score": 19,
       "source": "HackerNews",
       "category": "tech"
     },
@@ -412,13 +404,6 @@
       "rating": "q"
     },
     {
-      "title": "Who wrote Elizabeth I's most scathing letters?",
-      "url": "https://www.smithsonianmag.com/history/who-wrote-elizabeth-is-most-scathing-letters-new-research-suggests-the-tudor-queens-male-secretaries-revised-her-correspondence-to-emphasize-her-temper-180989565/",
-      "score": 13,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
       "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
       "url": "https://e621.net/posts/6740154",
       "score": 11,
@@ -427,16 +412,23 @@
       "rating": "q"
     },
     {
-      "title": "e621 post #6740311: anthro, areola, big_breasts, big_butt, blush, breasts, butt, female",
-      "url": "https://e621.net/posts/6740311",
+      "title": "First Steps of the PLC Organization – Independent Public Ledger of Credentials",
+      "url": "https://blog.plcred.org/3mwlphq42d227",
+      "score": 5,
+      "source": "HackerNews",
+      "category": "tech"
+    },
+    {
+      "title": "e621 post #6740341: abdominal_scar, anthro, arm_scar, arm_wraps, asian_clothing, bandage, bandaged_arm, barazoku",
+      "url": "https://e621.net/posts/6740341",
       "score": 4,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
     },
     {
-      "title": "e621 post #6740219: annoyed, anthro, belt, black_hair, black_nose, blue_boots, blue_clothing, blue_footwear",
-      "url": "https://e621.net/posts/6740219",
+      "title": "e621 post #6740347: accessory, anthro, bodysuit, breasts, brown_body, brown_fur, butterfly_(accessory), clothed",
+      "url": "https://e621.net/posts/6740347",
       "score": 2,
       "source": "e621",
       "category": "kemono",
@@ -450,145 +442,81 @@
       "category": "pokemon"
     },
     {
-      "title": "e621 post #6740222: anthro, armor, claws, female, feral, horn, reins, scales",
-      "url": "https://e621.net/posts/6740222",
+      "title": "e621 post #6740359: bandanna_scarf, blush, blush_lines, bow_ribbon, feral, looking_at_viewer, lying, on_back",
+      "url": "https://e621.net/posts/6740359",
       "score": 1,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6740341: abdominal_scar, anthro, arm_scar, arm_wraps, asian_clothing, bandage, bandaged_arm, barazoku",
-      "url": "https://e621.net/posts/6740341",
-      "score": 1,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "q"
-    },
-    {
-      "title": "Using the Work IQ API to Get Insights into Your Work",
-      "url": "https://zenn.dev/microsoft/articles/workiq-sample-01-en",
+      "title": "MCPで動かした戦車ゲームを「Jev」で動かしてみた ― 判断モデルとMCPの比較、そしてロボットアームへ",
+      "url": "https://zenn.dev/oggata/articles/36763248ac2206",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "JevのようにAIに「文章がどういう内容か」を確率つきで答えさせる",
-      "url": "https://zenn.dev/masao_kunii/articles/1198fd8e170a81",
+      "title": "「Excelが消えた」「認証しろ」連休明けOffice消失パニックの正体と復旧法",
+      "url": "https://zenn.dev/aiasoby/articles/asoby-20260926143000",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "Claude Codeのセッションが180件になったので、題名をAIに付け直させて、新しいセッションにも自動で効かせた",
-      "url": "https://zenn.dev/shoujiki_panman/articles/claude-code-session-titles-hook",
+      "title": "提供票の送信をAIに全自動で任せたら、5事業所中1つで止まった話",
+      "url": "https://zenn.dev/yuyat/articles/careplan-renkei-ai-agent-stop",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "OpenAIが最新AIの訓練を停止、暴走報告が止まらない",
-      "url": "https://zenn.dev/sugawara_ai/articles/ai-news-20260928",
+      "title": "15Bだけ動く250B、Solar Open 2はエージェント前提で設計された",
+      "url": "https://zenn.dev/okssusucha/articles/20260724-upstage-solar-open-2",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "スキルの管理をしたい ~スキルとおむすび~",
-      "url": "https://zenn.dev/relic_tech/articles/12c134597dca54",
+      "title": "5日間でBOCCO emoをAmbient Agentにした",
+      "url": "https://zenn.dev/ux_xu/articles/b4810d221ff23a",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
-      "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
+      "title": "Claude Codeのハーネスを育てるで｜CLAUDE.mdからrules・Hooksまでの実践4ステップ",
+      "url": "https://zenn.dev/masayan1126/books/claude-code-harness-foundations",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "Claude CodeがAGENTS.mdに対応、CLAUDE.mdがあると読まれない条件を整理",
-      "url": "https://zenn.dev/ainewsdaily/articles/20260928_claude_code_t1",
+      "title": "Opus 5.5 で /code-review が勝手に10体に分かれて、4分で上限に当たった",
+      "url": "https://zenn.dev/tenpachi/articles/9039cc7e07ed74",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "Claude Code に同じ失敗を6回された話：再発を数えて「ルール」を「仕組み」に変える",
-      "url": "https://zenn.dev/takuyaauto/articles/d9db23c55571dd",
+      "title": "エージェントのコストは設計変数である — プレフィックス安定性・ルーティング損益分岐・予算の仮押さえ",
+      "url": "https://zenn.dev/xim2jp_tokyo/articles/f11a0a0568e0c1",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
-      "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
+      "title": "Claude Codeの定期タスクが3日間動かなかった原因は、前日の実行が終わっていないことだった",
+      "url": "https://zenn.dev/zeroyen_dev/articles/claude-code-stuck-scheduled-task",
       "score": 0,
       "source": "Zenn AI",
       "category": "tech"
     },
     {
-      "title": "Claude Code と Codex を二人体制で回す ― 個人開発のハーネス実践記録",
-      "url": "https://zenn.dev/twinharness/books/claude-code-codex-duo-harness",
+      "title": "AI.IFでWHERE句に意味を持ち込む — セマンティックフィルタ入門",
+      "url": "https://zenn.dev/web_benriya/articles/bigquery-ai-if-semantic-filter",
       "score": 0,
       "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "ChatGPT が突然 BAN されたら — 理由の見えない判定と、先に握っておくべきこと",
-      "url": "https://zenn.dev/exapolicy/articles/83995b8791d4ab",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "Claude Code の記憶と引継ぎ — 書き残したことは、次のセッションに届いた証拠にならない",
-      "url": "https://zenn.dev/kuu_dqx/books/written-is-not-handed-over",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "JevのようにAIに「文章がどういう内容か」を確率つきで答えさせる",
-      "url": "https://zenn.dev/masao_kunii/articles/1198fd8e170a81",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
-      "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "8GB GPU の 27B ternary は 9B より賢いか",
-      "url": "https://zenn.dev/beckento/articles/e4dbf65acd0fc9",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
-      "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "AIの記憶を10000ターンまで増やしたら、「記憶」ではなく「経路」が増えた",
-      "url": "https://zenn.dev/mitsukida/articles/670d8138cf3921",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "LLM 5モデルを高難度3課題で比較 — 「作れる力」は並び、「説明できる力」で差が出た",
-      "url": "https://zenn.dev/jodycraft/articles/5f660b4eba9ec1",
-      "score": 0,
-      "source": "Zenn LLM",
       "category": "tech"
     },
     {
@@ -603,6 +531,69 @@
       "url": "https://zenn.dev/puyururu/articles/agent-tools-generic-vs-dedicated",
       "score": 0,
       "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "15Bだけ動く250B、Solar Open 2はエージェント前提で設計された",
+      "url": "https://zenn.dev/okssusucha/articles/20260724-upstage-solar-open-2",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "エージェントのコストは設計変数である — プレフィックス安定性・ルーティング損益分岐・予算の仮押さえ",
+      "url": "https://zenn.dev/xim2jp_tokyo/articles/f11a0a0568e0c1",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "React ウェブアプリで帳票PDFの個人情報を自動で墨消しする",
+      "url": "https://zenn.dev/apryse_blog/articles/4c8d73fb98dc4a",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "RX 5500 XTからV100S×4まで、4台の計算機でローカルLLMを測り比べた話",
+      "url": "https://zenn.dev/c4n4242/articles/75659aebdd62d4",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "画像認識AIはVLMに置き換わる？ ―― 専用モデルから汎用モデルへの進化と評価指標",
+      "url": "https://zenn.dev/highreso_tech/articles/957e98a5c5014f",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "RLVRを理解する②──DatabricksでのSQL生成品質向上例",
+      "url": "https://zenn.dev/gixo/articles/rlvr-databricks-text2sql-tao",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "行列も微分も使わずにTransformerを説明するサイトを作ってもらったら、そのまま10Mパラメータの日本語SLMまで出てきた話",
+      "url": "https://zenn.dev/nextbeat/articles/2026-09-no-matrix-transformer-slm",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "AIツールの更新で結果が変わったときに役立つ「評価ログ」の作り方",
+      "url": "https://zenn.dev/aiai_tool/articles/78e27715010ee7",
+      "score": 0,
+      "source": "Zenn LLM",
+      "category": "tech"
+    },
+    {
+      "title": "「AIが暴走した」で止めていいのか――OpenAIエージェント事案を一次情報まで分解する",
+      "url": "https://qiita.com/BugiAK/items/7bba5192069096261a59",
+      "score": 0,
+      "source": "Qiita AI",
       "category": "tech"
     },
     {
@@ -622,13 +613,6 @@
     {
       "title": "AIエージェントは「画面専用」を卒業する？ Holo4がGUI・コード・MCP・APIを1モデルで横断",
       "url": "https://qiita.com/sin-aiagent/items/c9ba569283a09740044c",
-      "score": 0,
-      "source": "Qiita AI",
-      "category": "tech"
-    },
-    {
-      "title": "[Jev] Jevnoid: Web知識を捕食・自律進化するデジタル生命体を作ってみた",
-      "url": "https://qiita.com/yam_dev/items/f28ead348407fe9a100b",
       "score": 0,
       "source": "Qiita AI",
       "category": "tech"
