@@ -1,6 +1,8 @@
 import os
 import glob
 import json
+from dotenv import load_dotenv
+load_dotenv()
 import re
 from datetime import datetime, timezone, timedelta
 import time

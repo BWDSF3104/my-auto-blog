@@ -14,6 +14,8 @@ fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収
 import json
 import os
 import time
+from dotenv import load_dotenv
+load_dotenv()
 import urllib.request
 import urllib.parse
 import urllib.error
