@@ -1076,10 +1076,10 @@ def process_product_cards(content: str) -> str:
 
     print(f"🛍️ 商品カードを {len(products)} 件生成")
 
-    # product_recommendations 行を Frontmatter から削除（出力に含めない）
-    # 改善: 継続行（category, price_range など）もキャッチ
+    # product_recommendations ブロックを Frontmatter から完全に削除
+    # 改訂: インデントされた継続行をすべてキャッチ（[-:] 制限を撤廃）
     content = re.sub(
-        r'^product_recommendations:\s*\n((?:\s{0,8}[-:].*\n?|\s*\n?)*)',
+        r'^product_recommendations:\s*\n(?:[ \t].*\n?)*',
         '',
         content,
         count=1,
@@ -1106,7 +1106,7 @@ def process_product_cards(content: str) -> str:
 def validate_and_fix_frontmatter(content: str) -> str:
     """
     Frontmatter (--- ... ---) の YAML を PyYAML で検証し、
-    解析失敗時に product_recommendations ブロックを安全に削除して再検証する。
+    解析失敗時に破損したブロックを安全に削除して再検証する。
     """
     open_fm = content.find("---")
     if open_fm < 0:
@@ -1124,27 +1124,37 @@ def validate_and_fix_frontmatter(content: str) -> str:
     except yaml.YAMLError:
         pass
 
+    # 1. product_recommendations ブロックを削除して再検証
     prod_idx = fm_text.find("product_recommendations")
-    if prod_idx < 0:
-        return content
+    if prod_idx >= 0:
+        before = fm_text[:prod_idx].rstrip("\n")
+        cleaned_fm = before + "\n"
+        try:
+            yaml.safe_load(cleaned_fm)
+            new_content = content[:open_fm + 3] + cleaned_fm + content[close_fm:]
+            print("[WARN] 破損した product_recommendations を削除して Frontmatter を修復しました")
+            return new_content
+        except yaml.YAMLError:
+            fm_text = cleaned_fm
 
-    before = fm_text[:prod_idx].rstrip("\n")
-    cleaned_fm = before + "\n"
+    # 2. 既知の破損パターンを正規表現で削除
+    fm_text = re.sub(r"\n\s{0,8}-\s+name:.*", "", fm_text)
+    fm_text = re.sub(r"\n\s{0,8}category:.*", "", fm_text)
+    fm_text = re.sub(r"\n\s{0,8}price_range:.*", "", fm_text)
     try:
-        yaml.safe_load(cleaned_fm)
-        new_content = content[:open_fm + 3] + cleaned_fm + content[close_fm:]
-        print("[WARN] 破損した product_recommendations を削除して Frontmatter を修復しました")
+        yaml.safe_load(fm_text)
+        new_content = content[:open_fm + 3] + fm_text + content[close_fm:]
+        print("[WARN] 破損した Frontmatter を正規表現で修復しました")
         return new_content
     except yaml.YAMLError:
         pass
 
-    cleaned_fm = re.sub(r"\n\s{0,8}-\s+name:.*", "", cleaned_fm)
-    cleaned_fm = re.sub(r"\n\s{0,8}category:.*", "", cleaned_fm)
-    cleaned_fm = re.sub(r"\n\s{0,8}price_range:.*", "", cleaned_fm)
+    # 3. 最終手段: インデントされた孤線（親キーのないインデント行）をすべて削除
+    cleaned_fm = re.sub(r"\n[ \t]{2,}[^ \t].*", "", fm_text)
     try:
         yaml.safe_load(cleaned_fm)
         new_content = content[:open_fm + 3] + cleaned_fm + content[close_fm:]
-        print("[WARN] 破損した Frontmatter を正規表現で修復しました")
+        print("[WARN] 破損した Frontmatter のインデント孤線を削除して修復しました")
         return new_content
     except yaml.YAMLError:
         pass
