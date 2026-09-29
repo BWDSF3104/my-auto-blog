@@ -42,6 +42,10 @@ BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detaile
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading, vibrant colors"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
+# SEOメタ記述の文字数制約
+MIN_DESC_LEN = 80
+MAX_DESC_LEN = 120
+
 # 本文内画像プレースホルダーの正規表現 (例: <!-- IMAGE_PROMPT: "..." -->)
 INLINE_IMAGE_PATTERN = re.compile(
     r'<!--\s*IMAGE_PROMPT:\s*(.*?)\s*-->',
@@ -1101,6 +1105,87 @@ def process_product_cards(content: str) -> str:
 
 
 # --------------------------------------------------
+# SEOメタ記述の検証・補正
+# --------------------------------------------------
+def _validate_description(desc: str) -> str:
+    """記述が80〜120文字の範囲内に収まるように調整する"""
+    if not desc:
+        return desc
+    desc = desc.strip()
+    if len(desc) >= MIN_DESC_LEN and len(desc) <= MAX_DESC_LEN:
+        return desc
+    if len(desc) > MAX_DESC_LEN:
+        truncated = desc[:MAX_DESC_LEN - 3].rstrip() + "..."
+        return truncated
+    padded = desc
+    while len(padded) < MIN_DESC_LEN:
+        if not padded.endswith("。") and not padded.endswith("."):
+            padded += "。"
+        else:
+            padded += " "
+    return padded[:MIN_DESC_LEN]
+
+
+def _extract_fm_field(content: str, field: str) -> str:
+    """Frontmatterから指定フィールドの値を抽出する"""
+    match = re.search(r'^' + field + r':\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    if match and match.group(1):
+        return match.group(1).strip()
+    return ""
+
+
+def _extract_fm_tags(content: str) -> list:
+    """Frontmatterの tags フィールドからタグリストを抽出する"""
+    match = re.search(r'^tags:\s*\[([^\]]*)\]', content, re.MULTILINE)
+    if match:
+        return [t.strip().strip('"\'') for t in match.group(1).split(",") if t.strip()]
+    return []
+
+
+def _compose_smart_situation(content: str) -> str:
+    """
+    image_promptがない記事用に title/description/tags から
+    適切な画像シチュエーションを自動生成する。
+    """
+    title = _extract_fm_field(content, "title")
+    desc = _extract_fm_field(content, "description")
+    tags = _extract_fm_tags(content)
+
+    # 物語系（kemono_storyなど）はデフォルトのきもーるシチュエーションを使用
+    prompt_type = _extract_fm_field(content, "prompt_type")
+    if prompt_type in ("kemono_story", "novel", "story"):
+        return DEFAULT_SITUATION
+
+    # 技術記事用: タイトルと説明からキーワードを抽出
+    keywords = []
+    if title:
+        keywords.append(title[:50])
+    if desc:
+        keywords.append(desc[:80])
+
+    # タグから補足キーワード
+    tag_keywords = {
+        "AI": "artificial intelligence, neural network, glowing brain",
+        "Tech": "technology, circuit board, digital",
+        "Python": "python, coding, programming",
+        "JavaScript": "javascript, web development, browser",
+        "Web": "web, internet, globe",
+        "ゲーム": "game, controller, pixel art",
+        "ゲーム実況": "game, controller, streaming",
+        "映画": "movie, cinema, film reel",
+        "アニメ": "anime, manga, illustration",
+    }
+    for tag in tags:
+        for tk, kv in tag_keywords.items():
+            if tk in tag:
+                keywords.append(kv)
+
+    if keywords:
+        return ", ".join(keywords[:5])
+    return DEFAULT_SITUATION
+
+
+# --------------------------------------------------
 # Frontmatter YAML 検証・修復
 # --------------------------------------------------
 def validate_and_fix_frontmatter(content: str) -> str:
@@ -1229,6 +1314,11 @@ def generate_post():
 
     image_filename = f"{file_timestamp}-header.png"
     dynamic_situation = extract_image_prompt(content)
+    if dynamic_situation == DEFAULT_SITUATION:
+        smart_situation = _compose_smart_situation(content)
+        if smart_situation != DEFAULT_SITUATION:
+            dynamic_situation = smart_situation
+            print(f"💡 image_prompt なし → 自動生成シチュエーション: {dynamic_situation}")
     print(f"💡 抽出されたヘッダー用シチュエーション: {dynamic_situation}")
 
     article_art_style = extract_art_style(content)
@@ -1328,6 +1418,20 @@ def generate_post():
 
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
+
+    # 5.7 SEOメタ記述の文字数検証・補正
+    desc = _extract_fm_field(content, "description")
+    if desc:
+        corrected = _validate_description(desc)
+        if corrected != desc:
+            content = re.sub(
+                r'^description:\s*["\']?(.*?)["\']?$',
+                f'description: "{corrected}"',
+                content,
+                count=1,
+                flags=re.MULTILINE,
+            )
+            print(f"📝 記述を補正: {len(desc)}→{len(corrected)}文字")
 
     # 6. 保存
     output_dir = "src/content/posts"
