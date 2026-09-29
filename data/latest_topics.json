@@ -1,351 +1,44 @@
 {
-  "fetched_at": "2026-09-29T11:31:03.641654+09:00",
+  "fetched_at": "2026-09-29T20:10:28.473828+09:00",
   "ttl_hours": 24,
-  "total": 49,
+  "total": 6,
   "by_category": {
-    "tech": [
-      {
-        "title": "Sonnet 5.5",
-        "url": "https://www.anthropic.com/claude-sonnet-5-5",
-        "score": 600,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "Pirating the Pirates",
-        "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
-        "score": 424,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms",
-        "url": "https://github.com/firelex/jeff",
-        "score": 299,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "World Labs Is Joining AMD",
-        "url": "https://www.worldlabs.ai/blog/amd-announcement",
-        "score": 193,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "MicroLLM Lab – Try 7 tiny LLM's in the browser",
-        "url": "https://stateofutopia.com/experiments/microllmlab/",
-        "score": 138,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "12,000-year-old Göbeklitepe burials explain scattered bones",
-        "url": "https://archaeologymag.com/2026/09/gobeklitepe-burials-hundreds-of-scattered-bones/",
-        "score": 85,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "Scientists solve 1840s space weather mystery",
-        "url": "https://arstechnica.com/science/2026/09/scientists-solve-1840s-space-weather-mystery/",
-        "score": 65,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "California farmers are struggling to sell grapes as demand for wine drops",
-        "url": "https://www.kqed.org/news/12101534/california-farmers-are-struggling-to-sell-grapes-as-demand-for-wine-drops",
-        "score": 64,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "ESP32S3 cluster running 1.58-bit (BitNet) Language model",
-        "url": "https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster",
-        "score": 33,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "1996 chat room simulator connected to Win95 and System 7 web desktops",
-        "url": "https://lolchat.rip/",
-        "score": 25,
-        "source": "HackerNews",
-        "category": "tech"
-      },
-      {
-        "title": "Anthropic、Claude Sonnet 5.5を公開 — 料金据え置きで30%以上高速、タスク当たり最大3割安",
-        "url": "https://zenn.dev/ai_news_bot/articles/ainews-20260929-t1",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "AIコーディングツールとモデルの使い分けガイド",
-        "url": "https://zenn.dev/agent_grow/articles/12785196b3c865",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "Claude Codeのサブエージェントを作業の種類ごとに分けてトークン消費を抑えた",
-        "url": "https://zenn.dev/arithan/articles/claude-code-subagent-context-split",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "ラズパイケースをAIモデリングする",
-        "url": "https://zenn.dev/polygoro/articles/009-ai-raspberry-pi-case",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "SoftbankG急",
-        "url": "https://zenn.dev/bambampurin/articles/2026-09-07-market-daily",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "Claude Codeの定時実行が使用上限で2.5日止まっていたのに、GitHub Actionsはずっと緑だった",
-        "url": "https://zenn.dev/yuu_inaka/articles/green-but-stopped",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "確認してから commit したのに、3ファイルが5ファイルになった — Claude Code を同じ作業ツリーで並走させた3か月の記録",
-        "url": "https://zenn.dev/masamitsu_sera/articles/f60337c10c43db",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "常駐型AIエージェントの「判断基準」をテナント/チームごとにカスタマイズしても事故らないルール優先順位設計",
-        "url": "https://zenn.dev/hach/articles/chat-agent-rule-precedence-conflict-design",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "AI エージェントの長期記憶の検索を判定モデル Jev に任せ、入力トークンを 1/17 に削るまで",
-        "url": "https://zenn.dev/kokagex/articles/844b1a9937078d",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "矛盾する指示、AIは書く順番と優先順位の明示でどう変わるか3条件で検証した",
-        "url": "https://zenn.dev/every_ai_recipe/articles/ai-instruction-conflict-order-check",
-        "score": 0,
-        "source": "Zenn AI",
-        "category": "tech"
-      },
-      {
-        "title": "日本語が一番うまいLLMは誰なのか調べる",
-        "url": "https://zenn.dev/arika/articles/20260929-what-is-good-llm-for-japanese",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "Dense Retrievalを実装する：DPR・距離尺度・ANNの設計",
-        "url": "https://zenn.dev/kas_blog/articles/20260509-llm-24-dense-retrieval",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "ChatGPT が突然 BAN されたら — 理由の見えない判定と、先に握っておくべきこと",
-        "url": "https://zenn.dev/exapolicy/articles/83995b8791d4ab",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "Claude Code の記憶と引継ぎ — 書き残したことは、次のセッションに届いた証拠にならない",
-        "url": "https://zenn.dev/kuu_dqx/books/written-is-not-handed-over",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "JevのようにAIに「文章がどういう内容か」を確率つきで答えさせる",
-        "url": "https://zenn.dev/masao_kunii/articles/1198fd8e170a81",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
-        "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "8GB GPU の 27B ternary は 9B より賢いか",
-        "url": "https://zenn.dev/beckento/articles/e4dbf65acd0fc9",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
-        "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "AIの記憶を10000ターンまで増やしたら、「記憶」ではなく「経路」が増えた",
-        "url": "https://zenn.dev/mitsukida/articles/670d8138cf3921",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "LLM 5モデルを高難度3課題で比較 — 「作れる力」は並び、「説明できる力」で差が出た",
-        "url": "https://zenn.dev/jodycraft/articles/5f660b4eba9ec1",
-        "score": 0,
-        "source": "Zenn LLM",
-        "category": "tech"
-      },
-      {
-        "title": "画像生成AIのしくみ 第七話",
-        "url": "https://qiita.com/mtanaka-kumw/items/41aa7f8ed50e16815057",
-        "score": 0,
-        "source": "Qiita AI",
-        "category": "tech"
-      },
-      {
-        "title": "「よく考えて」は通用しない! Opus 5.5 公式ガイドの要点13個まとめ",
-        "url": "https://qiita.com/nolanlover0527/items/7f025b9c20b00e4d24b7",
-        "score": 0,
-        "source": "Qiita AI",
-        "category": "tech"
-      },
-      {
-        "title": "2026年9月29日 今日のQiitaトレンド記事をポッドキャストで聴こう！",
-        "url": "https://qiita.com/ennagara128/items/f09e622a5069f34b89c5",
-        "score": 0,
-        "source": "Qiita AI",
-        "category": "tech"
-      },
-      {
-        "title": "AI時代にこそ問われる、自分の頭で考えるエンジニア力",
-        "url": "https://qiita.com/syun136_616/items/1668a82f3b3bf3b5dc29",
-        "score": 0,
-        "source": "Qiita AI",
-        "category": "tech"
-      },
-      {
-        "title": "正確に取れない数字は出さない — 4,000社の財務データで選んだ「諦めて注記する」設計",
-        "url": "https://qiita.com/edinetty/items/6b1f2ba5ed8c75fd0141",
-        "score": 0,
-        "source": "Qiita Python",
-        "category": "tech"
-      },
-      {
-        "title": "【技術解説】Python数理ロジックと機械学習を用いた資産運用・資金管理アルゴリズムの実装ガイド",
-        "url": "https://qiita.com/sugarfree/items/d9242ffc68312691bfec",
-        "score": 0,
-        "source": "Qiita Python",
-        "category": "tech"
-      },
-      {
-        "title": "Python を使用して PowerPoint プレゼンテーションにスライドを追加する",
-        "url": "https://qiita.com/carol123/items/15cacb4c058acf6b52fe",
-        "score": 0,
-        "source": "Qiita Python",
-        "category": "tech"
-      },
-      {
-        "title": "【海外テック動向】ブラウザで動く軽量LLMからClaude最新情報、レトロWeb技術まで注目の3選",
-        "url": "https://qiita.com/tanakanekosuke/items/c2b8d9235190c509e81f",
-        "score": 0,
-        "source": "Qiita Python",
-        "category": "tech"
-      }
-    ],
+    "tech": [],
     "kemono": [
       {
-        "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
-        "url": "https://e621.net/posts/6740154",
-        "score": 28,
+        "title": "e621 post #6740849: anthro, asian_clothing, blue_eyes, brown_nose, clothing, detailed_background, east_asian_clothing, eyewear",
+        "url": "https://e621.net/posts/6740849",
+        "score": 13,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
       },
       {
-        "title": "e621 post #6739681: abdominal_bulge, after_vore, anthro, anthro_pred, arm_tuft, belly, big_belly, big_ears",
-        "url": "https://e621.net/posts/6739681",
-        "score": 18,
+        "title": "e621 post #6740844: anthro, black_nose, blue_eyes, eyebrows, hot_spring, inner_ear_fluff, kemono, male",
+        "url": "https://e621.net/posts/6740844",
+        "score": 10,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
       },
       {
-        "title": "e621 post #6740592: accessory, ambiguous_gender, anthro, big_tail, black_clothing, black_eyes, black_shirt, black_topwear",
-        "url": "https://e621.net/posts/6740592",
-        "score": 9,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "e621 post #6741151: anthro, belly, big_belly, big_breasts, big_tail, bra, breasts, clothing",
-        "url": "https://e621.net/posts/6741151",
-        "score": 9,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "q"
-      },
-      {
-        "title": "e621 post #6741172: abs, anthro, arm_spikes, belt, belt_chain, black_body, blue_body, blue_fire",
-        "url": "https://e621.net/posts/6741172",
-        "score": 2,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "e621 post #6741183: antennae_(anatomy), anthro, beach, big_breasts, breasts, clothing, cybernetics, dress",
-        "url": "https://e621.net/posts/6741183",
-        "score": 1,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "e621 post #6741200: abs, anthro, arm_spikes, belt, belt_chain, biceps, black_body, blue_body",
-        "url": "https://e621.net/posts/6741200",
+        "title": "e621 post #6741749: 2_horns, 5_panel_comic, ambiguous_gender, anthro, belly, biped, black_text, claws",
+        "url": "https://e621.net/posts/6741749",
         "score": 0,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
-      },
-      {
-        "title": "e621 post #6741182: anthro, arm_spikes, belt_chain, biceps, black_body, black_clothing, black_shirt, black_topwear",
-        "url": "https://e621.net/posts/6741182",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "e621 post #6741174: anthro, belly, big_belly, claws, dialogue, fangs, female, finger_claws",
-        "url": "https://e621.net/posts/6741174",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "q"
       }
     ],
     "pokemon": [
+      {
+        "title": "e621 post #6741795: anthro, belly, big_belly, big_breasts, blue_body, blue_hair, breasts, female",
+        "url": "https://e621.net/posts/6741795",
+        "score": 2,
+        "source": "e621",
+        "category": "pokemon",
+        "rating": "q"
+      },
       {
         "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
         "url": "https://github.com/ivi-vink/Akkamon",
@@ -365,114 +58,28 @@
   },
   "all": [
     {
-      "title": "Sonnet 5.5",
-      "url": "https://www.anthropic.com/claude-sonnet-5-5",
-      "score": 600,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "Pirating the Pirates",
-      "url": "https://mubi.com/en/notebook/posts/pirating-the-pirates",
-      "score": 424,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms",
-      "url": "https://github.com/firelex/jeff",
-      "score": 299,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "World Labs Is Joining AMD",
-      "url": "https://www.worldlabs.ai/blog/amd-announcement",
-      "score": 193,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "MicroLLM Lab – Try 7 tiny LLM's in the browser",
-      "url": "https://stateofutopia.com/experiments/microllmlab/",
-      "score": 138,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "12,000-year-old Göbeklitepe burials explain scattered bones",
-      "url": "https://archaeologymag.com/2026/09/gobeklitepe-burials-hundreds-of-scattered-bones/",
-      "score": 85,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "Scientists solve 1840s space weather mystery",
-      "url": "https://arstechnica.com/science/2026/09/scientists-solve-1840s-space-weather-mystery/",
-      "score": 65,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "California farmers are struggling to sell grapes as demand for wine drops",
-      "url": "https://www.kqed.org/news/12101534/california-farmers-are-struggling-to-sell-grapes-as-demand-for-wine-drops",
-      "score": 64,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "ESP32S3 cluster running 1.58-bit (BitNet) Language model",
-      "url": "https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster",
-      "score": 33,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "e621 post #6740154: 3_panel_comic, 5_fingers, anthro, areola, balancing, belly, belt, belt_buckle",
-      "url": "https://e621.net/posts/6740154",
-      "score": 28,
+      "title": "e621 post #6740849: anthro, asian_clothing, blue_eyes, brown_nose, clothing, detailed_background, east_asian_clothing, eyewear",
+      "url": "https://e621.net/posts/6740849",
+      "score": 13,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
     },
     {
-      "title": "1996 chat room simulator connected to Win95 and System 7 web desktops",
-      "url": "https://lolchat.rip/",
-      "score": 25,
-      "source": "HackerNews",
-      "category": "tech"
-    },
-    {
-      "title": "e621 post #6739681: abdominal_bulge, after_vore, anthro, anthro_pred, arm_tuft, belly, big_belly, big_ears",
-      "url": "https://e621.net/posts/6739681",
-      "score": 18,
+      "title": "e621 post #6740844: anthro, black_nose, blue_eyes, eyebrows, hot_spring, inner_ear_fluff, kemono, male",
+      "url": "https://e621.net/posts/6740844",
+      "score": 10,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
     },
     {
-      "title": "e621 post #6740592: accessory, ambiguous_gender, anthro, big_tail, black_clothing, black_eyes, black_shirt, black_topwear",
-      "url": "https://e621.net/posts/6740592",
-      "score": 9,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6741151: anthro, belly, big_belly, big_breasts, big_tail, bra, breasts, clothing",
-      "url": "https://e621.net/posts/6741151",
-      "score": 9,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "q"
-    },
-    {
-      "title": "e621 post #6741172: abs, anthro, arm_spikes, belt, belt_chain, black_body, blue_body, blue_fire",
-      "url": "https://e621.net/posts/6741172",
+      "title": "e621 post #6741795: anthro, belly, big_belly, big_breasts, blue_body, blue_hair, breasts, female",
+      "url": "https://e621.net/posts/6741795",
       "score": 2,
       "source": "e621",
-      "category": "kemono",
-      "rating": "s"
+      "category": "pokemon",
+      "rating": "q"
     },
     {
       "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
@@ -482,232 +89,12 @@
       "category": "pokemon"
     },
     {
-      "title": "e621 post #6741183: antennae_(anatomy), anthro, beach, big_breasts, breasts, clothing, cybernetics, dress",
-      "url": "https://e621.net/posts/6741183",
-      "score": 1,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6741200: abs, anthro, arm_spikes, belt, belt_chain, biceps, black_body, blue_body",
-      "url": "https://e621.net/posts/6741200",
+      "title": "e621 post #6741749: 2_horns, 5_panel_comic, ambiguous_gender, anthro, belly, biped, black_text, claws",
+      "url": "https://e621.net/posts/6741749",
       "score": 0,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
-    },
-    {
-      "title": "e621 post #6741182: anthro, arm_spikes, belt_chain, biceps, black_body, black_clothing, black_shirt, black_topwear",
-      "url": "https://e621.net/posts/6741182",
-      "score": 0,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6741174: anthro, belly, big_belly, claws, dialogue, fangs, female, finger_claws",
-      "url": "https://e621.net/posts/6741174",
-      "score": 0,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "q"
-    },
-    {
-      "title": "Anthropic、Claude Sonnet 5.5を公開 — 料金据え置きで30%以上高速、タスク当たり最大3割安",
-      "url": "https://zenn.dev/ai_news_bot/articles/ainews-20260929-t1",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "AIコーディングツールとモデルの使い分けガイド",
-      "url": "https://zenn.dev/agent_grow/articles/12785196b3c865",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "Claude Codeのサブエージェントを作業の種類ごとに分けてトークン消費を抑えた",
-      "url": "https://zenn.dev/arithan/articles/claude-code-subagent-context-split",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "ラズパイケースをAIモデリングする",
-      "url": "https://zenn.dev/polygoro/articles/009-ai-raspberry-pi-case",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "SoftbankG急",
-      "url": "https://zenn.dev/bambampurin/articles/2026-09-07-market-daily",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "Claude Codeの定時実行が使用上限で2.5日止まっていたのに、GitHub Actionsはずっと緑だった",
-      "url": "https://zenn.dev/yuu_inaka/articles/green-but-stopped",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "確認してから commit したのに、3ファイルが5ファイルになった — Claude Code を同じ作業ツリーで並走させた3か月の記録",
-      "url": "https://zenn.dev/masamitsu_sera/articles/f60337c10c43db",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "常駐型AIエージェントの「判断基準」をテナント/チームごとにカスタマイズしても事故らないルール優先順位設計",
-      "url": "https://zenn.dev/hach/articles/chat-agent-rule-precedence-conflict-design",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "AI エージェントの長期記憶の検索を判定モデル Jev に任せ、入力トークンを 1/17 に削るまで",
-      "url": "https://zenn.dev/kokagex/articles/844b1a9937078d",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "矛盾する指示、AIは書く順番と優先順位の明示でどう変わるか3条件で検証した",
-      "url": "https://zenn.dev/every_ai_recipe/articles/ai-instruction-conflict-order-check",
-      "score": 0,
-      "source": "Zenn AI",
-      "category": "tech"
-    },
-    {
-      "title": "日本語が一番うまいLLMは誰なのか調べる",
-      "url": "https://zenn.dev/arika/articles/20260929-what-is-good-llm-for-japanese",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "Dense Retrievalを実装する：DPR・距離尺度・ANNの設計",
-      "url": "https://zenn.dev/kas_blog/articles/20260509-llm-24-dense-retrieval",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "ChatGPT が突然 BAN されたら — 理由の見えない判定と、先に握っておくべきこと",
-      "url": "https://zenn.dev/exapolicy/articles/83995b8791d4ab",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "Claude Code の記憶と引継ぎ — 書き残したことは、次のセッションに届いた証拠にならない",
-      "url": "https://zenn.dev/kuu_dqx/books/written-is-not-handed-over",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "JevのようにAIに「文章がどういう内容か」を確率つきで答えさせる",
-      "url": "https://zenn.dev/masao_kunii/articles/1198fd8e170a81",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "LLMに固有名詞の誤字を直させたら、製品名を別のものに変えられた",
-      "url": "https://zenn.dev/kattoai/articles/f9d8431e3de102",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "8GB GPU の 27B ternary は 9B より賢いか",
-      "url": "https://zenn.dev/beckento/articles/e4dbf65acd0fc9",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "TypeScript で Jev を型安全に呼ぶ：質問定義から回答の型を推論する小さなクライアントを作る",
-      "url": "https://zenn.dev/charliecs/articles/6b5a8f1c296071",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "AIの記憶を10000ターンまで増やしたら、「記憶」ではなく「経路」が増えた",
-      "url": "https://zenn.dev/mitsukida/articles/670d8138cf3921",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "LLM 5モデルを高難度3課題で比較 — 「作れる力」は並び、「説明できる力」で差が出た",
-      "url": "https://zenn.dev/jodycraft/articles/5f660b4eba9ec1",
-      "score": 0,
-      "source": "Zenn LLM",
-      "category": "tech"
-    },
-    {
-      "title": "画像生成AIのしくみ 第七話",
-      "url": "https://qiita.com/mtanaka-kumw/items/41aa7f8ed50e16815057",
-      "score": 0,
-      "source": "Qiita AI",
-      "category": "tech"
-    },
-    {
-      "title": "「よく考えて」は通用しない! Opus 5.5 公式ガイドの要点13個まとめ",
-      "url": "https://qiita.com/nolanlover0527/items/7f025b9c20b00e4d24b7",
-      "score": 0,
-      "source": "Qiita AI",
-      "category": "tech"
-    },
-    {
-      "title": "2026年9月29日 今日のQiitaトレンド記事をポッドキャストで聴こう！",
-      "url": "https://qiita.com/ennagara128/items/f09e622a5069f34b89c5",
-      "score": 0,
-      "source": "Qiita AI",
-      "category": "tech"
-    },
-    {
-      "title": "AI時代にこそ問われる、自分の頭で考えるエンジニア力",
-      "url": "https://qiita.com/syun136_616/items/1668a82f3b3bf3b5dc29",
-      "score": 0,
-      "source": "Qiita AI",
-      "category": "tech"
-    },
-    {
-      "title": "正確に取れない数字は出さない — 4,000社の財務データで選んだ「諦めて注記する」設計",
-      "url": "https://qiita.com/edinetty/items/6b1f2ba5ed8c75fd0141",
-      "score": 0,
-      "source": "Qiita Python",
-      "category": "tech"
-    },
-    {
-      "title": "【技術解説】Python数理ロジックと機械学習を用いた資産運用・資金管理アルゴリズムの実装ガイド",
-      "url": "https://qiita.com/sugarfree/items/d9242ffc68312691bfec",
-      "score": 0,
-      "source": "Qiita Python",
-      "category": "tech"
-    },
-    {
-      "title": "Python を使用して PowerPoint プレゼンテーションにスライドを追加する",
-      "url": "https://qiita.com/carol123/items/15cacb4c058acf6b52fe",
-      "score": 0,
-      "source": "Qiita Python",
-      "category": "tech"
-    },
-    {
-      "title": "【海外テック動向】ブラウザで動く軽量LLMからClaude最新情報、レトロWeb技術まで注目の3選",
-      "url": "https://qiita.com/tanakanekosuke/items/c2b8d9235190c509e81f",
-      "score": 0,
-      "source": "Qiita Python",
-      "category": "tech"
     },
     {
       "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
