@@ -24,10 +24,12 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 - Generated images: `public/images/`
 
 ### AI Memory Bank (docs/ai/)
+- **Before implementation**: Record the plan and direction in `docs/ai/plans.md` under "進行中の計画"
 - Update `docs/ai/architecture.md` when project structure or data flow changes
 - Update `docs/ai/decisions.md` when making design decisions or architectural changes
 - Update `docs/ai/known-issues.md` when discovering new issues or resolving existing ones
 - Update `docs/ai/development-notes.md` after completing implementation work
+- Move completed plans from `docs/ai/plans.md` to `docs/ai/development-notes.md` on completion
 
 ### Git Workflow
 - After completing file changes, always run `git pull` then `git add`, `git commit`, `git push`
