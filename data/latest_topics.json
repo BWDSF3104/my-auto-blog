@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-09-29T20:10:28.473828+09:00",
+  "fetched_at": "2026-09-29T21:10:23.445944+09:00",
   "ttl_hours": 24,
-  "total": 6,
+  "total": 8,
   "by_category": {
     "tech": [],
     "kemono": [
       {
         "title": "e621 post #6740849: anthro, asian_clothing, blue_eyes, brown_nose, clothing, detailed_background, east_asian_clothing, eyewear",
         "url": "https://e621.net/posts/6740849",
-        "score": 13,
+        "score": 14,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
@@ -16,25 +16,17 @@
       {
         "title": "e621 post #6740844: anthro, black_nose, blue_eyes, eyebrows, hot_spring, inner_ear_fluff, kemono, male",
         "url": "https://e621.net/posts/6740844",
-        "score": 10,
+        "score": 11,
         "source": "e621",
         "category": "kemono",
         "rating": "q"
-      },
-      {
-        "title": "e621 post #6741749: 2_horns, 5_panel_comic, ambiguous_gender, anthro, belly, biped, black_text, claws",
-        "url": "https://e621.net/posts/6741749",
-        "score": 0,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
       }
     ],
     "pokemon": [
       {
-        "title": "e621 post #6741795: anthro, belly, big_belly, big_breasts, blue_body, blue_hair, breasts, female",
-        "url": "https://e621.net/posts/6741795",
-        "score": 2,
+        "title": "e621 post #6741863: 3_fingers, anthro, bangs, big_breasts, bikini, biped, black_bikini, black_body",
+        "url": "https://e621.net/posts/6741863",
+        "score": 5,
         "source": "e621",
         "category": "pokemon",
         "rating": "q"
@@ -45,6 +37,30 @@
         "score": 2,
         "source": "GitHub",
         "category": "pokemon"
+      },
+      {
+        "title": "e621 post #6741858: ambiguous_anthro, ambiguous_feral, ambiguous_gender, anthro, biped, blush, bodily_fluids, bottomwear",
+        "url": "https://e621.net/posts/6741858",
+        "score": 1,
+        "source": "e621",
+        "category": "pokemon",
+        "rating": "s"
+      },
+      {
+        "title": "e621 post #6741875: :o, ambiguous_anthro, ambiguous_gender, anthro, biped, blush, bow_ribbon, digitigrade",
+        "url": "https://e621.net/posts/6741875",
+        "score": 0,
+        "source": "e621",
+        "category": "pokemon",
+        "rating": "s"
+      },
+      {
+        "title": "e621 post #6741864: ambiguous_anthro, ambiguous_gender, anthro, betrayal, biped, cute_fangs, digitigrade, dipstick_tail",
+        "url": "https://e621.net/posts/6741864",
+        "score": 0,
+        "source": "e621",
+        "category": "pokemon",
+        "rating": "s"
       },
       {
         "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
@@ -60,7 +76,7 @@
     {
       "title": "e621 post #6740849: anthro, asian_clothing, blue_eyes, brown_nose, clothing, detailed_background, east_asian_clothing, eyewear",
       "url": "https://e621.net/posts/6740849",
-      "score": 13,
+      "score": 14,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
@@ -68,15 +84,15 @@
     {
       "title": "e621 post #6740844: anthro, black_nose, blue_eyes, eyebrows, hot_spring, inner_ear_fluff, kemono, male",
       "url": "https://e621.net/posts/6740844",
-      "score": 10,
+      "score": 11,
       "source": "e621",
       "category": "kemono",
       "rating": "q"
     },
     {
-      "title": "e621 post #6741795: anthro, belly, big_belly, big_breasts, blue_body, blue_hair, breasts, female",
-      "url": "https://e621.net/posts/6741795",
-      "score": 2,
+      "title": "e621 post #6741863: 3_fingers, anthro, bangs, big_breasts, bikini, biped, black_bikini, black_body",
+      "url": "https://e621.net/posts/6741863",
+      "score": 5,
       "source": "e621",
       "category": "pokemon",
       "rating": "q"
@@ -89,11 +105,27 @@
       "category": "pokemon"
     },
     {
-      "title": "e621 post #6741749: 2_horns, 5_panel_comic, ambiguous_gender, anthro, belly, biped, black_text, claws",
-      "url": "https://e621.net/posts/6741749",
+      "title": "e621 post #6741858: ambiguous_anthro, ambiguous_feral, ambiguous_gender, anthro, biped, blush, bodily_fluids, bottomwear",
+      "url": "https://e621.net/posts/6741858",
+      "score": 1,
+      "source": "e621",
+      "category": "pokemon",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6741875: :o, ambiguous_anthro, ambiguous_gender, anthro, biped, blush, bow_ribbon, digitigrade",
+      "url": "https://e621.net/posts/6741875",
       "score": 0,
       "source": "e621",
-      "category": "kemono",
+      "category": "pokemon",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6741864: ambiguous_anthro, ambiguous_gender, anthro, betrayal, biped, cute_fangs, digitigrade, dipstick_tail",
+      "url": "https://e621.net/posts/6741864",
+      "score": 0,
+      "source": "e621",
+      "category": "pokemon",
       "rating": "s"
     },
     {
