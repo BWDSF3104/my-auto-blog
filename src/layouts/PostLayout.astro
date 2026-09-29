@@ -190,16 +190,29 @@ const schemaOrgJSONLD = {
       /* 本文内アフィリエイトリンクのスタイル */
       article a[href*="amazon.co.jp"],
       article a[href*="rakuten.co.jp"] {
-        color: #d97706;
+        color: #d97706 !important;
         font-weight: 600;
-        text-decoration: underline;
+        text-decoration: underline !important;
         text-decoration-color: #fcd34d;
         text-underline-offset: 3px;
         transition: color 0.15s;
+        pointer-events: auto !important;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(217, 119, 6, 0.2);
+        touch-action: manipulation;
+        display: inline;
       }
       article a[href*="amazon.co.jp"]:hover,
       article a[href*="rakuten.co.jp"]:hover {
         color: #b45309;
+      }
+
+      /* 本文内のHTMLブロック（アフィリエイトボックス等）のスタイル補正 */
+      article div > a {
+        pointer-events: auto !important;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(217, 119, 6, 0.2);
+        touch-action: manipulation;
       }
 
       /* フォールバックセクション: 本文にアフィリエイトブロックがあれば非表示 */
