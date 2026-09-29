@@ -9,6 +9,7 @@ interface Props {
     tags?: string[];
     author?: string;
     image?: string;
+    slug?: string;
     prompt_type?: string;
     [key: string]: any;
   };
@@ -20,6 +21,38 @@ const { frontmatter } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteTitle = "BWD's AI Auto Blog";
 const basePrefix = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// 関連記事を取得
+const postImports = import.meta.glob<{
+  frontmatter: {
+    title: string;
+    pubDate: string;
+    description: string;
+    slug?: string;
+    tags?: string[];
+    image?: string;
+  };
+  url: string;
+}>('../content/posts/*.md', { eager: true });
+
+const currentSlug = frontmatter.slug || Astro.url.pathname.split('/').pop() || '';
+const allPosts = Object.entries(postImports).map(([path, module]) => {
+  const filename = path.split('/').pop()?.replace('.md', '') || '';
+  const slug = module.frontmatter.slug || filename;
+  return {
+    frontmatter: module.frontmatter,
+    slug,
+    url: `${basePrefix}/posts/${slug}`
+  };
+}).filter(post => post.slug !== currentSlug);
+
+// タグでスコア付けして関連記事を抽出
+const scoredPosts = allPosts.map(post => {
+  const sharedTags = post.frontmatter.tags?.filter(tag => frontmatter.tags?.includes(tag)) || [];
+  return { ...post, score: sharedTags.length };
+}).filter(post => post.score > 0)
+  .sort((a, b) => b.score - a.score || new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime())
+  .slice(0, 3);
 const ogImageUrl = frontmatter.image 
   ? (frontmatter.image.startsWith('http') ? frontmatter.image : new URL(frontmatter.image, Astro.site).href)
   : new URL(`${basePrefix}/favicon.svg`, Astro.site).href;
@@ -50,6 +83,17 @@ const schemaOrgJSONLD = {
   },
   "image": ogImageUrl,
   "url": canonicalURL.href
+};
+
+// BreadcrumbList JSON-LD
+const breadcrumbJSONLD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": `${canonicalURL.origin}${basePrefix}/` },
+    { "@type": "ListItem", "position": 2, "name": "記事一覧", "item": `${canonicalURL.origin}${basePrefix}/` },
+    { "@type": "ListItem", "position": 3, "name": frontmatter.title }
+  ]
 };
 ---
 
@@ -84,9 +128,28 @@ const schemaOrgJSONLD = {
 
     <!-- JSON-LD (SEO) -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrgJSONLD)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJSONLD)} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BWD's AI Auto Blog",
+      "url": `${canonicalURL.origin}${basePrefix}/`,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${canonicalURL.origin}${basePrefix}/tags/{search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    })} />
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased min-h-screen py-10 px-4">
     <main class="max-w-3xl mx-auto bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200/80">
+      <nav class="mb-4" aria-label="パンくずリスト">
+        <ol class="flex items-center gap-1.5 text-sm text-slate-500">
+          <li><a href={basePrefix} class="hover:text-blue-600 transition-colors">ホーム</a></li>
+          <li>›</li>
+          <li><span class="font-medium text-slate-700">{frontmatter.title}</span></li>
+        </ol>
+      </nav>
       <a href={import.meta.env.BASE_URL} class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 mb-6 transition-colors">
         ← 記事一覧に戻る
       </a>
@@ -101,9 +164,9 @@ const schemaOrgJSONLD = {
           {frontmatter.tags && (
             <div class="flex gap-1.5 ml-auto">
               {frontmatter.tags.map((tag: string) => (
-                <span class="bg-blue-50 text-blue-600 px-2.5 py-0.5 rounded-full text-xs font-semibold">
+                <a href={`${basePrefix}/tags/${encodeURIComponent(tag)}`} class="bg-blue-50 text-blue-600 px-2.5 py-0.5 rounded-full text-xs font-semibold hover:bg-blue-100 transition-colors no-underline">
                   #{tag}
-                </span>
+                </a>
               ))}
             </div>
           )}
@@ -119,9 +182,43 @@ const schemaOrgJSONLD = {
       )}
       </header>
 
-      <article class="prose prose-slate max-w-none text-left prose-headings:font-bold prose-a:text-blue-600 prose-pre:bg-slate-900">
+      <!-- 目次 (TOC) -->
+      <nav class="toc-nav mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200" aria-label="目次">
+        <h2 class="toc-title text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">目次</h2>
+        <ol class="toc-list text-sm text-slate-600 space-y-1.5">
+        </ol>
+      </nav>
+
+      <article class="prose prose-slate max-w-none text-left prose-headings:font-bold prose-a:text-blue-600 prose-pre:bg-slate-900" id="article-content">
         <slot />
       </article>
+
+      <!-- 関連記事 -->
+      {scoredPosts.length > 0 && (
+        <section class="mt-10 pt-6 border-t border-slate-200">
+          <h3 class="text-lg font-bold text-slate-900 mb-4">関連記事</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {scoredPosts.map((post) => (
+              <a href={post.url} class="group flex gap-3 p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-blue-50 hover:border-blue-200 transition-colors no-underline">
+                {post.frontmatter.image && (
+                  <img
+                    src={post.frontmatter.image}
+                    alt={post.frontmatter.title}
+                    class="w-20 h-14 object-cover rounded-lg border border-slate-200 flex-shrink-0"
+                    loading="lazy"
+                  />
+                )}
+                <div class="min-w-0">
+                  <p class="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                    {post.frontmatter.title}
+                  </p>
+                  <p class="text-xs text-slate-500 mt-1">{post.frontmatter.pubDate}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <!-- 関連商品・アフィリエイトエリア（フォールバック: 本文にアフィリエイトブロックがない場合のみ表示） -->
       <section class="mt-10 pt-6 border-t border-slate-200 affiliate-fallback">
@@ -219,12 +316,60 @@ const schemaOrgJSONLD = {
       .affiliate-fallback {
         display: none;
       }
+
+      /* TOC目次スタイル */
+      .toc-link {
+        display: block;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        border-left: 2px solid transparent;
+      }
+      .toc-link:hover {
+        background-color: #f1f5f9;
+      }
+      .toc-link-active {
+        color: #2563eb !important;
+        border-left-color: #2563eb;
+        background-color: #eff6ff;
+        font-weight: 600;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
 
     <script>
-      // 本文にアフィリエイトブロックがある場合、フォールバックセクションを表示
       document.addEventListener('DOMContentLoaded', () => {
-        const article = document.querySelector('article');
+        // TOC生成: 記事内のh2/h3を抽出して目次を構築
+        const article = document.getElementById('article-content');
+        const tocList = document.querySelector('.toc-list');
+        if (article && tocList) {
+          const headings = article.querySelectorAll('h2, h3, h4');
+          if (headings.length > 0) {
+            headings.forEach((heading, index) => {
+              if (!heading.id) {
+                heading.id = 'section-' + index;
+              }
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = '#' + heading.id;
+              a.textContent = heading.textContent;
+              a.className = 'toc-link hover:text-blue-600 transition-colors no-underline';
+              const level = parseInt(heading.tagName.charAt(1));
+              if (level === 3) {
+                li.style.marginLeft = '1.25rem';
+              } else if (level === 4) {
+                li.style.marginLeft = '2.5rem';
+              }
+              li.appendChild(a);
+              tocList.appendChild(li);
+            });
+          } else {
+            document.querySelector('.toc-nav')?.remove();
+          }
+        }
+
+        // 本文にアフィリエイトブロックがある場合、フォールバックセクションを表示
         const fallback = document.querySelector('.affiliate-fallback');
         if (article && fallback) {
           const hasAffiliate = article.querySelector('a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]');
@@ -263,6 +408,36 @@ const schemaOrgJSONLD = {
             console.log(`[Affiliate Inline Click] platform=${platform} url=${link.href}`);
           });
         });
+
+        // TOCリンクのスムーズスクロール
+        document.querySelectorAll('.toc-link').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.replaceState(null, '', '#' + targetId);
+            }
+          });
+        });
+
+        // スクロール時に現在位置のTOCハイライト
+        if (tocList && headings.length > 0) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              const link = tocList.querySelector('a[href="#' + entry.target.id + '"]');
+              if (link) {
+                if (entry.isIntersecting) {
+                  link.classList.add('toc-link-active');
+                } else {
+                  link.classList.remove('toc-link-active');
+                }
+              }
+            });
+          }, { rootMargin: '-80px 0px -80% 0px' });
+          headings.forEach(h => observer.observe(h));
+        }
       });
     </script>
   </body>

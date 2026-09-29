@@ -6,6 +6,7 @@ export const GET: APIRoute = async (context) => {
     frontmatter: {
       title: string;
       pubDate: string;
+      slug?: string;
       description?: string;
       author?: string;
       tags?: string[];
@@ -18,6 +19,7 @@ export const GET: APIRoute = async (context) => {
 
   const items = Object.entries(postImports).map(([path, module]) => {
     const filename = path.split('/').pop()?.replace('.md', '') || '';
+    const slug = module.frontmatter.slug || filename;
     const { title, pubDate, description = '', author = 'AI Writer' } = module.frontmatter;
 
     let pubDateObj = new Date(pubDate);
@@ -25,7 +27,7 @@ export const GET: APIRoute = async (context) => {
       pubDateObj = new Date();
     }
 
-    const postPath = `${basePath}/posts/${filename}`;
+    const postPath = `${basePath}/posts/${slug}`;
     const fullUrl = new URL(postPath, siteUrl).href;
 
     return {
@@ -84,4 +86,3 @@ export const GET: APIRoute = async (context) => {
     },
   });
 };
-

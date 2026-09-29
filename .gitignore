@@ -27,5 +27,4 @@ pnpm-debug.log*
 __pycache__/
 *.pyc
 
-# AI Memory Bank (contains API keys)
-docs/ai/
+

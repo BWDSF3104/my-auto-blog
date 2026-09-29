@@ -1,34 +1,50 @@
 ---
-const postImports = import.meta.glob<{
-  frontmatter: {
-    title: string;
-    pubDate: string;
-    description: string;
-    slug?: string;
-    tags?: string[];
-    image?: string;
-  };
-  url: string;
-}>('../content/posts/*.md', { eager: true });
+export async function getStaticPaths() {
+  const postImports = import.meta.glob<{
+    frontmatter: {
+      title: string;
+      pubDate: string;
+      description: string;
+      slug?: string;
+      tags?: string[];
+      image?: string;
+    };
+    url: string;
+  }>('../../content/posts/*.md', { eager: true });
 
+  const tagMap = new Map<string, typeof postImports>();
+  Object.entries(postImports).forEach(([path, module]) => {
+    module.frontmatter.tags?.forEach(tag => {
+      if (!tagMap.has(tag)) tagMap.set(tag, {});
+      tagMap.get(tag)![path] = module;
+    });
+  });
+
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+  return Array.from(tagMap.keys()).map(tag => {
+    const tagPosts = Object.entries(tagMap.get(tag)!).map(([path, module]) => {
+      const filename = path.split('/').pop()?.replace('.md', '') || '';
+      const slug = module.frontmatter.slug || filename;
+      return {
+        frontmatter: module.frontmatter,
+        url: `${baseUrl}/posts/${slug}`
+      };
+    });
+    tagPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+
+    return {
+      params: { tag },
+      props: { tag, posts: tagPosts }
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const posts = Object.entries(postImports).map(([path, module]) => {
-  const filename = path.split('/').pop()?.replace('.md', '') || '';
-  const slug = module.frontmatter.slug || filename;
-  return {
-    frontmatter: module.frontmatter,
-    url: `${baseUrl}/posts/${slug}`
-  };
-});
-
-posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
-
-const pageTitle = "BWD's AI Auto Blog";
-const siteDescription = "Gemini API × GitHub Actions による自動生成技術＆ストーリーブログ";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = posts[0]?.frontmatter.image
-  ? (posts[0].frontmatter.image.startsWith('http') ? posts[0].frontmatter.image : new URL(posts[0].frontmatter.image, Astro.site).href)
-  : new URL(`${baseUrl}/favicon.svg`, Astro.site).href;
+const pageTitle = `#${tag} | BWD's AI Auto Blog`;
+const siteDescription = `"${tag}"タグの記事一覧（${posts.length}件）`;
 ---
 
 <html lang="ja">
@@ -36,25 +52,37 @@ const ogImageUrl = posts[0]?.frontmatter.image
     <meta charset="utf-8" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
-    <link rel="icon" href={`${baseUrl}/favicon.ico`} />
-    <link rel="alternate" type="application/rss+xml" title={`${pageTitle} RSS Feed`} href={`${baseUrl}/rss.xml`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={siteDescription} />
-
-    <!-- OGP (Open Graph Protocol) -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={pageTitle} />
+    <meta property="og:site_name" content="BWD's AI Auto Blog" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={siteDescription} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImageUrl} />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={siteDescription} />
-    <meta name="twitter:image" content={ogImageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "headline": `#${tag}`,
+      "description": siteDescription,
+      "url": canonicalURL.href,
+      "partOfSeries": {
+        "@type": "WebSite",
+        "@id": `${canonicalURL.origin}${baseUrl}/`
+      }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "ホーム", "item": `${canonicalURL.origin}${baseUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "タグ一覧", "item": `${canonicalURL.origin}${baseUrl}/tags/` },
+        { "@type": "ListItem", "position": 3, "name": `#${tag}` }
+      ]
+    })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -90,6 +118,22 @@ const ogImageUrl = posts[0]?.frontmatter.image
         color: #64748b;
         font-size: 0.95rem;
         margin: 0;
+      }
+      .back-links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .back-link {
+        display: inline-flex;
+        items-center;
+        font-size: 0.9rem;
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        text-decoration: underline;
       }
       .post-list {
         list-style: none;
@@ -175,8 +219,21 @@ const ogImageUrl = posts[0]?.frontmatter.image
   </head>
   <body>
     <header>
-      <h1>{pageTitle}</h1>
-      <p class="subtitle">Gemini API ＆ GitHub Actions による自動生成Blog</p>
+      <nav class="back-links" aria-label="パンくずリスト">
+        <ol class="flex items-center gap-1.5 text-sm text-slate-500" style="list-style: none; padding: 0; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #64748b;">
+          <li><a href={baseUrl} class="back-link" style="text-decoration: none; color: #64748b;">ホーム</a></li>
+          <li>›</li>
+          <li><a href={`${baseUrl}/tags`} class="back-link" style="text-decoration: none; color: #64748b;">タグ一覧</a></li>
+          <li>›</li>
+          <li><span class="font-medium" style="color: #334155;">#{tag}</span></li>
+        </ol>
+      </nav>
+      <div class="back-links">
+        <a href={baseUrl} class="back-link">← 記事一覧に戻る</a>
+        <a href={`${baseUrl}/tags`} class="back-link">→ 全タグを見る</a>
+      </div>
+      <h1>#{tag}</h1>
+      <p class="subtitle">{posts.length}件の記事</p>
     </header>
 
     <main>
@@ -203,8 +260,8 @@ const ogImageUrl = posts[0]?.frontmatter.image
                   </h2>
                   <div class="post-meta">
                     <span>📅 {post.frontmatter.pubDate}</span>
-                    {post.frontmatter.tags && post.frontmatter.tags.map((tag: string) => (
-                      <a href={`${baseUrl}/tags/${encodeURIComponent(tag)}`} class="tag">#{tag}</a>
+                    {post.frontmatter.tags && post.frontmatter.tags.map((t: string) => (
+                      <a href={`${baseUrl}/tags/${encodeURIComponent(t)}`} class="tag">#{t}</a>
                     ))}
                   </div>
                   <p class="post-description">{post.frontmatter.description}</p>

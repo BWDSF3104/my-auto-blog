@@ -31,6 +31,7 @@
 
 ---
 title: "記事のタイトル"
+slug: "seo-friendly-slug-based-on-title"
 pubDate: "{pub_date_str}"
 description: "記事の短い要約（80〜120文字程度）"
 author: "AI Writer"
@@ -39,6 +40,11 @@ tags: ["Tech", "AI"]
 art_style: "anime style, illustration, cel shading, vibrant colors"
 image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
 ---
+
+【slug の指定ルール】
+・タイトルに基づいてSEOに優しいURLスラッグを英小文字＋ハイフン区切りで生成してください（例: "best-javascript-frameworks-2026"）。
+・日本語タイトルは読みやすいローマ字に変換してください。
+・2-5語程度に簡潔にしてください。
 
 【Frontmatterおよび本文内 IMAGE_PROMPT の指定ルール】
 ・この記事の技術テーマを視覚的に表現する英語のキーワード（カンマ区切り）を出力してください。

@@ -6,6 +6,7 @@ export const GET: APIRoute = async (context) => {
     frontmatter: {
       title: string;
       pubDate: string;
+      slug?: string;
       description?: string;
       tags?: string[];
       [key: string]: any;
@@ -17,6 +18,7 @@ export const GET: APIRoute = async (context) => {
 
   const posts = Object.entries(postImports).map(([path, module]) => {
     const filename = path.split('/').pop()?.replace('.md', '') || '';
+    const slug = module.frontmatter.slug || filename;
     const dateStr = module.frontmatter.pubDate;
     let isoDate: string;
     try {
@@ -25,7 +27,7 @@ export const GET: APIRoute = async (context) => {
       isoDate = new Date().toISOString();
     }
 
-    const postPath = `${basePath}/posts/${filename}`;
+    const postPath = `${basePath}/posts/${slug}`;
     const fullUrl = new URL(postPath, siteUrl).href;
 
     return {
@@ -34,7 +36,6 @@ export const GET: APIRoute = async (context) => {
     };
   });
 
-  // 最新記事順にソート
   posts.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
 
   const homePath = basePath ? `${basePath}/` : '/';
@@ -65,4 +66,3 @@ ${posts
     },
   });
 };
-

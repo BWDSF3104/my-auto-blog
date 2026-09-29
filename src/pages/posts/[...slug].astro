@@ -2,7 +2,6 @@
 import PostLayout from '../../layouts/PostLayout.astro';
 
 export async function getStaticPaths() {
-  // src/content/posts/ 配下の全 Markdown ファイルを取得
   const postImports = import.meta.glob<{
     file: string;
     frontmatter: any;
@@ -11,7 +10,8 @@ export async function getStaticPaths() {
 
   return Object.values(postImports).map((post) => {
     const filename = post.file.split('/').pop() || '';
-    const slug = filename.replace('.md', '');
+    const fallbackSlug = filename.replace('.md', '');
+    const slug = post.frontmatter.slug || fallbackSlug;
 
     return {
       params: { slug },

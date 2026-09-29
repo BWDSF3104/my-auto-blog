@@ -1031,6 +1031,56 @@ def generate_post():
         elif "---" in content:
             content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
 
+    # SEOスラッグの検証・生成: slug フィールドがない、または無効な場合はタイトルから生成
+    slug_match = re.search(r'^slug:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    if not slug_match or not slug_match.group(1).strip():
+        title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+        raw_title = title_match.group(1).strip() if title_match else file_timestamp
+        # 日本語→ローマ字風スラッグの簡易生成（全角→半角＋アルファベット・数字・ハイフンのみ）
+        import unicodedata
+        normalized = unicodedata.normalize('NFKC', raw_title)
+        slug_chars = []
+        for ch in normalized:
+            if ch.isascii() and ch.isalnum():
+                slug_chars.append(ch.lower())
+            elif ch.isascii() and ch in ' -':
+                slug_chars.append('-')
+            elif '\u3041' <= ch <= '\u3096':  # ひらがな
+                code = ord(ch) - ord('\u3041')
+                a = code // 26
+                i = code % 26
+                if a < 10:
+                    slug_chars.append(chr(ord('a') + a))
+                    if i in (8, 10, 12, 14, 16, 18, 20, 22, 24):
+                        slug_chars.append('u')
+                elif a == 10:
+                    slug_chars.append('n')
+                elif a == 11:
+                    slug_chars.append('y')
+                    slug_chars.append(chr(ord('a') + i))
+                else:
+                    slug_chars.append(chr(ord('a') + (a - 1)))
+            elif '\u30A1' <= ch <= '\u30F6':  # カタカナ
+                code = ord(ch) - ord('\u30A1')
+                a = code // 26
+                i = code % 26
+                if a < 10:
+                    slug_chars.append(chr(ord('a') + a))
+                    if i in (8, 10, 12, 14, 16, 18, 20, 22, 24):
+                        slug_chars.append('u')
+                elif a == 10:
+                    slug_chars.append('n')
+                elif a == 11:
+                    slug_chars.append('y')
+                    slug_chars.append(chr(ord('a') + i))
+                else:
+                    slug_chars.append(chr(ord('a') + (a - 1)))
+            # 漢字・他の文字はスキップ
+        slug = re.sub(r'-+', '-', ''.join(slug_chars)).strip('-')[:60]
+        if slug and "---" in content:
+            content = content.replace("---", f"---\nslug: \"{slug}\"", 1)
+            print(f"🔗 スラッグを自動生成: {slug}")
+
     # 系統情報（prompt_type）をFrontmatterに付与（次回以降の同系統判定の精度向上）
     if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:
         content = content.replace("---", f"---\nprompt_type: \"{prompt_type}\"", 1)

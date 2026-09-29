@@ -1,0 +1,181 @@
+---
+const postImports = import.meta.glob<{
+  frontmatter: {
+    title: string;
+    pubDate: string;
+    description: string;
+    slug?: string;
+    tags?: string[];
+    image?: string;
+  };
+  url: string;
+}>('../content/posts/*.md', { eager: true });
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tagMap = new Map<string, number>();
+const posts = Object.entries(postImports).map(([path, module]) => {
+  const filename = path.split('/').pop()?.replace('.md', '') || '';
+  const slug = module.frontmatter.slug || filename;
+  module.frontmatter.tags?.forEach(tag => {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  });
+  return {
+    frontmatter: module.frontmatter,
+    url: `${baseUrl}/posts/${slug}`
+  };
+});
+
+posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+
+const tags = Array.from(tagMap.entries()).sort((a, b) => b[1] - a[1]);
+
+const pageTitle = "タグ一覧 | BWD's AI Auto Blog";
+const siteDescription = "ブログ記事のタグ別一覧ページ";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BWD's AI Auto Blog" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "headline": "タグ一覧",
+      "description": siteDescription,
+      "url": canonicalURL.href,
+      "partOfSeries": {
+        "@type": "WebSite",
+        "@id": `${canonicalURL.origin}${baseUrl}/`
+      }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "ホーム", "item": `${canonicalURL.origin}${baseUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "タグ一覧" }
+      ]
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BWD's AI Auto Blog",
+      "url": `${canonicalURL.origin}${baseUrl}/`,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${canonicalURL.origin}${baseUrl}/tags/{search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        line-height: 1.6;
+        color: #222;
+        background-color: #f8fafc;
+      }
+      header {
+        border-bottom: 2px solid #e2e8f0;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #0f172a;
+        margin: 0 0 0.5rem 0;
+      }
+      .subtitle {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .back-link {
+        display: inline-flex;
+        items-center;
+        font-size: 0.9rem;
+        color: #2563eb;
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .tag-item {
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .tag-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      .tag-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .tag-name:hover {
+        text-decoration: underline;
+      }
+      .tag-count {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-left: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="パンくずリスト">
+        <ol style="list-style: none; padding: 0; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #64748b;">
+          <li><a href={baseUrl} class="back-link" style="text-decoration: none; color: #64748b;">ホーム</a></li>
+          <li>›</li>
+          <li><span class="font-medium" style="color: #334155;">タグ一覧</span></li>
+        </ol>
+      </nav>
+      <a href={baseUrl} class="back-link">← 記事一覧に戻る</a>
+      <h1>タグ一覧</h1>
+      <p class="subtitle">全 {tags.length} タグ · {posts.length} 記事</p>
+    </header>
+
+    <main>
+      <ul class="tag-cloud">
+        {tags.map(([name, count]) => (
+          <li class="tag-item">
+            <a href={`${baseUrl}/tags/${encodeURIComponent(name)}`} class="tag-name">#{name}</a>
+            <span class="tag-count">({count})</span>
+          </li>
+        ))}
+      </ul>
+    </main>
+  </body>
+</html>
