@@ -11,6 +11,7 @@ import pillow_avif
 from google import genai
 from google.genai import errors
 from gradio_client import Client
+import yaml
 
 # --------------------------------------------------
 # 設定
@@ -1076,8 +1077,9 @@ def process_product_cards(content: str) -> str:
     print(f"🛍️ 商品カードを {len(products)} 件生成")
 
     # product_recommendations 行を Frontmatter から削除（出力に含めない）
+    # 改善: 継続行（category, price_range など）もキャッチ
     content = re.sub(
-        r'^product_recommendations:\s*\n(?:\s*-\s+.*\n?)*',
+        r'^product_recommendations:\s*\n((?:\s{0,8}[-:].*\n?|\s*\n?)*)',
         '',
         content,
         count=1,
@@ -1095,6 +1097,59 @@ def process_product_cards(content: str) -> str:
         # アフィリエイトセクションがない場合は記事末尾に追加
         content = content.strip() + "\n\n" + cards_html
 
+    return content
+
+
+# --------------------------------------------------
+# Frontmatter YAML 検証・修復
+# --------------------------------------------------
+def validate_and_fix_frontmatter(content: str) -> str:
+    """
+    Frontmatter (--- ... ---) の YAML を PyYAML で検証し、
+    解析失敗時に product_recommendations ブロックを安全に削除して再検証する。
+    """
+    open_fm = content.find("---")
+    if open_fm < 0:
+        return content
+
+    close_fm = content.find("\n---", open_fm + 3)
+    if close_fm < 0:
+        return content
+
+    fm_text = content[open_fm + 3:close_fm]
+
+    try:
+        yaml.safe_load(fm_text)
+        return content
+    except yaml.YAMLError:
+        pass
+
+    prod_idx = fm_text.find("product_recommendations")
+    if prod_idx < 0:
+        return content
+
+    before = fm_text[:prod_idx].rstrip("\n")
+    cleaned_fm = before + "\n"
+    try:
+        yaml.safe_load(cleaned_fm)
+        new_content = content[:open_fm + 3] + cleaned_fm + content[close_fm:]
+        print("[WARN] 破損した product_recommendations を削除して Frontmatter を修復しました")
+        return new_content
+    except yaml.YAMLError:
+        pass
+
+    cleaned_fm = re.sub(r"\n\s{0,8}-\s+name:.*", "", cleaned_fm)
+    cleaned_fm = re.sub(r"\n\s{0,8}category:.*", "", cleaned_fm)
+    cleaned_fm = re.sub(r"\n\s{0,8}price_range:.*", "", cleaned_fm)
+    try:
+        yaml.safe_load(cleaned_fm)
+        new_content = content[:open_fm + 3] + cleaned_fm + content[close_fm:]
+        print("[WARN] 破損した Frontmatter を正規表現で修復しました")
+        return new_content
+    except yaml.YAMLError:
+        pass
+
+    print("[ERROR] Frontmatter YAML の修復に失敗しました")
     return content
 
 
@@ -1260,6 +1315,9 @@ def generate_post():
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
     content = inject_affiliate_links(content, trend_keywords=trend_keywords)
+
+    # 5.6 Frontmatter YAML の最終検証・修復
+    content = validate_and_fix_frontmatter(content)
 
     # 6. 保存
     output_dir = "src/content/posts"
