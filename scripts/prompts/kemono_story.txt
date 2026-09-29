@@ -24,9 +24,10 @@
   挿入形式：<!-- IMAGE_PROMPT: "[character_1] action or background description" -->
   または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] action or background description" -->
 ・物語の結末付近または最終章の末尾に【1箇所】、関連書籍・グッズへのアフィリエイトリンクプレースホルダーを挿入してください。
-  挿入形式：<!-- AFFILIATE: "検索キーワード" | "アンカーテキスト" -->
-  例：<!-- AFFILIATE: "ケモノ 図鑑" | "ケモノキャラクターのイラスト集はこちら" -->
+  挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
+  例：<!-- AFFILIATE: "ケモノキャラクター図鑑 公式ガイド" | "ケモノキャラクターのイラスト集はこちら" -->
   ※ 物語の世界観を壊さないよう、エピローグや著者あとがきのような形で挿入してください。
+  ※ 商品名は「実在する」具体的なタイトルを使用してください。曖昧な検索キーワードは避けてください。
 
 {ng_instruction}
 
@@ -46,6 +47,13 @@ art_style: "anime style, illustration, cel shading, vibrant colors"
 character_1: "1boy, blue wolf, golden eyes, white chest fur, wearing red scarf"
 character_2: "1boy, black panther, emerald eyes, wearing leather vest"
 image_prompt: "[character_1, character_2] standing on a cliff at sunset, dramatic wind"
+product_recommendations:
+  - name: "関連書籍のタイトル"
+    category: "書籍"
+    price_range: "1000円台"
+  - name: "関連グッズの商品名"
+    category: "グッズ"
+    price_range: "3000円台"
 ---
 
 【slug の指定ルール】
@@ -58,6 +66,11 @@ image_prompt: "[character_1, character_2] standing on a cliff at sunset, dramati
 ・背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
 ・1人のみの物語の場合は character_2 を省略して構いません。
+
+【product_recommendations の指定ルール】
+・物語のテーマ・世界観に関連する「実在する」書籍・グッズ・関連商品を2〜3つ選定してください。
+・各商品には `name`（具体名）, `category`（書籍, フィギュア, ゲーム, ソフトウェア, ガジェット等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・架空の商品名は使用しないでください。有名なタイトルや実際に販売されている商品を選んでください。
 
 ## 第1章：タイトル
 

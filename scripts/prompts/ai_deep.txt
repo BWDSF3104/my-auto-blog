@@ -10,6 +10,10 @@
 ・SEO配慮: タイトルには具体的な技術キーワードを含め、検索されやすい表現にしてください。
 ・専門用語は初出時に簡潔な解説を付けてください。
 ・実用性の観点から、解説した技術の「いつ使うか・使わないか」の判断基準を記載してください。
+・記事本文の自然な流れの中で【1〜2箇所】、関連書籍・ツール・サービスへのアフィリエイトリンクプレースホルダーを挿入してください。
+  挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
+  例：<!-- AFFILIATE: "深層学習 入門書" | "深層学習の入門書はこちら" -->
+  ※ 記事のトーンを壊さないよう、推奨や参考資料として自然に挿入してください。
 
 {ng_instruction}
 
@@ -26,6 +30,13 @@ prompt_type: "ai_deep"
 tags: ["Tech", "AI"]
 art_style: "anime style, illustration, cel shading, vibrant colors"
 image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
+product_recommendations:
+  - name: "関連書籍のタイトル"
+    category: "書籍"
+    price_range: "1000円台"
+  - name: "関連ツールの名前"
+    category: "ソフトウェア"
+    price_range: "無料"
 ---
 
 【Frontmatterおよび本文内 IMAGE_PROMPT の指定ルール】
@@ -34,6 +45,11 @@ image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room
 ・画質指定（masterpiece等）はPython側で自動付与されるため含めないでください。
 ・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください（例: "watercolor, soft pastel, gentle lighting" や "pixel art, retro, 16-bit style"）。記事内の全画像はこのスタイルで統一されます。
 ・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
+
+【product_recommendations の指定ルール】
+・記事のテーマに関連する「実在する」書籍・ツール・グッズを2〜3つ選定してください。
+・各商品には `name`（具体名）, `category`（書籍, フィギュア, ゲーム, ソフトウェア, ガジェット等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・架空の商品名は使用しないでください。有名なタイトルや実際に販売されている商品を選んでください。
 
 ## 概要と背景
 

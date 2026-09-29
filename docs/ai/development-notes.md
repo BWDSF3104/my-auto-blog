@@ -194,3 +194,29 @@ AI が記事内容に合わせてキーワードを出力。`inject_affiliate_li
 - 検索キーワードの具体化 → 検索結果の関連性向上 → CTR向上
 - トレンドに即した記事 × トレンドに即した商品リンク = 一貫性のあるUX
 - Amazon/楽天の検索ページで「この記事のテーマに関連する商品」が表示される
+
+## アフィリエイト商品カードの導入（2026-09-29 実装完了）
+
+### 背景
+- 既存のアフィリエイトリンクは `amazon.co.jp/s?k=keyword` 形式で検索結果ページへ誘導するのみ
+- 商品画像・価格・評価・商品名が表示されず、購買意欲を十分に引き出せていない
+
+### 実装内容
+
+| 項目 | 内容 | ファイル |
+|------|------|----------|
+| **product_recommendations フィールド** | Frontmatter に YAML リスト形式で具体商品名・カテゴリ・価格帯を記録 | `prompts/default.txt`, `prompts/kemono_story.txt`, `prompts/ai_deep.txt` |
+| **具体商品名指向の指示** | プロンプトに「実在する具体商品名を出力」指示を追加。架空商品名を禁止 | 同上 |
+| **商品カードパーサー** | `extract_product_recommendations()` で Frontmatter から YAML ブロックをパース | `scripts/generate_article.py:947-989` |
+| **商品カードHTML生成** | `generate_product_cards()` で商品名・カテゴリ・価格帯・Amazon/楽天リンクを含むHTMLカードを生成 | `scripts/generate_article.py:992-1057` |
+| **商品カード処理パイプライン** | `process_product_cards()` をメイン処理のステップ5.48に統合。アフィリエイトセクションの手前にカードを挿入 | `scripts/generate_article.py:1060-1096` |
+| **商品カードCSS** | レスポンシブ対応のカードスタイル。カテゴリアイコン、価格表示、Amazon/楽天ボタン | `src/styles/global.css` |
+
+### データフロー
+```
+記事生成 → Geminiが product_recommendations を Frontmatter に出力
+→ extract_product_recommendations() でパース
+→ generate_product_cards() でHTMLカード生成
+→ process_product_cards() で記事に挿入（Frontmatterからは削除）
+→ 最終出力: 商品カード + アフィリエイトセクション
+```

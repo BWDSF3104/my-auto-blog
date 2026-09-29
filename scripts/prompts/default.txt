@@ -25,6 +25,15 @@
 
 {ng_instruction}
 
+【アフィリエイトリンクの指定ルール】
+・記事のテーマに関連する実在する商品・書籍・グッズを【2〜3つ】選定してください。
+・各商品には「具体名（商品名や書籍のタイトル）」、「カテゴリ（例: 書籍, フィギュア, ゲーム, ソフトウェア, ガジェット）」、「価格帯（例: 1000円台, 3000円台, 無料）」を指定してください。
+・Frontmatterの `product_recommendations` フィールドにYAMLリスト形式で記述してください。
+・記事本文の自然な流れの中で【1〜2箇所】、以下の形式でインラインアフィリエイトプレースホルダーを挿入してください。
+  挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
+  例：<!-- AFFILIATE: "ドラゴンクエストXI" | "ドラゴンクエストXIのレビューはこちら" -->
+  ※ 記事のトーンを壊さないよう、推奨や参考資料として自然に挿入してください。
+
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
 余計な挨拶文や ```markdown などのコードブロック囲みは含めないでください。
@@ -39,6 +48,13 @@ prompt_type: "default"
 tags: ["Tech", "AI"]
 art_style: "anime style, illustration, cel shading, vibrant colors"
 image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room"
+product_recommendations:
+  - name: "商品名1"
+    category: "書籍"
+    price_range: "1000円台"
+  - name: "商品名2"
+    category: "グッズ"
+    price_range: "3000円台"
 ---
 
 【slug の指定ルール】
@@ -52,6 +68,11 @@ image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room
 ・画質指定（masterpiece等）はPython側で自動付与されるため含めないでください。
 ・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください（例: "watercolor, soft pastel, gentle lighting" や "pixel art, retro, 16-bit style"）。記事内の全画像はこのスタイルで統一されます。
 ・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
+
+【product_recommendations の指定ルール】
+・記事のテーマに関連する「実在する」商品・書籍・グッズを2〜3つ選定してください。
+・各商品には `name`（具体名）, `category`（書籍, フィギュア, ゲーム, ソフトウェア, ガジェット等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・架空の商品名は使用しないでください。有名なタイトルや実際に販売されている商品を選んでください。
 
 ## はじめに
 （導入文）

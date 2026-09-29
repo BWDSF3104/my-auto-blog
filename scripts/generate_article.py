@@ -945,6 +945,160 @@ def _extract_affiliate_keyword(title: str) -> str | None:
 
 
 # --------------------------------------------------
+# product_recommendations パーサー
+# --------------------------------------------------
+def extract_product_recommendations(content: str) -> list[dict]:
+    """
+    Frontmatter から product_recommendations YAML ブロックを抽出・パースする。
+    例:
+      product_recommendations:
+        - name: "商品名"
+          category: "書籍"
+          price_range: "1000円台"
+    """
+    block_match = re.search(
+        r'^product_recommendations:\s*\n((?:\s*-\s+.*\n?)+)',
+        content,
+        re.MULTILINE,
+    )
+    if not block_match:
+        return []
+
+    block = block_match.group(1)
+    products = []
+    current = {}
+    for line in block.splitlines():
+        item_match = re.match(r'^\s+-\s+name:\s*["\']?(.*?)["\']?\s*$', line)
+        if item_match:
+            if current:
+                products.append(current)
+            current = {"name": item_match.group(1).strip()}
+            continue
+        cat_match = re.match(r'^\s+category:\s*["\']?(.*?)["\']?\s*$', line)
+        if cat_match and current:
+            current["category"] = cat_match.group(1).strip()
+            continue
+        price_match = re.match(r'^\s+price_range:\s*["\']?(.*?)["\']?\s*$', line)
+        if price_match and current:
+            current["price_range"] = price_match.group(1).strip()
+            continue
+
+    if current and "name" in current:
+        products.append(current)
+
+    return products
+
+
+# --------------------------------------------------
+# 商品カード HTML 生成
+# --------------------------------------------------
+def generate_product_cards(products: list[dict], title: str) -> str:
+    """
+    商品リストから商品カード風のHTMLブロックを生成。
+    各カードは商品名・カテゴリ・価格帯・Amazon/楽天検索リンクを含む。
+    """
+    if not products:
+        return ""
+
+    import urllib.parse
+
+    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
+    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
+    utm_content = urllib.parse.quote(title[:50])
+
+    cards_html = ""
+    for prod in products:
+        name = prod.get("name", "").strip()
+        if not name:
+            continue
+
+        category = prod.get("category", "商品")
+        price = prod.get("price_range", "")
+        encoded_kw = urllib.parse.quote(name)
+
+        amazon_url = (
+            f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+        rakuten_url = (
+            f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
+            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+        )
+
+        # カテゴリに応じたアイコン
+        cat_icons = {
+            "書籍": "📚",
+            "フィギュア": "🎎",
+            "ゲーム": "🎮",
+            "ソフトウェア": "💻",
+            "ガジェット": "🔧",
+            "グッズ": "🎁",
+        }
+        icon = cat_icons.get(category, "📦")
+
+        price_html = ""
+        if price:
+            price_html = f'<div class="pc-price">{price}</div>'
+
+        cards_html += f"""
+<div class="product-card">
+  <div class="pc-icon">{icon}</div>
+  <div class="pc-info">
+    <div class="pc-name">{name}</div>
+    <div class="pc-category">{category}</div>
+    {price_html}
+  </div>
+  <div class="pc-links">
+    <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow" class="pc-btn pc-btn-amazon">Amazon</a>
+    <a href="{rakuten_url}" target="_blank" rel="noopener noreferrer nofollow" class="pc-btn pc-btn-rakuten">楽天</a>
+  </div>
+</div>"""
+
+    return f'\n<div class="product-cards">\n{cards_html}\n</div>\n'
+
+
+def process_product_cards(content: str) -> str:
+    """
+    Frontmatter の product_recommendations をパースし、記事末尾に
+    商品カードHTMLブロックを挿入する（アフィリエイトセクションの手前）。
+    """
+    products = extract_product_recommendations(content)
+    if not products:
+        return content
+
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    title = title_match.group(1).strip() if title_match else "post"
+
+    cards_html = generate_product_cards(products, title)
+    if not cards_html:
+        return content
+
+    print(f"🛍️ 商品カードを {len(products)} 件生成")
+
+    # product_recommendations 行を Frontmatter から削除（出力に含めない）
+    content = re.sub(
+        r'^product_recommendations:\s*\n(?:\s*-\s+.*\n?)*',
+        '',
+        content,
+        count=1,
+        flags=re.MULTILINE,
+    )
+
+    # アフィリエイトセクションの手前に挿入
+    aff_marker = "### 📚 テーマ関連のおすすめアイテム"
+    if aff_marker in content:
+        content = content.replace(
+            aff_marker,
+            cards_html + "\n\n" + aff_marker,
+        )
+    else:
+        # アフィリエイトセクションがない場合は記事末尾に追加
+        content = content.strip() + "\n\n" + cards_html
+
+    return content
+
+
+# --------------------------------------------------
 # メイン処理
 # --------------------------------------------------
 def generate_post():
@@ -1100,6 +1254,9 @@ def generate_post():
 
     # 5.45 比較表内商品プレースホルダーの実リンク置換
     content = process_inline_products(content)
+
+    # 5.48 product_recommendations → 商品カードHTMLの生成と挿入
+    content = process_product_cards(content)
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
     content = inject_affiliate_links(content, trend_keywords=trend_keywords)

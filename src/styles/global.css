@@ -1,2 +1,112 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/* 商品カード */
+.product-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+}
+
+.pc-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.pc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pc-name {
+  font-weight: 600;
+  font-size: 0.95em;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pc-category {
+  font-size: 0.8em;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.pc-price {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #ea580c;
+  margin-top: 4px;
+}
+
+.pc-links {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pc-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.8em;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.pc-btn:hover {
+  opacity: 0.85;
+}
+
+.pc-btn-amazon {
+  background: #ff9900;
+  color: #000;
+}
+
+.pc-btn-rakuten {
+  background: #e0003b;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .product-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .pc-links {
+    width: 100%;
+  }
+
+  .pc-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
