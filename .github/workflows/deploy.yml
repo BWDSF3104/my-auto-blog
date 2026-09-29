@@ -42,9 +42,10 @@ jobs:
         env:
           # GITHUB_TOKEN は Actions �?で自動提供される?��レート制限緩�?: 1,000req/h?�?
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROMPT_TYPE: "kemono_story"
         run: |
           mkdir -p data
-          python scripts/fetch_topics.py
+          python scripts/fetch_topics.py --prompt-type "$PROMPT_TYPE"
 
       # -------------------------------------------------------
       # 1-B. Gemini でケモノ小説を生�?

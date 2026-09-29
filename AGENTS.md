@@ -29,6 +29,11 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 - Update `docs/ai/known-issues.md` when discovering new issues or resolving existing ones
 - Update `docs/ai/development-notes.md` after completing implementation work
 
+### Git Workflow
+- After completing file changes, always run `git pull` then `git add`, `git commit`, `git push`
+- Commit message format: `feat: <description>` for features, `fix: <description>` for bug fixes
+- Never use `git push --force` or modify remote history
+
 ### Scope
 - This project is a static site generator blog
 - No user authentication, no database, no server-side rendering

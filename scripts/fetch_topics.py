@@ -31,19 +31,19 @@ TTL_HOURS = 24  # データの有効期間（時間）
 
 # 収集する Subreddit 一覧（認証不要）
 REDDIT_SUBS = [
-    "kemono",       # ケモノ全般
-    "furry",        # Furry 全般
-    "pokemon",      # ポケモン
-    "furry_irl",    # Furry 日常
-    "localllama",   # LLM / AI (最新技術)
-    "MachineLearning",
+    {"name": "kemono", "category": "kemono"},
+    {"name": "furry", "category": "kemono"},
+    {"name": "pokemon", "category": "pokemon"},
+    {"name": "furry_irl", "category": "kemono"},
+    {"name": "localllama", "category": "tech"},
+    {"name": "MachineLearning", "category": "tech"},
 ]
 
 # e621 タグ検索 (公開 GET / 認証不要)
 E621_TAGS = [
-    "kemono order:date",
-    "dragon order:date",
-    "pokemon order:date",
+    {"tags": "kemono order:date", "category": "kemono"},
+    {"tags": "dragon order:date", "category": "kemono"},
+    {"tags": "pokemon order:date", "category": "pokemon"},
 ]
 
 # RSS フィード一覧
@@ -73,12 +73,13 @@ RSS_FEEDS = [
 # Hacker News: トップ記事
 HN_TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json"
 HN_ITEM_URL = "https://hacker-news.firebaseio.com/v0/item/{id}.json"
+HN_CATEGORIES = ["tech"]
 
 # GitHub Search: furry / kemono / pokemon 関連リポジトリ
 GITHUB_SEARCH_QUERIES = [
-    "kemono+in:name,description",
-    "furry+language:python",
-    "pokemon+language:typescript",
+    {"query": "kemono+in:name,description", "category": "kemono"},
+    {"query": "furry+language:python", "category": "kemono"},
+    {"query": "pokemon+language:typescript", "category": "pokemon"},
 ]
 
 # Bluesky 検索キーワード
@@ -144,8 +145,10 @@ def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
 # 各情報源の収集関数
 # --------------------------------------------------
 
-def collect_hacker_news(limit: int = 10) -> list[dict]:
-    """Hacker News のトップストーリーを取得する。"""
+def collect_hacker_news(limit: int = 10, categories: list[str] = None) -> list[dict]:
+    """Hacker News のトップストーリーを取得する。categories が指定された場合は tech カテゴリが含まれている時のみ収集。"""
+    if categories and "tech" not in categories:
+        return []
     print("[HN] Fetching top stories...")
     story_ids = fetch_json(HN_TOP_STORIES_URL)
     if not story_ids:
@@ -170,9 +173,8 @@ def collect_hacker_news(limit: int = 10) -> list[dict]:
     return results
 
 
-def collect_reddit(limit_per_sub: int = 5) -> list[dict]:
-    """Reddit の各 Subreddit から hot 投稿を取得する。"""
-    # GitHub Actions 環境に近い UA を指定することで 403 を回避しやすくなる
+def collect_reddit(limit_per_sub: int = 5, categories: list[str] = None) -> list[dict]:
+    """Reddit の各 Subreddit から hot 投稿を取得する。categories が指定された場合は該当カテゴリのみ収集。"""
     reddit_ua = "Mozilla/5.0 (compatible; my-auto-blog/1.0; +https://github.com)"
     headers = {
         "User-Agent": reddit_ua,
@@ -180,9 +182,12 @@ def collect_reddit(limit_per_sub: int = 5) -> list[dict]:
     }
     results = []
 
-    for sub in REDDIT_SUBS:
+    for sub_config in REDDIT_SUBS:
+        sub = sub_config["name"]
+        cat = sub_config.get("category", "other")
+        if categories and cat not in categories:
+            continue
         print(f"[Reddit] Fetching r/{sub}...")
-        # 通常エンドポイント → old.reddit.com の順にフォールバック
         urls_to_try = [
             f"https://www.reddit.com/r/{sub}/hot.json?limit={limit_per_sub}&raw_json=1",
             f"https://old.reddit.com/r/{sub}/hot.json?limit={limit_per_sub}&raw_json=1",
@@ -198,7 +203,6 @@ def collect_reddit(limit_per_sub: int = 5) -> list[dict]:
             continue
         try:
             posts = data["data"]["children"]
-
         except (KeyError, TypeError):
             continue
 
@@ -212,23 +216,12 @@ def collect_reddit(limit_per_sub: int = 5) -> list[dict]:
                     "url": f"https://www.reddit.com{permalink}",
                     "score": pd.get("score", 0),
                     "source": f"Reddit/r/{sub}",
-                    "category": _categorize_subreddit(sub),
+                    "category": cat,
                 })
-        time.sleep(0.5)  # Reddit レート制限対策
+        time.sleep(0.5)
 
     print(f"  -> {len(results)} Reddit posts collected")
     return results
-
-
-def _categorize_subreddit(sub: str) -> str:
-    sub_lower = sub.lower()
-    if sub_lower in ("localllama", "machinelearning"):
-        return "tech"
-    if sub_lower in ("kemono", "furry", "furry_irl"):
-        return "kemono"
-    if sub_lower == "pokemon":
-        return "pokemon"
-    return "other"
 
 
 def _is_nsfw_post(post: dict) -> bool:
@@ -250,13 +243,17 @@ def _is_nsfw_post(post: dict) -> bool:
     return False
 
 
-def collect_e621(limit_per_tag: int = 5) -> list[dict]:
+def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[dict]:
     """e621 の公開 REST API で最新投稿を取得する（認証不要）。NSFW 投稿はフィルタする。"""
     headers = {"User-Agent": USER_AGENT}
     results = []
     filtered = 0
 
-    for tag_query in E621_TAGS:
+    for tag_config in E621_TAGS:
+        tag_query = tag_config["tags"]
+        cat = tag_config.get("category", "kemono")
+        if categories and cat not in categories:
+            continue
         print(f"[e621] Fetching tag: {tag_query}...")
         encoded = urllib.parse.quote(tag_query)
         url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}"
@@ -277,10 +274,10 @@ def collect_e621(limit_per_tag: int = 5) -> list[dict]:
                 "url": f"https://e621.net/posts/{pid}",
                 "score": post.get("score", 0) if isinstance(post.get("score"), int) else post.get("score", {}).get("total", 0),
                 "source": "e621",
-                "category": "kemono",
+                "category": cat,
                 "rating": post.get("rating", "q"),
             })
-        time.sleep(1.0)  # e621 推奨: 1req/s
+        time.sleep(1.0)
 
     if filtered:
         print(f"  [NSFW] {filtered} 件の投稿をフィルタしました")
@@ -288,11 +285,14 @@ def collect_e621(limit_per_tag: int = 5) -> list[dict]:
     return results
 
 
-def collect_rss_feeds() -> list[dict]:
-    """RSS / Atom フィードからトピックを収集する。"""
+def collect_rss_feeds(categories: list[str] = None) -> list[dict]:
+    """RSS / Atom フィードからトピックを収集する。categories が指定された場合は該当カテゴリのみ収集。"""
     results = []
 
     for feed in RSS_FEEDS:
+        cat = feed.get("category", "other")
+        if categories and cat not in categories:
+            continue
         print(f"[RSS] Fetching {feed['name']}...")
         items = fetch_rss(feed["url"])
         for item in items:
@@ -301,7 +301,7 @@ def collect_rss_feeds() -> list[dict]:
                 "url": item["url"],
                 "score": 0,
                 "source": feed["name"],
-                "category": feed["category"],
+                "category": cat,
             })
         time.sleep(0.3)
 
@@ -309,16 +309,19 @@ def collect_rss_feeds() -> list[dict]:
     return results
 
 
-def collect_github_trending(limit_per_query: int = 5) -> list[dict]:
+def collect_github_trending(limit_per_query: int = 5, categories: list[str] = None) -> list[dict]:
     """GitHub Search API でリポジトリを検索する（未認証: 60req/h）。"""
-    # GITHUB_TOKEN が使えれば自動的に付与してレート制限を緩和する
     github_token = os.environ.get("GITHUB_TOKEN", "")
     headers = {"Accept": "application/vnd.github+json", "User-Agent": USER_AGENT}
     if github_token:
         headers["Authorization"] = f"Bearer {github_token}"
 
     results = []
-    for query in GITHUB_SEARCH_QUERIES:
+    for query_config in GITHUB_SEARCH_QUERIES:
+        query = query_config["query"]
+        cat = query_config.get("category", "kemono")
+        if categories and cat not in categories:
+            continue
         print(f"[GitHub] Searching: {query}...")
         encoded = urllib.parse.quote(query)
         url = f"https://api.github.com/search/repositories?q={encoded}&sort=updated&order=desc&per_page={limit_per_query}"
@@ -332,7 +335,7 @@ def collect_github_trending(limit_per_query: int = 5) -> list[dict]:
                 "url": repo.get("html_url", ""),
                 "score": repo.get("stargazers_count", 0),
                 "source": "GitHub",
-                "category": _categorize_github_query(query),
+                "category": cat,
             })
         time.sleep(1.0)
 
@@ -340,22 +343,15 @@ def collect_github_trending(limit_per_query: int = 5) -> list[dict]:
     return results
 
 
-def _categorize_github_query(query: str) -> str:
-    q = query.lower()
-    if "pokemon" in q:
-        return "pokemon"
-    if "furry" in q or "kemono" in q:
-        return "kemono"
-    return "tech"
-
-
-def collect_bluesky(limit_per_query: int = 5) -> list[dict]:
+def collect_bluesky(limit_per_query: int = 5, categories: list[str] = None) -> list[dict]:
     """Bluesky (AT Protocol) の公開検索エンドポイントで投稿を検索する（認証不要）。"""
     results = []
 
     for search in BLUESKY_SEARCHES:
         query = search["query"]
         category = search["category"]
+        if categories and category not in categories:
+            continue
         print(f"[Bluesky] Searching: {query}...")
         encoded = urllib.parse.quote(query)
         url = f"https://public.api.bsky.app/xrpc/app.bsky.unspecced.searchPostsLazy?q={encoded}&limit={limit_per_query}"
@@ -383,10 +379,40 @@ def collect_bluesky(limit_per_query: int = 5) -> list[dict]:
 
 
 # --------------------------------------------------
+# カテゴリ マッピング
+# --------------------------------------------------
+
+# prompt_type -> 必要なカテゴリ一覧
+PROMPT_CATEGORIES = {
+    "default": ["tech"],
+    "ai_deep": ["tech"],
+    "kemono_story": ["kemono", "pokemon"],
+}
+
+# --------------------------------------------------
 # メイン処理
 # --------------------------------------------------
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="トレンド情報を収集")
+    parser.add_argument("--categories", nargs="+", help="収集するカテゴリ (例: tech kemono pokemon)")
+    parser.add_argument("--prompt-type", choices=list(PROMPT_CATEGORIES.keys()),
+                        help="プロンプトタイプを指定すると対応カテゴリが自動選択される")
+    args = parser.parse_args()
+
+    # カテゴリを決定
+    categories: list[str] = None
+    if args.categories:
+        categories = args.categories
+    elif args.prompt_type:
+        categories = PROMPT_CATEGORIES.get(args.prompt_type, None)
+        if categories:
+            print(f"[INFO] prompt_type={args.prompt_type} -> categories={categories}")
+
+    if categories:
+        print(f"[INFO] カテゴリフィルタ有効: {categories}")
+
     JST = timezone(timedelta(hours=9))
     now = datetime.now(JST)
 
@@ -398,37 +424,37 @@ def main():
 
     # 1. Hacker News
     try:
-        all_topics.extend(collect_hacker_news(limit=10))
+        all_topics.extend(collect_hacker_news(limit=10, categories=categories))
     except Exception as e:
         print(f"[ERROR] HackerNews: {e}")
 
     # 2. Reddit
     try:
-        all_topics.extend(collect_reddit(limit_per_sub=5))
+        all_topics.extend(collect_reddit(limit_per_sub=5, categories=categories))
     except Exception as e:
         print(f"[ERROR] Reddit: {e}")
 
     # 3. e621
     try:
-        all_topics.extend(collect_e621(limit_per_tag=5))
+        all_topics.extend(collect_e621(limit_per_tag=5, categories=categories))
     except Exception as e:
         print(f"[ERROR] e621: {e}")
 
     # 4. RSS
     try:
-        all_topics.extend(collect_rss_feeds())
+        all_topics.extend(collect_rss_feeds(categories=categories))
     except Exception as e:
         print(f"[ERROR] RSS: {e}")
 
     # 5. GitHub
     try:
-        all_topics.extend(collect_github_trending(limit_per_query=5))
+        all_topics.extend(collect_github_trending(limit_per_query=5, categories=categories))
     except Exception as e:
         print(f"[ERROR] GitHub: {e}")
 
     # 6. Bluesky
     try:
-        all_topics.extend(collect_bluesky(limit_per_query=5))
+        all_topics.extend(collect_bluesky(limit_per_query=5, categories=categories))
     except Exception as e:
         print(f"[ERROR] Bluesky: {e}")
 
