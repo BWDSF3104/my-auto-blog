@@ -6,6 +6,10 @@
 
 **Rationale**: Global TTL forced re-fetching all sources even when only one category was stale. Per-source TTL enables `generate_article.py` to auto-trigger `fetch_topics.py --prompt-type X` for only the expired categories, reducing API calls and generation time.
 
+**Rejected Alternatives**:
+- 単一ファイルの継続更新: 履歴が失われ、部分キャッシュとの整合性が取れない
+- 完全な部分キャッシュ（`.cache/` 別ディレクトリ）: 複雑すぎて維持コストが大きい
+
 **Impact**:
 - `fetch_topics.py`: Outputs timestamped files, updates symlink, supports `--prompt-type` for partial fetches, inherits uncollected source data from previous run
 - `generate_article.py`: Reads from symlink, checks per-source TTL via `_check_per_source_ttl()`, auto-triggers fetch via `_auto_fetch_topics()` when needed categories are stale
@@ -17,9 +21,9 @@
 
 **Rationale**: Higher-scoring topics are more relevant and should be prioritized when injecting trends into article prompts.
 
-**Impact**:
-- `fetch_topics.py`: Added score sorting for all categories and global list
-- `generate_article.py`: Topics are now selected by score, not collection order
+**Rejected Alternatives**:
+- 収集順のまま使用: 高スコアトピックが後方に埋もれる
+- 固定数のみカットオフ: しきい値の調整が難しい
 
 ## 2026-09-29: TTL Validation for Trend Data
 
@@ -37,13 +41,9 @@
 
 **Rationale**: Current affiliate links use generic tags ("Tech", "AI") producing broad search results with low CTR. Trend topics are specific and product-relevant (e.g., "ローカルLLM", "Claude Code"), enabling targeted affiliate search links.
 
-**Impact**:
-- `_append_trending_topics()`: Return type changes to `tuple[str, list[str]]` (prompt + keywords)
-- `inject_affiliate_links()`: Accepts optional `trend_keywords` parameter, prioritizes over tag-based extraction
-- All categories (tech, kemono, pokemon) produce affiliate keywords
-- Phase 2 (AI-inferred keywords via Frontmatter) is deferred pending Phase 1 results
-
-**Implementation order**: Phase 1 (keyword extraction from trends) → measure CTR → Phase 2 (AI inference) if needed.
+**Rejected Alternatives**:
+- Phase 2 (AI推論) の即時実装: 過剰設計でPhase 1の結果が不明
+- 手動でのキーワード指定: 自動化の目的に反する
 
 ## 2026-09-29: NSFW Filter for e621
 
@@ -51,10 +51,9 @@
 
 **Rationale**: e621 contains explicit-rated posts that should not appear in article prompts for non-kemono content. Filtering at collection prevents inappropriate content from entering the pipeline.
 
-**Impact**:
-- Added `_is_nsfw_post()` helper checking `rating=="e"` and known NSFW tags
-- `collect_e621()` skips NSFW posts and prints filter count
-- Rating field (`s`/`q`/`e`) added to collected post data for downstream filtering
+**Rejected Alternatives**:
+- 生成時にフィルタ: 不要なコンテンツがプロンプトに注入されるリスク
+- e621の完全な排除: kemono/pokemonカテゴリで有用なSafeコンテンツが失われる
 
 ## 2026-09-29: Category Strictification
 
@@ -62,10 +61,9 @@
 
 **Rationale**: Story/kemono prompts should only receive Safe-rated kemono content. Default tech prompts should only receive tech trends. Prevents category mismatch and inappropriate content.
 
-**Impact**:
-- Story mode (`kemono_story`, `novel`, `story`): filters to Safe-rated e621 posts only, categories `["kemono", "pokemon"]`
-- Default mode: categories `["tech"]` only
-- Other modes: categories `["tech", "kemono", "pokemon"]`
+**Rejected Alternatives**:
+- 全カテゴリを全モードに適用: 不適切なコンテンツが混入する
+- カテゴリを完全に分離: 柔軟性が低くなり、新しいモードの追加が困難
 
 ## 2026-09-29: Bluesky Collection
 
@@ -73,10 +71,9 @@
 
 **Rationale**: Reddit API blocks `.json` endpoints. Bluesky provides an open search API that can supplement tech and kemono trend data.
 
-**Impact**:
-- Added `BLUESKY_SEARCHES` config with 3 queries (LLM AI/tech, kemono furry art, pokemon)
-- Added `collect_bluesky()` function using `app.bsky.unspecced.searchPostsLazy` endpoint
-- Results categorized into `tech`, `kemono`, or `pokemon` based on query
+**Rejected Alternatives**:
+- Reddit OAuth 導入: ユーザーインタラクションが必要でCI/CDと相性が悪い
+- Twitter API: 有料プランが必要でコストが高い
 
 ## 2026-09-29: Frontmatter Reference Tracking
 
@@ -84,9 +81,9 @@
 
 **Rationale**: Enables traceability of which trends inspired each article. Useful for content auditing and understanding article provenance.
 
-**Impact**:
-- `_append_trending_topics()` now returns 3-element tuple: `(prompt, affiliate_keywords, source_urls)`
-- `trend_sources` YAML list added to frontmatter (up to 10 URLs)
+**Rejected Alternatives**:
+- 本文末尾にソースURLを明記: 記事の見た目が悪くなり、SEOに悪影響
+- ログファイルのみで追跡: 記事自体との関連が失われる
 
 ## 2026-09-29: Score Threshold Configuration
 
@@ -94,9 +91,9 @@
 
 **Rationale**: Low-score topics can dilute article quality. A configurable threshold allows operators to filter without modifying code.
 
-**Impact**:
-- Added `MIN_SCORE_THRESHOLD` env var (default 0, meaning no filtering)
-- Items below threshold are skipped in `_append_trending_topics()`
+**Rejected Alternatives**:
+- コードにハードコード: 運用中の調整が不可能
+- 固定数のみ選択: スコア分布の変化に対応できない
 
 ## 2026-09-29: Affiliate All-Categories Extension
 
@@ -104,9 +101,9 @@
 
 **Rationale**: Original design only extracted keywords from tech category. All recent articles use kemono_story prompt type, so affiliate links always fell back to generic tag-based keywords ("Kemono"). Kemono/pokemon topics have merchandise potential (figures, art books, games).
 
-**Impact**:
-- `generate_article.py`: Line 579 changed from `cat == "tech"` to `cat in ("tech", "kemono", "pokemon")`
-- kemono_story articles now get 2 trend-based affiliate keywords instead of generic fallback
+**Rejected Alternatives**:
+- techカテゴリのみを維持: kemono記事で常にフォールバックキーワードになる
+- カテゴリごとの個別設定: 複雑すぎて維持コストが高い
 
 ## 2026-09-29: Deferred Low-Priority Items
 
@@ -114,7 +111,9 @@
 
 **Rationale**: Both require significant implementation effort. Partial cache needs per-source cache files and merge logic. Reddit OAuth requires a full OAuth flow with user interaction. Neither blocks core functionality.
 
-**Impact**: Items remain on the backlog for future consideration.
+**Rejected Alternatives**:
+- 即時実装: スコープが膨張し、コア機能の完了が遅れる
+- 完全削除: 将来的に必要な可能性を排除しすぎる
 
 ## 2026-09-29: SEO Slug Implementation
 
@@ -122,12 +121,9 @@
 
 **Rationale**: File-based URLs (timestamps like `2026-09-29T123456`) are not SEO-friendly. A readable slug improves URL structure, search engine indexing, and user experience.
 
-**Impact**:
-- `generate_article.py`: Added slug validation and auto-generation fallback (hiragana/katakana to romaji conversion)
-- `scripts/prompts/`: Added slug generation rules to both prompt templates
-- `src/pages/posts/[...slug].astro`: Routes by frontmatter slug, falls back to filename
-- `src/pages/rss.xml.ts`, `src/pages/sitemap.xml.ts`: Use slug-based URLs
-- `src/pages/index.astro`: Post links use slug
+**Rejected Alternatives**:
+- ファイル名のみを使用: タイムスタンプ形式でSEO不向き
+- 日付ベースのURL: 記事の更新時にURLが変わり、リンク切れリスク
 
 ## 2026-09-29: TOC (Table of Contents) Implementation
 
@@ -135,9 +131,9 @@
 
 **Rationale**: Long articles benefit from in-page navigation. Server-side generation in Astro would require parsing markdown AST; client-side DOM extraction is simpler and maintains reactivity with scroll-based active state.
 
-**Impact**:
-- `src/layouts/PostLayout.astro`: Added TOC nav element, JavaScript to extract h2/h3/h4 headings, smooth scroll, and IntersectionObserver for active state tracking
-- CSS: Added `.toc-link`, `.toc-link-active`, `scroll-behavior: smooth`
+**Rejected Alternatives**:
+- Astro側でMarkdown ASTをパース: 依存が増え、ビルド時間が伸びる
+- 手動でTOCを記事に埋め込み: 生成物の保守性が高い
 
 ## 2026-09-29: BreadcrumbList JSON-LD
 
@@ -145,9 +141,9 @@
 
 **Rationale**: Breadcrumbs improve SERP display with rich snippets and help search engines understand site hierarchy.
 
-**Impact**:
-- `src/layouts/PostLayout.astro`: BreadcrumbList JSON-LD + visual breadcrumb nav
-- `src/pages/tags/`: BreadcrumbList JSON-LD on both index and tag pages
+**Rejected Alternatives**:
+- 視覚的なパンくずリストのみ: 検索エンジンのリッチスニペットが生成されない
+- 全ページに適用: インデックスページでは階層が不明確
 
 ## 2026-09-29: WebSite SearchAction
 
@@ -155,8 +151,9 @@
 
 **Rationale**: Allows Google to show site search results directly in SERPs. Uses `/tags/{search_term_string}` as the search target.
 
-**Impact**:
-- `src/pages/index.astro`, `src/layouts/PostLayout.astro`: SearchAction JSON-LD injected
+**Rejected Alternatives**:
+- 外部検索エンジン (Google Custom Search): 設定が複雑でコストがかかる
+- 独自の検索ページ実装: SSGでリアルタイム検索が難しい
 
 ## 2026-09-29: Tag Pages
 
@@ -164,10 +161,9 @@
 
 **Rationale**: Tags provide an alternative navigation structure beyond chronological listing. Improves internal linking and SEO through additional indexable pages.
 
-**Impact**:
-- `src/pages/tags/index.astro`: Tag cloud with counts, CollectionPage JSON-LD
-- `src/pages/tags/[tag].astro`: Tag-specific post listing with thumbnails
-- Tags in article/index pages changed from `<span>` to `<a>` links
+**Rejected Alternatives**:
+- カテゴリベースのナビゲーションのみ: タグの方が粒度的に柔軟
+- 静的なタグ一覧: 記事追加時に手動更新が必要
 
 ## 2026-09-29: Related Posts
 
@@ -175,8 +171,9 @@
 
 **Rationale**: Increases time-on-site, reduces bounce rate, and creates internal link structure for SEO.
 
-**Impact**:
-- `src/layouts/PostLayout.astro`: Computes shared tag score across all posts, shows top 3 related posts with thumbnails sorted by tag overlap then recency
+**Rejected Alternatives**:
+- 日付ベースの前後記事: テーマの関連性が低い
+- LLMで関連性を判定: 毎ページの処理コストが高い
 
 ## 2026-09-28: Project Structure
 
@@ -184,7 +181,9 @@
 
 **Rationale**: Claude Memory Bank pattern allows agents to distinguish between permanent constraints and evolving project state.
 
-**Impact**: New documentation structure created for better knowledge management.
+**Rejected Alternatives**:
+- 単一ファイルに全て記録: 変更履歴が混在し、ルールの変更が追跡困難
+- git commit message のみに依存: Agentが過去の文脈を読み込めない
 
 ## 2026-09-29: SFW Enforcement + Art Style Unification
 
@@ -192,10 +191,9 @@
 
 **Rationale**: Image prompts were inconsistent, leading to varying art styles within a single article. SFW enforcement ensures content safety for all generated images.
 
-**Impact**:
-- `BASE_QUALITY_PROMPT` in `generate_article.py` includes "safe for work, wholesome, family-friendly" tags
-- `extract_art_style()` extracts `art_style` from frontmatter, applies to all image prompts in the article
-- Image CSS unified in `global.css` for consistent rendering
+**Rejected Alternatives**:
+- 画像ごとに手動でスタイル指定: 生成パイプラインの自動化が壊れる
+- 固定のデフォルトスタイル: 記事のテーマに合わない
 
 ## 2026-09-29: Affiliate Link Improvements
 
@@ -203,12 +201,9 @@
 
 **Rationale**: Generic affiliate links at the bottom of articles had low visibility and no tracking. Inline contextual placement improves CTR. UTM parameters and analytics enable performance measurement.
 
-**Impact**:
-- `inject_affiliate_links()` places links contextually within article body paragraphs
-- Amazon/Rakuten links include UTM tracking parameters
-- Click analytics via `onclick` handlers on affiliate links
-- Comparison table generated for multiple products
-- CSS styling for affiliate links in `global.css`
+**Rejected Alternatives**:
+- 記事末尾へのリンク配置のみ: 視認性が低くCTRが低い
+- 外部解析サービスの利用: コストとプライバシーの問題
 
 ## 2026-09-29: Category-Based Source Filtering
 
@@ -216,10 +211,9 @@
 
 **Rationale**: Not all sources are relevant to all categories. Filtering at the source level prevents irrelevant data from entering the pipeline.
 
-**Impact**:
-- `fetch_topics.py`: Source configurations specify target categories
-- e621 is filtered by NSFW rating at collection time
-- Each source contributes only to its configured categories
+**Rejected Alternatives**:
+- 全ソースから全カテゴリを収集: 無関係なデータが混入し、API呼び出しが無駄になる
+- ソースごとに別スクリプト: 維持コストが膨大になる
 
 ## 2026-09-29: Product Card Generation
 
@@ -227,12 +221,9 @@
 
 **Rationale**: Text-only affiliate links do not convey product details (name, price, category). Visual cards improve user experience and conversion rates.
 
-**Impact**:
-- Prompt templates include `product_recommendations` field instructions
-- `extract_product_recommendations()` parses YAML block from frontmatter
-- `generate_product_cards()` generates HTML cards with name, category, price range, and affiliate links
-- Cards inserted before affiliate section in article body
-- CSS styling for responsive product cards in `global.css`
+**Rejected Alternatives**:
+- アフィリエイトリンクのみ: 商品情報が伝わらずCTRが低い
+- 外部サービスの商品画像を使用: 著作権と可用性の問題
 
 ## 2026-09-30: Meta Description Validation
 
@@ -240,11 +231,9 @@
 
 **Rationale**: `_validate_description()` padded short descriptions with meaningless characters (`。` and spaces). 30% of recent articles had descriptions under 80 chars. Regex substitution was vulnerable to backslash characters in description text.
 
-**Impact**:
-- `_extract_first_sentence_from_body()` extracts first meaningful sentence from article body
-- Short descriptions are extended with body text, capped at 120 chars
-- `re.sub` replacement string is escaped for backslash safety
-- Existing articles fix deferred to standalone script
+**Rejected Alternatives**:
+- LLMでdescriptionを再生成: APIコストが高く、生成時間が伸びる
+- 既存記事の無視: SEOが継続的に劣化する
 
 ## 2026-09-29: python-dotenv Adoption
 
@@ -252,10 +241,9 @@
 
 **Rationale**: Scripts need API keys and configuration from `.env` file. `python-dotenv` provides reliable `.env` loading with fallback to system environment variables.
 
-**Impact**:
-- `load_dotenv()` called at start of `fetch_topics.py` and `generate_article.py`
-- `python-dotenv>=1.0.0` added to `requirements.txt`
-- `.env` file is git-ignored
+**Rejected Alternatives**:
+- `os.environ` のみ: `.env`ファイルの自動読み込みが不可能
+- 設定ファイル (YAML/JSON): 機密情報をリポジトリにコミットするリスク
 
 ## 2026-09-29: Mobile Affiliate Link Clickability
 
@@ -263,8 +251,9 @@
 
 **Rationale**: Affiliate links were not clickable on mobile devices due to CSS issues.
 
-**Impact**:
-- `PostLayout.astro`: Fixed click handling for affiliate links on mobile
+**Rejected Alternatives**:
+- モバイルでのアフィリエイトリンクを非表示: CTRが完全に失われる
+- 別テンプレートの使用: 維持コストが2倍になる
 
 ## 2026-09-30: CSS-Only Bullet List Affiliate Card Styling
 
@@ -272,12 +261,9 @@
 
 **Rationale**: Bullet list links (`- 📦 [Amazonで〜を探す](url)`) were rendered as plain underlined text, inconsistent with the visual product cards. CSS-only approach avoids template changes and retroactively applies to all existing posts.
 
-**Impact**:
-- `global.css`: Added `article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"])` selectors
-- Amazon links: amber theme (`#fffbeb` bg, `#fcd34d` border, `#92400e` text)
-- Rakuten links: pink theme (`#fff1f2` bg, `#fda4af` border, `#9f1239` text)
-- Both include `PR ↗` badge via `::after` pseudo-element
-- Responsive: reduced padding/font on mobile via media query
+**Rejected Alternatives**:
+- Pythonテンプレートの変更: 既存記事に遡及適用できない
+- HTMLの完全な書き換え: 既存記事の再生成が必要でコストが高い
 
 ## 2026-09-30: Affiliate Keyword Contextualization
 
@@ -285,11 +271,9 @@
 
 **Rationale**: `inject_affiliate_links()` used `trend_keywords` directly, which contained GitHub repo names (e.g., "o3-pro", "langgraph") that produced irrelevant affiliate search results. Article tags and body text reflect the actual article theme, producing more relevant product search links.
 
-**Impact**:
-- Added `_extract_article_body()` to strip frontmatter
-- Added `_is_github_repo_name()` to filter technical identifiers (single English words, camelCase, owner/repo patterns)
-- Added `_extract_article_keywords()` to extract theme keywords from tags and first 2 paragraphs
-- `inject_affiliate_links()` now prioritizes article-extracted keywords, supplements with filtered trend_keywords, falls back to tags/title
+**Rejected Alternatives**:
+- trend_keywordsをそのまま使用: GitHubリポジトリ名が混入し、無関係な検索結果になる
+- tagsのみを使用: 記事のテーマを十分に反映できない
 
 ## 2026-09-30: Per-Source TTL Cache with Time-Stamped Files
 
@@ -315,5 +299,6 @@
 
 **Rationale**: Scripts failed in CI because `python-dotenv` was not installed in the Actions environment.
 
-**Impact**:
-- GitHub Actions workflow installs `python-dotenv` before running scripts
+**Rejected Alternatives**:
+- Actionsで.envファイルをコミット: 機密情報の漏洩リスク
+- 環境変数の手動設定のみ: ローカル開発とCIの設定が分かれる

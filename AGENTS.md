@@ -28,18 +28,42 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 
 docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ は「なぜ変えたか」の文脈を記録する。
 
-更新タイミングは git commit 直後、git push 前で必ず実行する。1コミットにつき少なくとも1つのファイルを更新する（単なる依存更新・タイポ修正など文脈記録が不要な場合は除く）。
+更新タイミングは git commit 前。Memory Bank の変更はコード変更と同じ commit に含める。プロジェクト知識・状態・判断が変化した場合のみ更新する（コード変更 ≒ Memory Bank 更新ではない）。
 
 | ファイル | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `plans.md` | 計画書 | 実装開始前に計画を記録（"進行中の計画"の下）。完了時は「完了した計画」に意図・背景を1行記録 | ✅ |
+| `current-task.md` | 現在進行中のタスク状態 | マルチステップタスクの各チェックポイントで更新。中断時は復帰可能な状態のまま残す | ✅ |
+| `plans.md` | 計画書 | 実装開始前に Active Plans に記録。完了時は Completed Plans に意図・背景を1行記録 | ✅ |
 | `backlog.md` | バックログ | 未実装項目の追加・完了時の削除（変更履歴は git commit に委ねる） | ✅ |
 | `known-issues.md` | 既知問題リスト | 新規問題発見時、問題解決時のステータス更新（解決済はアーカイブへ移動） | ✅ |
-| `decisions.md` | 設計判断ログ | 構造・データフロー・新しい統合の設計判断 | ✅ |
+| `decisions.md` | 設計判断ログ | 構造・データフロー・新しい統合の設計判断。Decision / Reason / Rejected Alternatives を記録 | ✅ |
 | `architecture.md` | アーキテクチャ図 | decisions.md に記録した変更がシステム構成に反映されたときのみ更新 | ✅ |
 
 - 完了したバグは `known-issues.md` のアーカイブへ移動
 - `development-notes.md` は削除済み。詳細な実装履歴は git log で確認可能
+
+### Long-running Agent Tasks
+
+- Before starting a multi-step task, read `docs/ai/current-task.md` if it exists.
+- Before starting a planned change, read the relevant `plans.md` and `backlog.md` entries.
+- After completing a meaningful step, update `docs/ai/current-task.md`.
+- After a successful build/test checkpoint, record the result in `current-task.md`.
+- If the task is interrupted, leave `current-task.md` in a resumable state.
+- Never assume previous conversation context is still available after compaction.
+- Important decisions must be recorded in `decisions.md`.
+- Important unresolved problems must be recorded in `known-issues.md`.
+- Do not start the next planned item until the current item's build/test completion criteria are satisfied.
+
+### Recovery After Interruption
+
+When resuming an interrupted task:
+
+1. Read `docs/ai/current-task.md`.
+2. Check `git status`.
+3. Check `git diff`.
+4. Verify the last recorded build/test status.
+5. Continue from the `Next Action` in `current-task.md`.
+6. Do not discard existing changes unless explicitly instructed.
 
 ### Commit Checklist
 
