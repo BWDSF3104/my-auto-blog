@@ -84,7 +84,11 @@ git push 前に以下の確認を行う:
 - [ ] 完了したバックログ項目が `backlog.md` から削除されたか
 
 ### Git Workflow
-- After completing file changes, always run `git pull` then `git add`, `git commit`, `git push`
+- After completing file changes, use the following safe sequence to avoid conflicts with remote changes:
+  1. `git stash` — save local changes temporarily
+  2. `git pull` — fetch and merge remote changes
+  3. `git stash pop` — restore saved changes (resolve conflicts if any)
+  4. `git add`, `git commit`, `git push`
 - Commit message format: `feat: <description>` for features, `fix: <description>` for bug fixes
 - Never use `git push --force` or modify remote history
 
