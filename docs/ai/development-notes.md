@@ -52,7 +52,7 @@
 
 | 優先度 | 項目 | 内容 |
 |--------|------|------|
-| **高** | meta description最適化 | AI生成のdescriptionが80-120文字のルールに従っているか検証。短すぎる/長すぎるものを修正 |
+| **完了** | meta description最適化 | 検証・修正完了 (2026-09-30) |
 | **高** | OG image自動生成 | 各記事に固有のOG imageを生成。現在は`image`フィールドがある記事のみ対応 |
 | **中** | canonical URL一貫性 | slug変更時の301リダイレクト、sitemapとの整合性確認 |
 | **中** | LCP/CLSパフォーマンス | 画像のloading="lazy"は実装済み。LCP画像の最適化、フォントのpreconnect |
@@ -220,4 +220,32 @@ AI が記事内容に合わせてキーワードを出力。`inject_affiliate_li
 → generate_product_cards() でHTMLカード生成
 → process_product_cards() で記事に挿入（Frontmatterからは削除）
 → 最終出力: 商品カード + アフィリエイトセクション
+```
+
+## メタ記述検証の修正（2026-09-30 実装完了）
+
+### 背景
+- `_validate_description()` が80文字未満のdescriptionを無意味な文字（`。`と空白の交互）で埋めていた
+- 10件中3件（30%）の最近の記事が80文字未満のdescriptionを持っていた
+- `re.sub` の置換文字列にdescription値を直接埋め込んでおり、`\`や`"`を含むと正規表現が破損する可能性があった
+
+### 実装内容
+
+| 項目 | 内容 | ファイル |
+|------|------|----------|
+| **本文抽出ヘルパー** | `_extract_first_sentence_from_body()` を新規追加。Frontmatter終了後の本文から最初の文を抽出（見出し・画像行をスキップ） | `scripts/generate_article.py:1110-1126` |
+| **記述拡張ロジック** | 80文字未満のdescriptionに本文の最初の文を連結して自然に拡張。120文字を超えないように制御 | `scripts/generate_article.py:1129-1146` |
+| **正規表現安全化** | `re.sub` の置換文字列に`\`が含まれる場合をエスケープ処理 | `scripts/generate_article.py:1447` |
+| **既存記事未修正** | 現在のバリデーターは新規生成時のみ実行。既存記事の修正は将来の`--fix-all-descriptions`フラグで対応予定 | 保留 |
+
+### データフロー
+```
+記事生成 → LLMがdescriptionを出力（80-120文字を指示）
+→ _extract_fm_field() で抽出
+→ _validate_description(desc, content) で検証
+  - 80-120文字: そのまま返す
+  - 120文字超: 120文字に切り捨て + "..."
+  - 80文字未満: _extract_first_sentence_from_body() で本文の最初の文を抽出して連結
+→ re.sub でFrontmatterのdescriptionを更新（\をエスケープ）
+→ 最終出力: 80-120文字のdescription
 ```

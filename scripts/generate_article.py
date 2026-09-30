@@ -1107,7 +1107,26 @@ def process_product_cards(content: str) -> str:
 # --------------------------------------------------
 # SEOメタ記述の検証・補正
 # --------------------------------------------------
-def _validate_description(desc: str) -> str:
+def _extract_first_sentence_from_body(content: str) -> str:
+    """本文から最初の文を抽出する"""
+    fm_end = content.find("---", content.find("---") + 1)
+    if fm_end == -1:
+        return ""
+    body = content[fm_end + 3:].strip()
+    # Skip heading lines
+    for line in body.split("\n"):
+        line = line.strip()
+        if line and not line.startswith("#") and not line.startswith("!["):
+            # Find first sentence ending with 。 or .
+            for end_char in ["。", "."]:
+                idx = line.find(end_char)
+                if idx != -1:
+                    return line[:idx + 1]
+            return line
+    return ""
+
+
+def _validate_description(desc: str, content: str = "") -> str:
     """記述が80〜120文字の範囲内に収まるように調整する"""
     if not desc:
         return desc
@@ -1117,13 +1136,14 @@ def _validate_description(desc: str) -> str:
     if len(desc) > MAX_DESC_LEN:
         truncated = desc[:MAX_DESC_LEN - 3].rstrip() + "..."
         return truncated
-    padded = desc
-    while len(padded) < MIN_DESC_LEN:
-        if not padded.endswith("。") and not padded.endswith("."):
-            padded += "。"
-        else:
-            padded += " "
-    return padded[:MIN_DESC_LEN]
+    # Short description: extend with first sentence from article body
+    sentence = _extract_first_sentence_from_body(content)
+    if sentence:
+        extended = desc + " " + sentence
+        while len(extended) < MIN_DESC_LEN and len(extended) + len(sentence) <= MAX_DESC_LEN:
+            extended += " " + sentence
+        return extended[:MAX_DESC_LEN].rstrip() + ("..." if len(extended) > MAX_DESC_LEN else "")
+    return desc
 
 
 def _extract_fm_field(content: str, field: str) -> str:
@@ -1422,11 +1442,12 @@ def generate_post():
     # 5.7 SEOメタ記述の文字数検証・補正
     desc = _extract_fm_field(content, "description")
     if desc:
-        corrected = _validate_description(desc)
+        corrected = _validate_description(desc, content)
         if corrected != desc:
+            safe_corrected = corrected.replace("\\", "\\\\")
             content = re.sub(
                 r'^description:\s*["\']?(.*?)["\']?$',
-                f'description: "{corrected}"',
+                f'description: "{safe_corrected}"',
                 content,
                 count=1,
                 flags=re.MULTILINE,
