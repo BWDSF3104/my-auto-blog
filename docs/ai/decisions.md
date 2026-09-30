@@ -268,6 +268,18 @@
 - Both include `PR ↗` badge via `::after` pseudo-element
 - Responsive: reduced padding/font on mobile via media query
 
+## 2026-09-30: Affiliate Keyword Contextualization
+
+**Decision**: Change affiliate keyword priority to "article-extracted > filtered trend_keywords > tags fallback".
+
+**Rationale**: `inject_affiliate_links()` used `trend_keywords` directly, which contained GitHub repo names (e.g., "o3-pro", "langgraph") that produced irrelevant affiliate search results. Article tags and body text reflect the actual article theme, producing more relevant product search links.
+
+**Impact**:
+- Added `_extract_article_body()` to strip frontmatter
+- Added `_is_github_repo_name()` to filter technical identifiers (single English words, camelCase, owner/repo patterns)
+- Added `_extract_article_keywords()` to extract theme keywords from tags and first 2 paragraphs
+- `inject_affiliate_links()` now prioritizes article-extracted keywords, supplements with filtered trend_keywords, falls back to tags/title
+
 ## 2026-09-29: GH Actions dotenv Fix
 
 **Decision**: Install `python-dotenv` in GitHub Actions workflow.

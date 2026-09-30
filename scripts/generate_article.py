@@ -597,10 +597,82 @@ def _improve_keyword(kw: str, prompt_type: str) -> str:
     return kw
 
 
+def _extract_article_body(content: str) -> str:
+    """Frontmatter を除去した記事本文を返す。"""
+    m = re.search(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL | re.MULTILINE)
+    if m:
+        return content[m.end():]
+    return content
+
+
+def _is_github_repo_name(keyword: str) -> bool:
+    """
+    GitHubリポジトリ名（技術識別子）の判定。
+    単一の英単語、キャメルケース、ハイフン区切り、または「/」を含むパターンを除外対象とする。
+    """
+    kw = keyword.strip()
+    if not kw:
+        return False
+    # スラッシュを含む場合はowner/repo形式
+    if "/" in kw:
+        return True
+    # 英字・数字・ハイフン・アンダースコアのみで構成され、日本語文字を含まない
+    if re.match(r'^[a-zA-Z0-9_\-]+$', kw) and not re.search(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]', kw):
+        return True
+    return False
+
+
+def _extract_article_keywords(content: str, max_kw: int = 2) -> list[str]:
+    """
+    記事本文（Frontmatter後のテキスト）からテーマキーワードを抽出。
+    1. Frontmatterのtagsを優先使用
+    2. 本文の先頭 paragraphs から日本語のキーワード候補を抽出
+    """
+    body = _extract_article_body(content)
+    keywords: list[str] = []
+    seen = set()
+
+    # 1. tags から抽出
+    tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
+    if tags_match:
+        for t in tags_match.group(1).split(','):
+            tag = t.strip().strip('"\'')
+            if tag and len(tag) >= 2 and tag not in seen:
+                seen.add(tag)
+                keywords.append(tag)
+                if len(keywords) >= max_kw:
+                    return keywords
+
+    # 2. 本文の先頭2段落から日本語のキーワード候補を抽出
+    paragraphs = re.split(r'\n\s*\n', body.strip())
+    jp_chunks: list[str] = []
+    for para in paragraphs[:2]:
+        # マークダウン記号を除去
+        para = re.sub(r'[#*\-\[]>`]', '', para)
+        # 日本語の単語候補を抽出（2文字以上の連続日本語文字列）
+        matches = re.findall(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]{2,}', para)
+        for m in matches:
+            if m not in seen and len(m) >= 2:
+                seen.add(m)
+                jp_chunks.append(m)
+
+    # 先頭からキーワードを補充
+    for kw in jp_chunks:
+        if len(keywords) >= max_kw:
+            break
+        keywords.append(kw)
+
+    return keywords
+
+
 def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> str:
     """
     記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
-    trend_keywords が指定された場合はトレンドベースのキーワードを優先。
+
+    キーワード優先順位:
+    1. 記事本文から抽出したテーマキーワード（tags + 本文先頭）
+    2. trend_keywords（GitHubリポジトリ名は除外）
+    3. tags / title のフォールバック
 
     改善点:
     - キーワード品質のフィルタリングと改善
@@ -622,23 +694,32 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 
     keywords_to_use: list[str] = []
 
-    # trend_keywords が優先（品質フィルタ付き）
-    if trend_keywords:
-        seen = set()
+    # 1. 記事本文からテーマキーワードを抽出（最優先）
+    article_kw = _extract_article_keywords(content, max_kw=2)
+    for kw in article_kw:
+        if _is_affiliate_bad_keyword(kw):
+            continue
+        improved = _improve_keyword(kw, prompt_type)
+        keywords_to_use.append(improved)
+
+    # 2. trend_keywords を補充（GitHubリポジトリ名は除外）
+    if trend_keywords and len(keywords_to_use) < 3:
+        seen = set(k.replace(" 書籍", "").replace(" 関連グッズ", "").replace(" 関連作品", "") for k in keywords_to_use)
         for kw in trend_keywords:
             kw_clean = kw.strip()
+            if _is_github_repo_name(kw_clean):
+                continue
             if _is_affiliate_bad_keyword(kw_clean):
                 continue
             if kw_clean in seen:
                 continue
             seen.add(kw_clean)
-            # キーワード改善
             improved = _improve_keyword(kw_clean, prompt_type)
             keywords_to_use.append(improved)
             if len(keywords_to_use) >= 3:
                 break
 
-    # trend_keywords がない、またはフィルタで全て除外された場合は tags 抽出にフォールバック
+    # 3. 全て空の場合は tags / title 抽出にフォールバック
     if not keywords_to_use:
         title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
         title = title_match.group(1).strip() if title_match else ""

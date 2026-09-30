@@ -10,6 +10,7 @@
 
 完了した計画は git の変更履歴と重複せず、「なぜ変えたか」の文脈のみを記録する。ハッシュは参照用。
 
+- [2026-09-30] アフィリエイトキーワードの文脈化: trend_keywords（GitHubリポジトリ名）の直接使用を中止。記事本文のtagsと先頭段落からテーマキーワードを抽出し、trend_keywordsはGitHubリポジトリ名を除外して補充。キーワード優先順位を「本文抽出 → trend_keywords → tagsフォールバック」に変更 (TBD)
 - [2026-09-30] ドキュメント整合性修正: known-issues.mdを日本語統一、decisions.mdとarchitecture.mdのgit除外記述を削除、AGENTS.mdにdocs/ai/のgit追跡とdevelopment-notes.md削除を明記、development-notes.mdをgitから削除 (1994529)
 - [2026-09-30] SEO改善: slugルーティング, TOC, タグページ, 関連記事, BreadcrumbList/SearchAction JSON-LD。検索エンジン最適化と内部リンク構造の強化が目的 (78ed667)
 - [2026-09-30] メタ記述検証修正: 80文字未満のdescriptionを意味のない文字で埋める問題を本文抽出で修正。正規表現の脆弱性も修正 (ac4db31, 37ee985)
