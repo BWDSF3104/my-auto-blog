@@ -4,11 +4,11 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-CIビルド失敗の修正（frontmatter欠落によるクラッシュ）
+アフィリエイトリンクのHTML `<a>` タグ化（長いURLの隠蔽）
 
 ## Priority
 
-P0
+P1
 
 ## Status
 
@@ -16,25 +16,25 @@ P0
 
 ## Objective
 
-GitHub ActionsのAstroビルドで`TypeError: Cannot read properties of undefined (reading 'split')`が発生。原因は`generate_article.py`がGemini APIの出力に`---`がない場合、YAML frontmatterを注入できず、frontmatterのないmdファイルが保存されるため。`PostLayout.astro`の`.split()`呼び出しと`rss.xml.ts`の`escapeXml`がundefinedプロパティでクラッシュ。
+`inject_affiliate_links()` で生成されるアフィリエイトリンクを `[text](long_url)` のMarkdown形式から `<a href="url">text</a>` のHTMLタグに変更。長いUTMパラメータ付きURLを可読ソースから隠蔽する。
+
+既存記事ファイルは修正対象外（known-issues.md にイシューとして保留）。
 
 ## Modified Files
 
-- `src/layouts/PostLayout.astro` — `.split()`のnullチェックと関連記事フィルタのnull除外を追加
-- `src/pages/rss.xml.ts` — frontmatterのデフォルト値を追加（`title`, `pubDate`, `description`）
-- `scripts/generate_article.py` — `---`が出力にない場合、デフォルトfrontmatterを付与するガードを追加
+- `scripts/generate_article.py` — `inject_affiliate_links()` のリンク生成をMarkdownからHTML `<a>` タグに変更
 - `docs/ai/current-task.md` — 状態更新
-- `docs/ai/known-issues.md` — 解決済としてアーカイブ
+- `docs/ai/plans.md` — 完了した計画として記録
+- `docs/ai/decisions.md` — 設計判断を記録
+- `docs/ai/known-issues.md` — 既存記事のリンク形式を保留イシューとして追加
 
 ## Completed
 
-- [x] エラーのトレース: `PostLayout.astro`の`.split()`呼び出しが原因
-- [x] 原因の特定: `generate_article.py`のfrontmatter注入ロジックが`---`がないと失敗
-- [x] `PostLayout.astro`のnullチェック追加
-- [x] `rss.xml.ts`のデフォルト値追加
-- [x] `generate_article.py`のfrontmatterガード追加
-- [x] `npm run build` 成功確認（82 pages）
-- [x] `pytest scripts/tests/ -v` 成功確認（85/85）
+- [x] `inject_affiliate_links()` のリンク生成ロジックをHTML `<a>` タグに変更
+- [x] `pytest scripts/tests/ -v` 成功確認（85/85, 1.60s）
+- [x] `npm run build` 成功確認（82 pages, 2.02s）
+- [x] Memory Bank 更新
+- [x] git commit & push
 
 ## Pending
 
@@ -42,8 +42,8 @@ GitHub ActionsのAstroビルドで`TypeError: Cannot read properties of undefine
 
 ## Verification
 
-- `npm run build`: 成功（82 pages, 1.84s）
-- `pytest scripts/tests/ -v`: 85/85 passed, 1.65s
+- `pytest scripts/tests/ -v`: 85/85 passed, 1.60s
+- `npm run build`: 成功（82 pages, 2.02s）
 
 ## Next Action
 
@@ -51,9 +51,8 @@ GitHub ActionsのAstroビルドで`TypeError: Cannot read properties of undefine
 
 ## Commit
 
-(コミット待ち)
+(Pushed)
 
 ## Notes
 
-- `origin/main`の`f923f8e`にある失敗ファイル`2026-09-30-224625-auto-post.md`をローカルに抽出してテスト検証
-- 失敗ファイルはテスト後に削除済み
+- 既存記事の `[text](long_url)` 形式は known-issues.md に保留イシューとして記録

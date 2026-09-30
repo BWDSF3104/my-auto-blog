@@ -864,8 +864,8 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
             f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
         )
 
-        links_html += f"\n- 📦 [Amazonで「{kw}」を探す]({amazon_url})"
-        links_html += f"\n- 🛍️ [楽天市場で「{kw}」を探す]({rakuten_url})"
+        links_html += f'\n- 📦 <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow sponsored">Amazonで「{kw}」を探す</a>'
+        links_html += f'\n- 🛍️ <a href="{rakuten_url}" target="_blank" rel="noopener noreferrer nofollow sponsored">楽天市場で「{kw}」を探す</a>'
 
     # 複数キーワードがある場合はセクションを分割
     sections = ""
