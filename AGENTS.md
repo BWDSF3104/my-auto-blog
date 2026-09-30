@@ -10,6 +10,13 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 - **File deletion**: Always use `./kilo-safe-remove.cmd <file>` instead of `Remove-Item` or `del`. It validates the target is inside the project, blocks directory/symlink deletion, and protects `.git/` and `.kilo/`.
 - Always verify tests pass after editing code, but do not touch production infrastructure
 
+### Code Verification
+
+- **Pythonコード編集後**: `pytest scripts/tests/ -v` で全テスト通過を確認
+- **記事生成後またはAstroファイル編集後**: `npm run build` でビルド成功を確認
+- **git commit 前**: 上記両方を再実行して最終確認
+- 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド、結果、経過時間を記録
+
 ### Development
 - Start dev server with background mode: `astro dev --background`
 - Manage background server: `astro dev stop`, `astro dev status`, `astro dev logs`
@@ -69,6 +76,8 @@ When resuming an interrupted task:
 ### Commit Checklist
 
 git push 前に以下の確認を行う:
+- [ ] Pythonテストが全件通過したか (`pytest scripts/tests/ -v`)
+- [ ] Astroビルドが成功したか (`npm run build`)
 - [ ] 完了した計画が `plans.md` の「完了した計画」に記録されたか
 - [ ] 新規問題が `known-issues.md` に記録されたか
 - [ ] 解決した問題が `known-issues.md` の Archive へ移動されたか
