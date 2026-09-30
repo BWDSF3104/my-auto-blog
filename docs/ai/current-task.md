@@ -44,7 +44,7 @@ deploy.yml の env ブロックに 5 つの環境変数が正しく設定され�
 
 ## Commit
 
-(未コミット)
+4b2ef1c
 
 ## Notes
 
