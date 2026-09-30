@@ -1,5 +1,19 @@
 # Design Decisions
 
+## 2026-09-30: Deploy Success Timestamp for Duplicate Prevention
+
+**Decision**: Record a deploy-success timestamp in `data/.last-deploy-success.json` after successful deployment. Before generating a new article, check if a same-day successful deploy already exists — if so, skip generation with `sys.exit(0)`.
+
+**Rationale**: The existing `data/.last-generated.json` timestamp was recorded on generation success, not deploy success. When deploy failed after generation, the timestamp was still set, so the next run skipped generation. Recording only on deploy success ensures the timestamp reflects actual published content. Additionally, character/theme duplication in story articles was not detected because overlap checks only compared titles — extending to full frontmatter (character_1, character_2, tags, art_style) gives the LLM negative instructions to avoid reused character combinations.
+
+**Rejected Alternatives**:
+- デプロイ失敗時の rollback job: 追加の CI/CD 複雑さで効果に見合わない
+- 生成完了時のみタイムスタンプ記録（既存の方式）: デプロイ失敗時に誤ってスキップされる
+
+**Impact**:
+- `.github/workflows/deploy.yml`: `build-and-deploy` job に deploy 成功後の記録ステップ追加
+- `scripts/generate_article.py`: `check_deploy_success()` 関数追加、`get_recent_meta_by_type()` 関数追加、NG 指示ブロックを強化
+
 ## 2026-09-30: Per-Source TTL and Timestamped Cache Files
 
 **Decision**: Change cache output from single `data/latest_topics.json` to timestamped `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with a `latest.json` symlink. Each source object gets its own `fetched_at` timestamp.

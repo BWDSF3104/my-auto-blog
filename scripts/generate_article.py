@@ -171,6 +171,43 @@ def get_existing_posts(posts_dir="src/content/posts"):
     return posts
 
 
+def check_deploy_success(current_prompt_type: str) -> bool:
+    """
+    直近のデプロイ成功記録をチェックする。
+    同一 prompt_type で同日（UTC日付）の成功記録があれば True を返し、
+    記事生成をスキップするべきであることを示す。
+    """
+    deploy_record_path = "data/.last-deploy-success.json"
+    if not os.path.exists(deploy_record_path):
+        return False
+
+    try:
+        with open(deploy_record_path, "r", encoding="utf-8") as f:
+            record = json.load(f)
+
+        recorded_type = record.get("prompt_type", "")
+        deployed_at = record.get("deployed_at", "")
+
+        if recorded_type != current_prompt_type:
+            return False
+
+        if not deployed_at:
+            return False
+
+        deployed_date = datetime.fromisoformat(deployed_at.replace("Z", "+00:00")).date()
+        today = datetime.now(timezone.utc).date()
+
+        if deployed_date == today:
+            print(f"✅ 本日既にデプロイ済み（{deployed_at}）。記事生成をスキップします。")
+            return True
+
+        print(f"📅 最終デプロイ日: {deployed_date}（本日: {today}）。新規生成を開始します。")
+        return False
+    except Exception as e:
+        print(f"⚠️ デプロイ記録の読み込み失敗（無視して続行）: {e}")
+        return False
+
+
 def get_recent_titles_by_type(current_prompt_type: str, posts_dir="src/content/posts") -> list[str]:
     """
     同系統の記事から直近のタイトルを指定件数分取得する。
@@ -201,6 +238,75 @@ def get_recent_titles_by_type(current_prompt_type: str, posts_dir="src/content/p
 
     print(f"📚 同系統（{current_prompt_type}）の過去記事を {len(same_type_titles)} 件検出（直近 {min(len(same_type_titles), limit)} 件を参照）")
     return same_type_titles[:limit]
+
+
+def get_recent_meta_by_type(current_prompt_type: str, posts_dir="src/content/posts") -> list[dict]:
+    """
+    同系統の記事から直近N件の frontmatter メタデータを抽出する。
+    返り値: [{title, character_1, character_2, tags, art_style}, ...]
+    """
+    LIMITS_BY_TYPE = {
+        "kemono_story": 5,
+        "default": 10,
+    }
+    limit = LIMITS_BY_TYPE.get(current_prompt_type, 5)
+
+    posts = get_existing_posts(posts_dir)
+
+    story_types = {"kemono_story", "novel", "story"}
+    metas = []
+
+    for p in posts:
+        post_type = p["prompt_type"]
+        is_same = False
+        if current_prompt_type in story_types and post_type in story_types:
+            is_same = True
+        elif current_prompt_type == post_type:
+            is_same = True
+
+        if not is_same:
+            continue
+
+        filepath = None
+        for md_file in glob.glob(os.path.join(posts_dir, "*.md")):
+            with open(md_file, "r", encoding="utf-8") as f:
+                fc = f.read()
+            tm = re.search(r'^title:\s*["\']?(.*?)["\']?$', fc, re.MULTILINE)
+            if tm and tm.group(1).strip() == p["title"]:
+                filepath = md_file
+                break
+
+        if not filepath:
+            continue
+
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        meta = {"title": p["title"]}
+
+        c1 = _extract_fm_field(content, "character_1")
+        c2 = _extract_fm_field(content, "character_2")
+        if c1:
+            meta["character_1"] = c1
+        if c2:
+            meta["character_2"] = c2
+
+        tags = _extract_fm_field(content, "tags")
+        if tags:
+            meta["tags"] = tags
+
+        art = _extract_fm_field(content, "art_style")
+        if art:
+            meta["art_style"] = art
+
+        metas.append(meta)
+
+        if len(metas) >= limit:
+            break
+
+    if metas:
+        print(f"🔍 被り検出用メタデータを {len(metas)} 件取得")
+    return metas
 
 
 # --------------------------------------------------
@@ -1441,9 +1547,14 @@ def generate_post():
     pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
-    # 1. プロンプトタイプ決定と同系統の重複防止設定
+    # 0.5. デプロイ成功チェック（同日の成功記録があればスキップ）
     prompt_type = os.environ.get("PROMPT_TYPE", "default")
+    if check_deploy_success(prompt_type):
+        sys.exit(0)
+
+    # 1. プロンプトタイプ決定と同系統の重複防止設定
     recent_titles = get_recent_titles_by_type(prompt_type)
+    recent_metas = get_recent_meta_by_type(prompt_type)
 
     if recent_titles:
         past_topics_text = "\n".join([f"- {t}" for t in recent_titles])
@@ -1457,6 +1568,32 @@ def generate_post():
             ng_instruction = f"【重要：重複の禁止】\n以下のタイトル・テーマは作成済みです:\n{past_topics_text}"
     else:
         ng_instruction = ""
+
+    # 1.2. キャラクター・テーマ被り防止の追加指示
+    if recent_metas and prompt_type in ("kemono_story", "novel", "story"):
+        char_lines = []
+        for meta in recent_metas:
+            entries = []
+            if "character_1" in meta:
+                entries.append(f"キャラ1: {meta['character_1']}")
+            if "character_2" in meta:
+                entries.append(f"キャラ2: {meta['character_2']}")
+            if "art_style" in meta:
+                entries.append(f"アートスタイル: {meta['art_style']}")
+            if "tags" in meta:
+                entries.append(f"タグ: {meta['tags']}")
+            if entries:
+                entries_joined = "\n  ".join(entries)
+                title = meta.get('title', '(不明)')
+                char_lines.append(f"「{title}」\n  " + entries_joined)
+        if char_lines:
+            chars_joined = "\n".join(char_lines)
+            ng_instruction += (
+                f"\n\n【キャラクター・テーマ被り防止】\n"
+                f"以下のキャラクター設定・テーマは直近で使用済みです。"
+                f"同じ組み合わせや非常に類似した設定を使わず、新しいキャラクター・テーマで作成してください:\n"
+                f"{chars_joined}"
+            )
 
     # 1.5. 収集済みトレンドトピックをプロンプトに注入（fetch_topics.py が生成した JSON を参照）
     ng_instruction, trend_keywords, trend_source_urls = _append_trending_topics(ng_instruction, prompt_type)

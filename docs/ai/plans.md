@@ -12,6 +12,7 @@ Memory Bank の更新タイミングを commit 前に変更し、`current-task.m
 
 完了した計画は git の変更履歴と重複せず、「なぜ変えたか」の文脈のみを記録する。ハッシュは参照用。
 
+- [2026-09-30] デプロイ完了管理とキャラ被り検出の強化: デプロイ成功後にのみ生成完了タイムスタンプを記録し、同日の成功記録があれば再生成をスキップ。キャラクター被り検出をタイトルのみから frontmatter 全体（character_1, character_2, tags, art_style）に拡張して NG 指示ブロックに注入。テスト85件全件通過、ビルド成功を確認
 - [2026-09-30] CRITICAL バグ修正: 静的監査で発見した 5 件の CRITICAL バグを修正。fetch_topics.py の e621 float スコア対応と TTL merge ロジックの反転。generate_article.py のカテゴリ不一致期限切れマーク、bare except のリトライ化、TTL チェック戻り値のキャプチャ。テスト85件全件通過、ビルド成功を確認
 - [2026-09-30] ユニットテスト作成: `fetch_topics.py` と `generate_article.py` のテストスクリプトを新規作成。85テスト全件通過（fetch_topics 24件、generate_article 61件）。キャッシュ構成（タイムスタンプファイル、シンボリックリンク、merge、クリーンアップ、TTL）、per-source TTLチェック、auto-fetchを網羅。ソースコードの静的監査も併行実施し、9件の潜在的バグを known-issues.md に記録 (66df732)
 
