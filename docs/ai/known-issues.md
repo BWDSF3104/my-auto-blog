@@ -58,5 +58,5 @@
 **Fix**:
 - Problem 1: RESOLVED - Added `_extract_first_sentence_from_body()` helper. When description is under 80 chars, it extracts the first sentence from the article body (skipping headings and image lines) and appends it to extend the description naturally.
 - Problem 4: RESOLVED - Added `safe_corrected = corrected.replace("\\", "\\\\")` before the `re.sub` call to escape backslashes in the replacement string.
-- Problem 2: DEFERRED - Will add optional `--fix-all-descriptions` CLI flag for batch correction in a future update.
+- Problem 2: DEFERRED - 将来実装する場合、通常の生成パイプラインとは完全に分離し、単体実行前提の独立スクリプトとして実装する（例: `python scripts/fix_descriptions.py`）。`--fix-all-descriptions` フラグなど生成時のオプションには組み込まない。
 - Problem 3: OUT OF SCOPE - Cost/benefit ratio does not justify LLM retry logic.

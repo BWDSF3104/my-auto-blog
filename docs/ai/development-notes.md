@@ -236,7 +236,7 @@ AI が記事内容に合わせてキーワードを出力。`inject_affiliate_li
 | **本文抽出ヘルパー** | `_extract_first_sentence_from_body()` を新規追加。Frontmatter終了後の本文から最初の文を抽出（見出し・画像行をスキップ） | `scripts/generate_article.py:1110-1126` |
 | **記述拡張ロジック** | 80文字未満のdescriptionに本文の最初の文を連結して自然に拡張。120文字を超えないように制御 | `scripts/generate_article.py:1129-1146` |
 | **正規表現安全化** | `re.sub` の置換文字列に`\`が含まれる場合をエスケープ処理 | `scripts/generate_article.py:1447` |
-| **既存記事未修正** | 現在のバリデーターは新規生成時のみ実行。既存記事の修正は将来の`--fix-all-descriptions`フラグで対応予定 | 保留 |
+| **既存記事未修正** | 現在のバリデーターは新規生成時のみ実行。既存記事の修正は将来、独立スクリプト（例: `scripts/fix_descriptions.py`）として単体実行前提で実装予定。通常の生成パイプラインには組み込まない | 保留 |
 
 ### データフロー
 ```
