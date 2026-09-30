@@ -4,11 +4,11 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-既存記事のアフィリエイトリンク修正
+CIビルド失敗の修正（frontmatter欠落によるクラッシュ）
 
 ## Priority
 
-P1
+P0
 
 ## Status
 
@@ -16,21 +16,25 @@ P1
 
 ## Objective
 
-ワークフロー修正前の記事生成でプレースホルダー値（`your-amazon-tag-22`, `your-rakuten-id`）が埋め込まれていた既存記事を、`.env` の正しいID（`bwdsf3104-22`, `57f74cd8.500bcdd9.57f74cd9.8c8b76a0`）に一括置換。
+GitHub ActionsのAstroビルドで`TypeError: Cannot read properties of undefined (reading 'split')`が発生。原因は`generate_article.py`がGemini APIの出力に`---`がない場合、YAML frontmatterを注入できず、frontmatterのないmdファイルが保存されるため。`PostLayout.astro`の`.split()`呼び出しと`rss.xml.ts`の`escapeXml`がundefinedプロパティでクラッシュ。
 
 ## Modified Files
 
-- `src/content/posts/*.md` — プレースホルダーIDを正しいアフィリエイトIDに置換（全30ファイル、Amazon 42件、楽天 35件）
+- `src/layouts/PostLayout.astro` — `.split()`のnullチェックと関連記事フィルタのnull除外を追加
+- `src/pages/rss.xml.ts` — frontmatterのデフォルト値を追加（`title`, `pubDate`, `description`）
+- `scripts/generate_article.py` — `---`が出力にない場合、デフォルトfrontmatterを付与するガードを追加
 - `docs/ai/current-task.md` — 状態更新
+- `docs/ai/known-issues.md` — 解決済としてアーカイブ
 
 ## Completed
 
-- [x] 現状確認: Secrets 登録状況とワークフローの env ブロックを比較
-- [x] plans.md に修正計画を記録
-- [x] deploy.yml の `Run generation script` ステップに Secrets 参照を追加
-- [x] 変更内容の検証
-- [x] 既存記事のプレースホルダーIDを正しい値に一括置換（Amazon: `bwdsf3104-22`, Rakuten: `57f74cd8.500bcdd9.57f74cd9.8c8b76a0`）
-- [x] `npm run build` 成功確認（81 pages, 1.85s）
+- [x] エラーのトレース: `PostLayout.astro`の`.split()`呼び出しが原因
+- [x] 原因の特定: `generate_article.py`のfrontmatter注入ロジックが`---`がないと失敗
+- [x] `PostLayout.astro`のnullチェック追加
+- [x] `rss.xml.ts`のデフォルト値追加
+- [x] `generate_article.py`のfrontmatterガード追加
+- [x] `npm run build` 成功確認（82 pages）
+- [x] `pytest scripts/tests/ -v` 成功確認（85/85）
 
 ## Pending
 
@@ -38,9 +42,8 @@ P1
 
 ## Verification
 
-- プレースホルダー残存: 0件確認
-- 置換後Amazonリンク: 42件、楽天リンク: 35件確認
-- `npm run build`: 成功（81 pages, 1.85s）
+- `npm run build`: 成功（82 pages, 1.84s）
+- `pytest scripts/tests/ -v`: 85/85 passed, 1.65s
 
 ## Next Action
 
@@ -48,10 +51,9 @@ P1
 
 ## Commit
 
-4b2ef1c (ワークフロー修正), 既存記事修正はコミット待ち
+(コミット待ち)
 
 ## Notes
 
-- `fetch_topics.py` はアフィリエイト ID を使用しないため、`Fetch trending topics` ステップへの追加は不要
-- `Record deploy success timestamp` ステップもアフィリエイト ID を使用しないため変更不要
-- 次の CI 実行から記事に正しいアフィリエイトタグが埋め込まれる
+- `origin/main`の`f923f8e`にある失敗ファイル`2026-09-30-224625-auto-post.md`をローカルに抽出してテスト検証
+- 失敗ファイルはテスト後に削除済み

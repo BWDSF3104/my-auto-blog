@@ -20,9 +20,9 @@ export const GET: APIRoute = async (context) => {
   const items = Object.entries(postImports).map(([path, module]) => {
     const filename = path.split('/').pop()?.replace('.md', '') || '';
     const slug = module.frontmatter.slug || filename;
-    const { title, pubDate, description = '', author = 'AI Writer' } = module.frontmatter;
+    const { title = '', pubDate = '', description = '', author = 'AI Writer' } = module.frontmatter;
 
-    let pubDateObj = new Date(pubDate);
+    let pubDateObj = new Date(pubDate || Date.now());
     if (isNaN(pubDateObj.getTime())) {
       pubDateObj = new Date();
     }
@@ -31,9 +31,9 @@ export const GET: APIRoute = async (context) => {
     const fullUrl = new URL(postPath, siteUrl).href;
 
     return {
-      title,
+      title: title || filename,
       link: fullUrl,
-      description,
+      description: description || '',
       pubDate: pubDateObj.toUTCString(),
       author,
       rawDate: pubDateObj.getTime(),

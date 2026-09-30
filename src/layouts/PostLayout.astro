@@ -39,12 +39,15 @@ const currentSlug = frontmatter.slug || Astro.url.pathname.split('/').pop() || '
 const allPosts = Object.entries(postImports).map(([path, module]) => {
   const filename = path.split('/').pop()?.replace('.md', '') || '';
   const slug = module.frontmatter.slug || filename;
+  if (!module.frontmatter.title) {
+    return null;
+  }
   return {
     frontmatter: module.frontmatter,
     slug,
     url: `${basePrefix}/posts/${slug}`
   };
-}).filter(post => post.slug !== currentSlug);
+}).filter(post => post != null && post.slug !== currentSlug);
 
 // タグでスコア付けして関連記事を抽出
 const scoredPosts = allPosts.map(post => {
@@ -65,7 +68,7 @@ const rakutenId = import.meta.env.PUBLIC_RAKUTEN_ID || "your-rakuten-id";
 // 関連検索キーワード（タグまたはタイトルから抽出）
 const relatedKeyword = frontmatter.tags && frontmatter.tags.length > 0
   ? frontmatter.tags[0]
-  : frontmatter.title.split(' ')[0];
+  : (frontmatter.title?.split(' ')[0] || 'AI');
 
 const amazonSearchUrl = `https://www.amazon.co.jp/s?k=${encodeURIComponent(relatedKeyword)}&tag=${encodeURIComponent(amazonTag)}`;
 const rakutenSearchUrl = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(relatedKeyword)}/?scid=${encodeURIComponent(rakutenId)}`;

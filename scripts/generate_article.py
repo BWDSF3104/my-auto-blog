@@ -1609,6 +1609,11 @@ def generate_post():
             lines = lines[:-1]
         content = "\n".join(lines)
 
+    # Frontmatterが存在しない場合はデフォルトを付与（Geminiが---を出力しなかった場合の保険）
+    if "---" not in content:
+        content = f'---\ntitle: "Auto Post"\npubDate: "{pub_date_str}"\ndescription: ""\ntags: []\n---\n\n' + content
+        print("[WARN] Frontmatterが検出されなかったためデフォルトを付与しました")
+
     # 2.5 2-pass 精製: 下書きを精製して質を高める
     content = refine_content(content, prompt_type)
 

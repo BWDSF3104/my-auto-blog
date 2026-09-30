@@ -54,6 +54,16 @@
 - **L-2** `generate_article.py` `urllib.parse` の関数内インポート (4箇所): モジュールレベルのインポートに移動。
 - **L-3** `generate_article.py:L407` `compose_image_prompt` の括弧正規表現: `re.search` で最初の括弧グループのみを取得していた。`re.findall` に変更して複数括弧グループに対応。`clean_situation` の除去も `re.sub` に変更。
 
+### frontmatter欠落によるCIビルド失敗 (解決済 2026-09-30)
+
+Gemini APIの出力に`---`がない場合、`generate_article.py`の`content.replace("---", ...)`が何もしないままmdファイルが保存され、frontmatterのない記事が生成される。`PostLayout.astro`の`.split()`と`rss.xml.ts`の`escapeXml`がundefinedでクラッシュ。
+
+- `PostLayout.astro`: `.split()`のnullチェックと関連記事フィルタのnull除外を追加
+- `rss.xml.ts`: `title`, `pubDate`, `description`のデフォルト値を追加
+- `generate_article.py`: `---`が出力にない場合、デフォルトfrontmatterを付与するガードを追加
+
+---
+
 ## アーカイブ
 
 ### 直近記事のキャラクター・テーマ被りの追跡不能 (解決済 2026-09-30)
