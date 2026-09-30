@@ -112,7 +112,7 @@ Bluesky は AT Protocol (JSON-RPC over HTTPS) なので、既存の `fetch_json(
 | **中** | Bluesky 収集関数追加 | 中 | ✅ 完了 (2026-09-29) |
 | **中** | トレンド参照の Frontmatter 記録 | 小 | ✅ 完了 (2026-09-29) |
 | **中** | スコアしきい値 | 小 | ✅ 完了 (2026-09-29) |
-| **中** | アフィリエイトリンクのPC表示修正 | 小 | 保留 |
+| **中** | アフィリエイトリンクのPC表示修正 | 小 | ✅ 完了 (2026-09-30) |
 | **低** | 部分キャッシュ機構 | 大 | 保留 |
 | **低** | Reddit 公式 OAuth 対応 | 大 | 保留 |
 
@@ -249,3 +249,24 @@ AI が記事内容に合わせてキーワードを出力。`inject_affiliate_li
 → re.sub でFrontmatterのdescriptionを更新（\をエスケープ）
 → 最終出力: 80-120文字のdescription
 ```
+
+## アフィリエイトリンクのPC表示修正（2026-09-30 実装完了）
+
+### 背景
+- 本文内の長いテキストリンク（例: `[ケモノたちが織りなすファンタジー作品をもっと読む]`）がワードラップせずにarticleコンテナを水平方向に突き抜けていた
+- PC表示で記事のレイアウトが崩れ、横スクロールが発生
+
+### 実装内容
+
+| 項目 | 内容 | ファイル |
+|------|------|----------|
+| **ワードラップ制約** | `article` 要素に `overflow-wrap: break-word` + `word-break: break-word` を追加 | `src/layouts/PostLayout.astro:281-284` |
+
+### 原因
+- Tailwind CSSの typography プラグインが `overflow-wrap: break-word` をデフォルトで適用しない
+- 長い日本語テキストリンクが `white-space: normal` であってもワードラップをトリガーしない場合がある
+- `word-break: break-word` を明示的に追加することで、任意の文字境界で折り返す
+
+### 検証
+- `npm run build` 成功
+- PC表示で横スクロールが発生しないことを確認

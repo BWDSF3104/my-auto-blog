@@ -25,12 +25,25 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 - Generated images: `public/images/`
 
 ### AI Memory Bank (docs/ai/)
-- **Before implementation**: Record the plan and direction in `docs/ai/plans.md` under "進行中の計画"
-- Update `docs/ai/architecture.md` when project structure or data flow changes
-- Update `docs/ai/decisions.md` when making design decisions or architectural changes
-- Update `docs/ai/known-issues.md` when discovering new issues or resolving existing ones
-- Update `docs/ai/development-notes.md` after completing implementation work
-- Move completed plans from `docs/ai/plans.md` to `docs/ai/development-notes.md` on completion
+
+更新タイミングは git commit 直後、git push 前で必ず実行する。1コミット = 1開発ノートのエントリ（最小: 日付 + 1行の概要 + 変更ファイル）。
+
+| ファイル | タイミング | 必須 |
+|----------|-----------|------|
+| `plans.md` | 実装開始前に計画を記録（"進行中の計画"の下） | ✅ |
+| `development-notes.md` | 実装完了後に変更内容を記録（コミット単位） | ✅ |
+| `known-issues.md` | 新規問題発見時、問題解決時のステータス更新 | ✅ |
+| `decisions.md` | 構造・データフロー・新しい統合の設計判断 | ✅ |
+| `architecture.md` | decisions.md に記録した変更が反映されたときのみ | ✅ |
+
+- 完了した計画は `plans.md` から `development-notes.md` へ移動
+
+### Commit Checklist
+
+git push 前に以下の確認を行う:
+- [ ] 変更が `development-notes.md` に記録されたか
+- [ ] 新規問題が `known-issues.md` に記録されたか
+- [ ] 解決した問題のステータスが更新されたか
 
 ### Git Workflow
 - After completing file changes, always run `git pull` then `git add`, `git commit`, `git push`

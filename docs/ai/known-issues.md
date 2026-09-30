@@ -60,3 +60,13 @@
 - Problem 4: RESOLVED - Added `safe_corrected = corrected.replace("\\", "\\\\")` before the `re.sub` call to escape backslashes in the replacement string.
 - Problem 2: DEFERRED - 将来実装する場合、通常の生成パイプラインとは完全に分離し、単体実行前提の独立スクリプトとして実装する（例: `python scripts/fix_descriptions.py`）。`--fix-all-descriptions` フラグなど生成時のオプションには組み込まない。
 - Problem 3: OUT OF SCOPE - Cost/benefit ratio does not justify LLM retry logic.
+
+## アフィリエイトリンクのPC表示溢出（2026-09-30）
+
+**Status**: Resolved (2026-09-30)
+
+**Problem**: 本文内の長いテキストリンク（例: `[ケモノたちが織りなすファンタジー作品をもっと読む]`）がワードラップせずにarticleコンテナを水平方向に突き抜けていた。
+
+**Impact**: PC表示で記事のレイアウトが崩れ、横スクロールが発生。
+
+**Fix**: `article` 要素に `overflow-wrap: break-word` + `word-break: break-word` を追加。`PostLayout.astro:281-284`。
