@@ -61,7 +61,11 @@ Test: 85 tests passed in 1.19s
 
 ## Next Action
 
-git commit & push
+(なし)
+
+## Commit
+
+cdde2d4
 
 ## Notes
 

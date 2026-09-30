@@ -53,6 +53,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - Important decisions must be recorded in `decisions.md`.
 - Important unresolved problems must be recorded in `known-issues.md`.
 - Do not start the next planned item until the current item's build/test completion criteria are satisfied.
+- **After git commit & push**: Update `docs/ai/current-task.md` — set `Status` to `完了`, clear `Next Action`, and record the commit hash in the completed checklist.
 
 ### Recovery After Interruption
 
