@@ -4,7 +4,7 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-ワークフローの Secrets 未接続修正
+既存記事のアフィリエイトリンク修正
 
 ## Priority
 
@@ -16,12 +16,12 @@ P1
 
 ## Objective
 
-`AMAZON_TRACKING_ID` と `RAKUTEN_AFFILIATE_ID` は Repository Secrets に登録されていたが、`deploy.yml` の `env:` で参照されていなかったため、CI 実行時にデフォルトのプレースホルダー値（`your-amazon-tag-22`, `your-rakuten-id`）が使われていた。`generate_article.py` ステップの `env:` に Secrets 参照を追加。
+ワークフロー修正前の記事生成でプレースホルダー値（`your-amazon-tag-22`, `your-rakuten-id`）が埋め込まれていた既存記事を、`.env` の正しいID（`bwdsf3104-22`, `57f74cd8.500bcdd9.57f74cd9.8c8b76a0`）に一括置換。
 
 ## Modified Files
 
-- `.github/workflows/deploy.yml` — `Run generation script` ステップの `env:` に `AMAZON_TRACKING_ID` と `RAKUTEN_AFFILIATE_ID` を追加
-- `docs/ai/plans.md` — Active Plans に修正計画を記録
+- `src/content/posts/*.md` — プレースホルダーIDを正しいアフィリエイトIDに置換（全30ファイル、Amazon 42件、楽天 35件）
+- `docs/ai/current-task.md` — 状態更新
 
 ## Completed
 
@@ -29,6 +29,8 @@ P1
 - [x] plans.md に修正計画を記録
 - [x] deploy.yml の `Run generation script` ステップに Secrets 参照を追加
 - [x] 変更内容の検証
+- [x] 既存記事のプレースホルダーIDを正しい値に一括置換（Amazon: `bwdsf3104-22`, Rakuten: `57f74cd8.500bcdd9.57f74cd9.8c8b76a0`）
+- [x] `npm run build` 成功確認（81 pages, 1.85s）
 
 ## Pending
 
@@ -36,7 +38,9 @@ P1
 
 ## Verification
 
-deploy.yml の env ブロックに 5 つの環境変数が正しく設定されていることを確認済み。
+- プレースホルダー残存: 0件確認
+- 置換後Amazonリンク: 42件、楽天リンク: 35件確認
+- `npm run build`: 成功（81 pages, 1.85s）
 
 ## Next Action
 
@@ -44,7 +48,7 @@ deploy.yml の env ブロックに 5 つの環境変数が正しく設定され�
 
 ## Commit
 
-4b2ef1c
+4b2ef1c (ワークフロー修正), 既存記事修正はコミット待ち
 
 ## Notes
 
