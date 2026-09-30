@@ -29,7 +29,7 @@
 **Impact**:
 - `_append_trending_topics()`: Return type changes to `tuple[str, list[str]]` (prompt + keywords)
 - `inject_affiliate_links()`: Accepts optional `trend_keywords` parameter, prioritizes over tag-based extraction
-- Only `tech` category trends are used for affiliate keywords (kemono/pokemon have low product relevance)
+- All categories (tech, kemono, pokemon) produce affiliate keywords
 - Phase 2 (AI-inferred keywords via Frontmatter) is deferred pending Phase 1 results
 
 **Implementation order**: Phase 1 (keyword extraction from trends) → measure CTR → Phase 2 (AI inference) if needed.
@@ -174,3 +174,92 @@
 **Rationale**: Claude Memory Bank pattern allows agents to distinguish between permanent constraints and evolving project state.
 
 **Impact**: New documentation structure created for better knowledge management.
+
+## 2026-09-29: SFW Enforcement + Art Style Unification
+
+**Decision**: Enforce SFW image generation and unify art style per article.
+
+**Rationale**: Image prompts were inconsistent, leading to varying art styles within a single article. SFW enforcement ensures content safety for all generated images.
+
+**Impact**:
+- `BASE_QUALITY_PROMPT` in `generate_article.py` includes "safe for work, wholesome, family-friendly" tags
+- `extract_art_style()` extracts `art_style` from frontmatter, applies to all image prompts in the article
+- Image CSS unified in `global.css` for consistent rendering
+
+## 2026-09-29: Affiliate Link Improvements
+
+**Decision**: Add contextual inline placement, UTM tracking, click analytics, and comparison table for affiliate links.
+
+**Rationale**: Generic affiliate links at the bottom of articles had low visibility and no tracking. Inline contextual placement improves CTR. UTM parameters and analytics enable performance measurement.
+
+**Impact**:
+- `inject_affiliate_links()` places links contextually within article body paragraphs
+- Amazon/Rakuten links include UTM tracking parameters
+- Click analytics via `onclick` handlers on affiliate links
+- Comparison table generated for multiple products
+- CSS styling for affiliate links in `global.css`
+
+## 2026-09-29: Category-Based Source Filtering
+
+**Decision**: Each trend source can be configured to collect for specific categories.
+
+**Rationale**: Not all sources are relevant to all categories. Filtering at the source level prevents irrelevant data from entering the pipeline.
+
+**Impact**:
+- `fetch_topics.py`: Source configurations specify target categories
+- e621 is filtered by NSFW rating at collection time
+- Each source contributes only to its configured categories
+
+## 2026-09-29: Product Card Generation
+
+**Decision**: Generate visual product cards from `product_recommendations` frontmatter field.
+
+**Rationale**: Text-only affiliate links do not convey product details (name, price, category). Visual cards improve user experience and conversion rates.
+
+**Impact**:
+- Prompt templates include `product_recommendations` field instructions
+- `extract_product_recommendations()` parses YAML block from frontmatter
+- `generate_product_cards()` generates HTML cards with name, category, price range, and affiliate links
+- Cards inserted before affiliate section in article body
+- CSS styling for responsive product cards in `global.css`
+
+## 2026-09-30: Meta Description Validation
+
+**Decision**: Extract first sentence from article body to extend short descriptions. Add regex safety.
+
+**Rationale**: `_validate_description()` padded short descriptions with meaningless characters (`。` and spaces). 30% of recent articles had descriptions under 80 chars. Regex substitution was vulnerable to backslash characters in description text.
+
+**Impact**:
+- `_extract_first_sentence_from_body()` extracts first meaningful sentence from article body
+- Short descriptions are extended with body text, capped at 120 chars
+- `re.sub` replacement string is escaped for backslash safety
+- Existing articles fix deferred to standalone script
+
+## 2026-09-29: python-dotenv Adoption
+
+**Decision**: Use `python-dotenv` for environment variable management in scripts.
+
+**Rationale**: Scripts need API keys and configuration from `.env` file. `python-dotenv` provides reliable `.env` loading with fallback to system environment variables.
+
+**Impact**:
+- `load_dotenv()` called at start of `fetch_topics.py` and `generate_article.py`
+- `python-dotenv>=1.0.0` added to `requirements.txt`
+- `.env` file is git-ignored
+
+## 2026-09-29: Mobile Affiliate Link Clickability
+
+**Decision**: Fix mobile clickability for affiliate links.
+
+**Rationale**: Affiliate links were not clickable on mobile devices due to CSS issues.
+
+**Impact**:
+- `PostLayout.astro`: Fixed click handling for affiliate links on mobile
+
+## 2026-09-29: GH Actions dotenv Fix
+
+**Decision**: Install `python-dotenv` in GitHub Actions workflow.
+
+**Rationale**: Scripts failed in CI because `python-dotenv` was not installed in the Actions environment.
+
+**Impact**:
+- GitHub Actions workflow installs `python-dotenv` before running scripts

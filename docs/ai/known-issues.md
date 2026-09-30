@@ -1,72 +1,56 @@
-# Known Issues
+# 既知問題リスト
 
-## Reddit API Blocking (2026-09-29)
+進行中の問題のみを記録。解決済は下部のアーカイブに移動する。
 
-**Status**: Active
+## Reddit API ブロッキング (2026-09-29)
 
-**Problem**: Reddit blocks `.json` endpoints with HTTP 403. Fallback to `old.reddit.com` returns 404.
+**ステータス**: 進行中
 
-**Impact**: 0 Reddit posts collected. Trend data missing kemono/tech content from Reddit.
+**問題**: Reddit が `.json` エンドポイントを HTTP 403 でブロック。`old.reddit.com` へのフォールバックも 404 を返す。
 
-**Workaround**: None currently. Requires Reddit OAuth or alternative data source.
+**影響**: Reddit からの投稿収集が 0件。トレンドデータから kemono/tech 系の Reddit コンテンツが欠落。
 
-**Related**: Consider Bluesky API as alternative trend source.
+**回避策**: 現在なし。Reddit OAuth 導入または代替データソースの検討が必要。
 
-## e621 NSFW Content
+**関連**: Bluesky API を代替トレンドソースとして検討中。
 
-**Status**: Resolved (2026-09-29)
+## 既存記事の Description 修正 (2026-09-30)
 
-**Problem**: e621 tags may include explicit content that appears in article generation prompts.
+**ステータス**: 保留
 
-**Impact**: Non-kemono prompts may receive inappropriate topic suggestions.
+**問題**: 最近10件中3件（30%）の記事が80文字未満の description を持つ（68-78文字）。現在のバリデーターは新規生成時のみ実行される。
 
-**Fix**: Added `_is_nsfw_post()` helper in `fetch_topics.py`. Filters explicit rating and known NSFW tags. Story mode further restricts to Safe-only. Rating field added to collected posts.
+**影響**: 記述が短い既存記事が規格に準拠していない。
 
-## Prompt Type vs. Category Routing
+**計画**: 将来実装する場合、通常の生成パイプラインとは完全に分離し、単体実行前提の独立スクリプトとして実装する（例: `python scripts/fix_descriptions.py`）。`--fix-all-descriptions` フラグなど生成時のオプションには組み込まない。
 
-**Status**: Resolved (2026-09-29)
+---
 
-**Problem**: `_select_prompt_type()` and `_append_trending_topics()` have separate category selection logic.
+## アーカイブ
 
-**Impact**: Potential mismatch between selected prompt and injected topics.
+### e621 NSFW コンテンツ (解決済 2026-09-29)
 
-**Fix**: Category routing unified in `_append_trending_topics()`. Story mode gets kemono/pokemon only. Default mode gets tech only. Story mode filters to Safe-rated e621 posts.
+`fetch_topics.py` に `_is_nsfw_post()` ヘルパーを追加。explicit レーティングと既知の NSFW タグをフィルタ。ストーリーモードは Safe のみに制限。収集投稿にレーティングフィールドを追加。
 
-## Low Score Topic Inclusion
+### プロンプトタイプとカテゴリルーティングの不整合 (解決済 2026-09-29)
 
-**Status**: Resolved (2026-09-29)
+`_append_trending_topics()` でカテゴリルーティングを統一。ストーリーモードは kemono/pokemon のみ、デフォルトモードは tech のみ。ストーリーモードは e621 の Safe レーティング投稿にフィルタ。
 
-**Problem**: Topics with low scores are still included if they rank in top 5 per category.
+### 低スコアトピックの混入 (解決済 2026-09-29)
 
-**Impact**: Less relevant topics may dilute article inspiration.
+`generate_article.py` に `MIN_SCORE_THRESHOLD` 環境変数（デフォルト 0）を追加。しきい値未満の項目は注入時にスキップされる。
 
-**Fix**: Added `MIN_SCORE_THRESHOLD` env var (default 0) in `generate_article.py`. Items below threshold are skipped during injection.
+### Description 検証のバグ (解決済 2026-09-30)
 
-## Description Validation Bugs (2026-09-30)
+- 無意味なパディング: 本文から最初の文を抽出する `_extract_first_sentence_from_body()` に置換
+- 正規表現の脆弱性: `re.sub` 呼び出し前に `safe_corrected = corrected.replace("\\", "\\\\")` を追加
+- 既存記事の修正: 独立スクリプトに保留
+- LLM リトライ: スコープ外
 
-**Status**: Partially Resolved (2026-09-30)
+### アフィリエイトリンクのPC表示溢出 (解決済 2026-09-30)
 
-**Problem**: `_validate_description()` in `generate_article.py` had multiple bugs:
+`article` 要素に `overflow-wrap: break-word` + `word-break: break-word` を追加。`PostLayout.astro:281-284`。
 
-1. **Meaningless padding**: Description under 80 chars is padded with alternating `。` and space characters to reach the minimum, producing nonsensical output.
-2. **Existing articles not fixed**: Validator only runs on new generation. 3/10 recent posts have descriptions under 80 chars (68-78 chars).
-3. **No retry to LLM**: Validation failure does not trigger LLM regeneration. It silently applies client-side correction.
-4. **Regex substitution vulnerability**: `re.sub` at L1428 uses the description value directly in the replacement string. If description contains `"` or `\`, the regex can break.
+### アフィリエイトリンクのモバイルクリック不能 (解決済 2026-09-29)
 
-**Impact**: Short descriptions produce garbage text. Long descriptions may cause regex failures. Existing articles with short descriptions are unaffected but non-compliant.
-
-**Fix**:
-- Problem 1: RESOLVED - Added `_extract_first_sentence_from_body()` helper. When description is under 80 chars, it extracts the first sentence from the article body (skipping headings and image lines) and appends it to extend the description naturally.
-- Problem 4: RESOLVED - Added `safe_corrected = corrected.replace("\\", "\\\\")` before the `re.sub` call to escape backslashes in the replacement string.
-- Problem 2: DEFERRED - 将来実装する場合、通常の生成パイプラインとは完全に分離し、単体実行前提の独立スクリプトとして実装する（例: `python scripts/fix_descriptions.py`）。`--fix-all-descriptions` フラグなど生成時のオプションには組み込まない。
-- Problem 3: OUT OF SCOPE - Cost/benefit ratio does not justify LLM retry logic.
-
-## アフィリエイトリンクのPC表示溢出（2026-09-30）
-
-**Status**: Resolved (2026-09-30)
-
-**Problem**: 本文内の長いテキストリンク（例: `[ケモノたちが織りなすファンタジー作品をもっと読む]`）がワードラップせずにarticleコンテナを水平方向に突き抜けていた。
-
-**Impact**: PC表示で記事のレイアウトが崩れ、横スクロールが発生。
-
-**Fix**: `article` 要素に `overflow-wrap: break-word` + `word-break: break-word` を追加。`PostLayout.astro:281-284`。
+モバイルでアフィリエイトリンクがクリックできない問題を修正。`PostLayout.astro`。
