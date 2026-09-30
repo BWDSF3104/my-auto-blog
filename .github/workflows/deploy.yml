@@ -40,7 +40,6 @@ jobs:
       # -------------------------------------------------------
       - name: Fetch trending topics (no API key required)
         env:
-          # GITHUB_TOKEN は Actions �?で自動提供される?��レート制限緩�?: 1,000req/h?�?
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROMPT_TYPE: "kemono_story"
         run: |
@@ -55,6 +54,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          AMAZON_TRACKING_ID: ${{ secrets.AMAZON_TRACKING_ID }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
           PROMPT_TYPE: "kemono_story"
         run: |
           python scripts/generate_article.py

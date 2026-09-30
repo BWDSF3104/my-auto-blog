@@ -4,7 +4,7 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-静的監査バグの修正（Medium/Low 項目 5件）
+ワークフローの Secrets 未接続修正
 
 ## Priority
 
@@ -16,34 +16,19 @@ P1
 
 ## Objective
 
-ソースコードの静的解析で発見した Medium/Low バグを修正:
-1. `_extract_article_body` regex: 閉じ `---` の後に改行がない場合にマッチしない問題を修正
-2. `_validate_description` loop: 短い description 拡張時に同じ文を繰り返す問題を修正
-3. `_extract_first_sentence_from_body`: offset 計算を `_extract_article_body` にリファクタ
-4. `urllib.parse` の関数内インポートをモジュールレベルに移動
-5. `compose_image_prompt` の括弧正規表現を複数グループ対応に修正
-
-## Requirements
-
-- 既存のテスト85件を全件通過させる
-- 動作変更はバグ修正のみに限定
+`AMAZON_TRACKING_ID` と `RAKUTEN_AFFILIATE_ID` は Repository Secrets に登録されていたが、`deploy.yml` の `env:` で参照されていなかったため、CI 実行時にデフォルトのプレースホルダー値（`your-amazon-tag-22`, `your-rakuten-id`）が使われていた。`generate_article.py` ステップの `env:` に Secrets 参照を追加。
 
 ## Modified Files
 
-- `scripts/generate_article.py` - 上記5件のバグ修正
-- `docs/ai/current-task.md`
-- `docs/ai/known-issues.md`
+- `.github/workflows/deploy.yml` — `Run generation script` ステップの `env:` に `AMAZON_TRACKING_ID` と `RAKUTEN_AFFILIATE_ID` を追加
+- `docs/ai/plans.md` — Active Plans に修正計画を記録
 
 ## Completed
 
-- [x] 現状調査：generate_article.py のバグ箇所を grep/読取で特定
-- [x] 実装1: `_extract_article_body` regex の末尾 `\n` を `\n?` に変更
-- [x] 実装2: `_validate_description` loop の条件を `next_ext` 事前チェックに置換
-- [x] 実装3: `_extract_first_sentence_from_body` を `_extract_article_body` 再利用にリファクタ
-- [x] 実装4: `urllib.parse` の関数内インポート (4箇所) をモジュールレベルに移動
-- [x] 実装5: `compose_image_prompt` の `re.search` を `re.findall` に変更、`clean_situation` を `re.sub` に変更
-- [x] テスト検証: 85 tests passed
-- [x] docs/ai/ 更新
+- [x] 現状確認: Secrets 登録状況とワークフローの env ブロックを比較
+- [x] plans.md に修正計画を記録
+- [x] deploy.yml の `Run generation script` ステップに Secrets 参照を追加
+- [x] 変更内容の検証
 
 ## Pending
 
@@ -51,7 +36,7 @@ P1
 
 ## Verification
 
-Test: 85 tests passed in 1.22s
+deploy.yml の env ブロックに 5 つの環境変数が正しく設定されていることを確認済み。
 
 ## Next Action
 
@@ -59,10 +44,10 @@ Test: 85 tests passed in 1.22s
 
 ## Commit
 
-e2f4219
+(未コミット)
 
 ## Notes
 
-- `_extract_article_body` の regex は `re.MULTILINE` を削除し `re.DOTALL` のみに変更（`^` は文字列先頭のみで十分）
-- `_extract_first_sentence_from_body` は frontmatter 除去ロジックを `_extract_article_body` に一元化
-- `compose_image_prompt` は `re.findall` で複数括弧グループに対応、`clean_situation` も `re.sub` で全括弧を除去
+- `fetch_topics.py` はアフィリエイト ID を使用しないため、`Fetch trending topics` ステップへの追加は不要
+- `Record deploy success timestamp` ステップもアフィリエイト ID を使用しないため変更不要
+- 次の CI 実行から記事に正しいアフィリエイトタグが埋め込まれる
