@@ -273,7 +273,7 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
             results.append({
                 "title": f"e621 post #{pid}: {tag_summary}",
                 "url": f"https://e621.net/posts/{pid}",
-                "score": post.get("score", 0) if isinstance(post.get("score"), int) else post.get("score", {}).get("total", 0),
+                "score": post.get("score", 0) if isinstance(post.get("score"), (int, float)) else post.get("score", {}).get("total", 0),
                 "source": "e621",
                 "category": cat,
                 "rating": post.get("rating", "q"),
@@ -495,12 +495,9 @@ def main():
             sources[src] = {"topics": []}
         sources[src]["topics"].append(topic)
 
-    # per-source fetched_at を付与（既存から未収集 source は継承）
+    # per-source fetched_at を付与（収集済み source は現在時刻、未収集 source は前回値継承）
     for src in sources:
-        if src in prev_sources:
-            sources[src]["fetched_at"] = prev_sources[src].get("fetched_at", now.isoformat())
-        else:
-            sources[src]["fetched_at"] = now.isoformat()
+        sources[src]["fetched_at"] = now.isoformat()
 
     # 未収集の source は前のデータから継承
     for src, src_data in prev_sources.items():

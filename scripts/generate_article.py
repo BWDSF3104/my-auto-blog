@@ -860,7 +860,10 @@ def generate_content_with_retry(prompt):
                 else:
                     break
             except Exception:
-                break
+                if attempt < max_retries:
+                    time.sleep(5 * (2 ** (attempt - 1)))
+                else:
+                    break
     raise RuntimeError("すべてのモデルおよび再試行が失敗しました。")
 
 
@@ -912,7 +915,7 @@ def _check_per_source_ttl(data: dict, categories: list[str]) -> dict[str, bool]:
         src_topics = src_data.get("topics", [])
         src_cats = set(t.get("category", "other") for t in src_topics)
         if not src_cats & set(categories):
-            expired[src_name] = False
+            expired[src_name] = True
             continue
         fetched_at_str = src_data.get("fetched_at", "")
         if not fetched_at_str:
@@ -1011,8 +1014,10 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
     else:
         categories = ["tech", "kemono", "pokemon"]
 
-    # Per-source TTL 検証
-    _check_topics_ttl(data)
+    # Per-source TTL 検証（グローバルTTLも確認）
+    global_expired = _check_topics_ttl(data)
+    if global_expired:
+        print("[topics] グローバルTTL超過")
     expired = _check_per_source_ttl(data, categories)
     has_expired = any(expired.values())
     if has_expired:

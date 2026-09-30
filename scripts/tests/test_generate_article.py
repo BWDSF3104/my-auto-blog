@@ -581,7 +581,7 @@ class TestCheckPerSourceTTL:
             }
         })
         result = _check_per_source_ttl(data, ["tech"])
-        assert result["e621"] is False
+        assert result["e621"] is True  # カテゴリ不一致 → 期限切れ
 
     def test_missing_fetched_at_is_expired(self):
         """fetched_at が空の source は期限切れ"""
