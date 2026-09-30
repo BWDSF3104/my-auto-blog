@@ -15,7 +15,7 @@ from unittest.mock import MagicMock, patch, mock_open
 import pytest
 import yaml
 
-from scripts.generate_article import (
+from generate_article import (
     BASE_QUALITY_PROMPT,
     DEFAULT_ART_STYLE,
     DEFAULT_SITUATION,
@@ -25,6 +25,8 @@ from scripts.generate_article import (
     _extract_fm_tags,
     _validate_description,
     _compose_smart_situation,
+    _check_per_source_ttl,
+    _auto_fetch_topics,
     extract_character_prompts,
     extract_image_prompt,
     extract_art_style,
@@ -523,3 +525,213 @@ Body.
 """
         result = validate_and_fix_frontmatter(content)
         assert "orphaned_line" not in result
+
+
+# --------------------------------------------------
+# _check_per_source_ttl tests
+# --------------------------------------------------
+
+class TestCheckPerSourceTTL:
+    """Per-source TTL 検証のテスト"""
+
+    def _make_data(self, sources_dict, ttl_hours=24):
+        return {
+            "ttl_hours": ttl_hours,
+            "sources": sources_dict,
+            "by_category": {},
+        }
+
+    def test_fresh_source_not_expired(self):
+        """直近に取得した source は期限切れにならない"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        now = datetime.now(JST).isoformat()
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": now,
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is False
+
+    def test_expired_source(self):
+        """TTL を超えた source は期限切れとみなされる"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        old = (datetime.now(JST) - timedelta(hours=25)).isoformat()
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": old,
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is True
+
+    def test_source_not_matching_category_not_checked(self):
+        """リクエストカテゴリと一致しない source は期限切れチェックされない"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        old = (datetime.now(JST) - timedelta(hours=48)).isoformat()
+        data = self._make_data({
+            "e621": {
+                "fetched_at": old,
+                "topics": [{"title": "T", "category": "kemono", "source": "e621"}],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["e621"] is False
+
+    def test_missing_fetched_at_is_expired(self):
+        """fetched_at が空の source は期限切れ"""
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": "",
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is True
+
+    def test_invalid_fetched_at_is_expired(self):
+        """fetched_at が無効な形式の source は期限切れ"""
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": "not-a-date",
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is True
+
+    def test_custom_ttl_hours(self):
+        """ttl_hours でカスタム TTL が適用される"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        mid = (datetime.now(JST) - timedelta(hours=12)).isoformat()
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": mid,
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            }
+        }, ttl_hours=10)
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is True
+
+    def test_multiple_sources_mixed_expiry(self):
+        """複数の source で期限切れが混在する"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        now = datetime.now(JST).isoformat()
+        old = (datetime.now(JST) - timedelta(hours=25)).isoformat()
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": now,
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            },
+            "rss_zenn": {
+                "fetched_at": old,
+                "topics": [{"title": "T", "category": "tech", "source": "rss_zenn"}],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is False
+        assert result["rss_zenn"] is True
+
+
+# --------------------------------------------------
+# _auto_fetch_topics tests
+# --------------------------------------------------
+
+class TestAutoFetchTopics:
+    """自動再取得ロジックのテスト"""
+
+    def test_no_fetch_when_data_sufficient(self):
+        """カテゴリデータが十分なら自動取得しない"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        now = datetime.now(JST).isoformat()
+        data = {
+            "ttl_hours": 24,
+            "sources": {
+                "hackernews": {
+                    "fetched_at": now,
+                    "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+                }
+            },
+            "by_category": {
+                "tech": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            },
+        }
+        with patch("subprocess.run") as mock_run:
+            result = _auto_fetch_topics("default", ["tech"], data)
+        assert result is None
+        mock_run.assert_not_called()
+
+    def test_fetch_triggered_when_category_empty(self):
+        """カテゴリデータが空なら自動取得がトリガーされる"""
+        data = {
+            "ttl_hours": 24,
+            "sources": {},
+            "by_category": {"tech": []},
+        }
+        with patch("subprocess.run") as mock_run:
+            mock_run.return_value = MagicMock(returncode=0, stdout="完了: 10 件", stderr="")
+            with patch("builtins.open", mock_open(read_data=json.dumps({"test": True}))), \
+                 patch("generate_article.TOPICS_JSON_PATH", "data/topics/latest.json"):
+                result = _auto_fetch_topics("default", ["tech"], data)
+        mock_run.assert_called_once()
+        call_args = mock_run.call_args
+        assert "fetch_topics.py" in call_args[0][0][2]
+        assert "--prompt-type" in call_args[0][0]
+        assert "default" in call_args[0][0]
+
+    def test_fetch_triggered_when_source_expired(self):
+        """source が期限切れなら自動取得がトリガーされる"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        old = (datetime.now(JST) - timedelta(hours=25)).isoformat()
+        data = {
+            "ttl_hours": 24,
+            "sources": {
+                "hackernews": {
+                    "fetched_at": old,
+                    "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+                }
+            },
+            "by_category": {
+                "tech": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            },
+        }
+        with patch("subprocess.run") as mock_run:
+            mock_run.return_value = MagicMock(returncode=0, stdout="完了: 10 件", stderr="")
+            with patch("builtins.open", mock_open(read_data=json.dumps({"test": True}))), \
+                 patch("generate_article.TOPICS_JSON_PATH", "data/topics/latest.json"):
+                result = _auto_fetch_topics("default", ["tech"], data)
+        mock_run.assert_called_once()
+
+    def test_fetch_failure_returns_none(self):
+        """自動取得が失敗すると None を返す"""
+        data = {
+            "ttl_hours": 24,
+            "sources": {},
+            "by_category": {"tech": []},
+        }
+        with patch("subprocess.run") as mock_run:
+            mock_run.return_value = MagicMock(returncode=1, stdout="", stderr="error")
+            result = _auto_fetch_topics("default", ["tech"], data)
+        assert result is None
+
+    def test_fetch_timeout_returns_none(self):
+        """自動取得がタイムアウトすると None を返す"""
+        import subprocess
+        data = {
+            "ttl_hours": 24,
+            "sources": {},
+            "by_category": {"tech": []},
+        }
+        with patch("subprocess.run") as mock_run:
+            mock_run.side_effect = subprocess.TimeoutExpired("cmd", 120)
+            result = _auto_fetch_topics("default", ["tech"], data)
+        assert result is None
