@@ -718,36 +718,7 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 
 # --------------------------------------------------
 # 2-pass 生成: 下書きの精製
-# --------------------------------------------------
-REFINE_PROMPT_TECH = """あなたは技術記事の編集者です。以下の下書き記事を精製してください。
-
-【精製指示】
-1. 導入部のフックを強化し、読者の興味を引く表現にしてください。
-2. 技術解説の正確性を保ちつつ、分かりやすさと具体性を高めてください。
-3. コード例にコメントが不足している場合は補完してください。
-4. 専門用語の解説が不十分な場合は補足してください。
-5. 比較表の項目が不十分であれば補強してください。
-6. FAQセクションの実用性を高めてください。
-7. 全体のテンポと読みやすさを改善してください。
-8. Frontmatter、IMAGE_PROMPT、AFFILIATE、AFF_PRODUCT のタグはそのまま維持してください。
-9. 記事の構造（見出し階層）は維持してください。
-
-精製した記事全体を出力してください。"""
-
-REFINE_PROMPT_STORY = """あなたは小説の編集者です。以下の下書き物語を精製してください。
-
-【精製指示】
-1. 情景描写を五感（視覚・聴覚・嗅覚・触覚・味覚）で豊かにしてください。
-2. 「示して語らず（show, don't tell）」の原則を適用し、感情を直接説明する部分を動作・表情・環境描写に変換してください。
-3. 対話を自然にし、各キャラクターの独自の口調・語尾を明確にしてください。
-4. クライマックスの緊張感と結末の余韻を強化してください。
-5. テンポの管理: 重要な場面は細かく、通過点は簡潔に整えてください。
-6. キャラクターの設定（外見・性格・関係性）の一貫性を確認し、矛盾があれば修正してください。
-7. 世界観の詳細さを高め、読者の没入感を向上させてください。
-8. Frontmatter、IMAGE_PROMPT、AFFILIATE のタグはそのまま維持してください。
-9. 記事の構造（章構成）は維持してください。
-
-精製した物語全体を出力してください。"""
+# プロンプトは scripts/prompts/refine_tech.txt, refine_story.txt に分離
 
 
 def refine_content(draft: str, prompt_type: str) -> str:
@@ -756,9 +727,10 @@ def refine_content(draft: str, prompt_type: str) -> str:
     技術記事と物語で異なる精製プロンプトを使用する。
     """
     if prompt_type in ("kemono_story", "novel", "story"):
-        refine_prompt = REFINE_PROMPT_STORY + f"\n\n【下書き】\n{draft}"
+        refine_template = load_prompt_template("refine_story")
     else:
-        refine_prompt = REFINE_PROMPT_TECH + f"\n\n【下書き】\n{draft}"
+        refine_template = load_prompt_template("refine_tech")
+    refine_prompt = refine_template + f"\n\n【下書き】\n{draft}"
 
     try:
         print("✨ 2-pass 精製中...")
