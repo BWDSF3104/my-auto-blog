@@ -2,6 +2,25 @@
 
 進行中の問題のみを記録。解決済は下部のアーカイブに移動する。
 
+## ソースコード監査で発見された潜在的なバグ (静的解析 2026-09-30)
+
+**ステータス**: 保留
+
+**発見方法**: テスト実行によるものではなく、ソースコードの静的解析（手動監査）で発見。テストスクリプト（62/62全件通過）は正常に動作している。
+
+**候補リスト**:
+- **[Medium]** `_extract_article_body` regex (`generate_article.py:L604`): 閉じ `---` の後に改行がない場合に本文抽出に失敗する可能性
+- **[Medium]** `_validate_description` loop (`generate_article.py:L1299`): 短い description を拡張する際に同じ文を繰り返す可能性がある
+- **[Low]** `_extract_first_sentence_from_body`: frontmatter 文字列内に `---` が含まれる場合、offset 計算がずれる可能性
+- **[Low]** `urllib.parse` の関数内インポート: モジュールレベルでインポートすべき
+- **[Low]** `_auto_fetch_topics` の相対パス: `scripts/fetch_topics.py` が CWD 変更時に失敗する可能性
+- **[Low]** `compose_image_prompt` の括弧正規表現: 最初の括弧グループのみを取得
+- **[Low]** `fetch_topics.py` の Windows シンボリックリンクフォールバック: 孤立したタイムスタンプファイルが蓄積する可能性
+- **[Low]** `collect_bluesky` の URI 解析: 特定のコロン区切り形式を前提
+- **[Low]** `_is_nsfw_post`: `non_consecutive` メタタグを誤って NSFW として扱う可能性
+
+**計画**: Medium 項目の修正を優先検討。Low 項目は実装影響が小さいため保留。
+
 ## Reddit API ブロッキング (2026-09-29)
 
 **ステータス**: 進行中
