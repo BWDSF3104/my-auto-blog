@@ -8,6 +8,7 @@ from datetime import datetime, timezone, timedelta
 import subprocess
 import sys
 import time
+import urllib.parse
 from PIL import Image
 import pillow_avif
 from google import genai
@@ -403,16 +404,12 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
     """
     raw_prompt = raw_prompt.strip().strip('"\'“”')
     
-    # 括弧 [character_1, ...] の検出
-    bracket_match = re.search(r'\[(.*?)\]', raw_prompt)
+    # 括弧 [character_1, ...] の検出 (複数対応)
+    bracket_contents = re.findall(r'\[(.*?)\]', raw_prompt)
     target_chars = []
-    clean_situation = raw_prompt
+    clean_situation = re.sub(r'\[[^\]]*\]', '', raw_prompt).strip().strip(', ')
 
-    if bracket_match:
-        tag_content = bracket_match.group(1)
-        # 括弧部分をシチュエーションから除去
-        clean_situation = raw_prompt.replace(bracket_match.group(0), "").strip().strip(', ')
-        
+    for tag_content in bracket_contents:
         # タグ内のキャラ指定を分割して解析 (カンマや空白等)
         parts = re.split(r'[,&、\s]+', tag_content)
         for part in parts:
@@ -547,8 +544,6 @@ def process_inline_affiliates(content: str) -> str:
     if not matches:
         return content
 
-    import urllib.parse
-
     amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
 
@@ -597,8 +592,6 @@ def process_inline_products(content: str) -> str:
     matches = list(INLINE_AFF_PRODUCT_PATTERN.finditer(content))
     if not matches:
         return content
-
-    import urllib.parse
 
     amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
@@ -707,7 +700,7 @@ def _improve_keyword(kw: str, prompt_type: str) -> str:
 
 def _extract_article_body(content: str) -> str:
     """Frontmatter を除去した記事本文を返す。"""
-    m = re.search(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL | re.MULTILINE)
+    m = re.search(r'^---\s*\n.*?\n---\s*\n?', content, re.DOTALL)
     if m:
         return content[m.end():]
     return content
@@ -790,8 +783,6 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
     """
     if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
         return content
-
-    import urllib.parse
 
     amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
@@ -1272,8 +1263,6 @@ def generate_product_cards(products: list[dict], title: str) -> str:
     if not products:
         return ""
 
-    import urllib.parse
-
     amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
     utm_content = urllib.parse.quote(title[:50])
@@ -1376,10 +1365,9 @@ def process_product_cards(content: str) -> str:
 # --------------------------------------------------
 def _extract_first_sentence_from_body(content: str) -> str:
     """本文から最初の文を抽出する"""
-    fm_end = content.find("---", content.find("---") + 1)
-    if fm_end == -1:
+    body = _extract_article_body(content).strip()
+    if not body:
         return ""
-    body = content[fm_end + 3:].strip()
     # Skip heading lines
     for line in body.split("\n"):
         line = line.strip()
@@ -1407,8 +1395,11 @@ def _validate_description(desc: str, content: str = "") -> str:
     sentence = _extract_first_sentence_from_body(content)
     if sentence:
         extended = desc + " " + sentence
-        while len(extended) < MIN_DESC_LEN and len(extended) + len(sentence) <= MAX_DESC_LEN:
-            extended += " " + sentence
+        while len(extended) < MIN_DESC_LEN:
+            next_ext = extended + " " + sentence
+            if len(next_ext) > MAX_DESC_LEN:
+                break
+            extended = next_ext
         return extended[:MAX_DESC_LEN].rstrip() + ("..." if len(extended) > MAX_DESC_LEN else "")
     return desc
 

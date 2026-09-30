@@ -4,7 +4,7 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-キャラクター・テーマ被り防止の改善（デプロイ成功タイムスタンプ記録 + フロントマッター被り検出）
+静的監査バグの修正（Medium/Low 項目 5件）
 
 ## Priority
 
@@ -16,38 +16,33 @@ P1
 
 ## Objective
 
-AI生成ブログ記事でキャラクターやテーマが被る問題を2つの改修で改善する:
-1. デプロイ成功後にのみ生成完了タイムスタンプを記録（同日の成功記録があれば再生成をスキップ）
-2. キャラクター被り検出をタイトルのみから frontmatter 全体（character_1, character_2, tags, art_style）に拡張
+ソースコードの静的解析で発見した Medium/Low バグを修正:
+1. `_extract_article_body` regex: 閉じ `---` の後に改行がない場合にマッチしない問題を修正
+2. `_validate_description` loop: 短い description 拡張時に同じ文を繰り返す問題を修正
+3. `_extract_first_sentence_from_body`: offset 計算を `_extract_article_body` にリファクタ
+4. `urllib.parse` の関数内インポートをモジュールレベルに移動
+5. `compose_image_prompt` の括弧正規表現を複数グループ対応に修正
 
 ## Requirements
 
-- デプロイ成功後に `data/.last-deploy-success.json` を記録
-- 生成開始時に同日の成功記録があれば `sys.exit(0)` でスキップ
-- 直近記事の frontmatter からキャラクター・タグ・アートスタイルを抽出
-- 抽出したメタデータを NG 指示ブロックに注入して LLM に被り防止を指示
+- 既存のテスト85件を全件通過させる
+- 動作変更はバグ修正のみに限定
 
 ## Modified Files
 
-- `.github/workflows/deploy.yml` - デプロイ成功後にタイムスタンプ記録ステップ追加
-- `scripts/generate_article.py` - `check_deploy_success()` 関数追加、`get_recent_meta_by_type()` 関数追加、NG 指示ブロック強化
+- `scripts/generate_article.py` - 上記5件のバグ修正
 - `docs/ai/current-task.md`
-- `docs/ai/plans.md`
-- `docs/ai/decisions.md`
+- `docs/ai/known-issues.md`
 
 ## Completed
 
-- [x] 現状調査：generate_article.py の被り検出ロジックとワークフローを確認
-- [x] 改修プランを docs/ai/plans.md に記録
-- [x] 実装1: デプロイ成功後にのみ生成完了タイムスタンプを記録
-  - [x] deploy.yml にデプロイ成功記録ステップ追加
-  - [x] check_deploy_success() 関数実装
-  - [x] generate_post() 冒頭にチェック追加
-- [x] 実装2: キャラクター被り検出を frontmatter 全体に拡張
-  - [x] get_recent_meta_by_type() 関数実装
-  - [x] NG 指示ブロックにキャラクター・タグ・アートスタイルの被り防止指示を追加
+- [x] 現状調査：generate_article.py のバグ箇所を grep/読取で特定
+- [x] 実装1: `_extract_article_body` regex の末尾 `\n` を `\n?` に変更
+- [x] 実装2: `_validate_description` loop の条件を `next_ext` 事前チェックに置換
+- [x] 実装3: `_extract_first_sentence_from_body` を `_extract_article_body` 再利用にリファクタ
+- [x] 実装4: `urllib.parse` の関数内インポート (4箇所) をモジュールレベルに移動
+- [x] 実装5: `compose_image_prompt` の `re.search` を `re.findall` に変更、`clean_situation` を `re.sub` に変更
 - [x] テスト検証: 85 tests passed
-- [x] ビルド検証: Astro build succeeded (81 pages)
 - [x] docs/ai/ 更新
 
 ## Pending
@@ -56,8 +51,7 @@ AI生成ブログ記事でキャラクターやテーマが被る問題を2つ�
 
 ## Verification
 
-Build: Astro build succeeded (81 pages, 2.14s)
-Test: 85 tests passed in 1.19s
+Test: 85 tests passed in 1.22s
 
 ## Next Action
 
@@ -65,9 +59,10 @@ Test: 85 tests passed in 1.19s
 
 ## Commit
 
-5f04f0a
+(未コミット)
 
 ## Notes
 
-- f-string 内でバックスラッシュが使えないため、join 操作を別変数に抽出して対応
-- デプロイ失敗時の rollback は不要と判断（git履歴のクリーンさより簡潔さを優先）
+- `_extract_article_body` の regex は `re.MULTILINE` を削除し `re.DOTALL` のみに変更（`^` は文字列先頭のみで十分）
+- `_extract_first_sentence_from_body` は frontmatter 除去ロジックを `_extract_article_body` に一元化
+- `compose_image_prompt` は `re.findall` で複数括弧グループに対応、`clean_situation` も `re.sub` で全括弧を除去

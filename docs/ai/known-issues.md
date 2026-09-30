@@ -4,22 +4,17 @@
 
 ## ソースコード監査で発見された潜在的なバグ (静的解析 2026-09-30)
 
-**ステータス**: 保留
+**ステータス**: 一部解決済み (5/9 修正完了)
 
 **発見方法**: テスト実行によるものではなく、ソースコードの静的解析（手動監査）で発見。テストスクリプト（85/85全件通過）は正常に動作している。
 
-**候補リスト**:
-- **[Medium]** `_extract_article_body` regex (`generate_article.py:L604`): 閉じ `---` の後に改行がない場合に本文抽出に失敗する可能性
-- **[Medium]** `_validate_description` loop (`generate_article.py:L1299`): 短い description を拡張する際に同じ文を繰り返す可能性がある
-- **[Low]** `_extract_first_sentence_from_body`: frontmatter 文字列内に `---` が含まれる場合、offset 計算がずれる可能性
-- **[Low]** `urllib.parse` の関数内インポート: モジュールレベルでインポートすべき
+**残候補リスト**:
 - **[Low]** `_auto_fetch_topics` の相対パス: `scripts/fetch_topics.py` が CWD 変更時に失敗する可能性
-- **[Low]** `compose_image_prompt` の括弧正規表現: 最初の括弧グループのみを取得
 - **[Low]** `fetch_topics.py` の Windows シンボリックリンクフォールバック: 孤立したタイムスタンプファイルが蓄積する可能性
 - **[Low]** `collect_bluesky` の URI 解析: 特定のコロン区切り形式を前提
 - **[Low]** `_is_nsfw_post`: `non_consecutive` メタタグを誤って NSFW として扱う可能性
 
-**Next action**: Medium 項目の修正を優先検討。Low 項目は実装影響が小さいため保留。
+**Next action**: 残りの Low 項目は実装影響が小さいため保留。
 
 ## Reddit API ブロッキング (2026-09-29)
 
@@ -48,6 +43,16 @@
 **計画**: 将来実装する場合、通常の生成パイプラインとは完全に分離し、単体実行前提の独立スクリプトとして実装する（例: `python scripts/fix_descriptions.py`）。`--fix-all-descriptions` フラグなど生成時のオプションには組み込まない。
 
 ---
+
+### 静的監査バグ修正 (解決済 2026-09-30)
+
+ソースコードの静的解析で発見した Medium/Low バグを 5 件修正。テスト85件全件通過を確認。
+
+- **M-1** `generate_article.py:L710` `_extract_article_body` regex: 閉じ `---` の後に改行がない場合にマッチしなかった。`re.DOTALL` のみ使用し、末尾の `\n` を `\n?` に変更。
+- **M-2** `generate_article.py:L1410` `_validate_description` loop: 短い description 拡張時に同じ文を無限ループで繰り返した。`len(extended) + len(sentence) <= MAX_DESC_LEN` 条件を `next_ext` 事前チェックに置換。
+- **L-1** `generate_article.py:L1370` `_extract_first_sentence_from_body`: `fm_end + 3` の offset 計算が frontmatter 形式に依存していた。`_extract_article_body()` を再利用するようにリファクタ。
+- **L-2** `generate_article.py` `urllib.parse` の関数内インポート (4箇所): モジュールレベルのインポートに移動。
+- **L-3** `generate_article.py:L407` `compose_image_prompt` の括弧正規表現: `re.search` で最初の括弧グループのみを取得していた。`re.findall` に変更して複数括弧グループに対応。`clean_situation` の除去も `re.sub` に変更。
 
 ## アーカイブ
 
