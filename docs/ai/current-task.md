@@ -51,7 +51,7 @@ P1
 
 ## Commit
 
-(Pushed)
+f579661 (feat: hide long affiliate URLs by converting to HTML `<a>` tags)
 
 ## Notes
 
