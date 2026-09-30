@@ -8,7 +8,7 @@ fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収
   4. RSS各種      : Zenn / Qiita / GitHub Trending
   5. GitHub Search: REST API (未認証 60req/h)
 
-出力: data/latest_topics.json
+出力: data/topics/{YYYY-MM-DD_HHMMSS}.json + data/topics/latest.json (シンボリックリンク)
 """
 
 import json
@@ -25,9 +25,10 @@ from datetime import datetime, timezone, timedelta
 # --------------------------------------------------
 # 定数
 # --------------------------------------------------
-OUTPUT_PATH = os.path.join("data", "latest_topics.json")
+TOPICS_DIR = os.path.join("data", "topics")
+OUTPUT_PATH = os.path.join(TOPICS_DIR, "latest.json")
 USER_AGENT = "my-auto-blog/1.0 (https://github.com)"  # Reddit / e621 用
-TTL_HOURS = 24  # データの有効期間（時間）
+TTL_HOURS = int(os.environ.get("CACHE_TTL_HOURS", "24"))  # データの有効期間（時間）
 
 # 収集する Subreddit 一覧（認証不要）
 REDDIT_SUBS = [
@@ -459,36 +460,112 @@ def main():
         print(f"[ERROR] Bluesky: {e}")
 
     # カテゴリ別に整理（score降順でソート）
-    output = {
-        "fetched_at": now.isoformat(),
-        "ttl_hours": TTL_HOURS,
-        "total": len(all_topics),
-        "by_category": {
-            "tech": [],
-            "kemono": [],
-            "pokemon": [],
-            "other": [],
-        },
-        "all": sorted(all_topics, key=lambda t: t.get("score", 0), reverse=True),
+    by_category = {
+        "tech": [],
+        "kemono": [],
+        "pokemon": [],
+        "other": [],
     }
     for topic in all_topics:
         cat = topic.get("category", "other")
-        if cat in output["by_category"]:
-            output["by_category"][cat].append(topic)
+        if cat in by_category:
+            by_category[cat].append(topic)
         else:
-            output["by_category"]["other"].append(topic)
-    # 各カテゴリ内をscore降順でソート
-    for cat in output["by_category"]:
-        output["by_category"][cat].sort(key=lambda t: t.get("score", 0), reverse=True)
+            by_category["other"].append(topic)
+    for cat in by_category:
+        by_category[cat].sort(key=lambda t: t.get("score", 0), reverse=True)
 
-    # 出力
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    # 既存の latest.json から sources を読み込んで未収集 source の fetched_at を継承
+    prev_sources = {}
+    prev_by_category = {}
+    if os.path.exists(OUTPUT_PATH):
+        try:
+            with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
+                prev = json.load(f)
+            prev_sources = prev.get("sources", {})
+            prev_by_category = prev.get("by_category", {})
+        except Exception:
+            pass
+
+    # source ごとにグループ化して per-source TTL 構造を構築
+    sources = {}
+    for topic in all_topics:
+        src = topic.get("source", "unknown")
+        if src not in sources:
+            sources[src] = {"topics": []}
+        sources[src]["topics"].append(topic)
+
+    # per-source fetched_at を付与（既存から未収集 source は継承）
+    for src in sources:
+        if src in prev_sources:
+            sources[src]["fetched_at"] = prev_sources[src].get("fetched_at", now.isoformat())
+        else:
+            sources[src]["fetched_at"] = now.isoformat()
+
+    # 未収集の source は前のデータから継承
+    for src, src_data in prev_sources.items():
+        if src not in sources:
+            sources[src] = src_data
+
+    # by_category: 収集したカテゴリは上書き、未収集は前のデータを継承
+    merged_by_category = {}
+    for cat in by_category:
+        if by_category[cat]:
+            merged_by_category[cat] = by_category[cat]
+        elif cat in prev_by_category:
+            merged_by_category[cat] = prev_by_category[cat]
+        else:
+            merged_by_category[cat] = []
+
+    # all: 全 sources のトピックを結合
+    all_topics_merged = list(all_topics)
+    for src, src_data in sources.items():
+        if src not in {t.get("source") for t in all_topics}:
+            all_topics_merged.extend(src_data.get("topics", []))
+
+    output = {
+        "fetched_at": now.isoformat(),
+        "ttl_hours": TTL_HOURS,
+        "total": len(all_topics_merged),
+        "by_category": merged_by_category,
+        "sources": sources,
+        "all": sorted(all_topics_merged, key=lambda t: t.get("score", 0), reverse=True),
+    }
+
+    # タイムスタンプ付きファイルに出力
+    os.makedirs(TOPICS_DIR, exist_ok=True)
+    ts = now.strftime("%Y-%m-%d_%H%M%S")
+    ts_path = os.path.join(TOPICS_DIR, f"{ts}.json")
+    with open(ts_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
+    # 古いタイムスタンプファイルを削除（最新10件を保持）
+    try:
+        ts_files = sorted(
+            [f for f in os.listdir(TOPICS_DIR) if f.endswith(".json") and f != "latest.json"],
+            reverse=True
+        )
+        for old_file in ts_files[10:]:
+            old_path = os.path.join(TOPICS_DIR, old_file)
+            if os.path.islink(old_path) or os.path.exists(old_path):
+                os.remove(old_path)
+    except Exception as e:
+        print(f"[WARN] 古いファイルのクリーンアップに失敗しました: {e}")
+
+    # latest.json シンボリックリンクを更新
+    link_path = OUTPUT_PATH
+    try:
+        if os.path.islink(link_path) or os.path.exists(link_path):
+            os.remove(link_path)
+        os.symlink(os.path.abspath(ts_path), link_path, target_is_directory=False)
+    except OSError as e:
+        print(f"[WARN] シンボリックリンクの更新に失敗しました: {e}")
+        with open(link_path, "w", encoding="utf-8") as f:
+            json.dump(output, f, ensure_ascii=False, indent=2)
+
     print("=" * 50)
-    print(f"完了: {len(all_topics)} 件のトピックを {OUTPUT_PATH} に保存しました")
-    for cat, items in output["by_category"].items():
+    print(f"完了: {len(all_topics)} 件のトピックを {ts_path} に保存しました")
+    for cat, items in by_category.items():
         print(f"  [{cat}] {len(items)} 件")
     print("=" * 50)
 

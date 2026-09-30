@@ -7,11 +7,12 @@ Automated blog generation system with three main components: trend collection, a
 ## Data Flow
 
 ```
-Trend Sources → fetch_topics.py → latest_topics.json → generate_article.py → src/content/posts/
-                                                    ↓
-                                          Affiliate Keywords → inject_affiliate_links() → Amazon/Rakuten links
-                                                    ↓
-                                          Product Recommendations → generate_product_cards() → Product cards HTML
+Trend Sources → fetch_topics.py → data/topics/{timestamp}.json → generate_article.py → src/content/posts/
+                                              ↕ latest.json (symlink)
+                                                     ↓
+                                           Affiliate Keywords → inject_affiliate_links() → Amazon/Rakuten links
+                                                     ↓
+                                           Product Recommendations → generate_product_cards() → Product cards HTML
 ```
 
 ## Components
@@ -29,14 +30,13 @@ Collects trending topics from multiple sources:
 | GitHub | Search API | tech/kemono | ✅ Active |
 | Bluesky | AT Protocol search API | tech/kemono/pokemon | ✅ Active |
 
-Output: `data/latest_topics.json` with structure:
-- `fetched_at`: ISO timestamp
-- `ttl_hours`: Data validity period (24h)
-- `total`: Topic count
-- `by_category`: Grouped topics (tech, kemono, pokemon, other)
-- `all`: All topics sorted by score descending
+Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
+- `fetched_at`: Run start ISO timestamp
+- `ttl_hours`: Data validity period (24h, configurable via env var)
+- `sources`: Per-source objects, each with `fetched_at` and `topics` array
+- Symlink: `data/topics/latest.json` → newest file (backward compatibility)
 
-Category-based source filtering: each source can be configured to collect for specific categories. e621 is filtered by NSFW rating at collection time.
+Category-based source filtering: each source can be configured to collect for specific categories. e621 is filtered by NSFW rating at collection time. Per-source TTL allows `generate_article.py` to auto-trigger `fetch_topics.py --prompt-type X` when needed categories are stale.
 
 ### Article Generation (`scripts/generate_article.py`)
 

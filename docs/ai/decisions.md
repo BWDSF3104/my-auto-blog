@@ -1,5 +1,16 @@
 # Design Decisions
 
+## 2026-09-30: Per-Source TTL and Timestamped Cache Files
+
+**Decision**: Change cache output from single `data/latest_topics.json` to timestamped `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with a `latest.json` symlink. Each source object gets its own `fetched_at` timestamp.
+
+**Rationale**: Global TTL forced re-fetching all sources even when only one category was stale. Per-source TTL enables `generate_article.py` to auto-trigger `fetch_topics.py --prompt-type X` for only the expired categories, reducing API calls and generation time.
+
+**Impact**:
+- `fetch_topics.py`: Outputs timestamped files, updates symlink, supports `--prompt-type` for partial fetches, inherits uncollected source data from previous run
+- `generate_article.py`: Reads from symlink, checks per-source TTL via `_check_per_source_ttl()`, auto-triggers fetch via `_auto_fetch_topics()` when needed categories are stale
+- Old `data/latest_topics.json` is deprecated
+
 ## 2026-09-29: Score-Based Topic Sorting
 
 **Decision**: Sort topics by score descending within each category before output.
@@ -279,6 +290,24 @@
 - Added `_is_github_repo_name()` to filter technical identifiers (single English words, camelCase, owner/repo patterns)
 - Added `_extract_article_keywords()` to extract theme keywords from tags and first 2 paragraphs
 - `inject_affiliate_links()` now prioritizes article-extracted keywords, supplements with filtered trend_keywords, falls back to tags/title
+
+## 2026-09-30: Per-Source TTL Cache with Time-Stamped Files
+
+**Decision**: Replace single-file cache with per-run timestamped files, each containing per-source TTL tracking. Eliminate partial cache layer.
+
+**Rationale**: Current `latest_topics.json` is overwritten on each run, losing history. All sources are fetched regardless of prompt type, wasting API calls. Character/theme overlap between consecutive articles may be caused by stale cached data being reused across multiple generations within the 24h TTL window.
+
+**New structure**:
+- Files: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` (one per run)
+- Compatibility: `data/topics/latest.json` symlink to newest file
+- Each source has independent `fetched_at` for TTL tracking
+- `generate_article.py` auto-triggers `fetch_topics.py --prompt-type X` when needed categories are stale
+- Partial cache (`.cache/` directory) is not needed — per-source TTL within a single file provides sufficient granularity
+
+**Impact**:
+- `fetch_topics.py`: Output to timestamped file, per-source `fetched_at` in JSON, update symlink
+- `generate_article.py`: Read from `latest.json`, check per-source TTL, auto-trigger fetch for stale sources with correct `--prompt-type`
+- `data/latest_topics.json` → `data/topics/latest.json` (symlink)
 
 ## 2026-09-29: GH Actions dotenv Fix
 

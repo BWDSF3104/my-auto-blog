@@ -2,10 +2,15 @@
 
 実装開始前の計画と方針を記録する。完了後は下部の「完了した計画」に意図と背景を記録する。
 
+## 進行中の計画
+
+(なし)
+
 ## 完了した計画
 
 完了した計画は git の変更履歴と重複せず、「なぜ変えたか」の文脈のみを記録する。ハッシュは参照用。
 
+- [2026-09-30] キャッシュ構成の改善: 取得開始日時分別のファイル構成に変更。各ソースに独立した `fetched_at` を付与し、TTL超過したソースのみ再取得。`generate_article.py` が TTL 超過時に `fetch_topics.py --prompt-type X` を自動実行し、不要なカテゴリの取得を削減。`data/topics/{timestamp}.json` + `data/topics/latest.json` シンボリックリンク構成に切り替え。旧 `data/latest_topics.json` は廃止
 - [2026-09-30] アフィリエイトキーワードの文脈化: trend_keywords（GitHubリポジトリ名）の直接使用を中止。記事本文のtagsと先頭段落からテーマキーワードを抽出し、trend_keywordsはGitHubリポジトリ名を除外して補充。キーワード優先順位を「本文抽出 → trend_keywords → tagsフォールバック」に変更 (556c868)
 - [2026-09-30] ドキュメント整合性修正: known-issues.mdを日本語統一、decisions.mdとarchitecture.mdのgit除外記述を削除、AGENTS.mdにdocs/ai/のgit追跡とdevelopment-notes.md削除を明記、development-notes.mdをgitから削除 (1994529)
 - [2026-09-30] SEO改善: slugルーティング, TOC, タグページ, 関連記事, BreadcrumbList/SearchAction JSON-LD。検索エンジン最適化と内部リンク構造の強化が目的 (78ed667)

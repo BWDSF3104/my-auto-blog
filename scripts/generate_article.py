@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 import re
 from datetime import datetime, timezone, timedelta
+import subprocess
+import sys
 import time
 from PIL import Image
 import pillow_avif
@@ -865,7 +867,8 @@ def generate_content_with_retry(prompt):
 # --------------------------------------------------
 # トレンドトピック注入ヘルパー
 # --------------------------------------------------
-TOPICS_JSON_PATH = os.path.join("data", "latest_topics.json")
+TOPICS_DIR = os.path.join("data", "topics")
+TOPICS_JSON_PATH = os.path.join(TOPICS_DIR, "latest.json")
 
 def _check_topics_ttl(data: dict) -> bool:
     """
@@ -892,10 +895,99 @@ def _check_topics_ttl(data: dict) -> bool:
     return False
 
 
+def _check_per_source_ttl(data: dict, categories: list[str]) -> dict[str, bool]:
+    """
+    Per-source TTL検証: sources の各エントリの fetched_at をチェック。
+    指定カテゴリのトピックを持たない source は有効期限切れとみなす。
+    戻り値: {source_name: is_expired} ディクショナリ
+    """
+    JST = timezone(timedelta(hours=9))
+    now = datetime.now(JST)
+    ttl_hours = data.get("ttl_hours", 24)
+    sources = data.get("sources", {})
+    by_category = data.get("by_category", {})
+    expired = {}
+
+    for src_name, src_data in sources.items():
+        src_topics = src_data.get("topics", [])
+        src_cats = set(t.get("category", "other") for t in src_topics)
+        if not src_cats & set(categories):
+            expired[src_name] = False
+            continue
+        fetched_at_str = src_data.get("fetched_at", "")
+        if not fetched_at_str:
+            expired[src_name] = True
+            continue
+        try:
+            fetched_at = datetime.fromisoformat(fetched_at_str)
+            if fetched_at.tzinfo is None:
+                fetched_at = fetched_at.replace(tzinfo=JST)
+            elapsed = (now - fetched_at).total_seconds() / 3600
+            expired[src_name] = elapsed > ttl_hours
+        except Exception:
+            expired[src_name] = True
+
+    return expired
+
+
+def _auto_fetch_topics(prompt_type: str, categories: list[str], data: dict) -> dict | None:
+    """
+    指定カテゴリのトピックが不足している場合、fetch_topics.py を自動実行して最新データを取得。
+    取得成功時は新しいデータdictを返し、失敗時はNoneを返す。
+    """
+    JST = timezone(timedelta(hours=9))
+    now = datetime.now(JST)
+    ttl_hours = data.get("ttl_hours", 24)
+    by_category = data.get("by_category", {})
+
+    need_fetch = False
+    for cat in categories:
+        cat_items = by_category.get(cat, [])
+        if len(cat_items) == 0:
+            need_fetch = True
+            break
+
+    if not need_fetch:
+        sources = data.get("sources", {})
+        expired = _check_per_source_ttl(data, categories)
+        for src, is_exp in expired.items():
+            if is_exp:
+                need_fetch = True
+                break
+
+    if not need_fetch:
+        return None
+
+    print(f"[topics] カテゴリ {categories} のデータが不足/期限切れです。自動取得を開始します。")
+    try:
+        result = subprocess.run(
+            [sys.executable, "-u", os.path.join("scripts", "fetch_topics.py"), "--prompt-type", prompt_type],
+            capture_output=True, text=True, timeout=120, encoding="utf-8"
+        )
+        if result.returncode != 0:
+            print(f"[topics] 自動取得失敗 (exit={result.returncode}): {result.stderr.strip()}")
+            return None
+        print(f"[topics] 自動取得完了: {result.stdout.strip().splitlines()[-1] if result.stdout.strip() else 'ok'}")
+    except subprocess.TimeoutExpired:
+        print("[topics] 自動取得がタイムアウトしました")
+        return None
+    except Exception as e:
+        print(f"[topics] 自動取得エラー: {e}")
+        return None
+
+    try:
+        with open(TOPICS_JSON_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[topics] 自動取得後のJSON読み込み失敗: {e}")
+        return None
+
+
 def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str, list[str], list[str]]:
     """
-    data/latest_topics.json が存在する場合、prompt_type に応じたカテゴリの
+    data/topics/latest.json が存在する場合、prompt_type に応じたカテゴリの
     トレンドタイトルを score 降順で選択して ng_instruction の末尾へ付加する。
+    Per-source TTL で期限切れのカテゴリがある場合は自動再取得を試みる。
     第2要素としてアフィリエイト用のトレンドキーワードリストを返す。
     第3要素として frontmatter 用のソースURLリストを返す。
     ファイルが存在しない場合は元の ng_instruction と空リストを返す。
@@ -911,9 +1003,6 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
         print(f"[topics] JSON 読み込み失敗: {e}")
         return ng_instruction, [], []
 
-    # TTL検証
-    _check_topics_ttl(data)
-
     # prompt_type に合わせてカテゴリを選択（カテゴリ厳格化）
     if prompt_type in ("kemono_story", "novel", "story"):
         categories = ["kemono", "pokemon"]
@@ -921,6 +1010,20 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
         categories = ["tech"]
     else:
         categories = ["tech", "kemono", "pokemon"]
+
+    # Per-source TTL 検証
+    _check_topics_ttl(data)
+    expired = _check_per_source_ttl(data, categories)
+    has_expired = any(expired.values())
+    if has_expired:
+        expired_names = [s for s, v in expired.items() if v]
+        print(f"[topics] 期限切れ source: {', '.join(expired_names)}")
+
+    # 期限切れの場合、自動再取得
+    if has_expired:
+        new_data = _auto_fetch_topics(prompt_type, categories, data)
+        if new_data:
+            data = new_data
 
     by_cat = data.get("by_category", {})
     selected_titles: list[str] = []
