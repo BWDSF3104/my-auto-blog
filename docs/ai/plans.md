@@ -10,7 +10,7 @@
 
 完了した計画は git の変更履歴と重複せず、「なぜ変えたか」の文脈のみを記録する。ハッシュは参照用。
 
-- [2026-09-30] ユニットテスト作成: `fetch_topics.py` と `generate_article.py` のテストスクリプトを新規作成。62テスト全件通過（fetch_topics 13件、generate_article 49件）。ソースコードの静的監査も併行実施し、9件の潜在的バグを known-issues.md に記録
+- [2026-09-30] ユニットテスト作成: `fetch_topics.py` と `generate_article.py` のテストスクリプトを新規作成。85テスト全件通過（fetch_topics 24件、generate_article 61件）。キャッシュ構成（タイムスタンプファイル、シンボリックリンク、merge、クリーンアップ、TTL）、per-source TTLチェック、auto-fetchを網羅。ソースコードの静的監査も併行実施し、9件の潜在的バグを known-issues.md に記録 (66df732)
 
 - [2026-09-30] キャッシュ構成の改善: 取得開始日時分別のファイル構成に変更。各ソースに独立した `fetched_at` を付与し、TTL超過したソースのみ再取得。`generate_article.py` が TTL 超過時に `fetch_topics.py --prompt-type X` を自動実行し、不要なカテゴリの取得を削減。`data/topics/{timestamp}.json` + `data/topics/latest.json` シンボリックリンク構成に切り替え。旧 `data/latest_topics.json` は廃止
 - [2026-09-30] アフィリエイトキーワードの文脈化: trend_keywords（GitHubリポジトリ名）の直接使用を中止。記事本文のtagsと先頭段落からテーマキーワードを抽出し、trend_keywordsはGitHubリポジトリ名を除外して補充。キーワード優先順位を「本文抽出 → trend_keywords → tagsフォールバック」に変更 (556c868)
