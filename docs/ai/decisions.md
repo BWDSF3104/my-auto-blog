@@ -255,6 +255,19 @@
 **Impact**:
 - `PostLayout.astro`: Fixed click handling for affiliate links on mobile
 
+## 2026-09-30: CSS-Only Bullet List Affiliate Card Styling
+
+**Decision**: Style bullet list affiliate links as card-style elements using CSS `:has()` selector, without modifying Python templates.
+
+**Rationale**: Bullet list links (`- 📦 [Amazonで〜を探す](url)`) were rendered as plain underlined text, inconsistent with the visual product cards. CSS-only approach avoids template changes and retroactively applies to all existing posts.
+
+**Impact**:
+- `global.css`: Added `article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"])` selectors
+- Amazon links: amber theme (`#fffbeb` bg, `#fcd34d` border, `#92400e` text)
+- Rakuten links: pink theme (`#fff1f2` bg, `#fda4af` border, `#9f1239` text)
+- Both include `PR ↗` badge via `::after` pseudo-element
+- Responsive: reduced padding/font on mobile via media query
+
 ## 2026-09-29: GH Actions dotenv Fix
 
 **Decision**: Install `python-dotenv` in GitHub Actions workflow.

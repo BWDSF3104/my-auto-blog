@@ -110,3 +110,57 @@
     text-align: center;
   }
 }
+
+/* Bullet list affiliate links: compact card */
+article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]) {
+  margin: 8px 0 !important;
+  list-style: none !important;
+}
+article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]) a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: box-shadow 0.2s, opacity 0.2s;
+}
+article ul li:has(a[href*="amazon.co.jp"]) a {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+}
+article ul li:has(a[href*="rakuten.co.jp"]) a {
+  background: #fff1f2;
+  border: 1px solid #fda4af;
+  color: #9f1239;
+}
+article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]) a:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  opacity: 0.85;
+}
+article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]) a::after {
+  content: "PR ↗";
+  margin-left: auto;
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+article ul li:has(a[href*="amazon.co.jp"]) a::after {
+  background: #fcd34d;
+  color: #92400e;
+}
+article ul li:has(a[href*="rakuten.co.jp"]) a::after {
+  background: #fda4af;
+  color: #9f1239;
+}
+
+@media (max-width: 640px) {
+  article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]) a {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+}
