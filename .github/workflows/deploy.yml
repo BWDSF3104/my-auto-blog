@@ -2,8 +2,13 @@ name: Auto Generate Content and Deploy to GitHub Pages
 
 on:
   schedule:
-    - cron: '0 23 * * *' # æ¯æ—¥ æ—¥æœ¬æ™‚é–“ 8:00 ã«å®Ÿè¡?
-  workflow_dispatch: # æ‰‹å‹•å®Ÿè¡Œç”¨
+    - cron: '0 23 * * *' # JST ’© 8:00 ‚É‹N“®
+  workflow_dispatch: # è“®‹N“®
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'data/**'
 
 permissions:
   contents: write

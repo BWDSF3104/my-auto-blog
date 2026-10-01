@@ -175,7 +175,7 @@ P1
 4. [x] 画像サイズを `w-full h-[160px] sm:w-[180px] sm:h-[120px]` に復元
 5. [x] `npm run build` でビルド成功確認 (89ページ、/page/2,3,4 生成)
 6. [x] `pytest scripts/tests/ -v` でテスト確認 (96/96 passed)
-7. [ ] git commit & push
+7. [x] git commit & push (b996bf2)
 
 ## Modified Files
 
