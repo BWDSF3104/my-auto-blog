@@ -148,3 +148,41 @@ P1
 ## Next Action
 
 Bing Webmaster Tools 検証 ID の追加と Google Search Console への sitemap 提出
+
+---
+
+## Task (現在進行中)
+
+ページネーション修復と画像サイズ復元
+
+## Priority
+
+P1
+
+## Status
+
+進行中
+
+## Objective
+
+/page/2 以降のルーティングを復元し、記事一覧の画像サイズを元の 180×120px（モバイル 100%×160px）に戻す。
+
+## Steps
+
+1. [x] `[page].astro` の glob パスを `../../content/posts/*.md` に修正
+2. [x] `calcReadingTime` を `getStaticPaths` 内にインライン展開
+3. [x] デバッグ用 console.log を削除
+4. [x] 画像サイズを `w-full h-[160px] sm:w-[180px] sm:h-[120px]` に復元
+5. [x] `npm run build` でビルド成功確認 (89ページ、/page/2,3,4 生成)
+6. [x] `pytest scripts/tests/ -v` でテスト確認 (96/96 passed)
+7. [ ] git commit & push
+
+## Modified Files
+
+- `src/pages/page/[page].astro` — globパス修正、calcReadingTimeインライン化、画像サイズ復元
+- `src/pages/index.astro` — 画像サイズ復元
+
+## Verification
+
+`npm run build` — 89 pages built in 1.91s (/page/2, /page/3, /page/4 生成確認)
+`pytest scripts/tests/ -v` — 96/96 passed (1.40s)

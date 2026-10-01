@@ -20,16 +20,18 @@ export async function getStaticPaths() {
       image?: string;
     };
     url: string;
-  }>('../content/posts/*.md', { eager: true });
+  }>('../../content/posts/*.md', { eager: true });
 
-  const postRaw = import.meta.glob<string>('../content/posts/*.md', { eager: true, query: 'raw' });
+  const postRaw = import.meta.glob<string>('../../content/posts/*.md', { eager: true, query: 'raw' });
 
   const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   const allPosts = Object.entries(postImports).map(([path, module]) => {
     const filename = path.split('/').pop()?.replace('.md', '') || '';
     const slug = module.frontmatter.slug || filename;
     const raw = ((postRaw[path] as any)?.default as string) || '';
-    const readingTime = calcReadingTime(raw);
+    const stripped = raw.replace(/^---[\s\S]*?---\s*/m, '');
+    const jaLen = (stripped.match(/[\u3000-\u9FFF]/g) || []).length;
+    const readingTime = Math.max(1, Math.ceil(jaLen / 1500));
     return {
       frontmatter: module.frontmatter,
       url: `${baseUrl}/posts/${slug}`,
@@ -40,20 +42,22 @@ export async function getStaticPaths() {
   allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE) || 1;
 
-  return Array.from({ length: totalPages - 1 }, (_, i) => {
-    const page = i + 2;
-    const start = (page - 1) * POSTS_PER_PAGE;
+  const paths = Array.from({ length: totalPages - 1 }, (_, i) => {
+    const pageNum = i + 2;
+    const start = (pageNum - 1) * POSTS_PER_PAGE;
     const pagePosts = allPosts.slice(start, start + POSTS_PER_PAGE);
     return {
-      params: { page: String(page) },
+      params: { page: String(pageNum) },
       props: {
         posts: pagePosts,
-        currentPage: page,
+        currentPage: pageNum,
         totalPages,
         totalPosts: allPosts.length
       }
     };
   });
+
+  return paths;
 }
 
 const { posts, currentPage, totalPages, totalPosts } = Astro.props;
@@ -122,7 +126,7 @@ const ogImageUrl = posts[0]?.frontmatter.image
                       <img
                         src={post.frontmatter.image}
                         alt={post.frontmatter.title}
-                        class="w-full h-40 sm:w-44 sm:h-28 object-cover rounded-lg border border-slate-200 dark:border-slate-600"
+                         class="w-full h-[160px] sm:w-[180px] sm:h-[120px] object-cover rounded-lg border border-slate-200 dark:border-slate-600"
                         loading="lazy"
                       />
                     </a>
@@ -175,13 +179,15 @@ const ogImageUrl = posts[0]?.frontmatter.image
               )
             ))}
 
-            <a
-              href={`${baseUrl}/page/${currentPage + 1}`}
-              class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 no-underline hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
-              aria-label="次のページ"
-            >
-              次 →
-            </a>
+            {currentPage < totalPages && (
+              <a
+                href={`${baseUrl}/page/${currentPage + 1}`}
+                class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 no-underline hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                aria-label="次のページ"
+              >
+                次 →
+              </a>
+            )}
           </nav>
         )}
       </main>
