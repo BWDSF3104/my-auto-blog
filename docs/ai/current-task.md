@@ -628,7 +628,7 @@ P1
 1. [x] `Header.astro` の `setDark(dark: boolean)` を `setDark(isDark)` に変更
 2. [x] `npm run build` でビルド成功確認 (92ページ)
 3. [x] `pytest scripts/tests/ -v` でテスト確認 (134/134 passed)
-4. [ ] git commit & push
+4. [x] git commit & push (3232915)
 
 ## Modified Files
 
@@ -639,6 +639,10 @@ P1
 `npm run build` — 92 pages built in 2.19s, Complete!
 `pytest scripts/tests/ -v` — 134/134 passed (1.85s)
 
+## Commit
+
+3232915 — fix: dark mode toggle - remove TypeScript type annotation from is:inline script
+
 ## Next Action
 
-git commit & push
+なし
