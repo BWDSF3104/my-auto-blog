@@ -220,3 +220,41 @@ P1
 ## Commit
 
 c5d2636 — feat: add deploy-only workflow for build+deploy without article generation
+
+---
+
+## Task (完了)
+
+記事一覧の画像サイズ修正（モバイル対応）
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+記事一覧の画像が横幅一杯に広がり、スマートフォン表示で画面からはみ出る問題を修正。
+
+## Steps
+
+1. [x] `index.astro` の画像に `max-w-[240px]` を追加（モバイルで幅を制限）
+2. [x] `page/[page].astro` にも同様の修正を適用
+3. [x] `npm run build` でビルド成功確認（89ページ）
+4. [x] git commit & push (8c6b844)
+
+## Modified Files
+
+- `src/pages/index.astro` — 画像に `max-w-[240px]` + `sm:max-w-none` を追加
+- `src/pages/page/[page].astro` — 同上
+
+## Verification
+
+`npm run build` — 89 pages built in 1.95s
+
+## Commit
+
+8c6b844 — fix: constrain article list image width on mobile with max-w-240px
