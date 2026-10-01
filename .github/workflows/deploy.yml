@@ -26,6 +26,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -76,7 +79,7 @@ jobs:
           # Cache JSON (timestamped file + latest symlink)
           [ -d "data/topics" ] && git add data/topics/
           
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git push)          
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git pull --rebase && git push)          
 
   # --- 2. Astroサイト構�? ?�? GitHub Pagesへ配信 ---
   build-and-deploy:
@@ -120,6 +123,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add data/.last-deploy-success.json
           git diff --quiet && git diff --staged --quiet || git commit -m "ci: record deploy success [skip ci]"
+          git pull --rebase
           git push
         env:
           PROMPT_TYPE: "kemono_story"
