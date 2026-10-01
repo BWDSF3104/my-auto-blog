@@ -33,6 +33,10 @@ from generate_article import (
     _save_as_avif,
     _generate_image_pollinations,
     _load_posts_for_links,
+    _load_slug_redirects,
+    _save_slug_redirects,
+    _get_existing_slugs,
+    _resolve_slug_collision,
     generate_and_save_image,
     extract_character_prompts,
     extract_image_prompt,
@@ -1183,3 +1187,76 @@ Check Dragon Art for details.
         assert "![Dragon Art](/images/dragon.avif)" in result
         expected_link = f"[Dragon Art]({BASE_URL}/posts/dragon-art)"
         assert result.count(expected_link) == 1
+
+
+class TestSlugRedirects:
+    """Tests for slug redirect tracking and collision resolution."""
+
+    def test_load_redirects_empty_file(self, tmp_path):
+        f = tmp_path / "slug-redirects.json"
+        f.write_text("{}")
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            result = _load_slug_redirects()
+        assert result == {}
+
+    def test_load_redirects_missing_file(self, tmp_path):
+        f = tmp_path / "nonexistent.json"
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            result = _load_slug_redirects()
+        assert result == {}
+
+    def test_load_redirects_with_data(self, tmp_path):
+        f = tmp_path / "slug-redirects.json"
+        f.write_text(json.dumps({"old-slug": "new-slug"}))
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            result = _load_slug_redirects()
+        assert result == {"old-slug": "new-slug"}
+
+    def test_load_redirects_invalid_json(self, tmp_path):
+        f = tmp_path / "slug-redirects.json"
+        f.write_text("{invalid json}")
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            result = _load_slug_redirects()
+        assert result == {}
+
+    def test_save_redirects(self, tmp_path):
+        f = tmp_path / "slug-redirects.json"
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            _save_slug_redirects({"a": "b"})
+        assert json.loads(f.read_text()) == {"a": "b"}
+
+    def test_get_existing_slugs_empty(self, tmp_path):
+        result = _get_existing_slugs(str(tmp_path))
+        assert result == set()
+
+    def test_get_existing_slugs_no_dir(self):
+        result = _get_existing_slugs("/nonexistent/path")
+        assert result == set()
+
+    def test_get_existing_slugs_with_posts(self, tmp_path):
+        (tmp_path / "post1.md").write_text('---\ntitle: "Post 1"\nslug: "post-one"\n---')
+        (tmp_path / "post2.md").write_text('---\ntitle: "Post 2"\nslug: "post-two"\n---')
+        result = _get_existing_slugs(str(tmp_path))
+        assert result == {"post-one", "post-two"}
+
+    def test_resolve_no_collision(self):
+        slug, changed = _resolve_slug_collision("unique-slug", set())
+        assert slug == "unique-slug"
+        assert changed is False
+
+    def test_resolve_collision_first(self, tmp_path):
+        f = tmp_path / "slug-redirects.json"
+        f.write_text("{}")
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            slug, changed = _resolve_slug_collision("duplicate", {"duplicate"})
+        assert slug == "duplicate-2"
+        assert changed is True
+        assert json.loads(f.read_text()) == {"duplicate": "duplicate-2"}
+
+    def test_resolve_collision_multiple(self, tmp_path):
+        f = tmp_path / "slug-redirects.json"
+        f.write_text("{}")
+        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+            slug, changed = _resolve_slug_collision("dup", {"dup", "dup-2", "dup-3"})
+        assert slug == "dup-4"
+        assert changed is True

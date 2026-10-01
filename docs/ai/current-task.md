@@ -2,6 +2,42 @@
 
 Agentの現在進行中タスクの状態を記録する。Context Overflow後もこのファイルを読み込んで作業を復帰させる。
 
+## Task (進行中)
+
+canonical URL一貫性: slug変更時の301リダイレクト実装
+
+## Priority (進行中)
+
+P1
+
+## Context
+
+GitHub Pages静的サイトのためミドルウェア使用不可。Astroの`getStaticPaths` + `redirect` で静的301リダイレクトを実装。
+旧slug→新slugのマッピングを `data/slug-redirects.json` に記録。
+`generate_article.py` がslug変更を検出して自動記録。
+
+## Progress
+
+- [x] Memory Bank (plans.md) に計画記録
+- [x] `data/slug-redirects.json` の初期構造作成
+- [x] `generate_article.py` にslug変更検出ロジック追加
+- [x] `[...slug].astro` にリダイレクトルートの `getStaticPaths` 追加
+- [x] テスト追加 (pytest) - 11件追加、計119件全件通過
+- [x] ビルド検証 (npm run build) - 90ページ成功
+- [x] sitemap整合性確認 - 34記事のslugが正しく反映
+- [ ] backlog.md から完了項目を削除
+- [ ] plans.md の Completed Plans に記録
+
+## Next Action
+
+(完了) 次は backlog.md の P0: Reddit 代替ソースの追加、またはユーザーからの次の指示を待つ
+
+## Verification
+
+- pytest scripts/tests/ -v: 119 passed in 1.58s
+- npm run build: 90 page(s) built, Complete!
+- sitemap.xml: 34 post URLs 正しく生成
+
 ## Task (完了済み)
 
 既存記事を除く本プロジェクトのページの見栄えや機能を改善（モバイル対応含む）

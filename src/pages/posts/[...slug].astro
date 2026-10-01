@@ -8,7 +8,7 @@ export async function getStaticPaths() {
     Content: any;
   }>('../../content/posts/*.md', { eager: true });
 
-  return Object.values(postImports).map((post) => {
+  const paths = Object.values(postImports).map((post) => {
     const filename = post.file.split('/').pop() || '';
     const fallbackSlug = filename.replace('.md', '');
     const slug = post.frontmatter.slug || fallbackSlug;
@@ -18,6 +18,21 @@ export async function getStaticPaths() {
       props: { post },
     };
   });
+
+  try {
+    const redirectsJson = await import('../../../../data/slug-redirects.json', { assert: { type: 'json' } });
+    const redirects = redirectsJson.default || {};
+    for (const [oldSlug, newSlug] of Object.entries(redirects)) {
+      paths.push({
+        params: { slug: oldSlug },
+        redirect: `/posts/${newSlug}`,
+      });
+    }
+  } catch {
+    // slug-redirects.json 不存在時は無視
+  }
+
+  return paths;
 }
 
 const { post } = Astro.props;

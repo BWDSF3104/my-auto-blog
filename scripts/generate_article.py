@@ -1541,6 +1541,54 @@ def validate_and_fix_frontmatter(content: str) -> str:
 
 
 # --------------------------------------------------
+# slug リダイレクトの追跡
+# --------------------------------------------------
+SLUG_REDIRECTS_FILE = "data/slug-redirects.json"
+
+def _load_slug_redirects():
+    if not os.path.exists(SLUG_REDIRECTS_FILE):
+        return {}
+    try:
+        with open(SLUG_REDIRECTS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def _save_slug_redirects(redirects):
+    os.makedirs(os.path.dirname(SLUG_REDIRECTS_FILE), exist_ok=True)
+    with open(SLUG_REDIRECTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(redirects, f, ensure_ascii=False, indent=2)
+
+def _get_existing_slugs(posts_dir="src/content/posts"):
+    slugs = set()
+    if not os.path.exists(posts_dir):
+        return slugs
+    for filepath in glob.glob(os.path.join(posts_dir, "*.md")):
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                c = f.read()
+        except Exception:
+            continue
+        slug_m = re.search(r'^slug:\s*["\']?(.*?)["\']?$', c, re.MULTILINE)
+        if slug_m and slug_m.group(1).strip():
+            slugs.add(slug_m.group(1).strip())
+    return slugs
+
+def _resolve_slug_collision(slug, existing_slugs):
+    redirects = _load_slug_redirects()
+    if slug not in existing_slugs:
+        return slug, False
+    counter = 2
+    unique_slug = f"{slug}-{counter}"
+    while unique_slug in existing_slugs:
+        counter += 1
+        unique_slug = f"{slug}-{counter}"
+    redirects[slug] = unique_slug
+    _save_slug_redirects(redirects)
+    print(f"🔗 slug競合を検出: {slug} → {unique_slug} (リダイレクト記録)")
+    return unique_slug, True
+
+# --------------------------------------------------
 # 自動内部リンクの挿入
 # --------------------------------------------------
 def _load_posts_for_links(posts_dir="src/content/posts"):
@@ -1793,6 +1841,18 @@ def generate_post():
         if slug and "---" in content:
             content = content.replace("---", f"---\nslug: \"{slug}\"", 1)
             print(f"🔗 スラッグを自動生成: {slug}")
+
+    # slug競合の検出・解決: 既存記事と同じslugがあればユニークに調整してリダイレクトを記録
+    if slug_match and slug_match.group(1).strip():
+        final_slug = slug_match.group(1).strip()
+    else:
+        final_slug = slug
+    if final_slug:
+        existing = _get_existing_slugs()
+        final_slug, _ = _resolve_slug_collision(final_slug, existing)
+        if final_slug and "---" in content:
+            slug_line = rf'^slug:\s*["\']?(.*?)["\']?$'
+            content = re.sub(slug_line, f'slug: "{final_slug}"', content, count=1, flags=re.MULTILINE)
 
     # 系統情報（prompt_type）をFrontmatterに付与（次回以降の同系統判定の精度向上）
     if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:

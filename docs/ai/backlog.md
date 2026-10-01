@@ -8,12 +8,6 @@
 |------|------|------|
 | Reddit 代替ソースの追加 | Reddit API がブロックされているため、HackerNews RSS、TechCrunch RSS、または Twitter/X trending を追加してトレンドデータの多様性を確保 | 中 |
 
-## P1
-
-| 項目 | 内容 | 工数 |
-|------|------|------|
-| canonical URL一貫性 | slug変更時の301リダイレクト、sitemapとの整合性確認 | - |
-
 ## P2
 
 | 項目 | 内容 |
