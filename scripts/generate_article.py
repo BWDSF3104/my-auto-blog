@@ -1633,6 +1633,7 @@ def generate_post():
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
     # 1. プロンプトタイプ決定と同系統の重複防止設定
+    prompt_type = os.environ.get("PROMPT_TYPE", "default")
     recent_titles = get_recent_titles_by_type(prompt_type)
     recent_metas = get_recent_meta_by_type(prompt_type)
 
