@@ -4,11 +4,11 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-Geminiテキスト生成のフォールバックチェーンに `gemini-3.5-flash-lite` を3段目に追加
+既存記事を除く本プロジェクトのページの見栄えや機能を改善（モバイル対応含む）
 
 ## Priority
 
-P2
+P1
 
 ## Status
 
@@ -16,18 +16,36 @@ P2
 
 ## Objective
 
-`gemini-3.1-flash-lite` の2027/5/7廃止に対応し、Google推奨の代替モデル `gemini-3.5-flash-lite` をフォールバックチェーンの3段目に挿入する。4段チェーン: 3.8-flash → 3.6-flash → 3.5-flash-lite → 3.1-flash-lite。
+index.astro, tags/index.astro, tags/[tag].astro のインラインCSSをTailwindクラスへ置換し、PostLayout.astro とスタイル体系を統一する。
+
+## Steps
+
+1. [x] Tailwind統一: index.astro
+2. [x] Tailwind統一: tags/index.astro
+3. [x] Tailwind統一: tags/[tag].astro
+4. [x] 共通 Header.astro / Footer.astro コンポーネント作成
+5. [x] 全ページで Header/Footer を使用
+6. [x] ホームページにページネーション追加
+7. [x] タグ一覧ページに検索フィルタ
+8. [x] ダークモード対応
+9. [x] 404エラーページ作成
+10. [x] Aboutページ作成
+11. [x] 読了時間表示
 
 ## Modified Files
 
-- `scripts/generate_article.py` — `MODELS_TO_TRY` リストに `gemini-3.5-flash-lite` を追加
+- `src/pages/index.astro` — Tailwind統一, Header/Footer統合, ページネーション
+- `src/pages/tags/index.astro` — Tailwind統一, Header/Footer統合, 検索フィルタ
+- `src/pages/tags/[tag].astro` — Tailwind統一, Header/Footer統合
+- `src/pages/404.astro` — 新規作成
+- `src/pages/about.astro` — 新規作成
+- `src/pages/page/[page].astro` — 新規作成 (ページネーション用)
+- `src/components/Header.astro` — 新規作成
+- `src/components/Footer.astro` — 新規作成
 
 ## Completed
 
-- [x] 現在のフォールバックチェーンと廃止スケジュールの確認
-- [x] `gemini-3.5-flash-lite` を3段目に追加
-- [x] `pytest scripts/tests/ -v` 成功確認（96/96, 1.51s）
-- [x] `npm run build` 成功確認（83 pages, 1.57s）
+Steps 1-11 全完了。ビルド成功確認 (85ページ)。
 
 ## Pending
 
@@ -35,8 +53,8 @@ P2
 
 ## Verification
 
-- `pytest scripts/tests/ -v`: 96/96 passed, 1.51s
-- `npm run build`: 成功（83 pages, 1.57s）
+`npm run build` — 85ページビルド成功 (2026-10-01)
+`pytest scripts/tests/ -v` — 96/96通過 (2026-10-01)
 
 ## Next Action
 
@@ -44,10 +62,13 @@ P2
 
 ## Commit
 
-5d457e3 (feat: add gemini-3.5-flash-lite as 3rd fallback model)
+(未コミット)
 
 ## Notes
 
-- `gemini-3.1-flash-lite` は2027/5/7に廃止予定
-- `gemini-3.5-flash-lite` は2026年7月にGAリリース、廃止予定なし
-- `gemini-3.8-flash` は2026年末まで紹介価格（$0.75/1M input）
+- Tailwind v4 を使用中（`@tailwindcss/vite` プラグイン方式）
+- `@tailwindcss/typography` が devDependencies にある
+- 既存の `PostLayout.astro` は既に Tailwind 使用済み
+- モバイルファースト: `sm:`, `md:`, `lg:` ブレークポイント活用
+- index.astro は getStaticPaths を使用せず、静的に1ページ目をレンダリング
+- page/[page].astro がページネーションの2ページ目以降を担当

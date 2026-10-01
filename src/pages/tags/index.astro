@@ -1,4 +1,7 @@
 ---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
 const postImports = import.meta.glob<{
   frontmatter: {
     title: string;
@@ -9,7 +12,7 @@ const postImports = import.meta.glob<{
     image?: string;
   };
   url: string;
-}>('../content/posts/*.md', { eager: true });
+}>('../../content/posts/*.md', { eager: true });
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -81,101 +84,74 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "query-input": "required name=search_term_string"
       }
     })} />
-    <style>
-      body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-        line-height: 1.6;
-        color: #222;
-        background-color: #f8fafc;
-      }
-      header {
-        border-bottom: 2px solid #e2e8f0;
-        margin-bottom: 2.5rem;
-        padding-bottom: 1.5rem;
-      }
-      h1 {
-        font-size: 2rem;
-        color: #0f172a;
-        margin: 0 0 0.5rem 0;
-      }
-      .subtitle {
-        color: #64748b;
-        font-size: 0.95rem;
-        margin: 0;
-      }
-      .back-link {
-        display: inline-flex;
-        items-center;
-        font-size: 0.9rem;
-        color: #2563eb;
-        text-decoration: none;
-        margin-bottom: 1.5rem;
-      }
-      .back-link:hover {
-        text-decoration: underline;
-      }
-      .tag-cloud {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .tag-item {
-        background: #ffffff;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .tag-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      }
-      .tag-name {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #2563eb;
-        text-decoration: none;
-      }
-      .tag-name:hover {
-        text-decoration: underline;
-      }
-      .tag-count {
-        font-size: 0.8rem;
-        color: #64748b;
-        margin-left: 0.5rem;
-      }
-    </style>
   </head>
-  <body>
-    <header>
-      <nav aria-label="パンくずリスト">
-        <ol style="list-style: none; padding: 0; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #64748b;">
-          <li><a href={baseUrl} class="back-link" style="text-decoration: none; color: #64748b;">ホーム</a></li>
-          <li>›</li>
-          <li><span class="font-medium" style="color: #334155;">タグ一覧</span></li>
-        </ol>
-      </nav>
-      <a href={baseUrl} class="back-link">← 記事一覧に戻る</a>
-      <h1>タグ一覧</h1>
-      <p class="subtitle">全 {tags.length} タグ · {posts.length} 記事</p>
-    </header>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    <div class="max-w-3xl mx-auto">
+      <header class="border-b-2 border-slate-200 dark:border-slate-700 mb-10 pb-6">
+        <nav aria-label="パンくずリスト">
+          <ol class="list-none p-0 m-0 mb-4 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <li><a href={baseUrl} class="text-slate-500 dark:text-slate-400 no-underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ホーム</a></li>
+            <li>›</li>
+            <li><span class="font-medium text-slate-700 dark:text-slate-200">タグ一覧</span></li>
+          </ol>
+        </nav>
+        <a href={baseUrl} class="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors no-underline">
+          ← 記事一覧に戻る
+        </a>
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 tracking-tight mb-2">タグ一覧</h1>
+        <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">全 {tags.length} タグ · {posts.length} 記事</p>
 
-    <main>
-      <ul class="tag-cloud">
-        {tags.map(([name, count]) => (
-          <li class="tag-item">
-            <a href={`${baseUrl}/tags/${encodeURIComponent(name)}`} class="tag-name">#{name}</a>
-            <span class="tag-count">({count})</span>
-          </li>
-        ))}
-      </ul>
-    </main>
+        <div class="mt-6">
+          <input
+            type="text"
+            id="tag-search"
+            placeholder="タグを検索..."
+            class="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
+          />
+        </div>
+      </header>
+
+      <main>
+        <ul id="tag-list" class="flex flex-wrap gap-3 list-none p-0 m-0">
+          {tags.map(([name, count]) => (
+            <li class="tag-item bg-white dark:bg-slate-800 rounded-xl p-3 border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-200" data-tag={name.toLowerCase()}>
+              <a href={`${baseUrl}/tags/${encodeURIComponent(name)}`} class="text-lg font-semibold text-blue-600 dark:text-blue-400 no-underline hover:underline">#{name}</a>
+              <span class="text-xs text-slate-500 dark:text-slate-400 ml-2">({count})</span>
+            </li>
+          ))}
+        </ul>
+        <p id="no-results" class="hidden text-center text-slate-500 dark:text-slate-400 py-10">該当するタグが見つかりません。</p>
+      </main>
+
+      <Footer />
+    </div>
   </body>
 </html>
+
+<script>
+  const searchInput = document.getElementById('tag-search');
+  const tagList = document.getElementById('tag-list');
+  const noResults = document.getElementById('no-results');
+  const tagItems = tagList.querySelectorAll('.tag-item');
+
+  searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    tagItems.forEach(item => {
+      const tag = item.getAttribute('data-tag');
+      if (tag.includes(query)) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    if (visibleCount === 0 && query) {
+      noResults.classList.remove('hidden');
+    } else {
+      noResults.classList.add('hidden');
+    }
+  });
+</script>

@@ -20,9 +20,19 @@
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 
+:root[class~="dark"] .product-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
 .product-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-color: #cbd5e1;
+}
+
+:root[class~="dark"] .product-card:hover {
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .pc-icon {
@@ -35,6 +45,10 @@
   justify-content: center;
   background: #f1f5f9;
   border-radius: 10px;
+}
+
+:root[class~="dark"] .pc-icon {
+  background: #334155;
 }
 
 .pc-info {
@@ -51,10 +65,18 @@
   text-overflow: ellipsis;
 }
 
+:root[class~="dark"] .pc-name {
+  color: #f1f5f9;
+}
+
 .pc-category {
   font-size: 0.8em;
   color: #64748b;
   margin-top: 2px;
+}
+
+:root[class~="dark"] .pc-category {
+  color: #94a3b8;
 }
 
 .pc-price {
@@ -132,10 +154,23 @@ article ul li:has(a[href*="amazon.co.jp"]) a {
   border: 1px solid #fcd34d;
   color: #92400e;
 }
+
+:root[class~="dark"] article ul li:has(a[href*="amazon.co.jp"]) a {
+  background: #451a03;
+  border-color: #92400e;
+  color: #fcd34d;
+}
+
 article ul li:has(a[href*="rakuten.co.jp"]) a {
   background: #fff1f2;
   border: 1px solid #fda4af;
   color: #9f1239;
+}
+
+:root[class~="dark"] article ul li:has(a[href*="rakuten.co.jp"]) a {
+  background: #4c0519;
+  border-color: #9f1239;
+  color: #fda4af;
 }
 article ul li:has(a[href*="amazon.co.jp"], a[href*="rakuten.co.jp"]) a:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);

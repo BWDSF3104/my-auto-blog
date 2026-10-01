@@ -1,4 +1,7 @@
 ---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
 export async function getStaticPaths() {
   const postImports = import.meta.glob<{
     frontmatter: {
@@ -11,6 +14,14 @@ export async function getStaticPaths() {
     };
     url: string;
   }>('../../content/posts/*.md', { eager: true });
+
+  const postRaw = import.meta.glob<string>('../../content/posts/*.md', { eager: true, query: 'raw' });
+
+  function calcReadingTime(content: string): number {
+    const stripped = content.replace(/^---[\s\S]*?---\s*/m, '');
+    const jaLen = (stripped.match(/[\u3000-\u9FFF]/g) || []).length;
+    return Math.max(1, Math.ceil(jaLen / 1500));
+  }
 
   const tagMap = new Map<string, typeof postImports>();
   Object.entries(postImports).forEach(([path, module]) => {
@@ -26,9 +37,12 @@ export async function getStaticPaths() {
     const tagPosts = Object.entries(tagMap.get(tag)!).map(([path, module]) => {
       const filename = path.split('/').pop()?.replace('.md', '') || '';
       const slug = module.frontmatter.slug || filename;
+      const raw = ((postRaw[path] as any)?.default as string) || '';
+      const readingTime = calcReadingTime(raw);
       return {
         frontmatter: module.frontmatter,
-        url: `${baseUrl}/posts/${slug}`
+        url: `${baseUrl}/posts/${slug}`,
+        readingTime
       };
     });
     tagPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
@@ -94,183 +108,70 @@ const siteDescription = `"${tag}"タグの記事一覧（${posts.length}件）`;
         "query-input": "required name=search_term_string"
       }
     })} />
-    <style>
-      body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-        line-height: 1.6;
-        color: #222;
-        background-color: #f8fafc;
-      }
-      header {
-        border-bottom: 2px solid #e2e8f0;
-        margin-bottom: 2.5rem;
-        padding-bottom: 1.5rem;
-      }
-      h1 {
-        font-size: 2rem;
-        color: #0f172a;
-        margin: 0 0 0.5rem 0;
-      }
-      .subtitle {
-        color: #64748b;
-        font-size: 0.95rem;
-        margin: 0;
-      }
-      .back-links {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        flex-wrap: wrap;
-      }
-      .back-link {
-        display: inline-flex;
-        items-center;
-        font-size: 0.9rem;
-        color: #2563eb;
-        text-decoration: none;
-      }
-      .back-link:hover {
-        text-decoration: underline;
-      }
-      .post-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .post-card {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 1.25rem;
-        margin-bottom: 1.5rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .post-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      }
-      .post-card-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      @media (min-width: 640px) {
-        .post-card-content {
-          flex-direction: row;
-          align-items: flex-start;
-        }
-      }
-      .post-thumb {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-        flex-shrink: 0;
-      }
-      @media (min-width: 640px) {
-        .post-thumb {
-          width: 180px;
-          height: 120px;
-        }
-      }
-      .post-body {
-        flex: 1;
-        min-width: 0;
-      }
-      .post-title {
-        margin: 0 0 0.5rem 0;
-        font-size: 1.25rem;
-      }
-      .post-title a {
-        color: #2563eb;
-        text-decoration: none;
-      }
-      .post-title a:hover {
-        text-decoration: underline;
-      }
-      .post-meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem 0.75rem;
-        font-size: 0.85rem;
-        color: #64748b;
-        margin-bottom: 0.75rem;
-      }
-      .post-description {
-        margin: 0;
-        color: #334155;
-        font-size: 0.9rem;
-      }
-      .tag {
-        background: #eff6ff;
-        color: #2563eb;
-        padding: 0.15rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.75rem;
-        font-weight: 500;
-      }
-    </style>
   </head>
-  <body>
-    <header>
-      <nav class="back-links" aria-label="パンくずリスト">
-        <ol class="flex items-center gap-1.5 text-sm text-slate-500" style="list-style: none; padding: 0; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #64748b;">
-          <li><a href={baseUrl} class="back-link" style="text-decoration: none; color: #64748b;">ホーム</a></li>
-          <li>›</li>
-          <li><a href={`${baseUrl}/tags`} class="back-link" style="text-decoration: none; color: #64748b;">タグ一覧</a></li>
-          <li>›</li>
-          <li><span class="font-medium" style="color: #334155;">#{tag}</span></li>
-        </ol>
-      </nav>
-      <div class="back-links">
-        <a href={baseUrl} class="back-link">← 記事一覧に戻る</a>
-        <a href={`${baseUrl}/tags`} class="back-link">→ 全タグを見る</a>
-      </div>
-      <h1>#{tag}</h1>
-      <p class="subtitle">{posts.length}件の記事</p>
-    </header>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    <div class="max-w-3xl mx-auto">
+      <header class="border-b-2 border-slate-200 dark:border-slate-700 mb-10 pb-6">
+        <nav aria-label="パンくずリスト">
+          <ol class="list-none p-0 m-0 mb-4 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <li><a href={baseUrl} class="text-slate-500 dark:text-slate-400 no-underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ホーム</a></li>
+            <li>›</li>
+            <li><a href={`${baseUrl}/tags`} class="text-slate-500 dark:text-slate-400 no-underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">タグ一覧</a></li>
+            <li>›</li>
+            <li><span class="font-medium text-slate-700 dark:text-slate-200">#{tag}</span></li>
+          </ol>
+        </nav>
+        <div class="flex flex-wrap gap-4 mb-6">
+          <a href={baseUrl} class="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors no-underline">
+            ← 記事一覧に戻る
+          </a>
+          <a href={`${baseUrl}/tags`} class="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors no-underline">
+            → 全タグを見る
+          </a>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 tracking-tight mb-2">#{tag}</h1>
+        <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">{posts.length}件の記事</p>
+      </header>
 
-    <main>
-      {posts.length === 0 ? (
-        <p>記事が見つかりません。</p>
-      ) : (
-        <ul class="post-list">
-          {posts.map((post) => (
-            <li class="post-card">
-              <div class="post-card-content">
-                {post.frontmatter.image && (
-                  <a href={post.url}>
-                    <img
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                      class="post-thumb"
-                      loading="lazy"
-                    />
-                  </a>
-                )}
-                <div class="post-body">
-                  <h2 class="post-title">
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                  </h2>
-                  <div class="post-meta">
-                    <span>📅 {post.frontmatter.pubDate}</span>
-                    {post.frontmatter.tags && post.frontmatter.tags.map((t: string) => (
-                      <a href={`${baseUrl}/tags/${encodeURIComponent(t)}`} class="tag">#{t}</a>
-                    ))}
+      <main>
+        {posts.length === 0 ? (
+          <p>記事が見つかりません。</p>
+        ) : (
+          <ul class="list-none p-0 m-0 space-y-6">
+            {posts.map((post) => (
+              <li class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
+                <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                  {post.frontmatter.image && (
+                    <a href={post.url} class="block flex-shrink-0">
+                      <img
+                        src={post.frontmatter.image}
+                        alt={post.frontmatter.title}
+                        class="w-full h-40 sm:w-44 sm:h-28 object-cover rounded-lg border border-slate-200 dark:border-slate-600"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    <h2 class="text-xl font-bold m-0 mb-2">
+                      <a href={post.url} class="text-blue-600 dark:text-blue-400 no-underline hover:underline">{post.frontmatter.title}</a>
+                    </h2>
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-500 dark:text-slate-400 mb-3">
+                      <span>📅 {post.frontmatter.pubDate}</span>
+                      <span>📖 {post.readingTime}分</span>
+                      {post.frontmatter.tags && post.frontmatter.tags.map((t: string) => (
+                        <a href={`${baseUrl}/tags/${encodeURIComponent(t)}`} class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors no-underline">#{t}</a>
+                      ))}
+                    </div>
+                    <p class="m-0 text-slate-600 dark:text-slate-300 text-sm">{post.frontmatter.description}</p>
                   </div>
-                  <p class="post-description">{post.frontmatter.description}</p>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
+              </li>
+            ))}
+          </ul>
+        )}
+      </main>
+
+      <Footer />
+    </div>
   </body>
 </html>

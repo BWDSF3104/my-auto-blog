@@ -1,22 +1,6 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-
-const POSTS_PER_PAGE = 10;
-
-const postImports = import.meta.glob<{
-  frontmatter: {
-    title: string;
-    pubDate: string;
-    description: string;
-    slug?: string;
-    tags?: string[];
-    image?: string;
-  };
-  url: string;
-}>('../content/posts/*.md', { eager: true });
-
-const postRaw = import.meta.glob<string>('../content/posts/*.md', { eager: true, query: 'raw' });
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
 function calcReadingTime(content: string): number {
   const stripped = content.replace(/^---[\s\S]*?---\s*/m, '');
@@ -24,25 +8,57 @@ function calcReadingTime(content: string): number {
   return Math.max(1, Math.ceil(jaLen / 1500));
 }
 
+export async function getStaticPaths() {
+  const POSTS_PER_PAGE = 10;
+  const postImports = import.meta.glob<{
+    frontmatter: {
+      title: string;
+      pubDate: string;
+      description: string;
+      slug?: string;
+      tags?: string[];
+      image?: string;
+    };
+    url: string;
+  }>('../content/posts/*.md', { eager: true });
+
+  const postRaw = import.meta.glob<string>('../content/posts/*.md', { eager: true, query: 'raw' });
+
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const allPosts = Object.entries(postImports).map(([path, module]) => {
+    const filename = path.split('/').pop()?.replace('.md', '') || '';
+    const slug = module.frontmatter.slug || filename;
+    const raw = ((postRaw[path] as any)?.default as string) || '';
+    const readingTime = calcReadingTime(raw);
+    return {
+      frontmatter: module.frontmatter,
+      url: `${baseUrl}/posts/${slug}`,
+      readingTime
+    };
+  });
+
+  allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE) || 1;
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => {
+    const page = i + 2;
+    const start = (page - 1) * POSTS_PER_PAGE;
+    const pagePosts = allPosts.slice(start, start + POSTS_PER_PAGE);
+    return {
+      params: { page: String(page) },
+      props: {
+        posts: pagePosts,
+        currentPage: page,
+        totalPages,
+        totalPosts: allPosts.length
+      }
+    };
+  });
+}
+
+const { posts, currentPage, totalPages, totalPosts } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const allPosts = Object.entries(postImports).map(([path, module]) => {
-  const filename = path.split('/').pop()?.replace('.md', '') || '';
-  const slug = module.frontmatter.slug || filename;
-  const raw = ((postRaw[path] as any)?.default as string) || '';
-  const readingTime = calcReadingTime(raw);
-  return {
-    frontmatter: module.frontmatter,
-    url: `${baseUrl}/posts/${slug}`,
-    readingTime
-  };
-});
-
-allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
-
-const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE) || 1;
-const posts = allPosts.slice(0, POSTS_PER_PAGE);
-
-const pageTitle = "BWD's AI Auto Blog";
+const pageTitle = `BWD's AI Auto Blog - Page ${currentPage}`;
 const siteDescription = "Gemini API × GitHub Actions による自動生成技術＆ストーリーブログ";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = posts[0]?.frontmatter.image
@@ -60,29 +76,29 @@ const ogImageUrl = posts[0]?.frontmatter.image
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={siteDescription} />
-
-    <!-- OGP -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="BWD's AI Auto Blog" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={siteDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageUrl} />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={siteDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "BWD's AI Auto Blog",
-      "url": `${canonicalURL.origin}${baseUrl}/`,
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": `${canonicalURL.origin}${baseUrl}/tags/{search_term_string}`,
-        "query-input": "required name=search_term_string"
+      "@type": "WebPage",
+      "name": pageTitle,
+      "description": siteDescription,
+      "url": canonicalURL.href,
+      "partOfSeries": {
+        "@type": "WebSite",
+        "@id": `${canonicalURL.origin}${baseUrl}/`
+      },
+      "isPartOf": {
+        "@type": "ItemList",
+        "itemListElement": []
       }
     })} />
   </head>
@@ -91,9 +107,9 @@ const ogImageUrl = posts[0]?.frontmatter.image
       <Header />
 
       <main>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">全 {allPosts.length} 件中 1–{Math.min(POSTS_PER_PAGE, allPosts.length)} を表示</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">全 {totalPosts} 件中 {(currentPage - 1) * 10 + 1}–{Math.min(currentPage * 10, totalPosts)} を表示</p>
 
-        {allPosts.length === 0 ? (
+        {posts.length === 0 ? (
           <p>記事が見つかりません。</p>
         ) : (
           <ul class="list-none p-0 m-0 space-y-6">
@@ -131,25 +147,35 @@ const ogImageUrl = posts[0]?.frontmatter.image
 
         {totalPages > 1 && (
           <nav class="flex items-center justify-center gap-2 mt-10" aria-label="ページネーション">
-            <span
-              class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold"
-              aria-current="page"
+            <a
+              href={currentPage === 2 ? baseUrl : `${baseUrl}/page/${currentPage - 1}`}
+              class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 no-underline hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+              aria-label="前のページ"
             >
-              1
-            </span>
+              ← 前
+            </a>
 
-            {Array.from({ length: totalPages - 1 }, (_, i) => i + 2).map(page => (
-              <a
-                href={`${baseUrl}/page/${page}`}
-                class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 no-underline hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
-                aria-label={`ページ ${page}`}
-              >
-                {page}
-              </a>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              page === currentPage ? (
+                <span
+                  class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold"
+                  aria-current="page"
+                >
+                  {page}
+                </span>
+              ) : (
+                <a
+                  href={page === 1 ? baseUrl : `${baseUrl}/page/${page}`}
+                  class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 no-underline hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                  aria-label={`ページ ${page}`}
+                >
+                  {page}
+                </a>
+              )
             ))}
 
             <a
-              href={`${baseUrl}/page/2`}
+              href={`${baseUrl}/page/${currentPage + 1}`}
               class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 no-underline hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
               aria-label="次のページ"
             >

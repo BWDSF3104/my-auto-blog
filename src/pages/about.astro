@@ -1,0 +1,56 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = "About | BWD's AI Auto Blog";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content="このブログについて" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BWD's AI Auto Blog" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    <div class="max-w-3xl mx-auto">
+      <Header />
+
+      <main class="prose prose-slate max-w-none">
+        <h1>About This Blog</h1>
+        <p>BWD's AI Auto Blog is an automated blog powered by Gemini AI and GitHub Actions. Articles are generated automatically based on trending technology topics.</p>
+
+        <h2>How It Works</h2>
+        <ul>
+          <li><strong>Trend Collection</strong> — Trending topics are fetched from Google Trends and other sources.</li>
+          <li><strong>Article Generation</strong> — Gemini API generates well-structured articles with images.</li>
+          <li><strong>Auto Deployment</strong> — GitHub Actions builds and deploys to GitHub Pages on a schedule.</li>
+        </ul>
+
+        <h2>Technology Stack</h2>
+        <ul>
+          <li><strong>Static Site Generator</strong> — Astro</li>
+          <li><strong>Styling</strong> — Tailwind CSS</li>
+          <li><strong>AI</strong> — Google Gemini API</li>
+          <li><strong>CI/CD</strong> — GitHub Actions</li>
+          <li><strong>Hosting</strong> — GitHub Pages</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>For questions or feedback, visit the <a href="https://github.com/BWDSF3104/my-auto-blog" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</p>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

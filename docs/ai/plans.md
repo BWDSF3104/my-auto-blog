@@ -4,9 +4,9 @@
 
 # Active Plans
 
-(なし)
-
 # Completed Plans
+
+- [2026-10-01] 既存ページのUI/UX改善（モバイル対応含む）: index.astro, tags/index.astro, tags/[tag].astro のインラインCSSをTailwindへ統一。共通 Header/Footer コンポーネント作成。ホームページにページネーション追加。タグ一覧に検索フィルタ。ダークモード対応（classベース切替、全ページdark:バリアント、global.cssに:root[class~="dark"]オーバライド）。404ページ作成。Aboutページ作成。記事一覧に読了時間表示（fs raw glob + 日本語文字カウント、1500文字/分）。テスト96件全件通過、ビルド成功 (85ページ)
 
 - [2026-10-01] 画像生成のフォールバック機制: HuggingFace 画像生成のフォールバックとして Pollinations.ai を統合。`IMAGE_PROVIDER` 環境変数で `hf`（デフォルト、HF→Pollinationsフォールバック）と `pollinations`（直接Pollinations）を切り替え可能。AVIF変換を `_save_as_avif()` ヘルパーに分離。テストスクリプトが外部APIを呼ばないことを確認し、11件のユニットテストを追加（AVIF変換3、Pollinations3、ルーティング5）。テスト96件全件通過、ビルド成功を確認 (ed2ebe0)
 - [2026-10-01] kemono_story ワークフローの改善: 印象的なシーン（親密さ・密着・アクション・感情的瞬間）の必須配置を条件8として追加。画像シーン選出ルールを3枚の役割分担（トップ画像=最もインパクトのある瞬間、挿絵1=前半〜中盤、挿絵2=中盤〜後半）に強化し、同じシーンの被りを防止。refine_story.txt に弱化防止チェックを追加
