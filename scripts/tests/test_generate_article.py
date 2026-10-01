@@ -5,6 +5,7 @@ Tests frontmatter parsing, character extraction, image prompt composition,
 affiliate processing, description validation, and existing posts parsing.
 All tests run locally without external API calls.
 """
+import io
 import json
 import os
 import re
@@ -14,9 +15,11 @@ from unittest.mock import MagicMock, patch, mock_open
 
 import pytest
 import yaml
+from PIL import Image
 
 from generate_article import (
     BASE_QUALITY_PROMPT,
+    BASE_URL,
     DEFAULT_ART_STYLE,
     DEFAULT_SITUATION,
     MIN_DESC_LEN,
@@ -27,6 +30,9 @@ from generate_article import (
     _compose_smart_situation,
     _check_per_source_ttl,
     _auto_fetch_topics,
+    _save_as_avif,
+    _generate_image_pollinations,
+    generate_and_save_image,
     extract_character_prompts,
     extract_image_prompt,
     extract_art_style,
@@ -735,3 +741,262 @@ class TestAutoFetchTopics:
             mock_run.side_effect = subprocess.TimeoutExpired("cmd", 120)
             result = _auto_fetch_topics("default", ["tech"], data)
         assert result is None
+
+
+# --------------------------------------------------
+# _save_as_avif tests
+# --------------------------------------------------
+
+class TestSaveAsAvif:
+    """AVIF変換・保存のテスト"""
+
+    def _create_temp_image(self, tmp_path, mode="RGB"):
+        img = Image.new(mode, (100, 100), color=(255, 0, 0))
+        path = tmp_path / "test_input.png"
+        img.save(str(path))
+        return str(path)
+
+    def test_rgb_image_converted_to_avif(self, tmp_path):
+        """RGB画像がAVIFに変換されて保存される"""
+        img_path = self._create_temp_image(tmp_path, "RGB")
+        (tmp_path / "public" / "images").mkdir(parents=True)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("generate_article.BASE_URL", "/test"):
+                result = _save_as_avif(img_path, "test-image.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/test-image.avif"
+        assert (tmp_path / "public" / "images" / "test-image.avif").exists()
+
+    def test_rgba_image_converted_to_rgb_then_avif(self, tmp_path):
+        """RGBA画像はRGBに変換されてからAVIFになる"""
+        img = Image.new("RGBA", (100, 100), color=(255, 0, 0, 128))
+        img_path = tmp_path / "test_rgba.png"
+        img.save(str(img_path))
+        (tmp_path / "public" / "images").mkdir(parents=True)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("generate_article.BASE_URL", "/test"):
+                result = _save_as_avif(str(img_path), "rgba-test.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/rgba-test.avif"
+
+    def test_output_filename_extension_replaced(self, tmp_path):
+        """出力ファイル名の拡張子が.avifに置き換わる"""
+        img_path = self._create_temp_image(tmp_path)
+        (tmp_path / "public" / "images").mkdir(parents=True)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("generate_article.BASE_URL", "/test"):
+                result = _save_as_avif(img_path, "test-image.jpg")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/test-image.avif"
+
+
+# --------------------------------------------------
+# _generate_image_pollinations tests
+# --------------------------------------------------
+
+class TestGenerateImagePollinations:
+    """Pollinations.ai 画像生成のテスト"""
+
+    def _fake_jpeg_bytes(self):
+        img = Image.new("RGB", (100, 100), color=(0, 255, 0))
+        buf = io.BytesIO()
+        img.save(buf, format="JPEG")
+        return buf.getvalue()
+
+    def test_successful_image_generation(self, tmp_path):
+        """Pollinationsから画像が正常に取得・変換される"""
+        fake_bytes = self._fake_jpeg_bytes()
+        mock_resp = MagicMock()
+        mock_resp.content = fake_bytes
+        mock_resp.raise_for_status = MagicMock()
+
+        (tmp_path / "public" / "images").mkdir(parents=True)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("requests.get", return_value=mock_resp), \
+                 patch("generate_article.BASE_URL", "/test"):
+                result = _generate_image_pollinations("test prompt", "test-file.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/test-file.avif"
+        assert (tmp_path / "public" / "images" / "test-file.avif").exists()
+
+    def test_request_failure_propagates(self, tmp_path):
+        """HTTPエラー時は例外が伝播する"""
+        mock_resp = MagicMock()
+        mock_resp.raise_for_status.side_effect = Exception("404")
+
+        (tmp_path / "public" / "images").mkdir(parents=True)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("requests.get", return_value=mock_resp):
+                with pytest.raises(Exception, match="404"):
+                    _generate_image_pollinations("test prompt", "test-file.png")
+        finally:
+            os.chdir(orig_cwd)
+
+    def test_prompt_url_encoded(self, tmp_path):
+        """プロンプトがURLエンコードされる"""
+        fake_bytes = self._fake_jpeg_bytes()
+        mock_resp = MagicMock()
+        mock_resp.content = fake_bytes
+        mock_resp.raise_for_status = MagicMock()
+
+        (tmp_path / "public" / "images").mkdir(parents=True)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("requests.get", return_value=mock_resp) as mock_get, \
+                 patch("generate_article.BASE_URL", "/test"):
+                _generate_image_pollinations("test prompt with spaces & symbols", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        call_url = mock_get.call_args[0][0]
+        assert "test+prompt+with+spaces+%26+symbols" in call_url or "test%20prompt%20with%20spaces%20%26%20symbols" in call_url
+
+
+# --------------------------------------------------
+# generate_and_save_image tests
+# --------------------------------------------------
+
+class TestGenerateAndSaveImage:
+    """画像生成ルーティングとフォールバックのテスト"""
+
+    def _fake_jpeg_bytes(self):
+        img = Image.new("RGB", (100, 100), color=(0, 0, 255))
+        buf = io.BytesIO()
+        img.save(buf, format="JPEG")
+        return buf.getvalue()
+
+    def test_hf_provider_success(self, tmp_path, monkeypatch):
+        """HFプロバイダーで正常に画像が生成される"""
+        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "hf")
+        monkeypatch.setenv("HF_TOKEN", "test-token")
+
+        temp_img = tmp_path / "hf_temp.png"
+        temp_img.write_bytes(self._fake_jpeg_bytes())
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        mock_client = MagicMock()
+        mock_client.predict.return_value = str(temp_img)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("generate_article.Client", return_value=mock_client), \
+                 patch("generate_article.BASE_URL", "/test"):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/out.avif"
+        mock_client.predict.assert_called_once()
+
+    def test_hf_failure_fallback_to_pollinations(self, tmp_path, monkeypatch):
+        """HF失敗後にPollinationsにフォールバックする"""
+        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "hf")
+        monkeypatch.setenv("HF_TOKEN", "test-token")
+
+        fake_bytes = self._fake_jpeg_bytes()
+        mock_poll_resp = MagicMock()
+        mock_poll_resp.content = fake_bytes
+        mock_poll_resp.raise_for_status = MagicMock()
+
+        mock_client = MagicMock()
+        mock_client.predict.side_effect = Exception("HF error")
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("generate_article.Client", return_value=mock_client), \
+                 patch("requests.get", return_value=mock_poll_resp), \
+                 patch("time.sleep", return_value=None), \
+                 patch("generate_article.BASE_URL", "/test"):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/out.avif"
+        assert mock_client.predict.call_count == 2
+
+    def test_hf_and_pollinations_both_fail(self, tmp_path, monkeypatch):
+        """HFとPollinationsの両方が失敗すると空文字列を返す"""
+        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "hf")
+        monkeypatch.setenv("HF_TOKEN", "test-token")
+
+        mock_poll_resp = MagicMock()
+        mock_poll_resp.raise_for_status.side_effect = Exception("Pollinations error")
+
+        mock_client = MagicMock()
+        mock_client.predict.side_effect = Exception("HF error")
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("generate_article.Client", return_value=mock_client), \
+                 patch("requests.get", return_value=mock_poll_resp), \
+                 patch("time.sleep", return_value=None):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == ""
+
+    def test_pollinations_provider_direct(self, tmp_path, monkeypatch):
+        """IMAGE_PROVIDER=pollinationsの場合はHFをスキップ"""
+        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "pollinations")
+
+        fake_bytes = self._fake_jpeg_bytes()
+        mock_resp = MagicMock()
+        mock_resp.content = fake_bytes
+        mock_resp.raise_for_status = MagicMock()
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("requests.get", return_value=mock_resp), \
+                 patch("generate_article.Client") as mock_client_cls, \
+                 patch("generate_article.BASE_URL", "/test"):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/out.avif"
+        mock_client_cls.assert_not_called()
+
+    def test_pollinations_provider_only_fails(self, tmp_path, monkeypatch):
+        """IMAGE_PROVIDER=pollinationsでPollinationsも失敗すると空文字列"""
+        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "pollinations")
+
+        mock_resp = MagicMock()
+        mock_resp.raise_for_status.side_effect = Exception("error")
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("requests.get", return_value=mock_resp):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == ""

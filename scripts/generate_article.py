@@ -9,6 +9,7 @@ import subprocess
 import sys
 import time
 import urllib.parse
+import requests
 from PIL import Image
 import pillow_avif
 from google import genai
@@ -24,6 +25,9 @@ if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY is not set in environment variables.")
 
 HF_TOKEN = os.environ.get("HF_TOKEN")
+
+# 画像生成プロバイダー: "hf" (デフォルト) または "pollinations"
+IMAGE_PROVIDER = os.environ.get("IMAGE_PROVIDER", "hf").lower()
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -71,21 +75,74 @@ INLINE_AFF_PRODUCT_PATTERN = re.compile(
 # --------------------------------------------------
 # 画像生成関数
 # --------------------------------------------------
-def generate_and_save_image(prompt: str, output_filename: str) -> str:
-    """HF Space APIを呼び出して画像を生成し、public/images/ にAVIF形式で保存してURLパスを返す"""
+def _save_as_avif(image_path: str, output_filename: str) -> str:
+    """画像をAVIF形式に変換してpublic/images/ に保存し、URLパスを返す"""
     save_dir = os.path.join("public", "images")
     os.makedirs(save_dir, exist_ok=True)
-    
+
     gitkeep_path = os.path.join(save_dir, ".gitkeep")
     if not os.path.exists(gitkeep_path):
         open(gitkeep_path, 'w').close()
+
+    output_filename_avif = os.path.splitext(output_filename)[0] + ".avif"
+    target_path = os.path.join(save_dir, output_filename_avif)
+
+    with Image.open(image_path) as img:
+        if img.mode in ("RGBA", "P"):
+            img = img.convert("RGB")
+        img.save(target_path, "AVIF", quality=80)
+
+    print(f"🖼️ AVIF画像保存成功: {target_path}")
+    return f"{BASE_URL}/images/{output_filename_avif}"
+
+
+def _generate_image_pollinations(prompt: str, output_filename: str) -> str:
+    """Pollinations.ai をフォールバック画像生成として使用"""
+    save_dir = os.path.join("public", "images")
+    os.makedirs(save_dir, exist_ok=True)
+
+    safe_prompt = urllib.parse.quote(prompt)
+    url = f"https://image.pollinations.ai/prompt/{safe_prompt}?model=flux&width=896&height=512&seed={int(time.time())}"
+
+    print(f"🌐 Pollinations.ai 画像生成中: {url[:120]}...")
+    resp = requests.get(url, timeout=120)
+    resp.raise_for_status()
+
+    output_filename_tmp = os.path.splitext(output_filename)[0] + ".jpg"
+    temp_path = os.path.join(save_dir, output_filename_tmp)
+    with open(temp_path, "wb") as f:
+        f.write(resp.content)
+
+    return _save_as_avif(temp_path, output_filename)
+
+
+def generate_and_save_image(prompt: str, output_filename: str) -> str:
+    """HF Space APIを呼び出して画像を生成し、public/images/ にAVIF形式で保存してURLパスを返す。
+    HF 失敗時は Pollinations.ai にフォールバック。
+    IMAGE_PROVIDER=pollinations の場合は HF をスキップして直接 Pollinations を使用。"""
+    save_dir = os.path.join("public", "images")
+    os.makedirs(save_dir, exist_ok=True)
+
+    gitkeep_path = os.path.join(save_dir, ".gitkeep")
+    if not os.path.exists(gitkeep_path):
+        open(gitkeep_path, 'w').close()
+
+    # IMAGE_PROVIDER=pollinations の場合は HF をスキップ
+    if IMAGE_PROVIDER == "pollinations":
+        print("🌐 IMAGE_PROVIDER=pollinations: 直接 Pollinations.ai を使用します。")
+        try:
+            return _generate_image_pollinations(prompt, output_filename)
+        except Exception as e:
+            print(f"⚠️ Pollinations.ai 画像生成失敗: {e}")
+            print("⚠️ 画像生成を断念し、画像なしで記事のみ出力します。")
+            return ""
 
     max_retries = 2
     for attempt in range(1, max_retries + 1):
         try:
             print(f"🎨 画像生成開始 (試行 {attempt}/{max_retries}): {prompt}")
             hf_client = Client(HF_SPACE_ID, token=HF_TOKEN)
-            
+
             temp_image_path = hf_client.predict(
                 prompt,
                 "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed, nsfw, explicit, nude, nudity, sexual, erotic, pornographic, gore, blood, violent, inappropriate",
@@ -95,28 +152,20 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
                 512,
                 api_name="/predict"
             )
-            
-            # 拡張子を .avif に変更して保存パスを作成
-            output_filename_avif = os.path.splitext(output_filename)[0] + ".avif"
-            target_path = os.path.join(save_dir, output_filename_avif)
-            
-            # --- AVIF変換・保存処理 (リサイズなし) ---
-            with Image.open(temp_image_path) as img:
-                # 透過チャンネル（RGBA/P）がある場合はRGBに変換
-                if img.mode in ("RGBA", "P"):
-                    img = img.convert("RGB")
-                
-                # quality=80 は画質をほぼ劣化させずに容量を軽量化できる推奨設定
-                img.save(target_path, "AVIF", quality=80)
-            
-            print(f"🖼️ AVIF画像保存成功: {target_path}")
-            
-            return f"{BASE_URL}/images/{output_filename_avif}"
+
+            return _save_as_avif(temp_image_path, output_filename)
 
         except Exception as e:
             print(f"⚠️ 画像生成試行 {attempt} 失敗: {e}")
             if attempt < max_retries:
                 time.sleep(15)
+
+    # HF 全試行失敗 → Pollinations.ai フォールバック
+    print("🔄 HuggingFace 全試行失敗。Pollinations.ai にフォールバックします。")
+    try:
+        return _generate_image_pollinations(prompt, output_filename)
+    except Exception as e:
+        print(f"⚠️ Pollinations.ai フォールバックも失敗: {e}")
 
     print("⚠️ 画像生成を断念し、画像なしで記事のみ出力します。")
     return ""

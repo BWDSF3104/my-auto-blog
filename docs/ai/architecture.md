@@ -45,7 +45,8 @@ Generates blog posts using AI:
 | Service | Model | Purpose |
 |---------|-------|---------|
 | Gemini API | gemini-3.x | Text generation |
-| HuggingFace | blume/kemono-image-api | Image generation |
+| HuggingFace | blume/kemono-image-api | Primary image generation |
+| Pollinations.ai | Flux | Fallback image generation (no API key, free) |
 
 Prompt templates:
 - `default.txt`: Tech/AI articles
@@ -59,6 +60,8 @@ Image generation:
 - Per-article art style from frontmatter `art_style` field via `extract_art_style()`
 - Header image (896×512px AVIF) + inline images from `<!-- IMAGE_PROMPT: "..." -->` markers
 - All images saved to `public/images/`
+- Fallback: HF failure (2 retries exhausted) → Pollinations.ai (`https://image.pollinations.ai/prompt/`)
+- Local testing: `IMAGE_PROVIDER=pollinations` skips HF and uses Pollinations directly
 
 Output: Markdown files in `src/content/posts/` with AVIF images in `public/images/`
 

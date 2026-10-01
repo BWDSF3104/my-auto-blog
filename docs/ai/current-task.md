@@ -46,7 +46,7 @@ P1
 
 ## Commit
 
-(未コミット)
+a4e39e1 (feat: mandate impressive scenes and optimize 3-image role distribution for kemono_story)
 
 ## Notes
 
