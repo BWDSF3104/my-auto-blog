@@ -207,9 +207,55 @@ P1
 `npm run build` — 89 pages built in 1.87s
 HTML description metaタグ: 修正4件とも120文字確認
 
+## Commit
+
+5f53c94 — feat: fix existing articles with descriptions shorter than 80 characters
+
+## Commit
+
+5f53c94 — feat: fix existing articles with descriptions shorter than 80 characters
+
 ## Next Action
 
 なし
+
+---
+
+## Task (完了)
+
+自動内部リンク機能の実装
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+本文内で関連記事のタイトルが見つかった場合、自動的にアンカーテキストリンクを挿入して内部リンク構造を強化する。
+
+## Steps
+
+1. [x] `_load_posts_for_links()` ヘルパー関数を追加（既存記事の title, slug, tags を読み込み）
+2. [x] `_existing_link_spans()` ヘルパー関数を追加（既存のMarkdownリンク・画像内の文字範囲を検出）
+3. [x] `inject_internal_links()` 主関数を追加（タイトルマッチ→リンク挿入、既存リンク・画像内を回避、max_links 制限）
+4. [x] `generate_post()` パイプラインに組み込み（`inject_affiliate_links` の後、`validate_and_fix_frontmatter` の前）
+5. [x] ユニットテスト12件追加（post読み込み、基本マッチ、no-match、既存リンク・画像スキップ、max_links、frontmatter保護、短タイトルフィルタ）
+6. [x] `pytest scripts/tests/ -v` でテスト確認 (108/108 passed)
+7. [x] `npm run build` でビルド確認
+
+## Modified Files
+
+- `scripts/generate_article.py` — 内部リンク関数3つ追加、パイプラインに組み込み
+- `scripts/tests/test_generate_article.py` — ユニットテスト12件追加
+
+## Verification
+
+`pytest scripts/tests/ -v` — 108/108 passed
+`npm run build` — 成功確認
 
 ---
 

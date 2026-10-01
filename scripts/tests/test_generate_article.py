@@ -32,12 +32,14 @@ from generate_article import (
     _auto_fetch_topics,
     _save_as_avif,
     _generate_image_pollinations,
+    _load_posts_for_links,
     generate_and_save_image,
     extract_character_prompts,
     extract_image_prompt,
     extract_art_style,
     compose_image_prompt,
     get_existing_posts,
+    inject_internal_links,
     process_inline_affiliates,
     process_inline_products,
     validate_and_fix_frontmatter,
@@ -1000,3 +1002,184 @@ class TestGenerateAndSaveImage:
             os.chdir(orig_cwd)
 
         assert result == ""
+
+
+# --------------------------------------------------
+# _load_posts_for_links tests
+# --------------------------------------------------
+
+class TestLoadPostsForLinks:
+    def test_load_posts_with_slug(self, tmp_path):
+        post_dir = tmp_path / "posts"
+        post_dir.mkdir()
+        (post_dir / "2024-01-01-test.md").write_text(
+            '---\ntitle: "Test Post"\nslug: "test-post"\ntags: [Tech]\n---\n# Test\n\nBody.',
+            encoding="utf-8"
+        )
+        result = _load_posts_for_links(str(post_dir))
+        assert len(result) == 1
+        assert result[0]["title"] == "Test Post"
+        assert result[0]["slug"] == "test-post"
+        assert result[0]["tags"] == ["Tech"]
+
+    def test_load_posts_slug_from_filename(self, tmp_path):
+        post_dir = tmp_path / "posts"
+        post_dir.mkdir()
+        (post_dir / "2024-01-01-auto-post.md").write_text(
+            '---\ntitle: "No Slug Post"\n---\n# Post\n\nBody.',
+            encoding="utf-8"
+        )
+        result = _load_posts_for_links(str(post_dir))
+        assert len(result) == 1
+        assert result[0]["slug"] == "2024-01-01"
+
+    def test_load_posts_empty_dir(self, tmp_path):
+        post_dir = tmp_path / "posts"
+        post_dir.mkdir()
+        result = _load_posts_for_links(str(post_dir))
+        assert result == []
+
+    def test_load_posts_no_dir(self):
+        result = _load_posts_for_links("/nonexistent/path")
+        assert result == []
+
+
+# --------------------------------------------------
+# inject_internal_links tests
+# --------------------------------------------------
+
+class TestInjectInternalLinks:
+    def _create_posts(self, tmp_path, posts_data):
+        post_dir = tmp_path / "posts"
+        post_dir.mkdir()
+        for i, p in enumerate(posts_data):
+            fpath = post_dir / f"2024-01-0{i+1}-auto-post.md"
+            tags_str = ", ".join(p.get("tags", []))
+            content = f'---\ntitle: "{p["title"]}"\nslug: "{p["slug"]}"\ntags: [{tags_str}]\n---\n# {p["title"]}\n\nBody.'
+            fpath.write_text(content, encoding="utf-8")
+        return str(post_dir)
+
+    def test_basic_title_match(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "Python Tutorial", "slug": "python-tutorial", "tags": ["Tech"]},
+        ])
+        content = """---
+title: "New Article"
+---
+# New Article
+
+I recommend reading Python Tutorial for beginners.
+
+See also Python Tutorial for advanced users.
+"""
+        result = inject_internal_links(content, posts_dir)
+        expected_link = f"[Python Tutorial]({BASE_URL}/posts/python-tutorial)"
+        assert result.count(expected_link) == 2
+
+    def test_no_match_unchanged(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "Python Tutorial", "slug": "python-tutorial", "tags": ["Tech"]},
+        ])
+        content = """---
+title: "New Article"
+---
+# New Article
+
+This article has no references to other posts.
+"""
+        result = inject_internal_links(content, posts_dir)
+        assert result == content
+
+    def test_skips_text_inside_existing_link(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "Python Tutorial", "slug": "python-tutorial", "tags": ["Tech"]},
+        ])
+        content = """---
+title: "New Article"
+---
+# New Article
+
+See [Python Tutorial](https://example.com) for more.
+Also check Python Tutorial locally.
+"""
+        result = inject_internal_links(content, posts_dir)
+        assert "[Python Tutorial](https://example.com)" in result
+        expected_link = f"[Python Tutorial]({BASE_URL}/posts/python-tutorial)"
+        assert result.count(expected_link) == 1
+
+    def test_respects_max_links(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "Python Tutorial", "slug": "python-tutorial", "tags": ["Tech"]},
+        ])
+        content = """---
+title: "New Article"
+---
+# New Article
+
+Python Tutorial is great. Python Tutorial is useful. Python Tutorial is recommended.
+"""
+        result = inject_internal_links(content, posts_dir, max_links=2)
+        expected_link = f"[Python Tutorial]({BASE_URL}/posts/python-tutorial)"
+        assert result.count(expected_link) == 2
+
+    def test_preserves_frontmatter(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "Python Tutorial", "slug": "python-tutorial", "tags": ["Tech"]},
+        ])
+        content = """---
+title: "New Article"
+description: "A test article"
+tags: [Tech]
+---
+# New Article
+
+Read Python Tutorial first.
+"""
+        result = inject_internal_links(content, posts_dir)
+        assert 'title: "New Article"' in result
+        assert 'description: "A test article"' in result
+
+    def test_no_posts_returns_unchanged(self, tmp_path):
+        content = """---
+title: "New Article"
+---
+# New Article
+
+Some text here.
+"""
+        result = inject_internal_links(content, str(tmp_path / "nonexistent"))
+        assert result == content
+
+    def test_skips_short_titles(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "AB", "slug": "ab", "tags": []},
+            {"title": "Valid Title", "slug": "valid-title", "tags": []},
+        ])
+        content = """---
+title: "New Article"
+---
+# New Article
+
+AB is short. Valid Title is long enough.
+"""
+        result = inject_internal_links(content, posts_dir)
+        assert "AB" in result and "[AB](" not in result
+        expected_link = f"[Valid Title]({BASE_URL}/posts/valid-title)"
+        assert expected_link in result
+
+    def test_skips_text_in_image_syntax(self, tmp_path):
+        posts_dir = self._create_posts(tmp_path, [
+            {"title": "Dragon Art", "slug": "dragon-art", "tags": []},
+        ])
+        content = """---
+title: "New Article"
+---
+# New Article
+
+![Dragon Art](/images/dragon.avif)
+Check Dragon Art for details.
+"""
+        result = inject_internal_links(content, posts_dir)
+        assert "![Dragon Art](/images/dragon.avif)" in result
+        expected_link = f"[Dragon Art]({BASE_URL}/posts/dragon-art)"
+        assert result.count(expected_link) == 1

@@ -1577,6 +1577,86 @@ def validate_and_fix_frontmatter(content: str) -> str:
 
 
 # --------------------------------------------------
+# 自動内部リンクの挿入
+# --------------------------------------------------
+def _load_posts_for_links(posts_dir="src/content/posts"):
+    result = []
+    if not os.path.exists(posts_dir):
+        return result
+    for filepath in glob.glob(os.path.join(posts_dir, "*.md")):
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                c = f.read()
+        except Exception:
+            continue
+        title_m = re.search(r'^title:\s*["\']?(.*?)["\']?$', c, re.MULTILINE)
+        if not title_m:
+            continue
+        title = title_m.group(1).strip()
+        slug_m = re.search(r'^slug:\s*["\']?(.*?)["\']?$', c, re.MULTILINE)
+        slug = slug_m.group(1).strip() if slug_m else ""
+        if not slug:
+            base = os.path.basename(filepath)
+            slug = base.replace("-auto-post.md", "").replace(".md", "").lower()
+        tags_m = re.search(r'^tags:\s*\[([^\]]*)\]', c, re.MULTILINE)
+        tags = []
+        if tags_m:
+            tags = [t.strip().strip('"\'') for t in tags_m.group(1).split(",") if t.strip()]
+        result.append({"title": title, "slug": slug, "tags": tags})
+    return result
+
+
+def _existing_link_spans(content):
+    spans = []
+    for m in re.finditer(r'!\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\([^)]*\)', content):
+        spans.append((m.start(), m.end()))
+    return spans
+
+
+def inject_internal_links(content, posts_dir="src/content/posts", max_links=5):
+    posts = _load_posts_for_links(posts_dir)
+    if not posts:
+        return content
+    fm_end = content.find("---\n", 4)
+    if fm_end == -1:
+        body_start = 0
+    else:
+        body_start = fm_end + 4
+    body = content[body_start:]
+    link_spans = _existing_link_spans(body)
+    replacements = []
+    for post in posts:
+        title = post["title"]
+        slug = post["slug"]
+        if len(title) < 3:
+            continue
+        pattern = re.escape(title)
+        for m in re.finditer(pattern, body):
+            pos = m.start()
+            length = len(title)
+            overlap = False
+            for s, e in link_spans:
+                if pos < e and pos + length > s:
+                    overlap = True
+                    break
+            if overlap:
+                continue
+            url = f"{BASE_URL}/posts/{slug}"
+            link_md = f"[{title}]({url})"
+            replacements.append((pos, pos + length, link_md))
+            if len(replacements) >= max_links:
+                break
+        if len(replacements) >= max_links:
+            break
+    if not replacements:
+        return content
+    replacements.sort(key=lambda x: x[0], reverse=True)
+    for start, end, replacement in replacements:
+        body = body[:start] + replacement + body[end:]
+    return content[:body_start] + body
+
+
+# --------------------------------------------------
 # メイン処理
 # --------------------------------------------------
 def generate_post():
@@ -1779,6 +1859,9 @@ def generate_post():
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
     content = inject_affiliate_links(content, trend_keywords=trend_keywords)
+
+    # 5.55 自動内部リンクの挿入
+    content = inject_internal_links(content)
 
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
