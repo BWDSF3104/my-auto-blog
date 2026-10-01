@@ -96,6 +96,51 @@ Google Search Console での所有権検証を全ページで有効にし、JSON
 
 `npm run build` — 86ページビルド成功 (2026-10-01 13:17)
 
+## Commit
+
+6fda78e — feat: add Google Search Console verification, JSON-LD structured data, sitemap completeness
+
+---
+
+## Task (現在進行中)
+
+CI ワークフローのキャッシュファイルパス修正と SEO 残タスク
+
+## Priority
+
+P1
+
+## Status
+
+進行中
+
+## Objective
+
+`deploy.yml` の `data/latest_topics.json` 参照を `data/topics/` へ更新し、CI のコミットステップが正常に動作するよう修正する。その後 Bing 検証 ID の追加と sitemap 提出を完了させる。
+
+## Steps
+
+1. [x] `deploy.yml` の旧キャッシュパスを特定
+2. [ ] `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新
+3. [ ] `pytest scripts/tests/ -v` でテスト確認
+4. [ ] `npm run build` でビルド確認
+5. [ ] git commit & push
+6. [ ] Bing Webmaster Tools 検証 ID の追加
+7. [ ] Google Search Console に sitemap 提出
+
+## Modified Files
+
+- `.github/workflows/deploy.yml` — キャッシュファイルパス更新
+
+## Pending
+
+- Steps 2-7: ワークフロー修正、テスト/ビルド確認、コミット、Bing検証、sitemap提出
+
+## Verification
+
+`pytest scripts/tests/ -v` — 96/96 passed (1.52s)
+`npm run build` — 86 pages built in 1.89s
+
 ## Next Action
 
-git commit & push を実行
+git commit & push

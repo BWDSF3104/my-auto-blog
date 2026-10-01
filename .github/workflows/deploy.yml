@@ -34,9 +34,9 @@ jobs:
           pip install google-genai gradio_client pillow pillow-avif-plugin
 
       # -------------------------------------------------------
-      # 1-A. 設定不要ソースからトレンドトピックを収�?
-      #      ?�?HackerNews / Reddit / e621 / RSS / GitHub Search?�?
-      #      出�?: data/latest_topics.json
+      # 1-A. Fetch trending topics from multiple sources
+      #      Sources: HackerNews / Reddit / e621 / RSS / GitHub Search
+      #      Output: data/topics/{timestamp}.json + data/topics/latest.json symlink
       # -------------------------------------------------------
       - name: Fetch trending topics (no API key required)
         env:
@@ -47,8 +47,8 @@ jobs:
           python scripts/fetch_topics.py --prompt-type "$PROMPT_TYPE"
 
       # -------------------------------------------------------
-      # 1-B. Gemini でケモノ小説を生�?
-      #      fetch_topics.py が生成し�? data/latest_topics.json を参照してトレンドを注入
+      # 1-B. Generate article with Gemini
+      #      Reads topics from data/topics/latest.json symlink
       # -------------------------------------------------------
       - name: Run generation script
         env:
@@ -68,8 +68,8 @@ jobs:
           # �?ィレクトリを安�?�に追�?
           git add src/content/posts/
           [ -d "public/images" ] && git add public/images/
-          # トレンドJSONもコミット（差�?確認用・任意�?
-          [ -f "data/latest_topics.json" ] && git add data/latest_topics.json
+          # Cache JSON (timestamped file + latest symlink)
+          [ -d "data/topics" ] && git add data/topics/
           
           git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git push)          
 
