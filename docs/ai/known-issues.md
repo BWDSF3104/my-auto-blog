@@ -64,6 +64,10 @@ Gemini APIの出力に`---`がない場合、`generate_article.py`の`content.re
 
 ## アーカイブ
 
+### 記事ページダークモードの文字色コントラスト不足 (解決済 2026-10-01)
+
+`PostLayout.astro` の `<article>` に `dark:prose-invert` + 各要素の `dark:` 変種クラスを追加して本文の文字色を改善。ビルド成功 (92ページ) 確認済み。
+
 ### ダークモードトグル不動作と記事ページダークモード未適用 (解決済 2026-10-01)
 
 `Header.astro` の `<script>` に `is:inline` 属性を追加してダークモード切り替えを復元。`PostLayout.astro` に `Header` コンポーネントのインポート、`dark:` 変種クラス、ダークモードCSSを追加して記事ページのダークモード対応を完了。`tags/index.astro` の `<script>` にも `is:inline` を追加。ビルド成功 (90ページ) 確認済み。

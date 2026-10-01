@@ -546,7 +546,7 @@ P1
 7. [x] `tags/index.astro` の `<script>` に `is:inline` を追加
 8. [x] `npm run build` でビルド成功確認 (90ページ)
 9. [x] Memory Bank 更新
-10. [ ] git commit & push
+10. [x] git commit & push
 
 ## Modified Files
 
@@ -558,6 +558,49 @@ P1
 
 `npm run build` — 90 pages built, Complete!
 
+## Commit
+
+d90ebe5 — fix: dark mode toggle and post page dark mode styling
+
 ## Next Action
 
-git commit & push
+なし
+
+---
+
+## Task (完了)
+
+記事ページダークモードの文字色コントラスト改善
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+ダークモード時の記事ページで `prose` クラスのデフォルト色が暗く、本文の文字が見づらかった問題を修正。
+
+## Steps
+
+1. [x] `PostLayout.astro` の `<article>` に `dark:prose-invert` + 各要素の `dark:` 変種クラスを追加
+2. [x] `npm run build` でビルド成功確認 (92ページ)
+
+## Modified Files
+
+- `src/layouts/PostLayout.astro` — `dark:prose-invert` と各要素のダークモードカラーを追加
+
+## Verification
+
+`npm run build` — 92 pages built in 2.37s, Complete!
+
+## Commit
+
+未コミット
+
+## Next Action
+
+なし
