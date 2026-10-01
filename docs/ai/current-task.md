@@ -4,7 +4,7 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-`kemono_story` ワークフローの改善：印象的なシーンの必須化と画像シーン選出の最適化
+画像生成のフォールバック機制：HuggingFace → Pollinations.ai 連携とユニットテスト追加
 
 ## Priority
 
@@ -16,20 +16,25 @@ P1
 
 ## Objective
 
-`kemono_story` ワークフローの改善：ストーリー中にキス・ハグ・密着・激しいバトルなどの印象的なシーンを必須化し、画像生成対象のシーン選出（トップ画像 `image_prompt` と記事中 `IMAGE_PROMPT`）を視覚的にインパクトのあるものへ最適化する。
+HuggingFace 画像生成のフォールバックとして Pollinations.ai を統合し、`IMAGE_PROVIDER` 環境変数でプロバイダーを切り替えられるようにする。AVIF変換を `_save_as_avif` ヘルパーに分離し、テストスクリプトが外部APIを呼ばないことを確認してユニットテストを追加する。
 
 ## Modified Files
 
-- `scripts/prompts/kemono_story.txt` — 印象的なシーンの必須条件（条件8）を追加、画像シーン選出ルールを3枚の役割分担に強化
-- `scripts/prompts/refine_story.txt` — クライマックス・余韻セクションに印象的なシーンの弱化防止チェックを追加
+- `scripts/generate_article.py` — `_save_as_avif`, `_generate_image_pollinations`, `generate_and_save_image` を追加、フォールバックとプロバイダールーティングを実装
+- `scripts/requirements.txt` — `requests>=2.31.0` を追加
+- `scripts/tests/test_generate_article.py` — 11件のユニットテストを追加（AVIF変換3、Pollinations3、ルーティング5）
+- `docs/ai/decisions.md` — Pollinations.ai フォールバックの判断理由を記録
+- `docs/ai/architecture.md` — サービス表とデータフローを更新
 
 ## Completed
 
-- [x] `kemono_story.txt` に「印象的なシーン」の必須条件（条件8）を追加
-- [x] `kemono_story.txt` の画像シーン選出ルールを3枚の役割分担に強化
-- [x] `refine_story.txt` に印象的なシーンの弱化防止チェックを追加
-- [x] `pytest scripts/tests/ -v` 成功確認（85/85, 1.58s）
-- [x] `npm run build` 成功確認（83 pages, 5.35s）
+- [x] HF → Pollinations フォールバックと `IMAGE_PROVIDER` ルーティングを実装
+- [x] AVIF変換を `_save_as_avif()` ヘルパーにリファクタリング
+- [x] `_generate_image_pollinations()` を追加
+- [x] テストスクリプトが外部APIを呼ばないことを確認
+- [x] 11件のユニットテストを追加
+- [x] `pytest scripts/tests/ -v` 成功確認（96/96, 1.39s）
+- [x] `npm run build` 成功確認（83 pages, 1.77s）
 
 ## Pending
 
@@ -37,8 +42,8 @@ P1
 
 ## Verification
 
-- `pytest scripts/tests/ -v`: 85/85 passed, 1.58s
-- `npm run build`: 成功（83 pages, 5.35s）
+- `pytest scripts/tests/ -v`: 96/96 passed, 1.39s
+- `npm run build`: 成功（83 pages, 1.77s）
 
 ## Next Action
 
@@ -46,10 +51,11 @@ P1
 
 ## Commit
 
-a4e39e1 (feat: mandate impressive scenes and optimize 3-image role distribution for kemono_story)
+ed2ebe0 (feat: add Pollinations.ai fallback image generation with unit tests)
 
 ## Notes
 
-- SFW制約は厳守
-- トップ画像 (`image_prompt`) と記事中画像 (`IMAGE_PROMPT` x2) で異なる瞬間を選出するよう指示
-- 3枚で物語の異なる感情・場面をカバーするよう選出基準を分離
+- `IMAGE_PROVIDER=hf`（デフォルト）: HuggingFace → Pollinations フォールバック
+- `IMAGE_PROVIDER=pollinations`: HuggingFaceをスキップして直接 Pollinations
+- テストは `os.chdir(tmp_path)` で作業ディレクトリを切り替える方式
+- `monkeypatch.setattr` で `IMAGE_PROVIDER` モジュール変数を上書き
