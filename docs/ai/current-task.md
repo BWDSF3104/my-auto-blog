@@ -34,14 +34,17 @@ index.astro, tags/index.astro, tags/[tag].astro のインラインCSSをTailwind
 
 ## Modified Files
 
-- `src/pages/index.astro` — Tailwind統一, Header/Footer統合, ページネーション
-- `src/pages/tags/index.astro` — Tailwind統一, Header/Footer統合, 検索フィルタ
-- `src/pages/tags/[tag].astro` — Tailwind統一, Header/Footer統合
-- `src/pages/404.astro` — 新規作成
-- `src/pages/about.astro` — 新規作成
-- `src/pages/page/[page].astro` — 新規作成 (ページネーション用)
-- `src/components/Header.astro` — 新規作成
-- `src/components/Footer.astro` — 新規作成
+- `src/pages/index.astro` — Tailwind統一, Header/Footer統合, ページネーション, 読了時間表示
+- `src/pages/tags/index.astro` — Tailwind統一, Header/Footer統合, 検索フィルタ, ダークモード
+- `src/pages/tags/[tag].astro` — Tailwind統一, Header/Footer統合, ダークモード, 読了時間表示
+- `src/pages/page/[page].astro` — 新規作成 (ページネーション用, 読了時間表示)
+- `src/pages/404.astro` — 新規作成, ダークモード
+- `src/pages/about.astro` — 新規作成, ダークモード
+- `src/components/Header.astro` — 新規作成, ダークモード切替ボタン
+- `src/components/Footer.astro` — 新規作成, ダークモード
+- `src/styles/global.css` — ダークモード用 :root[class~="dark"] オーバライド
+- `tailwind.config.mjs` — darkMode: 'class' 設定
+- `docs/ai/plans.md` — 完了した計画を移動
 
 ## Completed
 
@@ -62,7 +65,7 @@ Steps 1-11 全完了。ビルド成功確認 (85ページ)。
 
 ## Commit
 
-(未コミット)
+dd356fe — feat: dark mode support, reading time display, 404 page, about page, shared components, pagination, tag search
 
 ## Notes
 
