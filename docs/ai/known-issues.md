@@ -30,6 +30,28 @@
 
 **関連**: Bluesky API を代替トレンドソースとして検討中。
 
+## ダークモード切り替えボタンが動作しない (2026-10-01)
+
+**ステータス**: 確認済み
+
+**問題**: `Header.astro:35` の `<script>` に `is:inline` 属性がない。Astro では `is:inline` なしはビルド時にサーバーサイドで評価され、クライアント側のイベントリスナーが設置されない。
+
+**影響**: 全ページでダークモード切り替えボタンがクリック無反応。
+
+**原因**: `<script>` → `<script is:inline>` が必要。
+
+**Next action**: `is:inline` を追加し、各ページで初期テーマ適用が正しく動作するか確認。
+
+## 記事ページにダークモードが反映されない (2026-10-01)
+
+**ステータス**: 確認済み
+
+**問題**: `PostLayout.astro:148-149` の `<body>` と `<main>` に `dark:` 変種のクラスがない。また `Header` コンポーネントがインポートされていないため切り替えボタン自体が存在しない。
+
+**影響**: 記事詳細ページ（`/posts/`）でダークモードが適用されず、常にライトモード表示。
+
+**Next action**: `dark:` クラスを追加し、`Header` コンポーネントをインポートしてボタンを表示。
+
 ## 既存記事のアフィリエイトリンクがmarkdown形式 (2026-09-30)
 
 **ステータス**: 保留
@@ -70,9 +92,11 @@ Gemini APIの出力に`---`がない場合、`generate_article.py`の`content.re
 
 ### 直近記事のキャラクター・テーマ被りの追跡不能 (解決済 2026-09-30)
 
-2つの改修で対応:
-1. `check_deploy_success()`: デプロイ成功後にのみタイムスタンプを記録し、同日の成功記録があれば再生成をスキップ
-2. `get_recent_meta_by_type()`: 直近5件の frontmatter から character_1, character_2, tags, art_style を抽出して NG 指示ブロックに注入
+`get_recent_meta_by_type()`: 直近5件の frontmatter から character_1, character_2, tags, art_style を抽出して NG 指示ブロックに注入。
+
+### 同日の重複デプロイによる生成スキップ (解決済 2026-10-01)
+
+`check_deploy_success()` 関数と `data/.last-deploy-success.json` の記録・チェック処理を削除。同日の成功記録がある場合に記事生成をスキップするロジックは不要と判断。`deploy.yml` からのタイムスタンプ記録ステップも削除。
 
 ### fetch_topics.py の CRITICAL バグ (解決済 2026-09-30)
 

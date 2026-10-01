@@ -114,16 +114,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Record deploy success timestamp
-        run: |
-          mkdir -p data
-          echo "{\"prompt_type\": \"${PROMPT_TYPE}\", \"deployed_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > data/.last-deploy-success.json
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data/.last-deploy-success.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "ci: record deploy success [skip ci]"
-          git pull --rebase
-          git push
-        env:
-          PROMPT_TYPE: "kemono_story"

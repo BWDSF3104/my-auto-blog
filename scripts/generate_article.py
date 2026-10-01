@@ -222,42 +222,6 @@ def get_existing_posts(posts_dir="src/content/posts"):
     return posts
 
 
-def check_deploy_success(current_prompt_type: str) -> bool:
-    """
-    直近のデプロイ成功記録をチェックする。
-    同一 prompt_type で同日（UTC日付）の成功記録があれば True を返し、
-    記事生成をスキップするべきであることを示す。
-    """
-    deploy_record_path = "data/.last-deploy-success.json"
-    if not os.path.exists(deploy_record_path):
-        return False
-
-    try:
-        with open(deploy_record_path, "r", encoding="utf-8") as f:
-            record = json.load(f)
-
-        recorded_type = record.get("prompt_type", "")
-        deployed_at = record.get("deployed_at", "")
-
-        if recorded_type != current_prompt_type:
-            return False
-
-        if not deployed_at:
-            return False
-
-        deployed_date = datetime.fromisoformat(deployed_at.replace("Z", "+00:00")).date()
-        today = datetime.now(timezone.utc).date()
-
-        if deployed_date == today:
-            print(f"✅ 本日既にデプロイ済み（{deployed_at}）。記事生成をスキップします。")
-            return True
-
-        print(f"📅 最終デプロイ日: {deployed_date}（本日: {today}）。新規生成を開始します。")
-        return False
-    except Exception as e:
-        print(f"⚠️ デプロイ記録の読み込み失敗（無視して続行）: {e}")
-        return False
-
 
 def get_recent_titles_by_type(current_prompt_type: str, posts_dir="src/content/posts") -> list[str]:
     """
@@ -1667,11 +1631,6 @@ def generate_post():
 
     pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
-
-    # 0.5. デプロイ成功チェック（同日の成功記録があればスキップ）
-    prompt_type = os.environ.get("PROMPT_TYPE", "default")
-    if check_deploy_success(prompt_type):
-        sys.exit(0)
 
     # 1. プロンプトタイプ決定と同系統の重複防止設定
     recent_titles = get_recent_titles_by_type(prompt_type)
