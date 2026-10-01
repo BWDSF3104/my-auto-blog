@@ -165,6 +165,54 @@ a9f00e2 — feat: add major tag pages to sitemap.xml
 
 ---
 
+## Task (完了)
+
+既存記事のdescription修正（80文字未満を修正）
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+80文字未満のdescriptionを持つ既存記事を独立スクリプトで修正。
+
+## Steps
+
+1. [x] 全記事のdescription長さをスキャン（4件が80文字未満）
+2. [x] `scripts/fix_descriptions.py` スクリプト作成
+3. [x] スクリプト実行して4件のdescriptionを120文字に拡張
+4. [x] 修正後の長さを再スキャンで確認（全件80文字以上）
+5. [x] `pytest scripts/tests/ -v` でテスト確認 (96/96 passed)
+6. [x] `npm run build` でビルド確認 (89ページ)
+7. [x] ビルドHTMLのdescription metaタグを確認（全件120文字）
+8. [x] Memory Bank更新とgit commit
+
+## Modified Files
+
+- `src/content/posts/2026-09-27-092931-auto-post.md` — description 77→120文字
+- `src/content/posts/2026-09-29-053425-auto-post.md` — description 68→120文字
+- `src/content/posts/2026-09-29-060942-auto-post.md` — description 76→120文字
+- `src/content/posts/2026-09-29-211041-auto-post.md` — description 78→120文字
+- `scripts/fix_descriptions.py` — 独立スクリプト（新規）
+- `scripts/_scan_desc.py` — 長さスキャンヘルパー（新規）
+
+## Verification
+
+`pytest scripts/tests/ -v` — 96/96 passed (1.42s)
+`npm run build` — 89 pages built in 1.87s
+HTML description metaタグ: 修正4件とも120文字確認
+
+## Next Action
+
+なし
+
+---
+
 ## Task (現在進行中)
 
 ページネーション修復と画像サイズ復元

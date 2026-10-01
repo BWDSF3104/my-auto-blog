@@ -8,6 +8,7 @@
 
 # Completed Plans
 
+- [2026-10-01] 既存記事のdescription修正: 80文字未満のdescriptionを持つ4件の既存記事を独立スクリプト(`scripts/fix_descriptions.py`)で120文字に拡張。生成パイプラインには組み込まない (コミット済み)
 - [2026-10-01] CI ワークフローのキャッシュファイルパス修正: `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新。キャッシュ構成移行時のワークフロー更新漏れが CI の exit code 1 失敗の原因だった (29e5120)
 
 # Completed Plans

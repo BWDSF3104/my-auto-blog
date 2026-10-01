@@ -15,8 +15,6 @@
 | canonical URL一貫性 | slug変更時の301リダイレクト、sitemapとの整合性確認 | - |
 | LCP/CLSパフォーマンス | LCP画像の最適化、フォントのpreconnect | - |
 | 自動内部リンク | 本文内でも関連記事へのアンカーテキストリンクを自動挿入 | - |
-| 既存記事のdescription修正 | 80文字未満のdescriptionを持つ既存記事を修正。独立スクリプト（`scripts/fix_descriptions.py`）として単体実行前提。生成パイプラインには組み込まない | 小 |
-
 ## P2
 
 | 項目 | 内容 |
