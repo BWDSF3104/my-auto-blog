@@ -257,6 +257,10 @@ P1
 `pytest scripts/tests/ -v` — 108/108 passed
 `npm run build` — 成功確認
 
+## Commit
+
+30bb1e7 — feat: auto internal linking - insert anchor text links to related articles in body content
+
 ---
 
 ## Task (現在進行中)
