@@ -8,6 +8,7 @@
 
 # Completed Plans
 
+- [2026-10-01] ダークモードトグルボタン動作復元: `Header.astro` の `setDark()` 関数内で `dark` → `isDark` に修正して未定義変数参照を解消。テスト134件全件通過、ビルド成功 (92ページ)
 - [2026-10-01] ダークモード修正: `is:inline` 属性なしでクライアントサイドスクリプトが動作しない問題を `Header.astro`, `PostLayout.astro`, `tags/index.astro` に追加して修正。`PostLayout.astro` に `Header` コンポーネントのインポート、`dark:` 変種クラス、ダークモードCSSを追加して記事ページのダークモード対応を完了。ビルド成功 (90ページ)
 - [2026-10-01] 記事ページダークモードの文字色コントラスト改善: `PostLayout.astro` の `<article>` に `dark:prose-invert` + 各要素の `dark:` 変種クラスを追加して本文の文字色を改善。ビルド成功 (92ページ)
 - [2026-10-01] FAQPage schema + Speakable schema: 記事本文からQ&Aパターンを抽出してFAQPage JSON-LDを自動生成（行単位ステートマシンパーサー）。記事冒頭段落をSpeakable JSON-LDとして出力。`generate_article.py` に `_extract_faq_pairs()` と `_extract_speakable_text()` を追加し、frontmatter にJSON文字列で記録。`PostLayout.astro` で条件付きJSON-LD出力。テスト134件全件通過、ビルド成功 (90ページ)

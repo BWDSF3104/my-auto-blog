@@ -646,3 +646,46 @@ P1
 ## Next Action
 
 なし
+
+---
+
+## Task (完了)
+
+ダークモードトグルボタン動作復元 (setDark関数の引数修正)
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+`setDark()` 関数内で未定義の変数 `dark` を参照していたバグを修正し、トグルボタンが正常に動作するよう復元する。
+
+## Steps
+
+1. [x] `Header.astro` の `setDark()` 関数内で `dark` → `isDark` に修正
+2. [x] `npm run build` でビルド成功確認 (92ページ)
+3. [x] `pytest scripts/tests/ -v` でテスト確認 (134/134 passed)
+4. [x] 出力HTMLのインラインスクリプトを確認
+5. [x] git commit & push
+
+## Modified Files
+
+- `src/components/Header.astro` — `setDark()` 関数内の `dark` を `isDark` に修正
+
+## Verification
+
+`npm run build` — 92 pages built, Complete!
+`pytest scripts/tests/ -v` — 134/134 passed (1.75s)
+
+## Commit
+
+TBD
+
+## Next Action
+
+なし
