@@ -1,4 +1,5 @@
 ---
+import Header from '../components/Header.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -193,30 +194,32 @@ if (frontmatter.speakable) {
       <script type="application/ld+json" set:html={JSON.stringify(speakableJSONLD)} />
     )}
   </head>
-  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen py-10 px-4">
-    <main class="max-w-3xl mx-auto bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200/80">
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4">
+    <div class="max-w-3xl mx-auto">
+      <Header />
+      <main class="bg-white dark:bg-slate-800 p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
       <nav class="mb-4" aria-label="パンくずリスト">
-        <ol class="flex items-center gap-1.5 text-sm text-slate-500">
-          <li><a href={basePrefix} class="hover:text-blue-600 transition-colors">ホーム</a></li>
+        <ol class="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+          <li><a href={basePrefix} class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ホーム</a></li>
           <li>›</li>
-          <li><span class="font-medium text-slate-700">{frontmatter.title}</span></li>
+          <li><span class="font-medium text-slate-700 dark:text-slate-200">{frontmatter.title}</span></li>
         </ol>
       </nav>
-      <a href={import.meta.env.BASE_URL} class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 mb-6 transition-colors">
+      <a href={import.meta.env.BASE_URL} class="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors">
         ← 記事一覧に戻る
       </a>
       
-      <header class="mb-8 pb-6 border-b border-slate-200">
-        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+      <header class="mb-8 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 tracking-tight mb-4">
           {frontmatter.title}
         </h1>
-        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-6">
+        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400 mb-6">
           <time datetime={frontmatter.pubDate}>📅 {frontmatter.pubDate}</time>
           <span>✍️ {frontmatter.author}</span>
           {frontmatter.tags && (
             <div class="flex gap-1.5 ml-auto">
               {frontmatter.tags.map((tag: string) => (
-                <a href={`${basePrefix}/tags/${encodeURIComponent(tag)}`} class="bg-blue-50 text-blue-600 px-2.5 py-0.5 rounded-full text-xs font-semibold hover:bg-blue-100 transition-colors no-underline">
+                <a href={`${basePrefix}/tags/${encodeURIComponent(tag)}`} class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-0.5 rounded-full text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors no-underline">
                   #{tag}
                 </a>
               ))}
@@ -239,9 +242,9 @@ if (frontmatter.speakable) {
       </header>
 
       <!-- 目次 (TOC) -->
-      <nav class="toc-nav mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200" aria-label="目次">
-        <h2 class="toc-title text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">目次</h2>
-        <ol class="toc-list text-sm text-slate-600 space-y-1.5">
+      <nav class="toc-nav mb-8 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700" aria-label="目次">
+        <h2 class="toc-title text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-3">目次</h2>
+        <ol class="toc-list text-sm text-slate-600 dark:text-slate-300 space-y-1.5">
         </ol>
       </nav>
 
@@ -251,25 +254,25 @@ if (frontmatter.speakable) {
 
       <!-- 関連記事 -->
       {scoredPosts.length > 0 && (
-        <section class="mt-10 pt-6 border-t border-slate-200">
-          <h3 class="text-lg font-bold text-slate-900 mb-4">関連記事</h3>
+        <section class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-700">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">関連記事</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {scoredPosts.map((post) => (
-              <a href={post.url} class="group flex gap-3 p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-blue-50 hover:border-blue-200 transition-colors no-underline">
+              <a href={post.url} class="group flex gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 hover:bg-blue-50 dark:hover:bg-slate-600 hover:border-blue-200 dark:hover:border-blue-800 transition-colors no-underline">
                 {post.frontmatter.image && (
                   <img
                     src={post.frontmatter.image}
                     alt={post.frontmatter.title}
-                    class="w-20 h-14 object-cover rounded-lg border border-slate-200 flex-shrink-0"
+                    class="w-20 h-14 object-cover rounded-lg border border-slate-200 dark:border-slate-600 flex-shrink-0"
                     loading="lazy"
                     decoding="async"
                   />
                 )}
                 <div class="min-w-0">
-                  <p class="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                  <p class="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
                     {post.frontmatter.title}
                   </p>
-                  <p class="text-xs text-slate-500 mt-1">{post.frontmatter.pubDate}</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{post.frontmatter.pubDate}</p>
                 </div>
               </a>
             ))}
@@ -278,8 +281,8 @@ if (frontmatter.speakable) {
       )}
 
       <!-- 関連商品・アフィリエイトエリア（フォールバック: 本文にアフィリエイトブロックがない場合のみ表示） -->
-      <section class="mt-10 pt-6 border-t border-slate-200 affiliate-fallback">
-        <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">
+      <section class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-700 affiliate-fallback">
+        <h3 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
           関連する商品・書籍を探す
         </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -309,8 +312,8 @@ if (frontmatter.speakable) {
       </section>
 
       <!-- 記事末尾のサポートエリア（Buy Me a Coffee） -->
-      <div class="support-box mt-8 p-6 border border-slate-200 rounded-xl bg-slate-50 text-center shadow-xs">
-        <p class="text-sm sm:text-base font-medium text-slate-700 mb-4">
+      <div class="support-box mt-8 p-6 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 text-center shadow-xs">
+        <p class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 mb-4">
           この記事が役に立ったら、著者をサポートしていただけると励みになります！
         </p>
         <a href={`https://www.buymeacoffee.com/${bmcUsername}`} target="_blank" rel="noopener noreferrer" class="inline-block transition-transform hover:scale-105 active:scale-95">
@@ -318,6 +321,7 @@ if (frontmatter.speakable) {
         </a>
       </div>
     </main>
+    </div>
 
     <style is:global>
       /* 記事内画像の統一スタイル（アイキャッチ・本文内画像共通） */
@@ -331,6 +335,10 @@ if (frontmatter.speakable) {
         border-radius: 0.75rem; /* 12px */
         border: 1px solid #e2e8f0; /* slate-200 */
         box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); /* shadow-sm */
+      }
+      :root[class~="dark"] .post-image,
+      :root[class~="dark"] article img {
+        border-color: #475569; /* slate-700 */
         object-fit: cover;
         aspect-ratio: 16 / 9;
       }
@@ -392,18 +400,24 @@ if (frontmatter.speakable) {
       .toc-link:hover {
         background-color: #f1f5f9;
       }
+      :root[class~="dark"] .toc-link:hover {
+        background-color: #334155;
+      }
       .toc-link-active {
         color: #2563eb !important;
         border-left-color: #2563eb;
         background-color: #eff6ff;
         font-weight: 600;
       }
+      :root[class~="dark"] .toc-link-active {
+        background-color: #1e3a8a;
+      }
       html {
         scroll-behavior: smooth;
       }
     </style>
 
-    <script>
+    <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
         // TOC生成: 記事内のh2/h3を抽出して目次を構築
         const article = document.getElementById('article-content');

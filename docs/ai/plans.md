@@ -4,11 +4,11 @@
 
 # Active Plans
 
-- [2026-10-01] LCP/CLSパフォーマンス最適化: ヒーロー画像に `<link rel="preload">` と `fetchpriority="high"` を追加してLCP高速化。画像に `width`/`height` 属性と CSS `aspect-ratio` を追加してCLS解消。外部CDNに `<link rel="preconnect">` を追加。astro.config.mjs に `image.domains` を追加。フォントは system font 使用のため変更なし (コミット済み)
-- [2026-10-01] SEO改善と検索エンジンインデックス登録: Google Search Console の所有権検証 meta タグを全ページに追加（Layout.astro, index.astro, about.astro, 404.astro, tags/index.astro, tags/[tag].astro, page/[page].astro）。JSON-LD 構造化データ (BlogPosting, AboutPage) を index.astro と about.astro に追加。sitemap.xml.ts に静的ページ (/about/, /tags/) を追加。次は Bing 検証 ID の追加と sitemap 提出。
+(なし)
 
 # Completed Plans
 
+- [2026-10-01] ダークモード修正: `is:inline` 属性なしでクライアントサイドスクリプトが動作しない問題を `Header.astro`, `PostLayout.astro`, `tags/index.astro` に追加して修正。`PostLayout.astro` に `Header` コンポーネントのインポート、`dark:` 変種クラス、ダークモードCSSを追加して記事ページのダークモード対応を完了。ビルド成功 (90ページ)
 - [2026-10-01] FAQPage schema + Speakable schema: 記事本文からQ&Aパターンを抽出してFAQPage JSON-LDを自動生成（行単位ステートマシンパーサー）。記事冒頭段落をSpeakable JSON-LDとして出力。`generate_article.py` に `_extract_faq_pairs()` と `_extract_speakable_text()` を追加し、frontmatter にJSON文字列で記録。`PostLayout.astro` で条件付きJSON-LD出力。テスト134件全件通過、ビルド成功 (90ページ)
 - [2026-10-01] canonical URL一貫性: slug変更時の301リダイレクト実装。`data/slug-redirects.json` で旧→新slugマッピングを記録。`generate_article.py` にslug変更検出・自動記録ロジック追加。`[...slug].astro` の `getStaticPaths` にリダイレクトルートを追加してAstroレベルの301リダイレクトを実装。sitemap整合性確認済み。テスト119件全件通過、ビルド成功 (90ページ)
 - [2026-10-01] 自動内部リンク: 本文内で既存記事のタイトルが見つかった場合、自動的にアンカーテキストリンクを挿入。`_load_posts_for_links()`, `_existing_link_spans()`, `inject_internal_links()` の3関数を追加。既存のMarkdownリンク・画像内の文字範囲を回避。max_links制限付き。テスト108件全件通過 (コミット済み)

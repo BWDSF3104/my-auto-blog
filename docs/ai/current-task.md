@@ -516,3 +516,48 @@ c7d49c9 — feat: LCP/CLS performance optimization - preload hero image, fetchpr
 ## Next Action
 
 なし
+
+---
+
+## Task (完了)
+
+ダークモード修正: トグルボタン動作復元と記事ページのダークモード適用
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+`is:inline` 属性なしによりクライアントサイドスクリプトが動作しない問題を全ページで修正。記事ページ (`PostLayout.astro`) に欠落していた `dark:` クラスと `Header` コンポーネントを追加。
+
+## Steps
+
+1. [x] `Header.astro` の `<script>` に `is:inline` を追加
+2. [x] `PostLayout.astro` に `Header` コンポーネントをインポート
+3. [x] `PostLayout.astro` の `<body>`/`<main>` を `<div>` でラップ
+4. [x] `PostLayout.astro` の `<script>` に `is:inline` を追加
+5. [x] `PostLayout.astro` に `dark:` 変種クラスを追加（パンくず、ヘッダー、タグ、TOC、関連記事、アフィリエイトフォールバック、サポートボックス）
+6. [x] `PostLayout.astro` にダークモードCSSを追加（`.post-image`, `article img`, `.toc-link`）
+7. [x] `tags/index.astro` の `<script>` に `is:inline` を追加
+8. [x] `npm run build` でビルド成功確認 (90ページ)
+9. [x] Memory Bank 更新
+10. [ ] git commit & push
+
+## Modified Files
+
+- `src/components/Header.astro` — `<script is:inline>` 追加
+- `src/layouts/PostLayout.astro` — `Header` インポート、`dark:` クラス、`is:inline`、ダークモードCSS
+- `src/pages/tags/index.astro` — `<script is:inline>` 追加
+
+## Verification
+
+`npm run build` — 90 pages built, Complete!
+
+## Next Action
+
+git commit & push

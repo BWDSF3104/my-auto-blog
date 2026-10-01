@@ -130,7 +130,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </body>
 </html>
 
-<script>
+    <script is:inline>
   const searchInput = document.getElementById('tag-search');
   const tagList = document.getElementById('tag-list');
   const noResults = document.getElementById('no-results');
