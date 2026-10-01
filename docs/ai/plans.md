@@ -4,8 +4,11 @@
 
 # Active Plans
 
-- [2026-10-01] CI ワークフローのキャッシュファイルパス修正: `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新。キャッシュ構成が `data/topics/{timestamp}.json` + `latest.json` シンボリックリンクへ移行された際、ワークフローの更新が漏れていたため CI が exit code 1 で失敗していた。
 - [2026-10-01] SEO改善と検索エンジンインデックス登録: Google Search Console の所有権検証 meta タグを全ページに追加（Layout.astro, index.astro, about.astro, 404.astro, tags/index.astro, tags/[tag].astro, page/[page].astro）。JSON-LD 構造化データ (BlogPosting, AboutPage) を index.astro と about.astro に追加。sitemap.xml.ts に静的ページ (/about/, /tags/) を追加。次は Bing 検証 ID の追加と sitemap 提出。
+
+# Completed Plans
+
+- [2026-10-01] CI ワークフローのキャッシュファイルパス修正: `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新。キャッシュ構成移行時のワークフロー更新漏れが CI の exit code 1 失敗の原因だった (29e5120)
 
 # Completed Plans
 

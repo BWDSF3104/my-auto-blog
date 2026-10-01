@@ -121,10 +121,10 @@ P1
 ## Steps
 
 1. [x] `deploy.yml` の旧キャッシュパスを特定
-2. [ ] `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新
-3. [ ] `pytest scripts/tests/ -v` でテスト確認
-4. [ ] `npm run build` でビルド確認
-5. [ ] git commit & push
+2. [x] `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新
+3. [x] `pytest scripts/tests/ -v` でテスト確認
+4. [x] `npm run build` でビルド確認
+5. [x] git commit & push (29e5120)
 6. [ ] Bing Webmaster Tools 検証 ID の追加
 7. [ ] Google Search Console に sitemap 提出
 
@@ -141,6 +141,10 @@ P1
 `pytest scripts/tests/ -v` — 96/96 passed (1.52s)
 `npm run build` — 86 pages built in 1.89s
 
+## Commit
+
+29e5120 — fix: update CI workflow cache path from data/latest_topics.json to data/topics/
+
 ## Next Action
 
-git commit & push
+Bing Webmaster Tools 検証 ID の追加と Google Search Console への sitemap 提出
