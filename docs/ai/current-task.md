@@ -245,16 +245,29 @@ P1
 2. [x] `page/[page].astro` にも同様の修正を適用
 3. [x] `npm run build` でビルド成功確認（89ページ）
 4. [x] git commit & push (8c6b844)
+5. [x] Tailwind CSS がページに注入されない問題を調査
+6. [x] `global.css` import を Layout をバイパスする全ページに追加
+7. [x] Playwright で画像の計算スタイルを確認（デスクトップ 180×120px、モバイル 240×160px）
+8. [x] `npm run build` でビルド成功確認（89ページ）
+9. [x] `pytest scripts/tests/ -v` でテスト確認 (96/96 passed)
+10. [x] git commit & push (d52b445)
 
 ## Modified Files
 
-- `src/pages/index.astro` — 画像に `max-w-[240px]` + `sm:max-w-none` を追加
+- `src/pages/index.astro` — 画像に `max-w-[240px]` + `sm:max-w-none` を追加、`global.css` import 追加
 - `src/pages/page/[page].astro` — 同上
+- `src/pages/about.astro` — `global.css` import 追加
+- `src/pages/404.astro` — `global.css` import 追加
+- `src/pages/tags/index.astro` — `global.css` import 追加
+- `src/pages/tags/[tag].astro` — `global.css` import 追加
 
 ## Verification
 
-`npm run build` — 89 pages built in 1.95s
+`npm run build` — 89 pages built in 2.15s
+`pytest scripts/tests/ -v` — 96/96 passed (1.66s)
+Playwright: デスクトップ画像 180×120px、モバイル画像 240×160px 確認
 
 ## Commit
 
 8c6b844 — fix: constrain article list image width on mobile with max-w-240px
+d52b445 — fix: add global.css import to pages bypassing Layout for Tailwind CSS

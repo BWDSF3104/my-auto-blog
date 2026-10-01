@@ -14,6 +14,7 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 
 - **Pythonコード編集後**: `pytest scripts/tests/ -v` で全テスト通過を確認
 - **記事生成後またはAstroファイル編集後**: `npm run build` でビルド成功を確認
+- **レイアウトに関わる変更後**: `npm run build` でビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正がすべて完了した際に最終確認としてユーザーにスクリーンショットを送信
 - **git commit 前**: 上記両方を再実行して最終確認
 - 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド、結果、経過時間を記録
 
@@ -82,6 +83,13 @@ git push 前に以下の確認を行う:
 - [ ] 新規問題が `known-issues.md` に記録されたか
 - [ ] 解決した問題が `known-issues.md` の Archive へ移動されたか
 - [ ] 完了したバックログ項目が `backlog.md` から削除されたか
+
+### Deploy Workflow
+
+git push 後に DeployOnly ワークフローを実行し、成功を確認する:
+1. `gh workflow run deploy-only.yml` — ワークフローを手動実行
+2. 実行結果が success になるまで監視
+3. 失敗時は原因を調査して修正を継続
 
 ### Git Workflow
 - After completing file changes, check if remote has new commits:
