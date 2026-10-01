@@ -684,7 +684,7 @@ P1
 
 ## Commit
 
-TBD
+07e9804 — fix: dark mode toggle - fix setDark function to use isDark parameter instead of undefined dark variable
 
 ## Next Action
 
