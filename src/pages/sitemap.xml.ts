@@ -42,6 +42,8 @@ export const GET: APIRoute = async (context) => {
   const homeUrl = new URL(homePath, siteUrl).href;
   const aboutUrl = new URL(`${basePath}/about/`, siteUrl).href;
   const tagsUrl = new URL(`${basePath}/tags/`, siteUrl).href;
+  const majorTags = ['Kemono', 'Novel', 'Fantasy', 'LLM', 'AI', 'Python', 'TF', 'SF'];
+  const tagUrls = majorTags.map(tag => new URL(`${basePath}/tags/${tag}/`, siteUrl).href);
   const now = new Date().toISOString();
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -63,6 +65,12 @@ export const GET: APIRoute = async (context) => {
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
+${tagUrls.map(tagUrl => `  <url>
+    <loc>${tagUrl}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>`).join('\n')}
 ${posts
   .map(
     (post) => `  <url>
