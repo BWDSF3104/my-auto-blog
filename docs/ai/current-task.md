@@ -2,13 +2,17 @@
 
 Agentの現在進行中タスクの状態を記録する。Context Overflow後もこのファイルを読み込んで作業を復帰させる。
 
-## Task (進行中)
+## Task (完了)
 
 canonical URL一貫性: slug変更時の301リダイレクト実装
 
-## Priority (進行中)
+## Priority (完了)
 
 P1
+
+## Status (完了)
+
+完了
 
 ## Context
 
@@ -25,18 +29,60 @@ GitHub Pages静的サイトのためミドルウェア使用不可。Astroの`ge
 - [x] テスト追加 (pytest) - 11件追加、計119件全件通過
 - [x] ビルド検証 (npm run build) - 90ページ成功
 - [x] sitemap整合性確認 - 34記事のslugが正しく反映
-- [ ] backlog.md から完了項目を削除
-- [ ] plans.md の Completed Plans に記録
-
-## Next Action
-
-(完了) 次は backlog.md の P0: Reddit 代替ソースの追加、またはユーザーからの次の指示を待つ
+- [x] backlog.md から完了項目を削除
+- [x] plans.md の Completed Plans に記録
+- [x] git commit & push (1b8a6d4)
 
 ## Verification
 
-- pytest scripts/tests/ -v: 119 passed in 1.58s
+- pytest scripts/tests/ -v: 119 passed in 1.64s
 - npm run build: 90 page(s) built, Complete!
 - sitemap.xml: 34 post URLs 正しく生成
+- Commit: 1b8a6d4
+
+---
+
+## Task (完了)
+
+FAQPage schema + Speakable schema: JSON-LD構造化データの追加
+
+## Priority (完了)
+
+P2
+
+## Status
+
+完了
+
+## Context
+
+記事本文からQ&Aパターンを抽出してFAQPage JSON-LDを自動生成。
+記事冒頭段落をSpeakable JSON-LDとして出力。
+`generate_article.py` に抽出関数を追加し、frontmatter に結果を記録。
+`PostLayout.astro` で条件付きJSON-LD出力。
+
+## Progress
+
+- [x] plans.md に Active Plans として記録
+- [x] 既存 JSON-LD 実装を調査（PostLayout.astro, generate_article.py）
+- [x] FAQPage schema: `_extract_faq_pairs()` 関数を `generate_article.py` に追加（行単位パーサー）
+- [x] Speakable schema: `_extract_speakable_text()` 関数を `generate_article.py` に追加
+- [x] `generate_post()` パイプラインに組み込み（frontmatter に `faq`, `speakable` を記録）
+- [x] `PostLayout.astro` に FAQPage + Speakable JSON-LD 出力追加
+- [x] ユニットテスト追加 (15件)
+- [x] pytest 全件通過確認 (134件)
+- [x] npm run build 成功確認 (90ページ)
+- [x] Memory Bank 更新 (plans.md completed, backlog.md 削除)
+- [x] git commit & push
+
+## Verification
+
+- pytest scripts/tests/ -v: 134 passed in 1.64s
+- npm run build: 90 page(s) built, Complete!
+
+## Next Action
+
+なし
 
 ## Task (完了済み)
 

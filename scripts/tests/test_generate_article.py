@@ -37,6 +37,9 @@ from generate_article import (
     _save_slug_redirects,
     _get_existing_slugs,
     _resolve_slug_collision,
+    _get_body_after_fm,
+    _extract_faq_pairs,
+    _extract_speakable_text,
     generate_and_save_image,
     extract_character_prompts,
     extract_image_prompt,
@@ -1259,4 +1262,174 @@ class TestSlugRedirects:
         with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
             slug, changed = _resolve_slug_collision("dup", {"dup", "dup-2", "dup-3"})
         assert slug == "dup-4"
-        assert changed is True
+
+
+class TestExtractFaqPairs:
+    """Tests for _extract_faq_pairs() - FAQPage schema extraction"""
+
+    def test_extract_qa_blocks_basic(self):
+        content = """---
+title: "Test"
+---
+Some intro text.
+
+Q: 質問1は何ですか？
+A: 回答1です。これは詳細な説明です。
+
+Q: 質問2は何ですか？
+A: 回答2です。これも詳細な説明です。
+"""
+        pairs = _extract_faq_pairs(content)
+        assert len(pairs) == 2
+        assert pairs[0]["question"] == "質問1は何ですか"
+        assert "回答1" in pairs[0]["answer"]
+        assert pairs[1]["question"] == "質問2は何ですか"
+        assert "回答2" in pairs[1]["answer"]
+
+    def test_extract_qa_blocks_english(self):
+        content = """---
+title: "Test"
+---
+Intro.
+
+Q: What is AI?
+A: Artificial Intelligence is a field of computer science.
+
+Q: How does it work?
+A: It uses machine learning algorithms to process data.
+"""
+        pairs = _extract_faq_pairs(content)
+        assert len(pairs) == 2
+        assert pairs[0]["question"] == "What is AI?"
+        assert "Artificial Intelligence" in pairs[0]["answer"]
+
+    def test_extract_heading_questions(self):
+        content = """---
+title: "Test"
+---
+Intro paragraph.
+
+## 質問1は何ですか？
+
+これは質問1に対する回答です。十分な長さのテキストです。
+
+## 質問2は何ですか？
+
+これは質問2に対する回答です。十分な長さのテキストです。
+"""
+        pairs = _extract_faq_pairs(content)
+        assert len(pairs) >= 1
+        assert "質問1" in pairs[0]["question"]
+
+    def test_no_faq_content(self):
+        content = """---
+title: "Test"
+---
+This is a regular article without any FAQ content.
+Just normal paragraphs here.
+"""
+        pairs = _extract_faq_pairs(content)
+        assert pairs == []
+
+    def test_empty_content(self):
+        assert _extract_faq_pairs("") == []
+
+    def test_short_question_filtered(self):
+        content = """---
+title: "Test"
+---
+Q: Q?
+A: A answer that is long enough to pass the minimum length check.
+"""
+        pairs = _extract_faq_pairs(content)
+        assert len(pairs) == 0
+
+    def test_max_10_pairs(self):
+        content = "---\ntitle: \"Test\"\n---\n"
+        for i in range(15):
+            content += f"\nQ: 質問{i}は何ですか？\nA: 回答{i}です。これは十分な長さのテキストです。\n"
+        pairs = _extract_faq_pairs(content)
+        assert len(pairs) <= 10
+
+
+class TestExtractSpeakableText:
+    """Tests for _extract_speakable_text() - Speakable schema extraction"""
+
+    def test_extract_first_paragraph(self):
+        content = """---
+title: "Test"
+---
+This is the first meaningful paragraph of the article that should be extracted for speakable schema.
+
+Some second paragraph that should not be extracted.
+"""
+        text = _extract_speakable_text(content)
+        assert "first meaningful paragraph" in text
+
+    def test_skip_headings(self):
+        content = """---
+title: "Test"
+---
+# Main Heading
+
+## Sub Heading
+
+This is the actual first paragraph of the article content that matters.
+"""
+        text = _extract_speakable_text(content)
+        assert "first paragraph" in text
+        assert "Heading" not in text
+
+    def test_skip_image_placeholders(self):
+        content = """---
+title: "Test"
+---
+![Image caption here]
+
+This is the first real paragraph after the image placeholder.
+"""
+        text = _extract_speakable_text(content)
+        assert "first real paragraph" in text
+
+    def test_empty_content(self):
+        assert _extract_speakable_text("") == ""
+
+    def test_no_body_content(self):
+        content = """---
+title: "Test"
+---
+"""
+        assert _extract_speakable_text(content) == ""
+
+    def test_max_length_300(self):
+        long_text = "A" * 500
+        content = f"""---
+title: "Test"
+---
+{long_text}
+"""
+        text = _extract_speakable_text(content)
+        assert len(text) <= 300
+
+    def test_minimum_length_20(self):
+        content = """---
+title: "Test"
+---
+Short.
+
+This is a longer paragraph that meets the minimum length requirement for speakable text extraction.
+"""
+        text = _extract_speakable_text(content)
+        assert len(text) >= 20
+        assert "longer paragraph" in text
+
+    def test_japanese_text(self):
+        content = """---
+title: "テスト記事"
+---
+これは日本語の文章です。十分な長さのテキストとしてSpeakable schemaに抽出されます。テスト用です。
+
+2段落目です。
+"""
+        text = _extract_speakable_text(content)
+        assert "日本語" in text

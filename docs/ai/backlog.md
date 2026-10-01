@@ -10,7 +10,4 @@
 
 ## P2
 
-| 項目 | 内容 |
-|------|------|
-| FAQPage schema | Q&A形式の記事にFAQPage JSON-LDを自動追加 |
-| Speakable schema | 記事の冒頭部分をGoogle Assistantが読み上げ可能に |
+(完了済み項目は削除済み)

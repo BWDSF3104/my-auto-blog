@@ -9,6 +9,7 @@
 
 # Completed Plans
 
+- [2026-10-01] FAQPage schema + Speakable schema: 記事本文からQ&Aパターンを抽出してFAQPage JSON-LDを自動生成（行単位ステートマシンパーサー）。記事冒頭段落をSpeakable JSON-LDとして出力。`generate_article.py` に `_extract_faq_pairs()` と `_extract_speakable_text()` を追加し、frontmatter にJSON文字列で記録。`PostLayout.astro` で条件付きJSON-LD出力。テスト134件全件通過、ビルド成功 (90ページ)
 - [2026-10-01] canonical URL一貫性: slug変更時の301リダイレクト実装。`data/slug-redirects.json` で旧→新slugマッピングを記録。`generate_article.py` にslug変更検出・自動記録ロジック追加。`[...slug].astro` の `getStaticPaths` にリダイレクトルートを追加してAstroレベルの301リダイレクトを実装。sitemap整合性確認済み。テスト119件全件通過、ビルド成功 (90ページ)
 - [2026-10-01] 自動内部リンク: 本文内で既存記事のタイトルが見つかった場合、自動的にアンカーテキストリンクを挿入。`_load_posts_for_links()`, `_existing_link_spans()`, `inject_internal_links()` の3関数を追加。既存のMarkdownリンク・画像内の文字範囲を回避。max_links制限付き。テスト108件全件通過 (コミット済み)
 - [2026-10-01] 既存記事のdescription修正: 80文字未満のdescriptionを持つ4件の既存記事を独立スクリプト(`scripts/fix_descriptions.py`)で120文字に拡張。生成パイプラインには組み込まない (コミット済み)

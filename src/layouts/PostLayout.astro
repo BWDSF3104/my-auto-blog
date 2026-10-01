@@ -98,6 +98,44 @@ const breadcrumbJSONLD = {
     { "@type": "ListItem", "position": 3, "name": frontmatter.title }
   ]
 };
+
+// FAQPage JSON-LD (frontmatterの faq フィールドから解析)
+let faqJSONLD: object | undefined;
+if (frontmatter.faq) {
+  const faqRaw = String(frontmatter.faq).trim();
+  let faqList: { question: string; answer: string }[] = [];
+  try {
+    const parsed = JSON.parse(faqRaw);
+    if (Array.isArray(parsed)) {
+      faqList = parsed.filter((item: any) => item.question && item.answer);
+    }
+  } catch { /* ignore parse errors */ }
+  if (faqList.length) {
+    faqJSONLD = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqList.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    };
+  }
+}
+
+// Speakable JSON-LD (frontmatterの speakable フィールドから)
+let speakableJSONLD: object | undefined;
+if (frontmatter.speakable) {
+  speakableJSONLD = {
+    "@context": "https://schema.org",
+    "@type": "Speakable",
+    "url": canonicalURL.href,
+    "cssSelector": ["article p:first-of-type"]
+  };
+}
 ---
 
 <html lang="ja">
@@ -148,6 +186,12 @@ const breadcrumbJSONLD = {
         "query-input": "required name=search_term_string"
       }
     })} />
+    {faqJSONLD && (
+      <script type="application/ld+json" set:html={JSON.stringify(faqJSONLD)} />
+    )}
+    {speakableJSONLD && (
+      <script type="application/ld+json" set:html={JSON.stringify(speakableJSONLD)} />
+    )}
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased min-h-screen py-10 px-4">
     <main class="max-w-3xl mx-auto bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200/80">

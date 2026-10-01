@@ -1434,6 +1434,99 @@ def _extract_fm_tags(content: str) -> list:
     return []
 
 
+def _get_body_after_fm(content: str) -> str:
+    """Frontmatter (--- ... ---) の後の本文を返す"""
+    fm_match = re.search(r'^---\s*\n.*?\n---\s*\n', content, re.DOTALL)
+    if fm_match:
+        return content[fm_match.end():]
+    return content
+
+
+def _extract_faq_pairs(content: str) -> list[dict]:
+    """
+    記事本文からFAQパターンを抽出してFAQPage schema用のリストを返す。
+    検出パターン:
+      1. 「Q: ... A: ...」または「Q:...A:...」のブロック
+      2. 疑問符（？/？）で終わる見出し + 続くパラグラフ
+    """
+    body = _get_body_after_fm(content)
+    if not body:
+        return []
+
+    pairs = []
+
+    # Pattern 1: Q:/A: blocks (line-by-line parsing)
+    lines = body.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        m = re.match(r'^[Qq][\u3002.::\uff1a]\s*(.+)$', line)
+        if m:
+            question_lines = [m.group(1)]
+            i += 1
+            answer_lines = []
+            while i < len(lines):
+                next_line = lines[i].strip()
+                am = re.match(r'^[Aa][\u3002.::\uff1a]\s*(.*)$', next_line)
+                if am:
+                    answer_lines.append(am.group(1))
+                    i += 1
+                    break
+                if next_line:
+                    question_lines.append(next_line)
+                i += 1
+            question = "\n".join(question_lines).strip().rstrip("：？")
+            answer = "\n".join(answer_lines).strip()
+            if question and answer and len(question) >= 5 and len(answer) >= 10:
+                pairs.append({"question": question, "answer": answer})
+            continue
+        i += 1
+
+    # Pattern 2: Heading ending with question mark + following paragraph
+    if not pairs:
+        sections = re.split(r'\n##\s+', body)
+        for section in sections:
+            s_lines = section.strip().split("\n")
+            if not s_lines:
+                continue
+            heading = s_lines[0].strip()
+            if heading.startswith(("Q:", "Q：", "q:", "q：", "A:", "A：")):
+                continue
+            if not heading.endswith("？") and not heading.endswith("?"):
+                continue
+            para = "\n".join(s_lines[1:]).strip()
+            if para and len(heading) >= 5 and len(para) >= 10:
+                pairs.append({"question": heading.rstrip("？?"), "answer": para})
+            if len(pairs) >= 10:
+                break
+
+    return pairs[:10]
+
+
+def _extract_speakable_text(content: str) -> str:
+    """
+    記事本文の最初の意味のあるパラグラフを抽出してSpeakable schema用テキストを返す。
+    見出しや画像キャプションをスキップして本文パラグラフのみを対象とする。
+    """
+    body = _get_body_after_fm(content)
+    if not body:
+        return ""
+
+    for line in body.split("\n"):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("#") or stripped.startswith("![") or stripped.startswith("<"):
+            continue
+        if stripped.startswith("["):
+            continue
+        text = stripped.rstrip("。.").strip()
+        if len(text) >= 20:
+            return text[:300]
+
+    return ""
+
+
 def _compose_smart_situation(content: str) -> str:
     """
     image_promptがない記事用に title/description/tags から
@@ -1882,6 +1975,23 @@ def generate_post():
 
     # 5.55 自動内部リンクの挿入
     content = inject_internal_links(content)
+
+    # 5.58 FAQPage schema: 本文からQ&Aパターンを抽出してfrontmatterに記録
+    faq_pairs = _extract_faq_pairs(content)
+    if faq_pairs and "---" in content:
+        faq_json = json.dumps(faq_pairs, ensure_ascii=False)
+        safe_faq = faq_json.replace("'", "\\'")
+        if not re.search(r'^faq:', content, re.MULTILINE):
+            content = content.replace("---", f"---\nfaq: '{faq_json}'", 1)
+        print(f"📋 FAQPage schema: {len(faq_pairs)}件のQ&Aペアを抽出")
+
+    # 5.59 Speakable schema: 本文の最初のパラグラフをfrontmatterに記録
+    speakable = _extract_speakable_text(content)
+    if speakable and "---" in content:
+        safe_speakable = speakable.replace("\\", "\\\\").replace('"', '\\"')
+        if not re.search(r'^speakable:', content, re.MULTILINE):
+            content = content.replace("---", f'---\nspeakable: "{safe_speakable}"', 1)
+        print(f"🎤 Speakable schema: 冒頭テキストを抽出 ({len(speakable)}文字)")
 
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
