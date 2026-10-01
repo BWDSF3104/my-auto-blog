@@ -42,7 +42,7 @@ dd356fe — feat: dark mode support, reading time display, 404 page, about page,
 
 ---
 
-## Task (現在進行中)
+## Task (完了)
 
 Google 検索エンジンへのサイトインデックス登録を有効化するための SEO 改善
 
@@ -52,7 +52,7 @@ P1
 
 ## Status
 
-進行中
+完了
 
 ## Objective
 
@@ -73,7 +73,7 @@ Google Search Console での所有権検証を全ページで有効にし、JSON
 11. [x] sitemap.xml.ts に静的ページ (/about/, /tags/) を追加
 12. [ ] `npm run build` でビルド成功確認
 13. [ ] git commit & push
-14. [ ] Bing Webmaster Tools 検証 ID の追加
+14. [x] Bing Webmaster Tools 検証 (Google Search Console からインポートで完了)
 15. [x] Google Search Console に sitemap 提出 (手動完了)
 
 ## Modified Files
@@ -102,7 +102,7 @@ Google Search Console での所有権検証を全ページで有効にし、JSON
 
 ---
 
-## Task (現在進行中)
+## Task (完了)
 
 CI ワークフローのキャッシュファイルパス修正と SEO 残タスク
 
@@ -112,7 +112,7 @@ P1
 
 ## Status
 
-進行中
+完了
 
 ## Objective
 
@@ -125,7 +125,7 @@ P1
 3. [x] `pytest scripts/tests/ -v` でテスト確認
 4. [x] `npm run build` でビルド確認
 5. [x] git commit & push (29e5120)
-6. [ ] Bing Webmaster Tools 検証 ID の追加
+6. [x] Bing Webmaster Tools 検証 (Google Search Console からインポートで完了)
 7. [x] Google Search Console に sitemap 提出 (手動完了)
 
 ## Modified Files
@@ -151,7 +151,7 @@ P1
 6. [x] sitemap.xml.ts に主要タグページ（Kemono, Novel, Fantasy, LLM, AI, Python, TF, SF）を追加
 7. [x] `npm run build` でビルド成功確認 (89ページ)
 8. [x] git commit & push (a9f00e2)
-7. [ ] Bing Webmaster Tools 検証 ID の追加
+7. [x] Bing Webmaster Tools 検証 (Google Search Console からインポートで完了)
 8. [x] Google Search Console に sitemap 提出 (手動完了)
 
 ## Commit
@@ -161,7 +161,7 @@ a9f00e2 — feat: add major tag pages to sitemap.xml
 
 ## Next Action
 
-Bing Webmaster Tools 検証 ID の追加 (Google Search Console からインポート機能使用)
+なし (SEO 改善タスク全完了)
 
 ---
 
