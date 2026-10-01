@@ -74,7 +74,7 @@ Google Search Console での所有権検証を全ページで有効にし、JSON
 12. [ ] `npm run build` でビルド成功確認
 13. [ ] git commit & push
 14. [ ] Bing Webmaster Tools 検証 ID の追加
-15. [ ] Google Search Console に sitemap 提出
+15. [x] Google Search Console に sitemap 提出 (手動完了)
 
 ## Modified Files
 
@@ -126,7 +126,7 @@ P1
 4. [x] `npm run build` でビルド確認
 5. [x] git commit & push (29e5120)
 6. [ ] Bing Webmaster Tools 検証 ID の追加
-7. [ ] Google Search Console に sitemap 提出
+7. [x] Google Search Console に sitemap 提出 (手動完了)
 
 ## Modified Files
 
@@ -141,13 +141,27 @@ P1
 `pytest scripts/tests/ -v` — 96/96 passed (1.52s)
 `npm run build` — 86 pages built in 1.89s
 
+## Steps
+
+1. [x] `deploy.yml` の旧キャッシュパスを特定
+2. [x] `deploy.yml` の `git add data/latest_topics.json` を `git add data/topics/` へ更新
+3. [x] `pytest scripts/tests/ -v` でテスト確認
+4. [x] `npm run build` でビルド確認
+5. [x] git commit & push (29e5120)
+6. [x] sitemap.xml.ts に主要タグページ（Kemono, Novel, Fantasy, LLM, AI, Python, TF, SF）を追加
+7. [x] `npm run build` でビルド成功確認 (89ページ)
+8. [x] git commit & push (a9f00e2)
+7. [ ] Bing Webmaster Tools 検証 ID の追加
+8. [x] Google Search Console に sitemap 提出 (手動完了)
+
 ## Commit
 
 29e5120 — fix: update CI workflow cache path from data/latest_topics.json to data/topics/
+a9f00e2 — feat: add major tag pages to sitemap.xml
 
 ## Next Action
 
-Bing Webmaster Tools 検証 ID の追加と Google Search Console への sitemap 提出
+Bing Webmaster Tools 検証 ID の追加 (Google Search Console からインポート機能使用)
 
 ---
 
