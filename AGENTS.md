@@ -91,6 +91,8 @@ git push 後に DeployOnly ワークフローを実行し、成功を確認す�
 2. 実行結果が success になるまで監視
 3. 失敗時は原因を調査して修正を継続
 
+例外: `AGENTS.md` および `docs/` 内のファイルのみを更新した場合はテスト実行と DeployOnly ワークフローの実行は不要
+
 ### Git Workflow
 - After completing file changes, check if remote has new commits:
   1. `git fetch origin` — fetch remote refs without merging

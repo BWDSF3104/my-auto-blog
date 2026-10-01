@@ -271,3 +271,4 @@ Playwright: デスクトップ画像 180×120px、モバイル画像 240×160px 
 
 8c6b844 — fix: constrain article list image width on mobile with max-w-240px
 d52b445 — fix: add global.css import to pages bypassing Layout for Tailwind CSS
+23fb19e — chore: add deploy workflow rule and screenshot directory to AGENTS.md
