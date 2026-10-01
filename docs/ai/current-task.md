@@ -426,3 +426,11 @@ P1
 
 `npm run build` — 89 pages built in 2.13s
 出力HTML: preload, fetchpriority, preconnect, aspect-ratio 全属性確認済み
+
+## Commit
+
+c7d49c9 — feat: LCP/CLS performance optimization - preload hero image, fetchpriority, aspect-ratio, preconnect
+
+## Next Action
+
+なし
