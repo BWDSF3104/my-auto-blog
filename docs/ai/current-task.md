@@ -273,7 +273,7 @@ P1
 
 ## Status
 
-進行中
+完了
 
 ## Objective
 
