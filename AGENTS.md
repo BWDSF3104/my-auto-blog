@@ -8,6 +8,7 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 - NEVER execute destructive terminal commands without explicit user confirmation
 - Forbidden commands: `rm -rf`, `git push --force`, `sudo`, modifying files outside workspace root
 - **File deletion**: Always use `./kilo-safe-remove.cmd <file>` instead of `Remove-Item` or `del`. It validates the target is inside the project, blocks directory/symlink deletion, and protects `.git/` and `.kilo/`.
+- **Folder deletion**: Always use `./kilo-safe-rmdir.cmd <folder>` instead of `Remove-Item -Recurse` or `rmdir /s`. It validates the target is inside the project, blocks deletion of `.git/` and `.kilo/`, and requires explicit confirmation.
 - Always verify tests pass after editing code, but do not touch production infrastructure
 
 ### Code Verification

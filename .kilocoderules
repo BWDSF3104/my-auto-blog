@@ -7,4 +7,5 @@
    - `sudo` commands or system-level actions
    - Modifying files outside the current workspace root
 3. File deletion must use `./kilo-safe-remove.cmd <file>` instead of `Remove-Item` or `del`. It validates the target is inside the project, blocks directory/symlink deletion, and protects `.git/` and `.kilo/`.
+4. Folder deletion must use `./kilo-safe-rmdir.cmd <folder>` instead of `Remove-Item -Recurse` or `rmdir /s`. It validates the target is inside the project, blocks deletion of `.git/` and `.kilo/`, and requires explicit confirmation.
 3. Always verify tests pass (`npm test`) after editing code, but do not touch production infrastructure.
