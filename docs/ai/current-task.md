@@ -186,3 +186,37 @@ P1
 
 `npm run build` — 89 pages built in 1.91s (/page/2, /page/3, /page/4 生成確認)
 `pytest scripts/tests/ -v` — 96/96 passed (1.40s)
+
+---
+
+## Task (完了)
+
+記事生成を伴わないデプロイ用ワークフロー追加
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+既存の `deploy.yml` を維持したまま、`deploy-only.yml` を追加して記事生成なしで Astro ビルド + デプロイのみを実行できるワークフローを提供する。
+
+## Steps
+
+1. [x] 既存 `deploy.yml` のトリガーに `scripts/`, `data/` への push を追加
+2. [x] `deploy-only.yml` 新規作成 (`src/`, `public/` などの push + 手動起動)
+3. [x] `[skip ci]` 付きコミットは deploy-only でスキップされるよう `if` 条件設定
+4. [x] git commit & push (c5d2636)
+
+## Modified Files
+
+- `.github/workflows/deploy.yml` — push トリガーに `scripts/**`, `data/**` を追加
+- `.github/workflows/deploy-only.yml` — 新規作成
+
+## Commit
+
+c5d2636 — feat: add deploy-only workflow for build+deploy without article generation
