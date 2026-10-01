@@ -84,11 +84,16 @@ git push 前に以下の確認を行う:
 - [ ] 完了したバックログ項目が `backlog.md` から削除されたか
 
 ### Git Workflow
-- After completing file changes, use the following safe sequence to avoid conflicts with remote changes:
+- After completing file changes, check if remote has new commits:
+  1. `git fetch origin` — fetch remote refs without merging
+  2. `git rev-list HEAD..origin/main --count` — count remote commits not yet pulled
+- If remote has new commits (count > 0):
   1. `git stash` — save local changes temporarily
   2. `git pull` — fetch and merge remote changes
   3. `git stash pop` — restore saved changes (resolve conflicts if any)
   4. `git add`, `git commit`, `git push`
+- If remote has no new commits (count == 0):
+  1. `git add`, `git commit`, `git push`
 - Commit message format: `feat: <description>` for features, `fix: <description>` for bug fixes
 - Never use `git push --force` or modify remote history
 

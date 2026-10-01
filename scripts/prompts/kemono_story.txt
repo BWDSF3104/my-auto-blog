@@ -11,18 +11,41 @@
 5. **テンポの管理**: 静かな内省シーンと動きの多いアクションシーンを交互に配置し、読者の集中を維持してください。重要な場面では描写を細かく、通過点では簡潔に記述してください。
 6. **世界観の一貫性**: 物語内で設定したルール（魔法・テクノロジー・社会構造など）は最後まで矛盾なく運用してください。読者が没入できる詳細な世界観を、本文に自然に溶け込ませてください。
 7. **設定の整合性**: 物語途中で設定した伏線は回収してください。キャラクターの外見・性格・関係性は最初から最後まで矛盾なく維持してください。
+8. **印象的なシーンの必須配置**: 物語中に以下のカテゴリから少なくとも1つ以上の印象的なシーンを含めてください。キャラクターの関係性や物語のトーンに合ったものを選択してください。
+   - 身体的な親密さ: キス、ハグ、頭なで、手をつなぐ、寄り添う、肩を組むなど
+   - 緊張感ある密着: 転倒時の体当たり、狭い空間での密着、保護のための抱きしめなど
+   - 激しいアクション: 決闘、追跡戦、魔法バトル、生死をかけた戦いなど
+   - 感情的な決定的瞬間: 涙、告白、別れ、再会、信頼の表明など
+   これらのシーンは「示して語らず」の原則で描写し、感情を直接説明するのではなく動作・表情・反応・環境で表現してください。SFWの範囲内で描写してください。
 
 【キャラクターの一貫性と画像プロンプトのルール】
 ・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
-・アイキャッチ画像（image_prompt）および本文中の挿絵（IMAGE_PROMPT）では、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのポーズや背景を英語で記述してください。
+・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのポーズや背景を英語で記述してください。
 ・画質指定（masterpiece等）はシステム側で自動付与されるため含めないでください。
 ・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください（例: "watercolor, soft pastel, gentle lighting" や "pixel art, retro, 16-bit style"）。記事内の全画像はこのスタイルで統一されます。
 ・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
-・物語の途中に【必ず1〜2箇所】、場面転換や重要な見せ場に合わせて以下の形式で挿絵用プロンプトを挿入してください（3箇所以上は多すぎるため1〜2箇所厳守）。
+
+【画像シーンの選出ルール（合計3枚、被り禁止）】
+・各画像は異なる瞬間を指定してください。同じシーンの複数アングルは禁止。
+・3枚で物語の異なる感情・場面をカバーするよう選出してください。
+
+・アイキャッチ画像（image_prompt）: 物語全体の「ポスター画像」相当。
+  最も視覚的にインパクトのある1瞬間を選びます（クライマックスの決着、
+  2人の決定的な接触など）。平淡な導入シーンや単独の静かな場面は避けてください。
+
+・挿絵1（<!-- IMAGE_PROMPT --> 1つ目）: 物語前半〜中盤に配置。
+  印象的なシーンの中から、トップ画像とは別の瞬間を選びます。
+  （例: 親密な接触、感情的な瞬間、世界観を象徴する場面など）
   挿入形式：<!-- IMAGE_PROMPT: "[character_1] action or background description" -->
   または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] action or background description" -->
+
+・挿絵2（<!-- IMAGE_PROMPT --> 2つ目）: 物語中盤〜後半に配置。
+  トップ画像・挿絵1の両方と異なる瞬間を選びます。
+  （例: 激しいアクション、再会、別れ、内省の瞬間など）
+  挿入形式は挿絵1と同じです。
+
 ・物語の結末付近または最終章の末尾に【1箇所】、関連書籍・グッズへのアフィリエイトリンクプレースホルダーを挿入してください。
   挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
   例：<!-- AFFILIATE: "ケモノキャラクター図鑑 公式ガイド" | "ケモノキャラクターのイラスト集はこちら" -->
@@ -46,7 +69,7 @@ tags: ["Kemono", "Novel", "Fantasy"]
 art_style: "anime style, illustration, cel shading, vibrant colors"
 character_1: "1boy, blue wolf, golden eyes, white chest fur, wearing red scarf"
 character_2: "1boy, black panther, emerald eyes, wearing leather vest"
-image_prompt: "[character_1, character_2] standing on a cliff at sunset, dramatic wind"
+image_prompt: "[character_1, character_2] intense face-to-face confrontation, dramatic lighting, emotional"
 product_recommendations:
   - name: "関連書籍のタイトル"
     category: "書籍"
@@ -76,13 +99,13 @@ product_recommendations:
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1] running through forest, daylight" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2] sharing an intimate moment, close contact, emotional expression" -->
 
 ## 第2章：タイトル
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] sitting together around campfire, starry night, smiling" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2] fierce battle scene, dynamic action, dramatic effects" -->
 
 ## 最終章：タイトル
 
