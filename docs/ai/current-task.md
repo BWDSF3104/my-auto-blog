@@ -4,11 +4,11 @@ Agentの現在進行中タスクの状態を記録する。Context Overflow後�
 
 ## Task
 
-画像生成のフォールバック機制：HuggingFace → Pollinations.ai 連携とユニットテスト追加
+Geminiテキスト生成のフォールバックチェーンに `gemini-3.5-flash-lite` を3段目に追加
 
 ## Priority
 
-P1
+P2
 
 ## Status
 
@@ -16,25 +16,18 @@ P1
 
 ## Objective
 
-HuggingFace 画像生成のフォールバックとして Pollinations.ai を統合し、`IMAGE_PROVIDER` 環境変数でプロバイダーを切り替えられるようにする。AVIF変換を `_save_as_avif` ヘルパーに分離し、テストスクリプトが外部APIを呼ばないことを確認してユニットテストを追加する。
+`gemini-3.1-flash-lite` の2027/5/7廃止に対応し、Google推奨の代替モデル `gemini-3.5-flash-lite` をフォールバックチェーンの3段目に挿入する。4段チェーン: 3.8-flash → 3.6-flash → 3.5-flash-lite → 3.1-flash-lite。
 
 ## Modified Files
 
-- `scripts/generate_article.py` — `_save_as_avif`, `_generate_image_pollinations`, `generate_and_save_image` を追加、フォールバックとプロバイダールーティングを実装
-- `scripts/requirements.txt` — `requests>=2.31.0` を追加
-- `scripts/tests/test_generate_article.py` — 11件のユニットテストを追加（AVIF変換3、Pollinations3、ルーティング5）
-- `docs/ai/decisions.md` — Pollinations.ai フォールバックの判断理由を記録
-- `docs/ai/architecture.md` — サービス表とデータフローを更新
+- `scripts/generate_article.py` — `MODELS_TO_TRY` リストに `gemini-3.5-flash-lite` を追加
 
 ## Completed
 
-- [x] HF → Pollinations フォールバックと `IMAGE_PROVIDER` ルーティングを実装
-- [x] AVIF変換を `_save_as_avif()` ヘルパーにリファクタリング
-- [x] `_generate_image_pollinations()` を追加
-- [x] テストスクリプトが外部APIを呼ばないことを確認
-- [x] 11件のユニットテストを追加
-- [x] `pytest scripts/tests/ -v` 成功確認（96/96, 1.39s）
-- [x] `npm run build` 成功確認（83 pages, 1.77s）
+- [x] 現在のフォールバックチェーンと廃止スケジュールの確認
+- [x] `gemini-3.5-flash-lite` を3段目に追加
+- [x] `pytest scripts/tests/ -v` 成功確認（96/96, 1.51s）
+- [x] `npm run build` 成功確認（83 pages, 1.57s）
 
 ## Pending
 
@@ -42,8 +35,8 @@ HuggingFace 画像生成のフォールバックとして Pollinations.ai を統
 
 ## Verification
 
-- `pytest scripts/tests/ -v`: 96/96 passed, 1.39s
-- `npm run build`: 成功（83 pages, 1.77s）
+- `pytest scripts/tests/ -v`: 96/96 passed, 1.51s
+- `npm run build`: 成功（83 pages, 1.57s）
 
 ## Next Action
 
@@ -51,11 +44,10 @@ HuggingFace 画像生成のフォールバックとして Pollinations.ai を統
 
 ## Commit
 
-ed2ebe0 (feat: add Pollinations.ai fallback image generation with unit tests)
+5d457e3 (feat: add gemini-3.5-flash-lite as 3rd fallback model)
 
 ## Notes
 
-- `IMAGE_PROVIDER=hf`（デフォルト）: HuggingFace → Pollinations フォールバック
-- `IMAGE_PROVIDER=pollinations`: HuggingFaceをスキップして直接 Pollinations
-- テストは `os.chdir(tmp_path)` で作業ディレクトリを切り替える方式
-- `monkeypatch.setattr` で `IMAGE_PROVIDER` モジュール変数を上書き
+- `gemini-3.1-flash-lite` は2027/5/7に廃止予定
+- `gemini-3.5-flash-lite` は2026年7月にGAリリース、廃止予定なし
+- `gemini-3.8-flash` は2026年末まで紹介価格（$0.75/1M input）
