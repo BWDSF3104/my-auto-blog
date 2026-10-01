@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('dark-toggle');
   const html = document.documentElement;
 
-  function setDark(dark: boolean) {
+  function setDark(isDark) {
     html.classList.toggle('dark', dark);
     localStorage.setItem('theme', dark ? 'dark' : 'light');
   }

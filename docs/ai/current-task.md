@@ -599,8 +599,46 @@ P1
 
 ## Commit
 
-未コミット
+1f611e5 — fix: improve dark mode text contrast on post pages with prose-invert
 
 ## Next Action
 
 なし
+
+---
+
+## Task (完了)
+
+ダークモードトグルボタン動作復元
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+`<script is:inline>` 内の TypeScript 型注釈 (`dark: boolean`) がブラウザで構文エラーを引き起こし、ダークモードトグルボタンが動作しない問題を修正。
+
+## Steps
+
+1. [x] `Header.astro` の `setDark(dark: boolean)` を `setDark(isDark)` に変更
+2. [x] `npm run build` でビルド成功確認 (92ページ)
+3. [x] `pytest scripts/tests/ -v` でテスト確認 (134/134 passed)
+4. [ ] git commit & push
+
+## Modified Files
+
+- `src/components/Header.astro` — TypeScript型注釈を純粋なJavaScriptに変換
+
+## Verification
+
+`npm run build` — 92 pages built in 2.19s, Complete!
+`pytest scripts/tests/ -v` — 134/134 passed (1.85s)
+
+## Next Action
+
+git commit & push
