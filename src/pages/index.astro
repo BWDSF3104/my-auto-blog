@@ -60,6 +60,7 @@ const ogImageUrl = posts[0]?.frontmatter.image
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={siteDescription} />
+    <meta name="google-site-verification" content="1mHkEb2UNbzsWZB98HrQVu2oI62PzkMBsMVVed8Kwug" />
 
     <!-- OGP -->
     <meta property="og:type" content="website" />
@@ -84,6 +85,21 @@ const ogImageUrl = posts[0]?.frontmatter.image
         "target": `${canonicalURL.origin}${baseUrl}/tags/{search_term_string}`,
         "query-input": "required name=search_term_string"
       }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "BWD's AI Auto Blog",
+      "description": siteDescription,
+      "url": `${canonicalURL.origin}${baseUrl}/`,
+      "mainEntity": posts.map((post, i) => ({
+        "@type": "BlogPosting",
+        "headline": post.frontmatter.title,
+        "description": post.frontmatter.description,
+        "datePublished": post.frontmatter.pubDate,
+        "url": new URL(post.url, canonicalURL).href,
+        "position": i + 1
+      }))
     })} />
   </head>
   <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">

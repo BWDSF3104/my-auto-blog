@@ -2,23 +2,23 @@
 
 Agentの現在進行中タスクの状態を記録する。Context Overflow後もこのファイルを読み込んで作業を復帰させる。
 
-## Task
+## Task (完了済み)
 
 既存記事を除く本プロジェクトのページの見栄えや機能を改善（モバイル対応含む）
 
-## Priority
+## Priority (完了済み)
 
 P1
 
-## Status
+## Status (完了済み)
 
 完了
 
-## Objective
+## Objective (完了済み)
 
 index.astro, tags/index.astro, tags/[tag].astro のインラインCSSをTailwindクラスへ置換し、PostLayout.astro とスタイル体系を統一する。
 
-## Steps
+## Steps (完了済み)
 
 1. [x] Tailwind統一: index.astro
 2. [x] Tailwind統一: tags/index.astro
@@ -32,46 +32,70 @@ index.astro, tags/index.astro, tags/[tag].astro のインラインCSSをTailwind
 10. [x] Aboutページ作成
 11. [x] 読了時間表示
 
-## Modified Files
-
-- `src/pages/index.astro` — Tailwind統一, Header/Footer統合, ページネーション, 読了時間表示
-- `src/pages/tags/index.astro` — Tailwind統一, Header/Footer統合, 検索フィルタ, ダークモード
-- `src/pages/tags/[tag].astro` — Tailwind統一, Header/Footer統合, ダークモード, 読了時間表示
-- `src/pages/page/[page].astro` — 新規作成 (ページネーション用, 読了時間表示)
-- `src/pages/404.astro` — 新規作成, ダークモード
-- `src/pages/about.astro` — 新規作成, ダークモード
-- `src/components/Header.astro` — 新規作成, ダークモード切替ボタン
-- `src/components/Footer.astro` — 新規作成, ダークモード
-- `src/styles/global.css` — ダークモード用 :root[class~="dark"] オーバライド
-- `tailwind.config.mjs` — darkMode: 'class' 設定
-- `docs/ai/plans.md` — 完了した計画を移動
-
-## Completed
+## Completed (完了済み)
 
 Steps 1-11 全完了。ビルド成功確認 (85ページ)。
 
-## Pending
-
-(なし)
-
-## Verification
-
-`npm run build` — 85ページビルド成功 (2026-10-01)
-`pytest scripts/tests/ -v` — 96/96通過 (2026-10-01)
-
-## Next Action
-
-(なし)
-
-## Commit
+## Commit (完了済み)
 
 dd356fe — feat: dark mode support, reading time display, 404 page, about page, shared components, pagination, tag search
 
-## Notes
+---
 
-- Tailwind v4 を使用中（`@tailwindcss/vite` プラグイン方式）
-- `@tailwindcss/typography` が devDependencies にある
-- 既存の `PostLayout.astro` は既に Tailwind 使用済み
-- モバイルファースト: `sm:`, `md:`, `lg:` ブレークポイント活用
-- index.astro は getStaticPaths を使用せず、静的に1ページ目をレンダリング
-- page/[page].astro がページネーションの2ページ目以降を担当
+## Task (現在進行中)
+
+Google 検索エンジンへのサイトインデックス登録を有効化するための SEO 改善
+
+## Priority
+
+P1
+
+## Status
+
+進行中
+
+## Objective
+
+Google Search Console での所有権検証を全ページで有効にし、JSON-LD 構造化データと sitemap の完全性を確保する。
+
+## Steps
+
+1. [x] Layout.astro に Google 所有権検証 meta タグ追加
+2. [x] index.astro に Google 所有権検証 meta タグ追加 (Layoutをバイパスするため)
+3. [x] about.astro に Google 所有権検証 meta タグ追加
+4. [x] 404.astro に Google 所有権検証 meta タグ追加
+5. [x] tags/index.astro に Google 所有権検証 meta タグ追加
+6. [x] tags/[tag].astro に Google 所有権検証 meta タグ追加
+7. [x] page/[page].astro に Google 所有権検証 meta タグ追加
+8. [x] PostLayout.astro の sitemap 出力確認
+9. [x] index.astro に JSON-LD (BlogPosting) 構造化データ追加
+10. [x] about.astro に JSON-LD (AboutPage) 構造化データ追加
+11. [x] sitemap.xml.ts に静的ページ (/about/, /tags/) を追加
+12. [ ] `npm run build` でビルド成功確認
+13. [ ] git commit & push
+14. [ ] Bing Webmaster Tools 検証 ID の追加
+15. [ ] Google Search Console に sitemap 提出
+
+## Modified Files
+
+- `src/layouts/Layout.astro` — Google 所有権検証 meta タグ追加
+- `src/layouts/PostLayout.astro` — sitemap 出力確認 (変更なし)
+- `src/pages/index.astro` — Google 所有権検証 meta タグ + JSON-LD 追加
+- `src/pages/about.astro` — Google 所有権検証 meta タグ + JSON-LD 追加
+- `src/pages/404.astro` — Google 所有権検証 meta タグ追加
+- `src/pages/tags/index.astro` — Google 所有権検証 meta タグ追加
+- `src/pages/tags/[tag].astro` — Google 所有権検証 meta タグ追加
+- `src/pages/page/[page].astro` — Google 所有権検証 meta タグ追加
+- `src/pages/sitemap.xml.ts` — 静的ページ追加
+
+## Pending
+
+- Steps 12-15: ビルド確認、コミット、Bing検証、sitemap提出
+
+## Verification
+
+`npm run build` — 86ページビルド成功 (2026-10-01 13:17)
+
+## Next Action
+
+git commit & push を実行

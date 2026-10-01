@@ -4,6 +4,8 @@
 
 # Active Plans
 
+- [2026-10-01] SEO改善と検索エンジンインデックス登録: Google Search Console の所有権検証 meta タグを全ページに追加（Layout.astro, index.astro, about.astro, 404.astro, tags/index.astro, tags/[tag].astro, page/[page].astro）。JSON-LD 構造化データ (BlogPosting, AboutPage) を index.astro と about.astro に追加。sitemap.xml.ts に静的ページ (/about/, /tags/) を追加。次は Bing 検証 ID の追加と sitemap 提出。
+
 # Completed Plans
 
 - [2026-10-01] 既存ページのUI/UX改善（モバイル対応含む）: index.astro, tags/index.astro, tags/[tag].astro のインラインCSSをTailwindへ統一。共通 Header/Footer コンポーネント作成。ホームページにページネーション追加。タグ一覧に検索フィルタ。ダークモード対応（classベース切替、全ページdark:バリアント、global.cssに:root[class~="dark"]オーバライド）。404ページ作成。Aboutページ作成。記事一覧に読了時間表示（fs raw glob + 日本語文字カウント、1500文字/分）。テスト96件全件通過、ビルド成功 (85ページ)

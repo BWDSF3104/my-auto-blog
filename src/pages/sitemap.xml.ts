@@ -40,6 +40,9 @@ export const GET: APIRoute = async (context) => {
 
   const homePath = basePath ? `${basePath}/` : '/';
   const homeUrl = new URL(homePath, siteUrl).href;
+  const aboutUrl = new URL(`${basePath}/about/`, siteUrl).href;
+  const tagsUrl = new URL(`${basePath}/tags/`, siteUrl).href;
+  const now = new Date().toISOString();
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -47,6 +50,18 @@ export const GET: APIRoute = async (context) => {
     <loc>${homeUrl}</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${aboutUrl}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>${tagsUrl}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
 ${posts
   .map(
