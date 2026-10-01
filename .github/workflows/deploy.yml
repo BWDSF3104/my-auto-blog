@@ -4,11 +4,6 @@ on:
   schedule:
     - cron: '0 23 * * *' # JST ’© 8:00 ‚É‹N“®
   workflow_dispatch: # Žè“®‹N“®
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/**'
-      - 'data/**'
 
 permissions:
   contents: write
