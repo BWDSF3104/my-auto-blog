@@ -107,6 +107,10 @@ const breadcrumbJSONLD = {
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${basePrefix}/favicon.svg`} />
     <link rel="icon" href={`${basePrefix}/favicon.ico`} />
+    <link rel="preconnect" href="https://cdn.buymeacoffee.com" />
+    {frontmatter.image && (
+      <link rel="preload" as="image" href={frontmatter.image} fetchpriority="high" />
+    )}
 
     <title>{frontmatter.title} | {siteTitle}</title>
     <meta name="description" content={frontmatter.description} />
@@ -181,6 +185,10 @@ const breadcrumbJSONLD = {
         <img
           src={frontmatter.image}
           alt={frontmatter.title}
+          width="896"
+          height="512"
+          fetchpriority="high"
+          decoding="async"
           class="post-image"
         />
       )}
@@ -210,6 +218,7 @@ const breadcrumbJSONLD = {
                     alt={post.frontmatter.title}
                     class="w-20 h-14 object-cover rounded-lg border border-slate-200 flex-shrink-0"
                     loading="lazy"
+                    decoding="async"
                   />
                 )}
                 <div class="min-w-0">
@@ -279,6 +288,12 @@ const breadcrumbJSONLD = {
         border: 1px solid #e2e8f0; /* slate-200 */
         box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); /* shadow-sm */
         object-fit: cover;
+        aspect-ratio: 16 / 9;
+      }
+
+      /* ヒーロー画像は固定アスペクト比 */
+      .post-image {
+        aspect-ratio: 896 / 512;
       }
 
       /* 記事本文は左揃えにし、親のパディングに揃える */

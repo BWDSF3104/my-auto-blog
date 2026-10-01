@@ -384,3 +384,45 @@ Playwright: デスクトップ画像 180×120px、モバイル画像 240×160px 
 8c6b844 — fix: constrain article list image width on mobile with max-w-240px
 d52b445 — fix: add global.css import to pages bypassing Layout for Tailwind CSS
 23fb19e — chore: add deploy workflow rule and screenshot directory to AGENTS.md
+
+---
+
+## Task (完了)
+
+LCP/CLSパフォーマンス最適化
+
+## Priority
+
+P1
+
+## Status
+
+完了
+
+## Objective
+
+記事ページのヒーロー画像（LCP要素）の読み込み高速化と、画像読み込み時のレイアウトシフト（CLS）を解消する。
+
+## Steps
+
+1. [x] `<link rel="preload">` をヒーロー画像に追加（head 内）
+2. [x] `fetchpriority="high"` をヒーロー画像の `<img>` に追加
+3. [x] `width="896" height="512"` をヒーロー画像に追加
+4. [x] `decoding="async"` をヒーロー画像・関連記事画像に追加
+5. [x] `<link rel="preconnect">` を cdn.buymeacoffee.com に追加
+6. [x] CSS `aspect-ratio: 896/512` を `.post-image` に追加
+7. [x] CSS `aspect-ratio: 16/9` を `article img` に追加
+8. [x] `astro.config.mjs` に `image.domains` を追加
+9. [x] `npm run build` でビルド成功確認 (89ページ)
+10. [x] 出力HTMLの属性確認（preload, fetchpriority, aspect-ratio, preconnect）
+11. [x] git commit & push
+
+## Modified Files
+
+- `src/layouts/PostLayout.astro` — preload, fetchpriority, width/height, decoding, preconnect, aspect-ratio 追加
+- `astro.config.mjs` — image.domains 追加
+
+## Verification
+
+`npm run build` — 89 pages built in 2.13s
+出力HTML: preload, fetchpriority, preconnect, aspect-ratio 全属性確認済み

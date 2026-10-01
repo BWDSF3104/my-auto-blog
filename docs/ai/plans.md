@@ -4,6 +4,7 @@
 
 # Active Plans
 
+- [2026-10-01] LCP/CLSパフォーマンス最適化: ヒーロー画像に `<link rel="preload">` と `fetchpriority="high"` を追加してLCP高速化。画像に `width`/`height` 属性と CSS `aspect-ratio` を追加してCLS解消。外部CDNに `<link rel="preconnect">` を追加。astro.config.mjs に `image.domains` を追加。フォントは system font 使用のため変更なし (コミット済み)
 - [2026-10-01] SEO改善と検索エンジンインデックス登録: Google Search Console の所有権検証 meta タグを全ページに追加（Layout.astro, index.astro, about.astro, 404.astro, tags/index.astro, tags/[tag].astro, page/[page].astro）。JSON-LD 構造化データ (BlogPosting, AboutPage) を index.astro と about.astro に追加。sitemap.xml.ts に静的ページ (/about/, /tags/) を追加。次は Bing 検証 ID の追加と sitemap 提出。
 
 # Completed Plans
