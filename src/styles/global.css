@@ -124,6 +124,12 @@
     gap: 10px;
   }
 
+  .pc-name {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
   .pc-links {
     width: 100%;
   }
