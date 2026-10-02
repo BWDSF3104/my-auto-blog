@@ -12,6 +12,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Completed Tasks
 
+- Reddit 代替ソースの追加 (Kemono API + RSS): `cc673c0`
 - モバイルで商品名テキスト(.pc-name)の改行を有効化: `4c03fb0`
 - モバイルで記事タグとアフィリエイトボタンの幅オーバーフローを修正: `5fbb1b9`
 - 静的監査の残り3バグを修正 (relative paths, empty URI, non_consecutive): `2b4a815`
