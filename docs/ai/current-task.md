@@ -8,6 +8,8 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- データソースのレート制限調査: 完了。テスト7/9通過 (Reddit 403, Bluesky 501 は既知)。コミット前
+
 ## Completed Tasks
 
 - 'pokemon' 除外 + ランダムトレンド選択 + e621 character/copyright 拡張: `333aa8a`

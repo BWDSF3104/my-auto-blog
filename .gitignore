@@ -33,4 +33,7 @@ __pycache__/
 # Temporary work files
 tmp/
 
+# Real API test results
+scripts/data/api_test_results/
+
 

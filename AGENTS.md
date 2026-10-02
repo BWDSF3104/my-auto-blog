@@ -20,6 +20,23 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 - 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド、結果、経過時間を記録
 - **例外**: `docs/ai/` のみの変更、`AGENTS.md` のみの変更、`.kilo/` のみの変更は pytest と build の実行不要
 
+### Test Script Rules
+
+- テストスクリプトは外部APIを実際に呼び出してはならない。API キー、クォータ、レート制限がかかるサービス（Gemini AI、HuggingFace、Kemono API、e621 など）は `unittest.mock` でモックする。
+- **例外**: RSS フィードは公開エンドポイントで認証・クォータ不要のため、テストでの実呼出しを許可する。
+
+#### 確認済みレート制限（2026-10-02 実測）
+
+| ソース | レート制限 | ヘッダー | 備考 |
+|--------|-----------|---------|------|
+| e621 | 2 req/s（IPベース、超過時503） | なし | 推奨 1 req/s 持続 |
+| GitHub Search | 10 req/窓（未認証） | X-RateLimit-* | 認証で 30 req/分 |
+| Reddit | 10 req/s | Retry-After | 現在 403 規制中 |
+| Hacker News | なし | なし | Firebase 公開DB |
+| RSS (Zenn/Qiita/PokéCommunity) | なし | なし | 公開フィード |
+| Kemono API | 不明 | なし | express-rate-limit 依存あり |
+| Bluesky | 不明 | なし | 公開検索APIは501 |
+
 ### Development
 - Start dev server with background mode: `astro dev --background`
 - Manage background server: `astro dev stop`, `astro dev status`, `astro dev logs`
