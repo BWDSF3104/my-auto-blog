@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import ThemeInit from '../components/ThemeInit.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -151,6 +152,7 @@ if (frontmatter.speakable) {
       <link rel="preload" as="image" href={frontmatter.image} fetchpriority="high" />
     )}
 
+    <ThemeInit />
     <title>{frontmatter.title} | {siteTitle}</title>
     <meta name="description" content={frontmatter.description} />
     <meta name="google-site-verification" content="1mHkEb2UNbzsWZB98HrQVu2oI62PzkMBsMVVed8Kwug" />

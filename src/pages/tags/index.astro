@@ -1,6 +1,7 @@
 ---
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import ThemeInit from '../../components/ThemeInit.astro';
 import '../../styles/global.css';
 
 const postImports = import.meta.glob<{
@@ -56,6 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={siteDescription} />
+    <ThemeInit />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "CollectionPage",

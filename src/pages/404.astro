@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ThemeInit from '../components/ThemeInit.astro';
 import '../styles/global.css';
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -17,6 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content="お探しのページは移動または削除されました。" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="google-site-verification" content="1mHkEb2UNbzsWZB98HrQVu2oI62PzkMBsMVVed8Kwug" />
+    <ThemeInit />
   </head>
   <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
     <div class="max-w-3xl mx-auto">
