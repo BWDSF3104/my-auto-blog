@@ -91,3 +91,9 @@ Commit: 3232915
 `setDark()` 関数内で未定義の変数 `dark` を参照していたバグを修正。
 npm run build: 92 pages, pytest: 134 passed
 Commit: 07e9804
+
+## ダークモード初期化スクリプトの全ページ投入 (完了)
+
+`ThemeInit.astro` 新規作成し、`PostLayout.astro` と各スタンドアロンページに `<ThemeInit />` を追加。`prefers-color-scheme` の自動検出と `localStorage` からのテーマ復元を全ページで有効化。
+npm run build: 92 pages, pytest: 134 passed
+Commit: 7d80e61

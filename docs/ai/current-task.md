@@ -59,7 +59,7 @@ Reddit API がブロックされているため、代替のトレンドデータ
 
 ## Task (完了)
 
-ダークモード初期化スクリプトの全ページ投入
+Memory Bank archive files の作成
 
 ## Priority
 
@@ -71,40 +71,31 @@ P1
 
 ## Objective
 
-`PostLayout.astro` と各スタンドアロンページが独自の `<html>`/`<head>` を定義しているため、`Layout.astro` の初期化スクリプトが読み込まれず、`prefers-color-scheme` の自動検出と `localStorage` からのテーマ復元が効かない問題を修正。
+`docs/ai/` の Memory Bank ファイルが膨張したため、完了したエントリを `-archive.md` ファイルへ分離してファイルサイズを削減。
 
 ## Steps
 
-1. [x] `ThemeInit.astro` 新規作成（`localStorage` + `prefers-color-scheme` の初期化スクリプト）
-2. [x] `PostLayout.astro` に `<ThemeInit />` を `<head>` 内に追加
-3. [x] `index.astro` に追加
-4. [x] `page/[page].astro` に追加
-5. [x] `tags/index.astro` に追加
-6. [x] `tags/[tag].astro` に追加
-7. [x] `about.astro` に追加
-8. [x] `404.astro` に追加
-9. [x] `npm run build` でビルド成功確認 (92ページ)
-10. [x] 出力HTMLに初期化スクリプトが含まれることを確認
-
-## Modified Files
-
-- `src/components/ThemeInit.astro` — 新規作成
-- `src/layouts/PostLayout.astro` — `ThemeInit` インポート + `<head>` 内に追加
-- `src/pages/index.astro` — 同上
-- `src/pages/page/[page].astro` — 同上
-- `src/pages/tags/index.astro` — 同上
-- `src/pages/tags/[tag].astro` — 同上
-- `src/pages/about.astro` — 同上
-- `src/pages/404.astro` — 同上
+1. [x] AGENTS.md のドキュメントルールを更新（全タスク対象、アーカイブファイルの構造と閾値を定義）
+2. [x] `known-issues-archive.md` 作成（解決済問題を移動）
+3. [x] `known-issues.md` クリーンアップ（3件のアクティブ問題のみ保持）
+4. [x] `plans-archive.md` 作成（古い完了計画を移動）
+5. [x] `plans.md` クリーンアップ（直近5件の完了計画のみ保持）
+6. [x] `decisions-archive.md` 作成（古い決定を移動）
+7. [x] `decisions.md` クリーンアップ（直近15件の決定のみ保持）
+8. [x] `current-task-archive.md` 作成（古い完了タスクを移動）
+9. [x] `current-task.md` クリーンアップ（アクティブタスク + 直近1件の完了タスクのみ保持）
+10. [x] pytest 全件通過確認 (134件)
+11. [x] npm run build 成功確認 (92ページ)
+12. [x] git commit & push
 
 ## Verification
 
-`npm run build` — 92 pages built in 2.14s, Complete!
-出力HTML: `localStorage.getItem('theme')` が全ページに確認済み
+- pytest scripts/tests/ -v: 134 passed in 2.09s
+- npm run build: 92 page(s) built in 3.83s, Complete!
 
 ## Commit
 
-7d80e61 — fix: add dark mode init script to all standalone pages via ThemeInit component
+37538c4 — chore: create archive files for Memory Bank documentation
 
 ## Next Action
 
