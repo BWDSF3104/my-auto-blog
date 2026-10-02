@@ -248,28 +248,10 @@
 ## Quick Wins (実装容易・効果高い)
 
 - [x] **Reading Time の表示**: 既に実装済み
-- [ ] **Back to Top ボタン**: 30分で実装可能、UX向上
-- [ ] **コードブロックのコピーボタン**: 1時間で実装可能、技術記事のUX向上
-- [ ] **Social SharingButtons**: 2時間で実装可能、記事の拡散性向上
-- [ ] **Tag Colors**: 1時間で実装可能、タグの視認性向上
-- [ ] **Breadcrumb Schema**: 30分で実装可能、SEO向上
-- [ ] **Lazy Loading for Images**: 1時間で実装可能、パフォーマンス向上
-- [ ] **OG Tags の最適化**: 1時間で実装可能、SNS共有の見た目を改善
-- [ ] **Skip Navigation Link**: 30分で実装可能、アクセシビリティ向上
-- [ ] **Footer の SNS リンク**: 1時間で実装可能、ブランディング向上
 
 ## 優先順位マトリクス (Priority Matrix)
 
-### P0: 即時実装 (高影響・低コスト)
-1. Back to Top ボタン
-2. コードブロックのコピーボタン
-3. Social Sharing Buttons
-4. Tag Colors
-5. Breadcrumb Schema
-6. Lazy Loading for Images
-7. OG Tags の最適化
-8. Skip Navigation Link
-9. Footer の SNS リンク
+P0項目は `backlog.md` へ移動済み。
 
 ### P1: 近々実装 (高影響・中コスト)
 1. 目次固定 (Sticky TOC)

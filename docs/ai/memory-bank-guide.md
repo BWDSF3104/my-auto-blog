@@ -32,6 +32,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - `current-task.md` はアクティブなタスクのみ保持。完了したタスクは `tasks/` へ個別ファイルとして移動
 - `tasks/` のファイル名: `YYYY-MM-DD-short-name.md` 形式
 - `Completed Plans` は直近5件まで `plans.md` に保持
+- `Completed Plans` の追加は常に上部（prepend）。並び順=追加順=コミット順となり、git log の確認不要
 - アーカイブのタイミング: 新規タスク開始時、または閾値超過時に実行
 - アーカイブファイルは git 追跡対象
 
