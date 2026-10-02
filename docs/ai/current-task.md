@@ -10,6 +10,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Completed Tasks
 
+- AGENTS.md に言語ルールセクションを追加: `b87b8d7`
 - レート制限テーブルを docs/ai/api-rate-limits.md に分離 + AGENTS.md に test_real_apis.py 検証ルール追加: `628b46d`
 - データソースのレート制限調査: `27fba26`
 
