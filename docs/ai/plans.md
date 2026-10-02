@@ -11,7 +11,7 @@
 
 - [2026-10-02] データソースのレート制限調査: 各APIのレート制限を調査・実測し `AGENTS.md` に記録。`test_real_apis.py` を独立スクリプトとして作成。テスト7/9通過 (Reddit 403, Bluesky 501 はAPI側規制)。`226f464`
 
-- [2026-10-02] AGENTS.md のレート制限テーブルを docs/ai/api-rate-limits.md に分離 + fetch_topics.py 更新後の test_real_apis.py 検証ルールを追加: `PENDING`
+- [2026-10-02] AGENTS.md のレート制限テーブルを docs/ai/api-rate-limits.md に分離 + fetch_topics.py 更新後の test_real_apis.py 検証ルールを追加: `628b46d`
 - [2026-10-02] kemono/furry トレンド作品追跡の改善: e621 に rating:safe 制限を追加して NSFW フィルタ回避、furry/wolf/fox/rabbit の score 順クエリを追加して人気作品を追跡、Bluesky 検索キーワードを拡張
 - [2026-10-02] 'pokemon' カテゴリの kemono_story から除外 + ランダムトレンド選択: kemono_story から 'pokemon' カテゴリを削除し、トレンド選択を「カテゴリごとに上位5件」から「全カテゴリをプールしてランダム2件」に変更。e621 の character/copyright タグを収集対象に追加してアフィリエイト製品推薦に活用
 
