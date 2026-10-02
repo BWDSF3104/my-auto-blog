@@ -126,8 +126,8 @@ git push 後、DeployOnly ワークフローが push トリガーで自動実行
 
 手動実行 (`gh workflow run`) はしない。push 自動トリガーに依存する。
 
-例外（ワークフローが自動実行されないパターンで確認不要）:
-- `docs/`, `scripts/`, `AGENTS.md`, `.github/` など、デプロイ対象外のファイルのみ変更した場合
+例外（ワークフローが自動実行されないため確認不要）:
+- 変更されたファイルがワークフローの paths (`src/**`, `public/**`, `package.json`, `astro.config.mjs`, `tailwind.config.mjs`) に一致しない場合
 - コミットメッセージに `[skip ci]` または `[skip deploy]` を含む場合
 
 ### Scope
