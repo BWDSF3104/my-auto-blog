@@ -1,156 +1,63 @@
 # my-auto-blog
 
 Automated blog generation system powered by Astro, Gemini AI, and trend data collection.
+Static site generator blog. No authentication, no database, no SSR. Deployed to GitHub Pages (`BWDSF3104.github.io/my-auto-blog`).
 
-## Immutable Rules
-
-### Language
+## Language
 
 - ユーザーへの回答、進捗報告、説明、質問、作業結果、最終結果は日本語で行う。
 - コード、コマンド、ファイルパス、API名、ライブラリ名などの正確な技術表記は原文を維持する。
-- ユーザー向け回答を日本語にすることを理由として、プロジェクト内のファイル、データ、スクリプトの入力・出力、その他のコンテンツを翻訳・変更してはならない。これらの言語や形式は、ユーザーの明示的な指示、既存ファイルの内容、プロジェクトの仕様に従う。
-- `docs/ai/` Memory Bank の新規エントリは日本語で記述する。既存の英語エントリはそのまま維持する。
-- Git commit message の prefix（`feat:`, `fix:` など）は英語のまま維持し、説明部分は日本語で記述する。
+- ユーザー向け回答を日本語にすることを理由として、プロジェクト内のファイル・データ・スクリプトの入力・出力を翻訳・変更してはならない。
+- `docs/ai/` Memory Bank の新規エントリは日本語で記述。既存の英語エントリはそのまま維持。
+- Git commit message: prefix は英語 (`feat:`, `fix:` など)、説明部分は日本語。
 
-### Terminal Safety
-- NEVER execute destructive terminal commands without explicit user confirmation
-- Forbidden commands: `rm -rf`, `git push --force`, `sudo`, modifying files outside workspace root
-- **File deletion**: Always use `./kilo-safe-remove.cmd <file>` instead of `Remove-Item` or `del`. It validates the target is inside the project, blocks directory/symlink deletion, and protects `.git/` and `.kilo/`.
-- **Folder deletion**: Always use `./kilo-safe-rmdir.cmd <folder>` instead of `Remove-Item -Recurse` or `rmdir /s`. It validates the target is inside the project, blocks deletion of `.git/` and `.kilo/`, and requires explicit confirmation.
-- Always verify tests pass after editing code, but do not touch production infrastructure
+## Terminal Safety
 
-### Code Verification
+- NEVER execute destructive terminal commands without explicit user confirmation.
+- Forbidden: `rm -rf`, `git push --force`, `sudo`, modifying files outside workspace root.
+- **File deletion**: Use `./kilo-safe-remove.cmd <file>` (not `Remove-Item` / `del`).
+- **Folder deletion**: Use `./kilo-safe-rmdir.cmd <folder>` (not `Remove-Item -Recurse` / `rmdir /s`).
 
-- **Pythonコード編集後**: `pytest scripts/tests/ -v` で全テスト通過を確認
-- **Astroファイル編集後または記事生成後**: `npm run build` でビルド成功を確認
-- **レイアウトに関わる変更後**: `npm run build` でビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正がすべて完了した際に最終確認としてユーザーにスクリーンショットを送信
-- **git commit 前**: 変更内容に応じて再実行して最終確認（Pythonファイルの変更時は pytest、Astroファイルの変更時は build、両方変更時は両方）
-- 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド、結果、経過時間を記録
-- **例外**: `docs/ai/` のみの変更、`AGENTS.md` のみの変更、`.kilo/` のみの変更は pytest と build の実行不要
-- **トレンド収集スクリプト(`scripts/fetch_topics.py`)更新後**: `python scripts/tests/test_real_apis.py --save` で各データソースの応答を確認（結果は `scripts/data/api_test_results/` に保存）
+## Code Verification
+
+- **Python変更後**: `pytest scripts/tests/ -v` で全テスト通過を確認。
+- **Astro変更後・記事生成後**: `npm run build` でビルド成功を確認。
+- **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時にユーザーにスクリーンショットを送信。
+- **git commit 前**: 変更内容に応じて再実行（Python→pytest, Astro→build、両方→両方）。
+- 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド・結果・経過時間を記録。
+- **例外**: `docs/ai/`、`AGENTS.md`、`.kilo/` のみの変更は pytest / build 不要。
+- **fetch_topics.py 更新後**: `python scripts/tests/test_real_apis.py --save` で各データソースの応答を確認（結果は `scripts/data/api_test_results/` に保存）。
 
 ### Test Script Rules
 
-- テストスクリプトは外部APIを実際に呼び出してはならない。API キー、クォータ、レート制限がかかるサービス（Gemini AI、HuggingFace、Kemono API、e621 など）は `unittest.mock` でモックする。
-- **例外**: RSS フィードは公開エンドポイントで認証・クォータ不要のため、テストでの実呼出しを許可する。
+- テストスクリプトは外部APIを実際に呼び出してはならない。API キー・クォータ・レート制限がかかるサービス（Gemini AI, HuggingFace, Kemono API, e621 など）は `unittest.mock` でモックする。
+- **例外**: RSS フィードは公開エンドポイントで認証・クォータ不要のため実呼出しを許可。
+- レート制限の詳細: `docs/ai/api-rate-limits.md`
 
-#### 確認済みレート制限
-- 詳細: `docs/ai/api-rate-limits.md`
+## Development
 
-### Development
-- Start dev server with background mode: `astro dev --background`
-- Manage background server: `astro dev stop`, `astro dev status`, `astro dev logs`
+- Dev server: `astro dev --background`
+- Background server: `astro dev stop`, `astro dev status`, `astro dev logs`
 
-### Documentation
-- Full documentation: https://docs.astro.build
-- Consult guides before working on: routing, components, framework integration, content collections, styling, i18n
+## Code Standards
 
-### Code Standards
-- Python scripts use UTF-8 encoding
-- Trend data JSON output: `data/latest_topics.json`
+- Python scripts: UTF-8 encoding
+- Trend data: `data/latest_topics.json`
 - Generated articles: `src/content/posts/`
 - Generated images: `public/images/`
 
-### AI Memory Bank (docs/ai/)
+## Documentation
 
-docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ は「なぜ変えたか」の文脈を記録する。
+- Astro docs: https://docs.astro.build
+- Consult guides before: routing, components, framework integration, content collections, styling, i18n
 
-更新タイミングは git commit 前。Memory Bank の変更はコード変更と同じ commit に含める。プロジェクト知識・状態・判断が変化した場合のみ更新する（コード変更 ≒ Memory Bank 更新ではない）。
+## AI Memory Bank
 
-| ファイル | 役割 | 更新タイミング | 必須 |
-|----------|------|---------------|------|
-| `current-task.md` | アクティブタスクへの参照（ファイルパス、ステータス、Next Action のみ） | タスク開始時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
-| `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず） | タスク開始時に `docs/ai/tasks/YYYY-MM-DD-short-name.md` として作成。完了時は Status を更新 | ✅ |
-| `plans.md` | 計画書 | タスク開始前に Active Plans に記録（実装・調査問わず）。完了時は Completed Plans に意図・背景を1行記録 | ✅ |
-| `backlog.md` | バックログ | 未実装項目の追加・完了時の削除（変更履歴は git commit に委ねる） | ✅ |
-| `known-issues.md` | 既知問題リスト | 新規問題発見時、問題解決時のステータス更新（解決済はアーカイブへ移動） | ✅ |
-| `decisions.md` | 設計判断ログ | 構造・データフロー・新しい統合の設計判断。Decision / Reason / Rejected Alternatives を記録 | ✅ |
-| `architecture.md` | アーキテクチャ図 | decisions.md に記録した変更がシステム構成に反映されたときのみ更新 | ✅ |
+Memory Bank のファイル構成、更新タイミング、アーカイブルール、Long-running Agent Tasks、Recovery After Interruption は `docs/ai/memory-bank-guide.md` を参照。
 
-- 完了したバグは `known-issues.md` のアーカイブへ移動
-- `development-notes.md` は削除済み。詳細な実装履歴は git log で確認可能
+## Workflows
 
-### Memory Bank アーカイブ
-
-ファイルが膨張しないよう、完了したエントリは対応する `-archive.md` ファイルへ移動する。
-
-| 本体ファイル | アーカイブファイル | 閾値 | 移動内容 |
-|-------------|-------------------|------|---------|
-| `plans.md` | `plans-archive.md` | Completed Plans が6件以上 | 古い Completed Plans エントリを移動 |
-| `known-issues.md` | `known-issues-archive.md` | 解決済が1件以上 | 解決済エントリを即時移動 |
-| `decisions.md` | `decisions-archive.md` | 15件以上 | 古い決定エントリを移動 |
-
-- `current-task.md` はアクティブなタスクのみ保持。完了したタスクは `tasks/` へ個別ファイルとして移動
-- `tasks/` のファイル名: `YYYY-MM-DD-short-name.md` 形式
-- `Completed Plans` は直近5件まで `plans.md` に保持
-- アーカイブのタイミング: 新規タスク開始時、または閾値超過時に実行
-- アーカイブファイルは git 追跡対象
-
-### Long-running Agent Tasks
-
-- Before starting any task, read `docs/ai/current-task.md` if it exists.
-- Before starting a planned change, read the relevant `plans.md` and `backlog.md` entries.
-- After completing a meaningful step, update `docs/ai/current-task.md`.
-- After a successful build/test checkpoint, record the result in `current-task.md`.
-- If the task is interrupted, leave `current-task.md` in a resumable state.
-- Never assume previous conversation context is still available after compaction.
-- Important decisions must be recorded in `decisions.md`.
-- Important unresolved problems must be recorded in `known-issues.md`.
-- Do not start the next planned item until the current item's build/test completion criteria are satisfied.
-- **After git commit & push**: Update `docs/ai/current-task.md` — set `Status` to `完了`, clear `Next Action`, and record the commit hash in the completed checklist.
-
-### Recovery After Interruption
-
-When resuming an interrupted task:
-
-1. Read `docs/ai/current-task.md`.
-2. Check `git status`.
-3. Check `git diff`.
-4. Verify the last recorded build/test status.
-5. Continue from the `Next Action` in `current-task.md`.
-6. Do not discard existing changes unless explicitly instructed.
-
-### Commit Checklist
-
-git push 前に以下の確認を行う:
-- [ ] Pythonファイルを変更した場合はテストが全件通過したか (`pytest scripts/tests/ -v`)
-- [ ] Astroファイルを変更した場合はビルドが成功したか (`npm run build`)
-- [ ] 完了した計画が `plans.md` の「完了した計画」に記録されたか
-- [ ] 新規問題が `known-issues.md` に記録されたか
-- [ ] 解決した問題が `known-issues.md` の Archive へ移動されたか
-- [ ] 完了したバックログ項目が `backlog.md` から削除されたか
-
-### Git Workflow
-- After completing file changes, check if remote has new commits:
-  1. `git fetch origin` — fetch remote refs without merging
-  2. `git rev-list HEAD..origin/main --count` — count remote commits not yet pulled
-- If remote has new commits (count > 0):
-  1. `git stash` — save local changes temporarily
-  2. `git pull` — fetch and merge remote changes
-  3. `git stash pop` — restore saved changes (resolve conflicts if any)
-  4. `git add`, `git commit`, `git push`
-- If remote has no new commits (count == 0):
-  1. `git add`, `git commit`, `git push`
-- Commit message format: `feat: <日本語説明>` for features, `fix: <日本語説明>` for bug fixes
-- Never use `git push --force` or modify remote history
-
-### Deploy Verification
-
-git push 後、DeployOnly ワークフローが push トリガーで自動実行されたことを確認:
-1. `gh run list --workflow=deploy-only.yml --limit 5` — 直近の実行履歴を確認
-2. 最新の push トリガー実行が `success` であることを確認
-3. 失敗時は原因を調査して修正を継続
-
-手動実行 (`gh workflow run`) はしない。push 自動トリガーに依存する。
-
-例外（ワークフローが自動実行されないため確認不要）:
-- 変更されたファイルがワークフローの paths (`src/**`, `public/**`, `package.json`, `astro.config.mjs`, `tailwind.config.mjs`) に一致しない場合
-- コミットメッセージに `[skip ci]` または `[skip deploy]` を含む場合
-
-### Scope
-- This project is a static site generator blog
-- No user authentication, no database, no server-side rendering
-- Deployed to GitHub Pages (`BWDSF3104.github.io/my-auto-blog`)
+Git Workflow、Commit Checklist、Deploy Verification は `docs/ai/workflows.md` を参照。
 
 ## Project Structure
 
