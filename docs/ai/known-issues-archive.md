@@ -4,6 +4,10 @@ Resolved issues moved from `known-issues.md`.
 
 ---
 
+## 既存記事のアフィリエイトリンク一括置換 (解決済 2026-10-02)
+
+`scripts/fix_affiliate_links.py` で既存記事 15ファイル（48行）のアフィリエイトリンクを `[text](url)` から `<a href="url" target="_blank" rel="noopener noreferrer nofollow sponsored">text</a>` に一括置換。1ファイルで試験実行・差分確認後、全体適用。ビルド成功 (94ページ) を確認。
+
 ## 静的監査バグ修正 (解決済 2026-09-30)
 
 ソースコードの静的解析で発見した Medium/Low バグを 5 件修正。テスト85件全件通過を確認。

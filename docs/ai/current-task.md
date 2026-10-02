@@ -14,7 +14,9 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Completed Tasks
 
+- モバイルで商品名テキスト(.pc-name)の改行を有効化: `4c03fb0`
 - モバイルで記事タグとアフィリエイトボタンの幅オーバーフローを修正: `5fbb1b9`
 - 静的監査の残り3バグを修正 (relative paths, empty URI, non_consecutive): `2b4a815`
 - latest.json のシンボリックリンクをファイルコピーに置換: `b569ece`
 - Memory Bank 1タスク1ファイル方式への移行: `7c0c9a8`
+- 既存記事のアフィリエイトリンクを一括置換: `a82bab5`
