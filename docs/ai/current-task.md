@@ -10,6 +10,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Completed Tasks
 
+- レート制限テーブルを docs/ai/api-rate-limits.md に分離 + AGENTS.md に test_real_apis.py 検証ルール追加: `PENDING`
 - データソースのレート制限調査: `27fba26`
 
 - 'pokemon' 除外 + ランダムトレンド選択 + e621 character/copyright 拡張: `333aa8a`

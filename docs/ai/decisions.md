@@ -2,6 +2,16 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-02: Separate Rate Limit Table to Dedicated Doc
+
+**Decision**: Move the API rate limit table from `AGENTS.md` to `docs/ai/api-rate-limits.md` and add a verification rule to run `test_real_apis.py --save` after `fetch_topics.py` updates.
+
+**Reason**: The rate limit table was inline in `AGENTS.md`, making the file bloated. Separating it improves maintainability and keeps `AGENTS.md` focused on operational rules. The verification rule ensures data source availability is checked after trend collection script changes.
+
+**Impact**:
+- `AGENTS.md`: Inline rate limit table replaced with reference to `docs/ai/api-rate-limits.md`. Added verification rule for `test_real_apis.py --save` after `fetch_topics.py` changes.
+- `docs/ai/api-rate-limits.md`: New file containing the confirmed rate limit table.
+
 ## 2026-10-01: Remove Deploy Success Skip Logic
 
 **Decision**: Remove `check_deploy_success()` function and `data/.last-deploy-success.json` deploy timestamp recording. Generation no longer skips based on same-day deploy records.
