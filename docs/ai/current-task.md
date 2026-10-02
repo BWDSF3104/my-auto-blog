@@ -14,5 +14,6 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Completed Tasks
 
+- 静的監査の残り3バグを修正 (relative paths, empty URI, non_consecutive): `2b4a815`
 - latest.json のシンボリックリンクをファイルコピーに置換: `b569ece`
 - Memory Bank 1タスク1ファイル方式への移行: `7c0c9a8`

@@ -219,7 +219,7 @@ if (frontmatter.speakable) {
           <time datetime={frontmatter.pubDate}>📅 {frontmatter.pubDate}</time>
           <span>✍️ {frontmatter.author}</span>
           {frontmatter.tags && (
-            <div class="flex gap-1.5 ml-auto">
+            <div class="flex flex-wrap gap-1.5 ml-auto">
               {frontmatter.tags.map((tag: string) => (
                 <a href={`${basePrefix}/tags/${encodeURIComponent(tag)}`} class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-0.5 rounded-full text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors no-underline">
                   #{tag}
@@ -296,7 +296,7 @@ if (frontmatter.speakable) {
             data-platform="amazon"
             data-keyword={relatedKeyword}
           >
-            <span>📦 Amazonで「{relatedKeyword}」を探す</span>
+            <span class="min-w-0 break-words">📦 Amazonで「{relatedKeyword}」を探す</span>
             <span class="text-xs text-amber-700 bg-amber-200/60 px-2 py-0.5 rounded-full">PR ↗</span>
           </a>
           <a
@@ -307,7 +307,7 @@ if (frontmatter.speakable) {
             data-platform="rakuten"
             data-keyword={relatedKeyword}
           >
-            <span>🛍️ 楽天市場で「{relatedKeyword}」を探す</span>
+            <span class="min-w-0 break-words">🛍️ 楽天市場で「{relatedKeyword}」を探す</span>
             <span class="text-xs text-rose-700 bg-rose-200/60 px-2 py-0.5 rounded-full">PR ↗</span>
           </a>
         </div>
