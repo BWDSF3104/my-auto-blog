@@ -85,15 +85,6 @@ git push 前に以下の確認を行う:
 - [ ] 解決した問題が `known-issues.md` の Archive へ移動されたか
 - [ ] 完了したバックログ項目が `backlog.md` から削除されたか
 
-### Deploy Workflow
-
-git push 後に DeployOnly ワークフローを実行し、成功を確認する:
-1. `gh workflow run deploy-only.yml` — ワークフローを手動実行
-2. 実行結果が success になるまで監視
-3. 失敗時は原因を調査して修正を継続
-
-例外: `AGENTS.md` および `docs/` 内のファイルのみを更新した場合はテスト実行と DeployOnly ワークフローの実行は不要
-
 ### Git Workflow
 - After completing file changes, check if remote has new commits:
   1. `git fetch origin` — fetch remote refs without merging
@@ -107,6 +98,19 @@ git push 後に DeployOnly ワークフローを実行し、成功を確認す�
   1. `git add`, `git commit`, `git push`
 - Commit message format: `feat: <description>` for features, `fix: <description>` for bug fixes
 - Never use `git push --force` or modify remote history
+
+### Deploy Verification
+
+git push 後、DeployOnly ワークフローが push トリガーで自動実行されたことを確認:
+1. `gh run list --workflow=deploy-only.yml --limit 5` — 直近の実行履歴を確認
+2. 最新の push トリガー実行が `success` であることを確認
+3. 失敗時は原因を調査して修正を継続
+
+手動実行 (`gh workflow run`) はしない。push 自動トリガーに依存する。
+
+例外（ワークフローが自動実行されないパターンで確認不要）:
+- `docs/`, `scripts/`, `AGENTS.md`, `.github/` など、デプロイ対象外のファイルのみ変更した場合
+- コミットメッセージに `[skip ci]` または `[skip deploy]` を含む場合
 
 ### Scope
 - This project is a static site generator blog
