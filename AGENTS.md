@@ -4,6 +4,14 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 
 ## Immutable Rules
 
+### Language
+
+- ユーザーへの回答、進捗報告、説明、質問、作業結果、最終結果は日本語で行う。
+- コード、コマンド、ファイルパス、API名、ライブラリ名などの正確な技術表記は原文を維持する。
+- ユーザー向け回答を日本語にすることを理由として、プロジェクト内のファイル、データ、スクリプトの入力・出力、その他のコンテンツを翻訳・変更してはならない。これらの言語や形式は、ユーザーの明示的な指示、既存ファイルの内容、プロジェクトの仕様に従う。
+- `docs/ai/` Memory Bank の新規エントリは日本語で記述する。既存の英語エントリはそのまま維持する。
+- Git commit message の prefix（`feat:`, `fix:` など）は英語のまま維持し、説明部分は日本語で記述する。
+
 ### Terminal Safety
 - NEVER execute destructive terminal commands without explicit user confirmation
 - Forbidden commands: `rm -rf`, `git push --force`, `sudo`, modifying files outside workspace root
@@ -123,7 +131,7 @@ git push 前に以下の確認を行う:
   4. `git add`, `git commit`, `git push`
 - If remote has no new commits (count == 0):
   1. `git add`, `git commit`, `git push`
-- Commit message format: `feat: <description>` for features, `fix: <description>` for bug fixes
+- Commit message format: `feat: <日本語説明>` for features, `fix: <日本語説明>` for bug fixes
 - Never use `git push --force` or modify remote history
 
 ### Deploy Verification
