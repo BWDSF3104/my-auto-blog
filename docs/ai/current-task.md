@@ -8,7 +8,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- kemono/furry トレンド作品追跡の改善 (e621 rating:safe + タグ拡張): 実装完了、コミット準備中
+- e621 からキャラクター特徴を抽出して小説生成に活用: `6384096`
 
 ## Completed Tasks
 
