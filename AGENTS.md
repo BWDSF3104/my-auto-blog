@@ -14,10 +14,11 @@ Automated blog generation system powered by Astro, Gemini AI, and trend data col
 ### Code Verification
 
 - **Pythonコード編集後**: `pytest scripts/tests/ -v` で全テスト通過を確認
-- **記事生成後またはAstroファイル編集後**: `npm run build` でビルド成功を確認
+- **Astroファイル編集後または記事生成後**: `npm run build` でビルド成功を確認
 - **レイアウトに関わる変更後**: `npm run build` でビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正がすべて完了した際に最終確認としてユーザーにスクリーンショットを送信
-- **git commit 前**: 上記両方を再実行して最終確認
+- **git commit 前**: 変更内容に応じて再実行して最終確認（Pythonファイルの変更時は pytest、Astroファイルの変更時は build、両方変更時は両方）
 - 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド、結果、経過時間を記録
+- **例外**: `docs/ai/` のみの変更、`AGENTS.md` のみの変更、`.kilo/` のみの変更は pytest と build の実行不要
 
 ### Development
 - Start dev server with background mode: `astro dev --background`
@@ -95,8 +96,8 @@ When resuming an interrupted task:
 ### Commit Checklist
 
 git push 前に以下の確認を行う:
-- [ ] Pythonテストが全件通過したか (`pytest scripts/tests/ -v`)
-- [ ] Astroビルドが成功したか (`npm run build`)
+- [ ] Pythonファイルを変更した場合はテストが全件通過したか (`pytest scripts/tests/ -v`)
+- [ ] Astroファイルを変更した場合はビルドが成功したか (`npm run build`)
 - [ ] 完了した計画が `plans.md` の「完了した計画」に記録されたか
 - [ ] 新規問題が `known-issues.md` に記録されたか
 - [ ] 解決した問題が `known-issues.md` の Archive へ移動されたか
