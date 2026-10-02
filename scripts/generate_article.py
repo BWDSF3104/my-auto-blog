@@ -336,6 +336,42 @@ def load_prompt_template(prompt_type="default"):
         return f.read()
 
 
+def _load_character_features() -> str:
+    """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。"""
+    features_path = os.path.join("data", "character_features.json")
+    if not os.path.exists(features_path):
+        return ""
+
+    try:
+        with open(features_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return ""
+
+    # 各カテゴリから上位10件を抽出
+    species = sorted(data.get("species", {}).items(), key=lambda x: -x[1])[:10]
+    colors = sorted(data.get("colors", {}).items(), key=lambda x: -x[1])[:10]
+    physical = sorted(data.get("physical_features", {}).items(), key=lambda x: -x[1])[:10]
+
+    if not species and not colors and not physical:
+        return ""
+
+    # 種族名を日本語風に変換（例: wolf -> wolf/狼, fox -> fox/狐）
+    species_names = ", ".join(f"{s[0]}" for s in species)
+    color_names = ", ".join(f"{c[0]}" for c in colors)
+    physical_names = ", ".join(f"{p[0]}" for p in physical[:8])
+
+    return f"""
+【キャラクター特徴のトレンドデータ（参考）】
+以下のトレンドデータは e621 の人気作品から抽出されたキャラクター特徴です。物語のキャラクター設定に参考にしてください。
+
+・人気種族: {species_names}
+・人気色: {color_names}
+・身体的特徴: {physical_names}
+
+これらの特徴を組み合わせると、コミュニティで人気のあるキャラクターの外見が作れます。ただし、既存のキャラクターをコピーするのではなく、これらの要素を参考に独自のキャラクターを作成してください。"""
+
+
 # --------------------------------------------------
 # キャラクター設定抽出関数
 # --------------------------------------------------
@@ -1825,7 +1861,8 @@ def generate_post():
     template = load_prompt_template(prompt_type)
     prompt = template.format(
         ng_instruction=ng_instruction,
-        pub_date_str=pub_date_str
+        pub_date_str=pub_date_str,
+        character_features_instruction=_load_character_features()
     )
 
 

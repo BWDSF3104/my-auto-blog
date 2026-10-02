@@ -130,46 +130,6 @@
 - `scripts/generate_article.py`: `inject_affiliate_links()` のリンク生成ロジックを `<a>` タグに変更
 - `docs/ai/known-issues.md`: 既存記事のリンク形式を保留イシューとして追加
 
-## 2026-09-29: SFW Enforcement + Art Style Unification
-
-**Decision**: Enforce SFW image generation and unify art style per article.
-
-**Rationale**: Image prompts were inconsistent, leading to varying art styles within a single article. SFW enforcement ensures content safety for all generated images.
-
-**Rejected Alternatives**:
-- 画像ごとに手動でスタイル指定: 生成パイプラインの自動化が壊れる
-- 固定のデフォルトスタイル: 記事のテーマに合わない
-
-## 2026-09-29: Affiliate Link Improvements
-
-**Decision**: Add contextual inline placement, UTM tracking, click analytics, and comparison table for affiliate links.
-
-**Rationale**: Generic affiliate links at the bottom of articles had low visibility and no tracking. Inline contextual placement improves CTR. UTM parameters and analytics enable performance measurement.
-
-**Rejected Alternatives**:
-- 記事末尾へのリンク配置のみ: 視認性が低くCTRが低い
-- 外部解析サービスの利用: コストとプライバシーの問題
-
-## 2026-09-29: Category-Based Source Filtering
-
-**Decision**: Each trend source can be configured to collect for specific categories.
-
-**Rationale**: Not all sources are relevant to all categories. Filtering at the source level prevents irrelevant data from entering the pipeline.
-
-**Rejected Alternatives**:
-- 全ソースから全カテゴリを収集: 無関係なデータが混入し、API呼び出しが無駄になる
-- ソースごとに別スクリプト: 維持コストが膨大になる
-
-## 2026-09-29: GH Actions dotenv Fix
-
-**Decision**: Install `python-dotenv` in GitHub Actions workflow.
-
-**Rationale**: Scripts failed in CI because `python-dotenv` was not installed in the Actions environment.
-
-**Rejected Alternatives**:
-- Actionsで.envファイルをコミット: 機密情報の漏洩リスク
-- 環境変数の手動設定のみ: ローカル開発とCIの設定が分かれる
-
 ## 2026-10-02: Kemono API Integration for Kemono Category
 
 **Decision**: Add Kemono API (`/api/v1/posts`) as a data source for the kemono category, collecting recent posts from Patreon, Fanbox, SubscribeStar, and DLsite.
@@ -209,6 +169,20 @@
 
 **Impact**:
 - `fetch_topics.py`: `_safe_print()` のエンコーディングを cp932 に変更
+
+## 2026-10-02: e621 rating:safe for Kemono Trending Works
+
+**Decision**: Add `rating:safe` or `rating:questionable` to e621 tag queries to avoid NSFW filtering. Expand tags to include furry/wolf/fox/rabbit species with `order:score` for trending works tracking.
+
+**Reason**: Without rating restrictions, e621 queries returned mostly NSFW content that was filtered out (30/35 posts filtered). Adding `rating:safe` ensures usable SFW results. Expanding species tags captures more kemono/furry trending works.
+
+**Rejected Alternatives**:
+- NSFWフィルタの緩和: 生成された記事に不適切なコンテンツが含まれるリスク
+- e621の完全な置き換え: 公開APIで認証不要な代替ソースが限られる
+
+**Impact**:
+- `fetch_topics.py`: `E621_TAGS` に `rating:safe` または `rating:questionable` を追加、furry/wolf/fox/rabbit の `order:score` クエリを追加
+- kemono カテゴリの e621 収集件数が 3件 → 30件に増加
 
 ## 2026-10-02: Replace latest.json Symlink with File Copy
 

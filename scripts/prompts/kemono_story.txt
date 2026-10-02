@@ -89,6 +89,7 @@ product_recommendations:
 ・背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
 ・1人のみの物語の場合は character_2 を省略して構いません。
+{character_features_instruction}
 
 【product_recommendations の指定ルール】
 ・物語のテーマ・世界観に関連する「実在する」書籍・グッズ・関連商品を2〜3つ選定してください。

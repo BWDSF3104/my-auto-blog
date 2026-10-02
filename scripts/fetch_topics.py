@@ -48,11 +48,25 @@ REDDIT_SUBS = [
 ]
 
 # e621 タグ検索 (公開 GET / 認証不要)
+# order:date = 最新順, order:score = 人気順 (トレンド作品追跡用)
+# rating:safe または rating:questionable に限定して NSFW フィルタ回避
 E621_TAGS = [
-    {"tags": "kemono order:date", "category": "kemono"},
-    {"tags": "dragon order:date", "category": "kemono"},
-    {"tags": "pokemon order:date", "category": "pokemon"},
+    {"tags": "kemono rating:safe order:date", "category": "kemono"},
+    {"tags": "dragon rating:safe order:date", "category": "kemono"},
+    {"tags": "kemono rating:questionable order:score", "category": "kemono"},
+    {"tags": "furry rating:safe order:score", "category": "kemono"},
+    {"tags": "wolf rating:safe order:score", "category": "kemono"},
+    {"tags": "fox rating:safe order:score", "category": "kemono"},
+    {"tags": "rabbit rating:safe order:score", "category": "kemono"},
+    {"tags": "pokemon rating:safe order:date", "category": "pokemon"},
 ]
+
+# キャラクター特徴集計用ファイル
+CHARACTER_FEATURES_PATH = os.path.join(PROJECT_DIR, "data", "character_features.json")
+
+# e621 タグのカテゴリ分類（キャラクター特徴抽出用）
+# species: 種族, general: 身体的特徴・色, character: キャラクター名, copyright: 作品名
+CHARACTER_FEATURE_CATEGORIES = ["species", "general"]
 
 # RSS フィード一覧
 RSS_FEEDS = [
@@ -114,6 +128,8 @@ GITHUB_SEARCH_QUERIES = [
 BLUESKY_SEARCHES = [
     {"query": "LLM AI", "category": "tech"},
     {"query": "kemono furry art", "category": "kemono"},
+    {"query": "kemono commission", "category": "kemono"},
+    {"query": "furry artist", "category": "kemono"},
     {"query": "pokemon", "category": "pokemon"},
 ]
 
@@ -271,11 +287,84 @@ def _is_nsfw_post(post: dict) -> bool:
     return False
 
 
+def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
+    """e621 の生タグからキャラクター特徴を種別ごとに集計して保存する。"""
+    from collections import Counter
+
+    # 種別ごとのタグ集計
+    species_counter = Counter()
+    color_counter = Counter()
+    physical_counter = Counter()
+
+    # 色のパターン（general タグから抽出）
+    color_patterns = ["_fur", "_eyes", "_body", "_hair", "_scale", "_skin", "_wing", "_tail"]
+    # 種族のパターン（species タグから抽出）
+    species_patterns = ["wolf", "fox", "dragon", "rabbit", "cat", "dog", "tiger", "lion", "bear",
+                        "panther", "hyena", "coyote", "jackal", "fox", "vulpine", "canine", "feline",
+                        "equine", "avian", "reptile", "amphibian", "kemono", "pokemon", "eevee",
+                        "canid", "mammal", "pokemon_(species)"]
+
+    for tag_data in raw_tags:
+        tags = tag_data.get("tags", {})
+
+        # species タグの集計
+        for species in tags.get("species", []):
+            species_counter[species] += 1
+
+        # general タグから色と身体的特徴を抽出
+        for tag in tags.get("general", []):
+            # 色の特徴
+            is_color = any(tag.endswith(pat) for pat in color_patterns)
+            if is_color:
+                color_counter[tag] += 1
+            # 身体的特徴（色以外の general タグ）
+            else:
+                physical_counter[tag] += 1
+
+    # 既存データをロードして更新
+    existing = {}
+    if os.path.exists(CHARACTER_FEATURES_PATH):
+        try:
+            with open(CHARACTER_FEATURES_PATH, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+        except Exception:
+            pass
+
+    # 集計結果をマージ（既存のカウンターに追加）
+    if "species" in existing:
+        existing["species"].update(species_counter)
+    else:
+        existing["species"] = dict(species_counter)
+
+    if "colors" in existing:
+        existing["colors"].update(color_counter)
+    else:
+        existing["colors"] = dict(color_counter)
+
+    if "physical_features" in existing:
+        existing["physical_features"].update(physical_counter)
+    else:
+        existing["physical_features"] = dict(physical_counter)
+
+    # 更新時刻を記録
+    from datetime import datetime, timezone
+    existing["updated_at"] = datetime.now(timezone.utc).isoformat()
+    existing["total_posts_analyzed"] = sum(existing["species"].values())
+
+    # ファイルに保存
+    os.makedirs(os.path.dirname(CHARACTER_FEATURES_PATH), exist_ok=True)
+    with open(CHARACTER_FEATURES_PATH, "w", encoding="utf-8") as f:
+        json.dump(existing, f, ensure_ascii=False, indent=2)
+
+    print(f"  [char-features] 特徴集計を保存しました ({len(raw_tags)} posts)")
+
+
 def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[dict]:
     """e621 の公開 REST API で最新投稿を取得する（認証不要）。NSFW 投稿はフィルタする。"""
     headers = {"User-Agent": USER_AGENT}
     results = []
     filtered = 0
+    raw_tags = []
 
     for tag_config in E621_TAGS:
         tag_query = tag_config["tags"]
@@ -305,11 +394,21 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
                 "category": cat,
                 "rating": post.get("rating", "q"),
             })
+            # 生タグを保存（キャラクター特徴集計用）
+            raw_tags.append({
+                "post_id": pid,
+                "tags": post.get("tags", {}),
+            })
         time.sleep(1.0)
 
     if filtered:
         print(f"  [NSFW] {filtered} 件の投稿をフィルタしました")
     print(f"  -> {len(results)} e621 posts collected")
+
+    # キャラクター特徴を集計して保存
+    if raw_tags:
+        _aggregate_and_save_character_features(raw_tags)
+
     return results
 
 
