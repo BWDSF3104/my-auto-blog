@@ -4,12 +4,13 @@
 
 # Active Plans
 
-- [2026-10-02] kemono/furry トレンド作品追跡の改善: e621 に rating:safe 制限を追加して NSFW フィルタ回避、furry/wolf/fox/rabbit の score 順クエリを追加して人気作品を追跡、Bluesky 検索キーワードを拡張
-
 # Completed Plans
 
 完了した計画は git の変更履歴と重複せず、「なぜ変えたか」の文脈のみを記録する。ハッシュは参照用。
 古い計画は `plans-archive.md` に移動する。
+
+- [2026-10-02] kemono/furry トレンド作品追跡の改善: e621 に rating:safe 制限を追加して NSFW フィルタ回避、furry/wolf/fox/rabbit の score 順クエリを追加して人気作品を追跡、Bluesky 検索キーワードを拡張
+- [2026-10-02] 'pokemon' カテゴリの kemono_story から除外 + ランダムトレンド選択: kemono_story から 'pokemon' カテゴリを削除し、トレンド選択を「カテゴリごとに上位5件」から「全カテゴリをプールしてランダム2件」に変更。e621 の character/copyright タグを収集対象に追加してアフィリエイト製品推薦に活用
 
 - [2026-10-01] ダークモード修正: `is:inline` 属性なしでクライアントサイドスクリプトが動作しない問題を `Header.astro`, `PostLayout.astro`, `tags/index.astro` に追加して修正。`PostLayout.astro` に `Header` コンポーネントのインポート、`dark:` 変種クラス、ダークモードCSSを追加して記事ページのダークモード対応を完了。ビルド成功 (90ページ)
 - [2026-10-01] 記事ページダークモードの文字色コントラスト改善: `PostLayout.astro` の `<article>` に `dark:prose-invert` + 各要素の `dark:` 変種クラスを追加して本文の文字色を改善。ビルド成功 (92ページ)

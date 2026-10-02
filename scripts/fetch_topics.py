@@ -66,7 +66,7 @@ CHARACTER_FEATURES_PATH = os.path.join(PROJECT_DIR, "data", "character_features.
 
 # e621 タグのカテゴリ分類（キャラクター特徴抽出用）
 # species: 種族, general: 身体的特徴・色, character: キャラクター名, copyright: 作品名
-CHARACTER_FEATURE_CATEGORIES = ["species", "general"]
+CHARACTER_FEATURE_CATEGORIES = ["species", "general", "character", "copyright"]
 
 # RSS フィード一覧
 RSS_FEEDS = [
@@ -295,6 +295,8 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
     species_counter = Counter()
     color_counter = Counter()
     physical_counter = Counter()
+    character_counter = Counter()
+    copyright_counter = Counter()
 
     # 色のパターン（general タグから抽出）
     color_patterns = ["_fur", "_eyes", "_body", "_hair", "_scale", "_skin", "_wing", "_tail"]
@@ -310,6 +312,14 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
         # species タグの集計
         for species in tags.get("species", []):
             species_counter[species] += 1
+
+        # character タグの集計
+        for character in tags.get("character", []):
+            character_counter[character] += 1
+
+        # copyright タグの集計
+        for copyright_tag in tags.get("copyright", []):
+            copyright_counter[copyright_tag] += 1
 
         # general タグから色と身体的特徴を抽出
         for tag in tags.get("general", []):
@@ -346,10 +356,20 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
     else:
         existing["physical_features"] = dict(physical_counter)
 
+    if "characters" in existing:
+        existing["characters"].update(character_counter)
+    else:
+        existing["characters"] = dict(character_counter)
+
+    if "copyrights" in existing:
+        existing["copyrights"].update(copyright_counter)
+    else:
+        existing["copyrights"] = dict(copyright_counter)
+
     # 更新時刻を記録
     from datetime import datetime, timezone
     existing["updated_at"] = datetime.now(timezone.utc).isoformat()
-    existing["total_posts_analyzed"] = sum(existing["species"].values())
+    existing["total_posts_analyzed"] = sum(existing["species"].values()) + sum(existing.get("characters", {}).values()) + sum(existing.get("copyrights", {}).values())
 
     # ファイルに保存
     os.makedirs(os.path.dirname(CHARACTER_FEATURES_PATH), exist_ok=True)
@@ -557,7 +577,7 @@ def collect_bluesky(limit_per_query: int = 5, categories: list[str] = None) -> l
 PROMPT_CATEGORIES = {
     "default": ["tech"],
     "ai_deep": ["tech"],
-    "kemono_story": ["kemono", "pokemon"],
+    "kemono_story": ["kemono"],
 }
 
 # --------------------------------------------------

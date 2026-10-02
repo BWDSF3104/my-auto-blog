@@ -8,10 +8,9 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- e621 からキャラクター特徴を抽出して小説生成に活用: `6384096`
-
 ## Completed Tasks
 
+- 'pokemon' 除外 + ランダムトレンド選択 + e621 character/copyright 拡張: `pending`
 - Reddit 代替ソースの追加 (Kemono API + RSS): `cc673c0`
 - モバイルで商品名テキスト(.pc-name)の改行を有効化: `4c03fb0`
 - モバイルで記事タグとアフィリエイトボタンの幅オーバーフローを修正: `5fbb1b9`

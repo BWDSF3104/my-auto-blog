@@ -1,6 +1,7 @@
 import os
 import glob
 import json
+import random
 from dotenv import load_dotenv
 load_dotenv()
 import re
@@ -352,24 +353,35 @@ def _load_character_features() -> str:
     species = sorted(data.get("species", {}).items(), key=lambda x: -x[1])[:10]
     colors = sorted(data.get("colors", {}).items(), key=lambda x: -x[1])[:10]
     physical = sorted(data.get("physical_features", {}).items(), key=lambda x: -x[1])[:10]
+    characters = sorted(data.get("characters", {}).items(), key=lambda x: -x[1])[:10]
+    copyrights = sorted(data.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
 
-    if not species and not colors and not physical:
+    if not species and not colors and not physical and not characters and not copyrights:
         return ""
 
     # 種族名を日本語風に変換（例: wolf -> wolf/狼, fox -> fox/狐）
     species_names = ", ".join(f"{s[0]}" for s in species)
     color_names = ", ".join(f"{c[0]}" for c in colors)
     physical_names = ", ".join(f"{p[0]}" for p in physical[:8])
+    character_names = ", ".join(f"{c[0]}" for c in characters[:8]) if characters else "-"
+    copyright_names = ", ".join(f"{c[0]}" for c in copyrights[:8]) if copyrights else "-"
 
-    return f"""
-【キャラクター特徴のトレンドデータ（参考）】
-以下のトレンドデータは e621 の人気作品から抽出されたキャラクター特徴です。物語のキャラクター設定に参考にしてください。
+    lines = [
+        "",
+        "【キャラクター特徴のトレンドデータ（参考）】",
+        "以下のトレンドデータは e621 の人気作品から抽出されたキャラクター特徴です。物語のキャラクター設定に参考にしてください。",
+        "",
+        f"・人気種族: {species_names}",
+        f"・人気色: {color_names}",
+        f"・身体的特徴: {physical_names}",
+        f"・人気キャラクター: {character_names}",
+        f"・人気版権: {copyright_names}",
+        "",
+        "これらの特徴を組み合わせると、コミュニティで人気のあるキャラクターの外見が作れます。ただし、既存のキャラクターをコピーするのではなく、これらの要素を参考に独自のキャラクターを作成してください。",
+        "アフィリエイトの製品推薦では、人気版権やキャラクターを活用した公式グッズ、フィギュア、関連商品を優先的に推奨してください。",
+    ]
 
-・人気種族: {species_names}
-・人気色: {color_names}
-・身体的特徴: {physical_names}
-
-これらの特徴を組み合わせると、コミュニティで人気のあるキャラクターの外見が作れます。ただし、既存のキャラクターをコピーするのではなく、これらの要素を参考に独自のキャラクターを作成してください。"""
+    return "\n".join(lines)
 
 
 # --------------------------------------------------
@@ -1156,11 +1168,11 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
 
     # prompt_type に合わせてカテゴリを選択（カテゴリ厳格化）
     if prompt_type in ("kemono_story", "novel", "story"):
-        categories = ["kemono", "pokemon"]
+        categories = ["kemono"]
     elif prompt_type == "default":
         categories = ["tech"]
     else:
-        categories = ["tech", "kemono", "pokemon"]
+        categories = ["tech", "kemono"]
 
     # Per-source TTL 検証（グローバルTTLも確認）
     global_expired = _check_topics_ttl(data)
@@ -1183,10 +1195,11 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
     affiliate_keywords: list[str] = []
     trend_source_urls: list[str] = []
     story_mode = prompt_type in ("kemono_story", "novel", "story")
+
+    # 全カテゴリから候補を収集
+    candidates: list[dict] = []
     for cat in categories:
-        # score 降順でソートしてから上位5件を選択
-        items = sorted(by_cat.get(cat, []), key=lambda t: t.get("score", 0), reverse=True)
-        for item in items[:5]:  # 各カテゴリ最大5件
+        for item in by_cat.get(cat, []):
             # スコアしきい値フィルタ
             if item.get("score", 0) < MIN_SCORE_THRESHOLD:
                 continue
@@ -1194,17 +1207,26 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
             if story_mode and item.get("source") == "e621" and item.get("rating") != "s":
                 continue
             title = item.get("title", "").strip()
-            source = item.get("source", "")
-            url = item.get("url", "")
             if title:
-                selected_titles.append(f"[{source}] {title}")
-                if url:
-                    trend_source_urls.append(url)
-            # アフィリエイトキーワードは全カテゴリから抽出
-            if cat in ("tech", "kemono", "pokemon") and title:
-                kw = _extract_affiliate_keyword(title)
-                if kw:
-                    affiliate_keywords.append(kw)
+                candidates.append(item)
+
+    # 無作為に2件選択
+    TREND_SELECT_COUNT = 2
+    if len(candidates) > TREND_SELECT_COUNT:
+        candidates = random.sample(candidates, TREND_SELECT_COUNT)
+
+    for item in candidates:
+        title = item.get("title", "").strip()
+        source = item.get("source", "")
+        url = item.get("url", "")
+        if title:
+            selected_titles.append(f"[{source}] {title}")
+            if url:
+                trend_source_urls.append(url)
+        # アフィリエイトキーワードは全カテゴリから抽出
+        kw = _extract_affiliate_keyword(title)
+        if kw:
+            affiliate_keywords.append(kw)
 
     if not selected_titles:
         return ng_instruction, affiliate_keywords, trend_source_urls
