@@ -41,7 +41,8 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ファイル | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `current-task.md` | 現在進行中のタスク状態 | タスク開始時に更新（単発・調査タスクも対象）。各チェックポイントで更新。中断時は復帰可能な状態のまま残す | ✅ |
+| `current-task.md` | アクティブタスクへの参照（ファイルパス、ステータス、Next Action のみ） | タスク開始時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
+| `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず） | タスク開始時に `docs/ai/tasks/YYYY-MM-DD-short-name.md` として作成。完了時は Status を更新 | ✅ |
 | `plans.md` | 計画書 | タスク開始前に Active Plans に記録（実装・調査問わず）。完了時は Completed Plans に意図・背景を1行記録 | ✅ |
 | `backlog.md` | バックログ | 未実装項目の追加・完了時の削除（変更履歴は git commit に委ねる） | ✅ |
 | `known-issues.md` | 既知問題リスト | 新規問題発見時、問題解決時のステータス更新（解決済はアーカイブへ移動） | ✅ |
@@ -57,12 +58,12 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | 本体ファイル | アーカイブファイル | 閾値 | 移動内容 |
 |-------------|-------------------|------|---------|
-| `current-task.md` | `current-task-archive.md` | 完了タスク2件目以上 | 完了タスク全体を移動（タスク名、コミットハッシュ、概要のみ記録） |
 | `plans.md` | `plans-archive.md` | Completed Plans が6件以上 | 古い Completed Plans エントリを移動 |
 | `known-issues.md` | `known-issues-archive.md` | 解決済が1件以上 | 解決済エントリを即時移動 |
 | `decisions.md` | `decisions-archive.md` | 15件以上 | 古い決定エントリを移動 |
 
-- 現在進行中のタスクと直近1件の完了タスクのみ `current-task.md` に保持
+- `current-task.md` はアクティブなタスクのみ保持。完了したタスクは `tasks/` へ個別ファイルとして移動
+- `tasks/` のファイル名: `YYYY-MM-DD-short-name.md` 形式
 - `Completed Plans` は直近5件まで `plans.md` に保持
 - アーカイブのタイミング: 新規タスク開始時、または閾値超過時に実行
 - アーカイブファイルは git 追跡対象
