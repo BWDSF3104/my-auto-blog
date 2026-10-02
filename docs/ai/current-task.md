@@ -10,7 +10,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Completed Tasks
 
-- 'pokemon' 除外 + ランダムトレンド選択 + e621 character/copyright 拡張: `pending`
+- 'pokemon' 除外 + ランダムトレンド選択 + e621 character/copyright 拡張: `333aa8a`
 - Reddit 代替ソースの追加 (Kemono API + RSS): `cc673c0`
 - モバイルで商品名テキスト(.pc-name)の改行を有効化: `4c03fb0`
 - モバイルで記事タグとアフィリエイトボタンの幅オーバーフローを修正: `5fbb1b9`
