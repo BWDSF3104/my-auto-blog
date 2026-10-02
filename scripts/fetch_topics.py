@@ -26,7 +26,8 @@ from datetime import datetime, timezone, timedelta
 # --------------------------------------------------
 # 定数
 # --------------------------------------------------
-TOPICS_DIR = os.path.join("data", "topics")
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TOPICS_DIR = os.path.join(PROJECT_DIR, "data", "topics")
 OUTPUT_PATH = os.path.join(TOPICS_DIR, "latest.json")
 USER_AGENT = "my-auto-blog/1.0 (https://github.com)"  # Reddit / e621 用
 TTL_HOURS = int(os.environ.get("CACHE_TTL_HOURS", "24"))  # データの有効期間（時間）
@@ -235,7 +236,7 @@ def _is_nsfw_post(post: dict) -> bool:
         "sexual", "sex", "bare_legs", "bare_thighs", "bare_hips", "bare_butt",
         "breast_exposure", "genital_exposure", "penis", "vagina", "ass",
         "boobs", "pussy", "dicexdick", "bare_chest", "exposed_nipple",
-        "loli", "shota", "underage", "rape", "non_consecutive",
+        "loli", "shota", "underage", "rape",
     }
     all_tags = set()
     for tag_list in post.get("tags", {}).values():
@@ -367,9 +368,14 @@ def collect_bluesky(limit_per_query: int = 5, categories: list[str] = None) -> l
             record = post.get("record", {})
             text = record.get("text", "")[:200]
             author = post.get("author", {}).get("handle", "unknown")
+            if not uri:
+                continue
+            rkey = uri.split(':')[-1] if ':' in uri else uri
+            if not rkey:
+                continue
             results.append({
                 "title": f"@{author}: {text[:80]}",
-                "url": f"https://bsky.app/profile/{author}/post/{uri.split(':')[-1] if ':' in uri else uri}",
+                "url": f"https://bsky.app/profile/{author}/post/{rkey}",
                 "score": 0,
                 "source": "Bluesky",
                 "category": category,
