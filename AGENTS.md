@@ -41,8 +41,8 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ファイル | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `current-task.md` | 現在進行中のタスク状態 | マルチステップタスクの各チェックポイントで更新。中断時は復帰可能な状態のまま残す | ✅ |
-| `plans.md` | 計画書 | 実装開始前に Active Plans に記録。完了時は Completed Plans に意図・背景を1行記録 | ✅ |
+| `current-task.md` | 現在進行中のタスク状態 | タスク開始時に更新（単発・調査タスクも対象）。各チェックポイントで更新。中断時は復帰可能な状態のまま残す | ✅ |
+| `plans.md` | 計画書 | タスク開始前に Active Plans に記録（実装・調査問わず）。完了時は Completed Plans に意図・背景を1行記録 | ✅ |
 | `backlog.md` | バックログ | 未実装項目の追加・完了時の削除（変更履歴は git commit に委ねる） | ✅ |
 | `known-issues.md` | 既知問題リスト | 新規問題発見時、問題解決時のステータス更新（解決済はアーカイブへ移動） | ✅ |
 | `decisions.md` | 設計判断ログ | 構造・データフロー・新しい統合の設計判断。Decision / Reason / Rejected Alternatives を記録 | ✅ |
@@ -51,9 +51,25 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - 完了したバグは `known-issues.md` のアーカイブへ移動
 - `development-notes.md` は削除済み。詳細な実装履歴は git log で確認可能
 
+### Memory Bank アーカイブ
+
+ファイルが膨張しないよう、完了したエントリは対応する `-archive.md` ファイルへ移動する。
+
+| 本体ファイル | アーカイブファイル | 閾値 | 移動内容 |
+|-------------|-------------------|------|---------|
+| `current-task.md` | `current-task-archive.md` | 完了タスク2件目以上 | 完了タスク全体を移動（タスク名、コミットハッシュ、概要のみ記録） |
+| `plans.md` | `plans-archive.md` | Completed Plans が6件以上 | 古い Completed Plans エントリを移動 |
+| `known-issues.md` | `known-issues-archive.md` | 解決済が1件以上 | 解決済エントリを即時移動 |
+| `decisions.md` | `decisions-archive.md` | 15件以上 | 古い決定エントリを移動 |
+
+- 現在進行中のタスクと直近1件の完了タスクのみ `current-task.md` に保持
+- `Completed Plans` は直近5件まで `plans.md` に保持
+- アーカイブのタイミング: 新規タスク開始時、または閾値超過時に実行
+- アーカイブファイルは git 追跡対象
+
 ### Long-running Agent Tasks
 
-- Before starting a multi-step task, read `docs/ai/current-task.md` if it exists.
+- Before starting any task, read `docs/ai/current-task.md` if it exists.
 - Before starting a planned change, read the relevant `plans.md` and `backlog.md` entries.
 - After completing a meaningful step, update `docs/ai/current-task.md`.
 - After a successful build/test checkpoint, record the result in `current-task.md`.
