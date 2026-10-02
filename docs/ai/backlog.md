@@ -4,9 +4,7 @@
 
 ## P0
 
-| 項目 | 内容 | 工数 |
-|------|------|------|
-| Reddit 代替ソースの追加 | Reddit API がブロックされているため、HackerNews RSS、TechCrunch RSS、または Twitter/X trending を追加してトレンドデータの多様性を確保 | 中 |
+(なし)
 
 ## P2
 

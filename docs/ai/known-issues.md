@@ -12,15 +12,11 @@
 
 ## Reddit API ブロッキング (2026-09-29)
 
-**ステータス**: 進行中
+**ステータス**: 解決済み (2026-10-02)
 
 **問題**: Reddit が `.json` エンドポイントを HTTP 403 でブロック。`old.reddit.com` へのフォールバックも 404 を返す。
 
-**影響**: Reddit からの投稿収集が 0件。トレンドデータから kemono/tech 系の Reddit コンテンツが欠落。
-
-**回避策**: 現在なし。Reddit OAuth 導入または代替データソースの検討が必要。
-
-**Next action**: backlog P0 の「Reddit 代替ソースの追加」を実施し、HackerNews RSS または TechCrunch RSS を追加する。
+**解決策**: e621、Kemono API、RSS フィードを代替ソースとして追加。kemono/pokemon カテゴリのトピック収集を安定化。
 
 **関連**: Bluesky API を代替トレンドソースとして検討中。
 

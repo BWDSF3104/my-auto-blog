@@ -1,8 +1,9 @@
 # Reddit 代替ソースの追加
 
-**Status:** 調査中 - 中断
+**Status:** 完了
 **Priority:** P0
 **Date:** 2026-10-01
+**Completed:** 2026-10-02
 
 ## Objective
 
@@ -43,4 +44,6 @@ Reddit API がブロックされているため、代替のトレンドデータ
 
 ## Verification
 
-なし (調査段階)
+- `pytest scripts/tests/ -v`: 134/134 全件通過 (0.37s)
+- `python scripts/fetch_topics.py --categories kemono pokemon`: 56件のトピック収集 (e621: 6, Kemono: 10, RSS: 38, GitHub: 2)
+- `data/topics/latest.json`: 正常に作成 (56件、by_category 構造)

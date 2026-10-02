@@ -14,6 +14,7 @@ fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収
 import json
 import os
 import shutil
+import sys
 import time
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,6 +23,10 @@ import urllib.parse
 import urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
+
+# Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
+if sys.platform == "win32":
+    os.environ["PYTHONIOENCODING"] = "utf-8"
 
 # --------------------------------------------------
 # 定数
@@ -70,6 +75,26 @@ RSS_FEEDS = [
         "name": "Qiita Python",
         "url": "https://qiita.com/tags/python/feed",
         "category": "tech",
+    },
+    {
+        "name": "PokéCommunity Art Studio",
+        "url": "https://www.pokecommunity.com/forums/art-studio.21/index.rss",
+        "category": "pokemon",
+    },
+    {
+        "name": "PokeBeach News",
+        "url": "https://kaprestridge.github.io/pokebeach-news-feed/feed.xml",
+        "category": "pokemon",
+    },
+    {
+        "name": "PokemonBlog",
+        "url": "https://pokemonblog.com/feed",
+        "category": "pokemon",
+    },
+    {
+        "name": "PocketMonsters",
+        "url": "https://pocketmonsters.net/rss",
+        "category": "pokemon",
     },
 ]
 
@@ -127,7 +152,7 @@ def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
         link_el = item.find("link")
         if title_el is not None and title_el.text:
             items.append({
-                "title": title_el.text.strip(),
+                "title": title_el.text.strip().encode("utf-8", errors="replace").decode("utf-8"),
                 "url": link_el.text.strip() if link_el is not None and link_el.text else "",
             })
     # Atom
@@ -138,7 +163,7 @@ def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
             if title_el is not None and title_el.text:
                 href = link_el.get("href", "") if link_el is not None else ""
                 items.append({
-                    "title": title_el.text.strip(),
+                    "title": title_el.text.strip().encode("utf-8", errors="replace").decode("utf-8"),
                     "url": href,
                 })
     return items[:10]  # 最大 10 件
@@ -288,6 +313,13 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
     return results
 
 
+def _safe_print(text: str) -> None:
+    """cp932 コンソールでも失敗しない print のラッパー。"""
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        print(text.encode("cp932", errors="replace").decode("cp932", errors="replace"))
+
 def collect_rss_feeds(categories: list[str] = None) -> list[dict]:
     """RSS / Atom フィードからトピックを収集する。categories が指定された場合は該当カテゴリのみ収集。"""
     results = []
@@ -296,7 +328,7 @@ def collect_rss_feeds(categories: list[str] = None) -> list[dict]:
         cat = feed.get("category", "other")
         if categories and cat not in categories:
             continue
-        print(f"[RSS] Fetching {feed['name']}...")
+        _safe_print(f"[RSS] Fetching {feed['name']}...")
         items = fetch_rss(feed["url"])
         for item in items:
             results.append({
@@ -308,7 +340,7 @@ def collect_rss_feeds(categories: list[str] = None) -> list[dict]:
             })
         time.sleep(0.3)
 
-    print(f"  -> {len(results)} RSS items collected")
+    _safe_print(f"  -> {len(results)} RSS items collected")
     return results
 
 
@@ -343,6 +375,38 @@ def collect_github_trending(limit_per_query: int = 5, categories: list[str] = No
         time.sleep(1.0)
 
     print(f"  -> {len(results)} GitHub repos collected")
+    return results
+
+
+def collect_kemono_api(limit: int = 10, categories: list[str] = None) -> list[dict]:
+    """Kemono (kemono.cr) の公開 API で最近の投稿を取得する（認証不要）。"""
+    if categories and "kemono" not in categories:
+        return []
+    print("[Kemono] Fetching recent posts from API...")
+    headers = {"User-Agent": USER_AGENT}
+    results = []
+    data = fetch_json("https://kemono.cr/api/v1/posts", headers=headers)
+    if not data:
+        print("  -> 0 Kemono posts collected")
+        return results
+    posts = data.get("posts", [])
+    for post in posts:
+        if len(results) >= limit:
+            break
+        pid = post.get("id", "")
+        service = post.get("service", "unknown")
+        creator = post.get("user", "unknown")
+        title = post.get("title", "")[:100]
+        if not pid:
+            continue
+        results.append({
+            "title": f"[{service}] {creator}: {title}" if title else f"[{service}] {creator}",
+            "url": f"https://kemono.cr/{service}/user/{creator}/post/{pid}",
+            "score": 0,
+            "source": "Kemono",
+            "category": "kemono",
+        })
+    print(f"  -> {len(results)} Kemono posts collected")
     return results
 
 
@@ -448,19 +512,25 @@ def main():
     except Exception as e:
         print(f"[ERROR] e621: {e}")
 
-    # 4. RSS
+    # 4. Kemono API
+    try:
+        all_topics.extend(collect_kemono_api(limit=10, categories=categories))
+    except Exception as e:
+        print(f"[ERROR] Kemono API: {e}")
+
+    # 5. RSS
     try:
         all_topics.extend(collect_rss_feeds(categories=categories))
     except Exception as e:
         print(f"[ERROR] RSS: {e}")
 
-    # 5. GitHub
+    # 6. GitHub
     try:
         all_topics.extend(collect_github_trending(limit_per_query=5, categories=categories))
     except Exception as e:
         print(f"[ERROR] GitHub: {e}")
 
-    # 6. Bluesky
+    # 7. Bluesky
     try:
         all_topics.extend(collect_bluesky(limit_per_query=5, categories=categories))
     except Exception as e:
@@ -558,11 +628,14 @@ def main():
 
     # latest.json を最新ファイルのコピーとして更新
     try:
-        if os.path.exists(OUTPUT_PATH):
-            os.remove(OUTPUT_PATH)
-        shutil.copy2(ts_path, OUTPUT_PATH)
+        os.makedirs(TOPICS_DIR, exist_ok=True)
+        with open(ts_path, "r", encoding="utf-8") as src:
+            content = src.read()
+        with open(OUTPUT_PATH, "w", encoding="utf-8") as dst:
+            dst.write(content)
     except OSError as e:
         print(f"[WARN] latest.json の更新に失敗しました: {e}")
+        os.makedirs(TOPICS_DIR, exist_ok=True)
         with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
 

@@ -170,6 +170,46 @@
 - Actionsで.envファイルをコミット: 機密情報の漏洩リスク
 - 環境変数の手動設定のみ: ローカル開発とCIの設定が分かれる
 
+## 2026-10-02: Kemono API Integration for Kemono Category
+
+**Decision**: Add Kemono API (`/api/v1/posts`) as a data source for the kemono category, collecting recent posts from Patreon, Fanbox, SubscribeStar, and DLsite.
+
+**Reason**: Reddit API is blocked (HTTP 403/404), so alternative sources are needed for kemono/furry content. Kemono API provides public access to creator posts without authentication.
+
+**Rejected Alternatives**:
+- Reddit OAuth 導入: 認証フローが複雑で、CI/CD 環境での維持が困難
+- Twitter/X API: 有料プランが必要で、コストが高すぎる
+
+**Impact**:
+- `fetch_topics.py`: `collect_kemono_api()` 関数追加、`collect_topics()` に統合
+- `test_fetch_topics.py`: `collect_kemono_api` のモックを追加
+
+## 2026-10-02: RSS Feeds for Pokemon Category
+
+**Decision**: Add 4 RSS feeds (PokéCommunity Art Studio, PokeBeach News, PokemonBlog, PocketMonsters) for the pokemon category.
+
+**Reason**: Reddit API is blocked, so RSS feeds provide a stable alternative for pokemon-related content. RSS feeds are publicly accessible and don't require authentication.
+
+**Rejected Alternatives**:
+- 公式 Pokémon API: トレンドデータではなくゲームデータのみを提供
+- Twitter/X API: 有料プランが必要
+
+**Impact**:
+- `fetch_topics.py`: `RSS_FEEDS` に 4 フィード追加、`collect_rss_feeds()` でカテゴリごとにフィルタリング
+
+## 2026-10-02: cp932 Console Encoding Fix
+
+**Decision**: Change `_safe_print()` to use `.encode("cp932", errors="replace")` instead of `.encode("utf-8", errors="replace")` for Windows console output.
+
+**Reason**: Windows console uses cp932 encoding by default. Non-ASCII characters (e.g., "PokéCommunity") caused `UnicodeEncodeError` when printed to the console.
+
+**Rejected Alternatives**:
+- UTF-8 を維持: Windows コンソールで引き続きエラーが発生
+- `chcp 65001` で UTF-8 に切り替え: 環境ごとに設定が必要で信頼性低い
+
+**Impact**:
+- `fetch_topics.py`: `_safe_print()` のエンコーディングを cp932 に変更
+
 ## 2026-10-02: Replace latest.json Symlink with File Copy
 
 **Decision**: Replace `os.symlink()` with `shutil.copy2()` for `data/topics/latest.json`, converting it from a symlink to a regular file copy of the latest timestamped file.
