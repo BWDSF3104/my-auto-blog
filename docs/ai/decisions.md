@@ -160,16 +160,6 @@
 - 全ソースから全カテゴリを収集: 無関係なデータが混入し、API呼び出しが無駄になる
 - ソースごとに別スクリプト: 維持コストが膨大になる
 
-## 2026-09-29: Product Card Generation
-
-**Decision**: Generate visual product cards from `product_recommendations` frontmatter field.
-
-**Rationale**: Text-only affiliate links do not convey product details (name, price, category). Visual cards improve user experience and conversion rates.
-
-**Rejected Alternatives**:
-- アフィリエイトリンクのみ: 商品情報が伝わらずCTRが低い
-- 外部サービスの商品画像を使用: 著作権と可用性の問題
-
 ## 2026-09-29: GH Actions dotenv Fix
 
 **Decision**: Install `python-dotenv` in GitHub Actions workflow.
@@ -179,3 +169,19 @@
 **Rejected Alternatives**:
 - Actionsで.envファイルをコミット: 機密情報の漏洩リスク
 - 環境変数の手動設定のみ: ローカル開発とCIの設定が分かれる
+
+## 2026-10-02: Replace latest.json Symlink with File Copy
+
+**Decision**: Replace `os.symlink()` with `shutil.copy2()` for `data/topics/latest.json`, converting it from a symlink to a regular file copy of the latest timestamped file.
+
+**Reason**: The symlink stored an absolute path (e.g., `/home/runner/work/...` from GitHub Actions) in git, making it broken on local Windows and GitHub Pages. Symlinks require `core.symlinks` configuration and admin privileges on Windows, causing cross-platform incompatibility. Both consumers (`generate_article.py` reading topics and `fetch_topics.py` inheriting `fetched_at`) only need the file content, not symlink behavior.
+
+**Rejected Alternatives**:
+- シンボリックリンクを維持: 絶対パスがコミットされ、クロスプラットフォームで壊れる
+- `.gitattributes` で `core.symlinks=true` 設定: 開発環境ごとに設定が必要で信頼性低い
+- `data/latest_topics.json` の単一ファイルに戻す: タイムスタンプファイルの履歴追跡が失われる
+
+**Impact**:
+- `fetch_topics.py`: `os.symlink()` → `shutil.copy2()`, `import shutil` 追加
+- `test_fetch_topics.py`: シンボリックリンク検証テストをファイルコピー検証に更新
+- `data/topics/latest.json`: git 管理下の通常ファイルとしてコミット可能に

@@ -203,3 +203,23 @@ Older decisions moved from `decisions.md`. Kept 15 most recent in `decisions.md`
 **Rejected Alternatives**:
 - Actionsで.envファイルをコミット: 機密情報の漏洩リスク
 - 環境変数の手動設定のみ: ローカル開発とCIの設定が分かれる
+
+## 2026-09-29: Mobile Affiliate Link Clickability
+
+**Decision**: Fix mobile clickability for affiliate links.
+
+**Rationale**: Affiliate links were not clickable on mobile devices due to CSS issues.
+
+**Rejected Alternatives**:
+- モバイルでのアフィリエイトリンクを非表示: CTRが完全に失われる
+- 別テンプレートの使用: 維持コストが2倍になる
+
+## 2026-09-29: Product Card Generation
+
+**Decision**: Generate visual product cards from `product_recommendations` frontmatter field.
+
+**Rationale**: Text-only affiliate links do not convey product details (name, price, category). Visual cards improve user experience and conversion rates.
+
+**Rejected Alternatives**:
+- アフィリエイトリンクのみ: 商品情報が伝わらずCTRが低い
+- 外部サービスの商品画像を使用: 著作権と可用性の問題

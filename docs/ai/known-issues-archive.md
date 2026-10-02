@@ -82,3 +82,7 @@ Gemini APIの出力に`---`がない場合、`generate_article.py`の`content.re
 ## アフィリエイトリンクのモバイルクリック不能 (解決済 2026-09-29)
 
 モバイルでアフィリエイトリンクがクリックできない問題を修正。`PostLayout.astro`。
+
+## latest.json シンボリックリンクのクロスプラットフォーム互換性問題 (解決済 2026-10-02)
+
+`data/topics/latest.json` が GitHub Actions ラナーの絶対パスへのシンボリックリンクだったため、ローカルWindowsとGitHub Pagesで壊れていた。`os.symlink()` を `shutil.copy2()` に置換して通常ファイルコピーに変更。テスト134件全件通過確認済み。`b569ece`。

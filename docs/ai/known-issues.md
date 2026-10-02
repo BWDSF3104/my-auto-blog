@@ -10,7 +10,6 @@
 
 **残候補リスト**:
 - **[Low]** `_auto_fetch_topics` の相対パス: `scripts/fetch_topics.py` が CWD 変更時に失敗する可能性
-- **[Low]** `fetch_topics.py` の Windows シンボリックリンクフォールバック: 孤立したタイムスタンプファイルが蓄積する可能性
 - **[Low]** `collect_bluesky` の URI 解析: 特定のコロン区切り形式を前提
 - **[Low]** `_is_nsfw_post`: `non_consecutive` メタタグを誤って NSFW として扱う可能性
 
