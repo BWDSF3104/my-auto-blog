@@ -119,7 +119,7 @@ class TestIsNSFWPost:
 
 
 # --------------------------------------------------
-# Cache architecture tests (per-source TTL, merge, symlink, cleanup)
+# Cache architecture tests (per-source TTL, merge, copy, cleanup)
 # --------------------------------------------------
 
 def _run_main(tmp_path, collect_returns, prev_data=None):
@@ -179,18 +179,18 @@ class TestCacheOutputStructure:
         assert ts_files[0].name.endswith(".json")
         assert ts_files[0].name.replace(".json", "").count("_") >= 1
 
-    def test_symlink_points_to_timestamped_file(self, tmp_path):
-        """latest.json がタイムスタンプファイルへのシンボリックリンク"""
+    def test_latest_json_is_copy_of_timestamped_file(self, tmp_path):
+        """latest.json がタイムスタンプファイルのコピーとして存在する"""
         topics = [
             {"title": "Test", "source": "hackernews", "category": "tech", "score": 5, "url": "https://hn.com/1"},
         ]
         _run_main(tmp_path, {"hackernews": topics})
         topics_dir = tmp_path / "topics"
         latest_json = topics_dir / "latest.json"
-        assert latest_json.is_symlink() or latest_json.exists()
-        if latest_json.is_symlink():
-            target = os.readlink(str(latest_json))
-            assert os.path.basename(target).endswith(".json")
+        assert latest_json.exists()
+        assert not latest_json.is_symlink()
+        content = json.loads(latest_json.read_text(encoding="utf-8"))
+        assert "by_category" in content
 
     def test_output_has_by_category(self, tmp_path):
         """出力 JSON に by_category キーが含まれる"""

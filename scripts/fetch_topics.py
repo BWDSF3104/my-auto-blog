@@ -8,11 +8,12 @@ fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収
   4. RSS各種      : Zenn / Qiita / GitHub Trending
   5. GitHub Search: REST API (未認証 60req/h)
 
-出力: data/topics/{YYYY-MM-DD_HHMMSS}.json + data/topics/latest.json (シンボリックリンク)
+出力: data/topics/{YYYY-MM-DD_HHMMSS}.json + data/topics/latest.json (コピー)
 """
 
 import json
 import os
+import shutil
 import time
 from dotenv import load_dotenv
 load_dotenv()
@@ -549,15 +550,14 @@ def main():
     except Exception as e:
         print(f"[WARN] 古いファイルのクリーンアップに失敗しました: {e}")
 
-    # latest.json シンボリックリンクを更新
-    link_path = OUTPUT_PATH
+    # latest.json を最新ファイルのコピーとして更新
     try:
-        if os.path.islink(link_path) or os.path.exists(link_path):
-            os.remove(link_path)
-        os.symlink(os.path.abspath(ts_path), link_path, target_is_directory=False)
+        if os.path.exists(OUTPUT_PATH):
+            os.remove(OUTPUT_PATH)
+        shutil.copy2(ts_path, OUTPUT_PATH)
     except OSError as e:
-        print(f"[WARN] シンボリックリンクの更新に失敗しました: {e}")
-        with open(link_path, "w", encoding="utf-8") as f:
+        print(f"[WARN] latest.json の更新に失敗しました: {e}")
+        with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
 
     print("=" * 50)
