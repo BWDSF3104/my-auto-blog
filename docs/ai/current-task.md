@@ -8,6 +8,8 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- B1-B4 P0 features 実装済み (Social Sharing, Footer SNS, Breadcrumb Schema, Tag Colors, OG Tags, Accessibility, Copy Button, Lazy Loading): ビルド成功済み
+
 ## Completed Tasks
 
 - AGENTS.md に言語ルールセクションを追加: `b87b8d7`

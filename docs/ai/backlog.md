@@ -4,15 +4,7 @@
 
 ## P0
 
-1. Back to Top ボタン
-2. コードブロックのコピーボタン
-3. Social Sharing Buttons
-4. Tag Colors
-5. Breadcrumb Schema
-6. Lazy Loading for Images
-7. OG Tags の最適化
-8. Skip Navigation Link
-9. Footer の SNS リンク
+(完了済み項目は削除済み)
 
 ## P2
 

@@ -2,6 +2,7 @@
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ThemeInit from '../../components/ThemeInit.astro';
+import { getTagColor } from '../../lib/tagColors';
 import '../../styles/global.css';
 
 export async function getStaticPaths() {
@@ -133,7 +134,7 @@ const siteDescription = `"${tag}"タグの記事一覧（${posts.length}件）`;
             → 全タグを見る
           </a>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 tracking-tight mb-2">#{tag}</h1>
+        <h1 class={`text-3xl sm:text-4xl font-bold tracking-tight mb-2 ${getTagColor(tag).text} ${getTagColor(tag).darkText}`}>#{tag}</h1>
         <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">{posts.length}件の記事</p>
       </header>
 
@@ -162,9 +163,10 @@ const siteDescription = `"${tag}"タグの記事一覧（${posts.length}件）`;
                     <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-500 dark:text-slate-400 mb-3">
                       <span>📅 {post.frontmatter.pubDate}</span>
                       <span>📖 {post.readingTime}分</span>
-                      {post.frontmatter.tags && post.frontmatter.tags.map((t: string) => (
-                        <a href={`${baseUrl}/tags/${encodeURIComponent(t)}`} class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors no-underline">#{t}</a>
-                      ))}
+                      {post.frontmatter.tags && post.frontmatter.tags.map((t: string) => {
+                        const c = getTagColor(t);
+                        return <a href={`${baseUrl}/tags/${encodeURIComponent(t)}`} class={`${c.bg} ${c.darkBg} ${c.text} ${c.darkText} px-2 py-0.5 rounded text-xs font-semibold ${c.hover} ${c.darkHover} transition-colors no-underline`}>#{t}</a>;
+                      })}
                     </div>
                     <p class="m-0 text-slate-600 dark:text-slate-300 text-sm">{post.frontmatter.description}</p>
                   </div>

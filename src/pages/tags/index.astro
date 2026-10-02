@@ -2,6 +2,7 @@
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ThemeInit from '../../components/ThemeInit.astro';
+import { getTagColor } from '../../lib/tagColors';
 import '../../styles/global.css';
 
 const postImports = import.meta.glob<{
@@ -117,12 +118,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
       <main>
         <ul id="tag-list" class="flex flex-wrap gap-3 list-none p-0 m-0">
-          {tags.map(([name, count]) => (
-            <li class="tag-item bg-white dark:bg-slate-800 rounded-xl p-3 border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-200" data-tag={name.toLowerCase()}>
-              <a href={`${baseUrl}/tags/${encodeURIComponent(name)}`} class="text-lg font-semibold text-blue-600 dark:text-blue-400 no-underline hover:underline">#{name}</a>
-              <span class="text-xs text-slate-500 dark:text-slate-400 ml-2">({count})</span>
-            </li>
-          ))}
+          {tags.map(([name, count]) => {
+            const c = getTagColor(name);
+            return (
+              <li class="tag-item bg-white dark:bg-slate-800 rounded-xl p-3 border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-200" data-tag={name.toLowerCase()}>
+                <a href={`${baseUrl}/tags/${encodeURIComponent(name)}`} class={`text-lg font-semibold ${c.text} ${c.darkText} no-underline hover:underline`}>#{name}</a>
+                <span class="text-xs text-slate-500 dark:text-slate-400 ml-2">({count})</span>
+              </li>
+            );
+          })}
         </ul>
         <p id="no-results" class="hidden text-center text-slate-500 dark:text-slate-400 py-10">該当するタグが見つかりません。</p>
       </main>

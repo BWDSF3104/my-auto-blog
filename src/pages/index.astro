@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ThemeInit from '../components/ThemeInit.astro';
+import { getTagColor } from '../lib/tagColors';
 import '../styles/global.css';
 
 const POSTS_PER_PAGE = 10;
@@ -104,12 +105,20 @@ const ogImageUrl = posts[0]?.frontmatter.image
         "position": i + 1
       }))
     })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "ホーム", "item": `${canonicalURL.origin}${baseUrl}/` }
+      ]
+    })} />
   </head>
   <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    <a href="#main-content" class="skip-link">スキップナビゲーション</a>
     <div class="max-w-3xl mx-auto">
       <Header />
 
-      <main>
+      <main id="main-content">
         <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">全 {allPosts.length} 件中 1–{Math.min(POSTS_PER_PAGE, allPosts.length)} を表示</p>
 
         {allPosts.length === 0 ? (
@@ -136,9 +145,10 @@ const ogImageUrl = posts[0]?.frontmatter.image
                     <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-500 dark:text-slate-400 mb-3">
                       <span>📅 {post.frontmatter.pubDate}</span>
                       <span>📖 {post.readingTime}分</span>
-                      {post.frontmatter.tags && post.frontmatter.tags.map((tag: string) => (
-                        <a href={`${baseUrl}/tags/${encodeURIComponent(tag)}`} class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors no-underline">#{tag}</a>
-                      ))}
+                      {post.frontmatter.tags && post.frontmatter.tags.map((tag: string) => {
+                        const c = getTagColor(tag);
+                        return <a href={`${baseUrl}/tags/${encodeURIComponent(tag)}`} class={`${c.bg} ${c.darkBg} ${c.text} ${c.darkText} px-2 py-0.5 rounded text-xs font-semibold ${c.hover} ${c.darkHover} transition-colors no-underline`}>#{tag}</a>;
+                      })}
                     </div>
                     <p class="m-0 text-slate-600 dark:text-slate-300 text-sm">{post.frontmatter.description}</p>
                   </div>
