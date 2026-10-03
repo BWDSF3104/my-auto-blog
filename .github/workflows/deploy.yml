@@ -71,10 +71,17 @@ jobs:
           # �?ィレクトリを安�?�に追�?
           git add src/content/posts/
           [ -d "public/images" ] && git add public/images/
-          # Cache JSON (timestamped file + latest symlink)
+          # Cache JSON (timestamped file + latest.json copy)
           [ -d "data/topics" ] && git add data/topics/
-          
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generated daily post with image [skip ci]" && git pull --rebase && git push)          
+
+          git diff --quiet && git diff --staged --quiet || {
+            git commit -m "docs: auto-generated daily post with image [skip ci]"
+            # Staging again to catch any remaining unstaged changes (e.g. cleanup deletions)
+            git add -A
+            git diff --staged --quiet || git commit -m "chore: cleanup old topic files [skip ci]"
+            git pull --rebase || git pull --no-edit
+            git push
+          }          
 
   # --- 2. Astroサイト構�? ?�? GitHub Pagesへ配信 ---
   build-and-deploy:
