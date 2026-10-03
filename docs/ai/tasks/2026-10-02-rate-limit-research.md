@@ -1,6 +1,6 @@
 # Rate Limit Research (2026-10-02)
 
-**Status**: 完了 (コミット前)
+**Status**: 完了
 
 **Summary**:
 - 各データソースのレート制限を調査・実測

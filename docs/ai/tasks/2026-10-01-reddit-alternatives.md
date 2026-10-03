@@ -38,10 +38,6 @@ Reddit API がブロックされているため、代替のトレンドデータ
 2. HackerNews Firebase API が停止している場合、RSS にフォールバック
 3. kemono/pokemon カテゴリの代替ソースを探索
 
-## Next Action
-
-代替 RSS フィードの可用性を確認し、`fetch_topics.py` に追加する
-
 ## Verification
 
 - `pytest scripts/tests/ -v`: 134/134 全件通過 (0.37s)

@@ -58,11 +58,14 @@
   - Reddit カテゴリ列: "kemono/tech" → "kemono/pokemon/tech"
   - API Keysテーブルから Bluesky行を削除
 
-### A-6. ideas.md: 膨張・重複・実装済み項目の残存
+### A-6. ~~ideas.md: 膨張・重複・実装済み項目の残存~~ ✅ 完了
 - **ファイル**: `docs/ai/ideas.md`
 - **検証結果**: 約500行。重複するアイデアと、既に実装された機能のアイデアが残存。
 - **優先度**: 低
-- **対応**: 重複を削除。実装済み項目を削除またはアーカイブ。
+- **対応**:
+  - 実装済み項目を [x] マーク: コピーボタン, ソーシャル共有, タグカラー, Skip Navigation, Lazy Loading, SNSリンク, Open Graph, Breadcrumbs Schema
+  - 重複する英語セクションを削除: "Performance Optimizations", "SEO Enhancements", "Accessibility Enhancements" (日本語セクションと重複)
+  - 467行 → 435行に削減
 
 ### A-7. ~~memory-bank-guide.md: コミットタイミングの矛盾~~ ✅ 完了
 - **ファイル**: `docs/ai/memory-bank-guide.md`
@@ -171,12 +174,6 @@
 - **検証結果**: Astro デフォルトテンプレートの残骸。未使用。
 - **優先度**: 低
 - **対応**: Welcome.astro と関連アセットを削除。`src/assets/` ディレクトリは空（safe-rmdir アローリスト外のため残留）。
-  - `src/layouts/Layout.astro`
-  - `src/assets/astro.svg`
-  - `src/assets/background.svg`
-- **検証結果**: 4ファイルがすべて存在することを確認。これらはAstroプロジェクト生成時のデフォルトテンプレート。
-- **優先度**: 低
-- **対応**: 未使用であることを確認後、削除する。
 
 ### C-4. ~~CLAUDE.md~~ ✅ 対応不要
 - **検証結果**: リポジトリ内に `CLAUDE.md` は存在しないことを確認。
@@ -200,5 +197,6 @@
 7. ~~**A-5**: architecture.md更新~~ ✅ 完了
 8. ~~**A-7**: memory-bank-guide.mdの矛盾~~ ✅ 完了
 9. ~~**B-3**: e621レーティングフィルタ~~ ✅ 完了
-10. **C-1**: Reddit API (高、ユーザー指示待ち)
-11. その他 (低)
+10. ~~**A-6**: ideas.mdの整理~~ ✅ 完了
+11. **C-1**: Reddit API (高、ユーザー指示待ち)
+12. その他 (低)

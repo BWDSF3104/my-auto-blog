@@ -2,15 +2,15 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
-## 2026-10-02: Separate Rate Limit Table to Dedicated Doc
+## 2026-10-02: レート制限テーブルを独立ドキュメントに分離
 
-**Decision**: Move the API rate limit table from `AGENTS.md` to `docs/ai/api-rate-limits.md` and add a verification rule to run `test_real_apis.py --save` after `fetch_topics.py` updates.
+**Decision**: AGENTS.md のレート制限テーブルを `docs/ai/api-rate-limits.md` に分離。`fetch_topics.py` 更新後に `test_real_apis.py --save` を実行する検証ルールを追加。
 
-**Reason**: The rate limit table was inline in `AGENTS.md`, making the file bloated. Separating it improves maintainability and keeps `AGENTS.md` focused on operational rules. The verification rule ensures data source availability is checked after trend collection script changes.
+**Reason**: AGENTS.md にインラインで配置していたレート制限テーブルがファイル肥大化の原因。分離して保守性を向上し、AGENTS.md を運用ルールに集中させる。検証ルールにより、トレンド収集スクリプト変更後のデータソース可用性をチェック。
 
 **Impact**:
-- `AGENTS.md`: Inline rate limit table replaced with reference to `docs/ai/api-rate-limits.md`. Added verification rule for `test_real_apis.py --save` after `fetch_topics.py` changes.
-- `docs/ai/api-rate-limits.md`: New file containing the confirmed rate limit table.
+- `AGENTS.md`: インラインレート制限テーブルを `docs/ai/api-rate-limits.md` への参照に置換。`fetch_topics.py` 変更後の `test_real_apis.py --save` 検証ルールを追加。
+- `docs/ai/api-rate-limits.md`: 確認済みのレート制限テーブルを含む新ファイル。
 
 ## 2026-10-01: Remove Deploy Success Skip Logic
 
@@ -47,20 +47,6 @@
 
 **Impact**:
 - `scripts/generate_article.py`: `import requests`追加、`_save_as_avif()` ヘルパー関数分離、`_generate_image_pollinations()` フォールバック関数追加、`generate_and_save_image()` にフォールバックロジック追加、`IMAGE_PROVIDER` 環境変数対応
-
-## 2026-09-30: Deploy Success Timestamp for Duplicate Prevention
-
-**Decision**: Record a deploy-success timestamp in `data/.last-deploy-success.json` after successful deployment. Before generating a new article, check if a same-day successful deploy already exists — if so, skip generation with `sys.exit(0)`.
-
-**Rationale**: The existing `data/.last-generated.json` timestamp was recorded on generation success, not deploy success. When deploy failed after generation, the timestamp was still set, so the next run skipped generation. Recording only on deploy success ensures the timestamp reflects actual published content. Additionally, character/theme duplication in story articles was not detected because overlap checks only compared titles — extending to full frontmatter (character_1, character_2, tags, art_style) gives the LLM negative instructions to avoid reused character combinations.
-
-**Rejected Alternatives**:
-- デプロイ失敗時の rollback job: 追加の CI/CD 複雑さで効果に見合わない
-- 生成完了時のみタイムスタンプ記録（既存の方式）: デプロイ失敗時に誤ってスキップされる
-
-**Impact**:
-- `.github/workflows/deploy.yml`: `build-and-deploy` job に deploy 成功後の記録ステップ追加
-- `scripts/generate_article.py`: `check_deploy_success()` 関数追加、`get_recent_meta_by_type()` 関数追加、NG 指示ブロックを強化
 
 ## 2026-09-30: Per-Source TTL and Timestamped Cache Files
 
@@ -106,24 +92,6 @@
 **Rejected Alternatives**:
 - trend_keywordsをそのまま使用: GitHubリポジトリ名が混入し、無関係な検索結果になる
 - tagsのみを使用: 記事のテーマを十分に反映できない
-
-## 2026-09-30: Per-Source TTL Cache with Time-Stamped Files
-
-**Decision**: Replace single-file cache with per-run timestamped files, each containing per-source TTL tracking. Eliminate partial cache layer.
-
-**Rationale**: Current `latest_topics.json` is overwritten on each run, losing history. All sources are fetched regardless of prompt type, wasting API calls. Character/theme overlap between consecutive articles may be caused by stale cached data being reused across multiple generations within the 24h TTL window.
-
-**New structure**:
-- Files: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` (one per run)
-- Compatibility: `data/topics/latest.json` symlink to newest file
-- Each source has independent `fetched_at` for TTL tracking
-- `generate_article.py` auto-triggers `fetch_topics.py --prompt-type X` when needed categories are stale
-- Partial cache (`.cache/` directory) is not needed — per-source TTL within a single file provides sufficient granularity
-
-**Impact**:
-- `fetch_topics.py`: Output to timestamped file, per-source `fetched_at` in JSON, update symlink
-- `generate_article.py`: Read from `latest.json`, check per-source TTL, auto-trigger fetch for stale sources with correct `--prompt-type`
-- `data/latest_topics.json` → `data/topics/latest.json` (symlink)
 
 ## 2026-09-30: Affiliate Link HTML `<a>` Tag Conversion
 

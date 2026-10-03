@@ -99,3 +99,11 @@ Gemini APIの出力に`---`がない場合、`generate_article.py`の`content.re
 - **L-5** `generate_article.py` の相対パス: `TOPICS_DIR` と `TOPICS_JSON_PATH` が CWD 変更時に失敗した。`PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))` を追加して絶対パスに変更。`_auto_fetch_topics` の subprocess 呼び出しも修正。
 - **L-6** `collect_bluesky` の URI 解析: 空の URI で `uri.split(':')[-1]` が空文字列を返し、無効な URL が生成された。空 URI チェックと rkey の空チェックを追加。
 - **L-7** `_is_nsfw_post` の `non_consecutive`: NSFW タグセットに `non_consecutive` が含まれており、e621 のメタタグを誤って NSFW としてフィルタしていた。セットから削除。
+
+## ソースコード監査で発見された潜在的なバグ (解決済 2026-09-30)
+
+ソースコードの静的解析で発見した 9 件の潜在的バグを全修正。テスト134件全件通過確認済み。
+
+## Reddit API ブロッキング (解決済 2026-10-02)
+
+Reddit が `.json` エンドポイントを HTTP 403 でブロック。e621、Kemono API、RSS フィードを代替ソースとして追加し、kemono/pokemon カテゴリのトピック収集を安定化。

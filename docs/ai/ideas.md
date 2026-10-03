@@ -15,8 +15,8 @@
 
 - **読み進め率インジケーター**: 記事上部にスクロール進捗バー（青色の細いバー）
 - **目次固定**: 長文記事で目次を右側（またはモバイルでは折りたたみ）に固定表示
-- **コードブロックのコピーボタン**: コードブロック右上にクリップボードアイコン
-- **ソーシャル共有ボタン**: 記事下部にX/Twitter, Hatena, Pocket, LinkedIn の共有ボタン
+- [x] **コードブロックのコピーボタン**: 実装済み (Clipboard API)
+- [x] **ソーシャル共有ボタン**: 実装済み (X, Hatena, LINE, Pocket)
 - **コメントシステム**: Giscus (GitHub Discussions 連携) でコメント機能
 - **記事のブックマーク**: localStorage で記事のブックマークを保存・表示
 - **関連記事カルーセル**: 関連記事を横スクロールのカードカルーセルで表示
@@ -34,7 +34,7 @@
 
 ## タグ・カテゴリ改善
 
-- **タグカラー**: 各タグに固有の色を割り当てて視認性を向上
+- [x] **タグカラー**: 実装済み (12色のハッシュベース配色)
 - **タグの説明**: 各タグに説明文を追加（`data/tag-descriptions.json` で管理）
 - **人気タグランキング**: 投稿数順のランキング表示
 - **タグの階層化**: 親タグ → 子タグの階層構造（例: Kemono > TF, Kemono > TSF）
@@ -50,7 +50,7 @@
 ## フッター改善
 
 - **ニュースレター signup**: メールアドレス登録フォーム（またはFeedly/RSSリーダーへのリンク）
-- **SNSリンク**: X/Twitter, GitHub, Bluesky のアイコンリンク
+- [x] **SNSリンク**: 実装済み (X/Twitter, GitHub, Bluesky のアイコンリンク)
 - **サイト統計**: 記事数、最終更新日
 - **暗号化・プライバシーバッジ**: 安全なサイトであることを示すバッジ
 
@@ -79,7 +79,7 @@
 
 ## アクセシビリティ
 
-- **Skip Navigation リンク**: ページトップに「コンテンツへ移動」リンク
+- [x] **Skip Navigation リンク**: 実装済み (ページトップに「コンテンツへ移動」リンク)
 - **キーボードナビゲーション**: Tab順の明確化、フォーカスリングの強化
 - **ARIAラベルの充実**: インタラクティブ要素に適切なARIA属性
 - **文字サイズ調整**: フッターに文字サイズ切り替えボタン
@@ -89,7 +89,7 @@
 
 - **Critical CSS インライン化**: 最初の画面描画に必要なCSSのみをインライン
 - **Font Loading の最適化**: font-display: swap + preload
-- **画像のLazy Loading**: 画像に `loading="lazy"` の一括適用確認
+- [x] **画像のLazy Loading**: 実装済み (`loading="lazy"` 一括適用済み)
 - **Service Worker**: 基本のキャッシュ戦略でオフライン対応
 
 ## 自動化パイプライン改善
@@ -201,38 +201,6 @@
 - **スムーズスクロール**: 目次項目をクリックでスムーズにスクロール移動
 - **コピーリンク**: 各見出しにアンカーリンクを自動生成（URL ハッシュで直接ジャンプ）
 
-## Performance Optimizations (パフォーマンス最適化)
-
-- **Image Optimization**: 画像をWebP/AVIF形式に変換、レスポンシブ画像を提供
-- **Lazy Loading**: 画像、動画、iframeを遅延読み込み
-- **Code Splitting**: Astroの動的インポートでJavaScriptを分割
-- **Critical CSS**: 最初の画面描画に必要なCSSのみをインライン化
-- **Font Optimization**: フォントファイルのサブセット化、フォントロードの最適化
-- **Caching Strategy**: Service Workerでオフライン対応、キャッシュ戦略の最適化
-- **CDN Integration**: 静的アセットをCDNで配信
-- **Preconnect/Preload**: 重要なリソースへの事前接続、プリロード
-
-## SEO Enhancements (SEO強化)
-
-- **Structured Data**: JSON-LDで記事、FAQ、HowToの構造化データを追加
-- **XML Sitemap**: 動的に更新されるサイトマップの生成
-- **Open Graph**: 記事のOGタグを最適化（画像、タイトル、説明）
-- **Twitter Cards**: Twitterカードのメタタグを追加
-- **Canonical URLs**: 重複コンテンツの防止のためにカノニカルURLを設定
-- **Hreflang**: 多言語対応時の言語指定
-- **Breadcrumbs Schema**: パンくずリストの構造化データ
-- **Internal Linking**: 記事間の内部リンクを自動生成
-
-## Accessibility Enhancements (アクセシビリティ強化)
-
-- **Keyboard Navigation**: キーボードでのナビゲーションを完全サポート
-- **Screen Reader**: スクリーンリーダーとの互換性を確保
-- **ARIA Labels**: インタラクティブ要素にARIAラベルを追加
-- **Focus Management**: フォーカス管理を最適化（フォーカストラップ、フォーカスインジケーター）
-- **Color Contrast**: 色コントラストをWCAG 2.1 AA準拠に
-- **Alt Text**: 画像に代替テキストを必須化
-- **Skip Links**: メインコンテンツへのスキップリンクを追加
-- **Reduced Motion**: motionの軽減を尊重するアニメーション
 
 ## Mobile-First Design (モバイルファーストデザイン)
 
