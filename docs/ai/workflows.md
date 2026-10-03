@@ -4,21 +4,12 @@
 
 `git commit`と`git push`は一連の作業として連続して実行する。commit後にpushを中断してはならない。
 
-After completing file changes, check if remote has new commits:
+**コミット実行前に必ず以下の手順を完了すること:**
 
-1. `git fetch origin` — fetch remote refs without merging
-2. `git rev-list HEAD..origin/main --count` — count remote commits not yet pulled
-
-If remote has new commits (count > 0):
-
-1. `git stash` — save local changes temporarily
-2. `git pull` — fetch and merge remote changes
-3. `git stash pop` — restore saved changes (resolve conflicts if any)
-4. `git add`, `git commit`, `git push`
-
-If remote has no new commits (count == 0):
-
-1. `git add`, `git commit`, `git push`
+1. `git fetch origin` — remote refsを取得
+2. `git rev-list HEAD..origin/main --count` — remoteの新しいコミット数をカウント
+3. カウント > 0 の場合: `git stash` → `git pull` → `git stash pop` → 競合解決
+4. `git add`, `git commit`, `git push`を連続して実行
 
 Commit message format: `feat: <日本語説明>` for features, `fix: <日本語説明>` for bug fixes.
 Never use `git push --force` or modify remote history.
