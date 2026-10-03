@@ -2,6 +2,31 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-03: npm サプライチェーン攻撃対策の適用
+
+**Decision**: npm の依存パッケージをバージョン固定化し、npm グローバル設定でサプライチェーン攻撃対策を有効化。
+
+**Reason**: 2025-2026年にnpmエコシステムで複数の大規模なサプライチェーン攻撃（Shai-Hulud, ChainDrop, Miasma, IronWorm, GHAPPIER など）が発生。自己複製型のマルウェアが500〜1300以上のパッケージを汚染し、install-time script を経て資格情報を窃取する攻撃が常態化。本项目の直のパッケージ（astro, tailwindcss 等）は汚染リストには含まれていないが、推移的依存の `http-cache-semantics` に high 脆弱性（GHSA-ch52-4w7c-c8xp）が存在。
+
+**Applied Settings**:
+
+- `package.json`: 全パッケージのバージョン指定を `^` から exact version に変更（例: `^7.3.5` → `7.3.5`）
+- `npm config set save-exact=true`: 今後 `npm install` する際にexact versionを記録
+- `npm config set min-release-age=7`: 公開後7日未満のバージョンはインストールしない（汚染された新バージョンの回避）
+- `npm config set ignore-scripts=true`: install-time script（postinstall, preinstall など）を無効化（マルウェア拡散経路の遮断）
+
+**Impact**:
+- `package.json`: `astro`, `tailwindcss`, `@tailwindcss/vite`, `@tailwindcss/typography` のバージョンを固定
+- `package-lock.json`: 既存のロックファイルと整合性あり
+- `allowScripts.esbuild`: `ignore-scripts=true` により無効化されるが、esbuildのネイティブバイナリは別パッケージとしてインストールされるためビルドに影響なし
+- ビルド動作は確認済み（`npm run build` 成功）
+- 今後 install script が必要なパッケージを追加する場合は `npm install --ignore-scripts=false` で明示的に有効化する必要がある
+
+**Rejected Alternatives**:
+- `^` を維持: メジャーバージョン内の自動更新が許可され、汚染された新バージョンがインストールされるリスク
+- `~` (minor以下のみ) の使用: patch版本の自動更新が許可され、完全な固定ではない
+- npm v12のリリースを待機: npm v12ではinstall scriptがデフォルト無効化されるが、リリース時期が不明確
+
 ## 2026-10-02: レート制限テーブルを独立ドキュメントに分離
 
 **Decision**: AGENTS.md のレート制限テーブルを `docs/ai/api-rate-limits.md` に分離。`fetch_topics.py` 更新後に `test_real_apis.py --save` を実行する検証ルールを追加。
