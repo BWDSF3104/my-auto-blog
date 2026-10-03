@@ -24,3 +24,4 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 - latest.json のシンボリックリンクをファイルコピーに置換: `b569ece`
 - Memory Bank 1タスク1ファイル方式への移行: `7c0c9a8`
 - 既存記事のアフィリエイトリンクを一括置換: `a0299ef`
+- issue-inventory 全項目対応完了 (B-1~B-10, A-5,A-7, C-2~C-5): `6d81ea1`
