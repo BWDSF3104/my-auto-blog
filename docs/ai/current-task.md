@@ -8,4 +8,5 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- issue-inventory ドキュメント整理 (A-1〜A-9): 進行中
+- issue-inventory ドキュメント整理 (A-1〜A-9): 完了 (commit 51ac76c)
+- C-1 (Reddit API): ユーザー指示待ち
