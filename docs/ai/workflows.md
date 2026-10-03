@@ -2,6 +2,8 @@
 
 ## Git Workflow
 
+`git commit`と`git push`は一連の作業として連続して実行する。commit後にpushを中断してはならない。
+
 After completing file changes, check if remote has new commits:
 
 1. `git fetch origin` — fetch remote refs without merging
