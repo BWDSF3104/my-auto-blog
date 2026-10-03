@@ -580,7 +580,9 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 
         if image_url:
             # 成功時: 前後に空行を入れてMarkdown画像タグに置換
-            alt_text = re.sub(r'\[.*?\]', '', raw_prompt).strip().strip(', ') or "Illustration"
+            alt_text = re.sub(r'\[.*?\]', '', raw_prompt).strip().strip(', ')
+            alt_text = re.sub(r'\bcharacter_\d+\b', '', alt_text).strip().strip(', ')
+            alt_text = alt_text or "Illustration"
             replacement = f"\n\n![{alt_text}]({image_url})\n\n"
             content = content.replace(full_tag, replacement, 1)
         else:
@@ -591,6 +593,42 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
     content = INLINE_IMAGE_PATTERN.sub("", content)
     # 連続する過剰な改行を整理
     content = re.sub(r'\n{3,}', '\n\n', content)
+    return content
+
+
+# --------------------------------------------------
+# 本文内の [character_N] プレースホルダーの置換
+# --------------------------------------------------
+def replace_character_placeholders(content: str, characters: dict[str, str]) -> str:
+    """
+    本文内の [character_1], [character_2] などのプレースホルダーを、
+    キャラクター設定の最初のタグ（種別）に置換する。
+    例: [character_1] → "狼少年" (character_1の最初のタグが "1boy" の場合)
+    """
+    if not characters:
+        return content
+
+    tag_to_japanese = {
+        "1boy": "少年",
+        "2boys": "二人の少年",
+        "1girl": "少女",
+        "2girls": "二人の少女",
+        "1male": "男性",
+        "2males": "二人の男性",
+        "1female": "女性",
+        "2females": "二人の女性",
+    }
+
+    for char_key, char_desc in characters.items():
+        tags = [t.strip() for t in char_desc.split(",")]
+        first_tag = tags[0] if tags else ""
+        replacement = tag_to_japanese.get(first_tag.lower(), first_tag)
+        if not replacement:
+            replacement = "キャラクター"
+        pattern = rf"\[{re.escape(char_key)}\]"
+        content = re.sub(pattern, replacement, content)
+        content = re.sub(rf"\b{re.escape(char_key)}\b", replacement, content)
+
     return content
 
 
@@ -2020,6 +2058,9 @@ def generate_post():
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
     content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style)
+
+    # 5.3 本文内の [character_N] プレースホルダーを置換
+    content = replace_character_placeholders(content, characters)
 
     # 5.4 本文内アフィリエイトプレースホルダーの実リンク置換
     content = process_inline_affiliates(content)

@@ -620,6 +620,7 @@ if (frontmatter.speakable) {
               const link = tocList.querySelector('a[href="#' + entry.target.id + '"]');
               if (link) {
                 if (entry.isIntersecting) {
+                  tocList.querySelectorAll('.toc-link-active').forEach(l => l.classList.remove('toc-link-active'));
                   link.classList.add('toc-link-active');
                 } else {
                   link.classList.remove('toc-link-active');

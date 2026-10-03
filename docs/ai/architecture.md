@@ -24,10 +24,10 @@ Collects trending topics from multiple sources:
 | Source | API | Category | Status |
 |--------|-----|----------|--------|
 | HackerNews | Firebase API | tech | ✅ Active |
-| Reddit | .json endpoint | kemono/tech | ❌ Blocked (403) |
+| Reddit | .json endpoint | kemono/pokemon/tech | ❌ Blocked (403) |
 | e621 | REST API | kemono/pokemon | ✅ Active |
-| RSS | Feedparser | tech | ✅ Active |
-| GitHub | Search API | tech/kemono | ✅ Active |
+| RSS | xml.etree.ElementTree | tech/pokemon | ✅ Active |
+| GitHub | Search API | kemono/pokemon | ✅ Active |
 | Bluesky | AT Protocol search API | tech/kemono/pokemon | ✅ Active |
 
 Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
@@ -94,7 +94,6 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 | Service | Env Var | Name |
 |---------|---------|------|
 | Gemini | `GEMINI_API_KEY` | - |
-| Bluesky | `BLUESKY_API_KEY` | AutoSearch |
 | HuggingFace | `HF_TOKEN` | - |
 | Amazon | `AMAZON_TRACKING_ID` | - |
 | Rakuten | `RAKUTEN_AFFILIATE_ID` | - |

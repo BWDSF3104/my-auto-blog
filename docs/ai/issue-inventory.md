@@ -39,15 +39,24 @@
 - **優先度**: 低
 - **対応**: 古い5件を `plans-archive.md` へ移動。直近5件を保持。
 
-### A-5. architecture.md: 古くなった情報
+### A-5. ~~architecture.md: 古くなった情報~~ ✅ 完了
 - **ファイル**: `docs/ai/architecture.md`
 - **検証結果**:
-  - シンボリックリンク参照: 現在のプロジェクト構造にシンボリックリンク不存在
-  - Bluesky: 「Active」と記載されているが、実際の収集コードでは実装されていない
+  - シンボリックリンク参照: `data/topics/latest.json` は存在確認済み
+  - Bluesky: 実装確認済み（`collect_bluesky()` 関数存在、公開エンドポイント使用、APIキー不要）
   - RSS Feedparser: 実際のコードは `xml.etree.ElementTree` を使用（feedparser不使用）
-  - Kemono API: 削除済みのコードがまだ記載されている
+  - Kemono API: 実装確認済み（`collect_kemono_api()` 関数存在）
+  - RSSカテゴリ: 記載は "tech" のみだが、実際は tech/pokemon の両方
+  - GitHubカテゴリ: 記載は "tech/kemono" だが、実際は kemono/pokemon
+  - Redditカテゴリ: 記載は "kemono/tech" だが、実際は kemono/pokemon/tech
+  - Bluesky APIキー: APIキー不要だが、API Keysテーブルに `BLUESKY_API_KEY` が記載されていた
 - **優先度**: 中
-- **対応**: 実際のコードベースに合わせて更新。
+- **対応**:
+  - RSS API列: "Feedparser" → "xml.etree.ElementTree"
+  - RSS カテゴリ列: "tech" → "tech/pokemon"
+  - GitHub カテゴリ列: "tech/kemono" → "kemono/pokemon"
+  - Reddit カテゴリ列: "kemono/tech" → "kemono/pokemon/tech"
+  - API Keysテーブルから Bluesky行を削除
 
 ### A-6. ideas.md: 膨張・重複・実装済み項目の残存
 - **ファイル**: `docs/ai/ideas.md`
@@ -55,14 +64,14 @@
 - **優先度**: 低
 - **対応**: 重複を削除。実装済み項目を削除またはアーカイブ。
 
-### A-7. memory-bank-guide.md: コミットタイミングの矛盾
+### A-7. ~~memory-bank-guide.md: コミットタイミングの矛盾~~ ✅ 完了
 - **ファイル**: `docs/ai/memory-bank-guide.md`
 - **検証結果**:
   - 4行目: 「更新タイミングは git commit 前」
   - 50行目: 「After git commit & push: Update docs/ai/current-task.md」
   - 同一ドキュメント内でコミット前 vs コミット後という矛盾した指示が存在
 - **優先度**: 中
-- **対応**: 指示を統一。AGENTS.mdの記述と整合させる。
+- **対応**: 50行目の指示を「タスク完了時（git commit 前）」に修正。4行目のルールと整合させた。
 
 ### A-8. tasks/2026-10-02-rate-limit-research.md: 古いステータス・AGENTS.md参照
 - **ファイル**: `docs/ai/tasks/2026-10-02-rate-limit-research.md`
@@ -82,81 +91,63 @@
 
 ## B. コードのバグ・問題
 
-### B-1. 記事ファイルにfrontmatterがない (最重要)
+### B-1. ~~記事ファイルにfrontmatterがない~~ ✅ 完了
 - **ファイル**: `src/content/posts/2026-09-30-224625-auto-post.md`
-- **検証結果**: ファイルの先頭に `---` で囲まれたfrontmatterブロックが存在しないことを確認。
-- **影響**: Astroのcontent collectionがこの記事を認識せず、ビルド時に除外される可能性。`PostLayout.astro` の `getStaticPaths` がこの記事をパスリストに含めない。
-- **優先度**: 最高
-- **対応**: frontmatterを補完するか、ファイルを削除する。
+- **検証結果**: frontmatterブロックが存在しないことを確認。
+- **対応**: title, pubDate, description, author, tagsを含むfrontmatterを補完。ビルド成功を確認。
 
-### B-2. e621 API: 日付フィルタ未実装
+### B-2. ~~e621 API: 日付フィルタ未実装~~ ✅ 完了
 - **ファイル**: `scripts/fetch_topics.py:396`
-- **検証結果**: API URLは `https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}` であり、`date_filter`、`date_min`、`date_max` パラメータが含まれていない。
-- **影響**: 古い投稿がトレンドデータに混入する可能性。e621 APIは日付範囲フィルタをサポートしているが未活用。
-- **優先度**: 高
-- **対応**: URL構築に `date_min` パラメータを追加。例: `date_min=1727740800` (2024/10/01のUnix timestamp)。
+- **検証結果**: `date_min` パラメータが含まれていなかった。
+- **対応**: URL構築に `date_min` パラメータを追加（直近30日の投稿のみ）。pytest 134件全テスト通過。
 
-### B-3. e621 API: タグフィルタの補強
-- **ファイル**: `scripts/fetch_topics.py:389-396`
-- **検証結果**: 検索クエリは `E621_TAGS` 配列で定義されているが、取得結果のタグに明示的なフィルタロジックが弱い。`_is_nsfw_post()` は rating `e` (explicit) と既知のNSFWタグセットでフィルタするが、`r` (questionable) レーティングの投稿は通過する。
+### B-3. ~~e621 API: タグフィルタの補強~~ ✅ 完了
+- **ファイル**: `scripts/fetch_topics.py:271-287`
+- **検証結果**: `_is_nsfw_post()` は rating `e` (explicit) と既知のNSFWタグセットでフィルタするが、`q` (questionable) レーティングの投稿は通過する。
 - **優先度**: 中
-- **対応**: 物語モードでは `r` レーティングもフィルタするか、`safe` レーティングのみを許可する。
+- **対応**: `rating in ("e", "q")` に変更して questionable もフィルタ対象に追加。関連テストを更新。134 tests passed.
 
-### B-4. 記事に character_1 プレースホルダーが残存
-- **ファイル**: `src/content/posts/*.md` (複数ファイル、36件)
-- **検証結果**: `character_1` というプレースホルダー文字列が生成記事に36件残存していることを確認。
-- **影響**: 記事本文に未置換のプレースホルダーが表示される。
-- **優先度**: 高
-- **対応**: `generate_article.py` のキャラクター名置換ロジックを修正。既存記事のプレースホルダーをバッチ置換。
+### B-4. ~~記事に character_1 プレースホルダーが残存~~ ✅ 完了
+- **ファイル**: `src/content/posts/*.md` (複数ファイル)
+- **検証結果**: 本文内の `[character_N]` 形式とaltテキスト内の `character_N` が残存していた。
+- **対応**:
+  - `generate_article.py` に `replace_character_placeholder()` 関数を追加。`process_inline_images()` のaltテキスト処理で `character_N` を種族記述に置換。
+  - 既存記事の本文 `[character_N]` を手動置換（2026-10-01-180939のみ）。
+  - 既存記事のaltテキスト `character_N` を5ファイル6件分クリーンアップ。
+  - pytest 134件全テスト通過。ビルド成功。
 
-### B-5. PostLayout.astro: TOCハイライトの複数同時付与
+### B-5. ~~PostLayout.astro: TOCハイライトの複数同時付与~~ ✅ 完了
 - **ファイル**: `src/layouts/PostLayout.astro:616-630`
-- **検証結果**: `IntersectionObserver` のコールバックで `entry.isIntersecting` 時に `toc-link-active` を追加、`false` 時に削除する。しかし、複数の見出しが同時に交差領域内にある場合、複数のTOCリンクにアクティブクラスが付与される。
-- **コード**:
-  ```javascript
-  entries.forEach(entry => {
-    const link = tocList.querySelector('a[href="#' + entry.target.id + '"]');
-    if (link) {
-      if (entry.isIntersecting) {
-        link.classList.add('toc-link-active');
-      } else {
-        link.classList.remove('toc-link-active');
-      }
-    }
-  });
-  ```
-- **優先度**: 中
-- **対応**: 交差する見出しが見つかった場合、まず全TOCリンクからアクティブクラスを削除してから対象に付与する。
+- **検証結果**: 複数の見出しが同時に交差領域内にあると複数のTOCリンクにアクティブクラスが付与された。
+- **対応**: `isIntersecting` 時に全TOCリンクからアクティブクラスを削除してから対象に付与するよう修正。ビルド成功。
 
-### B-6. PostLayout.astro: ダークモードセレクタの脆弱性
-- **ファイル**: `src/layouts/PostLayout.astro:393, 457, 466, 497, 502`
-- **検証結果**: `:root[class~="dark"]` セレクタを使用。これは `<html>` 要素に `dark` クラスが付与されていることを前提とする。ThemeInitコンポーネントがこれを管理しているが、セレクタがグローバルスタイル内で使用されているため、コンポーネントのバグ時にダークモードCSSが効かなくなる。
-- **優先度**: 低
-- **対応**: Tailwindの `dark:` 修飾子と整合するセレクタに統一するか、`@media (prefers-color-scheme: dark)` のフォールバックを追加。
+### B-6. ~~PostLayout.astro: ダークモードセレクタの脆弱性~~ ✅ 対応不要
+- **ファイル**: `src/layouts/PostLayout.astro`, `src/styles/global.css`
+- **検証結果**: `:root[class~="dark"]` は Tailwind の `darkMode: 'class'` 設定が生成する標準セレクタ。ThemeInit コンポーネントが `<html>` に `dark` クラスを付与する仕組みと整合。
+- **結論**: Tailwind の設計仕様でありバグではない。フォールバック不要。
 
-### B-7. [tag].astro: 未使用のHeaderインポート
+### B-7. ~~[tag].astro: 未使用のHeaderインポート~~ ✅ 完了
 - **ファイル**: `src/pages/tags/[tag].astro:2`
 - **検証結果**: `Header` コンポーネントをインポートしているが、テンプレート側で使用されていないことを確認。
 - **優先度**: 低
-- **対応**: 未使用インポートを削除。
+- **対応**: 未使用インポートを削除。ビルド成功。
 
-### B-8. tailwind.config.mjs: ESMでrequire()使用
+### B-8. ~~tailwind.config.mjs: ESMでrequire()使用~~ ✅ 完了
 - **ファイル**: `tailwind.config.mjs:9`
-- **検証結果**: `.mjs` ファイル（ESMモジュール）内で `require('@tailwindcss/typography')` を使用。現在のNode.jsバージョンでは機能するが、厳密なESM環境ではエラーになる。
+- **検証結果**: `.mjs` ファイル（ESMモジュール）内で `require('@tailwindcss/typography')` を使用。
 - **優先度**: 低
-- **対応**: `import createPlugin from '@tailwindcss/typography'` 形式に書き換えるか、`.cjs` に拡張子を変更する。
+- **対応**: `import typography from '@tailwindcss/typography'` に書き換え。ビルド成功。
 
-### B-9. test_real_apis.py: pytest収集防止の不確実性
-- **ファイル**: `scripts/tests/test_real_apis.py:31`
-- **検証結果**: `__test__ = False` を設定しているが、`conftest.py` に `collect_ignore` が設定されていない。pytestのバージョンによっては収集される可能性。
-- **優先度**: 中
-- **対応**: `conftest.py` に `collect_ignore = ["test_real_apis.py"]` を追加。
+### B-9. ~~test_real_apis.py: pytest収集防止の不確実性~~ ✅ 完了
+- **ファイル**: `scripts/tests/conftest.py`
+- **検証結果**: `collect_ignore` が設定されていない。
+- **対応**: `collect_ignore = ["test_real_apis.py"]` を追加。pytest 134件全テスト通過。
 
-### B-10. test_real_apis.py: PYTHONIOENCODINGの設定タイミング
+### B-10. ~~test_real_apis.py: PYTHONIOENCODINGの設定タイミング~~ ✅ 完了
 - **ファイル**: `scripts/tests/test_real_apis.py:34-35`
-- **検証結果**: `os.environ["PYTHONIOENCODING"] = "utf-8"` をモジュール読み込み時に設定。しかし、PythonのIOストリームはインタープリタ起動時に決定されるため、この設定は効果がない可能性。
+- **検証結果**: `os.environ["PYTHONIOENCODING"]` はインタープリタ起動時にのみ有効。
 - **優先度**: 低
-- **対応**: スクリプトの先頭で `sys.stdout` / `sys.stderr` を再ラップするか、実行時のコマンドラインオプションで設定する。
+- **対応**: `sys.stdout.reconfigure(encoding="utf-8")` に変更。pytest 134件全テスト通過。
 
 ---
 
@@ -169,17 +160,17 @@
 - **優先度**: 高 (ユーザー指定)
 - **対応**: 未着手。ユーザーの指示を待つ。
 
-### C-2. 古いデータファイル
-- **ファイル**:
-  - `data/latest_topics.json`
-  - `scripts/data/latest_topics.json`
-- **検証結果**: 両方のパスに `latest_topics.json` が存在。`scripts/data/` 下のファイルは古いデータを含む可能性。
+### C-2. ~~古いデータファイル~~ ✅ 完了
+- **ファイル**: `data/latest_topics.json`, `scripts/data/latest_topics.json`
+- **検証結果**: 両方とも旧ファイル。現在の真理源は `data/topics/latest.json`。
 - **優先度**: 低
-- **対応**: `scripts/data/latest_topics.json` を削除するか、データフローの単一真理源を明確にする。
+- **対応**: 両ファイルを削除。AGENTS.md のパス参照を `data/topics/latest.json` に更新。
 
-### C-3. Astroテンプレートの残骸
-- **ファイル**:
-  - `src/components/Welcome.astro`
+### C-3. ~~Astroテンプレートの残骸~~ ✅ 完了
+- **ファイル**: `src/components/Welcome.astro`, `src/assets/astro.svg`, `src/assets/background.svg`
+- **検証結果**: Astro デフォルトテンプレートの残骸。未使用。
+- **優先度**: 低
+- **対応**: Welcome.astro と関連アセットを削除。`src/assets/` ディレクトリは空（safe-rmdir アローリスト外のため残留）。
   - `src/layouts/Layout.astro`
   - `src/assets/astro.svg`
   - `src/assets/background.svg`
@@ -187,27 +178,27 @@
 - **優先度**: 低
 - **対応**: 未使用であることを確認後、削除する。
 
-### C-4. CLAUDE.md
+### C-4. ~~CLAUDE.md~~ ✅ 対応不要
 - **検証結果**: リポジトリ内に `CLAUDE.md` は存在しないことを確認。
-- **優先度**: 高 (ユーザー指定)
-- **対応**: 未着手。Kilo用の設定ファイル (`AGENTS.md`, `.kilocoderules`) が代替として機能している。
+- **結論**: 本プロジェクトはKiloを使用。`AGENTS.md` と `.kilocoderules` が同等の役割を果たしているため、作成不要。
 
-### C-5. .vscode/settings.json
-- **検証結果**: ファイルが存在しないことを確認。
+### C-5. ~~.vscode/settings.json~~ ✅ 対応不要
+- **検証結果**: ファイルは存在し、Kilo auto-approve 設定として機能中。
 - **優先度**: 低
-- **対応**: 必要に応じて作成する。
+- **対応**: 削除不要。有用な設定ファイルとして維持。
 
 ---
 
 ## 優先順位まとめ (ユーザー指定順)
 
-1. **B-1**: frontmatter欠落記事の修正 (最高)
-2. **C-1 + B-2**: Reddit/Kemono対応 + e621日付フィルタ (高)
-3. **C-4**: CLAUDE.md対応 (高、ユーザー指定)
-4. **B-4**: character_1プレースホルダー (高)
-5. **B-5**: TOCハイライトバグ (中)
-6. **B-9**: pytest収集防止 (中)
-7. **A-5**: architecture.md更新 (中)
-8. **A-7**: memory-bank-guide.mdの矛盾 (中)
-9. **B-3**: e621レーティングフィルタ (中)
-10. その他 (低)
+1. ~~**B-1**: frontmatter欠落記事の修正~~ ✅ 完了
+2. ~~**B-2**: e621日付フィルタ~~ ✅ 完了
+3. ~~**C-4**: CLAUDE.md対応~~ ✅ 対応不要
+4. ~~**B-4**: character_1プレースホルダー~~ ✅ 完了
+5. ~~**B-5**: TOCハイライトバグ~~ ✅ 完了
+6. ~~**B-9**: pytest収集防止~~ ✅ 完了
+7. ~~**A-5**: architecture.md更新~~ ✅ 完了
+8. ~~**A-7**: memory-bank-guide.mdの矛盾~~ ✅ 完了
+9. ~~**B-3**: e621レーティングフィルタ~~ ✅ 完了
+10. **C-1**: Reddit API (高、ユーザー指示待ち)
+11. その他 (低)

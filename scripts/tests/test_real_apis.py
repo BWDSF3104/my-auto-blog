@@ -32,7 +32,8 @@ __test__ = False
 
 # Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
 if sys.platform == "win32":
-    os.environ["PYTHONIOENCODING"] = "utf-8"
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 USER_AGENT = "my-auto-blog/1.0 (https://github.com)"
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "api_test_results")

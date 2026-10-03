@@ -5,6 +5,9 @@ import sys
 # Add scripts directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Prevent pytest from collecting test_real_apis.py (calls external APIs)
+collect_ignore = ["test_real_apis.py"]
+
 
 @pytest.fixture
 def sample_markdown_with_frontmatter():

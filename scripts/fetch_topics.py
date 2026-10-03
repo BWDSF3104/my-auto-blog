@@ -269,9 +269,9 @@ def collect_reddit(limit_per_sub: int = 5, categories: list[str] = None) -> list
 
 
 def _is_nsfw_post(post: dict) -> bool:
-    """e621 投稿が NSFW（rating: explicit）または既知の NSFW タグを含む場合 True"""
+    """e621 投稿が NSFW（rating: explicit/questionable）または既知の NSFW タグを含む場合 True"""
     rating = post.get("rating", "")
-    if rating == "e":
+    if rating in ("e", "q"):
         return True
     nsfw_tags = {
         "sexual", "sex", "bare_legs", "bare_thighs", "bare_hips", "bare_butt",
@@ -393,7 +393,9 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
             continue
         print(f"[e621] Fetching tag: {tag_query}...")
         encoded = urllib.parse.quote(tag_query)
-        url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}"
+        from datetime import datetime, timezone, timedelta
+        thirty_days_ago = int((datetime.now(timezone.utc) - timedelta(days=30)).timestamp())
+        url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}&date_min={thirty_days_ago}"
         data = fetch_json(url, headers=headers)
         if not data:
             continue

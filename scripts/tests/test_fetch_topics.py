@@ -25,12 +25,12 @@ class TestIsNSFWPost:
         assert _is_nsfw_post(post) is True
 
     def test_nsfw_rating_questionable(self):
-        """rating: 'q' (questionable) の場合はFalseを返す"""
+        """rating: 'q' (questionable) の場合はTrueを返す"""
         post = {
             "rating": "q",
             "tags": {"general": ["test", "safe"]}
         }
-        assert _is_nsfw_post(post) is False
+        assert _is_nsfw_post(post) is True
 
     def test_nsfw_rating_safe(self):
         """rating: 's' (safe) の場合はFalseを返す"""
@@ -73,9 +73,9 @@ class TestIsNSFWPost:
         assert _is_nsfw_post(post) is False
 
     def test_empty_tags(self):
-        """タグが空の場合はFalseを返す"""
+        """タグが空でsafeの場合はFalseを返す"""
         post = {
-            "rating": "q",
+            "rating": "s",
             "tags": {}
         }
         assert _is_nsfw_post(post) is False
@@ -99,7 +99,7 @@ class TestIsNSFWPost:
     def test_partial_word_no_match(self):
         """部分一致ではなく完全一致でマッチする"""
         post = {
-            "rating": "q",
+            "rating": "s",
             "tags": {"general": ["test", "namespace"]}
         }
         assert _is_nsfw_post(post) is False

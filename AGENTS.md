@@ -42,7 +42,7 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 ## Code Standards
 
 - Python scripts: UTF-8 encoding
-- Trend data: `data/latest_topics.json`
+- Trend data: `data/topics/latest.json`
 - Generated articles: `src/content/posts/`
 - Generated images: `public/images/`
 
@@ -72,6 +72,6 @@ my-auto-blog/
 ├── public/                # Static assets
 │   └── images/            # Generated images
 ├── data/                  # Collected data
-│   └── latest_topics.json # Trend topics
+│   └── topics/            # Trend topics (timestamped + latest.json)
 └── docs/ai/               # AI Memory Bank (changing knowledge)
 ```
