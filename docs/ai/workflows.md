@@ -70,7 +70,7 @@ pubDate: "YYYY-MM-DD HH:MM:SS"
 description: "記事概要"
 author: "AI Storyteller"
 prompt_type: "manual"
-tags: ["Tag1", "Tag2"]
+tags: ["Tag1", "Tag2", "Manual"]
 art_style: "画像生成用のスタイル指定"
 少女: "キャラクタープロンプト"
 少年: "キャラクタープロンプト"

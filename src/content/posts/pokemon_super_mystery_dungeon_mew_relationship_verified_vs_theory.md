@@ -6,7 +6,7 @@ pubDate: "2026-10-03 18:04:00"
 description: "『ポケモン超不思議のダンジョン』における古代ミュウ、パートナー、現代ミュウの関係を公式設定と考察に分けて整理。転生、魂、肉体の行方について筋の通った解釈を提示。"
 author: "AI Storyteller"
 prompt_type: "manual"
-tags: ["Pokemon", "Mystery Dungeon", "Theory", "Mew", "Game Analysis"]
+tags: ["Pokemon", "Mystery Dungeon", "Theory", "Mew", "Game Analysis", "Manual"]
 art_style: "pokemon game art, cute chibi style, mystical atmosphere, glowing effects, dungeon exploration"
 少女: "1girl, Mew pokemon, pink body, heart-shaped tail, glowing aura, mysterious expression, ancient ruins background"
 少年: "1boy, pokemon partner, determined expression, glowing sword, battle stance, dark matter effects"
