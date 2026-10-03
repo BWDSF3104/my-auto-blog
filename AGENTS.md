@@ -53,11 +53,21 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 
 ## AI Memory Bank
 
-Memory Bank のファイル構成、更新タイミング、アーカイブルール、Long-running Agent Tasks、Recovery After Interruption は `docs/ai/memory-bank-guide.md` を参照。
+`docs/ai/memory-bank-guide.md` を以下のタイミングで参照すること:
+
+- **タスク開始時**
+- **意味のあるステップ完了後**
+- **タスク完了時（git commit 前）**
+- **中断からの再開時**
 
 ## Workflows
 
-Git Workflow、Commit Checklist、Deploy Verification は `docs/ai/workflows.md` を参照。
+`docs/ai/workflows.md` を以下のタイミングで参照すること:
+
+- **ファイル変更の完了後、コミット前に**
+- **git commit 実行前**
+- **git push 完了後**
+- **ユーザーが手動記事作成を依頼した際**
 
 ## Project Structure
 
