@@ -73,6 +73,8 @@ jobs:
           [ -d "public/images" ] && git add public/images/
           # Cache JSON (timestamped file + latest.json copy)
           [ -d "data/topics" ] && git add data/topics/
+          # Trend usage logs
+          [ -d "data/trend_usage" ] && git add data/trend_usage/
 
           git diff --quiet && git diff --staged --quiet || {
             git commit -m "docs: auto-generated daily post with image [skip ci]"

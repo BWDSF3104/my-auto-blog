@@ -1184,6 +1184,25 @@ def _auto_fetch_topics(prompt_type: str, categories: list[str], data: dict) -> d
         return None
 
 
+# --------------------------------------------------
+# Trend usage logging
+# --------------------------------------------------
+TREND_USAGE_DIR = "data/trend_usage"
+
+def _save_trend_usage_log(log_data: dict):
+    """
+    テンデントデータの使用状況を JSON ログとして保存する。
+    候補プールの統計、フィルタ結果、選択されたトピックのメタデータを記録。
+    """
+    os.makedirs(TREND_USAGE_DIR, exist_ok=True)
+    JST = timezone(timedelta(hours=9))
+    timestamp = datetime.now(JST).strftime("%Y-%m-%d-%H%M%S")
+    filepath = os.path.join(TREND_USAGE_DIR, f"{timestamp}.json")
+    with open(filepath, "w", encoding="utf-8") as f:
+        json.dump(log_data, f, ensure_ascii=False, indent=2)
+    print(f"[trend_log] 使用状況ログを保存: {filepath}")
+
+
 def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str, list[str], list[str]]:
     """
     data/topics/latest.json が存在する場合、prompt_type に応じたカテゴリの
@@ -1234,16 +1253,25 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
     trend_source_urls: list[str] = []
     story_mode = prompt_type in ("kemono_story", "novel", "story")
 
+    # Log tracking variables
+    log_raw_count = 0
+    log_after_score = 0
+    log_after_rating = 0
+    selected_items: list[dict] = []
+
     # 全カテゴリから候補を収集
     candidates: list[dict] = []
     for cat in categories:
         for item in by_cat.get(cat, []):
+            log_raw_count += 1
             # スコアしきい値フィルタ
             if item.get("score", 0) < MIN_SCORE_THRESHOLD:
                 continue
+            log_after_score += 1
             # カテゴリ厳格化: 物語モードでは Safe 評価の e621 投稿のみを注入
             if story_mode and item.get("source") == "e621" and item.get("rating") != "s":
                 continue
+            log_after_rating += 1
             title = item.get("title", "").strip()
             if title:
                 candidates.append(item)
@@ -1261,10 +1289,63 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
             selected_titles.append(f"[{source}] {title}")
             if url:
                 trend_source_urls.append(url)
+            selected_items.append({
+                "title": title,
+                "source": source,
+                "url": url,
+                "score": item.get("score", 0),
+                "category": item.get("category", ""),
+                "rating": item.get("rating", ""),
+            })
         # アフィリエイトキーワードは全カテゴリから抽出
         kw = _extract_affiliate_keyword(title)
         if kw:
             affiliate_keywords.append(kw)
+
+    # TTL 情報をログに記録
+    ttl_hours = data.get("ttl_hours", 24)
+    fetched_at = data.get("fetched_at", "")
+    per_source_ttl = data.get("per_source_ttl", {})
+
+    if fetched_at:
+        try:
+            JST = timezone(timedelta(hours=9))
+            fetched_dt = datetime.fromisoformat(fetched_at)
+            if fetched_dt.tzinfo is None:
+                fetched_dt = fetched_dt.replace(tzinfo=JST)
+            elapsed = (datetime.now(JST) - fetched_dt).total_seconds() / 3600
+        except Exception:
+            elapsed = -1
+    else:
+        elapsed = -1
+
+    # Trend usage log を保存
+    _save_trend_usage_log({
+        "timestamp": datetime.now(timezone(timedelta(hours=9))).isoformat(),
+        "prompt_type": prompt_type,
+        "data_file": TOPICS_JSON_PATH,
+        "data_fetched_at": fetched_at,
+        "global_ttl": {
+            "ttl_hours": ttl_hours,
+            "elapsed_hours": round(elapsed, 2) if elapsed >= 0 else None,
+            "expired": global_expired,
+        },
+        "per_source_ttl": {src: info.get("expired", False) for src, info in per_source_ttl.items()},
+        "auto_fetch": {
+            "triggered": has_expired,
+            "success": data is not None,
+        },
+        "candidate_pool": {
+            "categories": categories,
+            "total_raw": log_raw_count,
+            "after_score_filter": log_after_score,
+            "after_rating_filter": log_after_rating,
+            "final_candidates": len(candidates),
+        },
+        "selected": selected_items,
+        "affiliate_keywords": affiliate_keywords,
+        "trend_source_urls": trend_source_urls[:10],
+    })
 
     if not selected_titles:
         return ng_instruction, affiliate_keywords, trend_source_urls
