@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-search-index.js",
+    "build": "node scripts/generate-search-index.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

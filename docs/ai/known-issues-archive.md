@@ -116,3 +116,10 @@ AI がプロンプト指示の `character_1`/`character_2` を無視し、キャ
 - `validate_and_fix_frontmatter()` 内で `safe_load` 前に重複チェックを无条件実行
 - 破損記事 `2026-10-04-112752-auto-post.md` を手動修正（`少年:` → `character_1:`/`character_2:`）
 - テスト110件全通、ビルド成功、デプロイ完了を確認
+
+## 検索画面で検索インデックスの読み込みに失敗 (解決済 2026-10-04)
+
+dev モードで検索画面にアクセスすると「検索インデックスの読み込みに失敗しました」が表示。`generate-search-index.js` が `dist/search-index.json` に出力していたが、dev モードでは `dist/` が空のためフェッチ失敗。
+- `scripts/generate-search-index.js` の出力先を `dist/` から `public/` に変更
+- `package.json` の build スクリプトを `node scripts/generate-search-index.js && astro build` に順序変更（`public/` → `dist/` のコピー前にインデックスを生成）
+- ビルド成功 (108ページ) を確認

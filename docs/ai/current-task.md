@@ -30,8 +30,8 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Verification
 
+- `npm run build`: 成功 (108ページ, 2026-10-04 検索インデックス修正後)
 - `pytest scripts/tests/ -v`: 110 passed (2026-10-04 修正後)
-- `npm run build`: 成功 (2026-10-04 修正後)
 - `gh run list`: deploy-only.yml 最新実行 success
 
 ## Changes

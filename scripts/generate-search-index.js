@@ -6,7 +6,7 @@ import * as yaml from 'js-yaml';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, '..');
 const postsDir = resolve(projectRoot, 'src', 'content', 'posts');
-const distDir = resolve(projectRoot, 'dist');
+const publicDir = resolve(projectRoot, 'public');
 
 function stripHtml(html) {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -49,7 +49,7 @@ for (const file of files) {
 index.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
 writeFileSync(
-  resolve(distDir, 'search-index.json'),
+  resolve(publicDir, 'search-index.json'),
   JSON.stringify(index, null, 2),
   'utf-8'
 );
