@@ -1,0 +1,55 @@
+---
+import { getTagColor } from '../lib/tagColors';
+
+const maxCards = 12;
+
+const postImports = import.meta.glob<{
+  frontmatter: {
+    tags?: string[];
+  };
+}>('../content/posts/*.md', { eager: true });
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tagMap = new Map<string, number>();
+Object.values(postImports).forEach((module: any) => {
+  module.frontmatter.tags?.forEach((tag: string) => {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  });
+});
+
+const tags = Array.from(tagMap.entries())
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, maxCards);
+---
+
+<section class="my-10" aria-label="カテゴリー">
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100 m-0">カテゴリー</h2>
+    <a
+      href={`${baseUrl}/tags`}
+      class="text-sm font-medium text-blue-600 dark:text-blue-400 no-underline hover:underline"
+    >
+      全タグを見る →
+    </a>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+    {tags.map(([name, count]) => {
+      const c = getTagColor(name);
+      return (
+        <a
+          href={`${baseUrl}/tags/${encodeURIComponent(name)}`}
+          class={`group block rounded-xl p-4 border ${c.bg} ${c.darkBg} border-slate-200 dark:border-slate-700 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 no-underline`}
+        >
+          <div class={`text-lg font-bold ${c.text} ${c.darkText} mb-1 group-hover:underline`}>
+            #{name}
+          </div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">
+            {count}記事
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</section>

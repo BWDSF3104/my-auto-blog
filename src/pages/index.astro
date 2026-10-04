@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CategoryCards from '../components/CategoryCards.astro';
 import ThemeInit from '../components/ThemeInit.astro';
 import { getTagColor } from '../lib/tagColors';
 import '../styles/global.css';
@@ -117,6 +118,8 @@ const ogImageUrl = posts[0]?.frontmatter.image
     <a href="#main-content" class="skip-link">スキップナビゲーション</a>
     <div class="max-w-3xl mx-auto">
       <Header />
+
+      <CategoryCards />
 
       <main id="main-content">
         <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">全 {allPosts.length} 件中 1–{Math.min(POSTS_PER_PAGE, allPosts.length)} を表示</p>
