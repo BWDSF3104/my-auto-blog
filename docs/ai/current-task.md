@@ -8,4 +8,6 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- P1 バックログ実行中: TOC完了コミット済み。Plausible有効化完了、コミット中
+- (none)
+
+P1バックログ完了: TOCレスポンシブ対応 (`fecc41a`) + Plausible有効化 (`61dc9b5`)
