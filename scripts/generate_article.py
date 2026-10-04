@@ -1749,6 +1749,74 @@ def _compose_smart_situation(content: str) -> str:
 
 
 # --------------------------------------------------
+# 重複YAMLキーの修復
+# --------------------------------------------------
+def _fix_duplicate_yaml_keys(fm_text: str) -> str:
+    """
+    重複するYAMLキーを検出し、キャラクター定義のようなキーを character_N にリネーム。
+    例: 少年: "..." と 少年: "..." → character_1: "..." と character_2: "..."
+    """
+    lines = fm_text.split("\n")
+    seen_keys = {}
+    result = []
+    char_counter = 0
+
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("- "):
+            result.append(line)
+            continue
+
+        match = re.match(r'^([A-Za-z\u3000-\u9fff]+)\s*:\s*', stripped)
+        if not match:
+            result.append(line)
+            continue
+
+        key = match.group(1)
+
+        if key not in seen_keys:
+            seen_keys[key] = 1
+            if _is_character_like_key(key, stripped):
+                char_counter += 1
+                new_key = f"character_{char_counter}"
+                result.append(re.sub(r'^(\S+?)\s*:', f'{new_key}:', stripped))
+                print(f"[WARN] キャラクターキー {key} → {new_key} にリネーム")
+            else:
+                result.append(line)
+        else:
+            seen_keys[key] += 1
+            if _is_character_like_key(key, stripped):
+                char_counter += 1
+                new_key = f"character_{char_counter}"
+                result.append(re.sub(r'^(\S+?)\s*:', f'{new_key}:', stripped))
+                print(f"[WARN] 重複キー {key} → {new_key} にリネーム")
+            else:
+                result.append(f"# duplicate removed: {stripped}")
+                print(f"[WARN] 重複キー {key} を削除")
+
+    return "\n".join(result)
+
+
+def _is_character_like_key(key: str, line: str) -> bool:
+    """
+    キーがキャラクター定義（少年, 少女, 男性, 女性, character_Nなど）に
+    該当するか判定。値に「1boy」「1girl」「anthro」などのタグが含まれる場合もCharacterとみなす。
+    """
+    character_types = {"少年", "少女", "男性", "女性", "男", "女", "boy", "girl"}
+    if key in character_types:
+        return True
+    if re.match(r'^character_\d+$', key):
+        return False
+    value_part = line.split(":", 1)[1].strip().strip("\"'")
+    character_tags = {"1boy", "1girl", "2boy", "2girl", "anthro", "wolf", "fox", "cat", "dog", "bear", "leopard", "panther", "dragon", "tiger", "lion", "rabbit", "deer", "otter", "panda", "koala", "fox", "hyena", "jackal", "coyote", "lynx", "bobcat"}
+    value_lower = value_part.lower()
+    for tag in character_tags:
+        if tag in value_lower:
+            return True
+    return False
+
+
+# --------------------------------------------------
 # Frontmatter YAML 検証・修復
 # --------------------------------------------------
 def validate_and_fix_frontmatter(content: str) -> str:
@@ -1765,6 +1833,13 @@ def validate_and_fix_frontmatter(content: str) -> str:
         return content
 
     fm_text = content[open_fm + 3:close_fm]
+
+    # 0. 重複キーチェック（PyYAMLは重複キーでエラーを出さないので常に実行）
+    fixed_fm = _fix_duplicate_yaml_keys(fm_text)
+    if fixed_fm != fm_text:
+        fm_text = fixed_fm
+        new_content = content[:open_fm + 3] + fm_text + content[close_fm:]
+        return new_content
 
     try:
         yaml.safe_load(fm_text)
