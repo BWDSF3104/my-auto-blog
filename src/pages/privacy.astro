@@ -1,0 +1,75 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ThemeInit from '../components/ThemeInit.astro';
+import '../styles/global.css';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = "プライバシーポリシー | BWD's AI Auto Blog";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content="BWD's AI Auto Blogのプライバシーポリシー" />
+    <meta name="google-site-verification" content="1mHkEb2UNbzsWZB98HrQVu2oI62PzkMBsMVVed8Kwug" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BWD's AI Auto Blog" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <ThemeInit />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": pageTitle,
+      "description": "BWD's AI Auto Blogのプライバシーポリシー",
+      "url": canonicalURL.href,
+      "partOfSeries": {
+        "@type": "WebSite",
+        "@id": `${canonicalURL.origin}${baseUrl}/`
+      }
+    })} />
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    <div class="max-w-3xl mx-auto">
+      <Header />
+
+      <main class="prose prose-slate max-w-none">
+        <h1>プライバシーポリシー</h1>
+        <p>本ウェブサイト（BWD's AI Auto Blog）は、あなたのプライバシーを尊重しています。このプライバシーポリシーでは、本ウェブサイトが収集する情報の種類、使用方法、および共有方法について説明します。</p>
+
+        <h2>1. 収集する情報</h2>
+        <p>本ウェブサイトは以下の情報を収集します。</p>
+        <ul>
+          <li><strong>分析データ</strong> — Plausible Analytics を使用して、ページビュー、訪問者の地理的所在地、紹介元などの集計されたアクセス情報を収集します。個人を特定できる情報は収集しません。</li>
+        </ul>
+
+        <h2>2. クッキー</h2>
+        <p>本ウェブサイトは、分析目的でクッキーを使用します。Plausible Analytics はプライバシーに配慮した分析ツールであり、GDPR 準拠のクッキーポリシーに従っています。個人を特定できる情報を追跡するクッキーは使用していません。</p>
+
+        <h2>3. サードパーティサービス</h2>
+        <p>本ウェブサイトは以下のサードパーティサービスを使用しています。</p>
+        <ul>
+          <li><strong>Plausible Analytics</strong> — ウェブサイトの分析用。詳細は <a href="https://plausible.io/privacy" target="_blank" rel="noopener noreferrer">Plausible のプライバシーポリシー</a>をご参照ください。</li>
+        </ul>
+
+        <h2>4. 情報の共有</h2>
+        <p>本ウェブサイトは、個人を特定できる情報を第三者と共有しません。収集される分析データは集計・匿名化された形式でのみ使用されます。</p>
+
+        <h2>5. お問い合わせ</h2>
+        <p>このプライバシーポリシーに関するお問い合わせは、<a href="https://github.com/BWDSF3104/my-auto-blog" target="_blank" rel="noopener noreferrer">GitHub リポジトリ</a>よりご連絡ください。</p>
+
+        <p><em>最終更新日: 2026 年 10 月</em></p>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>
