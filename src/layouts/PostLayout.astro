@@ -221,12 +221,20 @@ if (frontmatter.speakable) {
     <div class="max-w-3xl lg:max-w-6xl mx-auto">
       <Header />
       <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-8 items-start">
-      <!-- 目次 (TOC) - lg以上で右サイドバーに固定 -->
-      <nav class="toc-nav w-full mb-8 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 lg:sticky lg:top-24 lg:w-64 lg:flex-shrink-0 lg:order-1" aria-label="目次">
-        <h2 class="toc-title text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-3">目次</h2>
-        <ol class="toc-list text-sm text-slate-600 dark:text-slate-300 space-y-1.5">
-        </ol>
-      </nav>
+       <!-- 目次 (TOC) - モバイル: 折りたたみ式 / lg以上: 右サイドバー固定 -->
+       <nav class="toc-nav w-full lg:sticky lg:top-24 lg:w-64 lg:flex-shrink-0 lg:order-1" aria-label="目次">
+         <!-- モバイル用トグルボタン -->
+         <button type="button" id="toc-toggle" class="toc-toggle w-full mb-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors lg:hidden" aria-expanded="false">
+           <span>目次</span>
+           <svg class="toc-chevron w-4 h-4 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+         </button>
+         <!-- TOCコンテンツ -->
+         <div class="toc-content hidden lg:block p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+           <h2 class="toc-title text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-3 lg:sr-only">目次</h2>
+           <ol class="toc-list text-sm text-slate-600 dark:text-slate-300 space-y-1.5">
+           </ol>
+         </div>
+       </nav>
       <main id="main-content" class="w-full lg:flex-1 lg:order-2" class="bg-white dark:bg-slate-800 p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
       <nav class="mb-4" aria-label="パンくずリスト">
         <ol class="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
@@ -532,11 +540,28 @@ if (frontmatter.speakable) {
       })();
 
       document.addEventListener('DOMContentLoaded', () => {
+        // モバイルTOCトグル
+        (function() {
+          const toggle = document.getElementById('toc-toggle');
+          const content = document.querySelector('.toc-content');
+          const chevron = document.querySelector('.toc-chevron');
+          if (!toggle || !content) return;
+          toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            content.classList.toggle('hidden');
+            content.classList.toggle('block');
+            if (chevron) {
+              chevron.style.transform = expanded ? '' : 'rotate(180deg)';
+            }
+          });
+        })();
+
         // TOC生成: 記事内のh2/h3を抽出して目次を構築
         const article = document.getElementById('article-content');
         const tocList = document.querySelector('.toc-list');
+        const headings = article?.querySelectorAll('h2, h3, h4') || [];
         if (article && tocList) {
-          const headings = article.querySelectorAll('h2, h3, h4');
           if (headings.length > 0) {
             headings.forEach((heading, index) => {
               if (!heading.id) {
