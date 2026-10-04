@@ -2,6 +2,21 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-04: 重複YAMLキーの自動修復ロジック
+
+**Decision**: `generate_article.py` の `validate_and_fix_frontmatter()` 内で、PyYAML `safe_load` 検証より前に重複キーチェックを无条件で実行。キャラクターキーの命名規則を `character_N` に強制し、AI が出力したキャラクタータイプ名（例: `少年:`）を自動リネーム。
+
+**Reason**: AI がプロンプト指示の `character_1`/`character_2` を無視し、キャラクタータイプ名をキーとして出力するため、2人以上で重複し Astro/Vite が `duplicated mapping key` でビルド中断。PyYAML の `safe_load` は重複キーでエラーを発生させないので、事前チェックが必須。
+
+**Rejected Alternatives**:
+- AI プロンプトの修正のみ: AI が指示を無視する根本問題は解決しない
+- `safe_load` のみの検証: 重複キーを検出できない
+- ビルド失敗後の手動修正のみ: CI/CD パイプラインが毎度ブロックされる
+
+**Impact**:
+- `scripts/generate_article.py`: `_fix_duplicate_yaml_keys()` と `_is_character_like_key()` ヘルパー関数を追加、`validate_and_fix_frontmatter()` に无条件の重複チェックを組み込み
+- `scripts/tests/test_generate_article.py`: 重複キー修復のテストケースを追加
+
 ## 2026-10-03: npm サプライチェーン攻撃対策の適用
 
 **Decision**: npm の依存パッケージをバージョン固定化し、npm グローバル設定でサプライチェーン攻撃対策を有効化。
@@ -203,17 +218,4 @@
 - `test_fetch_topics.py`: シンボリックリンク検証テストをファイルコピー検証に更新
 - `data/topics/latest.json`: git 管理下の通常ファイルとしてコミット可能に
 
-## 2026-10-02: Random Trend Selection and Character/Copyright Tag Expansion
 
-**Decision**: Remove "pokemon" from `kemono_story` prompt type categories and change trend selection from "top 5 per category" to "random 2 items total across selected categories". Expand e621 character feature collection to include `character` and `copyright` tags.
-
-**Reason**: Pokemon content was polluting kemono story articles with irrelevant keywords. Random selection reduces redundancy when multiple categories overlap. Character and copyright tags from e621 provide valuable context for affiliate product recommendations, enabling the AI to suggest official merchandise and related products.
-
-**Rejected Alternatives**:
-- pokemonカテゴリを維持: 将来の専用プロンプトタイプで対応するため、kemono_storyからは除外
-- 固定数のトレンド選択: ランダム化によりカテゴリ間の重複を減らし、多様性を向上
-
-**Impact**:
-- `fetch_topics.py`: `PROMPT_CATEGORIES["kemono_story"]` から "pokemon" を削除、`CHARACTER_FEATURE_CATEGORIES` に "character", "copyright" を追加、`_aggregate_and_save_character_features()` に character/copyright カウンターを追加
-- `generate_article.py`: `import random` 追加、`_append_trending_topics()` を「全カテゴリをプールしてランダム2件」に書き換え、`_load_character_features()` に character/copyright データの注入とアフィリエイト指示を追加
-- `data/character_features.json`: "characters" と "copyrights" のフィールドが追加される

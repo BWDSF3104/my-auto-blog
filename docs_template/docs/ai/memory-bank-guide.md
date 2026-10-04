@@ -13,8 +13,6 @@ docs/ai/
 ├── current-task.md          # Active task tracking
 ├── decisions.md             # Current active decisions
 ├── decisions-archive.md     # Completed decisions (archived)
-├── ideas.md                 # Captured ideas for future work
-├── ideas-analysis.md        # Analysis of captured ideas
 ├── issue-inventory.md       # Master list of all known issues
 ├── known-issues.md          # Currently active known issues
 ├── known-issues-archive.md  # Resolved issues (archived)

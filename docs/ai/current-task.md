@@ -8,45 +8,41 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- P1-2 サイト内検索の再実装 (前回セッション失敗、再実行準備中)
+- (none)
 
 ## Completed Task
 
-- P1-3 Analytics (Umami/Plausible) - 完了
+- P1-2 サイト内検索 - 実装済み
+- P1-3 Analytics (Plausible) - 準備済み（ドメイン設定待ち）
 - P1-4 Privacy Policy - 完了
 - pokemon_super_mystery_dungeon_mew_relationship_verified_vs_theory.md: 記事のフォーマット・画像配置・ビルド検証 **完了**
+- 2026-10-04: 重複YAMLキーによるビルド失敗の修正 - 完了
+- 2026-10-04: ドキュメント整理 - 完了
 
 ### 完了内容
-- P1-3: アクセス解析統合
+
+- P1-2: サイト内検索（クライアントサイド全文検索、search-index.json生成）
+- P1-3: アクセス解析スクリプト配置（有効化待ち）
 - P1-4: Privacy Policy ページ
 - 記事画像ダウンロード・変換・配置
-
-## Failed Task
-
-- P1-2 サイト内検索 (初回): Astro 7 content collections API に適合できず失敗。詳細:
-  - `astro:content` の `getCollection()` を `astro.config.mjs` で直接インポート → ロードタイミングエラー
-  - integration に移動後も Vite の `closeBundle` が既にクローズされている
-  - `astro:content_loader` は存在しないモジュール
-  - `astro/loaders` を試したが、content config の `type: 'content'` が legacy プロパティでエラー
-  - Astro 7 型定義を繰り返し読み込み、API 探索ループに陥りセッション切断
-  - 残骸: `src/lib/search-index.ts`, `src/lib/search-index-plugin.ts`, `src/lib/search-index-integration.ts`, `src/content.config.ts`
+- 2026-10-04: `generate_article.py` に重複YAMLキー修復ロジック実装、破損記事の手動修正、デプロイ成功
+- 2026-10-04: 未実装項目の推奨/不採用分類、backlog.md への推奨項目統合、ideas.md と ideas-analysis.md の削除
 
 ## Verification
 
-- `pytest scripts/tests/ -v`: 134 passed in 1.93s
-- `npm run build`: 104 page(s) built in 3.01s, Completed (前回成功時)
+- `pytest scripts/tests/ -v`: 110 passed (2026-10-04 修正後)
+- `npm run build`: 成功 (2026-10-04 修正後)
+- `gh run list`: deploy-only.yml 最新実行 success
 
 ## Changes
 
-- 前回のP1-2失敗で以下が作成・変更された可能性がある（要確認・クリーンアップ）:
-  - `astro.config.mjs`
-  - `src/content.config.ts`
-  - `src/content/config.ts`
-  - `src/lib/search-index.ts`
-  - `src/lib/search-index-plugin.ts`
-  - `src/lib/search-index-integration.ts`
-  - `src/pages/search.astro`
-  - `src/components/Header.astro`
+- P1-2 サイト内検索で以下が作成・変更された（実装済み）:
+  - `scripts/generate-search-index.js`: 検索インデックス生成スクリプト
+  - `src/pages/search.astro`: 検索ページ
+  - `src/components/Header.astro`: 検索ボタン追加
+  - `package.json`: buildコマンドにsearch-index生成を追加、js-yaml依存関係追加
+- 2026-10-04: `backlog.md` に全推奨項目を統合（P1:2, P2:8, P3:3, P4:13）、不採用項目を整理（13項目）、コメントシステムを P4 に追加
+- 2026-10-04: `ideas.md` と `ideas-analysis.md` を削除
 
 ## Relevant Files
 

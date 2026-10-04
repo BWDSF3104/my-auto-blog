@@ -10,6 +10,7 @@
 新しいエントリは常に上部に追加（prepend）。並び順=追加順=コミット順。
 古い計画は `plans-archive.md` に移動する。
 
+- [2026-10-04] 重複YAMLキーによるビルド失敗の修正: AI が出力した重複YAMLキー（`少年:` 等）による Astro ビルド失敗を解決。`generate_article.py` に自動修復ロジック実装、破損記事を手動修正、テスト110件全通、ビルド成功、デプロイ完了
 - [2026-10-02] Backlog P0 実装 (B1-B4): 9件の P0 バックログを 4 バッチで実装。B1: Back to Top FAB + Skip Navigation リンク + `.skip-link` CSS。B2: コードブロックコピーボタン (Clipboard API) + 画像 Lazy Loading。B3: `src/lib/tagColors.ts` で 12 色パレットのタグ色 + `og:locale` + 動的 `og:image` メタデータ + `article:modified_time`。B4: Social Sharing (X, Hatena, LINE, Pocket) + Footer SNS アイコン (X, GitHub, RSS) + BreadcrumbList JSON-LD (index, page, tags)。ビルド成功 (94ページ)
 - [2026-10-02] Reddit 代替ソースの追加: e621、Kemono API、RSS フィードを代替ソースとして追加。kemono/pokemon カテゴリのトピック収集を安定化。テスト134件全件通過
 - [2026-10-02] 既存記事のアフィリエイトリンク一括置換: `scripts/fix_affiliate_links.py` で 15ファイル（48行）を `[text](url)` から `<a>` タグに置換。1ファイル試験→全体適用→ビルド成功 (94ページ)
