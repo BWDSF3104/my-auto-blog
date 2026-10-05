@@ -36,7 +36,23 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
         <a href={baseUrl} class="no-underline hover:opacity-80 transition-opacity">{title}</a>
       </h1>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 sm:hidden">
+      <button
+        id="hamburger-btn"
+        class="flex-shrink-0 p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="w-5 h-5 hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg class="w-5 h-5 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="hidden sm:flex items-center gap-2">
       <a
         href={`${baseUrl}/search`}
         class="flex-shrink-0 p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
@@ -60,6 +76,62 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
         </svg>
       </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden sm:hidden overflow-hidden transition-all duration-200"
+    role="navigation"
+    aria-labelledby="hamburger-btn"
+  >
+    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg p-3 mb-4 space-y-1">
+      <a
+        href={`${baseUrl}/search`}
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors"
+      >
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        検索
+      </a>
+      <button
+        id="dark-toggle-mobile"
+        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors bg-transparent border-none cursor-pointer"
+      >
+        <svg class="w-5 h-5 flex-shrink-0 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <svg class="w-5 h-5 flex-shrink-0 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <span class="dark-mode-text">ダークモード</span>
+      </button>
+      <hr class="border-slate-200 dark:border-slate-700 my-1">
+      <a
+        href={`${baseUrl}/tags`}
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors"
+      >
+        タグ一覧
+      </a>
+      <a
+        href={`${baseUrl}/about`}
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors"
+      >
+        About
+      </a>
+      <a
+        href={`${baseUrl}/rss.xml`}
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors"
+      >
+        RSS
+      </a>
+      <a
+        href={`${baseUrl}/privacy`}
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors"
+      >
+        Privacy
+      </a>
     </div>
   </div>
 
@@ -99,5 +171,30 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
 </header>
 
   <script is:inline>
-(function(){var t=document.getElementById("dark-toggle");var h=document.documentElement;t?.addEventListener("click",function(){var d=!h.classList.contains("dark");h.classList.toggle("dark",d);try{localStorage.setItem("theme",d?"dark":"light")}catch(e){}});})();
+(function(){
+var h=document.documentElement;
+function toggleDark(){var d=!h.classList.contains("dark");h.classList.toggle("dark",d);try{localStorage.setItem("theme",d?"dark":"light")}catch(e){}}
+document.getElementById("dark-toggle")?.addEventListener("click",toggleDark);
+document.getElementById("dark-toggle-mobile")?.addEventListener("click",toggleDark);
+var hb=document.getElementById("hamburger-btn");
+var mm=document.getElementById("mobile-menu");
+var hi=mm?.parentElement?.querySelector(".hamburger-icon");
+var ci=mm?.parentElement?.querySelector(".close-icon");
+hb?.addEventListener("click",function(){
+var open=hb.getAttribute("aria-expanded")==="true";
+hb.setAttribute("aria-expanded",String(!open));
+mm?.classList.toggle("hidden",open);
+if(hi&&ci){hi.classList.toggle("hidden",!open);ci.classList.toggle("hidden",open)}
+});
+document.addEventListener("click",function(e){
+if(!mm||!hb)return;
+var target=e.target;
+if(hb.getAttribute("aria-expanded")==="true"&&!mm.contains(target)&&!hb.contains(target)){
+hb.setAttribute("aria-expanded","false");
+mm.classList.add("hidden");
+if(hi)hi.classList.remove("hidden");
+if(ci)ci.classList.add("hidden");
+}
+});
+})();
 </script>

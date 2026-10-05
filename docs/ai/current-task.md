@@ -8,11 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- (none)
+- P2-1: モバイルハンバーガーメニュー — `Header.astro` に640px未満用のドロップダウンメニューを追加
 
 ### Verification
 
-- `npm run build`: 成功 (110ページ、2.86s)
+- `npm run build`: 成功 (110ページ、2.96s)
 
 P2バックログ完了: ヒーローセクション (`docs/ai/tasks/2026-10-05-hero-section.md`)
 P2バックログ完了: カテゴリーカード (`docs/ai/tasks/2026-10-04-category-cards.md`)
