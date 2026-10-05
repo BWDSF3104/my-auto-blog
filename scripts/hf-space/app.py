@@ -90,8 +90,13 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     prompt_chunks_2 = group_into_chunks(prompt_tokens_2.copy(), eos_2)
     neg_prompt_chunks_2 = group_into_chunks(neg_prompt_tokens_2.copy(), eos_2)
 
-    # Ensure same number of chunks for positive and negative
-    max_chunks = max(len(prompt_chunks_1), len(neg_prompt_chunks_1))
+    # Ensure same number of chunks across all 4 lists
+    max_chunks = max(
+        len(prompt_chunks_1),
+        len(prompt_chunks_2),
+        len(neg_prompt_chunks_1),
+        len(neg_prompt_chunks_2),
+    )
     while len(prompt_chunks_1) < max_chunks:
         prompt_chunks_1.append([49406] + [eos_1] * 75 + [eos_1])
         prompt_chunks_2.append([49406] + [eos_2] * 75 + [eos_2])
@@ -104,36 +109,37 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     pooled_prompt_embeds = None
     negative_pooled_prompt_embeds = None
 
-    for i in range(max_chunks):
-        # Positive prompt
-        token_tensor_1 = torch.tensor([prompt_chunks_1[i]], dtype=torch.long, device=device)
-        token_tensor_2 = torch.tensor([prompt_chunks_2[i]], dtype=torch.long, device=device)
+    with torch.no_grad():
+        for i in range(max_chunks):
+            # Positive prompt
+            token_tensor_1 = torch.tensor([prompt_chunks_1[i]], dtype=torch.long, device=device)
+            token_tensor_2 = torch.tensor([prompt_chunks_2[i]], dtype=torch.long, device=device)
 
-        prompt_embeds_1 = pipe.text_encoder(token_tensor_1, output_hidden_states=True)
-        prompt_hidden_1 = get_prompt_hidden_states_sdxl(prompt_embeds_1)
+            prompt_embeds_1 = pipe.text_encoder(token_tensor_1, output_hidden_states=True)
+            prompt_hidden_1 = get_prompt_hidden_states_sdxl(prompt_embeds_1)
 
-        prompt_embeds_2 = pipe.text_encoder_2(token_tensor_2, output_hidden_states=True)
-        prompt_hidden_2 = get_prompt_hidden_states_sdxl(prompt_embeds_2)
-        if pooled_prompt_embeds is None:
-            pooled_prompt_embeds = prompt_embeds_2[0]
+            prompt_embeds_2 = pipe.text_encoder_2(token_tensor_2, output_hidden_states=True)
+            prompt_hidden_2 = get_prompt_hidden_states_sdxl(prompt_embeds_2)
+            if pooled_prompt_embeds is None:
+                pooled_prompt_embeds = prompt_embeds_2[0]
 
-        token_embedding = torch.cat([prompt_hidden_1, prompt_hidden_2], dim=-1)
-        embeds.append(token_embedding)
+            token_embedding = torch.cat([prompt_hidden_1, prompt_hidden_2], dim=-1)
+            embeds.append(token_embedding)
 
-        # Negative prompt
-        neg_token_tensor_1 = torch.tensor([neg_prompt_chunks_1[i]], dtype=torch.long, device=device)
-        neg_token_tensor_2 = torch.tensor([neg_prompt_chunks_2[i]], dtype=torch.long, device=device)
+            # Negative prompt
+            neg_token_tensor_1 = torch.tensor([neg_prompt_chunks_1[i]], dtype=torch.long, device=device)
+            neg_token_tensor_2 = torch.tensor([neg_prompt_chunks_2[i]], dtype=torch.long, device=device)
 
-        neg_prompt_embeds_1 = pipe.text_encoder(neg_token_tensor_1, output_hidden_states=True)
-        neg_prompt_hidden_1 = get_prompt_hidden_states_sdxl(neg_prompt_embeds_1)
+            neg_prompt_embeds_1 = pipe.text_encoder(neg_token_tensor_1, output_hidden_states=True)
+            neg_prompt_hidden_1 = get_prompt_hidden_states_sdxl(neg_prompt_embeds_1)
 
-        neg_prompt_embeds_2 = pipe.text_encoder_2(neg_token_tensor_2, output_hidden_states=True)
-        neg_prompt_hidden_2 = get_prompt_hidden_states_sdxl(neg_prompt_embeds_2)
-        if negative_pooled_prompt_embeds is None:
-            negative_pooled_prompt_embeds = neg_prompt_embeds_2[0]
+            neg_prompt_embeds_2 = pipe.text_encoder_2(neg_token_tensor_2, output_hidden_states=True)
+            neg_prompt_hidden_2 = get_prompt_hidden_states_sdxl(neg_prompt_embeds_2)
+            if negative_pooled_prompt_embeds is None:
+                negative_pooled_prompt_embeds = neg_prompt_embeds_2[0]
 
-        neg_token_embedding = torch.cat([neg_prompt_hidden_1, neg_prompt_hidden_2], dim=-1)
-        neg_embeds.append(neg_token_embedding)
+            neg_token_embedding = torch.cat([neg_prompt_hidden_1, neg_prompt_hidden_2], dim=-1)
+            neg_embeds.append(neg_token_embedding)
 
     # Concatenate chunks along sequence dimension (dim=1)
     prompt_embeds = torch.cat(embeds, dim=1)
