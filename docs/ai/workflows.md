@@ -2,14 +2,14 @@
 
 ## Git Workflow
 
-`git commit`と`git push`は一連の作業として連続して実行する。commit後にpushを中断してはならない。
+`git commit`と`git push`は不可分な一連の作業。commit完了直後は**必ず**`git push`を実行すること。pushを中断してはならない。
 
 **コミット実行前に必ず以下の手順を完了すること:**
 
 1. `git fetch origin` — remote refsを取得
 2. `git rev-list HEAD..origin/main --count` — remoteの新しいコミット数をカウント
 3. カウント > 0 の場合: `git stash` → `git pull` → `git stash pop` → 競合解決
-4. `git add`, `git commit`, `git push`を連続して実行
+4. `git add` → `git commit` → `git push`を続けて実行
 
 Commit message format: `feat: <日本語説明>` for features, `fix: <日本語説明>` for bug fixes.
 Never use `git push --force` or modify remote history.
@@ -35,7 +35,7 @@ git push 後、DeployOnly ワークフローが push トリガーで自動実行
 
 手動実行 (`gh workflow run`) はしない。push 自動トリガーに依存する。
 
-例外（ワークフローが自動実行されないため確認不要）:
+例外（deploy verificationが不要）:
 
 - 変更されたファイルがワークフローの paths (`src/**`, `public/**`, `package.json`, `astro.config.mjs`, `tailwind.config.mjs`) に一致しない場合
 - コミットメッセージに `[skip ci]` または `[skip deploy]` を含む場合

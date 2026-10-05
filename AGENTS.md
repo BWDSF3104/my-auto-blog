@@ -66,6 +66,7 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 
 - **ファイル変更の完了後、コミット前に**
 - **git commit 実行前**
+- **git commit 実行後（pushを実行するため）**
 - **git push 完了後**
 - **ユーザーが手動記事作成を依頼した際**
 
