@@ -1,9 +1,10 @@
 torch
 torchvision
 diffusers
-transformers
+transformers>=4.40.0
 accelerate
 safetensors
 spaces
 huggingface_hub
 omegaconf
+compel==2.3.1

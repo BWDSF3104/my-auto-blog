@@ -3,6 +3,7 @@ import gradio as gr
 import spaces
 from diffusers import StableDiffusionXLPipeline, EulerDiscreteScheduler
 from huggingface_hub import hf_hub_download
+from compel import CompelForSDXL
 
 # 1. モデルの初期化
 REPO_ID = "IbarakiDouji/Nova-Furry-XL"
@@ -20,14 +21,23 @@ pipe = StableDiffusionXLPipeline.from_single_file(
 pipe.scheduler = EulerDiscreteScheduler.from_config(pipe.scheduler.config)
 print("Pipeline loaded successfully!")
 
+# Compel for long prompt support
+compel = CompelForSDXL(pipe)
+print("Compel initialized for long prompt support!")
+
 # 2. 推論処理
 @spaces.GPU(duration=90)
 def predict(prompt, negative_prompt, steps, guidance_scale, width, height):
     pipe.to("cuda")
 
+    # Use Compel for long prompt support
+    conditioning = compel(prompt, negative_prompt=negative_prompt)
+
     image = pipe(
-        prompt=prompt,
-        negative_prompt=negative_prompt,
+        prompt_embeds=conditioning.embeds,
+        pooled_prompt_embeds=conditioning.pooled_embeds,
+        negative_prompt_embeds=conditioning.negative_embeds,
+        negative_pooled_prompt_embeds=conditioning.negative_pooled_embeds,
         num_inference_steps=int(steps),
         guidance_scale=float(guidance_scale),
         width=int(width),
