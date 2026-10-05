@@ -64,42 +64,36 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
     </div>
   </div>
 
-  <div class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg">
-    <p class="text-lg sm:text-xl font-semibold mb-4 leading-relaxed">AI がトレンドを収集し、自動で記事を書くブログ。</p>
+  <div class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-slate-800 dark:to-slate-900 rounded-xl p-4 sm:p-5 text-white shadow-md">
+    <p class="text-sm sm:text-base font-medium mb-3">AI がトレンドを収集し、自動で記事を書くブログ。</p>
 
-    <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
+    <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-3">
       <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold">{postCount}</div>
-        <div class="text-xs sm:text-sm opacity-80">記事</div>
+        <div class="text-lg sm:text-xl font-bold">{postCount}</div>
+        <div class="text-[10px] sm:text-xs opacity-80">記事</div>
       </div>
       <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold">{tagCount}</div>
-        <div class="text-xs sm:text-sm opacity-80">タグ</div>
+        <div class="text-lg sm:text-xl font-bold">{tagCount}</div>
+        <div class="text-[10px] sm:text-xs opacity-80">タグ</div>
       </div>
       <div class="text-center">
-        <div class="text-xs sm:text-sm opacity-80">最新更新</div>
-        <div class="text-sm sm:text-base font-semibold mt-1">{latestDateStr}</div>
+        <div class="text-[10px] sm:text-xs opacity-80">最新更新</div>
+        <div class="text-xs sm:text-sm font-semibold mt-0.5">{latestDateStr}</div>
       </div>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-3">
+    <div class="flex flex-col sm:flex-row gap-2">
       <a
         href="#main-content"
-        class="inline-flex items-center justify-center px-5 py-2.5 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-semibold no-underline transition-colors backdrop-blur-sm"
+        class="inline-flex items-center justify-center px-4 py-1.5 bg-white/20 hover:bg-white/30 rounded-md text-xs sm:text-sm font-semibold no-underline transition-colors"
       >
         最新記事を読む
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
       </a>
       <a
         href={`${baseUrl}/tags`}
-        class="inline-flex items-center justify-center px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-semibold no-underline transition-colors backdrop-blur-sm"
+        class="inline-flex items-center justify-center px-4 py-1.5 bg-white/10 hover:bg-white/20 rounded-md text-xs sm:text-sm font-semibold no-underline transition-colors"
       >
         タグ一覧
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
       </a>
     </div>
   </div>
