@@ -54,4 +54,13 @@
 - 修正案A: `compose_image_prompt()` の BASE_QUALITY_PROMPT とキャラ定義を短縮して 77 トークン内に収める（シーン説明を優先）
 - 修正案B: `IMAGE_PROVIDER=pollinations` をデフォルトに変更（クォータ無制限、API キー不要）
 - 修正案C: `MAX_INLINE_IMAGES=1` に制限して HF クォータ内の利用に収める
-- 推奨: 修正案A + B の併用（A で品質改善、B で安定供給）
+- **修正案D: SDXL長プロンプトchunking実装 (2026-10-05 成功)**:
+  - HF Space `app.py` に `get_long_prompt_embeddings_sdxl` 関数を追加
+  - 75トークン単位でチャンク分割 → 各チャンクをtext encoderに通す → embeddingを連結
+  - 关键点: `hidden_states[-2]` (penultimate layer)、`text_encoder_2`のpooled出力、positive/negativeチャンク数一致
+  - 短プロンプト（~15トークン）テスト: 平均輝度69、成功
+  - 長プロンプト（~65トークン）テスト: 平均輝度110、成功
+  - 100+トークンテスト: 平均輝度119、成功
+  - Compel 2.3.1は依存関係競合（huggingface-hubバージョン）で断念
+  - 詳細: `docs/ai/tasks/2026-10-05-long-prompt-v2.md`
+- 推奨: 修正案D（長プロンプトchunking）+ B（pollinations安定供給）の併用

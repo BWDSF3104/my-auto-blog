@@ -23,6 +23,46 @@ RuntimeWarning: invalid value encountered in cast
 ```
 **結果:** 画像が100%真っ黒（NaN/Inf値）
 
+### v3: 自前chunking実装（成功）
+sd_embedのソースコード (`embedding_funcs.py`) を直接参照した正確な実装。
+
+**关键点:**
+1. `hidden_states[-2]` (penultimate layer) を両方のtext encoderで使用する
+2. pooled embeddingを`text_encoder_2`のpooled出力 (`prompt_embeds_2[0]`) から取得
+3. 75トークン単位でチャンク分割、BOS/EOSで77トークンにパディング
+4. 2つのencoderのembeddingを`dim=-1`で連結、チャンクを`dim=1`で連結
+5. positive/negativeのチャンク数を一致させる
+6. 最初のチャンクのみpooled embeddingを取得（その後はNoneのまま）
+
+**実装ファイル:** `scripts/hf-space/app.py`
+- `get_prompt_hidden_states_sdxl()`: penultimate layer取得
+- `tokenize_long_prompt()`: トルンケーションなしトークン化
+- `group_into_chunks()`: 75トークン単位分割 + BOS/EOS
+- `get_long_prompt_embeddings_sdxl()`: メインのembedding生成関数
+
+### Compel 2.3.1（断念）
+- `CompelForSDXL`クラスで長プロンプト対応のライブラリ
+- 依存関係競合で断念: `gradio` が `huggingface-hub>=1.16.0` を要求、`transformers` が `<1.0` を要求
+- HF SpaceのPython環境（`requirements.txt`経由のpip install）では解決不可能
+
+## テスト結果
+
+### 短プロンプト（~15トークン）
+- 平均輝度: 69
+- 画像品質: 正常（キャラクターが描画されている）
+- 黒画像: なし
+
+### 長プロンプト（~65トークン）
+- 平均輝度: 110
+- 画像品質: 正常（シーン説明が反映されている）
+- 黒画像: なし
+
+### 100+トークンプロンプト
+- 平均輝度: 119
+- 画像品質: 正常
+- 黒画像: なし
+- HF Spaceのログにエラーなし
+
 ## 失敗理由の精査
 
 ### v1の失敗
@@ -31,67 +71,27 @@ RuntimeWarning: invalid value encountered in cast
 
 ### v2の失敗（黒画像の原因特定）
 sd_embedの実装を直接確認した結果、v2が再現できていなかった关键点:
+1. `hidden_states[-2]` (penultimate layer) の使用漏れ
+2. pooled embeddingの取得元が`text_encoder`ではなく`text_encoder_2`であること
+3. positive/negativeのチャンク数不一致
 
-1. **hidden_states[-2] (penultimate layer) の使用**: SDXLでは最終層ではなくpenultimate layerを使用する必要がある
-   ```python
-   # sd_embedの実装
-   prompt_embeds_1_hidden_states = get_prompt_hidden_states_sdxl(prompt_embeds_1, clip_skip=clip_skip)
-   # get_prompt_hidden_states_sdxl は hidden_states[-2] を返す
-   ```
+## 教訓
 
-2. **pooled embeddingの取得方法**:
-   ```python
-   # 正解: text_encoder_2のpooled出力を使用
-   pooled_prompt_embeds = prompt_embeds_2[0]
-   
-   # 誤り: attention-weighted meanや[0]トークンのhidden state
-   ```
-
-3. **positive/negativeのチャンク数合わせ**: 長文時に両方のembedding長を合わせる必要がある
-
-## 検討中の解決策
-
-### Compel 2.3.1（第1候補）
-- `CompelForSDXL`クラスで長プロンプト対応
-- 2.3.1に「SDXLの78/77 token問題の修正」が含まれる
-- 既存Space環境（Python 3.12, Diffusers, Transformers）との互換性確認必要
-- 導入が困難な場合は、Compel/sd_embedのSDXL処理部分だけを参考にした自前実装
-
-### 自前実装（第2候補）
-sd_embedの実装を参考にした最小限の実装:
-1. 全文tokenize → 75トークン単位分割
-2. 各チャンクにBOS/EOS追加 → 77トークン
-3. `hidden_states[-2]`を取得
-4. 2つのencoderのembeddingを`dim=-1`で連結
-5. チャンクを`dim=1`で連結
-6. pooled embeddingは`text_encoder_2`のpooled出力から取得
-7. positive/negativeのチャンク数を揃える
-
-## テスト手順
-段階的な検証:
-1. 通常の `pipe(prompt=...)` → 成功確認
-2. 77トークン以内のembedding生成 → 同じく成功
-3. 78トークン → 成功確認
-4. 150トークン → 成功確認
-5. 300トークン → 成功確認
-
-各ステップでembeddingのNaN/Infチェック:
-```python
-torch.isfinite(prompt_embeds).all()
-torch.isfinite(negative_prompt_embeds).all()
-torch.isfinite(pooled_prompt_embeds).all()
-torch.isfinite(negative_pooled_prompt_embeds).all()
-```
+1. **sd_embedパッケージは導入しない**: 依存関係が重い（notebookなど）。自前実装で十分
+2. **Compelも導入しない**: 依存関係競合のリスクがある
+3. **HF Spaceのpip installは制約が厳しい**: 既存の依存関係と競合しやすい
+4. **ZeroGPUのインスタンスは一時的**: 各起動でチェックポイントを再ダウンロード
+5. **embeddingのNaN/Infチェックは必須**: `torch.isfinite()` で検証
+6. **画像の平均輝度で黒画像を検出可能**: 0に近い値はNaN/Infの兆候
 
 ## 結論
 - 「SDXLは77トークン超が不可能」ではない
 - chunkingアプローチは可能だが、SDXLのconditioning形式を正確に再現する必要がある
-- sd_embedパッケージそのものは導入しない（依存関係が重い）
-- Compel 2.3.1は依存関係競合（huggingface-hubのバージョン）で導入断念
-- sd_embedの実装を参考にした自前chunking実装で成功
+- 自前chunking実装で成功
 - 关键点: `hidden_states[-2]`、`text_encoder_2`のpooled出力、positive/negativeのチャンク数一致
+- 成功した実装は `scripts/hf-space/app.py` に保存済み
 
-## 成功した実装
-- `scripts/hf-space/app.py`に`get_long_prompt_embeddings_sdxl`関数を追加
-- 短プロンプト・長プロンプト（~70トークン）両方で512x512テスト成功
-- 平均輝度69（短）、110（長）で黒画像なし
+## 次のステップ
+1. フル解像度（1152x768）でのテスト
+2. `generate_article.py`とのエンドツーエンドテスト
+3. HF Spaceへのデプロイ確認

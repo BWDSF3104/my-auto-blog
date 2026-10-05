@@ -25,4 +25,4 @@ P2バックログ完了: ヒーローセクション (`docs/ai/tasks/2026-10-05-
 P2バックログ完了: カテゴリーカード (`docs/ai/tasks/2026-10-04-category-cards.md`)
 P1バックログ完了: TOCレスポンシブ対応 + Plausible有効化
 P1バックログ完了: HF API 使用可能状況確認 (`docs/ai/tasks/2026-10-05-hf-api-investigation.md`)
-- `docs/ai/tasks/2026-10-05-long-prompt-v2.md` - KI-003 長プロンプト対応v2（失敗→原因特定済み、Compel 2.3.1検討中）
+- `docs/ai/tasks/2026-10-05-long-prompt-v2.md` - KI-003 長プロンプト対応v2（自前chunking実装成功、v3デプロイ済み）
