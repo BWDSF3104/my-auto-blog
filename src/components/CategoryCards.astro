@@ -1,8 +1,6 @@
 ---
 import { getTagColor } from '../lib/tagColors';
 
-const maxCards = 12;
-
 const postImports = import.meta.glob<{
   frontmatter: {
     tags?: string[];
@@ -20,36 +18,76 @@ Object.values(postImports).forEach((module: any) => {
 
 const tags = Array.from(tagMap.entries())
   .sort((a, b) => b[1] - a[1])
-  .slice(0, maxCards);
+  .slice(0, 12);
 ---
 
-<section class="my-10" aria-label="カテゴリー">
-  <div class="flex items-center justify-between mb-5">
-    <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100 m-0">カテゴリー</h2>
-    <a
-      href={`${baseUrl}/tags`}
-      class="text-sm font-medium text-blue-600 dark:text-blue-400 no-underline hover:underline"
+<section class="border-b border-slate-200 dark:border-slate-700 mb-6">
+  <button
+    id="category-toggle"
+    class="w-full flex items-center justify-between py-2.5 px-1 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors bg-transparent border-none cursor-pointer"
+    aria-expanded="false"
+    aria-controls="category-panel"
+  >
+    <span class="flex items-center gap-2">
+      カテゴリー
+      <span class="text-xs text-slate-400 dark:text-slate-500">({tags.length}タグ)</span>
+    </span>
+    <svg
+      id="category-chevron"
+      class="w-4 h-4 transition-transform duration-200"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
     >
-      全タグを見る →
-    </a>
-  </div>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
 
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-    {tags.map(([name, count]) => {
-      const c = getTagColor(name);
-      return (
+  <div
+    id="category-panel"
+    class="hidden overflow-hidden"
+    role="region"
+    aria-labelledby="category-toggle"
+  >
+    <div class="pb-3 pt-1">
+      <div class="flex flex-wrap gap-2">
+        {tags.map(([name, count]) => {
+          const c = getTagColor(name);
+          return (
+            <a
+              href={`${baseUrl}/tags/${encodeURIComponent(name)}`}
+              class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold ${c.bg} ${c.darkBg} ${c.text} ${c.darkText} ${c.hover} ${c.darkHover} transition-colors no-underline border border-slate-200/50 dark:border-slate-700/50`}
+            >
+              <span>#{name}</span>
+              <span class="text-[10px] opacity-70">{count}</span>
+            </a>
+          );
+        })}
+      </div>
+      <div class="mt-2 text-right">
         <a
-          href={`${baseUrl}/tags/${encodeURIComponent(name)}`}
-          class={`group block rounded-xl p-4 border ${c.bg} ${c.darkBg} border-slate-200 dark:border-slate-700 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 no-underline`}
+          href={`${baseUrl}/tags`}
+          class="text-xs text-blue-600 dark:text-blue-400 no-underline hover:underline"
         >
-          <div class={`text-lg font-bold ${c.text} ${c.darkText} mb-1 group-hover:underline`}>
-            #{name}
-          </div>
-          <div class="text-xs text-slate-500 dark:text-slate-400">
-            {count}記事
-          </div>
+          全タグを見る →
         </a>
-      );
-    })}
+      </div>
+    </div>
   </div>
 </section>
+
+<script is:inline>
+(() => {
+  const btn = document.getElementById('category-toggle');
+  const panel = document.getElementById('category-panel');
+  const chevron = document.getElementById('category-chevron');
+  btn?.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    panel?.classList.toggle('hidden', expanded);
+    if (chevron) {
+      chevron.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+  });
+})();
+</script>
