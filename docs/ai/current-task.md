@@ -13,6 +13,9 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ### Verification
 
+- `pytest scripts/tests/ -v`: 110 passed (1.31s)
+- `npm run build`: 成功 (110ページ、3.43s)
+- docs 更新: image-prompt-refinement.md (新規), backlog.md (P4超低優先度追加), current-task.md
 - `npm run build`: 成功 (110ページ、2.43s)
 - docs 更新: known-issues.md (KI-001, KI-002追加), backlog.md (P1追加), plans.md (Active Plans追加), tasks/ 新規作成
 - `npm run build`: 成功 (110ページ、2.57s)
@@ -26,3 +29,4 @@ P2バックログ完了: カテゴリーカード (`docs/ai/tasks/2026-10-04-cat
 P1バックログ完了: TOCレスポンシブ対応 + Plausible有効化
 P1バックログ完了: HF API 使用可能状況確認 (`docs/ai/tasks/2026-10-05-hf-api-investigation.md`)
 - `docs/ai/tasks/2026-10-05-long-prompt-v2.md` - KI-003 長プロンプト対応v2（自前chunking実装成功、v3デプロイ済み）
+- `docs/ai/image-prompt-refinement.md` - 画像生成プロンプト精査（Nova-Furry-XL用ポジティブ8タグ、ネガティブ15タグに削減、29→23タグ/-21%）

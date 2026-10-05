@@ -47,7 +47,7 @@ MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 # SFWタグを常に付与して安全な画像生成を強制
 # アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
-BASE_QUALITY_PROMPT = "masterpiece, best quality, amazing quality, ultra-detailed, furry, anthro, safe for work, wholesome, family-friendly"
+BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, absurdres, newest, furry, safe for work"
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading, vibrant colors"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
@@ -147,7 +147,7 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
 
             temp_image_path = hf_client.predict(
                 prompt,
-                "worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed, nsfw, explicit, nude, nudity, sexual, erotic, pornographic, gore, blood, violent, inappropriate",
+                "nsfw, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username",
                 18,
                 5.0,
                 896,
