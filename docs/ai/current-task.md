@@ -30,3 +30,4 @@ P1バックログ完了: TOCレスポンシブ対応 + Plausible有効化
 P1バックログ完了: HF API 使用可能状況確認 (`docs/ai/tasks/2026-10-05-hf-api-investigation.md`)
 - `docs/ai/tasks/2026-10-05-long-prompt-v2.md` - KI-003 長プロンプト対応v2（自前chunking実装成功、v3デプロイ済み）
 - `docs/ai/image-prompt-refinement.md` - 画像生成プロンプト精査（Nova-Furry-XL用ポジティブ8タグ、ネガティブ15タグに削減、29→23タグ/-21%）
+- `docs/ai/image-prompt-nonfixed-refinement.md` - 非固定部分（art_style/character/situation）精査 + Python側ランダム化設計（6項目の重み付き選択）
