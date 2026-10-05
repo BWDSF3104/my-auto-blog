@@ -12,7 +12,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ### Verification
 
-- `npm run build`: 成功 (108ページ、2.87s)
+- `npm run build`: 成功 (110ページ、2.86s)
 
 P2バックログ完了: ヒーローセクション (`docs/ai/tasks/2026-10-05-hero-section.md`)
 P2バックログ完了: カテゴリーカード (`docs/ai/tasks/2026-10-04-category-cards.md`)
