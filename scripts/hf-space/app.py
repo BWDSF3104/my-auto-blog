@@ -36,9 +36,8 @@ def tokenize_long_prompt(tokenizer, prompt):
     return list(tokens)
 
 
-def group_into_chunks(tokens, eos_token_id):
+def group_into_chunks(tokens, eos_token_id, bos_token_id=49406):
     """Group tokens into 75-token chunks with BOS/EOS."""
-    bos_token_id = tokenizer_cls.BOS_TOKEN_ID if hasattr(tokenizer_cls, 'BOS_TOKEN_ID') else 49406
     chunks = []
     while len(tokens) >= 75:
         head_75 = [tokens.pop(0) for _ in range(75)]
