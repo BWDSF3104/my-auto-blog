@@ -2,9 +2,10 @@
 interface Props {
   title?: string;
   subtitle?: string;
+  isHomePage?: boolean;
 }
 
-const { title = "BWD's AI Auto Blog", subtitle = "Gemini API ＆ GitHub Actions による自動生成Blog" } = Astro.props;
+const { title = "BWD's AI Auto Blog", subtitle = "Gemini API ＆ GitHub Actions による自動生成Blog", isHomePage = false } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 // ヒーローセクションの統計情報
@@ -164,7 +165,7 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
 
     <div class="flex flex-col sm:flex-row gap-2">
       <a
-        href={baseUrl}
+        href={isHomePage ? "#main-content" : baseUrl}
         class="inline-flex items-center justify-center px-4 py-1.5 bg-white/20 hover:bg-white/30 rounded-md text-xs sm:text-sm font-semibold no-underline transition-colors"
       >
         最新記事を読む

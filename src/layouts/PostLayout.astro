@@ -219,7 +219,7 @@ if (frontmatter.speakable) {
   <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4">
     <a href="#main-content" class="skip-link">スキップナビゲーション</a>
     <div class="max-w-3xl lg:max-w-6xl mx-auto">
-      <Header />
+      <Header isHomePage={false} />
       <div class="flex flex-col lg:flex-row-reverse gap-6 lg:gap-8 items-start">
        <!-- 目次 (TOC) - モバイル: 折りたたみ式 / lg以上: 右サイドバー固定 -->
        <nav class="toc-nav w-full lg:sticky lg:top-24 lg:w-64 lg:flex-shrink-0 lg:order-1" aria-label="目次">

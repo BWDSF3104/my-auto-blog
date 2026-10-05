@@ -121,7 +121,7 @@ const ogImageUrl = posts[0]?.frontmatter.image
   </head>
   <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
     <div class="max-w-3xl mx-auto">
-      <Header />
+      <Header isHomePage={false} />
 
       <main id="main-content">
         <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">全 {totalPosts} 件中 {(currentPage - 1) * 10 + 1}–{Math.min(currentPage * 10, totalPosts)} を表示</p>
