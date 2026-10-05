@@ -6,10 +6,31 @@ interface Props {
 
 const { title = "BWD's AI Auto Blog", subtitle = "Gemini API ＆ GitHub Actions による自動生成Blog" } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// ヒーローセクションの統計情報
+const postImports = import.meta.glob<{
+  frontmatter: {
+    pubDate: string;
+    tags?: string[];
+  };
+}>('../content/posts/*.md', { eager: true });
+
+const allTags = new Set<string>();
+let latestDate = new Date(0);
+Object.values(postImports).forEach((module: any) => {
+  const fm = module.frontmatter;
+  if (fm.tags) fm.tags.forEach((t: string) => allTags.add(t));
+  const d = new Date(fm.pubDate);
+  if (d > latestDate) latestDate = d;
+});
+
+const postCount = Object.values(postImports).length;
+const tagCount = allTags.size;
+const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }) : '—';
 ---
 
-<header class="border-b-2 border-slate-200 dark:border-slate-700 mb-10 pb-6">
-  <div class="flex items-start justify-between gap-4">
+<header class="mb-10">
+  <div class="flex items-start justify-between gap-4 mb-6">
     <div>
       <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 tracking-tight mb-2">
         <a href={baseUrl} class="no-underline hover:opacity-80 transition-opacity">{title}</a>
@@ -40,6 +61,46 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
         </svg>
       </button>
+    </div>
+  </div>
+
+  <div class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg">
+    <p class="text-lg sm:text-xl font-semibold mb-4 leading-relaxed">AI がトレンドを収集し、自動で記事を書くブログ。</p>
+
+    <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold">{postCount}</div>
+        <div class="text-xs sm:text-sm opacity-80">記事</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold">{tagCount}</div>
+        <div class="text-xs sm:text-sm opacity-80">タグ</div>
+      </div>
+      <div class="text-center">
+        <div class="text-xs sm:text-sm opacity-80">最新更新</div>
+        <div class="text-sm sm:text-base font-semibold mt-1">{latestDateStr}</div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <a
+        href="#main-content"
+        class="inline-flex items-center justify-center px-5 py-2.5 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-semibold no-underline transition-colors backdrop-blur-sm"
+      >
+        最新記事を読む
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </a>
+      <a
+        href={`${baseUrl}/tags`}
+        class="inline-flex items-center justify-center px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-semibold no-underline transition-colors backdrop-blur-sm"
+      >
+        タグ一覧
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
   </div>
 </header>
