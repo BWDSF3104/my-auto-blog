@@ -4,6 +4,11 @@
 
 # Active Plans
 
+- [2026-10-05] 既知問題修正 (KI-001, KI-002, KI-003):
+  - KI-001: ハンバーガーメニューの「記事一覧」リンクを `#main-content` → `{baseUrl}` に変更
+  - KI-002: ヒーローセクションの「最新記事を読む」を同上 + `page/[page].astro` に `id="main-content"` を追加
+  - KI-003: `kemono_story.txt` の IMAGE_PROMPT 指示を強化（具体的なシーンの描写を要求）
+
 # Completed Plans
 
 - [2026-10-05] ブランドカラー統一: `global.css` + `PostLayout.astro` のハードコードHEXをCSS変数(26変数)に集約。既存カラー値は不変。変更前後のビルド出力比較で45色完全一致を確認。ビルド成功 (110ページ)

@@ -109,7 +109,7 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
       </button>
       <hr class="border-slate-200 dark:border-slate-700 my-1">
       <a
-        href="#main-content"
+        href={baseUrl}
         class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 no-underline transition-colors"
       >
         <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +164,7 @@ const latestDateStr = latestDate > new Date(0) ? latestDate.toLocaleDateString('
 
     <div class="flex flex-col sm:flex-row gap-2">
       <a
-        href="#main-content"
+        href={baseUrl}
         class="inline-flex items-center justify-center px-4 py-1.5 bg-white/20 hover:bg-white/30 rounded-md text-xs sm:text-sm font-semibold no-underline transition-colors"
       >
         最新記事を読む

@@ -8,11 +8,13 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- (なし)
+- `docs/ai/tasks/2026-10-05-known-issues-image-prompt.md` - KI-001, KI-002 修正完了。KI-003 は次回
 
 ### Verification
 
 - `npm run build`: 成功 (110ページ、2.43s)
+- docs 更新: known-issues.md (KI-001, KI-002追加), backlog.md (P1追加), plans.md (Active Plans追加), tasks/ 新規作成
+- `npm run build`: 成功 (110ページ、2.57s)
 
 P2バックログ完了: ロゴ画像置換 (`docs/ai/tasks/2026-10-05-logo-favicon.md`)
 P2バックログ完了: ブランドカラー統一 (`docs/ai/tasks/2026-10-05-brand-colors.md`)
