@@ -13,7 +13,7 @@ function stripHtml(html) {
 }
 
 function parseFrontmatter(content) {
-  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  const match = content.match(/^\uFEFF?---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return { data: {}, body: content };
   const data = yaml.load(match[1], { schema: yaml.JSON_SCHEMA }) || {};
   const body = content.slice(match[0].length);
