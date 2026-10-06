@@ -481,12 +481,14 @@ def _load_character_features() -> str:
     """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。"""
     features_path = os.path.join("data", "character_features.json")
     if not os.path.exists(features_path):
+        print("  [char-features] character_features.json が見つかりません（注入スキップ）")
         return ""
 
     try:
         with open(features_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-    except Exception:
+    except Exception as e:
+        print(f"  [char-features] 読み取り失敗: {e}（注入スキップ）")
         return ""
 
     # 各カテゴリから上位10件を抽出
@@ -497,7 +499,12 @@ def _load_character_features() -> str:
     copyrights = sorted(data.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
 
     if not species and not colors and not physical and not characters and not copyrights:
+        print("  [char-features] データが空です（注入スキップ）")
         return ""
+
+    updated_at = data.get("updated_at", "unknown")
+    total_posts = data.get("total_posts_analyzed", 0)
+    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts}, species={len(species)}, colors={len(colors)}, physical={len(physical)}, characters={len(characters)}, copyrights={len(copyrights)}")
 
     # 種族名を日本語風に変換（例: wolf -> wolf/狼, fox -> fox/狐）
     species_names = ", ".join(f"{s[0]}" for s in species)

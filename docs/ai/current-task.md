@@ -32,3 +32,4 @@ P1バックログ完了: HF API 使用可能状況確認 (`docs/ai/tasks/2026-10
 - `docs/ai/image-prompt-refinement.md` - 画像生成プロンプト精査（Nova-Furry-XL用ポジティブ8タグ、ネガティブ15タグに削減、29→23タグ/-21%）
 - `docs/ai/image-prompt-nonfixed-refinement.md` - 非固定部分（art_style/character/situation）精査 + Python側ランダム化設計（6項目の重み付き選択）
 - Kemono API 削除 + エンタメトレンドソース追加（GameSpot/IGN/Anime News Network/Crunchyroll）+ e621 ストーリー注入除外 + Reddit/Bluesky コメントアウト（2026-10-06）
+- e621 キャラクター特徴: 累積型→最新分みの修正 + 両スクリプトにログ出力追加（2026-10-06）

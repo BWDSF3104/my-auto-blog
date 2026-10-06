@@ -341,52 +341,24 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
             else:
                 physical_counter[tag] += 1
 
-    # 既存データをロードして更新
-    existing = {}
-    if os.path.exists(CHARACTER_FEATURES_PATH):
-        try:
-            with open(CHARACTER_FEATURES_PATH, "r", encoding="utf-8") as f:
-                existing = json.load(f)
-        except Exception:
-            pass
-
-    # 集計結果をマージ（既存のカウンターに追加）
-    if "species" in existing:
-        existing["species"].update(species_counter)
-    else:
-        existing["species"] = dict(species_counter)
-
-    if "colors" in existing:
-        existing["colors"].update(color_counter)
-    else:
-        existing["colors"] = dict(color_counter)
-
-    if "physical_features" in existing:
-        existing["physical_features"].update(physical_counter)
-    else:
-        existing["physical_features"] = dict(physical_counter)
-
-    if "characters" in existing:
-        existing["characters"].update(character_counter)
-    else:
-        existing["characters"] = dict(character_counter)
-
-    if "copyrights" in existing:
-        existing["copyrights"].update(copyright_counter)
-    else:
-        existing["copyrights"] = dict(copyright_counter)
-
-    # 更新時刻を記録
+    # 最新収集分のみを保存（累積しない）
     from datetime import datetime, timezone
-    existing["updated_at"] = datetime.now(timezone.utc).isoformat()
-    existing["total_posts_analyzed"] = sum(existing["species"].values()) + sum(existing.get("characters", {}).values()) + sum(existing.get("copyrights", {}).values())
+    data = {
+        "species": dict(species_counter),
+        "colors": dict(color_counter),
+        "physical_features": dict(physical_counter),
+        "characters": dict(character_counter),
+        "copyrights": dict(copyright_counter),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "total_posts_analyzed": len(raw_tags),
+    }
 
     # ファイルに保存
     os.makedirs(os.path.dirname(CHARACTER_FEATURES_PATH), exist_ok=True)
     with open(CHARACTER_FEATURES_PATH, "w", encoding="utf-8") as f:
-        json.dump(existing, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"  [char-features] 特徴集計を保存しました ({len(raw_tags)} posts)")
+    print(f"  [char-features] 特徴集計を保存しました ({len(raw_tags)} posts / species:{len(species_counter)}, colors:{len(color_counter)}, physical:{len(physical_counter)}, characters:{len(character_counter)}, copyrights:{len(copyright_counter)})")
 
 
 def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[dict]:
