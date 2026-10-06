@@ -31,6 +31,7 @@
 ・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください。3-5タグ程度に簡潔にしてください。
   例: "anime style, illustration, cel shading, vibrant colors" や "digital painting, dramatic lighting, rich colors"
   記事内の全画像はこのスタイルで統一されます。
+  トレンドデータで提示されたartist名をスタイル参照として使用できます（例: "by dimwitdog" や "by wolfy-nail"）。
 ・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
 
 【画像シーンの選出ルール（合計3枚、被り禁止）】

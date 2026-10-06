@@ -564,6 +564,10 @@ def _load_character_features() -> str:
 
     copyright_names = ", ".join(c for c in all_copyrights[:8]) if all_copyrights else "-"
 
+    # 人気artistを抽出（unknown_artistは既に除外済み）
+    aggregate_artists = sorted(aggregates.get("artists", {}).items(), key=lambda x: -x[1])
+    artist_names = ", ".join(a for a, _ in aggregate_artists[:8]) if aggregate_artists else "-"
+
     lines = [
         "",
         "【キャラクター特徴のトレンドデータ（参考）】",
@@ -586,10 +590,11 @@ def _load_character_features() -> str:
         lines.append("")
 
     lines.append(f"・人気版権: {copyright_names}")
+    lines.append(f"・人気artist: {artist_names}")
     lines.append("")
     lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連する書籍・ゲーム・グッズを推奨してください。")
 
-    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyright_names)}")
+    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyright_names)}, artists={len(artist_names)}")
 
     return "\n".join(lines)
 

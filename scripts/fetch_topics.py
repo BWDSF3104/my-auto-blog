@@ -73,7 +73,7 @@ CHARACTER_FEATURES_PATH = os.path.join(PROJECT_DIR, "data", "character_features.
 
 # e621 タグのカテゴリ分類（キャラクター特徴抽出用）
 # species: 種族, general: 身体的特徴・色, character: キャラクター名, copyright: 作品名
-CHARACTER_FEATURE_CATEGORIES = ["species", "general", "character", "copyright"]
+CHARACTER_FEATURE_CATEGORIES = ["species", "general", "character", "copyright", "artist"]
 
 # RSS フィード一覧
 RSS_FEEDS = [
@@ -397,6 +397,7 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
     physical_counter = Counter()
     character_counter = Counter()
     copyright_counter = Counter()
+    artist_counter = Counter()
 
     # 色のパターン（general タグから抽出）
     color_patterns = ["_fur", "_eyes", "_body", "_hair", "_scale", "_skin", "_wing", "_tail"]
@@ -426,6 +427,12 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
         for copyright_tag in post_copyrights:
             copyright_counter[copyright_tag] += 1
 
+        # artist タグの集計（unknown_artist は除外）
+        post_artists = tags.get("artist", [])
+        for artist_tag in post_artists:
+            if artist_tag not in ("unknown_artist", "anonymous_artist"):
+                artist_counter[artist_tag] += 1
+
         # general タグから色と身体的特徴を抽出（除外フィルタ適用）
         for tag in tags.get("general", []):
             is_color = any(tag.endswith(pat) for pat in color_patterns)
@@ -443,6 +450,7 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
             "physical": post_physical,
             "characters": post_characters,
             "copyrights": post_copyrights,
+            "artists": post_artists,
         })
 
     # 最新収集分のみを保存（累積しない）
@@ -455,6 +463,7 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
             "physical_features": dict(physical_counter),
             "characters": dict(character_counter),
             "copyrights": dict(copyright_counter),
+            "artists": dict(artist_counter),
         },
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "total_posts_analyzed": len(raw_tags),
@@ -465,7 +474,7 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
     with open(CHARACTER_FEATURES_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"  [char-features] 特徴集計を保存しました ({len(raw_tags)} posts / species:{len(species_counter)}, colors:{len(color_counter)}, physical:{len(physical_counter)}, characters:{len(character_counter)}, copyrights:{len(copyright_counter)})")
+    print(f"  [char-features] 特徴集計を保存しました ({len(raw_tags)} posts / species:{len(species_counter)}, colors:{len(color_counter)}, physical:{len(physical_counter)}, characters:{len(character_counter)}, copyrights:{len(copyright_counter)}, artists:{len(artist_counter)})")
 
 
 def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[dict]:
