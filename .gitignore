@@ -36,4 +36,7 @@ tmp/
 # Real API test results
 scripts/data/api_test_results/
 
+# Local test results (not committed)
+test-results/
+
 
