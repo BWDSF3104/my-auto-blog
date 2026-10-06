@@ -1,7 +1,7 @@
 import torch
 import gradio as gr
 import spaces
-from diffusers import StableDiffusionXLPipeline, EulerDiscreteScheduler
+from diffusers import StableDiffusionXLPipeline, EulerAncestralDiscreteScheduler
 from huggingface_hub import hf_hub_download
 
 # 1. モデルの初期化
@@ -17,7 +17,7 @@ pipe = StableDiffusionXLPipeline.from_single_file(
     torch_dtype=torch.float16,
     use_safetensors=True
 )
-pipe.scheduler = EulerDiscreteScheduler.from_config(pipe.scheduler.config)
+pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
 print("Pipeline loaded successfully!")
 
 
@@ -152,7 +152,7 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
 
 
 # 2. 推論処理
-@spaces.GPU(duration=90)
+@spaces.GPU(duration=20)
 def predict(prompt, negative_prompt, steps, guidance_scale, width, height):
     pipe.to("cuda")
 

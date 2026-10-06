@@ -116,6 +116,14 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 - Space 停止時は再開に数分要する。起動待ち中にリクエストすると失敗する
 - `gradio-client` は 2.7.2+ を使用（`huggingface_hub` 2.x 互換）
 
+**HF Space デプロイ** (`scripts/hf-space/app.py` 変更後):
+- アップロード: `hf upload --repo-type space blume/kemono-image-api scripts\hf-space\app.py`
+- 起動確認: `python -c "from huggingface_hub import HfApi; api = HfApi(); info = api.get_space_runtime('blume/kemono-image-api'); print(info.stage)"` → `RUNNING` になるまで待機
+- 生成テスト: `python scripts/_test_hf_space.py` （Space が `RUNNING` 後に実行）
+- Space URL: `https://huggingface.co/spaces/blume/kemono-image-api`
+- Scheduler: `EulerAncestralDiscreteScheduler` (Euler a)
+- GPU予約: `@spaces.GPU(duration=20)` (実推論約5秒、マージン含め20秒)
+
 ## Configuration
 
 - Node.js >= 22.12.0 required
