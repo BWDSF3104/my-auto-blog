@@ -145,9 +145,9 @@ def _run_main(tmp_path, collect_returns, prev_data=None):
              patch.object(fetch_topics, "collect_rss_feeds", return_value=collect_returns.get("rss", [])), \
              patch.object(fetch_topics, "collect_reddit", return_value=collect_returns.get("reddit", [])), \
              patch.object(fetch_topics, "collect_e621", return_value=collect_returns.get("e621", [])), \
-             patch.object(fetch_topics, "collect_kemono_api", return_value=collect_returns.get("kemono", [])), \
              patch.object(fetch_topics, "collect_github_trending", return_value=[]), \
-             patch.object(fetch_topics, "collect_bluesky", return_value=[]):
+             patch.object(fetch_topics, "collect_bluesky", return_value=[]), \
+             patch.object(fetch_topics, "collect_entertainment_trends", return_value=collect_returns.get("entertainment", [])):
             fetch_topics.main()
         return json.loads(latest_json.read_text(encoding="utf-8"))
     finally:

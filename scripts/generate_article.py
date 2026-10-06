@@ -1408,8 +1408,9 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
             if item.get("score", 0) < MIN_SCORE_THRESHOLD:
                 continue
             log_after_score += 1
-            # カテゴリ厳格化: 物語モードでは Safe 評価の e621 投稿のみを注入
-            if story_mode and item.get("source") == "e621" and item.get("rating") != "s":
+            # カテゴリ厳格化: 物語モードでは e621 全投稿をインスピレーション注入から除外
+            # e621 はキャラクター特徴集計にのみ使用し、ストーリーテーマのインスピレーションには不適切
+            if story_mode and item.get("source") == "e621":
                 continue
             log_after_rating += 1
             title = item.get("title", "").strip()

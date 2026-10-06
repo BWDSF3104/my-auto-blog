@@ -2,11 +2,18 @@
 fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収集するスクリプト
 
 収集先:
-  1. Hacker News  : Firebase API (認証不要・CORS対応)
-  2. Reddit       : .json エンドポイント (User-Agent 必要)
-  3. e621         : REST API の公開検索 (User-Agent 必要)
-  4. RSS各種      : Zenn / Qiita / GitHub Trending
-  5. GitHub Search: REST API (未認証 60req/h)
+  1. Hacker News       : Firebase API (認証不要・CORS対応) [tech]
+  2. e621              : REST API の公開検索 (User-Agent 必要) [kemono/pokemon]
+  3. RSS 各種          : Zenn / Qiita / PokéCommunity / PokeBeach など [tech/pokemon]
+  4. GitHub Search     : REST API (未認証 60req/h) [kemono/pokemon]
+  5. GameSpot RSS      : HTMLパース [kemono]
+  6. IGN RSS           : HTMLパース [kemono]
+  7. Anime News Network: HTMLパース [kemono]
+  8. Crunchyroll News  : HTMLパース [kemono]
+
+一時無効化:
+  - Reddit    : 403 Blocked (2026-10-06)
+  - Bluesky   : 501 Not Implemented (2026-10-06)
 
 出力: data/topics/{YYYY-MM-DD_HHMMSS}.json + data/topics/latest.json (コピー)
 """
@@ -121,6 +128,9 @@ HN_CATEGORIES = ["tech"]
 GITHUB_SEARCH_QUERIES = [
     {"query": "kemono+in:name,description", "category": "kemono"},
     {"query": "furry+language:python", "category": "kemono"},
+    {"query": "furry+writing+fanfiction", "category": "kemono"},
+    {"query": "furry+story+novel", "category": "kemono"},
+    {"query": "kemono+art+gallery", "category": "kemono"},
     {"query": "pokemon+language:typescript", "category": "pokemon"},
 ]
 
@@ -499,38 +509,6 @@ def collect_github_trending(limit_per_query: int = 5, categories: list[str] = No
     return results
 
 
-def collect_kemono_api(limit: int = 10, categories: list[str] = None) -> list[dict]:
-    """Kemono (kemono.cr) の公開 API で最近の投稿を取得する（認証不要）。"""
-    if categories and "kemono" not in categories:
-        return []
-    print("[Kemono] Fetching recent posts from API...")
-    headers = {"User-Agent": USER_AGENT}
-    results = []
-    data = fetch_json("https://kemono.cr/api/v1/posts", headers=headers)
-    if not data:
-        print("  -> 0 Kemono posts collected")
-        return results
-    posts = data.get("posts", [])
-    for post in posts:
-        if len(results) >= limit:
-            break
-        pid = post.get("id", "")
-        service = post.get("service", "unknown")
-        creator = post.get("user", "unknown")
-        title = post.get("title", "")[:100]
-        if not pid:
-            continue
-        results.append({
-            "title": f"[{service}] {creator}: {title}" if title else f"[{service}] {creator}",
-            "url": f"https://kemono.cr/{service}/user/{creator}/post/{pid}",
-            "score": 0,
-            "source": "Kemono",
-            "category": "kemono",
-        })
-    print(f"  -> {len(results)} Kemono posts collected")
-    return results
-
-
 def collect_bluesky(limit_per_query: int = 5, categories: list[str] = None) -> list[dict]:
     """Bluesky (AT Protocol) の公開検索エンドポイントで投稿を検索する（認証不要）。"""
     results = []
@@ -568,6 +546,85 @@ def collect_bluesky(limit_per_query: int = 5, categories: list[str] = None) -> l
         time.sleep(0.5)
 
     print(f"  -> {len(results)} Bluesky posts collected")
+    return results
+
+
+# アニメ・ゲーム・エンタメのトレンド情報源
+ENTERTAINMENT_SOURCES = [
+    {"name": "GameSpot RSS", "url": "https://www.gamespot.com/feeds/mashup/", "category": "kemono"},
+    {"name": "IGN RSS", "url": "https://feeds.feedburner.com/ign/all", "category": "kemono"},
+    {"name": "Anime News Network", "url": "https://www.animenewsnetwork.com/", "category": "kemono"},
+    {"name": "Crunchyroll News", "url": "https://www.crunchyroll.com/news", "category": "kemono"},
+]
+
+
+def _parse_entertainment_page(html_content: str, source_name: str, category: str) -> list[dict]:
+    """HTML コンテンツからタイトルとURLを抽出する（簡易パース）。"""
+    import re
+    results = []
+    # <title> タグからページタイトルを抽出
+    title_matches = re.findall(r'<title[^>]*>(.*?)</title>', html_content, re.IGNORECASE | re.DOTALL)
+    # <a> タグからリンクを抽出
+    link_matches = re.findall(r'<a[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', html_content, re.IGNORECASE | re.DOTALL)
+
+    seen_titles = set()
+    for href, text in link_matches:
+        # HTML エンティティをデコード
+        clean_text = re.sub(r'<[^>]+>', '', text).strip()
+        clean_text = clean_text.replace("&amp;", "&").replace("&quot;", '"').replace("&apos;", "'")
+        clean_text = clean_text.replace("&lt;", "<").replace("&gt;", ">").replace("&nbsp;", " ")
+        if len(clean_text) < 10 or len(clean_text) > 200:
+            continue
+        if clean_text in seen_titles:
+            continue
+        seen_titles.add(clean_text)
+        results.append({
+            "title": clean_text,
+            "url": href if href.startswith("http") else f"https://{href}",
+            "score": 0,
+            "source": source_name,
+            "category": category,
+        })
+
+    return results[:15]  # 最大15件
+
+
+def collect_entertainment_trends(categories: list[str] = None) -> list[dict]:
+    """アニメ・ゲーム・エンタメのトレンド情報を収集してストーリーインスピレーションに使用する。"""
+    if categories and "kemono" not in categories:
+        return []
+
+    results = []
+
+    for source in ENTERTAINMENT_SOURCES:
+        name = source["name"]
+        url = source["url"]
+        category = source["category"]
+        print(f"[Entertainment] Fetching {name}...")
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                content = resp.read().decode("utf-8", errors="replace")
+            items = _parse_entertainment_page(content, name, category)
+            results.extend(items)
+            print(f"  -> {len(items)} items from {name}")
+        except Exception as e:
+            print(f"  [WARN] Failed to fetch {name}: {e}")
+        time.sleep(0.5)
+
+    # 全ソースから取得できなかった場合は内蔵テーマを使用
+    if not results:
+        print("[Entertainment] 全ソース失敗、内蔵テーマを使用")
+        for theme in STORY_INSPIRATION_THEMES:
+            results.append({
+                "title": f"テーマ: {theme['theme']} - {theme['description']}",
+                "url": "",
+                "score": 0,
+                "source": "StoryInspiration",
+                "category": "kemono",
+            })
+
+    print(f"  -> {len(results)} entertainment trend items collected")
     return results
 
 
@@ -621,11 +678,11 @@ def main():
     except Exception as e:
         print(f"[ERROR] HackerNews: {e}")
 
-    # 2. Reddit
-    try:
-        all_topics.extend(collect_reddit(limit_per_sub=5, categories=categories))
-    except Exception as e:
-        print(f"[ERROR] Reddit: {e}")
+    # 2. Reddit (2026-10-06: 403 Blocked で動作せず、暫定無効化)
+    # try:
+    #     all_topics.extend(collect_reddit(limit_per_sub=5, categories=categories))
+    # except Exception as e:
+    #     print(f"[ERROR] Reddit: {e}")
 
     # 3. e621
     try:
@@ -633,13 +690,7 @@ def main():
     except Exception as e:
         print(f"[ERROR] e621: {e}")
 
-    # 4. Kemono API
-    try:
-        all_topics.extend(collect_kemono_api(limit=10, categories=categories))
-    except Exception as e:
-        print(f"[ERROR] Kemono API: {e}")
-
-    # 5. RSS
+    # 4. RSS
     try:
         all_topics.extend(collect_rss_feeds(categories=categories))
     except Exception as e:
@@ -651,11 +702,17 @@ def main():
     except Exception as e:
         print(f"[ERROR] GitHub: {e}")
 
-    # 7. Bluesky
+    # 7. Bluesky (2026-10-06: 501 Not Implemented で動作せず、暫定無効化)
+    # try:
+    #     all_topics.extend(collect_bluesky(limit_per_query=5, categories=categories))
+    # except Exception as e:
+    #     print(f"[ERROR] Bluesky: {e}")
+
+    # 8. Anime/Game/Entertainment Trends
     try:
-        all_topics.extend(collect_bluesky(limit_per_query=5, categories=categories))
+        all_topics.extend(collect_entertainment_trends(categories=categories))
     except Exception as e:
-        print(f"[ERROR] Bluesky: {e}")
+        print(f"[ERROR] EntertainmentTrends: {e}")
 
     # カテゴリ別に整理（score降順でソート）
     by_category = {

@@ -21,14 +21,24 @@ Trend Sources → fetch_topics.py → data/topics/{timestamp}.json → generate_
 
 Collects trending topics from multiple sources:
 
-| Source | API | Category | Status |
-|--------|-----|----------|--------|
-| HackerNews | Firebase API | tech | ✅ Active |
-| Reddit | .json endpoint | kemono/pokemon/tech | ❌ Blocked (403) |
-| e621 | REST API | kemono/pokemon | ✅ Active |
-| RSS | xml.etree.ElementTree | tech/pokemon | ✅ Active |
-| GitHub | Search API | kemono/pokemon | ✅ Active |
-| Bluesky | AT Protocol search API | tech/kemono/pokemon | ✅ Active |
+| Source | API | Category | Status | Notes |
+|--------|-----|----------|--------|-------|
+| HackerNews | Firebase API | tech | ✅ Active | |
+| Reddit | .json endpoint | kemono/pokemon/tech | ⏸️ Disabled | 403 Blocked (2026-10-06 コメントアウト) |
+| e621 | REST API | kemono/pokemon | ✅ Active | キャラクター特徴集計のみ。ストーリーインスピレーション注入は除外 |
+| RSS (Zenn/Qiita) | xml.etree.ElementTree | tech | ✅ Active | |
+| RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters) | xml.etree.ElementTree | pokemon | ✅ Active | |
+| GitHub | Search API | kemono/pokemon | ✅ Active | 未認証 60req/h |
+| Bluesky | AT Protocol search API | tech/kemono/pokemon | ⏸️ Disabled | 501 Not Implemented (2026-10-06 コメントアウト) |
+| GameSpot RSS | HTMLパース | kemono | ✅ Active | ゲームニュース → ストーリーインスピレーション |
+| IGN RSS | HTMLパース | kemono | ✅ Active | ゲーム・エンタメニュース |
+| Anime News Network | HTMLパース | kemono | ✅ Active | アニメニュース |
+| Crunchyroll News | HTMLパース | kemono | ✅ Active | アニメ・エンタメニュース |
+
+**カテゴリ別ソース構成:**
+- **tech**: HackerNews, RSS (Zenn/Qiita)
+- **kemono**: e621（キャラクター特徴のみ）, GitHub, GameSpot, IGN, Anime News Network, Crunchyroll
+- **pokemon**: e621, GitHub, RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters)
 
 Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
 - `fetched_at`: Run start ISO timestamp
@@ -37,6 +47,8 @@ Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
 - Symlink: `data/topics/latest.json` → newest file (backward compatibility)
 
 Category-based source filtering: each source can be configured to collect for specific categories. e621 is filtered by NSFW rating at collection time. Per-source TTL allows `generate_article.py` to auto-trigger `fetch_topics.py --prompt-type X` when needed categories are stale.
+
+e621 is excluded from story inspiration injection in `_append_trending_topics()` (story mode filters out all e621 sources). e621 data is used only for character feature aggregation (`_aggregate_and_save_character_features`).
 
 ### Article Generation (`scripts/generate_article.py`)
 
