@@ -238,13 +238,14 @@ def _save_as_avif(image_path: str, output_filename: str) -> str:
     return f"{BASE_URL}/images/{output_filename_avif}"
 
 
-def _generate_image_pollinations(prompt: str, output_filename: str) -> str:
+def _generate_image_pollinations(prompt: str, output_filename: str, seed: int = -1) -> str:
     """Pollinations.ai をフォールバック画像生成として使用"""
     save_dir = os.path.join("public", "images")
     os.makedirs(save_dir, exist_ok=True)
 
+    actual_seed = seed if seed >= 0 else int(time.time())
     safe_prompt = urllib.parse.quote(prompt)
-    url = f"https://image.pollinations.ai/prompt/{safe_prompt}?model=flux&width=896&height=512&seed={int(time.time())}"
+    url = f"https://image.pollinations.ai/prompt/{safe_prompt}?model=flux&width=896&height=512&seed={actual_seed}"
 
     print(f"🌐 Pollinations.ai 画像生成中: {url[:120]}...")
     resp = requests.get(url, timeout=120)
@@ -258,10 +259,11 @@ def _generate_image_pollinations(prompt: str, output_filename: str) -> str:
     return _save_as_avif(temp_path, output_filename)
 
 
-def generate_and_save_image(prompt: str, output_filename: str) -> str:
+def generate_and_save_image(prompt: str, output_filename: str, seed: int = -1) -> str:
     """HF Space APIを呼び出して画像を生成し、public/images/ にAVIF形式で保存してURLパスを返す。
     HF 失敗時は Pollinations.ai にフォールバック。
-    IMAGE_PROVIDER=pollinations の場合は HF をスキップして直接 Pollinations を使用。"""
+    IMAGE_PROVIDER=pollinations の場合は HF をスキップして直接 Pollinations を使用。
+    seed が指定された場合、同じ記事内の画像で一貫したスタイルを維持する。"""
     save_dir = os.path.join("public", "images")
     os.makedirs(save_dir, exist_ok=True)
 
@@ -269,11 +271,14 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
     if not os.path.exists(gitkeep_path):
         open(gitkeep_path, 'w').close()
 
+    seed_info = f" seed={seed}" if seed >= 0 else ""
+    print(f"🎨 画像生成開始: {output_filename}{seed_info}")
+
     # IMAGE_PROVIDER=pollinations の場合は HF をスキップ
     if IMAGE_PROVIDER == "pollinations":
         print("🌐 IMAGE_PROVIDER=pollinations: 直接 Pollinations.ai を使用します。")
         try:
-            return _generate_image_pollinations(prompt, output_filename)
+            return _generate_image_pollinations(prompt, output_filename, seed)
         except Exception as e:
             print(f"⚠️ Pollinations.ai 画像生成失敗: {e}")
             print("⚠️ 画像生成を断念し、画像なしで記事のみ出力します。")
@@ -282,7 +287,6 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
     max_retries = 2
     for attempt in range(1, max_retries + 1):
         try:
-            print(f"🎨 画像生成開始 (試行 {attempt}/{max_retries}): {prompt}")
             hf_client = Client(HF_SPACE_ID, token=HF_TOKEN)
 
             temp_image_path = hf_client.predict(
@@ -292,6 +296,7 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
                 5.0,
                 896,
                 512,
+                seed,
                 api_name="/predict"
             )
 
@@ -305,7 +310,7 @@ def generate_and_save_image(prompt: str, output_filename: str) -> str:
     # HF 全試行失敗 → Pollinations.ai フォールバック
     print("🔄 HuggingFace 全試行失敗。Pollinations.ai にフォールバックします。")
     try:
-        return _generate_image_pollinations(prompt, output_filename)
+        return _generate_image_pollinations(prompt, output_filename, seed)
     except Exception as e:
         print(f"⚠️ Pollinations.ai フォールバックも失敗: {e}")
 
@@ -816,8 +821,10 @@ def extract_image_prompt(markdown_content: str) -> str:
 # --------------------------------------------------
 # 本文内画像の抽出・生成・置換処理
 # --------------------------------------------------
-def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES, art_style: str = DEFAULT_ART_STYLE) -> str:
-    """本文内の <!-- IMAGE_PROMPT: "..." --> を検出し、画像生成してMarkdown画像記法に置換する"""
+def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES, art_style: str = DEFAULT_ART_STYLE, base_seed: int = -1) -> str:
+    """本文内の <!-- IMAGE_PROMPT: "..." --> を検出し、画像生成してMarkdown画像記法に置換する。
+    base_seed が指定された場合、ヘッダーは base_seed、本文挿絵は base_seed+1, +2... を使用して
+    記事内の画像スタイルを一貫させる。"""
     matches = list(INLINE_IMAGE_PATTERN.finditer(content))
     if not matches:
         return content
@@ -826,7 +833,7 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 
     for idx, match in enumerate(matches, start=1):
         full_tag = match.group(0)
-        raw_prompt = match.group(1).strip().strip('"\'“”')
+        raw_prompt = match.group(1).strip().strip('"\'“"')
 
         # 上限枚数を超えたタグは削除
         if idx > max_images:
@@ -835,9 +842,11 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 
         filename = f"{file_timestamp}-inline-{idx}.png"
         full_prompt = compose_image_prompt(raw_prompt, characters, art_style)
+        # ヘッダーが base_seed なので、本文挿絵は +1 から開始
+        inline_seed = base_seed + idx if base_seed >= 0 else -1
 
         print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 合成プロンプト: {full_prompt}")
-        image_url = generate_and_save_image(full_prompt, filename)
+        image_url = generate_and_save_image(full_prompt, filename, inline_seed)
 
         if image_url:
             # 成功時: 前後に空行を入れてMarkdown画像タグに置換
@@ -2376,6 +2385,9 @@ def generate_post():
         print("👤 キャラクター設定は検出されませんでした（単発シチュエーションで生成します）")
 
     image_filename = f"{file_timestamp}-header.png"
+    # 記事レベルのbase seedを生成（同じ記事内の画像でスタイルを一貫させる）
+    article_seed = random.randint(0, 2**31 - 1)
+    print(f"🎲 記事のbase seed: {article_seed}")
     dynamic_situation = extract_image_prompt(content)
     if dynamic_situation == DEFAULT_SITUATION:
         smart_situation = _compose_smart_situation(content)
@@ -2389,7 +2401,7 @@ def generate_post():
 
     full_image_prompt = compose_image_prompt(dynamic_situation, characters, article_art_style)
     print(f"🎨 ヘッダー画像合成プロンプト: {full_image_prompt}")
-    image_url = generate_and_save_image(full_image_prompt, image_filename)
+    image_url = generate_and_save_image(full_image_prompt, image_filename, article_seed)
 
     # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入、prompt_typeの記録)
     if image_url:
@@ -2477,7 +2489,7 @@ def generate_post():
             content = content.replace("---", f"---\n{sources_block}", 1)
 
     # 5. 本文内画像の抽出・生成とMarkdown置換
-    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style)
+    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style, base_seed=article_seed)
 
     # 5.3 本文内の [character_N] プレースホルダーを置換
     content = replace_character_placeholders(content, characters)
