@@ -106,9 +106,15 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 | Service | Env Var | Name |
 |---------|---------|------|
 | Gemini | `GEMINI_API_KEY` | - |
-| HuggingFace | `HF_TOKEN` | - |
+| HuggingFace | `HF_TOKEN` | read/write ロール必要（细粒度トークンは ZeroGPU quota API 不可） |
 | Amazon | `AMAZON_TRACKING_ID` | - |
 | Rakuten | `RAKUTEN_AFFILIATE_ID` | - |
+
+**HF 運用**:
+- CLI 認証: `hf auth login`（トークンをローカル保存）
+- ZeroGPU 残り確認: `hf spaces zero-gpu quota`（`huggingface_hub` v2.1.0+ 必要）
+- Space 停止時は再開に数分要する。起動待ち中にリクエストすると失敗する
+- `gradio-client` は 2.7.2+ を使用（`huggingface_hub` 2.x 互換）
 
 ## Configuration
 
