@@ -11,6 +11,7 @@
 
 # Completed Plans
 
+- [2026-10-06] 画像プロンプト指示をDanbooruキーワード形式に統一: `kemono_story.txt` にDanbooru互換全体指示新規追加、art_style指示に3-5タグ明記+例更新、character指示に種族例+服装1-2つ+5-8タグ制限、IMAGE_PROMPT挿入例・Frontmatter例を自然言語→キーワード形式、`DEFAULT_ART_STYLE`を5→3トークン短縮。pytest 155通過、ビルド成功 (110ページ)。commit: `db0641b`
 - [2026-10-05] kemono_story プロンプトのPython側ランダム化: 6項目の重み付きランダム選択 (`_randomize_kemono_params`) + バリデーション (`_is_valid_kemono_combination`) を実装。`char_count=1` は `extra=clone` 時のみに制限。`char_count_desc` は 2人の場合 "バディ"/"ライバル"/"カップル" からランダム選択。テスト21件追加、全155件通過、ビルド成功 (110ページ)。commit: `2804bfd`
 - [2026-10-05] ブランドカラー統一: `global.css` + `PostLayout.astro` のハードコードHEXをCSS変数(26変数)に集約。既存カラー値は不変。変更前後のビルド出力比較で45色完全一致を確認。ビルド成功 (110ページ)
 - [2026-10-05] モバイルハンバーガーメニュー: `Header.astro` に640px未満用のドロップダウンメニューを追加。検索、ダークモード、記事一覧（`#main-content`アンカー）、タグ一覧、About、RSS、Privacy を含む。外部クリックで閉じる。ビルド成功 (110ページ)
