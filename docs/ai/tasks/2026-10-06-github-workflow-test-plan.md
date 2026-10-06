@@ -76,63 +76,93 @@
 
 ## テスト実行手順
 
-### ステップ0: テスト前の準備（ローカル）
+### ステップ0: テスト前の準備（完了済み）
 
-1. 直近のワークフロー実行時間を記録
-   ```
-   gh run list --limit 5 --json name,status,createdAt
-   ```
+- [x] deploy.yml に `data/drafts/` のコミットを追加 (`6ebe669`)
+- [x] push済み
 
-2. **deploy.yml に `data/drafts/` のコミットを追加**
-   - `git add data/drafts/` を `git add data/trend_usage/` の後に追加
-   - これをコミットしてpush
+### ステップ1: 基準値の記録
 
-3. 最新の自動生成記事を削除（比較のためにクリーンな状態にする）
-   - 直近の `2026-10-06-*.md` と関連画像を削除
-   - コミットしてpush（またはローカルのみで削除）
+直近の成功したワークフロー実行時間を記録。
 
-### ステップ1: ワークフロー手動トリガー
+```bash
+gh run list --limit 5 --json name,status,conclusion,createdAt,event
+```
+
+### ステップ2: ワークフロー手動トリガー
 
 ```bash
 gh workflow run deploy.yml
 ```
 
-### ステップ2: 実行中モニタリング
+### ステップ3: 実行中のログ監視
 
 ```bash
 gh run watch --log --job generate
 ```
 
-- 標準出力から以下のログを確認:
-  - `✨ 2-pass 精製中...` → 2-pass実行確認
-  - `✨ 精製完了` → 2-pass完了確認
-  - 画像生成の枚数とseed値
-  - HF Spaceのレスポンス時間
+ログから以下の項目を記録:
+- `✨ 2-pass 精製中...` / `✨ 精製完了` → 2-pass実行確認（項目1）
+- 画像生成の枚数とseed値（項目2, 4）
+- HF Spaceのレスポンス時間（項目3）
+- エラーメッセージの有無
 
-### ステップ3: 生成結果の確認（ワークフロー完了後）
+Ctrl+C で監視を中断してワークフロー完了を待ってもよい。
 
-1. 最新コミットを確認
-   ```bash
-   git fetch origin
-   git log --oneline origin/main -5
-   ```
+### ステップ4: ワークフロー完了・失敗の確認
 
-2. 最新記事をローカルに取得して確認
-   ```bash
-   git checkout origin/main -- src/content/posts/ public/images/ data/drafts/
-   ```
+```bash
+gh run list --limit 1 --json name,status,conclusion
+```
 
-3. 各確認項目の検証:
-   - 画像枚数カウント
-   - 記事内の画像プロンプト配置確認
-   - drafts JSONファイルの内容確認
-   - art_style フロントマターの確認
-   - 画像の視覚比較（seed一貫性）
+- **success**: ステップ5へ
+- **failure**: ステップ5b（原因分析）へ
+- **completed かつ conclusionがfailure**: ステップ5bへ
 
-### ステップ4: 結果記録
+### ステップ5a: 成功時 — リモートからpull
+
+```bash
+git fetch origin
+git pull origin main
+```
+
+### ステップ5b: 失敗時 — 原因分析
+
+```bash
+gh run view --log-failed
+```
+
+- 失敗したステップとエラーメッセージを記録
+- 修正が必要ならコミット→push→再実行
+- 修正不要（一時的エラー）なら再実行
+
+### ステップ6: 確認項目の順番検証
+
+高速なチェックを先に、視覚確認を後に実施。
+
+#### 6-1. ワークフローログの再確認（ログから）
+- 2-pass実行の有無（項目1）
+
+#### 6-2. 生成ファイルの存在確認（ファイルリスト）
+- 最新記事ファイルの存在（`src/content/posts/` 直近のファイル）
+- 画像ファイルの存在と枚数カウント（`public/images/` 直近のプレフィックス）
+- drafts JSONファイルの存在（`data/drafts/`）（項目5）
+
+#### 6-3. 記事内容のパース（テキスト確認）
+- `art_style` フロントマター: キーワード形式か、artist名注入か（項目6, 7）
+- `<!-- IMAGE_PROMPT -->` の配置: 各章に1つずつか（項目8）
+- 画像altテキスト: Danbooruキーワード形式か（項目6）
+
+#### 6-4. drafts JSONの内容確認（ファイル確認）
+- pass1 / pass2 の内容・モデル・時間が記録されているか（項目5）
+
+#### 6-5. 画像の視覚比較（最終）
+- 同一記事内の画像間で色調・スタイルの一貫性（項目4）
+
+### ステップ7: 結果記録
 
 - 各項目のPass/Failを記録
-- 実行時間を記録
+- ワークフローの実行時間を記録（ステップ0の基準値と比較）
 - 発見された問題を `known-issues.md` に記録
 - 計画ファイルを完了としてマーク
 
