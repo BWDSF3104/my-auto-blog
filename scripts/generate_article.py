@@ -41,7 +41,7 @@ MODELS_TO_TRY = [
 
 HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
-MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "2"))
+MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
 MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)

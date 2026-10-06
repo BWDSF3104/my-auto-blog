@@ -11,5 +11,5 @@
 | RSS (Zenn/Qiita/PokéCommunity) | なし | なし | 公開フィード |
 | Kemono API | 不明 | なし | express-rate-limit 依存あり |
 | Bluesky | 不明 | なし | 公開検索APIは501 |
-| HuggingFace ZeroGPU (blume/kemono-image-api) | 3.5 分/日（無料枠） | なし | `@spaces.GPU(duration=20)` で 1 リクエスト 20 秒予約。実質 1 日約 10 リクエスト。Space 停止時は起動に数分要する。残り確認: \`hf spaces zero-gpu quota\` |
+| HuggingFace ZeroGPU (blume/kemono-image-api) | 3.5 分/日（無料枠） | なし | `@spaces.GPU(duration=20)` はタイムアウト予約。実稼働時間分のみ消費（初回9秒、ウォーム2秒）。実質 1 日約 101 リクエスト。Space 停止時は起動に数分要する。残り確認: \`hf spaces zero-gpu quota\` |
 | Pollinations.ai | なし | なし | API キー不要、クォータ無制限。Flux モデル使用 |

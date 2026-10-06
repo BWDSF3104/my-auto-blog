@@ -10,6 +10,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 - `docs/ai/tasks/2026-10-05-known-issues-image-prompt.md` - KI-001, KI-002 修正完了。KI-003 調査完了（根本原因判明）
 - `docs/ai/tasks/2026-10-05-hf-api-investigation.md` - HF ZeroGPU 調査、KI-003 根本原因特定
+- `docs/ai/tasks/2026-10-06-increase-image-count.md` - 画像生成上限を3枚→8枚に増加（ヘッダー含め）、ストーリー系は各章ごとに画像配置
 
 ### Verification
 

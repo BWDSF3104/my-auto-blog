@@ -4,6 +4,23 @@
 
 ## 2026-10-04: 重複YAMLキーの自動修復ロジック
 
+## 2026-10-06: 画像生成上限を3枚→8枚に増加
+
+**Decision**: `MAX_INLINE_IMAGES` のデフォルトを 2 → 7 に増加（ヘッダー含めて合計最大8枚）。ストーリー系（kemono_story）は各章ごとに画像を配置する指示に変更。技術系（default, ai_deep）も挿絵上限を 2 → 7 に増加。
+
+**Reason**: HF ZeroGPU の `duration=20` はタイムアウト予約であり、実稼働時間分のみ消費されることを確認。初回9秒、ウォーム2秒/枚で1日約101枚生成可能。以前の3枚/記事ではクォータの大幅な余剰があった。
+
+**Rejected Alternatives**:
+- 画像数を維持: クォータの余剰を無駄にする
+- Pollinations.ai への完全移行: HF の画質が安定しているためプライマリは維持
+
+**Impact**:
+- `scripts/generate_article.py`: `MAX_INLINE_IMAGES` デフォルト 2 → 7
+- `scripts/prompts/kemono_story.txt`: 画像選出ルールを「合計最大8枚、各章に1つ以上」に変更
+- `scripts/prompts/default.txt`: 挿絵上限 2 → 7
+- `scripts/prompts/ai_deep.txt`: 挿絵上限 2 → 7
+- `docs/ai/api-rate-limits.md`: HF ZeroGPU の実稼働時間消費を反映
+
 **Decision**: `generate_article.py` の `validate_and_fix_frontmatter()` 内で、PyYAML `safe_load` 検証より前に重複キーチェックを无条件で実行。キャラクターキーの命名規則を `character_N` に強制し、AI が出力したキャラクタータイプ名（例: `少年:`）を自動リネーム。
 
 **Reason**: AI がプロンプト指示の `character_1`/`character_2` を無視し、キャラクタータイプ名をキーとして出力するため、2人以上で重複し Astro/Vite が `duplicated mapping key` でビルド中断。PyYAML の `safe_load` は重複キーでエラーを発生させないので、事前チェックが必須。

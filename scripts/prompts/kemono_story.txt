@@ -34,24 +34,20 @@
   トレンドデータで提示されたartist名をスタイル参照として使用できます（例: "by dimwitdog" や "by wolfy-nail"）。
 ・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
 
-【画像シーンの選出ルール（合計3枚、被り禁止）】
+【画像シーンの選出ルール（合計最大8枚、ヘッダー1 + 本文内最大7枚、被り禁止）】
 ・各画像は異なる瞬間を指定してください。同じシーンの複数アングルは禁止。
-・3枚で物語の異なる感情・場面をカバーするよう選出してください。
+・全画像で物語の異なる感情・場面をカバーするよう選出してください。
 
 ・アイキャッチ画像（image_prompt）: 物語全体の「ポスター画像」相当。
   最も視覚的にインパクトのある1瞬間を選びます（クライマックスの決着、
   2人の決定的な接触など）。平淡な導入シーンや単独の静かな場面は避けてください。
 
-・挿絵1（<!-- IMAGE_PROMPT --> 1つ目）: 物語前半〜中盤に配置。
-  印象的なシーンの中から、トップ画像とは別の瞬間を選びます。
-  （例: 親密な接触、感情的な瞬間、世界観を象徴する場面など）
+・本文内挿絵（<!-- IMAGE_PROMPT -->、最大7箇所）:
+  各章ごとに少なくとも1つの画像プロンプトを挿入してください。
+  章の冒頭または章内で最も視覚的に印象的な場面の直後に配置します。
+  各章のトーン・情感・アクションに合わせたシーンを選び、全章で異なる瞬間を指定してください。
   挿入形式：<!-- IMAGE_PROMPT: "[character_1] keyword, keyword, keyword" -->
   または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] keyword, keyword, keyword" -->
-
-・挿絵2（<!-- IMAGE_PROMPT --> 2つ目）: 物語中盤〜後半に配置。
-  トップ画像・挿絵1の両方と異なる瞬間を選びます。
-  （例: 激しいアクション、再会、別れ、内省の瞬間など）
-  挿入形式は挿絵1と同じです。
 
 ・物語の結末付近または最終章の末尾に【1箇所】、関連書籍・グッズへのアフィリエイトリンクプレースホルダーを挿入してください。
   挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
@@ -108,14 +104,16 @@ product_recommendations:
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] intimate moment, close contact, emotional expression, warm lighting" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2] scene matching chapter 1 mood, keywords" -->
 
 ## 第2章：タイトル
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] fierce battle, dynamic action, dramatic effects, energy burst" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2] scene matching chapter 2 mood, keywords" -->
 
 ## 最終章：タイトル
 
 （結末...）
+
+<!-- IMAGE_PROMPT: "[character_1, character_2] scene matching final chapter mood, keywords" -->
