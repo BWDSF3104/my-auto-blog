@@ -58,6 +58,8 @@ from generate_article import (
     process_inline_affiliates,
     process_inline_products,
     validate_and_fix_frontmatter,
+    _save_draft_metadata,
+    DRAFTS_DIR,
 )
 
 
@@ -1571,3 +1573,140 @@ class TestRandomizeKemonoParams:
             counts[params["char_count"]] += 1
         assert counts[1] + counts[2] == 1000
         assert 0 < counts[1] < counts[2]
+
+
+class TestSaveDraftMetadata:
+    """Test 2-pass draft metadata tracking."""
+
+    def test_saves_json_file(self, tmp_path):
+        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+            _save_draft_metadata(
+                file_timestamp="2026-10-06-120000",
+                prompt_type="kemono_story",
+                article_filename="2026-10-06-120000-auto-post.md",
+                draft_content="---\ntitle: Test\n---\n\nDraft content here.",
+                refined_content="---\ntitle: Test\n---\n\nRefined and better content.",
+                pass1_model="gemini-3.8-flash",
+                pass1_duration=12.5,
+                pass2_model="gemini-3.8-flash",
+                pass2_duration=10.2,
+            )
+
+            json_file = tmp_path / "drafts" / "2026-10-06-120000.json"
+            assert json_file.exists()
+
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            assert data["timestamp"] == "2026-10-06-120000"
+            assert data["prompt_type"] == "kemono_story"
+            assert data["article_file"] == "2026-10-06-120000-auto-post.md"
+
+    def test_records_pass1_info(self, tmp_path):
+        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+            _save_draft_metadata(
+                file_timestamp="2026-10-06-120000",
+                prompt_type="default",
+                article_filename="2026-10-06-120000-auto-post.md",
+                draft_content="Draft text content.",
+                refined_content="Refined text content that is longer.",
+                pass1_model="gemini-3.6-flash",
+                pass1_duration=8.3,
+                pass2_model="gemini-3.8-flash",
+                pass2_duration=6.1,
+            )
+
+            json_file = tmp_path / "drafts" / "2026-10-06-120000.json"
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            assert data["pass1"]["model"] == "gemini-3.6-flash"
+            assert data["pass1"]["duration_seconds"] == 8.3
+            assert data["pass1"]["content"] == "Draft text content."
+            assert data["pass1"]["content_char_count"] == len("Draft text content.")
+
+    def test_records_pass2_info(self, tmp_path):
+        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+            _save_draft_metadata(
+                file_timestamp="2026-10-06-120000",
+                prompt_type="default",
+                article_filename="2026-10-06-120000-auto-post.md",
+                draft_content="Draft.",
+                refined_content="Refined and expanded.",
+                pass1_model="gemini-3.8-flash",
+                pass1_duration=5.0,
+                pass2_model=None,
+                pass2_duration=0.0,
+            )
+
+            json_file = tmp_path / "drafts" / "2026-10-06-120000.json"
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            assert data["pass2"]["content"] == "Refined and expanded."
+            assert data["pass2"]["model"] is None
+
+    def test_diff_stats(self, tmp_path):
+        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+            draft = "Short."
+            refined = "Much longer refined content here."
+            _save_draft_metadata(
+                file_timestamp="2026-10-06-120000",
+                prompt_type="default",
+                article_filename="2026-10-06-120000-auto-post.md",
+                draft_content=draft,
+                refined_content=refined,
+                pass1_model="gemini-3.8-flash",
+                pass1_duration=5.0,
+                pass2_model="gemini-3.8-flash",
+                pass2_duration=4.0,
+            )
+
+            json_file = tmp_path / "drafts" / "2026-10-06-120000.json"
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            assert data["diff_stats"]["char_count_change"] == len(refined) - len(draft)
+            assert data["diff_stats"]["char_count_change"] > 0
+            assert data["diff_stats"]["char_count_change_percent"] > 0
+
+    def test_creates_directory(self, tmp_path):
+        drafts_path = tmp_path / "drafts"
+        assert not drafts_path.exists()
+
+        with patch("generate_article.DRAFTS_DIR", str(drafts_path)):
+            _save_draft_metadata(
+                file_timestamp="2026-10-06-120000",
+                prompt_type="default",
+                article_filename="2026-10-06-120000-auto-post.md",
+                draft_content="Draft.",
+                refined_content="Refined.",
+                pass1_model="gemini-3.8-flash",
+                pass1_duration=1.0,
+                pass2_model="gemini-3.8-flash",
+                pass2_duration=1.0,
+            )
+
+        assert drafts_path.exists()
+        assert (drafts_path / "2026-10-06-120000.json").exists()
+
+    def test_line_count(self, tmp_path):
+        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+            draft = "line1\nline2\nline3"
+            _save_draft_metadata(
+                file_timestamp="2026-10-06-120000",
+                prompt_type="default",
+                article_filename="2026-10-06-120000-auto-post.md",
+                draft_content=draft,
+                refined_content=draft,
+                pass1_model="gemini-3.8-flash",
+                pass1_duration=1.0,
+                pass2_model="gemini-3.8-flash",
+                pass2_duration=1.0,
+            )
+
+            json_file = tmp_path / "drafts" / "2026-10-06-120000.json"
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            assert data["pass1"]["content_line_count"] == 3

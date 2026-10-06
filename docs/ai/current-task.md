@@ -8,11 +8,18 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-06-draft-metadata-tracking.md` - 2-pass生成のメタデータ追跡（`.kilo/drafts/` にJSON保存）
 - `docs/ai/tasks/2026-10-05-known-issues-image-prompt.md` - KI-001, KI-002 修正完了。KI-003 調査完了（根本原因判明）
 - `docs/ai/tasks/2026-10-05-hf-api-investigation.md` - HF ZeroGPU 調査、KI-003 根本原因特定
 - `docs/ai/tasks/2026-10-06-increase-image-count.md` - 画像生成上限を3枚→8枚に増加（ヘッダー含め）、ストーリー系は各章ごとに画像配置
 
 ### Verification
+
+- `pytest scripts/tests/ -v`: 161 passed (1.90s) — 2-passメタデータ追跡用テスト6件追加
+- `npm run build`: 成功 (114ページ、2.90s)
+- docs 更新: current-task.md
+- 2-passメタデータ追跡完了: `data/drafts/<timestamp>.json` に下書き・精製後の内容・モデル・時間・差分統計を記録
+- 今後の予定: ドラフトファイル・トレンドファイルのクリーンアップ処理
 
 - `pytest scripts/tests/ -v`: 155 passed (1.61s)
 - `npm run build`: 成功 (110ページ、3.43s)

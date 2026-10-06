@@ -1270,10 +1270,12 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 # プロンプトは scripts/prompts/refine_tech.txt, refine_story.txt に分離
 
 
-def refine_content(draft: str, prompt_type: str) -> str:
+def refine_content(draft: str, prompt_type: str):
     """
     下書き記事を2回目のGemini API呼び出しで精製する。
     技術記事と物語で異なる精製プロンプトを使用する。
+    返り値: (refined_content, model_name) のタプル。
+    失敗時は (draft, None) を返す。
     """
     if prompt_type in ("kemono_story", "novel", "story"):
         refine_template = load_prompt_template("refine_story")
@@ -1283,7 +1285,7 @@ def refine_content(draft: str, prompt_type: str) -> str:
 
     try:
         print("✨ 2-pass 精製中...")
-        response = generate_content_with_retry(refine_prompt)
+        response, model_name = generate_content_with_retry(refine_prompt)
         refined = response.text.strip()
 
         # コードブロック装飾の除外
@@ -1296,17 +1298,18 @@ def refine_content(draft: str, prompt_type: str) -> str:
             refined = "\n".join(lines)
 
         print("✨ 精製完了")
-        return refined.strip()
+        return (refined.strip(), model_name)
     except Exception as e:
         print(f"⚠️ 精製パスでエラーが発生しました: {e}")
         print("⚠️ 下書きのまま続行します")
-        return draft
+        return (draft, None)
 
 
 # --------------------------------------------------
 # Gemini API 呼び出し
 # --------------------------------------------------
 def generate_content_with_retry(prompt):
+    """Gemini APIを呼び出して (response, model_name) のタプルを返す。"""
     max_retries = 3
     for model_name in MODELS_TO_TRY:
         for attempt in range(1, max_retries + 1):
@@ -1316,7 +1319,7 @@ def generate_content_with_retry(prompt):
                     model=model_name,
                     contents=prompt,
                 )
-                return response
+                return (response, model_name)
             except errors.APIError as e:
                 err_str = str(e)
                 if "404" in err_str or "NOT_FOUND" in err_str:
@@ -1470,6 +1473,67 @@ def _save_trend_usage_log(log_data: dict):
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(log_data, f, ensure_ascii=False, indent=2)
     print(f"[trend_log] 使用状況ログを保存: {filepath}")
+
+
+# --------------------------------------------------
+# Draft metadata tracking (2-pass 生成の追跡)
+# --------------------------------------------------
+DRAFTS_DIR = "data/drafts"
+
+
+def _save_draft_metadata(
+    file_timestamp: str,
+    prompt_type: str,
+    article_filename: str,
+    draft_content: str,
+    refined_content: str,
+    pass1_model: str,
+    pass1_duration: float,
+    pass2_model: str,
+    pass2_duration: float,
+):
+    """
+    2-pass生成のメタデータを JSON として保存する。
+    1回目（下書き）と2回目（精製）の内容・モデル・時間を記録。
+    """
+    os.makedirs(DRAFTS_DIR, exist_ok=True)
+    filepath = os.path.join(DRAFTS_DIR, f"{file_timestamp}.json")
+
+    draft_char_count = len(draft_content)
+    draft_line_count = draft_content.count("\n") + 1
+    refined_char_count = len(refined_content)
+    refined_line_count = refined_content.count("\n") + 1
+
+    metadata = {
+        "timestamp": file_timestamp,
+        "prompt_type": prompt_type,
+        "article_file": article_filename,
+        "pass1": {
+            "model": pass1_model,
+            "duration_seconds": round(pass1_duration, 2),
+            "content_char_count": draft_char_count,
+            "content_line_count": draft_line_count,
+            "content": draft_content,
+        },
+        "pass2": {
+            "model": pass2_model,
+            "duration_seconds": round(pass2_duration, 2),
+            "content_char_count": refined_char_count,
+            "content_line_count": refined_line_count,
+            "content": refined_content,
+        },
+        "diff_stats": {
+            "char_count_change": refined_char_count - draft_char_count,
+            "line_count_change": refined_line_count - draft_line_count,
+            "char_count_change_percent": round(
+                (refined_char_count - draft_char_count) / draft_char_count * 100, 2
+            ) if draft_char_count else 0,
+        },
+    }
+
+    with open(filepath, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=2)
+    print(f"[draft_meta] 2-passメタデータを保存: {filepath}")
 
 
 def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str, list[str], list[str]]:
@@ -2354,7 +2418,9 @@ def generate_post():
     )
 
 
-    response = generate_content_with_retry(prompt)
+    pass1_start = time.time()
+    response, pass1_model = generate_content_with_retry(prompt)
+    pass1_duration = time.time() - pass1_start
     content = response.text.strip()
 
     # コードブロック装飾の除外
@@ -2372,7 +2438,23 @@ def generate_post():
         print("[WARN] Frontmatterが検出されなかったためデフォルトを付与しました")
 
     # 2.5 2-pass 精製: 下書きを精製して質を高める
-    content = refine_content(content, prompt_type)
+    draft_content = content
+    pass2_start = time.time()
+    content, pass2_model = refine_content(content, prompt_type)
+    pass2_duration = time.time() - pass2_start
+
+    # 2-pass 生成のメタデータを保存（効果測定用）
+    _save_draft_metadata(
+        file_timestamp=file_timestamp,
+        prompt_type=prompt_type,
+        article_filename=f"{file_timestamp}-auto-post.md",
+        draft_content=draft_content,
+        refined_content=content,
+        pass1_model=pass1_model,
+        pass1_duration=pass1_duration,
+        pass2_model=pass2_model,
+        pass2_duration=pass2_duration,
+    )
 
     # 3. 記事本文からキャラクター設定と画像用シチュエーションプロンプトを抽出して画像生成
     characters = extract_character_prompts(content)
