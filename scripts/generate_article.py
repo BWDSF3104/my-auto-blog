@@ -699,8 +699,8 @@ def extract_art_style(markdown_content: str) -> str:
 def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
     """
     指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
-    artist名 + シチュエーション + キャラクター外見 + 品質タグ + アートスタイル を合成する。
-    artist名を最優先、シチュエーションを前方に配置して注意重みを高める。
+    被写体数 + キャラクター外見 + シチュエーション + artist名 + 品質タグ + アートスタイル を合成する。
+    Illustrious系の公式トレーニング順序に準拠（person count → character → situation → artist → quality → style）。
     """
     raw_prompt = raw_prompt.strip().strip('"\'"\"')
 
@@ -747,10 +747,10 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
     # キャラ定義が無い場合（技術記事など）
     if not selected_char_prompts:
         parts = []
-        if artist_name:
-            parts.append(artist_name)
         if clean_situation:
             parts.append(clean_situation)
+        if artist_name:
+            parts.append(artist_name)
         parts.append(BASE_QUALITY_PROMPT)
         if style_without_artist:
             parts.append(style_without_artist)
@@ -759,12 +759,11 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
     # 1人の場合
     if len(selected_char_prompts) == 1:
         char_desc = selected_char_prompts[0]
-        parts = []
-        if artist_name:
-            parts.append(artist_name)
+        parts = [char_desc]
         if clean_situation:
             parts.append(clean_situation)
-        parts.append(char_desc)
+        if artist_name:
+            parts.append(artist_name)
         parts.append(BASE_QUALITY_PROMPT)
         if style_without_artist:
             parts.append(style_without_artist)
@@ -791,13 +790,11 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
         cleaned_char_descs.append(cleaned_p)
 
     char_combined = ", ".join(cleaned_char_descs)
-    parts = []
-    if artist_name:
-        parts.append(artist_name)
+    parts = [count_tag, char_combined]
     if clean_situation:
         parts.append(clean_situation)
-    parts.append(count_tag)
-    parts.append(char_combined)
+    if artist_name:
+        parts.append(artist_name)
     parts.append(BASE_QUALITY_PROMPT)
     if style_without_artist:
         parts.append(style_without_artist)
