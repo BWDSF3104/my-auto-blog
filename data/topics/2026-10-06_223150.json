@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-10-05T10:44:41.689210+09:00",
+  "fetched_at": "2026-10-06T22:31:50.918489+09:00",
   "ttl_hours": 24,
-  "total": 75,
+  "total": 119,
   "by_category": {
     "tech": [],
     "kemono": [
@@ -16,7 +16,7 @@
       {
         "title": "e621 post #2227914: black_nose, blursed_image, brick, cheek_tuft, dot_eyes, facial_tuft, humor, lego_brick",
         "url": "https://e621.net/posts/2227914",
-        "score": 4203,
+        "score": 4204,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -40,7 +40,7 @@
       {
         "title": "e621 post #6524489: ambiguous_anthro, ambiguous_gender, anthro, black_body, black_eyes, black_fur, black_nose, fur",
         "url": "https://e621.net/posts/6524489",
-        "score": 2903,
+        "score": 2910,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -48,7 +48,7 @@
       {
         "title": "e621 post #3124735: 3_toes, 4_fingers, anthro, barefoot, beverage, biped, black_eyebrows, blue_bra",
         "url": "https://e621.net/posts/3124735",
-        "score": 2838,
+        "score": 2840,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -64,7 +64,7 @@
       {
         "title": "e621 post #4120073: anthro, beverage, blush, bodily_fluids, bottomless, clothed, clothing, coffee",
         "url": "https://e621.net/posts/4120073",
-        "score": 2655,
+        "score": 2656,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -96,7 +96,7 @@
       {
         "title": "e621 post #3965649: anthro, antlers, audible_laugh, barefoot, bass_guitar, beak, black_body, black_bottomwear",
         "url": "https://e621.net/posts/3965649",
-        "score": 1988,
+        "score": 1989,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -104,7 +104,7 @@
       {
         "title": "e621 post #6424337: achievement, alternate_costume, anthro, banner, bikini, breasts, brown_body, brown_hair",
         "url": "https://e621.net/posts/6424337",
-        "score": 1860,
+        "score": 1861,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -120,159 +120,411 @@
       {
         "title": "e621 post #3088948: 3_toes, ambiguous_gender, anthro, barefoot, bed, black_clothing, black_shirt, black_topwear",
         "url": "https://e621.net/posts/3088948",
-        "score": 1713,
+        "score": 1716,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6755252: 3_toes, ambiguous_feral, ambiguous_gender, black_inner_ear, black_nose, blush, dipstick_tail, feet",
-        "url": "https://e621.net/posts/6755252",
-        "score": 14,
+        "title": "e621 post #6759282: 4_fingers, 4_toes, anthro, black_body, black_bottomwear, black_clothing, black_fur, black_shorts",
+        "url": "https://e621.net/posts/6759282",
+        "score": 8,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6754686: 2_horns, anthro, arm_at_side, bent_legs, big_breasts, biped, breasts, claws",
-        "url": "https://e621.net/posts/6754686",
-        "score": 13,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "e621 post #6756037: amber_eyes, anthro, anthrofied, asian_clothing, big_breasts, breasts, cleavage, clothed",
-        "url": "https://e621.net/posts/6756037",
-        "score": 6,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "e621 post #6756101: alcohol, anthro, armwear, beverage, big_breasts, blue_eyes, bottomwear, breasts",
-        "url": "https://e621.net/posts/6756101",
+        "title": "e621 post #6759360: 2_horns, 4_fingers, anthro, biped, blush, blush_lines, bodily_fluids, border",
+        "url": "https://e621.net/posts/6759360",
         "score": 2,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6756074: anthro, armwear, big_breasts, breasts, cleavage_cutout, clothing, cutout, dress",
-        "url": "https://e621.net/posts/6756074",
+        "title": "e621 post #6757067: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
+        "url": "https://e621.net/posts/6757067",
         "score": 2,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6756051: 4_toes, 4_wings, ambiguous_gender, anisodactyl, beak, brown_body, brown_feathers, chibi",
-        "url": "https://e621.net/posts/6756051",
+        "title": "e621 post #6759471: ambiguous_gender, facial_horn, feral, horn, looking_at_viewer, nose_horn, open_wings, propaganda_poster",
+        "url": "https://e621.net/posts/6759471",
+        "score": 2,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "s"
+      },
+      {
+        "title": "e621 post #6759370: 2_horns, 4_fingers, anthro, biped, blush, blush_lines, border, cheek_tuft",
+        "url": "https://e621.net/posts/6759370",
         "score": 1,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6756025: anthro, big_breasts, bikini, bikini_bottom, bikini_top, blue_bikini, blue_bikini_bottom, blue_bikini_top",
-        "url": "https://e621.net/posts/6756025",
+        "title": "e621 post #6757072: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
+        "url": "https://e621.net/posts/6757072",
         "score": 1,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6755003: 4_fingers, anthro, arm_support, arm_tuft, back_tuft, bent_legs, biped, body_tuft",
-        "url": "https://e621.net/posts/6755003",
+        "title": "e621 post #6759496: ambiguous_gender, facial_horn, feral, group, horn, looking_at_viewer, nose_horn, scales",
+        "url": "https://e621.net/posts/6759496",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "s"
+      },
+      {
+        "title": "e621 post #6759466: ambiguous_gender, claws, feral, horn, open_wings, scales, solo, spikes",
+        "url": "https://e621.net/posts/6759466",
+        "score": 1,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "s"
+      },
+      {
+        "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+        "url": "https://github.com/LinKennt/LoFS-VN",
+        "score": 1,
+        "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6759618: blue_body, blue_fur, female, feral, fur, head_only, purple_eyes, solo",
+        "url": "https://e621.net/posts/6759618",
         "score": 0,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6755002: 4_fingers, anthro, axe, battle_axe, bent_arm, biped, blind_eye, boots",
-        "url": "https://e621.net/posts/6755002",
+        "title": "e621 post #6759467: ambiguous_gender, claws, facial_horn, feral, horn, nose_horn, scales, sitting",
+        "url": "https://e621.net/posts/6759467",
         "score": 0,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6754766: angry, anthro, bathroom, bodily_fluids, border, bottomwear, clothing, duo",
-        "url": "https://e621.net/posts/6754766",
+        "title": "best games of 2026",
+        "url": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
         "score": 0,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "[patreon] 90822862: Do men have stronger racial preferences than women? — Christmas Livestream",
-        "url": "https://kemono.cr/patreon/user/90822862/post/147648418",
-        "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 90822862: Quick watchparty ",
-        "url": "https://kemono.cr/patreon/user/90822862/post/138619219",
+        "title": "Esoteric Ebb",
+        "url": "https://#esoteric-ebb",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 90822862: Subpar men frying their brain with political extremism ",
-        "url": "https://kemono.cr/patreon/user/90822862/post/139274914",
+        "title": "People of Note",
+        "url": "https://#people-of-note",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Chunky Celeste Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/152271177",
+        "title": "Scott Pilgrim EX",
+        "url": "https://#scott-pilgrim-ex",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Overfed Vindicta Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/154205001",
+        "title": "Denshattack",
+        "url": "https://#h-denshattack",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Massive Mina Deadlock mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/151762608",
+        "title": "Mina the Hollower",
+        "url": "https://#h-mina-the-hollower",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Super Sized Silver Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/152652065",
+        "title": "007 First Light",
+        "url": "https://#h-007-first-light",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Mitsuru Mod Talking Heads Sample",
-        "url": "https://kemono.cr/patreon/user/44096704/post/153562049",
+        "title": "Scritchy Scratchy",
+        "url": "https://#h-scritchy-scratchy",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Pudgy Paige Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/151426947",
+        "title": "Lumentale: Memories of Trey",
+        "url": "https://#h-lumentale-memories-of-trey",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Gluttonous Geist Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/152993725",
+        "title": "Marvel Tokon: Fighting Souls",
+        "url": "https://#h-marvel-tokon-fighting-souls",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "The Adventures of Elliot: The Millennium Tales",
+        "url": "https://#h-the-adventures-of-elliot-the-millennium-tales",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "MIO Memories in Orbit",
+        "url": "https://#h-mio-memories-in-orbit",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Phonopolis",
+        "url": "https://#h-phonopolis",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Assassin&#039;s Creed Black Flag Resynced",
+        "url": "https://#h-assassin-s-creed-black-flag-resynced",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Silent Hill: Townfall",
+        "url": "https://#h-silent-hill-townfall",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Meta Quest 3 512GB",
+        "url": "https://zdcs.link/9l2EO0",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Steam Frame",
+        "url": "https://www.ign.com/articles/steam-frame-review",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "best standalone consumer-oriented VR headset",
+        "url": "https://www.ign.com/articles/best-vr-headset",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "I reviewed it for IGN",
+        "url": "https://www.ign.com/articles/meta-quest-3-review",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "our IGN Deals Newsletter",
+        "url": "https://www.ign.com/newsletters",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "preferred source in Google",
+        "url": "https://zdcs.link/aoGB0A?object_uuid=7e9a6a78-df5a-457e-886e-2ff1a20ad176&t=article",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Amazon Storefront",
+        "url": "https://a.co/d/025C9Zng",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Finds on X",
+        "url": "https://x.com/IGNDeals",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Finds on Instagram",
+        "url": "https://www.instagram.com/igndeals/?hl=en",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Finds on Facebook",
+        "url": "https://www.facebook.com/IGNDeals/",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Deals on Tiktok",
+        "url": "https://www.tiktok.com/@ign_deals",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Beats Studio Pro",
+        "url": "https://zdcs.link/akjDWr",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "$400 on the AirPods Max",
+        "url": "https://zdcs.link/Q435EG",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Amazon Lightning Deal",
+        "url": "https://www.ign.com/wikis/amazon-prime/How_to_Find_Amazon_Coupons#Lightning_Deals",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "season 1 of the Disney+ series",
+        "url": "https://www.ign.com/wikis/daredevil-born-again-tv-series/Season_1_Episode_List",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "forgot it?",
+        "url": "https:///account/reminder",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Login with Facebook",
+        "url": "https:///auth/facebook/login",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Login with Twitter",
+        "url": "https:///auth/twitter/login",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Registering",
+        "url": "https:///account/register",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "view full archive",
+        "url": "https:///news/archive",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Our Blood Oath's Kazu Kakazu Launches Yosuga Tagurite Manga Series",
+        "url": "https:///news/2026-10-06/our-blood-oath-kazu-kakazu-launches-yosuga-tagurite-manga-series/.242527",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "emaqi Service Adds Streaming Under My Control, The Soldier Groom and the Daikon Bride, Shin Ikki Tousen, 8 More Manga",
+        "url": "https:///news/2026-10-06/emaqi-service-adds-streaming-under-my-control-the-soldier-groom-and-the-daikon-bride-shin-ikki-/.242468",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Short Net Anime Studio Plott to Start Producing Over-the-Air TV Anime",
+        "url": "https:///news/2026-10-06/short-net-anime-studio-plott-to-start-producing-over-the-air-tv-anime/.242542",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "The Fledgling Demon Lord's Starter Shop Anime's 2nd Teaser Reveals More Cast, January Debut",
+        "url": "https:///news/2026-10-06/the-fledgling-demon-lord-starter-shop-anime-2nd-teaser-reveals-more-cast-january-debut/.242541",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "The Otome Heroine's Fight for Survival Anime's Teaser Unveils Staff, Cast, July 2027 Debut",
+        "url": "https:///news/2026-10-06/the-otome-heroine-fight-for-survival-anime-teaser-unveils-staff-cast-july-2027-debut/.242525",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Hideaki Anno, Yutaka Izubuchi Co-Direct Yamato √2199 Film at I.G, Khara",
+        "url": "https:///news/2026-10-05/hideaki-anno-yutaka-izubuchi-co-direct-yamato-2199-film-at-i.g-khara/.242524",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "The New Denpa Men Game Ends Service on December 7",
+        "url": "https:///news/2026-10-05/the-new-denpa-men-game-ends-service-on-december-7/.242516",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Hunter X Hunter Manga Creator Yoshihiro Togashi to Limit Work Due to Physical/Mental Health Issues",
+        "url": "https:///news/2026-10-05/hunter-x-hunter-manga-creator-yoshihiro-togashi-to-limit-work-due-to-physical-mental-health-issues/.242517",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "OceanVeil Streams Magical Girl Raising Project restart Anime",
+        "url": "https:///news/2026-10-05/oceanveil-streams-magical-girl-raising-project-restart-anime/.242518",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Young Magazine USA Special Gets 2nd Issue",
+        "url": "https:///news/2026-10-05/young-magazine-usa-special-gets-2nd-issue/.242512",
+        "score": 0,
+        "source": "Anime News Network",
         "category": "kemono"
       }
     ],
@@ -604,80 +856,80 @@
     "e621": {
       "topics": [
         {
-          "title": "e621 post #6755252: 3_toes, ambiguous_feral, ambiguous_gender, black_inner_ear, black_nose, blush, dipstick_tail, feet",
-          "url": "https://e621.net/posts/6755252",
-          "score": 14,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6755003: 4_fingers, anthro, arm_support, arm_tuft, back_tuft, bent_legs, biped, body_tuft",
-          "url": "https://e621.net/posts/6755003",
-          "score": 0,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6755002: 4_fingers, anthro, axe, battle_axe, bent_arm, biped, blind_eye, boots",
-          "url": "https://e621.net/posts/6755002",
-          "score": 0,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6754766: angry, anthro, bathroom, bodily_fluids, border, bottomwear, clothing, duo",
-          "url": "https://e621.net/posts/6754766",
-          "score": 0,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6754686: 2_horns, anthro, arm_at_side, bent_legs, big_breasts, biped, breasts, claws",
-          "url": "https://e621.net/posts/6754686",
-          "score": 13,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6756101: alcohol, anthro, armwear, beverage, big_breasts, blue_eyes, bottomwear, breasts",
-          "url": "https://e621.net/posts/6756101",
-          "score": 2,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6756074: anthro, armwear, big_breasts, breasts, cleavage_cutout, clothing, cutout, dress",
-          "url": "https://e621.net/posts/6756074",
-          "score": 2,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6756051: 4_toes, 4_wings, ambiguous_gender, anisodactyl, beak, brown_body, brown_feathers, chibi",
-          "url": "https://e621.net/posts/6756051",
+          "title": "e621 post #6759370: 2_horns, 4_fingers, anthro, biped, blush, blush_lines, border, cheek_tuft",
+          "url": "https://e621.net/posts/6759370",
           "score": 1,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
         },
         {
-          "title": "e621 post #6756037: amber_eyes, anthro, anthrofied, asian_clothing, big_breasts, breasts, cleavage, clothed",
-          "url": "https://e621.net/posts/6756037",
-          "score": 6,
+          "title": "e621 post #6759360: 2_horns, 4_fingers, anthro, biped, blush, blush_lines, bodily_fluids, border",
+          "url": "https://e621.net/posts/6759360",
+          "score": 2,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
         },
         {
-          "title": "e621 post #6756025: anthro, big_breasts, bikini, bikini_bottom, bikini_top, blue_bikini, blue_bikini_bottom, blue_bikini_top",
-          "url": "https://e621.net/posts/6756025",
+          "title": "e621 post #6759282: 4_fingers, 4_toes, anthro, black_body, black_bottomwear, black_clothing, black_fur, black_shorts",
+          "url": "https://e621.net/posts/6759282",
+          "score": 8,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6757072: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
+          "url": "https://e621.net/posts/6757072",
+          "score": 1,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6757067: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
+          "url": "https://e621.net/posts/6757067",
+          "score": 2,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6759618: blue_body, blue_fur, female, feral, fur, head_only, purple_eyes, solo",
+          "url": "https://e621.net/posts/6759618",
+          "score": 0,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6759496: ambiguous_gender, facial_horn, feral, group, horn, looking_at_viewer, nose_horn, scales",
+          "url": "https://e621.net/posts/6759496",
+          "score": 1,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6759471: ambiguous_gender, facial_horn, feral, horn, looking_at_viewer, nose_horn, open_wings, propaganda_poster",
+          "url": "https://e621.net/posts/6759471",
+          "score": 2,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6759467: ambiguous_gender, claws, facial_horn, feral, horn, nose_horn, scales, sitting",
+          "url": "https://e621.net/posts/6759467",
+          "score": 0,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6759466: ambiguous_gender, claws, feral, horn, open_wings, scales, solo, spikes",
+          "url": "https://e621.net/posts/6759466",
           "score": 1,
           "source": "e621",
           "category": "kemono",
@@ -686,7 +938,7 @@
         {
           "title": "e621 post #2227914: black_nose, blursed_image, brick, cheek_tuft, dot_eyes, facial_tuft, humor, lego_brick",
           "url": "https://e621.net/posts/2227914",
-          "score": 4203,
+          "score": 4204,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -734,7 +986,7 @@
         {
           "title": "e621 post #6524489: ambiguous_anthro, ambiguous_gender, anthro, black_body, black_eyes, black_fur, black_nose, fur",
           "url": "https://e621.net/posts/6524489",
-          "score": 2903,
+          "score": 2910,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -742,7 +994,7 @@
         {
           "title": "e621 post #4120073: anthro, beverage, blush, bodily_fluids, bottomless, clothed, clothing, coffee",
           "url": "https://e621.net/posts/4120073",
-          "score": 2655,
+          "score": 2656,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -766,7 +1018,7 @@
         {
           "title": "e621 post #3124735: 3_toes, 4_fingers, anthro, barefoot, beverage, biped, black_eyebrows, blue_bra",
           "url": "https://e621.net/posts/3124735",
-          "score": 2838,
+          "score": 2840,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -774,7 +1026,7 @@
         {
           "title": "e621 post #3965649: anthro, antlers, audible_laugh, barefoot, bass_guitar, beak, black_body, black_bottomwear",
           "url": "https://e621.net/posts/3965649",
-          "score": 1988,
+          "score": 1989,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -782,7 +1034,7 @@
         {
           "title": "e621 post #6424337: achievement, alternate_costume, anthro, banner, bikini, breasts, brown_body, brown_hair",
           "url": "https://e621.net/posts/6424337",
-          "score": 1860,
+          "score": 1861,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -798,13 +1050,355 @@
         {
           "title": "e621 post #3088948: 3_toes, ambiguous_gender, anthro, barefoot, bed, black_clothing, black_shirt, black_topwear",
           "url": "https://e621.net/posts/3088948",
-          "score": 1713,
+          "score": 1716,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
         }
       ],
-      "fetched_at": "2026-10-05T10:44:41.689210+09:00"
+      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+    },
+    "GitHub": {
+      "topics": [
+        {
+          "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+          "url": "https://github.com/LinKennt/LoFS-VN",
+          "score": 1,
+          "source": "GitHub",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+    },
+    "GameSpot RSS": {
+      "topics": [
+        {
+          "title": "best games of 2026",
+          "url": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Esoteric Ebb",
+          "url": "https://#esoteric-ebb",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "People of Note",
+          "url": "https://#people-of-note",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Scott Pilgrim EX",
+          "url": "https://#scott-pilgrim-ex",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Denshattack",
+          "url": "https://#h-denshattack",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Mina the Hollower",
+          "url": "https://#h-mina-the-hollower",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "007 First Light",
+          "url": "https://#h-007-first-light",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Scritchy Scratchy",
+          "url": "https://#h-scritchy-scratchy",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Lumentale: Memories of Trey",
+          "url": "https://#h-lumentale-memories-of-trey",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Marvel Tokon: Fighting Souls",
+          "url": "https://#h-marvel-tokon-fighting-souls",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "The Adventures of Elliot: The Millennium Tales",
+          "url": "https://#h-the-adventures-of-elliot-the-millennium-tales",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "MIO Memories in Orbit",
+          "url": "https://#h-mio-memories-in-orbit",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Phonopolis",
+          "url": "https://#h-phonopolis",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Assassin&#039;s Creed Black Flag Resynced",
+          "url": "https://#h-assassin-s-creed-black-flag-resynced",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Silent Hill: Townfall",
+          "url": "https://#h-silent-hill-townfall",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+    },
+    "IGN RSS": {
+      "topics": [
+        {
+          "title": "Meta Quest 3 512GB",
+          "url": "https://zdcs.link/9l2EO0",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Steam Frame",
+          "url": "https://www.ign.com/articles/steam-frame-review",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "best standalone consumer-oriented VR headset",
+          "url": "https://www.ign.com/articles/best-vr-headset",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "I reviewed it for IGN",
+          "url": "https://www.ign.com/articles/meta-quest-3-review",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "our IGN Deals Newsletter",
+          "url": "https://www.ign.com/newsletters",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "preferred source in Google",
+          "url": "https://zdcs.link/aoGB0A?object_uuid=7e9a6a78-df5a-457e-886e-2ff1a20ad176&t=article",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Amazon Storefront",
+          "url": "https://a.co/d/025C9Zng",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Finds on X",
+          "url": "https://x.com/IGNDeals",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Finds on Instagram",
+          "url": "https://www.instagram.com/igndeals/?hl=en",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Finds on Facebook",
+          "url": "https://www.facebook.com/IGNDeals/",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Deals on Tiktok",
+          "url": "https://www.tiktok.com/@ign_deals",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Beats Studio Pro",
+          "url": "https://zdcs.link/akjDWr",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "$400 on the AirPods Max",
+          "url": "https://zdcs.link/Q435EG",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Amazon Lightning Deal",
+          "url": "https://www.ign.com/wikis/amazon-prime/How_to_Find_Amazon_Coupons#Lightning_Deals",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "season 1 of the Disney+ series",
+          "url": "https://www.ign.com/wikis/daredevil-born-again-tv-series/Season_1_Episode_List",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+    },
+    "Anime News Network": {
+      "topics": [
+        {
+          "title": "forgot it?",
+          "url": "https:///account/reminder",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Login with Facebook",
+          "url": "https:///auth/facebook/login",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Login with Twitter",
+          "url": "https:///auth/twitter/login",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Registering",
+          "url": "https:///account/register",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "view full archive",
+          "url": "https:///news/archive",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Our Blood Oath's Kazu Kakazu Launches Yosuga Tagurite Manga Series",
+          "url": "https:///news/2026-10-06/our-blood-oath-kazu-kakazu-launches-yosuga-tagurite-manga-series/.242527",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "emaqi Service Adds Streaming Under My Control, The Soldier Groom and the Daikon Bride, Shin Ikki Tousen, 8 More Manga",
+          "url": "https:///news/2026-10-06/emaqi-service-adds-streaming-under-my-control-the-soldier-groom-and-the-daikon-bride-shin-ikki-/.242468",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Short Net Anime Studio Plott to Start Producing Over-the-Air TV Anime",
+          "url": "https:///news/2026-10-06/short-net-anime-studio-plott-to-start-producing-over-the-air-tv-anime/.242542",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "The Fledgling Demon Lord's Starter Shop Anime's 2nd Teaser Reveals More Cast, January Debut",
+          "url": "https:///news/2026-10-06/the-fledgling-demon-lord-starter-shop-anime-2nd-teaser-reveals-more-cast-january-debut/.242541",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "The Otome Heroine's Fight for Survival Anime's Teaser Unveils Staff, Cast, July 2027 Debut",
+          "url": "https:///news/2026-10-06/the-otome-heroine-fight-for-survival-anime-teaser-unveils-staff-cast-july-2027-debut/.242525",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Hideaki Anno, Yutaka Izubuchi Co-Direct Yamato √2199 Film at I.G, Khara",
+          "url": "https:///news/2026-10-05/hideaki-anno-yutaka-izubuchi-co-direct-yamato-2199-film-at-i.g-khara/.242524",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "The New Denpa Men Game Ends Service on December 7",
+          "url": "https:///news/2026-10-05/the-new-denpa-men-game-ends-service-on-december-7/.242516",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Hunter X Hunter Manga Creator Yoshihiro Togashi to Limit Work Due to Physical/Mental Health Issues",
+          "url": "https:///news/2026-10-05/hunter-x-hunter-manga-creator-yoshihiro-togashi-to-limit-work-due-to-physical-mental-health-issues/.242517",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "OceanVeil Streams Magical Girl Raising Project restart Anime",
+          "url": "https:///news/2026-10-05/oceanveil-streams-magical-girl-raising-project-restart-anime/.242518",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Young Magazine USA Special Gets 2nd Issue",
+          "url": "https:///news/2026-10-05/young-magazine-usa-special-gets-2nd-issue/.242512",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
     },
     "Kemono": {
       "topics": [
@@ -879,7 +1473,7 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-05T10:44:41.689210+09:00"
+      "fetched_at": "2026-10-06T11:45:39.940734+09:00"
     },
     "PokéCommunity Art Studio": {
       "topics": [
@@ -1166,25 +1760,6 @@
         }
       ],
       "fetched_at": "2026-10-02T14:45:14.346442+09:00"
-    },
-    "GitHub": {
-      "topics": [
-        {
-          "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
-          "url": "https://github.com/Ahmadsadin36/pokedex",
-          "score": 0,
-          "source": "GitHub",
-          "category": "pokemon"
-        },
-        {
-          "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
-          "url": "https://github.com/ivi-vink/Akkamon",
-          "score": 2,
-          "source": "GitHub",
-          "category": "pokemon"
-        }
-      ],
-      "fetched_at": "2026-10-02T14:45:14.346442+09:00"
     }
   },
   "all": [
@@ -1199,7 +1774,7 @@
     {
       "title": "e621 post #2227914: black_nose, blursed_image, brick, cheek_tuft, dot_eyes, facial_tuft, humor, lego_brick",
       "url": "https://e621.net/posts/2227914",
-      "score": 4203,
+      "score": 4204,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1223,7 +1798,7 @@
     {
       "title": "e621 post #6524489: ambiguous_anthro, ambiguous_gender, anthro, black_body, black_eyes, black_fur, black_nose, fur",
       "url": "https://e621.net/posts/6524489",
-      "score": 2903,
+      "score": 2910,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1231,7 +1806,7 @@
     {
       "title": "e621 post #3124735: 3_toes, 4_fingers, anthro, barefoot, beverage, biped, black_eyebrows, blue_bra",
       "url": "https://e621.net/posts/3124735",
-      "score": 2838,
+      "score": 2840,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1247,7 +1822,7 @@
     {
       "title": "e621 post #4120073: anthro, beverage, blush, bodily_fluids, bottomless, clothed, clothing, coffee",
       "url": "https://e621.net/posts/4120073",
-      "score": 2655,
+      "score": 2656,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1279,7 +1854,7 @@
     {
       "title": "e621 post #3965649: anthro, antlers, audible_laugh, barefoot, bass_guitar, beak, black_body, black_bottomwear",
       "url": "https://e621.net/posts/3965649",
-      "score": 1988,
+      "score": 1989,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1287,7 +1862,7 @@
     {
       "title": "e621 post #6424337: achievement, alternate_costume, anthro, banner, bikini, breasts, brown_body, brown_hair",
       "url": "https://e621.net/posts/6424337",
-      "score": 1860,
+      "score": 1861,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1303,97 +1878,412 @@
     {
       "title": "e621 post #3088948: 3_toes, ambiguous_gender, anthro, barefoot, bed, black_clothing, black_shirt, black_topwear",
       "url": "https://e621.net/posts/3088948",
-      "score": 1713,
+      "score": 1716,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6755252: 3_toes, ambiguous_feral, ambiguous_gender, black_inner_ear, black_nose, blush, dipstick_tail, feet",
-      "url": "https://e621.net/posts/6755252",
-      "score": 14,
+      "title": "e621 post #6759282: 4_fingers, 4_toes, anthro, black_body, black_bottomwear, black_clothing, black_fur, black_shorts",
+      "url": "https://e621.net/posts/6759282",
+      "score": 8,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6754686: 2_horns, anthro, arm_at_side, bent_legs, big_breasts, biped, breasts, claws",
-      "url": "https://e621.net/posts/6754686",
-      "score": 13,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6756037: amber_eyes, anthro, anthrofied, asian_clothing, big_breasts, breasts, cleavage, clothed",
-      "url": "https://e621.net/posts/6756037",
-      "score": 6,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6756101: alcohol, anthro, armwear, beverage, big_breasts, blue_eyes, bottomwear, breasts",
-      "url": "https://e621.net/posts/6756101",
+      "title": "e621 post #6759360: 2_horns, 4_fingers, anthro, biped, blush, blush_lines, bodily_fluids, border",
+      "url": "https://e621.net/posts/6759360",
       "score": 2,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6756074: anthro, armwear, big_breasts, breasts, cleavage_cutout, clothing, cutout, dress",
-      "url": "https://e621.net/posts/6756074",
+      "title": "e621 post #6757067: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
+      "url": "https://e621.net/posts/6757067",
       "score": 2,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
-      "url": "https://github.com/ivi-vink/Akkamon",
+      "title": "e621 post #6759471: ambiguous_gender, facial_horn, feral, horn, looking_at_viewer, nose_horn, open_wings, propaganda_poster",
+      "url": "https://e621.net/posts/6759471",
       "score": 2,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6759370: 2_horns, 4_fingers, anthro, biped, blush, blush_lines, border, cheek_tuft",
+      "url": "https://e621.net/posts/6759370",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6757072: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
+      "url": "https://e621.net/posts/6757072",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6759496: ambiguous_gender, facial_horn, feral, group, horn, looking_at_viewer, nose_horn, scales",
+      "url": "https://e621.net/posts/6759496",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6759466: ambiguous_gender, claws, feral, horn, open_wings, scales, solo, spikes",
+      "url": "https://e621.net/posts/6759466",
+      "score": 1,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
+      "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+      "url": "https://github.com/LinKennt/LoFS-VN",
+      "score": 1,
       "source": "GitHub",
-      "category": "pokemon"
+      "category": "kemono"
     },
     {
-      "title": "e621 post #6756051: 4_toes, 4_wings, ambiguous_gender, anisodactyl, beak, brown_body, brown_feathers, chibi",
-      "url": "https://e621.net/posts/6756051",
-      "score": 1,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6756025: anthro, big_breasts, bikini, bikini_bottom, bikini_top, blue_bikini, blue_bikini_bottom, blue_bikini_top",
-      "url": "https://e621.net/posts/6756025",
-      "score": 1,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "e621 post #6755003: 4_fingers, anthro, arm_support, arm_tuft, back_tuft, bent_legs, biped, body_tuft",
-      "url": "https://e621.net/posts/6755003",
+      "title": "e621 post #6759618: blue_body, blue_fur, female, feral, fur, head_only, purple_eyes, solo",
+      "url": "https://e621.net/posts/6759618",
       "score": 0,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6755002: 4_fingers, anthro, axe, battle_axe, bent_arm, biped, blind_eye, boots",
-      "url": "https://e621.net/posts/6755002",
+      "title": "e621 post #6759467: ambiguous_gender, claws, facial_horn, feral, horn, nose_horn, scales, sitting",
+      "url": "https://e621.net/posts/6759467",
       "score": 0,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6754766: angry, anthro, bathroom, bodily_fluids, border, bottomwear, clothing, duo",
-      "url": "https://e621.net/posts/6754766",
+      "title": "best games of 2026",
+      "url": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
       "score": 0,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Esoteric Ebb",
+      "url": "https://#esoteric-ebb",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "People of Note",
+      "url": "https://#people-of-note",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Scott Pilgrim EX",
+      "url": "https://#scott-pilgrim-ex",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Denshattack",
+      "url": "https://#h-denshattack",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Mina the Hollower",
+      "url": "https://#h-mina-the-hollower",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "007 First Light",
+      "url": "https://#h-007-first-light",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Scritchy Scratchy",
+      "url": "https://#h-scritchy-scratchy",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Lumentale: Memories of Trey",
+      "url": "https://#h-lumentale-memories-of-trey",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Marvel Tokon: Fighting Souls",
+      "url": "https://#h-marvel-tokon-fighting-souls",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "The Adventures of Elliot: The Millennium Tales",
+      "url": "https://#h-the-adventures-of-elliot-the-millennium-tales",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "MIO Memories in Orbit",
+      "url": "https://#h-mio-memories-in-orbit",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Phonopolis",
+      "url": "https://#h-phonopolis",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Assassin&#039;s Creed Black Flag Resynced",
+      "url": "https://#h-assassin-s-creed-black-flag-resynced",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Silent Hill: Townfall",
+      "url": "https://#h-silent-hill-townfall",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Meta Quest 3 512GB",
+      "url": "https://zdcs.link/9l2EO0",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Steam Frame",
+      "url": "https://www.ign.com/articles/steam-frame-review",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "best standalone consumer-oriented VR headset",
+      "url": "https://www.ign.com/articles/best-vr-headset",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "I reviewed it for IGN",
+      "url": "https://www.ign.com/articles/meta-quest-3-review",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "our IGN Deals Newsletter",
+      "url": "https://www.ign.com/newsletters",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "preferred source in Google",
+      "url": "https://zdcs.link/aoGB0A?object_uuid=7e9a6a78-df5a-457e-886e-2ff1a20ad176&t=article",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Amazon Storefront",
+      "url": "https://a.co/d/025C9Zng",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Finds on X",
+      "url": "https://x.com/IGNDeals",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Finds on Instagram",
+      "url": "https://www.instagram.com/igndeals/?hl=en",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Finds on Facebook",
+      "url": "https://www.facebook.com/IGNDeals/",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Deals on Tiktok",
+      "url": "https://www.tiktok.com/@ign_deals",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Beats Studio Pro",
+      "url": "https://zdcs.link/akjDWr",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "$400 on the AirPods Max",
+      "url": "https://zdcs.link/Q435EG",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Amazon Lightning Deal",
+      "url": "https://www.ign.com/wikis/amazon-prime/How_to_Find_Amazon_Coupons#Lightning_Deals",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "season 1 of the Disney+ series",
+      "url": "https://www.ign.com/wikis/daredevil-born-again-tv-series/Season_1_Episode_List",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "forgot it?",
+      "url": "https:///account/reminder",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Login with Facebook",
+      "url": "https:///auth/facebook/login",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Login with Twitter",
+      "url": "https:///auth/twitter/login",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Registering",
+      "url": "https:///account/register",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "view full archive",
+      "url": "https:///news/archive",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Our Blood Oath's Kazu Kakazu Launches Yosuga Tagurite Manga Series",
+      "url": "https:///news/2026-10-06/our-blood-oath-kazu-kakazu-launches-yosuga-tagurite-manga-series/.242527",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "emaqi Service Adds Streaming Under My Control, The Soldier Groom and the Daikon Bride, Shin Ikki Tousen, 8 More Manga",
+      "url": "https:///news/2026-10-06/emaqi-service-adds-streaming-under-my-control-the-soldier-groom-and-the-daikon-bride-shin-ikki-/.242468",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Short Net Anime Studio Plott to Start Producing Over-the-Air TV Anime",
+      "url": "https:///news/2026-10-06/short-net-anime-studio-plott-to-start-producing-over-the-air-tv-anime/.242542",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "The Fledgling Demon Lord's Starter Shop Anime's 2nd Teaser Reveals More Cast, January Debut",
+      "url": "https:///news/2026-10-06/the-fledgling-demon-lord-starter-shop-anime-2nd-teaser-reveals-more-cast-january-debut/.242541",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "The Otome Heroine's Fight for Survival Anime's Teaser Unveils Staff, Cast, July 2027 Debut",
+      "url": "https:///news/2026-10-06/the-otome-heroine-fight-for-survival-anime-teaser-unveils-staff-cast-july-2027-debut/.242525",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Hideaki Anno, Yutaka Izubuchi Co-Direct Yamato √2199 Film at I.G, Khara",
+      "url": "https:///news/2026-10-05/hideaki-anno-yutaka-izubuchi-co-direct-yamato-2199-film-at-i.g-khara/.242524",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "The New Denpa Men Game Ends Service on December 7",
+      "url": "https:///news/2026-10-05/the-new-denpa-men-game-ends-service-on-december-7/.242516",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Hunter X Hunter Manga Creator Yoshihiro Togashi to Limit Work Due to Physical/Mental Health Issues",
+      "url": "https:///news/2026-10-05/hunter-x-hunter-manga-creator-yoshihiro-togashi-to-limit-work-due-to-physical-mental-health-issues/.242517",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "OceanVeil Streams Magical Girl Raising Project restart Anime",
+      "url": "https:///news/2026-10-05/oceanveil-streams-magical-girl-raising-project-restart-anime/.242518",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Young Magazine USA Special Gets 2nd Issue",
+      "url": "https:///news/2026-10-05/young-magazine-usa-special-gets-2nd-issue/.242512",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
     },
     {
       "title": "[patreon] 90822862: Do men have stronger racial preferences than women? — Christmas Livestream",
@@ -1729,13 +2619,6 @@
       "url": "https://pocketmonsters.net/news/9581",
       "score": 0,
       "source": "PocketMonsters",
-      "category": "pokemon"
-    },
-    {
-      "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
-      "url": "https://github.com/Ahmadsadin36/pokedex",
-      "score": 0,
-      "source": "GitHub",
       "category": "pokemon"
     }
   ]
