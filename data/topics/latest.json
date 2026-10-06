@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-10-06T11:45:39.940734+09:00",
+  "fetched_at": "2026-10-06T16:00:58.298330+09:00",
   "ttl_hours": 24,
-  "total": 75,
+  "total": 119,
   "by_category": {
     "tech": [],
     "kemono": [
@@ -126,6 +126,14 @@
         "rating": "s"
       },
       {
+        "title": "e621 post #6758753: accessory, anthro, apron, apron_only, arm_tuft, black_body, blush, blush_lines",
+        "url": "https://e621.net/posts/6758753",
+        "score": 19,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "s"
+      },
+      {
         "title": "e621 post #6755252: 3_toes, ambiguous_feral, ambiguous_gender, black_inner_ear, black_nose, blush, dipstick_tail, feet",
         "url": "https://e621.net/posts/6755252",
         "score": 18,
@@ -134,17 +142,9 @@
         "rating": "s"
       },
       {
-        "title": "e621 post #6758605: 2_heads, anthro, armor, bag, beak, beanie, belt, beverage",
-        "url": "https://e621.net/posts/6758605",
-        "score": 11,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
         "title": "e621 post #6756233: 4_fingers, 4_toes, ankle_tuft, anthro, belly, biped, black_body, black_ear_tips",
         "url": "https://e621.net/posts/6756233",
-        "score": 8,
+        "score": 9,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -158,17 +158,25 @@
         "rating": "s"
       },
       {
-        "title": "e621 post #6758519: 1_horn, 4_eyes, ambiguous_gender, black_lips, blue_body, bodily_fluids, brown_body, brown_scales",
-        "url": "https://e621.net/posts/6758519",
-        "score": 6,
+        "title": "e621 post #6759161: black_body, black_sclera, bodily_fluids, curved_horn, drooling, facial_spikes, fangs, feral",
+        "url": "https://e621.net/posts/6759161",
+        "score": 4,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6758350: ambiguous_gender, anthro, aroused, belly, bent_legs, black_eyes, blue_belly, blush",
-        "url": "https://e621.net/posts/6758350",
-        "score": 6,
+        "title": "e621 post #6758766: anthro, beach, bottomwear, clothing, eyewear, glasses, male, rock",
+        "url": "https://e621.net/posts/6758766",
+        "score": 2,
+        "source": "e621",
+        "category": "kemono",
+        "rating": "s"
+      },
+      {
+        "title": "e621 post #6758761: anthro, beach, bottomwear, clothing, horn, male, purple_eyes, rock",
+        "url": "https://e621.net/posts/6758761",
+        "score": 2,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
@@ -190,89 +198,333 @@
         "rating": "s"
       },
       {
-        "title": "e621 post #6758423: 3_fingers, 3_toes, animal_noises, anthro, big_nose, bloodlust, blue_eyes, blue_hair",
-        "url": "https://e621.net/posts/6758423",
+        "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+        "url": "https://github.com/LinKennt/LoFS-VN",
         "score": 1,
+        "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "e621 post #6759150: 2_horns, anthro, back_spikes, biped, black_sclera, brown_body, brown_countershading, claws",
+        "url": "https://e621.net/posts/6759150",
+        "score": 0,
         "source": "e621",
         "category": "kemono",
         "rating": "s"
       },
       {
-        "title": "e621 post #6758710: anthro, cigar, clothing, male, sir, solo, suit, teeth",
-        "url": "https://e621.net/posts/6758710",
+        "title": "\"Never say never\"",
+        "url": "https://#never-say-never",
         "score": 0,
-        "source": "e621",
-        "category": "kemono",
-        "rating": "s"
-      },
-      {
-        "title": "[patreon] 90822862: Do men have stronger racial preferences than women? — Christmas Livestream",
-        "url": "https://kemono.cr/patreon/user/90822862/post/147648418",
-        "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 90822862: Quick watchparty ",
-        "url": "https://kemono.cr/patreon/user/90822862/post/138619219",
+        "title": "A cryptic photo",
+        "url": "https://#a-cryptic-photo",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 90822862: Subpar men frying their brain with political extremism ",
-        "url": "https://kemono.cr/patreon/user/90822862/post/139274914",
+        "title": "2026 rumors",
+        "url": "https://#h-2026-rumors",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Chunky Celeste Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/152271177",
+        "title": "What else is Naughty Dog working on?",
+        "url": "https://#what-else-is-naughty-dog-working-on",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Overfed Vindicta Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/154205001",
+        "title": "A different studio could make Uncharted 5",
+        "url": "https://#a-different-studio-could-make-uncharted-5",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Massive Mina Deadlock mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/151762608",
+        "title": "\"There&#039;s no story left for us to tell\"",
+        "url": "https://#theres-no-story-left-for-us-to-tell",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Super Sized Silver Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/152652065",
+        "title": "\"Some planning\" for Uncharted 5",
+        "url": "https://#some-planning-for-uncharted-5",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Mitsuru Mod Talking Heads Sample",
-        "url": "https://kemono.cr/patreon/user/44096704/post/153562049",
+        "title": "Naughty Dog chooses what it makes based on passion",
+        "url": "https://#naughty-dog-chooses-what-it-makes-based-on-passion",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Pudgy Paige Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/151426947",
+        "title": "Naughty Dog has released nothing \"new\" on PS5 so far",
+        "url": "https://#naughty-dog-has-released-nothing-new-on-ps5-so-far",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
-        "title": "[patreon] 44096704: Gluttonous Geist Deadlock Mod",
-        "url": "https://kemono.cr/patreon/user/44096704/post/152993725",
+        "title": "All the Uncharted games so far",
+        "url": "https://#all-the-uncharted-games-so-far",
         "score": 0,
-        "source": "Kemono",
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "When could we learn more?",
+        "url": "https://#when-could-we-learn-more",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "What about the next Uncharted movie?",
+        "url": "https://#what-about-the-next-uncharted-movie",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "GamesRadar",
+        "url": "https://www.gamesradar.com/uncharted-legacy-of-thieves-collection-and-the-art-of-the-remaster-with-naughty-dogs-experts/?utm_medium=social&amp;utm_content=gamesradar&amp;utm_campaign=socialflow&amp;utm_source=twitter.com",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "\"never say never\"",
+        "url": "https://www.gamespot.com/articles/will-there-be-an-uncharted-5-never-say-never-dev-says/1100-6499987/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "vague Instagram photo",
+        "url": "https://www.instagram.com/shaun_escayg/p/DU1ucoVD3zX/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "$400 on the AirPods Max",
+        "url": "https://zdcs.link/Q435EG",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "our IGN Deals Newsletter",
+        "url": "https://www.ign.com/newsletters",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "preferred source in Google",
+        "url": "https://zdcs.link/aoGB0A?object_uuid=7e9a6a78-df5a-457e-886e-2ff1a20ad176&t=article",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Amazon Storefront",
+        "url": "https://a.co/d/025C9Zng",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Finds on X",
+        "url": "https://x.com/IGNDeals",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Finds on Instagram",
+        "url": "https://www.instagram.com/igndeals/?hl=en",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Finds on Facebook",
+        "url": "https://www.facebook.com/IGNDeals/",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "IGN Deals on Tiktok",
+        "url": "https://www.tiktok.com/@ign_deals",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "a surprise installment in the Koji10 podcast",
+        "url": "https://youtu.be/YDTq8SeY9s0?si=dnP_ue_emMIu9zCG",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "@Genki_JPN",
+        "url": "https://x.com/Genki_JPN/status/2107101797554819353?s=20",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "doing voice acting work as a mole in Zootopia 2",
+        "url": "https://www.ign.com/articles/zootopia-2s-japanese-version-casts-metal-gear-legend-hideo-kojima-as-a-mole-at-the-zootopia-police-department",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Spider-Man: Brand New Day",
+        "url": "https://www.ign.com/articles/hideo-kojima-reviews-spider-man-brand-new-day-it-felt-fresh-and-i-really-enjoyed-it",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "social media biography",
+        "url": "https://x.com/HIDEO_KOJIMA_EN",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Dune: Part 3",
+        "url": "https://www.ign.com/movies/dune-part-three",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "The Legend of Zelda movie",
+        "url": "https://www.ign.com/movies/the-legend-of-zelda",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "forgot it?",
+        "url": "https:///account/reminder",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Login with Facebook",
+        "url": "https:///auth/facebook/login",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Login with Twitter",
+        "url": "https:///auth/twitter/login",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Registering",
+        "url": "https:///account/register",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "view full archive",
+        "url": "https:///news/archive",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Hideaki Anno, Yutaka Izubuchi Co-Direct Yamato √2199 Film at I.G, Khara",
+        "url": "https:///news/2026-10-05/hideaki-anno-yutaka-izubuchi-co-direct-yamato-2199-film-at-i.g-khara/.242524",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "The New Denpa Men Game Ends Service on December 7",
+        "url": "https:///news/2026-10-05/the-new-denpa-men-game-ends-service-on-december-7/.242516",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Hunter X Hunter Manga Creator Yoshihiro Togashi to Limit Work Due to Physical/Mental Health Issues",
+        "url": "https:///news/2026-10-05/hunter-x-hunter-manga-creator-yoshihiro-togashi-to-limit-work-due-to-physical-mental-health-issues/.242517",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "OceanVeil Streams Magical Girl Raising Project restart Anime",
+        "url": "https:///news/2026-10-05/oceanveil-streams-magical-girl-raising-project-restart-anime/.242518",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Young Magazine USA Special Gets 2nd Issue",
+        "url": "https:///news/2026-10-05/young-magazine-usa-special-gets-2nd-issue/.242512",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "The Laid-Off Cheat-Granting Mage Enjoys a Second Lease on Life Anime Gets Same-Day English Dub",
+        "url": "https:///news/2026-10-05/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-life-anime-gets-same-day-english-dub/.242515",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "MediaOCD Announces Deal to Sell Physical Editions of Manga from Manga Mavericks Books, Mahjong Pros",
+        "url": "https:///news/2026-10-05/mediaocd-announces-deal-to-sell-physical-editions-of-manga-from-manga-mavericks-books-mahjong-pros/.242514",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Crunchyroll to Stream Dragon Ball Super: Beerus Anime Starting on October 11",
+        "url": "https:///news/2026-10-05/crunchyroll-to-stream-dragon-ball-super-beerus-anime-starting-on-october-11/.242503",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Magical Explorer TV Anime Confirms English Dub Cast",
+        "url": "https:///news/2026-10-05/magical-explorer-tv-anime-confirms-english-dub-cast/.242513",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono"
+      },
+      {
+        "title": "Red Riding Hood: A Detective Story Anime Reveals 1st Trailer, More Cast & Staff, January 2027 Debut",
+        "url": "https:///news/2026-10-05/red-riding-hood-a-detective-story-anime-reveals-1st-trailer-more-cast-and-staff-january-2027-debut/.242509",
+        "score": 0,
+        "source": "Anime News Network",
         "category": "kemono"
       }
     ],
@@ -630,7 +882,7 @@
         {
           "title": "e621 post #6756233: 4_fingers, 4_toes, ankle_tuft, anthro, belly, biped, black_body, black_ear_tips",
           "url": "https://e621.net/posts/6756233",
-          "score": 8,
+          "score": 9,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -644,41 +896,41 @@
           "rating": "s"
         },
         {
-          "title": "e621 post #6758710: anthro, cigar, clothing, male, sir, solo, suit, teeth",
-          "url": "https://e621.net/posts/6758710",
+          "title": "e621 post #6759161: black_body, black_sclera, bodily_fluids, curved_horn, drooling, facial_spikes, fangs, feral",
+          "url": "https://e621.net/posts/6759161",
+          "score": 4,
+          "source": "e621",
+          "category": "kemono",
+          "rating": "s"
+        },
+        {
+          "title": "e621 post #6759150: 2_horns, anthro, back_spikes, biped, black_sclera, brown_body, brown_countershading, claws",
+          "url": "https://e621.net/posts/6759150",
           "score": 0,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
         },
         {
-          "title": "e621 post #6758605: 2_heads, anthro, armor, bag, beak, beanie, belt, beverage",
-          "url": "https://e621.net/posts/6758605",
-          "score": 11,
+          "title": "e621 post #6758766: anthro, beach, bottomwear, clothing, eyewear, glasses, male, rock",
+          "url": "https://e621.net/posts/6758766",
+          "score": 2,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
         },
         {
-          "title": "e621 post #6758519: 1_horn, 4_eyes, ambiguous_gender, black_lips, blue_body, bodily_fluids, brown_body, brown_scales",
-          "url": "https://e621.net/posts/6758519",
-          "score": 6,
+          "title": "e621 post #6758761: anthro, beach, bottomwear, clothing, horn, male, purple_eyes, rock",
+          "url": "https://e621.net/posts/6758761",
+          "score": 2,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
         },
         {
-          "title": "e621 post #6758423: 3_fingers, 3_toes, animal_noises, anthro, big_nose, bloodlust, blue_eyes, blue_hair",
-          "url": "https://e621.net/posts/6758423",
-          "score": 1,
-          "source": "e621",
-          "category": "kemono",
-          "rating": "s"
-        },
-        {
-          "title": "e621 post #6758350: ambiguous_gender, anthro, aroused, belly, bent_legs, black_eyes, blue_belly, blush",
-          "url": "https://e621.net/posts/6758350",
-          "score": 6,
+          "title": "e621 post #6758753: accessory, anthro, apron, apron_only, arm_tuft, black_body, blush, blush_lines",
+          "url": "https://e621.net/posts/6758753",
+          "score": 19,
           "source": "e621",
           "category": "kemono",
           "rating": "s"
@@ -804,7 +1056,349 @@
           "rating": "s"
         }
       ],
-      "fetched_at": "2026-10-06T11:45:39.940734+09:00"
+      "fetched_at": "2026-10-06T16:00:58.298330+09:00"
+    },
+    "GitHub": {
+      "topics": [
+        {
+          "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+          "url": "https://github.com/LinKennt/LoFS-VN",
+          "score": 1,
+          "source": "GitHub",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T16:00:58.298330+09:00"
+    },
+    "GameSpot RSS": {
+      "topics": [
+        {
+          "title": "\"Never say never\"",
+          "url": "https://#never-say-never",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "A cryptic photo",
+          "url": "https://#a-cryptic-photo",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "2026 rumors",
+          "url": "https://#h-2026-rumors",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "What else is Naughty Dog working on?",
+          "url": "https://#what-else-is-naughty-dog-working-on",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "A different studio could make Uncharted 5",
+          "url": "https://#a-different-studio-could-make-uncharted-5",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "\"There&#039;s no story left for us to tell\"",
+          "url": "https://#theres-no-story-left-for-us-to-tell",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "\"Some planning\" for Uncharted 5",
+          "url": "https://#some-planning-for-uncharted-5",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Naughty Dog chooses what it makes based on passion",
+          "url": "https://#naughty-dog-chooses-what-it-makes-based-on-passion",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Naughty Dog has released nothing \"new\" on PS5 so far",
+          "url": "https://#naughty-dog-has-released-nothing-new-on-ps5-so-far",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "All the Uncharted games so far",
+          "url": "https://#all-the-uncharted-games-so-far",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "When could we learn more?",
+          "url": "https://#when-could-we-learn-more",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "What about the next Uncharted movie?",
+          "url": "https://#what-about-the-next-uncharted-movie",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "GamesRadar",
+          "url": "https://www.gamesradar.com/uncharted-legacy-of-thieves-collection-and-the-art-of-the-remaster-with-naughty-dogs-experts/?utm_medium=social&amp;utm_content=gamesradar&amp;utm_campaign=socialflow&amp;utm_source=twitter.com",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "\"never say never\"",
+          "url": "https://www.gamespot.com/articles/will-there-be-an-uncharted-5-never-say-never-dev-says/1100-6499987/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "vague Instagram photo",
+          "url": "https://www.instagram.com/shaun_escayg/p/DU1ucoVD3zX/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T16:00:58.298330+09:00"
+    },
+    "IGN RSS": {
+      "topics": [
+        {
+          "title": "$400 on the AirPods Max",
+          "url": "https://zdcs.link/Q435EG",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "our IGN Deals Newsletter",
+          "url": "https://www.ign.com/newsletters",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "preferred source in Google",
+          "url": "https://zdcs.link/aoGB0A?object_uuid=7e9a6a78-df5a-457e-886e-2ff1a20ad176&t=article",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Amazon Storefront",
+          "url": "https://a.co/d/025C9Zng",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Finds on X",
+          "url": "https://x.com/IGNDeals",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Finds on Instagram",
+          "url": "https://www.instagram.com/igndeals/?hl=en",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Finds on Facebook",
+          "url": "https://www.facebook.com/IGNDeals/",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "IGN Deals on Tiktok",
+          "url": "https://www.tiktok.com/@ign_deals",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "a surprise installment in the Koji10 podcast",
+          "url": "https://youtu.be/YDTq8SeY9s0?si=dnP_ue_emMIu9zCG",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "@Genki_JPN",
+          "url": "https://x.com/Genki_JPN/status/2107101797554819353?s=20",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "doing voice acting work as a mole in Zootopia 2",
+          "url": "https://www.ign.com/articles/zootopia-2s-japanese-version-casts-metal-gear-legend-hideo-kojima-as-a-mole-at-the-zootopia-police-department",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Spider-Man: Brand New Day",
+          "url": "https://www.ign.com/articles/hideo-kojima-reviews-spider-man-brand-new-day-it-felt-fresh-and-i-really-enjoyed-it",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "social media biography",
+          "url": "https://x.com/HIDEO_KOJIMA_EN",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Dune: Part 3",
+          "url": "https://www.ign.com/movies/dune-part-three",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "The Legend of Zelda movie",
+          "url": "https://www.ign.com/movies/the-legend-of-zelda",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T16:00:58.298330+09:00"
+    },
+    "Anime News Network": {
+      "topics": [
+        {
+          "title": "forgot it?",
+          "url": "https:///account/reminder",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Login with Facebook",
+          "url": "https:///auth/facebook/login",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Login with Twitter",
+          "url": "https:///auth/twitter/login",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Registering",
+          "url": "https:///account/register",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "view full archive",
+          "url": "https:///news/archive",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Hideaki Anno, Yutaka Izubuchi Co-Direct Yamato √2199 Film at I.G, Khara",
+          "url": "https:///news/2026-10-05/hideaki-anno-yutaka-izubuchi-co-direct-yamato-2199-film-at-i.g-khara/.242524",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "The New Denpa Men Game Ends Service on December 7",
+          "url": "https:///news/2026-10-05/the-new-denpa-men-game-ends-service-on-december-7/.242516",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Hunter X Hunter Manga Creator Yoshihiro Togashi to Limit Work Due to Physical/Mental Health Issues",
+          "url": "https:///news/2026-10-05/hunter-x-hunter-manga-creator-yoshihiro-togashi-to-limit-work-due-to-physical-mental-health-issues/.242517",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "OceanVeil Streams Magical Girl Raising Project restart Anime",
+          "url": "https:///news/2026-10-05/oceanveil-streams-magical-girl-raising-project-restart-anime/.242518",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Young Magazine USA Special Gets 2nd Issue",
+          "url": "https:///news/2026-10-05/young-magazine-usa-special-gets-2nd-issue/.242512",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "The Laid-Off Cheat-Granting Mage Enjoys a Second Lease on Life Anime Gets Same-Day English Dub",
+          "url": "https:///news/2026-10-05/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-life-anime-gets-same-day-english-dub/.242515",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "MediaOCD Announces Deal to Sell Physical Editions of Manga from Manga Mavericks Books, Mahjong Pros",
+          "url": "https:///news/2026-10-05/mediaocd-announces-deal-to-sell-physical-editions-of-manga-from-manga-mavericks-books-mahjong-pros/.242514",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Crunchyroll to Stream Dragon Ball Super: Beerus Anime Starting on October 11",
+          "url": "https:///news/2026-10-05/crunchyroll-to-stream-dragon-ball-super-beerus-anime-starting-on-october-11/.242503",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Magical Explorer TV Anime Confirms English Dub Cast",
+          "url": "https:///news/2026-10-05/magical-explorer-tv-anime-confirms-english-dub-cast/.242513",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        },
+        {
+          "title": "Red Riding Hood: A Detective Story Anime Reveals 1st Trailer, More Cast & Staff, January 2027 Debut",
+          "url": "https:///news/2026-10-05/red-riding-hood-a-detective-story-anime-reveals-1st-trailer-more-cast-and-staff-january-2027-debut/.242509",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-06T16:00:58.298330+09:00"
     },
     "Kemono": {
       "topics": [
@@ -1166,25 +1760,6 @@
         }
       ],
       "fetched_at": "2026-10-02T14:45:14.346442+09:00"
-    },
-    "GitHub": {
-      "topics": [
-        {
-          "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
-          "url": "https://github.com/Ahmadsadin36/pokedex",
-          "score": 0,
-          "source": "GitHub",
-          "category": "pokemon"
-        },
-        {
-          "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
-          "url": "https://github.com/ivi-vink/Akkamon",
-          "score": 2,
-          "source": "GitHub",
-          "category": "pokemon"
-        }
-      ],
-      "fetched_at": "2026-10-02T14:45:14.346442+09:00"
     }
   },
   "all": [
@@ -1309,6 +1884,14 @@
       "rating": "s"
     },
     {
+      "title": "e621 post #6758753: accessory, anthro, apron, apron_only, arm_tuft, black_body, blush, blush_lines",
+      "url": "https://e621.net/posts/6758753",
+      "score": 19,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
       "title": "e621 post #6755252: 3_toes, ambiguous_feral, ambiguous_gender, black_inner_ear, black_nose, blush, dipstick_tail, feet",
       "url": "https://e621.net/posts/6755252",
       "score": 18,
@@ -1317,17 +1900,9 @@
       "rating": "s"
     },
     {
-      "title": "e621 post #6758605: 2_heads, anthro, armor, bag, beak, beanie, belt, beverage",
-      "url": "https://e621.net/posts/6758605",
-      "score": 11,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
       "title": "e621 post #6756233: 4_fingers, 4_toes, ankle_tuft, anthro, belly, biped, black_body, black_ear_tips",
       "url": "https://e621.net/posts/6756233",
-      "score": 8,
+      "score": 9,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
@@ -1341,27 +1916,28 @@
       "rating": "s"
     },
     {
-      "title": "e621 post #6758519: 1_horn, 4_eyes, ambiguous_gender, black_lips, blue_body, bodily_fluids, brown_body, brown_scales",
-      "url": "https://e621.net/posts/6758519",
-      "score": 6,
+      "title": "e621 post #6759161: black_body, black_sclera, bodily_fluids, curved_horn, drooling, facial_spikes, fangs, feral",
+      "url": "https://e621.net/posts/6759161",
+      "score": 4,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6758350: ambiguous_gender, anthro, aroused, belly, bent_legs, black_eyes, blue_belly, blush",
-      "url": "https://e621.net/posts/6758350",
-      "score": 6,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
-    },
-    {
-      "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
-      "url": "https://github.com/ivi-vink/Akkamon",
+      "title": "e621 post #6758766: anthro, beach, bottomwear, clothing, eyewear, glasses, male, rock",
+      "url": "https://e621.net/posts/6758766",
       "score": 2,
-      "source": "GitHub",
-      "category": "pokemon"
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
+    },
+    {
+      "title": "e621 post #6758761: anthro, beach, bottomwear, clothing, horn, male, purple_eyes, rock",
+      "url": "https://e621.net/posts/6758761",
+      "score": 2,
+      "source": "e621",
+      "category": "kemono",
+      "rating": "s"
     },
     {
       "title": "e621 post #6757072: 4_toes, 5_fingers, anthro, bandage, bandaged_arm, bandaged_leg, barefoot, biped",
@@ -1380,20 +1956,334 @@
       "rating": "s"
     },
     {
-      "title": "e621 post #6758423: 3_fingers, 3_toes, animal_noises, anthro, big_nose, bloodlust, blue_eyes, blue_hair",
-      "url": "https://e621.net/posts/6758423",
+      "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+      "url": "https://github.com/LinKennt/LoFS-VN",
       "score": 1,
+      "source": "GitHub",
+      "category": "kemono"
+    },
+    {
+      "title": "e621 post #6759150: 2_horns, anthro, back_spikes, biped, black_sclera, brown_body, brown_countershading, claws",
+      "url": "https://e621.net/posts/6759150",
+      "score": 0,
       "source": "e621",
       "category": "kemono",
       "rating": "s"
     },
     {
-      "title": "e621 post #6758710: anthro, cigar, clothing, male, sir, solo, suit, teeth",
-      "url": "https://e621.net/posts/6758710",
+      "title": "\"Never say never\"",
+      "url": "https://#never-say-never",
       "score": 0,
-      "source": "e621",
-      "category": "kemono",
-      "rating": "s"
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "A cryptic photo",
+      "url": "https://#a-cryptic-photo",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "2026 rumors",
+      "url": "https://#h-2026-rumors",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "What else is Naughty Dog working on?",
+      "url": "https://#what-else-is-naughty-dog-working-on",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "A different studio could make Uncharted 5",
+      "url": "https://#a-different-studio-could-make-uncharted-5",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "\"There&#039;s no story left for us to tell\"",
+      "url": "https://#theres-no-story-left-for-us-to-tell",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "\"Some planning\" for Uncharted 5",
+      "url": "https://#some-planning-for-uncharted-5",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Naughty Dog chooses what it makes based on passion",
+      "url": "https://#naughty-dog-chooses-what-it-makes-based-on-passion",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Naughty Dog has released nothing \"new\" on PS5 so far",
+      "url": "https://#naughty-dog-has-released-nothing-new-on-ps5-so-far",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "All the Uncharted games so far",
+      "url": "https://#all-the-uncharted-games-so-far",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "When could we learn more?",
+      "url": "https://#when-could-we-learn-more",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "What about the next Uncharted movie?",
+      "url": "https://#what-about-the-next-uncharted-movie",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "GamesRadar",
+      "url": "https://www.gamesradar.com/uncharted-legacy-of-thieves-collection-and-the-art-of-the-remaster-with-naughty-dogs-experts/?utm_medium=social&amp;utm_content=gamesradar&amp;utm_campaign=socialflow&amp;utm_source=twitter.com",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "\"never say never\"",
+      "url": "https://www.gamespot.com/articles/will-there-be-an-uncharted-5-never-say-never-dev-says/1100-6499987/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "vague Instagram photo",
+      "url": "https://www.instagram.com/shaun_escayg/p/DU1ucoVD3zX/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "$400 on the AirPods Max",
+      "url": "https://zdcs.link/Q435EG",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "our IGN Deals Newsletter",
+      "url": "https://www.ign.com/newsletters",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "preferred source in Google",
+      "url": "https://zdcs.link/aoGB0A?object_uuid=7e9a6a78-df5a-457e-886e-2ff1a20ad176&t=article",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Amazon Storefront",
+      "url": "https://a.co/d/025C9Zng",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Finds on X",
+      "url": "https://x.com/IGNDeals",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Finds on Instagram",
+      "url": "https://www.instagram.com/igndeals/?hl=en",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Finds on Facebook",
+      "url": "https://www.facebook.com/IGNDeals/",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "IGN Deals on Tiktok",
+      "url": "https://www.tiktok.com/@ign_deals",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "a surprise installment in the Koji10 podcast",
+      "url": "https://youtu.be/YDTq8SeY9s0?si=dnP_ue_emMIu9zCG",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "@Genki_JPN",
+      "url": "https://x.com/Genki_JPN/status/2107101797554819353?s=20",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "doing voice acting work as a mole in Zootopia 2",
+      "url": "https://www.ign.com/articles/zootopia-2s-japanese-version-casts-metal-gear-legend-hideo-kojima-as-a-mole-at-the-zootopia-police-department",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Spider-Man: Brand New Day",
+      "url": "https://www.ign.com/articles/hideo-kojima-reviews-spider-man-brand-new-day-it-felt-fresh-and-i-really-enjoyed-it",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "social media biography",
+      "url": "https://x.com/HIDEO_KOJIMA_EN",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Dune: Part 3",
+      "url": "https://www.ign.com/movies/dune-part-three",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "The Legend of Zelda movie",
+      "url": "https://www.ign.com/movies/the-legend-of-zelda",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "forgot it?",
+      "url": "https:///account/reminder",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Login with Facebook",
+      "url": "https:///auth/facebook/login",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Login with Twitter",
+      "url": "https:///auth/twitter/login",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Registering",
+      "url": "https:///account/register",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "view full archive",
+      "url": "https:///news/archive",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Hideaki Anno, Yutaka Izubuchi Co-Direct Yamato √2199 Film at I.G, Khara",
+      "url": "https:///news/2026-10-05/hideaki-anno-yutaka-izubuchi-co-direct-yamato-2199-film-at-i.g-khara/.242524",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "The New Denpa Men Game Ends Service on December 7",
+      "url": "https:///news/2026-10-05/the-new-denpa-men-game-ends-service-on-december-7/.242516",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Hunter X Hunter Manga Creator Yoshihiro Togashi to Limit Work Due to Physical/Mental Health Issues",
+      "url": "https:///news/2026-10-05/hunter-x-hunter-manga-creator-yoshihiro-togashi-to-limit-work-due-to-physical-mental-health-issues/.242517",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "OceanVeil Streams Magical Girl Raising Project restart Anime",
+      "url": "https:///news/2026-10-05/oceanveil-streams-magical-girl-raising-project-restart-anime/.242518",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Young Magazine USA Special Gets 2nd Issue",
+      "url": "https:///news/2026-10-05/young-magazine-usa-special-gets-2nd-issue/.242512",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "The Laid-Off Cheat-Granting Mage Enjoys a Second Lease on Life Anime Gets Same-Day English Dub",
+      "url": "https:///news/2026-10-05/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-life-anime-gets-same-day-english-dub/.242515",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "MediaOCD Announces Deal to Sell Physical Editions of Manga from Manga Mavericks Books, Mahjong Pros",
+      "url": "https:///news/2026-10-05/mediaocd-announces-deal-to-sell-physical-editions-of-manga-from-manga-mavericks-books-mahjong-pros/.242514",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Crunchyroll to Stream Dragon Ball Super: Beerus Anime Starting on October 11",
+      "url": "https:///news/2026-10-05/crunchyroll-to-stream-dragon-ball-super-beerus-anime-starting-on-october-11/.242503",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Magical Explorer TV Anime Confirms English Dub Cast",
+      "url": "https:///news/2026-10-05/magical-explorer-tv-anime-confirms-english-dub-cast/.242513",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
+    },
+    {
+      "title": "Red Riding Hood: A Detective Story Anime Reveals 1st Trailer, More Cast & Staff, January 2027 Debut",
+      "url": "https:///news/2026-10-05/red-riding-hood-a-detective-story-anime-reveals-1st-trailer-more-cast-and-staff-january-2027-debut/.242509",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono"
     },
     {
       "title": "[patreon] 90822862: Do men have stronger racial preferences than women? — Christmas Livestream",
@@ -1729,13 +2619,6 @@
       "url": "https://pocketmonsters.net/news/9581",
       "score": 0,
       "source": "PocketMonsters",
-      "category": "pokemon"
-    },
-    {
-      "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
-      "url": "https://github.com/Ahmadsadin36/pokedex",
-      "score": 0,
-      "source": "GitHub",
       "category": "pokemon"
     }
   ]
