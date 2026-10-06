@@ -75,9 +75,11 @@ jobs:
           [ -d "data/topics" ] && git add data/topics/
           # Trend usage logs
           [ -d "data/trend_usage" ] && git add data/trend_usage/
+          # 2-pass draft metadata
+          [ -d "data/drafts" ] && git add data/drafts/
 
           git diff --quiet && git diff --staged --quiet || {
-            git commit -m "docs: auto-generated daily post with image [skip ci]"
+            git commit -m "docs: auto-generated daily post with image and draft metadata [skip ci]"
             # Staging again to catch any remaining unstaged changes (e.g. cleanup deletions)
             git add -A
             git diff --staged --quiet || git commit -m "chore: cleanup old topic files [skip ci]"
