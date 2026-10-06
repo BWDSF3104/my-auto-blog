@@ -13,7 +13,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ### Verification
 
-- `pytest scripts/tests/ -v`: 110 passed (1.31s)
+- `pytest scripts/tests/ -v`: 155 passed (1.61s)
 - `npm run build`: 成功 (110ページ、3.43s)
 - docs 更新: image-prompt-refinement.md (新規), backlog.md (P4超低優先度追加), current-task.md
 - `npm run build`: 成功 (110ページ、2.43s)

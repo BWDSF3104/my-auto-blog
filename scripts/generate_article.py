@@ -51,6 +51,146 @@ BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading, vibrant colors"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
+# kemono_story プロンプトのPython側ランダム化設定
+# 各項目の重み付き選択でテーマの多様性を確保
+CHAR_TYPE_WEIGHTS = [
+    ("anthro", 30),
+    ("semi-anthro", 20),
+    ("feral", 20),
+    ("anthro+semi-anthro", 10),
+    ("anthro+feral", 10),
+    ("semi-anthro+feral", 10),
+]
+
+WORLD_SETTING_WEIGHTS = [
+    ("fantasy", 35),
+    ("sf", 20),
+    ("slice_of_life", 25),
+    ("fantasy+sf", 20),
+]
+
+TRANSFORM_WEIGHTS = [
+    ("none", 40),
+    ("tf", 25),
+    ("tsf", 25),
+    ("tf+tsf", 10),
+]
+
+RELATIONSHIP_WEIGHTS = [
+    ("partnership", 30),
+    ("yaoi", 25),
+    ("yuri", 25),
+    ("hetero", 20),
+]
+
+EXTRA_SETTING_WEIGHTS = [
+    ("none", 70),
+    ("clone", 20),
+    ("rival", 10),
+]
+
+CHAR_COUNT_WEIGHTS = [
+    (1, 40),
+    (2, 60),
+]
+
+
+def _is_valid_kemono_combination(transform, relationship, extra):
+    """無効な組み合わせをフィルタ"""
+    if extra == "clone" and relationship == "hetero" and "tsf" not in transform:
+        return False
+    return True
+
+
+_KEMONO_WORLD_TEXT = {
+    "fantasy": "ファンタジー",
+    "sf": "SF",
+    "slice_of_life": "日常",
+    "fantasy+sf": "ファンタジーとSF",
+}
+
+_KEMONO_TRANSFORM_TEXT = {
+    "none": "",
+    "tf": "、TF(変身・変形)",
+    "tsf": "、TSF（性転換フィクション）",
+    "tf+tsf": "、TF・TSF",
+}
+
+_KEMONO_RELATIONSHIP_TEXT = {
+    "partnership": "相棒関係",
+    "yaoi": "同性愛（男性同士の恋愛）",
+    "yuri": "百合（女性同士の恋愛）",
+    "hetero": "異性愛",
+}
+
+_KEMONO_EXTRA_TEXT = {
+    "none": "",
+    "clone": "、クローンによる自分同士",
+    "rival": "、ライバル関係",
+}
+
+_KEMONO_CHAR_COUNT_DESC_1 = ["クローン"]
+_KEMONO_CHAR_COUNT_DESC_2 = ["バディ", "ライバル", "カップル"]
+
+
+def _randomize_kemono_params():
+    """kemono_story プロンプト用のランダムパラメータを重み付き選択で生成する。
+    バリデーションに失敗した場合は再試行（最大100回）。
+    char_count=1 は extra=clone の時のみに制限。"""
+    for _ in range(100):
+        char_type = random.choices(
+            [v[0] for v in CHAR_TYPE_WEIGHTS],
+            weights=[v[1] for v in CHAR_TYPE_WEIGHTS],
+            k=1,
+        )[0]
+        world_setting = random.choices(
+            [v[0] for v in WORLD_SETTING_WEIGHTS],
+            weights=[v[1] for v in WORLD_SETTING_WEIGHTS],
+            k=1,
+        )[0]
+        transform = random.choices(
+            [v[0] for v in TRANSFORM_WEIGHTS],
+            weights=[v[1] for v in TRANSFORM_WEIGHTS],
+            k=1,
+        )[0]
+        relationship = random.choices(
+            [v[0] for v in RELATIONSHIP_WEIGHTS],
+            weights=[v[1] for v in RELATIONSHIP_WEIGHTS],
+            k=1,
+        )[0]
+        extra = random.choices(
+            [v[0] for v in EXTRA_SETTING_WEIGHTS],
+            weights=[v[1] for v in EXTRA_SETTING_WEIGHTS],
+            k=1,
+        )[0]
+
+        if extra == "clone":
+            char_count = random.choices(
+                [v[0] for v in CHAR_COUNT_WEIGHTS],
+                weights=[v[1] for v in CHAR_COUNT_WEIGHTS],
+                k=1,
+            )[0]
+        else:
+            char_count = 2
+
+        if _is_valid_kemono_combination(transform, relationship, extra):
+            break
+    else:
+        transform = "none"
+        extra = "none"
+        char_count = 2
+
+    return {
+        "char_type": char_type.replace("+", "・"),
+        "world_setting": _KEMONO_WORLD_TEXT[world_setting],
+        "transform_text": _KEMONO_TRANSFORM_TEXT[transform],
+        "relationship_text": _KEMONO_RELATIONSHIP_TEXT[relationship],
+        "extra_text": _KEMONO_EXTRA_TEXT[extra],
+        "char_count": char_count,
+        "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_1 if char_count == 1 else _KEMONO_CHAR_COUNT_DESC_2),
+    }
+
+
 # SEOメタ記述の文字数制約
 MIN_DESC_LEN = 80
 MAX_DESC_LEN = 120
@@ -2075,10 +2215,12 @@ def generate_post():
 
     # 2. テキスト記事の生成
     template = load_prompt_template(prompt_type)
+    kemono_params = _randomize_kemono_params() if prompt_type == "kemono_story" else {}
     prompt = template.format(
         ng_instruction=ng_instruction,
         pub_date_str=pub_date_str,
-        character_features_instruction=_load_character_features()
+        character_features_instruction=_load_character_features(),
+        **kemono_params
     )
 
 

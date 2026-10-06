@@ -40,6 +40,14 @@ from generate_article import (
     _get_body_after_fm,
     _extract_faq_pairs,
     _extract_speakable_text,
+    _is_valid_kemono_combination,
+    _randomize_kemono_params,
+    CHAR_TYPE_WEIGHTS,
+    WORLD_SETTING_WEIGHTS,
+    TRANSFORM_WEIGHTS,
+    RELATIONSHIP_WEIGHTS,
+    EXTRA_SETTING_WEIGHTS,
+    CHAR_COUNT_WEIGHTS,
     generate_and_save_image,
     extract_character_prompts,
     extract_image_prompt,
@@ -1433,3 +1441,133 @@ title: "テスト記事"
 """
         text = _extract_speakable_text(content)
         assert "日本語" in text
+
+
+# --------------------------------------------------
+# Kemono Randomization Tests
+# --------------------------------------------------
+class TestIsValidKemonoCombination:
+    def test_clone_hetero_without_tsf_invalid(self):
+        assert _is_valid_kemono_combination("none", "hetero", "clone") is False
+
+    def test_clone_hetero_with_tsf_valid(self):
+        assert _is_valid_kemono_combination("tsf", "hetero", "clone") is True
+
+    def test_clone_hetero_with_tf_tsf_valid(self):
+        assert _is_valid_kemono_combination("tf+tsf", "hetero", "clone") is True
+
+    def test_clone_partnership_valid(self):
+        assert _is_valid_kemono_combination("none", "partnership", "clone") is True
+
+    def test_clone_yaoi_valid(self):
+        assert _is_valid_kemono_combination("none", "yaoi", "clone") is True
+
+    def test_clone_yuri_valid(self):
+        assert _is_valid_kemono_combination("none", "yuri", "clone") is True
+
+    def test_rival_hetero_valid(self):
+        assert _is_valid_kemono_combination("none", "hetero", "rival") is True
+
+    def test_none_extra_valid(self):
+        assert _is_valid_kemono_combination("none", "hetero", "none") is True
+
+    def test_tf_yuri_clone_valid(self):
+        assert _is_valid_kemono_combination("tf", "yuri", "clone") is True
+
+
+class TestRandomizeKemonoParams:
+    def test_return_keys(self):
+        params = _randomize_kemono_params()
+        expected_keys = {
+            "char_type", "world_setting", "transform_text",
+            "relationship_text", "extra_text", "char_count", "char_count_desc",
+        }
+        assert set(params.keys()) == expected_keys
+
+    def test_char_type_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            raw_types = [v[0] for v in CHAR_TYPE_WEIGHTS]
+            expected_display = [t.replace("+", "・") for t in raw_types]
+            assert params["char_type"] in expected_display
+
+    def test_world_setting_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["world_setting"] in ("ファンタジー", "SF", "日常", "ファンタジーとSF")
+
+    def test_transform_text_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["transform_text"] in ("", "、TF(変身・変形)", "、TSF（性転換フィクション）", "、TF・TSF")
+
+    def test_relationship_text_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["relationship_text"] in ("相棒関係", "同性愛（男性同士の恋愛）", "百合（女性同士の恋愛）", "異性愛")
+
+    def test_extra_text_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["extra_text"] in ("", "、クローンによる自分同士", "、ライバル関係")
+
+    def test_char_count_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["char_count"] in (1, 2)
+            assert params["char_count_desc"] in ("クローン", "バディ", "ライバル", "カップル")
+
+    def test_char_count_desc_matches_count(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            if params["char_count"] == 1:
+                assert params["char_count_desc"] == "クローン"
+            else:
+                assert params["char_count_desc"] in ("バディ", "ライバル", "カップル")
+
+    def test_combination_always_valid(self):
+        for _ in range(200):
+            params = _randomize_kemono_params()
+            transform = None
+            relationship = None
+            extra = None
+            for k, v in {
+                "": "none", "、TF(変身・変形)": "tf", "、TSF（性転換フィクション）": "tsf", "、TF・TSF": "tf+tsf"
+            }.items():
+                if params["transform_text"] == k:
+                    transform = v
+            for k, v in {
+                "相棒関係": "partnership", "同性愛（男性同士の恋愛）": "yaoi",
+                "百合（女性同士の恋愛）": "yuri", "異性愛": "hetero"
+            }.items():
+                if params["relationship_text"] == k:
+                    relationship = v
+            for k, v in {
+                "": "none", "、クローンによる自分同士": "clone", "、ライバル関係": "rival"
+            }.items():
+                if params["extra_text"] == k:
+                    extra = v
+            assert _is_valid_kemono_combination(transform, relationship, extra) is True
+
+    def test_distribution_char_type(self):
+        counts = {}
+        for _ in range(1000):
+            params = _randomize_kemono_params()
+            counts[params["char_type"]] = counts.get(params["char_type"], 0) + 1
+        for val, count in counts.items():
+            pct = count / 10
+            assert 5 <= pct <= 40, f"{val}: {pct}%"
+
+    def test_char_count_1_only_with_clone(self):
+        for _ in range(200):
+            params = _randomize_kemono_params()
+            if params["char_count"] == 1:
+                assert params["extra_text"] == "、クローンによる自分同士"
+
+    def test_distribution_char_count(self):
+        counts = {1: 0, 2: 0}
+        for _ in range(1000):
+            params = _randomize_kemono_params()
+            counts[params["char_count"]] += 1
+        assert counts[1] + counts[2] == 1000
+        assert 0 < counts[1] < counts[2]
