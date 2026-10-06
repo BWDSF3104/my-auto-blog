@@ -17,6 +17,8 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 - Forbidden: `rm -rf`, `git push --force`, `sudo`, modifying files outside workspace root.
 - **File deletion**: Use `./kilo-safe-remove.cmd <file>` (not `Remove-Item` / `del`).
 - **Folder deletion**: Use `./kilo-safe-rmdir.cmd <folder>` (not `Remove-Item -Recurse` / `rmdir /s`).
+- **NEVER** use PowerShell `Get-Content` / `Set-Content` pipeline for file content manipulation. It corrupts UTF-8 encoding (adds BOM, garbles Japanese text).
+- **editツール以外でファイルを改写する場合**: 必ず事前に `git diff` でリモートとの差異がないことを確認し、改写後はファイルが破損していないことを確認すること。
 
 ## Code Verification
 
@@ -45,15 +47,6 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 - Trend data: `data/topics/latest.json`
 - Generated articles: `src/content/posts/`
 - Generated images: `public/images/`
-
-## File Operations Safety
-
-- **NEVER** use PowerShell `Get-Content` / `Set-Content` pipeline for file content manipulation. It corrupts UTF-8 encoding (adds BOM, garbles Japanese text).
-- File reads: Use `Read` tool only.
-- File edits: Use `edit` tool only.
-- File writes: Use `write` tool only.
-- File deletions: Use `./kilo-safe-remove.cmd` (files) or `./kilo-safe-rmdir.cmd` (folders).
-- Bash tool is for terminal operations (git, npm, pytest, etc.) only — NOT for file content operations.
 
 ## Documentation
 
