@@ -123,3 +123,33 @@ dev モードで検索画面にアクセスすると「検索インデックス�
 - `scripts/generate-search-index.js` の出力先を `dist/` から `public/` に変更
 - `package.json` の build スクリプトを `node scripts/generate-search-index.js && astro build` に順序変更（`public/` → `dist/` のコピー前にインデックスを生成）
 - ビルド成功 (108ページ) を確認
+
+---
+*以下は 2026-10-06 に known-issues.md からアーカイブ*
+
+### KI-001: ハンバーガーメニューの記事一覧リンクが反応しない (解決済 2026-10-05)
+
+- 発見日: 2026-10-05
+- 症状: モバイルハンバーガーメニュー内の「記事一覧」リンクを押してもページ遷移・スクロールが発生しない
+- 影響範囲: `Header.astro` のモバイルメニュー
+- 原因: `href="#main-content"` はページ内の `id="main-content"` 要素へのアンカーリンク。`page/[page].astro` には `id` 属性がないため、ページネーションページでリンクが機能しない
+- 修正: `href="#main-content"` → `href={baseUrl}` に変更（トップページの記事一覧へ遷移）
+- 修正完了: 2026-10-05, `Header.astro:112` を修正
+
+### KI-002: ヒーローセクションの最新記事ボタンが記事一覧以外では動作しない (解決済 2026-10-05)
+
+- 発見日: 2026-10-05
+- 症状: ヒーローセクションの「最新記事を読む」ボタンがトップページ以外で期待通りに動作しない
+- 影響範囲: `Header.astro` のヒーローセクション
+- 原因: `href="#main-content"` のアンカーリンク。`page/[page].astro` に `#main-content` が存在しない
+- 修正: `href="#main-content"` → `href={baseUrl}` に変更 + `page/[page].astro` に `id="main-content"` を追加
+- 修正完了: 2026-10-05, `Header.astro:167` + `page/[page].astro:126` を修正
+
+### KI-003: 記事内画像が劇中シーンと関連していない (解決済 2026-10-05)
+
+- 発見日: 2026-10-05
+- 症状: 記事内に生成される挿絵画像が、周囲の本文のシーンと関連性が低い
+- 影響範囲: 物語系記事（kemono_story）
+- 根本原因: `compose_image_prompt()` が合成するプロンプトが SDXL の CLIP エンコーダー 77 トークン上限を超過（実測 78-155 トークン）、末尾の「シチュエーション」が破棄される
+- 修正案: SDXL長プロンプトchunking実装 (2026-10-05 成功)。HF Space `app.py` に `get_long_prompt_embeddings_sdxl` 関数を追加。75トークン単位でチャンク分割 → 各チャンクをtext encoderに通す → embeddingを連結
+- 詳細: `docs/ai/tasks/2026-10-05-long-prompt-v2.md`
