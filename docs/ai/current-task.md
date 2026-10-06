@@ -35,3 +35,5 @@ P1バックログ完了: HF API 使用可能状況確認 (`docs/ai/tasks/2026-10
 - e621 キャラクター特徴: 累積型→最新分みの修正 + 両スクリプトにログ出力追加（2026-10-06）
 - e621 プロンプト注入 redesign: 投稿別ランダム選出（版権重複再抽選）+ physicalフィルタ（ポーズ/背景/表情/メタ/性別/体型/小道具/映像音響除外）+ アフィリエイト版権フィルタ（神話/放送局/食品/ミーム/プラットフォーム/音楽/ライセンス/政府/イベント/成人向け除外）+ 取得期間14日に短縮（2026-10-06）
 - 画像プロンプト指示をDanbooruキーワード形式に統一: Danbooru互換全体指示新規追加、art_style指示に3-5タグ明記、character指示に服装1-2つ+5-8タグ制限、IMAGE_PROMPT例を自然言語→キーワード形式、DEFAULT_ART_STYLEを5→3トークン短縮（2026-10-06）
+- e621 artistタグ集計機能: CHARACTER_FEATURE_CATEGORIESにartist追加、unknown_artist除外、generate_article.pyに人気artist注入、art_style指示にartist名候補追加（2026-10-06）
+- 画像プロンプト順序最適化: BASE_QUALITY_PROMPTを8→6タグ短縮、Illustrious系推奨順序に再配置（被写体数→キャラクター→シチュエーション→artist→品質→スタイル）（2026-10-06）

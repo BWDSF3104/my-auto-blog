@@ -11,6 +11,8 @@
 
 # Completed Plans
 
+- [2026-10-06] 画像プロンプト順序最適化: BASE_QUALITY_PROMPTを8→6タグ短縮、Illustrious系推奨順序に再配置（被写体数→キャラクター→シチュエーション→artist→品質→スタイル）。pytest 155通過、ビルド成功 (114ページ)。commit: `947009c`, `fbbb0ab`
+- [2026-10-06] e621 artistタグ集計機能: CHARACTER_FEATURE_CATEGORIESにartist追加、unknown_artist除外、generate_article.pyに人気artist注入、art_style指示にartist名候補追加。pytest 155通過、ビルド成功 (110ページ)。commit: `2e960f3`
 - [2026-10-06] 画像プロンプト指示をDanbooruキーワード形式に統一: `kemono_story.txt` にDanbooru互換全体指示新規追加、art_style指示に3-5タグ明記+例更新、character指示に種族例+服装1-2つ+5-8タグ制限、IMAGE_PROMPT挿入例・Frontmatter例を自然言語→キーワード形式、`DEFAULT_ART_STYLE`を5→3トークン短縮。pytest 155通過、ビルド成功 (110ページ)。commit: `db0641b`
 - [2026-10-05] kemono_story プロンプトのPython側ランダム化: 6項目の重み付きランダム選択 (`_randomize_kemono_params`) + バリデーション (`_is_valid_kemono_combination`) を実装。`char_count=1` は `extra=clone` 時のみに制限。`char_count_desc` は 2人の場合 "バディ"/"ライバル"/"カップル" からランダム選択。テスト21件追加、全155件通過、ビルド成功 (110ページ)。commit: `2804bfd`
 - [2026-10-05] ブランドカラー統一: `global.css` + `PostLayout.astro` のハードコードHEXをCSS変数(26変数)に集約。既存カラー値は不変。変更前後のビルド出力比較で45色完全一致を確認。ビルド成功 (110ページ)
