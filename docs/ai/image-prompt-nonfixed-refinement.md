@@ -274,18 +274,22 @@ EXTRA_SETTING_WEIGHTS = [
 
 ```python
 CHAR_COUNT_WEIGHTS = [
-    (1, 40),  # 40%
-    (2, 60),  # 60%
+    (1, 40),  # 40% (extra=clone時のみ使用)
+    (2, 60),  # 60% (extra=clone時のみ使用)
 ]
+_KEMONO_CHAR_COUNT_DESC_1 = ["クローン"]
+_KEMONO_CHAR_COUNT_DESC_2 = ["バディ", "ライバル", "カップル"]
 ```
 
 注入: `登場キャラクターは{char_count}人（{char_count_desc}）を中心に設定してください。`
-例: `2` → `登場キャラクターは2人（バディ・カップル・ライバル等）を中心に設定してください。`
+- `extra != "clone"` の場合: 常に `char_count=2`
+- `extra == "clone"` の場合: 重み付きランダムで 1または 2
+- `char_count_desc`: 1人の場合は "クローン", 2人の場合は "バディ"/"ライバル"/"カップル" からランダム選択
 
 ### バリデーション
 
 ```python
-def is_valid_combination(transform, relationship, extra):
+def _is_valid_kemono_combination(transform, relationship, extra):
     """無効な組み合わせをフィルタ"""
     # clone + hetero は tsf がなければ不可（自分同士＝必然的に同性、TSFで一方転換すれば可）
     if extra == "clone" and relationship == "hetero" and "tsf" not in transform:
