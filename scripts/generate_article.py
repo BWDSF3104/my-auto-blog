@@ -478,7 +478,10 @@ def load_prompt_template(prompt_type="default"):
 
 
 def _load_character_features() -> str:
-    """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。"""
+    """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。
+    投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
+    版権は集計結果から上位10件を抽出。
+    """
     features_path = os.path.join("data", "character_features.json")
     if not os.path.exists(features_path):
         print("  [char-features] character_features.json が見つかりません（注入スキップ）")
@@ -491,46 +494,72 @@ def _load_character_features() -> str:
         print(f"  [char-features] 読み取り失敗: {e}（注入スキップ）")
         return ""
 
-    # aggregates キーがある場合はそこから読み込み（新形式）
+    posts = data.get("posts", [])
     aggregates = data.get("aggregates", data)
 
-    # 各カテゴリから上位10件を抽出
-    species = sorted(aggregates.get("species", {}).items(), key=lambda x: -x[1])[:10]
-    colors = sorted(aggregates.get("colors", {}).items(), key=lambda x: -x[1])[:10]
-    physical = sorted(aggregates.get("physical_features", {}).items(), key=lambda x: -x[1])[:10]
-    characters = sorted(aggregates.get("characters", {}).items(), key=lambda x: -x[1])[:10]
-    copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
-
-    if not species and not colors and not physical and not characters and not copyrights:
-        print("  [char-features] データが空です（注入スキップ）")
+    if not posts:
+        print("  [char-features] 投稿データが空です（注入スキップ）")
         return ""
 
     updated_at = data.get("updated_at", "unknown")
     total_posts = data.get("total_posts_analyzed", 0)
-    post_count = len(data.get("posts", []))
-    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{post_count}), species={len(species)}, colors={len(colors)}, physical={len(physical)}, characters={len(characters)}, copyrights={len(copyrights)}")
 
-    # 種族名を日本語風に変換（例: wolf -> wolf/狼, fox -> fox/狐）
-    species_names = ", ".join(f"{s[0]}" for s in species)
-    color_names = ", ".join(f"{c[0]}" for c in colors)
-    physical_names = ", ".join(f"{p[0]}" for p in physical[:8])
-    character_names = ", ".join(f"{c[0]}" for c in characters[:8]) if characters else "-"
+    # 版権は集計結果から上位10件
+    copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
     copyright_names = ", ".join(f"{c[0]}" for c in copyrights[:8]) if copyrights else "-"
+
+    # 投稿からランダムに2つ選出（版権重複時は再抽選）
+    import random
+    selected = _select_two_posts(posts, max_retries=10)
 
     lines = [
         "",
         "【キャラクター特徴のトレンドデータ（参考）】",
         "",
-        f"・人気種族: {species_names}",
-        f"・人気色: {color_names}",
-        f"・身体的特徴: {physical_names}",
-        f"・人気キャラクター: {character_names}",
-        f"・人気版権: {copyright_names}",
-        "",
-        "アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連する書籍・ゲーム・グッズを推奨してください。",
     ]
 
+    # 各投稿からキャラクタープロファイルを生成
+    for i, post in enumerate(selected, 1):
+        species = ", ".join(post.get("species", [])) or "-"
+        colors = ", ".join(post.get("colors", [])) or "-"
+        physical = ", ".join(post.get("physical", [])[:8]) or "-"
+        characters = ", ".join(post.get("characters", [])) or "-"
+        lines.append(f"・参考キャラクター{i}:")
+        lines.append(f"  種族: {species}")
+        lines.append(f"  色: {colors}")
+        lines.append(f"  身体的特徴: {physical}")
+        lines.append(f"  参照: {characters}")
+        lines.append("")
+
+    lines.append(f"・人気版権: {copyright_names}")
+    lines.append("")
+    lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連する書籍・ゲーム・グッズを推奨してください。")
+
+    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyrights)}")
+
     return "\n".join(lines)
+
+
+def _select_two_posts(posts: list[dict], max_retries: int = 10) -> list[dict]:
+    """投稿リストからランダムに2つ選出。版権が重複する場合は再抽選。"""
+    import random
+
+    if len(posts) < 2:
+        return list(posts)
+
+    # 最初の投稿をランダム選択
+    first = random.choice(posts)
+    first_copyrights = set(first.get("copyrights", []))
+
+    # 2つ目の投稿を版権重複なしで選択
+    for _ in range(max_retries):
+        second = random.choice(posts)
+        second_copyrights = set(second.get("copyrights", []))
+        if not (first_copyrights & second_copyrights):
+            return [first, second]
+
+    # 再試行しても重複回避できない場合は最初の2投稿を返す
+    return posts[:2]
 
 
 # --------------------------------------------------

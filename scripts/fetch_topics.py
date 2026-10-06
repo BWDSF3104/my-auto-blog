@@ -297,6 +297,50 @@ def _is_nsfw_post(post: dict) -> bool:
     return False
 
 
+# physical_features 除外リスト（ポーズ/背景/表情/メタ/体液）
+_PHYSICAL_EXCLUDE_PATTERNS = (
+    "from_",
+    "looking_",
+    "_background",
+)
+
+_PHYSICAL_EXCLUDE_TAGS = {
+    # ポーズ
+    "sitting", "standing", "lying_down", "kneeling", "holding_object", "gesture",
+    "lying", "hand_gesture",
+    # 視点
+    "multiple_angles", "rear_view", "side_view", "three-quarter_view",
+    # 表情
+    "smile", "blush", "open_mouth", "closed_mouth", "grin", "frown",
+    "one_eye_closed", "sweat", "tongue", "sweatdrop", "happy", "eyes_closed",
+    # メタ
+    "solo", "duo", "group", "text", "humor", "dialogue", "music",
+    "container", "beverage", "cup", "furniture",
+    # 参照用
+    "chart", "height_chart", "color_swatch",
+    # 背景・小道具
+    "inside", "outdoors", "electronics", "food", "plant",
+    # 体液
+    "bodily_fluids",
+    # 性別・年齢（Python側のランダムパラメータと競合するため除外）
+    "male", "female", "male_anthro", "female_anthro", "ambiguous_gender",
+    "young", "young_anthro", "young_female", "femboy",
+    # NSFW関連
+    "nude",
+}
+
+
+def _is_physical_excluded(tag: str) -> bool:
+    """general タグが physical_features から除外されるべきか判定する。"""
+    if tag in _PHYSICAL_EXCLUDE_TAGS:
+        return True
+    if any(tag.startswith(pat) for pat in _PHYSICAL_EXCLUDE_PATTERNS):
+        return True
+    if any(tag.endswith(pat) for pat in _PHYSICAL_EXCLUDE_PATTERNS):
+        return True
+    return False
+
+
 def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
     """e621 の生タグからキャラクター特徴を種別ごとに集計して保存する。
     投稿ごとのタグデータと集計結果の両方を保存する。
@@ -338,13 +382,13 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
         for copyright_tag in post_copyrights:
             copyright_counter[copyright_tag] += 1
 
-        # general タグから色と身体的特徴を抽出
+        # general タグから色と身体的特徴を抽出（除外フィルタ適用）
         for tag in tags.get("general", []):
             is_color = any(tag.endswith(pat) for pat in color_patterns)
             if is_color:
                 color_counter[tag] += 1
                 post_colors.append(tag)
-            else:
+            elif not _is_physical_excluded(tag):
                 physical_counter[tag] += 1
                 post_physical.append(tag)
 
