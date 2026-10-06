@@ -298,7 +298,9 @@ def _is_nsfw_post(post: dict) -> bool:
 
 
 def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
-    """e621 の生タグからキャラクター特徴を種別ごとに集計して保存する。"""
+    """e621 の生タグからキャラクター特徴を種別ごとに集計して保存する。
+    投稿ごとのタグデータと集計結果の両方を保存する。
+    """
     from collections import Counter
 
     # 種別ごとのタグ集計
@@ -310,45 +312,62 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
 
     # 色のパターン（general タグから抽出）
     color_patterns = ["_fur", "_eyes", "_body", "_hair", "_scale", "_skin", "_wing", "_tail"]
-    # 種族のパターン（species タグから抽出）
-    species_patterns = ["wolf", "fox", "dragon", "rabbit", "cat", "dog", "tiger", "lion", "bear",
-                        "panther", "hyena", "coyote", "jackal", "fox", "vulpine", "canine", "feline",
-                        "equine", "avian", "reptile", "amphibian", "kemono", "pokemon", "eevee",
-                        "canid", "mammal", "pokemon_(species)"]
+
+    # 投稿ごとのタグデータを保存
+    posts_data = []
 
     for tag_data in raw_tags:
         tags = tag_data.get("tags", {})
+        post_id = tag_data.get("post_id")
+
+        post_colors = []
+        post_physical = []
 
         # species タグの集計
-        for species in tags.get("species", []):
+        post_species = tags.get("species", [])
+        for species in post_species:
             species_counter[species] += 1
 
         # character タグの集計
-        for character in tags.get("character", []):
+        post_characters = tags.get("character", [])
+        for character in post_characters:
             character_counter[character] += 1
 
         # copyright タグの集計
-        for copyright_tag in tags.get("copyright", []):
+        post_copyrights = tags.get("copyright", [])
+        for copyright_tag in post_copyrights:
             copyright_counter[copyright_tag] += 1
 
         # general タグから色と身体的特徴を抽出
         for tag in tags.get("general", []):
-            # 色の特徴
             is_color = any(tag.endswith(pat) for pat in color_patterns)
             if is_color:
                 color_counter[tag] += 1
-            # 身体的特徴（色以外の general タグ）
+                post_colors.append(tag)
             else:
                 physical_counter[tag] += 1
+                post_physical.append(tag)
+
+        posts_data.append({
+            "id": post_id,
+            "species": post_species,
+            "colors": post_colors,
+            "physical": post_physical,
+            "characters": post_characters,
+            "copyrights": post_copyrights,
+        })
 
     # 最新収集分のみを保存（累積しない）
     from datetime import datetime, timezone
     data = {
-        "species": dict(species_counter),
-        "colors": dict(color_counter),
-        "physical_features": dict(physical_counter),
-        "characters": dict(character_counter),
-        "copyrights": dict(copyright_counter),
+        "posts": posts_data,
+        "aggregates": {
+            "species": dict(species_counter),
+            "colors": dict(color_counter),
+            "physical_features": dict(physical_counter),
+            "characters": dict(character_counter),
+            "copyrights": dict(copyright_counter),
+        },
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "total_posts_analyzed": len(raw_tags),
     }

@@ -491,12 +491,15 @@ def _load_character_features() -> str:
         print(f"  [char-features] 読み取り失敗: {e}（注入スキップ）")
         return ""
 
+    # aggregates キーがある場合はそこから読み込み（新形式）
+    aggregates = data.get("aggregates", data)
+
     # 各カテゴリから上位10件を抽出
-    species = sorted(data.get("species", {}).items(), key=lambda x: -x[1])[:10]
-    colors = sorted(data.get("colors", {}).items(), key=lambda x: -x[1])[:10]
-    physical = sorted(data.get("physical_features", {}).items(), key=lambda x: -x[1])[:10]
-    characters = sorted(data.get("characters", {}).items(), key=lambda x: -x[1])[:10]
-    copyrights = sorted(data.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
+    species = sorted(aggregates.get("species", {}).items(), key=lambda x: -x[1])[:10]
+    colors = sorted(aggregates.get("colors", {}).items(), key=lambda x: -x[1])[:10]
+    physical = sorted(aggregates.get("physical_features", {}).items(), key=lambda x: -x[1])[:10]
+    characters = sorted(aggregates.get("characters", {}).items(), key=lambda x: -x[1])[:10]
+    copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
 
     if not species and not colors and not physical and not characters and not copyrights:
         print("  [char-features] データが空です（注入スキップ）")
@@ -504,7 +507,8 @@ def _load_character_features() -> str:
 
     updated_at = data.get("updated_at", "unknown")
     total_posts = data.get("total_posts_analyzed", 0)
-    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts}, species={len(species)}, colors={len(colors)}, physical={len(physical)}, characters={len(characters)}, copyrights={len(copyrights)}")
+    post_count = len(data.get("posts", []))
+    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{post_count}), species={len(species)}, colors={len(colors)}, physical={len(physical)}, characters={len(characters)}, copyrights={len(copyrights)}")
 
     # 種族名を日本語風に変換（例: wolf -> wolf/狼, fox -> fox/狐）
     species_names = ", ".join(f"{s[0]}" for s in species)
@@ -516,7 +520,6 @@ def _load_character_features() -> str:
     lines = [
         "",
         "【キャラクター特徴のトレンドデータ（参考）】",
-        "以下のトレンドデータは e621 の人気作品から抽出されたキャラクター特徴です。物語のキャラクター設定に参考にしてください。",
         "",
         f"・人気種族: {species_names}",
         f"・人気色: {color_names}",
@@ -524,7 +527,6 @@ def _load_character_features() -> str:
         f"・人気キャラクター: {character_names}",
         f"・人気版権: {copyright_names}",
         "",
-        "これらの特徴を組み合わせると、コミュニティで人気のあるキャラクターの外見が作れます。ただし、既存のキャラクターをコピーするのではなく、これらの要素を参考に独自のキャラクターを作成してください。",
         "アフィリエイトの製品推薦では、人気版権やキャラクターを活用した公式グッズ、フィギュア、関連商品を優先的に推奨してください。",
     ]
 
