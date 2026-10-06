@@ -47,7 +47,7 @@ MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 # SFWタグを常に付与して安全な画像生成を強制
 # アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
-BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, absurdres, newest, furry, safe for work"
+BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, furry, safe for work"
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
@@ -699,10 +699,19 @@ def extract_art_style(markdown_content: str) -> str:
 def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
     """
     指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
-    BASE_QUALITY_PROMPT + アートスタイル + キャラクター外見 + シチュエーション を合成する。
+    artist名 + シチュエーション + キャラクター外見 + 品質タグ + アートスタイル を合成する。
+    artist名を最優先、シチュエーションを前方に配置して注意重みを高める。
     """
-    raw_prompt = raw_prompt.strip().strip('"\'“”')
-    
+    raw_prompt = raw_prompt.strip().strip('"\'"\"')
+
+    # art_styleからartist名を抽出（"by artist_name"形式）
+    artist_name = ""
+    style_without_artist = art_style
+    artist_match = re.search(r'\s*by\s+([\w-]+)\s*$', art_style)
+    if artist_match:
+        artist_name = "by " + artist_match.group(1)
+        style_without_artist = art_style[:artist_match.start()].rstrip(', ')
+
     # 括弧 [character_1, ...] の検出 (複数対応)
     bracket_contents = re.findall(r'\[(.*?)\]', raw_prompt)
     target_chars = []
@@ -737,17 +746,28 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
 
     # キャラ定義が無い場合（技術記事など）
     if not selected_char_prompts:
-        parts = [BASE_QUALITY_PROMPT, art_style]
+        parts = []
+        if artist_name:
+            parts.append(artist_name)
         if clean_situation:
             parts.append(clean_situation)
+        parts.append(BASE_QUALITY_PROMPT)
+        if style_without_artist:
+            parts.append(style_without_artist)
         return ", ".join(parts)
 
     # 1人の場合
     if len(selected_char_prompts) == 1:
         char_desc = selected_char_prompts[0]
-        parts = [BASE_QUALITY_PROMPT, art_style, char_desc]
+        parts = []
+        if artist_name:
+            parts.append(artist_name)
         if clean_situation:
             parts.append(clean_situation)
+        parts.append(char_desc)
+        parts.append(BASE_QUALITY_PROMPT)
+        if style_without_artist:
+            parts.append(style_without_artist)
         return ", ".join(parts)
 
     # 2人以上の場合: 全体カウントタグ（2boys, 1boy and 1girl, 2characters等）を計算
@@ -771,9 +791,16 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
         cleaned_char_descs.append(cleaned_p)
 
     char_combined = ", ".join(cleaned_char_descs)
-    parts = [BASE_QUALITY_PROMPT, art_style, count_tag, char_combined]
+    parts = []
+    if artist_name:
+        parts.append(artist_name)
     if clean_situation:
         parts.append(clean_situation)
+    parts.append(count_tag)
+    parts.append(char_combined)
+    parts.append(BASE_QUALITY_PROMPT)
+    if style_without_artist:
+        parts.append(style_without_artist)
 
     return ", ".join(parts)
 
