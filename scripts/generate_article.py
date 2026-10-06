@@ -48,7 +48,7 @@ MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 # SFWタグを常に付与して安全な画像生成を強制
 # アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
 BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, absurdres, newest, furry, safe for work"
-DEFAULT_ART_STYLE = "anime style, illustration, cel shading, vibrant colors"
+DEFAULT_ART_STYLE = "anime style, illustration, cel shading"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
 # kemono_story プロンプトのPython側ランダム化設定

@@ -18,13 +18,19 @@
    - 感情的な決定的瞬間: 涙、告白、別れ、再会、信頼の表明など
    これらのシーンは「示して語らず」の原則で描写し、感情を直接説明するのではなく動作・表情・反応・環境で表現してください。SFWの範囲内で描写してください。
 
+【画像プロンプトのキーワード形式】
+・art_style, character_1/2, image_prompt, IMAGE_PROMPT のキーワードは、Danbooru互換の簡潔なタグ形式を使用してください。
+・自然言語的な表現（例: "wearing a red scarf", "inside an antique shop"）は避けて、簡潔なキーワード（例: "red scarf", "antique shop interior"）にしてください。
+
 【キャラクターの一貫性と画像プロンプトのルール】
 ・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
-・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのポーズや背景を英語で記述してください。
+・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-10語程度に簡潔にしてください。
 ・画質指定（masterpiece等）はシステム側で自動付与されるため含めないでください。
-・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください（例: "watercolor, soft pastel, gentle lighting" や "pixel art, retro, 16-bit style"）。記事内の全画像はこのスタイルで統一されます。
+・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください。3-5タグ程度に簡潔にしてください。
+  例: "anime style, illustration, cel shading, vibrant colors" や "digital painting, dramatic lighting, rich colors"
+  記事内の全画像はこのスタイルで統一されます。
 ・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
 
 【画像シーンの選出ルール（合計3枚、被り禁止）】
@@ -38,8 +44,8 @@
 ・挿絵1（<!-- IMAGE_PROMPT --> 1つ目）: 物語前半〜中盤に配置。
   印象的なシーンの中から、トップ画像とは別の瞬間を選びます。
   （例: 親密な接触、感情的な瞬間、世界観を象徴する場面など）
-  挿入形式：<!-- IMAGE_PROMPT: "[character_1] action or background description" -->
-  または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] action or background description" -->
+  挿入形式：<!-- IMAGE_PROMPT: "[character_1] keyword, keyword, keyword" -->
+  または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] keyword, keyword, keyword" -->
 
 ・挿絵2（<!-- IMAGE_PROMPT --> 2つ目）: 物語中盤〜後半に配置。
   トップ画像・挿絵1の両方と異なる瞬間を選びます。
@@ -66,10 +72,10 @@ description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
 tags: ["Kemono", "Novel", "Fantasy"]
-art_style: "anime style, illustration, cel shading, vibrant colors"
-character_1: "1boy, blue wolf, golden eyes, white chest fur, wearing red scarf"
-character_2: "1boy, black panther, emerald eyes, wearing leather vest"
-image_prompt: "[character_1, character_2] intense face-to-face confrontation, dramatic lighting, emotional"
+art_style: "anime style, illustration, cel shading"
+character_1: "1boy, blue wolf, golden eyes, white chest fur, red scarf"
+character_2: "1boy, black panther, emerald eyes, leather vest"
+image_prompt: "[character_1, character_2] face-to-face confrontation, dramatic lighting, emotional"
 product_recommendations:
   - name: "関連書籍のタイトル"
     category: "書籍"
@@ -85,8 +91,9 @@ product_recommendations:
 ・2-5語程度に簡潔にしてください。
 
 【character_1 / character_2 の指定ルール】
-・性別（1boy, 1girl等）＋種族＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリのみを英語で簡潔に記述してください。
-・背景やシチュエーション、画質タグは含めないでください。
+・性別（1boy, 1girl等）＋種族（例: wolf anthro, fox feral）＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリ（1-2つ）のみを英語で簡潔に記述してください。
+・服装・アクセサリは象徴的なもの1-2つに絞ってください（例: "red scarf" や "leather vest"）。
+・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
 ・1人のみの物語の場合は character_2 を省略して構いません。
 {character_features_instruction}
@@ -100,13 +107,13 @@ product_recommendations:
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] sharing an intimate moment, close contact, emotional expression" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2] intimate moment, close contact, emotional expression, warm lighting" -->
 
 ## 第2章：タイトル
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] fierce battle scene, dynamic action, dramatic effects" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2] fierce battle, dynamic action, dramatic effects, energy burst" -->
 
 ## 最終章：タイトル
 
