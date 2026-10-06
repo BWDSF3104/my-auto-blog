@@ -52,7 +52,6 @@
   - `@spaces.GPU(duration=90)` で 1 リクエストあたり 90 秒予約 → 1 日約 2 リクエストのみ可能
   - 1 記事 = 1 ヘッダー + 2 インライン = 3 画像 = 270 秒予約 → 無料枠の 1 記事生成ですら超過
 - 修正案A: `compose_image_prompt()` の BASE_QUALITY_PROMPT とキャラ定義を短縮して 77 トークン内に収める（シーン説明を優先）
-- 修正案B: `IMAGE_PROVIDER=pollinations` をデフォルトに変更（クォータ無制限、API キー不要）
 - 修正案C: `MAX_INLINE_IMAGES=1` に制限して HF クォータ内の利用に収める
 - **修正案D: SDXL長プロンプトchunking実装 (2026-10-05 成功)**:
   - HF Space `app.py` に `get_long_prompt_embeddings_sdxl` 関数を追加
@@ -63,4 +62,4 @@
   - 100+トークンテスト: 平均輝度119、成功
   - Compel 2.3.1は依存関係競合（huggingface-hubバージョン）で断念
   - 詳細: `docs/ai/tasks/2026-10-05-long-prompt-v2.md`
-- 推奨: 修正案D（長プロンプトchunking）+ B（pollinations安定供給）の併用
+- 推奨: 修正案D（長プロンプトchunking）

@@ -9,7 +9,6 @@
 | # | 項目 | 難易度 | 効果 | 備考 |
 |---|------|--------|------|------|
 | 1 | 画像プロンプトの 77 トークン短縮 | ⭐⭐ | 高 | KI-003 修正。BASE_QUALITY_PROMPT 縮小、キャラ定義整理（長プロンプトchunking実装で根本解決済みだが、短縮は品質向上に寄与） |
-| 2 | IMAGE_PROVIDER=pollinations デフォルト化 | ⭐ | 高 | HF ZeroGPU クォータ回避。API キー不要、無制限 |
 
 ## P1 (完了)
 
@@ -75,3 +74,4 @@
 | 12 | 音声コマンドナビ | 利用者が少ない |
 | 13 | Background Music | 迷惑になる可能性 |
 | 14 | カスタムフォント | Noto Sans JP 等の読み込みでLCP遅延。パフォーマンス影響中 |
+| 15 | IMAGE_PROVIDER=pollinations デフォルト化 | 廃止。HF Space がメイン画像生成手段 |
