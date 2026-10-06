@@ -40,6 +40,12 @@ git push 後、DeployOnly ワークフローが push トリガーで自動実行
 - 変更されたファイルがワークフローの paths (`src/**`, `public/**`, `package.json`, `astro.config.mjs`, `tailwind.config.mjs`) に一致しない場合
 - コミットメッセージに `[skip ci]` または `[skip deploy]` を含む場合
 
+## GitHub Actions ワークフロー実テスト
+
+機能変更後のワークフローEnd-to-Endテスト手順。
+
+詳細: `docs/ai/workflow-test-procedure.md`
+
 ## 手動記事作成フロー
 
 ユーザーが記事コンテンツを用意し、ローカルでフォーマット・画像配置・ビルド検証を行うワークフロー。
