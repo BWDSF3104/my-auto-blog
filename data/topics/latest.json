@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-06T22:31:50.918489+09:00",
+  "fetched_at": "2026-10-06T22:46:19.238584+09:00",
   "ttl_hours": 24,
   "total": 119,
   "by_category": {
@@ -213,6 +213,76 @@
         "rating": "s"
       },
       {
+        "title": "enter a lottery",
+        "url": "https://yoyoyo.work/en/products02",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Sonic Colors: Ultimate",
+        "url": "https://www.gamespot.com/games/sonic-colors-ultimate/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Sonic Frontiers",
+        "url": "https://www.gamespot.com/games/sonic-frontiers/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Sonic Superstars",
+        "url": "https://www.gamespot.com/games/sonic-superstars/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Sonic X Shadow Generations",
+        "url": "https://www.gamespot.com/games/sonic-x-shadow-generations/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Sonic Racing: CrossWorlds",
+        "url": "https://www.gamespot.com/games/sonic-racing-crossworlds/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Steam Frame headset",
+        "url": "https://www.gamespot.com/articles/steam-frame-release-date-price-specs-everything-we-know/1100-6536287/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "new $1,300 Meta VR Glasses",
+        "url": "https://www.gamespot.com/articles/meta-1300-vr-glasses-could-be-the-most-expensive-way-to-play-xbox-games/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "avoid making an expensive purchase",
+        "url": "https://www.gamespot.com/articles/psa-please-allow-my-very-expensive-steam-frame-mistake-to-help-you-fellow-glasses-wearers/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Dragon’s Dogma 2",
+        "url": "https://www.gamespot.com/games/dragons-dogma-2/",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
         "title": "best games of 2026",
         "url": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
         "score": 0,
@@ -243,76 +313,6 @@
       {
         "title": "Denshattack",
         "url": "https://#h-denshattack",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Mina the Hollower",
-        "url": "https://#h-mina-the-hollower",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "007 First Light",
-        "url": "https://#h-007-first-light",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Scritchy Scratchy",
-        "url": "https://#h-scritchy-scratchy",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Lumentale: Memories of Trey",
-        "url": "https://#h-lumentale-memories-of-trey",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Marvel Tokon: Fighting Souls",
-        "url": "https://#h-marvel-tokon-fighting-souls",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "The Adventures of Elliot: The Millennium Tales",
-        "url": "https://#h-the-adventures-of-elliot-the-millennium-tales",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "MIO Memories in Orbit",
-        "url": "https://#h-mio-memories-in-orbit",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Phonopolis",
-        "url": "https://#h-phonopolis",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Assassin&#039;s Creed Black Flag Resynced",
-        "url": "https://#h-assassin-s-creed-black-flag-resynced",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Silent Hill: Townfall",
-        "url": "https://#h-silent-hill-townfall",
         "score": 0,
         "source": "GameSpot RSS",
         "category": "kemono"
@@ -1056,7 +1056,7 @@
           "rating": "s"
         }
       ],
-      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+      "fetched_at": "2026-10-06T22:46:19.238584+09:00"
     },
     "GitHub": {
       "topics": [
@@ -1068,10 +1068,80 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+      "fetched_at": "2026-10-06T22:46:19.238584+09:00"
     },
     "GameSpot RSS": {
       "topics": [
+        {
+          "title": "enter a lottery",
+          "url": "https://yoyoyo.work/en/products02",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Sonic Colors: Ultimate",
+          "url": "https://www.gamespot.com/games/sonic-colors-ultimate/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Sonic Frontiers",
+          "url": "https://www.gamespot.com/games/sonic-frontiers/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Sonic Superstars",
+          "url": "https://www.gamespot.com/games/sonic-superstars/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Sonic X Shadow Generations",
+          "url": "https://www.gamespot.com/games/sonic-x-shadow-generations/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Sonic Racing: CrossWorlds",
+          "url": "https://www.gamespot.com/games/sonic-racing-crossworlds/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Steam Frame headset",
+          "url": "https://www.gamespot.com/articles/steam-frame-release-date-price-specs-everything-we-know/1100-6536287/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "new $1,300 Meta VR Glasses",
+          "url": "https://www.gamespot.com/articles/meta-1300-vr-glasses-could-be-the-most-expensive-way-to-play-xbox-games/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "avoid making an expensive purchase",
+          "url": "https://www.gamespot.com/articles/psa-please-allow-my-very-expensive-steam-frame-mistake-to-help-you-fellow-glasses-wearers/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Dragon’s Dogma 2",
+          "url": "https://www.gamespot.com/games/dragons-dogma-2/",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
         {
           "title": "best games of 2026",
           "url": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
@@ -1106,79 +1176,9 @@
           "score": 0,
           "source": "GameSpot RSS",
           "category": "kemono"
-        },
-        {
-          "title": "Mina the Hollower",
-          "url": "https://#h-mina-the-hollower",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "007 First Light",
-          "url": "https://#h-007-first-light",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Scritchy Scratchy",
-          "url": "https://#h-scritchy-scratchy",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Lumentale: Memories of Trey",
-          "url": "https://#h-lumentale-memories-of-trey",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Marvel Tokon: Fighting Souls",
-          "url": "https://#h-marvel-tokon-fighting-souls",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "The Adventures of Elliot: The Millennium Tales",
-          "url": "https://#h-the-adventures-of-elliot-the-millennium-tales",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "MIO Memories in Orbit",
-          "url": "https://#h-mio-memories-in-orbit",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Phonopolis",
-          "url": "https://#h-phonopolis",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Assassin&#039;s Creed Black Flag Resynced",
-          "url": "https://#h-assassin-s-creed-black-flag-resynced",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Silent Hill: Townfall",
-          "url": "https://#h-silent-hill-townfall",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+      "fetched_at": "2026-10-06T22:46:19.238584+09:00"
     },
     "IGN RSS": {
       "topics": [
@@ -1288,7 +1288,7 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+      "fetched_at": "2026-10-06T22:46:19.238584+09:00"
     },
     "Anime News Network": {
       "topics": [
@@ -1398,7 +1398,7 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-06T22:31:50.918489+09:00"
+      "fetched_at": "2026-10-06T22:46:19.238584+09:00"
     },
     "Kemono": {
       "topics": [
@@ -1971,6 +1971,76 @@
       "rating": "s"
     },
     {
+      "title": "enter a lottery",
+      "url": "https://yoyoyo.work/en/products02",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Sonic Colors: Ultimate",
+      "url": "https://www.gamespot.com/games/sonic-colors-ultimate/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Sonic Frontiers",
+      "url": "https://www.gamespot.com/games/sonic-frontiers/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Sonic Superstars",
+      "url": "https://www.gamespot.com/games/sonic-superstars/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Sonic X Shadow Generations",
+      "url": "https://www.gamespot.com/games/sonic-x-shadow-generations/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Sonic Racing: CrossWorlds",
+      "url": "https://www.gamespot.com/games/sonic-racing-crossworlds/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Steam Frame headset",
+      "url": "https://www.gamespot.com/articles/steam-frame-release-date-price-specs-everything-we-know/1100-6536287/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "new $1,300 Meta VR Glasses",
+      "url": "https://www.gamespot.com/articles/meta-1300-vr-glasses-could-be-the-most-expensive-way-to-play-xbox-games/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "avoid making an expensive purchase",
+      "url": "https://www.gamespot.com/articles/psa-please-allow-my-very-expensive-steam-frame-mistake-to-help-you-fellow-glasses-wearers/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Dragon’s Dogma 2",
+      "url": "https://www.gamespot.com/games/dragons-dogma-2/",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
       "title": "best games of 2026",
       "url": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
       "score": 0,
@@ -2001,76 +2071,6 @@
     {
       "title": "Denshattack",
       "url": "https://#h-denshattack",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Mina the Hollower",
-      "url": "https://#h-mina-the-hollower",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "007 First Light",
-      "url": "https://#h-007-first-light",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Scritchy Scratchy",
-      "url": "https://#h-scritchy-scratchy",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Lumentale: Memories of Trey",
-      "url": "https://#h-lumentale-memories-of-trey",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Marvel Tokon: Fighting Souls",
-      "url": "https://#h-marvel-tokon-fighting-souls",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "The Adventures of Elliot: The Millennium Tales",
-      "url": "https://#h-the-adventures-of-elliot-the-millennium-tales",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "MIO Memories in Orbit",
-      "url": "https://#h-mio-memories-in-orbit",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Phonopolis",
-      "url": "https://#h-phonopolis",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Assassin&#039;s Creed Black Flag Resynced",
-      "url": "https://#h-assassin-s-creed-black-flag-resynced",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Silent Hill: Townfall",
-      "url": "https://#h-silent-hill-townfall",
       "score": 0,
       "source": "GameSpot RSS",
       "category": "kemono"
