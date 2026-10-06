@@ -33,3 +33,4 @@ P1バックログ完了: HF API 使用可能状況確認 (`docs/ai/tasks/2026-10
 - `docs/ai/image-prompt-nonfixed-refinement.md` - 非固定部分（art_style/character/situation）精査 + Python側ランダム化設計（6項目の重み付き選択）
 - Kemono API 削除 + エンタメトレンドソース追加（GameSpot/IGN/Anime News Network/Crunchyroll）+ e621 ストーリー注入除外 + Reddit/Bluesky コメントアウト（2026-10-06）
 - e621 キャラクター特徴: 累積型→最新分みの修正 + 両スクリプトにログ出力追加（2026-10-06）
+- e621 プロンプト注入 redesign: 投稿別ランダム選出（版権重複再抽選）+ physicalフィルタ（ポーズ/背景/表情/メタ/性別/体型/小道具/映像音響除外）+ アフィリエイト版権フィルタ（神話/放送局/食品/ミーム/プラットフォーム/音楽/ライセンス/政府/イベント/成人向け除外）+ 取得期間14日に短縮（2026-10-06）

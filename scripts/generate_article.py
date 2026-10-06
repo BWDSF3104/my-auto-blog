@@ -477,10 +477,47 @@ def load_prompt_template(prompt_type="default"):
         return f.read()
 
 
+# アフィリエイト不適格なコピーライト
+_AF_EXCLUDE_CP_PATTERNS = ("mythology", "_mythology", "inktober")
+_AF_EXCLUDE_CPS = {
+    # 放送局
+    "adult_swim", "cartoon_network", "british_broadcasting_corporation",
+    # 食品・飲料・小売
+    "monster_energy", "cup_noodles", "jack_in_the_box_(restaurant)",
+    "cheetos", "frito-lay", "pepsico", "ikea",
+    # ミーム
+    "the_harkness_test_(meme)", "let_me_do_it_for_you", "casualties:_unknown",
+    "gigachad", "low_tier_god", "no_thoughts_head_empty",
+    "is_that_your_fucking_fursona?_that's_cringe",
+    # プラットフォーム
+    "e621", "scratch21", "gameoverse", "glitch_productions", "patreon", "bilibili",
+    # 音楽
+    "ac/dc", "doja_cat", "nirvana", "michael_jackson", "in_utero_(album)",
+    # ライセンス
+    "cc0", "creative_commons",
+    # 政府機関
+    "fbi",
+    # 抽象・イベント
+    "mood", "halloween", "father's_day",
+    # 成人向け
+    "takeshi_loves_sex",
+}
+
+
+def _is_affiliate_excluded(cp: str) -> bool:
+    if cp in _AF_EXCLUDE_CPS:
+        return True
+    if any(cp.startswith(p) for p in _AF_EXCLUDE_CP_PATTERNS):
+        return True
+    if any(cp.endswith(p) for p in _AF_EXCLUDE_CP_PATTERNS):
+        return True
+    return False
+
+
 def _load_character_features() -> str:
     """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。
     投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
-    版権は集計結果から上位10件を抽出。
+    版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
     """
     features_path = os.path.join("data", "character_features.json")
     if not os.path.exists(features_path):
@@ -504,13 +541,28 @@ def _load_character_features() -> str:
     updated_at = data.get("updated_at", "unknown")
     total_posts = data.get("total_posts_analyzed", 0)
 
-    # 版権は集計結果から上位10件
-    copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])[:10]
-    copyright_names = ", ".join(f"{c[0]}" for c in copyrights[:8]) if copyrights else "-"
-
     # 投稿からランダムに2つ選出（版権重複時は再抽選）
     import random
     selected = _select_two_posts(posts, max_retries=10)
+
+    # 集計結果からベース版権を確保（アフィリエイト不適格は除外）
+    aggregate_copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])
+    base_copyrights = [cp for cp, _ in aggregate_copyrights if not _is_affiliate_excluded(cp)][:10]
+
+    # 選出投稿から版権を抽出（アフィリエイト不適格は除外）
+    post_copyrights = []
+    for post in selected:
+        for cp in post.get("copyrights", []):
+            if not _is_affiliate_excluded(cp) and cp not in post_copyrights:
+                post_copyrights.append(cp)
+
+    # 選出投稿の版権を先頭に、不足分を集計ベースで補完
+    all_copyrights = list(post_copyrights)
+    for cp in base_copyrights:
+        if cp not in all_copyrights:
+            all_copyrights.append(cp)
+
+    copyright_names = ", ".join(c for c in all_copyrights[:8]) if all_copyrights else "-"
 
     lines = [
         "",
@@ -524,18 +576,20 @@ def _load_character_features() -> str:
         colors = ", ".join(post.get("colors", [])) or "-"
         physical = ", ".join(post.get("physical", [])[:8]) or "-"
         characters = ", ".join(post.get("characters", [])) or "-"
+        post_copyrights = ", ".join(cp for cp in post.get("copyrights", []) if not _is_affiliate_excluded(cp)) or "-"
         lines.append(f"・参考キャラクター{i}:")
         lines.append(f"  種族: {species}")
         lines.append(f"  色: {colors}")
         lines.append(f"  身体的特徴: {physical}")
         lines.append(f"  参照: {characters}")
+        lines.append(f"  作品: {post_copyrights}")
         lines.append("")
 
     lines.append(f"・人気版権: {copyright_names}")
     lines.append("")
     lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連する書籍・ゲーム・グッズを推奨してください。")
 
-    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyrights)}")
+    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyright_names)}")
 
     return "\n".join(lines)
 

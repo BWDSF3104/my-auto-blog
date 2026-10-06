@@ -304,15 +304,50 @@ _PHYSICAL_EXCLUDE_PATTERNS = (
     "_background",
 )
 
+# アフィリエイト不適格なコピーライト（神話/放送局/食品/ミーム/プラットフォーム）
+_AFFILIATE_EXCLUDE_COPYRIGHT_PATTERNS = (
+    "mythology",
+    "_mythology",
+)
+
+_AFFILIATE_EXCLUDE_COPYRIGHTS = {
+    # 放送局
+    "adult_swim", "cartoon_network", "british_broadcasting_corporation",
+    # 食品・飲料
+    "monster_energy", "cup_noodles",
+    # ミーム
+    "the_harkness_test_(meme)", "let_me_do_it_for_you", "casualties:_unknown",
+    # プラットフォーム
+    "e621", "scratch21", "gameoverse", "glitch_productions",
+    # 音楽
+    "ac/dc", "doja_cat",
+}
+
+
+def _is_affiliate_excluded(copyright_tag: str) -> bool:
+    """コピーライトがアフィリエイト推薦から除外されるべきか判定する。"""
+    if copyright_tag in _AFFILIATE_EXCLUDE_COPYRIGHTS:
+        return True
+    if any(copyright_tag.startswith(pat) for pat in _AFFILIATE_EXCLUDE_COPYRIGHT_PATTERNS):
+        return True
+    if any(copyright_tag.endswith(pat) for pat in _AFFILIATE_EXCLUDE_COPYRIGHT_PATTERNS):
+        return True
+    return False
+
+
 _PHYSICAL_EXCLUDE_TAGS = {
-    # ポーズ
+    # ポーズ・動作
     "sitting", "standing", "lying_down", "kneeling", "holding_object", "gesture",
-    "lying", "hand_gesture",
+    "lying", "hand_gesture", "tail_motion", "tailwag", "dancing", "running",
+    "jumping", "pose", "bent_legs", "v_sign",
     # 視点
     "multiple_angles", "rear_view", "side_view", "three-quarter_view",
+    "front_view", "solo_focus",
     # 表情
     "smile", "blush", "open_mouth", "closed_mouth", "grin", "frown",
     "one_eye_closed", "sweat", "tongue", "sweatdrop", "happy", "eyes_closed",
+    "laugh", "daww", "wide_eyed", "blush_lines", "crying", "smug",
+    "surprised", "smirk", "embarrassed", "tongue_out",
     # メタ
     "solo", "duo", "group", "text", "humor", "dialogue", "music",
     "container", "beverage", "cup", "furniture",
@@ -320,11 +355,20 @@ _PHYSICAL_EXCLUDE_TAGS = {
     "chart", "height_chart", "color_swatch",
     # 背景・小道具
     "inside", "outdoors", "electronics", "food", "plant",
+    "box", "table", "bed", "machine", "vehicle", "nature", "window",
+    "phone", "book", "mug", "bag", "microphone", "weapon",
+    # 映像・音響
+    "speech_bubble", "sound_effects", "exclamation_point", "profanity",
+    "recording", "music_video",
     # 体液
     "bodily_fluids",
-    # 性別・年齢（Python側のランダムパラメータと競合するため除外）
+    # 性別・体型（Python側のランダムパラメータと競合するため除外）
     "male", "female", "male_anthro", "female_anthro", "ambiguous_gender",
     "young", "young_anthro", "young_female", "femboy",
+    "interspecies", "male/female", "larger_female", "clothed_male",
+    "muscular_anthro", "small_breasts",
+    # 特殊
+    "toony", "furgonomics", "glowing", "glistening", "plushie",
     # NSFW関連
     "nude",
 }
@@ -439,8 +483,8 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
         print(f"[e621] Fetching tag: {tag_query}...")
         encoded = urllib.parse.quote(tag_query)
         from datetime import datetime, timezone, timedelta
-        thirty_days_ago = int((datetime.now(timezone.utc) - timedelta(days=30)).timestamp())
-        url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}&date_min={thirty_days_ago}"
+        fourteen_days_ago = int((datetime.now(timezone.utc) - timedelta(days=14)).timestamp())
+        url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}&date_min={fourteen_days_ago}"
         data = fetch_json(url, headers=headers)
         if not data:
             continue
