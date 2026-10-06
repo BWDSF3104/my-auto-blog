@@ -842,8 +842,7 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
 
         filename = f"{file_timestamp}-inline-{idx}.png"
         full_prompt = compose_image_prompt(raw_prompt, characters, art_style)
-        # ヘッダーが base_seed なので、本文挿絵は +1 から開始
-        inline_seed = base_seed + idx if base_seed >= 0 else -1
+        inline_seed = base_seed if base_seed >= 0 else -1
 
         print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 合成プロンプト: {full_prompt}")
         image_url = generate_and_save_image(full_prompt, filename, inline_seed)
