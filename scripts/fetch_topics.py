@@ -490,10 +490,18 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
         if categories and cat not in categories:
             continue
         print(f"[e621] Fetching tag: {tag_query}...")
-        encoded = urllib.parse.quote(tag_query)
-        from datetime import datetime, timezone, timedelta
-        fourteen_days_ago = int((datetime.now(timezone.utc) - timedelta(days=14)).timestamp())
-        url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}&date_min={fourteen_days_ago}"
+        import random
+        from datetime import datetime, timezone, timedelta, date
+        now_date = datetime.now(timezone.utc).date()
+        start_bound = date(2010, 1, 1)
+        end_bound = now_date - timedelta(days=14)
+        rand_days = random.randint(0, (end_bound - start_bound).days)
+        window_start = start_bound + timedelta(days=rand_days)
+        window_end = window_start + timedelta(days=14)
+        date_metatag = f"date:{window_start.isoformat()}..{window_end.isoformat()}"
+        tag_query_with_date = f"{tag_query} {date_metatag} order:random"
+        encoded = urllib.parse.quote(tag_query_with_date)
+        url = f"https://e621.net/posts.json?tags={encoded}&limit={limit_per_tag}"
         data = fetch_json(url, headers=headers)
         if not data:
             continue

@@ -54,12 +54,12 @@ DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop,
 # kemono_story プロンプトのPython側ランダム化設定
 # 各項目の重み付き選択でテーマの多様性を確保
 CHAR_TYPE_WEIGHTS = [
-    ("anthro", 30),
-    ("semi-anthro", 20),
-    ("feral", 20),
-    ("anthro+semi-anthro", 10),
-    ("anthro+feral", 10),
-    ("semi-anthro+feral", 10),
+    ("獣人", 30),
+    ("動物と獣人のハーフ", 20),
+    ("動物", 20),
+    ("獣人 / 動物と獣人のハーフ", 10),
+    ("獣人 / 動物", 10),
+    ("動物と獣人のハーフ / 動物", 10),
 ]
 
 WORLD_SETTING_WEIGHTS = [
@@ -181,7 +181,7 @@ def _randomize_kemono_params():
         char_count = 2
 
     return {
-        "char_type": char_type.replace("+", "・"),
+        "char_type": char_type,
         "world_setting": _KEMONO_WORLD_TEXT[world_setting],
         "transform_text": _KEMONO_TRANSFORM_TEXT[transform],
         "relationship_text": _KEMONO_RELATIONSHIP_TEXT[relationship],
@@ -1008,10 +1008,7 @@ _AFFILIATE_BAD_PREFIXES = (
 _KEYWORD_ENHANCEMENT = {
     "tech": "プログラミング 入門書",
     "ai": "AI 入門 書籍",
-    "kemono": "ケモノ 図鑑",
     "pokemon": "ポケモン 公式",
-    "novel": "ライトノベル おすすめ",
-    "fantasy": "ファンタジー 小説",
     "game": "ゲーム 周辺機器",
     "programming": "プログラミング 本",
     "web": "Web開発 書籍",
@@ -1061,8 +1058,8 @@ def _improve_keyword(kw: str, prompt_type: str) -> str:
             return f"{kw} 書籍"
         return f"{kw} 関連グッズ"
     elif prompt_type in ("kemono_story", "novel", "story"):
-        # 物語系: 関連作品・グッズ
-        return f"{kw} 関連作品"
+        # 物語系: キーワードをそのまま使用（作品名のみで検索すれば商品がヒットする）
+        return kw
 
     return kw
 
@@ -1092,7 +1089,7 @@ def _is_github_repo_name(keyword: str) -> bool:
     return False
 
 
-def _extract_article_keywords(content: str, max_kw: int = 2) -> list[str]:
+def _extract_article_keywords(content: str, max_kw: int = 2, prompt_type: str = "default") -> list[str]:
     """
     記事本文（Frontmatter後のテキスト）からテーマキーワードを抽出。
     1. Frontmatterのtagsを優先使用
@@ -1102,12 +1099,15 @@ def _extract_article_keywords(content: str, max_kw: int = 2) -> list[str]:
     keywords: list[str] = []
     seen = set()
 
-    # 1. tags から抽出
+    # 1. tags から抽出（物語系モードでは日本語タグのみ使用）
     tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
     if tags_match:
         for t in tags_match.group(1).split(','):
             tag = t.strip().strip('"\'')
             if tag and len(tag) >= 2 and tag not in seen:
+                if prompt_type in ("kemono_story", "novel", "story"):
+                    if not re.search(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]', tag):
+                        continue
                 seen.add(tag)
                 keywords.append(tag)
                 if len(keywords) >= max_kw:
@@ -1163,7 +1163,7 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
     keywords_to_use: list[str] = []
 
     # 1. 記事本文からテーマキーワードを抽出（最優先）
-    article_kw = _extract_article_keywords(content, max_kw=2)
+    article_kw = _extract_article_keywords(content, max_kw=2, prompt_type=prompt_type)
     for kw in article_kw:
         if _is_affiliate_bad_keyword(kw):
             continue
@@ -1547,6 +1547,15 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
     """
     if not os.path.exists(TOPICS_JSON_PATH):
         print(f"[topics] {TOPICS_JSON_PATH} が見つかりません。トレンド注入をスキップします。")
+        _save_trend_usage_log({
+            "timestamp": datetime.now(timezone(timedelta(hours=9))).isoformat(),
+            "prompt_type": prompt_type,
+            "data_file": TOPICS_JSON_PATH,
+            "skipped": "file_not_found",
+            "selected": [],
+            "affiliate_keywords": [],
+            "trend_source_urls": [],
+        })
         return ng_instruction, [], []
 
     try:
@@ -1554,6 +1563,15 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
             data = json.load(f)
     except Exception as e:
         print(f"[topics] JSON 読み込み失敗: {e}")
+        _save_trend_usage_log({
+            "timestamp": datetime.now(timezone(timedelta(hours=9))).isoformat(),
+            "prompt_type": prompt_type,
+            "data_file": TOPICS_JSON_PATH,
+            "skipped": f"json_parse_error: {e}",
+            "selected": [],
+            "affiliate_keywords": [],
+            "trend_source_urls": [],
+        })
         return ng_instruction, [], []
 
     # prompt_type に合わせてカテゴリを選択（カテゴリ厳格化）

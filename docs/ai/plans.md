@@ -4,13 +4,11 @@
 
 # Active Plans
 
-- [2026-10-05] 既知問題修正 (KI-001, KI-002, KI-003):
-  - KI-001: ハンバーガーメニューの「記事一覧」リンクを `#main-content` → `{baseUrl}` に変更
-  - KI-002: ヒーローセクションの「最新記事を読む」を同上 + `page/[page].astro` に `id="main-content"` を追加
-  - KI-003: `kemono_story.txt` の IMAGE_PROMPT 指示を強化（具体的なシーンの描写を要求）
+(なし)
 
 # Completed Plans
 
+- [2026-10-07] 生成パイプライン6項目修正 (#1, #3, #5, #6, #7, #8): 英語用語漏れ修正 (CHAR_TYPE_WEIGHTS日本語化)、2passリファイン強化 (refine_story.txt全体書き換え)、e621収集開始時期ランダム化 (2010-01-01〜現在-14dランダム14日ウィンドウ)、アフィリエイト英語キーワード除去 (tags日本語化+prompt_typeフィルタ+_KEYWORD_ENHANCEMENT cleanup)、製品推薦の具体化 (A1/A2ルール強化+_improve_keyword suffix削除)、trend_usageログ欠落修正 (早期リターンにログ追加+.gitkeep)。pytest 161通過、e621 API確認 (200 OK)
 - [2026-10-06] 画像生成上限増加: 記事あたりの画像上限を3枚→8枚（ヘッダー1 + 本文内最大7）に増加。ストーリー系は各章ごとに画像を配置する指示に変更。HF ZeroGPUの実稼働時間消費（初回9秒、ウォーム2秒）をapi-rate-limits.mdに反映。pytest 155通過、ビルド成功 (114ページ)
 - [2026-10-06] 画像プロンプト順序最適化: BASE_QUALITY_PROMPTを8→6タグ短縮、Illustrious系推奨順序に再配置（被写体数→キャラクター→シチュエーション→artist→品質→スタイル）。pytest 155通過、ビルド成功 (114ページ)。commit: `947009c`, `fbbb0ab`
 - [2026-10-06] e621 artistタグ集計機能: CHARACTER_FEATURE_CATEGORIESにartist追加、unknown_artist除外、generate_article.pyに人気artist注入、art_style指示にartist名候補追加。pytest 155通過、ビルド成功 (110ページ)。commit: `2e960f3`

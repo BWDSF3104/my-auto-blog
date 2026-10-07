@@ -1490,8 +1490,7 @@ class TestRandomizeKemonoParams:
         for _ in range(50):
             params = _randomize_kemono_params()
             raw_types = [v[0] for v in CHAR_TYPE_WEIGHTS]
-            expected_display = [t.replace("+", "・") for t in raw_types]
-            assert params["char_type"] in expected_display
+            assert params["char_type"] in raw_types
 
     def test_world_setting_in_options(self):
         for _ in range(50):
