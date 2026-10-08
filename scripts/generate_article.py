@@ -1339,14 +1339,48 @@ _KEMONO_RELATIONSHIP_AFFILIATE = {
 
 
 def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
-    """kemono_story のスクリプト決定パラメータからアフィリエイト検索キーワードを生成"""
-    kw1 = f"ケモノ {kemono_params['world_setting']}"
+    """kemono_story のスクリプト決定パラメータからアフィリエイト検索キーワードを生成。
+
+    生成順:
+    1. ケモノ単体
+    2. ジャンル単体（「と」で分割）
+    3. キャラ関係性単体
+    4. ケモノ + ジャンル
+    5. ケモノ + キャラ関係性
+    """
+    kws: list[str] = []
+
+    # 1. ケモノ単体
+    kws.append("ケモノ")
+
+    # 2. ジャンルを「と」で分割して単体使用
+    world_setting = kemono_params["world_setting"]
+    genres = [g.strip() for g in world_setting.split("と") if g.strip()]
+    for g in genres:
+        kws.append(g)
+
+    # 3. キャラ関係性単体
     rel_key = kemono_params.get("relationship_key", "")
-    kw2 = f"ケモノ {_KEMONO_RELATIONSHIP_AFFILIATE[rel_key]}" if rel_key in _KEMONO_RELATIONSHIP_AFFILIATE else None
-    kws = [kw1]
-    if kw2:
-        kws.append(kw2)
-    return kws
+    relationship = _KEMONO_RELATIONSHIP_AFFILIATE.get(rel_key, "")
+    if relationship:
+        kws.append(relationship)
+
+    # 4. ケモノ + ジャンル
+    for g in genres:
+        kws.append(f"ケモノ {g}")
+
+    # 5. ケモノ + キャラ関係性
+    if relationship:
+        kws.append(f"ケモノ {relationship}")
+
+    # 重複排除（順序維持）
+    seen: set[str] = set()
+    result: list[str] = []
+    for kw in kws:
+        if kw not in seen:
+            seen.add(kw)
+            result.append(kw)
+    return result
 
 
 def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None) -> str:
@@ -2865,9 +2899,13 @@ def generate_post():
 
     # ストーリー系: スクリプト決定パラメータからtagsを生成してfrontmatterに書き込む
     if prompt_type == "kemono_story" and kemono_params:
-        tags_list = ["ケモノ", kemono_params["char_type"], kemono_params["world_setting"]]
-        if kemono_params.get("relationship_text"):
-            tags_list.append(kemono_params["relationship_text"])
+        tags_list = ["ケモノ", kemono_params["char_type"]]
+        # ジャンルは「と」で分割して個別タグとして設定
+        for g in (g.strip() for g in kemono_params["world_setting"].split("と") if g.strip()):
+            tags_list.append(g)
+        rel_key = kemono_params.get("relationship_key", "")
+        if rel_key in _KEMONO_RELATIONSHIP_AFFILIATE:
+            tags_list.append(_KEMONO_RELATIONSHIP_AFFILIATE[rel_key])
         if kemono_params.get("extra_text"):
             tags_list.append(kemono_params["extra_text"])
         tags_yaml = ", ".join(f'"{t}"' for t in tags_list)
