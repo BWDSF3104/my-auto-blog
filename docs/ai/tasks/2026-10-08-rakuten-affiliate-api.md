@@ -1,11 +1,32 @@
 # 楽天市場API商品リンク連携 (2026-10-08)
 
-**状態: 設計確定済み・実装未着手 (2026-10-08)**
+**状態: 修正案記録済み・実装未着手 (2026-10-08)**
 
 ## 概要
 アフィリエイト商品リンクを「GEMINIが生成した検索ページURL（`search.rakuten.co.jp/search/mall/...`）」から、楽天市場APIで取得した**具体的な商品詳細URL（アフィリエイト版）** に置き換える。比較表と末尾おすすめリストは**商品画像付きカード**で表示する。
 
 API動作検証・設計・デザイン確認は完了。次は `generate_article.py` 実装。
+
+## 修正案 (2026-10-08)
+
+### 1. 絵文字カード処遇: 維持（置き換え✗ 廃止✗）
+- 絵文字カードは**そのまま維持**する。
+- 楽天APIで取得する実画像付き商品カードは**新規追加要素**であり、絵文字カードの置き換えではない。
+- これにより「絵文字カード(#3)廃否」の保留は解消（維持で確定）。
+
+### 2. A系本文内: プレーンテキスト化（実装済み 2026-10-08）
+- `process_inline_affiliates` は anchor テキストのみを出力（リンクなし・API呼び出しなし）。
+- 決定事項10の「A系 → `_rakuten_search()`」は**改訂**: 本文内インラインはAPIを呼び出さない。比較表のみAPI対象。
+- 検証: pytest 164件通過 / npm run build 122ページ (2026-10-08)
+- 将来「カード廃止」に方針転換した場合は本変更を切戻す（1関数＋テスト3件のみで対象が明確）。
+
+### 3. スコープ確定: 楽天API商品カードの「追加」のみ
+| 対象 | 処遇 |
+|------|------|
+| 絵文字カード | そのまま維持 |
+| 比較表 | キーワード1件につき商品カード1枚を**追加**（画像＋商品名＋価格＋ボタン） |
+| 末尾セクション | キーワード1件につきカード1枚をセクション**一番上に追加**、既存リンク（CTA・検索リンク4本・PR注記）維持 |
+| A系本文内 | リンクなし（プレーンテキスト維持） |
 
 ## ユーザー確認済み決定事項
 
@@ -24,6 +45,7 @@ API動作検証・設計・デザイン確認は完了。次は `generate_articl
 
 ### キーワードフィルタ設計
 10. **A系（本文内・比較表）**: `_is_affiliate_bad_keyword`(L1028) のガードのみ前置き、キーワードは**そのまま** `_rakuten_search()` に渡す（除外時は既存検索リンクへフォールバック）
+    > **改訂 (2026-10-08)**: 本文内インラインはプレーンテキスト化済み（API呼び出しなし・リンクなし）。本条は**比較表のみ**に適用。
     - `_is_github_repo_name`(L1075) は**適用しない**（単一英単語全滅のため iPhone/Switch/Kindle 等の正当な商品名を誤殺する）
     - `_improve_keyword`(L1042) も**適用しない**（"iPhone"→"iPhone 書籍" 等の改造が商品検索を壊す）
 11. **B系（末尾）**: 従来通り全フィルタ（bad_keyword + repo_name）＋ `_improve_keyword` の改善済みキーワードをそのまま渡す
@@ -88,14 +110,14 @@ kemono_story 記事の末尾セクション（B系）は frontmatter `tags`（�
 
 ## 実装計画（未着手）
 1. `generate_article.py` に `_rakuten_search(keyword)` 追加（429リトライ・30日キャッシュ `data/rakuten_cache.json`）
-2. `process_inline_affiliates`(L907) / `process_inline_products`(L956) / `inject_affiliate_links`(L1138) を楽天商品URL・商品カードHTMLに改造（決定事項10-13準拠）
+2. `process_inline_products`(L956) / `inject_affiliate_links`(L1138) に楽天商品URL・商品カードHTMLを**追加**（決定事項10-13＋修正案3準拠。`process_inline_affiliates` はプレーンテキスト化済みで改造対象外）
 3. `src/styles/global.css` に `.pc-img`（商品画像80px表示）スタイル追加（既存 `.product-card` 体系に統合）
 4. テスト: `TestRakutenSearch` 新規追加（成功/失敗/0件/キャッシュ/429リトライ）＋既存アフィリエイトテストに `unittest.mock` でAPIモック（実API呼び出し禁止）
 5. `.github/workflows/deploy.yml` の `env:` に `RAKUTEN_ACCESS_KEY` / `RAKUTEN_APPLICATION_ID` 追加＋`data/rakuten_cache.json` の `git add` 追加
 6. 検証: `pytest scripts/tests/ -v` ＋ `npm run build` ＋ 出力HTML解析（カード構造・クラス名・リンクURL）
 
 ## 関連ファイル
-- `scripts/generate_article.py`: 3関数（L907/L956/L1138）、パターン（L205/L211）、フィルタ（L1028/L1075/L1042）、呼び出し箇所（L2597-2606）
+- `scripts/generate_article.py`: 改造対象2関数（`process_inline_products` L956 / `inject_affiliate_links` L1138）、プレーンテキスト化済み（`process_inline_affiliates` L911）、パターン（L205/L211）、フィルタ（L1028/L1075/L1042）、呼び出し箇所（L2597-2606）
 - `src/styles/global.css`: 既存 `.product-card` 体系（L95-212）・ブランドカラー（L5-70）
 - `scripts/tests/test_generate_article.py`: 既存アフィリエイトテスト
 - `.github/workflows/deploy.yml`: 記事生成ワークフロー

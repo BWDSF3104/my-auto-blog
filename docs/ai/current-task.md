@@ -8,9 +8,15 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- `docs/ai/tasks/2026-10-08-rakuten-affiliate-api.md` - 楽天市場API商品リンク連携。**設計・API検証・デザイン確認完了、実装未着手** (2026-10-08)
-  - 次: 絵文字カード(#3)の廃否をユーザー回答待ち → `generate_article.py` 実装（`_rakuten_search` + 3関数改造 + テスト + `deploy.yml` 更新）→ pytest + build 検証
-  - 範囲追記: B系オフテーマキーワード問題（tags由来・実API証拠: ケモノ→文具/ライバル→ピアス/BNA→0ヒット）を本タスクで同時対応。リンク生成追跡ログ（構造化JSON）追加を検討
+- `docs/ai/tasks/2026-10-08-rakuten-affiliate-api.md` - 楽天市場API商品リンク連携。**実装完了・検証済み** (2026-10-08)
+  - 修正案 (2026-10-08): 絵文字カードは**維持**（置き換え✗ 廃止✗）= 楽天API商品カードの「追加」のみ。A系本文内はプレーンテキスト化済み
+  - **実装内容**: `generate_article.py` に `_rakuten_search`（30日キャッシュ/429リトライ/呼び出し間隔1.5秒/画像付き先頭採用）+ `_generate_rakuten_card`（実画像付き `.product-card`）+ `_find_table_end_line` + `_rakuten_load_cache`/`_rakuten_save_cache` を追加。`process_inline_products`（比較表直後にカード追加）/ `inject_affiliate_links`（末尾セクション一番上にカード追加）を改造。既存リンク・CTA・PR注記はすべて維持。`global.css` に `.pc-img`（80px）追加
+  - **deploy.yml**: `RAKUTEN_APPLICATION_ID` / `RAKUTEN_ACCESS_KEY` env（secrets）+ `data/rakuten_cache.json` の git add を追加
+  - **テスト**: `TestRakutenSearch`（6件: 成功/0件/クレデンシャル未設定/キャッシュ/429リトライ/エラー）+ `TestGenerateRakutenCard`（2件）新規。`TestProcessInlineProducts` をカード挿入前提に更新。全173件通過（+9）
+  - **Verification** (2026-10-08):
+    - `pytest scripts/tests/` → **173 passed** (3.31s)
+    - `npm run build` → **122 page(s) built** (3.66s) 成功
+  - **要確認（ユーザー）**: GitHub 設定 → Secrets に `RAKUTEN_APPLICATION_ID` / `RAKUTEN_ACCESS_KEY` を追加（`RAKUTEN_AFFILIATE_ID` は既存）
 
 ### 過去の記録
 

@@ -60,6 +60,12 @@ from generate_article import (
     validate_and_fix_frontmatter,
     _save_draft_metadata,
     DRAFTS_DIR,
+    _rakuten_search,
+    _generate_rakuten_card,
+    _find_table_end_line,
+    _rakuten_load_cache,
+    _rakuten_save_cache,
+    RAKUTEN_CACHE_FILE,
 )
 
 
@@ -466,13 +472,14 @@ class TestGetExistingPosts:
 # --------------------------------------------------
 
 class TestProcessInlineAffiliates:
-    def test_replace_affiliate_placeholder(self):
+    def test_replace_affiliate_placeholder_plain_text(self):
         content = 'Check out <!-- AFFILIATE: "Amazon" | "best deals" --> for products.'
         result = process_inline_affiliates(content)
-        assert "amazon.co.jp" in result
-        assert "rakuten.co.jp" in result
         assert '<!-- AFFILIATE:' not in result
         assert "best deals" in result
+        assert "amazon.co.jp" not in result
+        assert "rakuten.co.jp" not in result
+        assert "[best deals]" not in result
 
     def test_no_affiliate_placeholder(self):
         content = "No affiliate links here."
@@ -482,9 +489,11 @@ class TestProcessInlineAffiliates:
     def test_multiple_affiliate_placeholders(self):
         content = 'Link1: <!-- AFFILIATE: "Amazon" | "Amazon" --> Link2: <!-- AFFILIATE: "Rakuten" | "Rakuten" -->'
         result = process_inline_affiliates(content)
-        assert "amazon.co.jp" in result
-        assert "rakuten.co.jp" in result
         assert '<!-- AFFILIATE:' not in result
+        assert "amazon.co.jp" not in result
+        assert "rakuten.co.jp" not in result
+        assert "Amazon" in result
+        assert "Rakuten" in result
 
 
 # --------------------------------------------------
@@ -493,18 +502,173 @@ class TestProcessInlineAffiliates:
 
 class TestProcessInlineProducts:
     def test_replace_product_placeholder(self):
-        content = 'Product: <!-- AFF_PRODUCT: "Noise Cancelling Headphones" -->'
-        result = process_inline_products(content)
+        with patch("generate_article._rakuten_search", return_value=None):
+            content = 'Product: <!-- AFF_PRODUCT: "Noise Cancelling Headphones" -->'
+            result = process_inline_products(content)
         assert "amazon.co.jp" in result
         assert "rakuten.co.jp" in result
         assert '<!-- AFF_PRODUCT:' not in result
         assert "[Amazon]" in result
         assert "[楽天]" in result
+        assert "product-card" not in result
 
     def test_no_product_placeholder(self):
         content = "No product links here."
         result = process_inline_products(content)
         assert result == content
+
+    def test_rakuten_card_inserted_after_table(self):
+        product = {
+            "itemName": "テスト商品",
+            "itemPrice": 3000,
+            "affiliateUrl": "https://hb.afl.rakuten.co.jp/pc=xxx",
+            "imageUrl": "https://img.example.com/a.jpg",
+            "reviewCount": 100,
+        }
+        content = (
+            'title: "Test"\n\n'
+            '| 商品 | リンク |\n'
+            '|---|---|\n'
+            '| テスト商品 | <!-- AFF_PRODUCT: "ノートPC" --> |\n'
+        )
+        with patch("generate_article._rakuten_search", return_value=product) as m:
+            result = process_inline_products(content)
+        assert m.called
+        assert "product-card" in result
+        assert "pc-img" in result
+        assert "テスト商品" in result
+        assert "hb.afl.rakuten.co.jp" in result
+        # カードはテーブル行の直後に挿入される
+        assert result.index("product-card") > result.rindex("| テスト商品 |")
+
+
+# --------------------------------------------------
+# _rakuten_search tests (APIはモック、実呼び出し禁止)
+# --------------------------------------------------
+
+def _fake_rakuten_response(items):
+    resp = MagicMock()
+    resp.status_code = 200
+    resp.json.return_value = {"Items": items}
+    resp.raise_for_status.return_value = None
+    return resp
+
+
+def _item(name="商品", price=1000, url="https://item.rakuten.co.jp/x/", img="https://img.example.com/a.jpg", review=10):
+    return {
+        "itemName": name,
+        "itemPrice": price,
+        "itemUrl": url,
+        "affiliateUrl": f"https://hb.afl.rakuten.co.jp/pc={url}",
+        "mediumImageUrls": [img] if img else [],
+        "reviewCount": review,
+    }
+
+
+class TestRakutenSearch:
+    def setUp(self):
+        import generate_article
+        generate_article._rakuten_last_call_time = 0.0
+
+    def _env(self):
+        return patch.dict(os.environ, {
+            "RAKUTEN_APPLICATION_ID": "app",
+            "RAKUTEN_ACCESS_KEY": "key",
+            "RAKUTEN_AFFILIATE_ID": "aff",
+        })
+
+    def test_success_returns_first_image_product(self):
+        with self._env(), \
+             patch("generate_article._rakuten_load_cache", return_value={}), \
+             patch("generate_article._rakuten_save_cache") as save, \
+             patch("generate_article.requests.get", return_value=_fake_rakuten_response([
+                 _item(img=""),           # 1件目: 画像なし
+                 _item(name="画像付き商品"),  # 2件目: 画像あり
+             ])) as g:
+            result = _rakuten_search("ノートPC")
+        assert g.called
+        assert save.called
+        assert result["itemName"] == "画像付き商品"
+        assert result["imageUrl"] == "https://img.example.com/a.jpg"
+        assert "hb.afl.rakuten.co.jp" in result["affiliateUrl"]
+
+    def test_zero_results_returns_none(self):
+        with self._env(), \
+             patch("generate_article._rakuten_load_cache", return_value={}), \
+             patch("generate_article._rakuten_save_cache"), \
+             patch("generate_article.requests.get", return_value=_fake_rakuten_response([])):
+            result = _rakuten_search("存在しない商品")
+        assert result is None
+
+    def test_credentials_missing_returns_none(self):
+        with patch.dict(os.environ, {
+            "RAKUTEN_APPLICATION_ID": "",
+            "RAKUTEN_ACCESS_KEY": "",
+        }), \
+             patch("generate_article._rakuten_load_cache", return_value={}), \
+             patch("generate_article.requests.get") as g:
+            result = _rakuten_search("ノートPC")
+        assert result is None
+        assert not g.called
+
+    def test_cache_hit_no_api_call(self):
+        from datetime import datetime, timezone, timedelta
+        cached_at = datetime.now(timezone.utc).isoformat()
+        cache = {"ノートPC": {"fetched_at": cached_at, "product": _item(name="キャッシュ商品"), "hits": 3}}
+        with self._env(), \
+             patch("generate_article._rakuten_load_cache", return_value=cache), \
+             patch("generate_article.requests.get") as g:
+            result = _rakuten_search("ノートPC")
+        assert not g.called
+        assert result["itemName"] == "キャッシュ商品"
+
+    def test_429_retry_then_success(self):
+        resp_429 = MagicMock()
+        resp_429.status_code = 429
+        with self._env(), \
+             patch("generate_article._rakuten_load_cache", return_value={}), \
+             patch("generate_article._rakuten_save_cache"), \
+             patch("generate_article.time.sleep"), \
+             patch("generate_article.requests.get", side_effect=[resp_429, _fake_rakuten_response([_item()])]) as g:
+            result = _rakuten_search("ノートPC")
+        assert g.call_count == 2
+        assert result["itemName"] == "商品"
+
+    def test_api_error_returns_none(self):
+        import requests as _rq
+        with self._env(), \
+             patch("generate_article._rakuten_load_cache", return_value={}), \
+             patch("generate_article.time.sleep"), \
+             patch("generate_article.requests.get", side_effect=_rq.exceptions.ConnectionError("boom")):
+            result = _rakuten_search("ノートPC")
+        assert result is None
+
+
+class TestGenerateRakutenCard:
+    def test_card_html_structure(self):
+        product = {
+            "itemName": "ノートPC 15型",
+            "itemPrice": 99800,
+            "affiliateUrl": "https://hb.afl.rakuten.co.jp/pc=abc",
+            "imageUrl": "https://img.example.com/pc.jpg",
+            "reviewCount": 500,
+        }
+        html = _generate_rakuten_card(product, "ノートPC", "テスト記事タイトル")
+        assert 'class="product-card"' in html
+        assert 'class="pc-img"' in html
+        assert "https://img.example.com/pc.jpg" in html
+        assert "ノートPC 15型" in html
+        assert "¥99,800" in html
+        assert "hb.afl.rakuten.co.jp/pc=abc" in html
+        assert "amazon.co.jp/s?k=" in html
+
+    def test_find_table_end_line(self):
+        content = "intro\n| a | b |\n|---|---|\n| 1 | 2 |\nafter"
+        # 行: 0=intro, 1=| a | b |, 2=|---|---|, 3=| 1 | 2 |, 4=after
+        assert _find_table_end_line(content, "| 1 | 2 |") == 3
+        # marker行以降がテーブル行でなければその行を返す
+        assert _find_table_end_line("a\n| x | y |", "| x | y |") == 1
+        assert _find_table_end_line(content, "nonexistent") is None
 
 
 # --------------------------------------------------
@@ -1510,8 +1674,11 @@ class TestRandomizeKemonoParams:
     def test_return_keys(self):
         params = _randomize_kemono_params()
         expected_keys = {
-            "char_type", "world_setting", "transform_text",
-            "relationship_text", "extra_text", "char_count", "char_count_desc",
+            "char_type", "world_setting_key", "world_setting",
+            "transform_key", "transform_text",
+            "relationship_key", "relationship_text",
+            "extra_key", "extra_text",
+            "char_count", "char_count_desc",
         }
         assert set(params.keys()) == expected_keys
 

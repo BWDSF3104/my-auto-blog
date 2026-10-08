@@ -182,9 +182,13 @@ def _randomize_kemono_params():
 
     return {
         "char_type": char_type,
+        "world_setting_key": world_setting,
         "world_setting": _KEMONO_WORLD_TEXT[world_setting],
+        "transform_key": transform,
         "transform_text": _KEMONO_TRANSFORM_TEXT[transform],
+        "relationship_key": relationship,
         "relationship_text": _KEMONO_RELATIONSHIP_TEXT[relationship],
+        "extra_key": extra,
         "extra_text": _KEMONO_EXTRA_TEXT[extra],
         "char_count": char_count,
         "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_1 if char_count == 1 else _KEMONO_CHAR_COUNT_DESC_2),
@@ -907,43 +911,24 @@ def replace_character_placeholders(content: str, characters: dict[str, str]) -> 
 def process_inline_affiliates(content: str) -> str:
     """
     本文内の <!-- AFFILIATE: "keyword" | "anchor" --> を検出し、
-    Amazon・楽天の検索リンクに置換する。
+    anchorテキストのみ（プレーンテキスト）で置換する。
+    商品カードが唯一のリンク表示となるため、本文内はテキストのみ残す。
     """
     matches = list(INLINE_AFFILIATE_PATTERN.finditer(content))
     if not matches:
         return content
 
-    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
-    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
-
-    # 記事タイトルをUTM用に取り出す
-    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
-
-    print(f"🔗 本文内アフィリエイトプレースホルダーを {len(matches)} 箇所検出")
+    print(f"🔗 本文内アフィリエイトプレースホルダーを {len(matches)} 箇所検出（プレーンテキスト化）")
 
     for idx, match in enumerate(matches, start=1):
         full_tag = match.group(0)
         keyword = match.group(1).strip()
         anchor = match.group(2).strip()
-        encoded_kw = urllib.parse.quote(keyword)
 
-        amazon_url = (
-            f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
-            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
-        )
-        rakuten_url = (
-            f"https://search.rakuten.co.jp/search/mall/{encoded_kw}/?scid={rakuten_id}"
-            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
-        )
-
-        # 自然な文章内に埋め込む形式: 主にAmazonリンクをアンカーテキストとして、楽天はフッター注釈
-        replacement = (
-            f"[{anchor}]({amazon_url})"
-            f" （[楽天もチェック]({rakuten_url})）"
-        )
+        # プレーンテキストで置換（商品カードが唯一のリンク表示）
+        replacement = anchor
         content = content.replace(full_tag, replacement, 1)
-        print(f"   🔗 アフィリエイトリンク {idx}: 「{anchor}」→ {keyword}")
+        print(f"   🔗 インラインアフィリエイト {idx}: 「{anchor}」→ {keyword}（プレーンテキスト化）")
 
     # 連続する過剰な改行を整理
     content = re.sub(r'\n{3,}', '\n\n', content)
@@ -957,6 +942,7 @@ def process_inline_products(content: str) -> str:
     """
     比較表内の <!-- AFF_PRODUCT: "keyword" --> を検出し、
     Amazon・楽天の検索リンクボタンに置換する。
+    さらに楽天APIで商品検索し、比較表の直後に商品画像カードを追加する。
     """
     matches = list(INLINE_AFF_PRODUCT_PATTERN.finditer(content))
     if not matches:
@@ -966,10 +952,12 @@ def process_inline_products(content: str) -> str:
     rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
 
     title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
+    title = title_match.group(1).strip() if title_match else "post"
+    utm_content = urllib.parse.quote(title[:50])
 
     print(f"🛒 比較表内商品プレースホルダーを {len(matches)} 箇所検出")
 
+    keywords: list[str] = []
     for idx, match in enumerate(matches, start=1):
         full_tag = match.group(0)
         keyword = match.group(1).strip()
@@ -988,6 +976,32 @@ def process_inline_products(content: str) -> str:
         replacement = f"[Amazon]({amazon_url}) | [楽天]({rakuten_url})"
         content = content.replace(full_tag, replacement, 1)
         print(f"   🛒 商品リンク {idx}: {keyword}")
+        keywords.append(keyword)
+
+    # 楽天API商品カードの追加（比較表の直後に挿入）
+    cards_html = ""
+    seen_kw: set[str] = set()
+    for kw in keywords:
+        if kw in seen_kw:
+            continue
+        seen_kw.add(kw)
+        if _is_affiliate_bad_keyword(kw):
+            continue
+        product = _rakuten_search(kw)
+        if product:
+            cards_html += _generate_rakuten_card(product, kw, title)
+
+    if cards_html:
+        # テーブルの最終行を特定し、その直後にカードを挿入
+        card_div_open = '<div class="product-card">'
+        first_amazon_marker = "amazon.co.jp/s?k="
+        end_line = _find_table_end_line(content, first_amazon_marker)
+        if end_line is not None:
+            lines = content.split('\n')
+            lines.insert(end_line + 1, f"\n<div class=\"product-cards\">{cards_html}\n</div>")
+            content = '\n'.join(lines)
+            card_count = cards_html.count(card_div_open)
+            print(f"   🖼️ 楽天API商品カードを {card_count} 枚追加（比較表の直後）")
 
     return content
 
@@ -1089,6 +1103,186 @@ def _is_github_repo_name(keyword: str) -> bool:
     return False
 
 
+# --------------------------------------------------
+# 楽天市場API 商品検索
+# --------------------------------------------------
+RAKUTEN_API_URL = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
+RAKUTEN_ORIGIN = "https://bwdsf3104.github.io"
+RAKUTEN_REFERER = "https://bwdsf3104.github.io/my-auto-blog/"
+RAKUTEN_CACHE_FILE = "data/rakuten_cache.json"
+RAKUTEN_CACHE_TTL_DAYS = 30
+_rakuten_last_call_time: float = 0.0
+
+
+def _rakuten_load_cache() -> dict:
+    if not os.path.exists(RAKUTEN_CACHE_FILE):
+        return {}
+    try:
+        with open(RAKUTEN_CACHE_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _rakuten_save_cache(cache: dict):
+    os.makedirs(os.path.dirname(RAKUTEN_CACHE_FILE), exist_ok=True)
+    now = datetime.now(timezone.utc)
+    ttl = timedelta(days=RAKUTEN_CACHE_TTL_DAYS)
+    cleaned = {}
+    for kw, entry in cache.items():
+        try:
+            fetched_at = datetime.fromisoformat(entry["fetched_at"])
+            if now - fetched_at < ttl:
+                cleaned[kw] = entry
+        except (KeyError, ValueError):
+            continue
+    with open(RAKUTEN_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cleaned, f, ensure_ascii=False, indent=2)
+
+
+def _rakuten_search(keyword: str) -> dict | None:
+    """
+    楽天市場APIで商品を検索し、画像付きの先頭商品を返す。
+    30日キャッシュ・429リトライ・呼び出し間隔1.5秒。
+    戻り値: {"itemName", "itemPrice", "affiliateUrl", "imageUrl", "reviewCount"} | None
+    """
+    global _rakuten_last_call_time
+
+    cache = _rakuten_load_cache()
+    if keyword in cache:
+        entry = cache[keyword]
+        try:
+            fetched_at = datetime.fromisoformat(entry["fetched_at"])
+            if datetime.now(timezone.utc) - fetched_at < timedelta(days=RAKUTEN_CACHE_TTL_DAYS):
+                product = entry.get("product")
+                if product:
+                    print(f"   🛒 [cache] {keyword} → {product['itemName']}")
+                else:
+                    print(f"   🛒 [cache] {keyword} → 商品なし（キャッシュ）")
+                return product
+        except (KeyError, ValueError):
+            pass
+
+    app_id = os.environ.get("RAKUTEN_APPLICATION_ID", "")
+    access_key = os.environ.get("RAKUTEN_ACCESS_KEY", "")
+    affiliate_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "")
+    if not app_id or not access_key:
+        print(f"   ⚠️ 楽天APIクレデンシャル未設定: 「{keyword}」をスキップ")
+        return None
+
+    elapsed = time.time() - _rakuten_last_call_time
+    if elapsed < 1.5:
+        time.sleep(1.5 - elapsed)
+
+    params = {
+        "applicationId": app_id,
+        "accessKey": access_key,
+        "affiliateId": affiliate_id,
+        "keyword": keyword,
+        "hits": 3,
+        "sort": "-reviewCount",
+        "format": "json",
+        "formatVersion": "2",
+    }
+    headers = {"Origin": RAKUTEN_ORIGIN, "Referer": RAKUTEN_REFERER}
+
+    max_retries = 3
+    for attempt in range(max_retries):
+        _rakuten_last_call_time = time.time()
+        try:
+            resp = requests.get(RAKUTEN_API_URL, params=params, headers=headers, timeout=30)
+            if resp.status_code == 429:
+                wait = 2 * (attempt + 1)
+                print(f"   ⏳ 楽天API 429: {wait}秒待機 ({attempt + 1}/{max_retries})")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            items = data.get("Items", [])
+
+            product = None
+            for item in items:
+                images = item.get("mediumImageUrls") or []
+                if images and images[0]:
+                    product = {
+                        "itemName": item.get("itemName", ""),
+                        "itemPrice": item.get("itemPrice", 0),
+                        "affiliateUrl": item.get("affiliateUrl") or item.get("itemUrl", ""),
+                        "imageUrl": images[0],
+                        "reviewCount": item.get("reviewCount", 0),
+                    }
+                    break
+
+            cache[keyword] = {
+                "fetched_at": datetime.now(timezone.utc).isoformat(),
+                "product": product,
+                "hits": len(items),
+            }
+            _rakuten_save_cache(cache)
+
+            if product:
+                print(f"   🛒 [rakuten] {keyword} → {product['itemName']} (¥{product['itemPrice']:,})")
+            else:
+                print(f"   🛒 [rakuten] {keyword} → 画像付き商品なし（{len(items)}件）")
+            return product
+
+        except requests.exceptions.RequestException as e:
+            if attempt < max_retries - 1:
+                wait = 2 * (attempt + 1)
+                print(f"   ⚠️ 楽天APIエラー: {e} — {wait}秒待機 ({attempt + 1}/{max_retries})")
+                time.sleep(wait)
+            else:
+                print(f"   ❌ 楽天API失敗: 「{keyword}」— {e}")
+                return None
+
+    return None
+
+
+def _generate_rakuten_card(product: dict, keyword: str, title: str) -> str:
+    """楽天API商品から商品カードHTMLを生成（既存 .product-card 体系に統合）"""
+    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
+    encoded_kw = urllib.parse.quote(keyword)
+    utm_content = urllib.parse.quote(title[:50])
+    amazon_url = (
+        f"https://www.amazon.co.jp/s?k={encoded_kw}&tag={amazon_tag}"
+        f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+    )
+    price = product.get("itemPrice", 0)
+    price_html = f'<div class="pc-price">¥{price:,}</div>' if price else ""
+    name = product.get("itemName", "")
+    img = product.get("imageUrl", "")
+    afl = product.get("affiliateUrl", "")
+    return f"""
+<div class="product-card">
+  <img class="pc-img" src="{img}" alt="{name}" loading="lazy" />
+  <div class="pc-info">
+    <div class="pc-name">{name}</div>
+    <div class="pc-category">{keyword}</div>
+    {price_html}
+  </div>
+  <div class="pc-links">
+    <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow" class="pc-btn pc-btn-amazon">Amazon</a>
+    <a href="{afl}" target="_blank" rel="noopener noreferrer nofollow sponsored" class="pc-btn pc-btn-rakuten">楽天</a>
+  </div>
+</div>"""
+
+
+def _find_table_end_line(content: str, marker: str) -> int | None:
+    """markerを含むmarkdownテーブルの最終行の行番号（0始まり）を返す"""
+    lines = content.split('\n')
+    marker_idx = None
+    for i, line in enumerate(lines):
+        if marker in line:
+            marker_idx = i
+            break
+    if marker_idx is None:
+        return None
+    end_idx = marker_idx
+    while end_idx + 1 < len(lines) and lines[end_idx + 1].strip().startswith('|'):
+        end_idx += 1
+    return end_idx
+
+
 def _extract_article_keywords(content: str, max_kw: int = 2, prompt_type: str = "default") -> list[str]:
     """
     記事本文（Frontmatter後のテキスト）からテーマキーワードを抽出。
@@ -1099,15 +1293,16 @@ def _extract_article_keywords(content: str, max_kw: int = 2, prompt_type: str = 
     keywords: list[str] = []
     seen = set()
 
-    # 1. tags から抽出（物語系モードでは日本語タグのみ使用）
+    # 1. tags から抽出
     tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
     if tags_match:
         for t in tags_match.group(1).split(','):
             tag = t.strip().strip('"\'')
             if tag and len(tag) >= 2 and tag not in seen:
-                if prompt_type in ("kemono_story", "novel", "story"):
-                    if not re.search(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]', tag):
-                        continue
+                # 日本語フィルタ（一旦無効化: SF/TF/BL等の英字タグも通す）
+                # if prompt_type in ("kemono_story", "novel", "story"):
+                #     if not re.search(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]', tag):
+                #         continue
                 seen.add(tag)
                 keywords.append(tag)
                 if len(keywords) >= max_kw:
@@ -1135,17 +1330,36 @@ def _extract_article_keywords(content: str, max_kw: int = 2, prompt_type: str = 
     return keywords
 
 
-def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> str:
+_KEMONO_RELATIONSHIP_AFFILIATE = {
+    "partnership": "バディ",
+    "yaoi": "BL",
+    "yuri": "百合",
+    "hetero": "恋愛",
+}
+
+
+def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
+    """kemono_story のスクリプト決定パラメータからアフィリエイト検索キーワードを生成"""
+    kw1 = f"ケモノ {kemono_params['world_setting']}"
+    rel_key = kemono_params.get("relationship_key", "")
+    kw2 = f"ケモノ {_KEMONO_RELATIONSHIP_AFFILIATE[rel_key]}" if rel_key in _KEMONO_RELATIONSHIP_AFFILIATE else None
+    kws = [kw1]
+    if kw2:
+        kws.append(kw2)
+    return kws
+
+
+def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None) -> str:
     """
     記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
 
     キーワード優先順位:
-    1. 記事本文から抽出したテーマキーワード（tags + 本文先頭）
+    1. script_keywords（スクリプトが直接生成したキーワード。ストーリー系）
     2. trend_keywords（GitHubリポジトリ名は除外）
     3. tags / title のフォールバック
 
     改善点:
-    - キーワード品質のフィルタリングと改善
+    - スクリプト決定パラメータからキーワード生成（ストーリー系）
     - UTM パラメータによるトラッキング
     - 複数のプラットフォーム対応
     - 購買意欲を促すCTA文言
@@ -1161,14 +1375,23 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
     prompt_type = type_match.group(1).strip() if type_match else "default"
 
     keywords_to_use: list[str] = []
+    keyword_sources: list[str] = []
 
-    # 1. 記事本文からテーマキーワードを抽出（最優先）
-    article_kw = _extract_article_keywords(content, max_kw=2, prompt_type=prompt_type)
-    for kw in article_kw:
-        if _is_affiliate_bad_keyword(kw):
-            continue
-        improved = _improve_keyword(kw, prompt_type)
-        keywords_to_use.append(improved)
+    # 1. スクリプトが直接生成したキーワード（最優先）
+    if script_keywords:
+        for kw in script_keywords:
+            if not _is_affiliate_bad_keyword(kw):
+                keywords_to_use.append(kw)
+                keyword_sources.append("script")
+    else:
+        # フォールバック: 記事本文からテーマキーワードを抽出
+        article_kw = _extract_article_keywords(content, max_kw=2, prompt_type=prompt_type)
+        for kw in article_kw:
+            if _is_affiliate_bad_keyword(kw):
+                continue
+            improved = _improve_keyword(kw, prompt_type)
+            keywords_to_use.append(improved)
+            keyword_sources.append("article_extract")
 
     # 2. trend_keywords を補充（GitHubリポジトリ名は除外）
     if trend_keywords and len(keywords_to_use) < 3:
@@ -1184,6 +1407,7 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
             seen.add(kw_clean)
             improved = _improve_keyword(kw_clean, prompt_type)
             keywords_to_use.append(improved)
+            keyword_sources.append("trend")
             if len(keywords_to_use) >= 3:
                 break
 
@@ -1206,19 +1430,22 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 
         if keyword:
             keywords_to_use = [_improve_keyword(keyword, prompt_type)]
+            keyword_sources = ["fallback_tags_title"]
         else:
             # 最終フォールバック
             if prompt_type in ("kemono_story", "novel", "story"):
                 keywords_to_use = ["ライトノベル おすすめ"]
             else:
                 keywords_to_use = ["プログラミング 入門書"]
+            keyword_sources = ["fallback_default"]
 
     # UTM トラッキングパラメータ
     title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
     utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
 
     links_html = ""
-    for kw in keywords_to_use:
+    link_log_entries: list[dict] = []
+    for i, kw in enumerate(keywords_to_use):
         encoded_kw = urllib.parse.quote(kw)
 
         # Amazon: 検索リンク + UTM
@@ -1235,6 +1462,25 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 
         links_html += f'\n- 📦 <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow sponsored">Amazonで「{kw}」を探す</a>'
         links_html += f'\n- 🛍️ <a href="{rakuten_url}" target="_blank" rel="noopener noreferrer nofollow sponsored">楽天市場で「{kw}」を探す</a>'
+        link_log_entries.append({
+            "keyword": kw,
+            "source": keyword_sources[i] if i < len(keyword_sources) else "unknown",
+            "amazon_url": amazon_url,
+            "rakuten_url": rakuten_url,
+        })
+
+    # 楽天API商品カードの生成（末尾セクション一番上に追加）
+    title_for_card = (title_match.group(1).strip() if title_match else "post")
+    rakuten_cards_html = ""
+    for kw in keywords_to_use:
+        product = _rakuten_search(kw)
+        if product:
+            rakuten_cards_html += _generate_rakuten_card(product, kw, title_for_card)
+    if rakuten_cards_html:
+        card_div_open = '<div class="product-card">'
+        card_count = rakuten_cards_html.count(card_div_open)
+        rakuten_cards_html = f'\n<div class="product-cards">{rakuten_cards_html}\n</div>'
+        print(f"   🖼️ 楽天API商品カードを末尾セクションに {card_count} 枚追加")
 
     # 複数キーワードがある場合はセクションを分割
     sections = ""
@@ -1257,10 +1503,17 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None) -> st
 ---
 
 ### 📚 テーマ関連のおすすめアイテム・書籍
-この記事のテーマに関連する作品や人気アイテムをチェック！{sections}{links_html}
+この記事のテーマに関連する作品や人気アイテムをチェック！{rakuten_cards_html}{sections}{links_html}
 
 <small style="color: #64748b;">※ 当サイトはアフィリエイト広告（Amazonアソシエイト・楽天アフィリエイト等）を利用して収益を得ています。</small>
 """
+
+    # リンク生成ログの保存
+    if file_timestamp:
+        title_match_log = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+        article_title = title_match_log.group(1).strip() if title_match_log else ""
+        _save_affiliate_link_log(file_timestamp, prompt_type, article_title, link_log_entries)
+
     return content.strip() + "\n" + affiliate_section
 
 
@@ -1534,6 +1787,36 @@ def _save_draft_metadata(
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
     print(f"[draft_meta] 2-passメタデータを保存: {filepath}")
+
+
+# --------------------------------------------------
+# Affiliate link generation log
+# --------------------------------------------------
+AFFILIATE_LINKS_DIR = "data/affiliate_links"
+
+
+def _save_affiliate_link_log(
+    file_timestamp: str,
+    prompt_type: str,
+    article_title: str,
+    keywords: list[dict],
+):
+    """
+    アフィリエイト末尾セクションのキーワード・URL生成ログをJSON保存する。
+    keywords: [{"keyword": str, "source": str, "amazon_url": str, "rakuten_url": str}, ...]
+    """
+    os.makedirs(AFFILIATE_LINKS_DIR, exist_ok=True)
+    filepath = os.path.join(AFFILIATE_LINKS_DIR, f"{file_timestamp}.json")
+    log_data = {
+        "timestamp": datetime.now(timezone(timedelta(hours=9))).isoformat(),
+        "file_timestamp": file_timestamp,
+        "prompt_type": prompt_type,
+        "article_title": article_title,
+        "keywords": keywords,
+    }
+    with open(filepath, "w", encoding="utf-8") as f:
+        json.dump(log_data, f, ensure_ascii=False, indent=2)
+    print(f"[affiliate_log] リンク生成ログを保存: {filepath}")
 
 
 def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str, list[str], list[str]]:
@@ -2580,6 +2863,17 @@ def generate_post():
     if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:
         content = content.replace("---", f"---\nprompt_type: \"{prompt_type}\"", 1)
 
+    # ストーリー系: スクリプト決定パラメータからtagsを生成してfrontmatterに書き込む
+    if prompt_type == "kemono_story" and kemono_params:
+        tags_list = ["ケモノ", kemono_params["char_type"], kemono_params["world_setting"]]
+        if kemono_params.get("relationship_text"):
+            tags_list.append(kemono_params["relationship_text"])
+        if kemono_params.get("extra_text"):
+            tags_list.append(kemono_params["extra_text"])
+        tags_yaml = ", ".join(f'"{t}"' for t in tags_list)
+        content = re.sub(r'^tags:.*$', f'tags: [{tags_yaml}]', content, count=1, flags=re.MULTILINE)
+        print(f"🏷️  tagsをスクリプト値で設定: {tags_list}")
+
     # トレンド参照URLをFrontmatterに記録（出典追跡用）
     if trend_source_urls and "---" in content:
         sources_yaml = "\n".join(f"  - {url}" for url in trend_source_urls[:10])
@@ -2603,7 +2897,8 @@ def generate_post():
     content = process_product_cards(content)
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
-    content = inject_affiliate_links(content, trend_keywords=trend_keywords)
+    skw = _kemono_affiliate_keywords(kemono_params) if prompt_type == "kemono_story" and kemono_params else None
+    content = inject_affiliate_links(content, trend_keywords=trend_keywords, script_keywords=skw, file_timestamp=file_timestamp)
 
     # 5.55 自動内部リンクの挿入
     content = inject_internal_links(content)

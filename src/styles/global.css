@@ -131,6 +131,15 @@
   border-radius: 10px;
 }
 
+.pc-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: var(--color-bg-alt);
+}
+
 .pc-info {
   flex: 1;
   min-width: 0;

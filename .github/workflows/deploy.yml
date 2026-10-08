@@ -53,15 +53,17 @@ jobs:
       # 1-B. Generate article with Gemini
       #      Reads topics from data/topics/latest.json symlink
       # -------------------------------------------------------
-      - name: Run generation script
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          AMAZON_TRACKING_ID: ${{ secrets.AMAZON_TRACKING_ID }}
-          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
-          PROMPT_TYPE: "kemono_story"
-        run: |
-          python scripts/generate_article.py
+       - name: Run generation script
+         env:
+           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+           AMAZON_TRACKING_ID: ${{ secrets.AMAZON_TRACKING_ID }}
+           RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+           RAKUTEN_APPLICATION_ID: ${{ secrets.RAKUTEN_APPLICATION_ID }}
+           RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+           PROMPT_TYPE: "kemono_story"
+         run: |
+           python scripts/generate_article.py
 
       - name: Commit and push generated article and images
         run: |
@@ -75,8 +77,10 @@ jobs:
           [ -d "data/topics" ] && git add data/topics/
           # Trend usage logs
           [ -d "data/trend_usage" ] && git add data/trend_usage/
-          # 2-pass draft metadata
-          [ -d "data/drafts" ] && git add data/drafts/
+           # 2-pass draft metadata
+           [ -d "data/drafts" ] && git add data/drafts/
+           # Rakuten API product cache (30-day TTL)
+           [ -f "data/rakuten_cache.json" ] && git add data/rakuten_cache.json
 
           git diff --quiet && git diff --staged --quiet || {
             git commit -m "docs: auto-generated daily post with image and draft metadata [skip ci]"
