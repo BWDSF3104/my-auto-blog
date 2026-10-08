@@ -46,6 +46,14 @@ git push 後、DeployOnly ワークフローが push トリガーで自動実行
 
 詳細: `docs/ai/workflow-test-procedure.md`
 
+## デバッグ（DebugMCP）
+
+Python スクリプト（`scripts/`）のランタイムバグ調査・変数確認・ステップ実行。`debugmcp_*` MCP ツールで VS Code デバッガを制御する。
+
+- **基本**: ブレークポイント方式でデバッグ（BP なしの割り込み方式は変数読取の制約あり）
+- **必須**: `start_debugging` は `configurationName: "Debug Python (DebugMCP)"` を指定
+- 詳細: `docs/ai/debugging.md`
+
 ## 手動記事作成フロー
 
 ユーザーが記事コンテンツを用意し、ローカルでフォーマット・画像配置・ビルド検証を行うワークフロー。

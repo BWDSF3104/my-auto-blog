@@ -1,3 +1,14 @@
 {
-  "$schema": "https://app.kilo.ai/config.json"
+  "$schema": "https://app.kilo.ai/config.json",
+  "mcp": {
+    "debugmcp": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3001/mcp",
+      "enabled": true,
+      "timeout": 360000
+    }
+  },
+  "permission": {
+    "debugmcp_*": "allow"
+  }
 }

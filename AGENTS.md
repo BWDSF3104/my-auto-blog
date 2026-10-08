@@ -71,6 +71,7 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 - **git commit 実行後（pushを実行するため）**
 - **git push 完了後**
 - **ユーザーが手動記事作成を依頼した際**
+- **デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md`**
 
 ## Project Structure
 
