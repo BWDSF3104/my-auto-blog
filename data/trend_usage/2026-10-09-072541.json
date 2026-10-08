@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-10-09T07:25:41.910234+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-09T07:25:23.391454+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": true,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 71,
+    "after_score_filter": 69,
+    "after_rating_filter": 46,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Ubisoft enacted mass layoffs, closed studios, and cancelled games",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/ubisoft-ceo-tries-to-justify-mass-layoffs/1100-6538314/",
+      "score": 0,
+      "category": "kemono",
+      "rating": ""
+    },
+    {
+      "title": "On Stella Montis, take a photo of the sculpture in the Atrium",
+      "source": "GameSpot RSS",
+      "url": "https://#h-on-stella-montis-take-a-photo-of-the-sculpture-in-the-atrium",
+      "score": 0,
+      "category": "kemono",
+      "rating": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Ubisoft",
+    "On Stella Montis"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/ubisoft-ceo-tries-to-justify-mass-layoffs/1100-6538314/",
+    "https://#h-on-stella-montis-take-a-photo-of-the-sculpture-in-the-atrium"
+  ]
+}
