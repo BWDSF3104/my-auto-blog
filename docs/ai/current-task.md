@@ -18,6 +18,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
     - `npm run build` → **122 page(s) built** (3.66s) 成功
   - **要確認（ユーザー）**: GitHub 設定 → Secrets に `RAKUTEN_APPLICATION_ID` / `RAKUTEN_ACCESS_KEY` を追加（`RAKUTEN_AFFILIATE_ID` は既存）
 
+- Workflow YAML 修正 (2026-10-08, `8366c32`)
+  - `deploy.yml`: cp932→UTF-8変換 + 日本語コメント5行→英語 + 「Run generation script」ブロックの+1 spaceインデント破損を修正（7→6 spaces）+ Rakuten API env 2行・cache git add 2行追加
+  - `deploy-only.yml`: 日本語コメント3行→英語（UTF-8は既に正常）
+  - push後に deploy.yml / deploy-only.yml ともに自動トリガーされず（deploy.ymlはpushトリガーなし、deploy-only.ymlはpaths不一致）
+
 ### 過去の記録
 
 - `docs/ai/tasks/2026-10-08-topics-path-bug.md` - トレンドデータ読み込みパス不一致バグ修正 完了 (2026-10-08, pytest 164通過)
