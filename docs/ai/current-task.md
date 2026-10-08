@@ -9,10 +9,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 ## Active Task
 
 - `docs/ai/tasks/2026-10-08-rakuten-affiliate-api.md` - 楽天市場API商品リンク連携。**設計・API検証・デザイン確認完了、実装未着手** (2026-10-08)
-  - 次: `generate_article.py` 実装（`_rakuten_search` + 3関数改造 + テスト + `deploy.yml` 更新）→ pytest + build 検証
+  - 次: 絵文字カード(#3)の廃否をユーザー回答待ち → `generate_article.py` 実装（`_rakuten_search` + 3関数改造 + テスト + `deploy.yml` 更新）→ pytest + build 検証
+  - 範囲追記: B系オフテーマキーワード問題（tags由来・実API証拠: ケモノ→文具/ライバル→ピアス/BNA→0ヒット）を本タスクで同時対応。リンク生成追跡ログ（構造化JSON）追加を検討
 
 ### 過去の記録
 
+- `docs/ai/tasks/2026-10-08-topics-path-bug.md` - トレンドデータ読み込みパス不一致バグ修正 完了 (2026-10-08, pytest 164通過)
 - `docs/ai/tasks/2026-10-07-generation-pipeline-fixes.md` - 生成パイプライン修正 #1, #3, #5, #6, #7, #8 完了 (2026-10-07)
 - `docs/ai/tasks/2026-10-07-trend-usage-log.md` - #8 trend_usageログ欠落修正 完了 (2026-10-07)
 - `docs/ai/tasks/2026-10-07-affiliate-keyword-investigation.md` - #7 アフィリエイトキーワード調査・修正 完了 (2026-10-07)

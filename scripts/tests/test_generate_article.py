@@ -763,6 +763,35 @@ class TestAutoFetchTopics:
 
 
 # --------------------------------------------------
+# topics パス解決の回帰テスト (2b4a815 の退行防止)
+# --------------------------------------------------
+
+class TestTopicsPathResolution:
+    """トレンドデータパスと fetch_topics.py 出力パスの一致を保障する"""
+
+    def test_topics_json_path_under_repo_root(self):
+        """TOPICS_JSON_PATH はリポジトリ直下 data/topics/latest.json 解決必須"""
+        import generate_article
+        topics_path = Path(generate_article.TOPICS_JSON_PATH)
+        assert tuple(topics_path.parts[-3:]) == ("data", "topics", "latest.json")
+        assert "scripts" not in topics_path.parts, f"TOPICS_JSON_PATH が scripts/ 配下: {topics_path}"
+
+    def test_topics_dir_matches_fetch_topics_output(self):
+        """generate_article と fetch_topics の TOPICS_DIR が一致する"""
+        import generate_article
+        import fetch_topics
+        assert Path(generate_article.TOPICS_DIR) == Path(fetch_topics.TOPICS_DIR)
+
+    def test_auto_fetch_invokes_scripts_fetch_topics(self):
+        """自動再取得は scripts/fetch_topics.py を起動する"""
+        import generate_article
+        script_path = os.path.join(
+            generate_article.PROJECT_DIR, "scripts", "fetch_topics.py"
+        )
+        assert os.path.exists(script_path)
+
+
+# --------------------------------------------------
 # _save_as_avif tests
 # --------------------------------------------------
 

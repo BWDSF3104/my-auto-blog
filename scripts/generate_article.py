@@ -1339,7 +1339,7 @@ def generate_content_with_retry(prompt):
 # --------------------------------------------------
 # トレンドトピック注入ヘルパー
 # --------------------------------------------------
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOPICS_DIR = os.path.join(PROJECT_DIR, "data", "topics")
 TOPICS_JSON_PATH = os.path.join(TOPICS_DIR, "latest.json")
 
@@ -1434,7 +1434,7 @@ def _auto_fetch_topics(prompt_type: str, categories: list[str], data: dict) -> d
     print(f"[topics] カテゴリ {categories} のデータが不足/期限切れです。自動取得を開始します。")
     try:
         result = subprocess.run(
-            [sys.executable, "-u", os.path.join(PROJECT_DIR, "fetch_topics.py"), "--prompt-type", prompt_type],
+            [sys.executable, "-u", os.path.join(PROJECT_DIR, "scripts", "fetch_topics.py"), "--prompt-type", prompt_type],
             capture_output=True, text=True, timeout=120, encoding="utf-8"
         )
         if result.returncode != 0:

@@ -4,6 +4,10 @@ Resolved issues moved from `known-issues.md`.
 
 ---
 
+## トレンドデータ読み込みパス不一致 (解決済 2026-10-08)
+
+`generate_article.py` の `PROJECT_DIR` が `scripts/` 自身を指していたため、`TOPICS_DIR = scripts/data/topics/`（存在しない）となり、`fetch_topics.py` の出力先 `data/topics/`（リポジトリ直下）と不一致。2026-10-02 のコミット `2b4a815`（静的解析修正「相対パスを絶対パス化」）で退行。以降の全記事生成でトレンド注入がサイレント無効化（`data/trend_usage/` ログに `skipped: "file_not_found"`）されていた。楽天API商品リンク連携の調査中に発見し、別タスクとして修正（`docs/ai/tasks/2026-10-08-topics-path-bug.md`）。`PROJECT_DIR` をリポジトリ直下に変更し、`fetch_topics.py` 起動パスを `scripts/` 補正。回帰テスト3件追加、pytest 164通過。
+
 ## 既存記事のアフィリエイトリンク一括置換 (解決済 2026-10-02)
 
 `scripts/fix_affiliate_links.py` で既存記事 15ファイル（48行）のアフィリエイトリンクを `[text](url)` から `<a href="url" target="_blank" rel="noopener noreferrer nofollow sponsored">text</a>` に一括置換。1ファイルで試験実行・差分確認後、全体適用。ビルド成功 (94ページ) を確認。

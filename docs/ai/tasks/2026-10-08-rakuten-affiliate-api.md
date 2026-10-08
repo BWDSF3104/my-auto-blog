@@ -33,6 +33,39 @@ API動作検証・設計・デザイン確認は完了。次は `generate_articl
 13. **フォールバック: API失敗時・0件時、既存の検索リンク方式を維持**
 14. Amazonは従来どおり検索リンク（PA-API不使用）
 
+## 発見済み追加範囲 (2026-10-08 最新記事キーワード調査)
+
+### 問題2: B系オフテーマキーワード（tags由来）
+kemono_story 記事の末尾セクション（B系）は frontmatter `tags`（物語タグ）からキーワードを生成する。物語タグには購買意図がなく、楽天検索で**無関係な商品**がカード表示される。
+
+実API検証（2026-10-08, `sort=-reviewCount`, `hits=3`）:
+- `ケモノ` → 上位1位が**ペンケース ¥3,000**（ケモノ柄小物）
+- `ライバル` → 上位1位が**パールピアス ¥2,750**（"トライ**バル**"部分一致によるヒット）
+- `BNA ビー・エヌ・エー Complete Animation Art Book` → **0ヒット**（フォールバックで事なし）
+
+対応方針（実装時に決定、候補）:
+- (a) 商品意図のないtags由来kwは楽天API検索を**除外**し、既存検索リンク方式のまま（B系のAPI対象はトレンド補完kw＋A系と重複するkwのみ）
+- (b) kwに商品性ヒューリスティック（商品名パターンの部分一致・品目リスト）を課し、不合格は検索リンクへフォールバック
+- (c) tagsを商品意図語に置換する改造（例: 「ケモノ」→「ケモノパーカー」）— 推測が混じるため非推奨
+
+### リンク生成追跡ログ（構造化JSON）追加
+現状の追跡は print（count / anchor→kw）と `data/trend_usage/{ts}.json`（トレンド使用のみ）で、改修後は **API呼び出し結果（ヒット数・選定商品・フォールバック理由）が追跡不能**になる。
+
+提案: 実行ごとに `data/affiliate_links/{ts}.json` を記録（git管理、trend_usageと同じ方式）。1kwあたり:
+```
+{
+  "keyword_raw": "ケモノ",
+  "keyword_used": "ケモノパーカー",
+  "source": "B_tag | B_trend | A_inline | A_table",
+  "filters": {"bad_keyword": false, "repo_name": false, "improved": true},
+  "api": {"status": "ok | error | zero | cache | skipped", "hits": 3, "error": null},
+  "selected": {"itemName": "...", "itemPrice": 3000, "affiliateUrl": "...", "reviewCount": 1234},
+  "fallback_reason": null | "api_error" | "zero_results" | "no_image" | "not_affiliatable",
+  "final_url": "..."
+}
+```
+集計サマリ（API呼び出し数/キャッシュヒット数/フォールバック数）も同ファイルに含める。
+
 ## 楽天API仕様（動作検証済み・公式ドキュメント確認済み）
 
 ### エンドポイント・認証

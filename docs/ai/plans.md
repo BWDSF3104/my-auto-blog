@@ -8,16 +8,12 @@
 
 # Completed Plans
 
+- [2026-10-08] トレンドデータパス不一致バグ修正: `2b4a815`（静的解析の絶対パス化）で `generate_article.py` の `PROJECT_DIR` が `scripts/` を指すようになり、`TOPICS_DIR = scripts/data/topics`（存在しない）と `fetch_topics.py` の出力先 `data/topics` が不一致。2026-10-02以降全記事でトレンド注入がサイレント無効（trend_usageログ `file_not_found`）していた。`PROJECT_DIR` をリポジトリ直下に戻し、`fetch_topics.py` 起動パスを `scripts/` 補正。回帰テスト3件追加。pytest 164通過 (1.99s)
 - [2026-10-07] 生成パイプライン6項目修正 (#1, #3, #5, #6, #7, #8): 英語用語漏れ修正 (CHAR_TYPE_WEIGHTS日本語化)、2passリファイン強化 (refine_story.txt全体書き換え)、e621収集開始時期ランダム化 (2010-01-01〜現在-14dランダム14日ウィンドウ)、アフィリエイト英語キーワード除去 (tags日本語化+prompt_typeフィルタ+_KEYWORD_ENHANCEMENT cleanup)、製品推薦の具体化 (A1/A2ルール強化+_improve_keyword suffix削除)、trend_usageログ欠落修正 (早期リターンにログ追加+.gitkeep)。pytest 161通過、e621 API確認 (200 OK)
 - [2026-10-06] 画像生成上限増加: 記事あたりの画像上限を3枚→8枚（ヘッダー1 + 本文内最大7）に増加。ストーリー系は各章ごとに画像を配置する指示に変更。HF ZeroGPUの実稼働時間消費（初回9秒、ウォーム2秒）をapi-rate-limits.mdに反映。pytest 155通過、ビルド成功 (114ページ)
 - [2026-10-06] 画像プロンプト順序最適化: BASE_QUALITY_PROMPTを8→6タグ短縮、Illustrious系推奨順序に再配置（被写体数→キャラクター→シチュエーション→artist→品質→スタイル）。pytest 155通過、ビルド成功 (114ページ)。commit: `947009c`, `fbbb0ab`
 - [2026-10-06] e621 artistタグ集計機能: CHARACTER_FEATURE_CATEGORIESにartist追加、unknown_artist除外、generate_article.pyに人気artist注入、art_style指示にartist名候補追加。pytest 155通過、ビルド成功 (110ページ)。commit: `2e960f3`
-- [2026-10-06] 画像プロンプト指示をDanbooruキーワード形式に統一: `kemono_story.txt` にDanbooru互換全体指示新規追加、art_style指示に3-5タグ明記+例更新、character指示に種族例+服装1-2つ+5-8タグ制限、IMAGE_PROMPT挿入例・Frontmatter例を自然言語→キーワード形式、`DEFAULT_ART_STYLE`を5→3トークン短縮。pytest 155通過、ビルド成功 (110ページ)。commit: `db0641b`
-- [2026-10-05] kemono_story プロンプトのPython側ランダム化: 6項目の重み付きランダム選択 (`_randomize_kemono_params`) + バリデーション (`_is_valid_kemono_combination`) を実装。`char_count=1` は `extra=clone` 時のみに制限。`char_count_desc` は 2人の場合 "バディ"/"ライバル"/"カップル" からランダム選択。テスト21件追加、全155件通過、ビルド成功 (110ページ)。commit: `2804bfd`
-- [2026-10-05] ブランドカラー統一: `global.css` + `PostLayout.astro` のハードコードHEXをCSS変数(26変数)に集約。既存カラー値は不変。変更前後のビルド出力比較で45色完全一致を確認。ビルド成功 (110ページ)
-- [2026-10-05] モバイルハンバーガーメニュー: `Header.astro` に640px未満用のドロップダウンメニューを追加。検索、ダークモード、記事一覧（`#main-content`アンカー）、タグ一覧、About、RSS、Privacy を含む。外部クリックで閉じる。ビルド成功 (110ページ)
-- [2026-10-05] ヒーローセクション: `Header.astro` にグラデーション背景、ステータスバー（記事数/タグ数/最新更新日）、アクションボタンを追加。統計情報は `import.meta.glob` でビルド時計算。レスポンシブ対応 (3カラム→sm以上)。ビルド成功 (108ページ)
-- [2026-10-04] カテゴリーカード: フロントページにタグ別記事数のセクションを追加。`CategoryCards.astro` コンポーネント新規作成。既存 `tagColors.ts` の12色パレットを再利用。記事数順にトップ12タグをスリムなアコーディオン型で表示（デフォルト閉じ、ボタンで展開）。ビルド成功 (108ページ)
+
 
 完了した計画は git の変更履歴と重複せず、「なぜ変えたか」の文脈のみを記録する。ハッシュは参照用。
 新しいエントリは常に上部に追加（prepend）。並び順=追加順=コミット順。
