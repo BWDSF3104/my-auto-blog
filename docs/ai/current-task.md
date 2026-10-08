@@ -8,7 +8,8 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-(なし)
+- `docs/ai/tasks/2026-10-08-rakuten-affiliate-api.md` - 楽天市場API商品リンク連携。**設計・API検証・デザイン確認完了、実装未着手** (2026-10-08)
+  - 次: `generate_article.py` 実装（`_rakuten_search` + 3関数改造 + テスト + `deploy.yml` 更新）→ pytest + build 検証
 
 ### 過去の記録
 
