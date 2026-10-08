@@ -23,6 +23,15 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
   - `deploy-only.yml`: 日本語コメント3行→英語（UTF-8は既に正常）
   - push後に deploy.yml / deploy-only.yml ともに自動トリガーされず（deploy.ymlはpushトリガーなし、deploy-only.ymlはpaths不一致）
 
+- **E2Eテスト完了** (2026-10-08, run `37853295471`)
+  - 手動トリガー `gh workflow run` → completed/success
+  - generate 4m12s（基準2m39s、Rakuten API+topics再取得で増加）/ build-and-deploy 26s（基準22s）
+  - 楽天API: 3kw全て0件→フォールバック（検索リンク方式）。429エラーなし。間隔1.03s/1.55s
+  - 記事: 絵文字カード1件 + 検索リンク6本 + PR注記（全て維持）
+  - `data/rakuten_cache.json`（3エントリ）/ `data/affiliate_links/2026-10-09-072523.json` 生成済み
+  - **未検証**: 楽天API商品カードの成功パス（実画像・アフィリエイトURL・価格）。商品性の高いkwが必要
+  - 結果: `test-results/2026-10-08-github-workflow-test.md`（ローカルのみ、.gitignore済み）
+
 ### 過去の記録
 
 - `docs/ai/tasks/2026-10-08-topics-path-bug.md` - トレンドデータ読み込みパス不一致バグ修正 完了 (2026-10-08, pytest 164通過)
