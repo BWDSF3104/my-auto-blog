@@ -1,9 +1,9 @@
 name: Deploy Only (no article generation)
 
 on:
-  workflow_dispatch: # 手動起動
+  workflow_dispatch: # manual trigger
   push:
-    # 記事生成ワークフローの [skip ci] 付きコミットは jobs.if でフィルタされる
+    # [skip ci] commits from article generation are filtered by jobs.if
     branches: [main]
     paths:
       - 'src/**'
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # 手動起動は常に実行。push トリガー時は skip ci 付きコミットをスキップ
+    # Always runs on manual trigger. Skips [skip ci] commits on push trigger
     if: github.event_name == 'workflow_dispatch' || (!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip deploy]'))
     steps:
       - name: Checkout repository
