@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-09-refiner-image-prompt-check.md` - リファインプロンプトに画像プロンプト形式チェックを追加。**完了** (2026-10-09)
+  - **実装内容**: `refine_story.txt` に【11. 画像プロンプト形式チェック】新節＋82行目ルール書き換え＋【12. 構成と形式】番号振り直し＋自己検証1項目追加。`refine_tech.txt` に【10. 画像プロンプト形式チェック】新節＋【11. 情報追加に関する制限】番号振り直し＋【9】例外注記。コード変更不要
+  - **Verification** (2026-10-09): `pytest scripts/tests/` → **200 passed** (3.28s)
+  - **Next Action**: なし
+
 - `docs/ai/tasks/2026-10-09-story-multi-images.md` - ストーリー記事の章内複数画像を許可する指示を追加。**完了** (2026-10-09)
   - **実装内容**: `kemono_story.txt` の本文内挿絵ルールに「章内で展開が激しいシーンや印象的なシーンがある場合は、その章で複数枚の挿入を許可します（合計7箇所以内）」を1行追加。コード変更不要
   - **Verification** (2026-10-09): `pytest scripts/tests/ -v` → **200 passed** (3.23s)

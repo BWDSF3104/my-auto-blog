@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-09: リファインプロンプトに画像プロンプト形式チェックを追加
+
+**Decision**: `refine_story.txt`（【11. 画像プロンプト形式チェック】新設）と `refine_tech.txt`（【10. 画像プロンプト形式チェック】新設）に形式チェック節を追加し、2-passリファイナーの役割に「画像生成プロンプトの書式が正しいことの確認」を追加。修正権限は**形式のみ**に厳密限定: 括弧の欠落・無効なcharacter_N参照（有効IDへ）、自然言語句→簡潔タグ、masterpiece等品質タグの削除、日本語・全角→英語・半角、表情欠落時の1-2タグ（Danbooru実在タグ・場面感情に一致）追加。変更不可: シーンの選定・配置・枚数、シーンキーワードの意味、表情の意図、記事本文。「タグ内英語は変更しない」ルール（旧82行目）は「内容として書き換えない（形式誤りは新節に従って修正する）」へ書き換え、構成維持節の例外注記を併記。
+
+**Reason**: 「画像プロンプトに場面ごとの表情/ポーズ指定追加」(2026-10-09) の実Gemini検証で書式逸脱（自然言語句1件+2件）を観測し、現状のリファイナー（画像プロンプトを変更しないよう明示指示）では無修正通過、Python側フォールバック解析で黙って劣化することを確認。リファイナーは抽出・画像生成より前に走るため修正が `compose_image_prompt` へ伝播し、追加API呼び出しなし。観測された逸脱は意味的（自然言語句・表情と場面の一貫性）で正規表現では完全捕捉不能のためプロンプトによるチェックが適切。
+
+**Rejected Alternatives**:
+- B: Python構造化検証（`validate_image_prompts()`）のみ: 信頼性・テスト性は高いが意味的品質（自然言語句・Danbooru実在性）を判定不能。今回は未採用（逸脱頻度定量化の警告ログとして後日追加可能）
+- C: A+Bハイブリッド: 最も堅牢だが作業量最大。Aの効果評価後に判断
+- リファイナーによる画像プロンプト全面書き換え: 「キャラ及びシチュエーション再現度を最優先」原則に反。LLMが正当な形式を不正に書き換えたりシーン内容を書き換えたりするリスク
+- 現状維持: 2026-10-09「画像プロンプトのキャラ別表情/ポーズ指定」の Impact 行（`refine_story.txt`: 変更なし）を本決定で取り下げ・取代
+
+**Impact**:
+- `scripts/prompts/refine_story.txt`: 【11. 画像プロンプト形式チェック】新設、82行目書き換え、【12. 構成と形式】番号振り直し＋例外注記、自己検証前チェックリスト1項目追加
+- `scripts/prompts/refine_tech.txt`: 【10. 画像プロンプト形式チェック】新設、【9. 見出し・構成】の「各種タグ」例外注記、【11. 情報追加に関する制限】番号振り直し
+- 適用対象: refine_story = kemono_story (novel/story)、refine_tech = default/ai_deep
+- pytest 200通過 (3.28s)。リファイナーの実Gemini挙動検証未実施
+
 ## 2026-10-09: Windowsコンソールエンコーディング対策の統一（stdio reconfigure）
 
 **Decision**: エントリスクリプト冒頭（import直後・最初のprint前）に `if sys.platform == "win32":` ガード付きで `sys.stdout.reconfigure(encoding="utf-8")` / `sys.stderr.reconfigure(encoding="utf-8")` を配置し、既存のワークアラウンドをこの方式に統一。`fetch_topics.py`（無効な `os.environ["PYTHONIOENCODING"]` 設定を置換）・`generate_article.py`（新設）・`fix_affiliate_links.py`（`io.TextIOWrapper` 差し替え方式から移行、`import io` 削除）・`fix_descriptions.py`（新設）の4エントリに適用。`_safe_print()`（fetch_topics / test_real_apis）はUTF-8下ではフォールバックが発火しない防御コードとして維持。
@@ -36,7 +54,7 @@
 - `scripts/prompts/kemono_story.txt`: ルール2項目（キャラ別表情・シーンキーワードの構成）追加＋例4箇所更新
 - `scripts/generate_article.py`: `_parse_image_prompt_targets()` 新設、`compose_image_prompt` をインターリーブ合成に変更
 - `scripts/tests/test_generate_article.py`: テスト5件追加（個別/単独/dedupe/共有/legacy）
-- `refine_story.txt`: 変更なし（82行目の「タグ内英語は変更しない」が新形式も維持するため）
+- `refine_story.txt`: 当時変更なし（82行目の「タグ内英語は変更しない」が新形式も維持するため）→ 同日の「リファインプロンプトに画像プロンプト形式チェックを追加」で形式修正許可へ取代
 
 ## 2026-10-04: 重複YAMLキーの自動修復ロジック
 

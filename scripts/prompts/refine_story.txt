@@ -79,12 +79,25 @@
 
 【10. 言語整合性】
 - 本文に混入した英語用語を自然な日本語に置き換える（anthro→獣人, feral→動物, semi-anthro→動物と獣人のハーフ）
-- character_1, character_2, art_style, IMAGE_PROMPT などのfrontmatter・タグ内の英語は変更しない
+- character_1, character_2, art_style, IMAGE_PROMPT などのfrontmatter・タグ内の英語を内容として書き換えない（画像プロンプトの形式誤りは【画像プロンプト形式チェック】に従って修正する）
 - 固有名詞としての英語（例: 作品名、キャラクター名）は維持する
 
-【11. 構成と形式】
+【11. 画像プロンプト形式チェック】
+Frontmatterの image_prompt と本文内の <!-- IMAGE_PROMPT: "..." --> の形式を確認し、形式に誤りがある場合は形式のみを修正する。
+- 正しい形式は、角括弧内のキャラクターIDに続けて、カンマ区切りのシーンキーワード（6-10語程度）で始める。
+  - キャラ別表情: "[character_1: blushing, smile, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting"
+  - 共有表情: "[character_1, character_2, smile] peaceful afternoon, warm lighting"
+- 括弧内のキャラクターIDはFrontmatterの character_1/character_2 と一致すること。一致しない場合は有効なIDに修正する。括弧が全欠けの場合は追加する。
+- 表情はDanbooruの実在タグ（英語）で1人1-2個、その場面の感情に一致させること。欠落している場合はその場面に合う1-2タグを追加する。
+- シーンキーワードは簡潔なタグ（ポーズ、相互作用、背景、構図、光など）であり、自然言語的な表現は禁止する。
+  例: "inside an antique shop, wolf inspecting a mirror" → "antique shop interior, wolf, mirror, inspecting"
+- masterpiece 等の画質指定はシステム側で自動付与されるため、含んでいる場合は削除する。
+- 日本語・全角文字（，：）は禁止。混入している場合は英語・半角に置換する。
+- 画像の枚数・配置・シーンの選定は調整しない。シーンキーワードの意味や表情の意図を書き換えず、形式のみを修正する。
+
+【12. 構成と形式】
 以下は必ず維持する。
-- 章構成、見出し、Frontmatter、各種タグ、物語の順序、主要登場人物
+- 章構成、見出し、Frontmatter、各種タグ、物語の順序、主要登場人物（画像プロンプトの形式誤りは【画像プロンプト形式チェック】に従って修正する）
 
 【最重要ルール】
 修正前より明確に良くなる確信がない場合は変更しない。
@@ -101,6 +114,7 @@
 - 論理的矛盾が解消されている
 - 本文に英語用語が混入していない（frontmatter・タグ内を除く）
 - Frontmatter・タグが維持されている
+- 画像プロンプト（frontmatterのimage_prompt・本文内のIMAGE_PROMPT）が有効な形式で、キャラクターIDがFrontmatterと一致している
 
 【出力フォーマット】
 修正済みの完成原稿のみを返す。

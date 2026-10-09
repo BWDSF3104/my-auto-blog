@@ -8,6 +8,7 @@
 
 # Completed Plans
 
+- [2026-10-09] リファインプロンプトに画像プロンプト形式チェックを追加: 2-passリファイナーの役割に「画像生成プロンプトの書式が正しいことの確認」を追加。2026-10-09実Gemini検証で書式逸脱（自然言語句等）がリファイナー（画像プロンプトを変更しないよう明示指示）を無修正通過しPython側フォールバック解析で黙って劣化することを確認。refine_story.txt / refine_tech.txt に「画像プロンプト形式チェック」新節を追加し、修正権限は形式のみに厳密限定（シーンの選定・配置・枚数・キーワードの意味・表情の意図・本文は変更不可）。コード変更不要、pytest 200通過。詳細: `docs/ai/tasks/2026-10-09-refiner-image-prompt-check.md`
 - [2026-10-09] ストーリー記事の章内複数画像を許可: kemono_storyの画像指示は「各章ごとに少なくとも1つ」でモデル出力も各章1枚固定だったため、展開が激しい・印象的なシーンでは章内で複数枚の挿入を許可する指示を1行追加（合計上限はヘッダー1+本文内最大7枚のまま不変、被り禁止ルールは維持）。コード変更不要。pytest 200通過。詳細: `docs/ai/tasks/2026-10-09-story-multi-images.md`
 - [2026-10-09] Windowsコンソールエンコーディング対策の統一: パイプ時のstdio cp932フォールバックによる`UnicodeEncodeError`（絵文字）・文字化けの原因を特定し、既存4パターンのワークアラウンド（無効なenv設定/_safe_print×2/TextIOWrapper差し替え/reconfigure）を`TextIOWrapper.reconfigure()`方式に統一。`fetch_topics.py`・`generate_article.py`・`fix_affiliate_links.py`・`fix_descriptions.py`の4エントリにwin32ガード付きブロックを追加、`workflow-test-procedure.md`に`$env:PYTHONUTF8="1"`（現セッション）の手順を記載。pytest 200通過。詳細: `docs/ai/tasks/2026-10-09-windows-console-encoding.md`
 - [2026-10-09] 画像プロンプト表情/ポーズ指定: kemono_storyの画像プロンプトに表情データがなく生成画像の2匹が同じ・無関係な表情になる問題を解消。キャラ別表情（Danbooru実在タグ1-2個、2匹で同じ場合は1回指定）とポーズ（キャラ別ポーズは括弧内、相互作用ポーズはシーンキーワード）を追加。括弧形式は `[c1: tags, c2: tags]`（個別）/ `[c1, c2, tags]`（共有）/ `[c1, c2]`（legacy互換）の3種を `compose_image_prompt` がパースし、各キャラ外見の直後にインターリーブ（既存の合成順序は維持=キャラ/シチュエーション再現度最優先、`app.py`は不変）。テスト5件追加、pytest 200通過。E2E未検証。詳細: `docs/ai/tasks/2026-10-09-image-prompt-expressions.md`
