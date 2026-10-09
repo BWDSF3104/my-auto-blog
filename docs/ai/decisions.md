@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-09: Windowsコンソールエンコーディング対策の統一（stdio reconfigure）
+
+**Decision**: エントリスクリプト冒頭（import直後・最初のprint前）に `if sys.platform == "win32":` ガード付きで `sys.stdout.reconfigure(encoding="utf-8")` / `sys.stderr.reconfigure(encoding="utf-8")` を配置し、既存のワークアラウンドをこの方式に統一。`fetch_topics.py`（無効な `os.environ["PYTHONIOENCODING"]` 設定を置換）・`generate_article.py`（新設）・`fix_affiliate_links.py`（`io.TextIOWrapper` 差し替え方式から移行、`import io` 削除）・`fix_descriptions.py`（新設）の4エントリに適用。`_safe_print()`（fetch_topics / test_real_apis）はUTF-8下ではフォールバックが発火しない防御コードとして維持。
+
+**Reason**: Kilo CLI が stdout をキャプチャ（パイプ扱い）すると Python はコンソール直結時の `WindowsConsoleIO`（UTF-8対応）を使わず**ロケール cp932 にフォールバック**し、絵文字等非収録文字で `UnicodeEncodeError`・cp932バイト列のUTF-8解读で文字化けする（2026-10-09 実測で確認）。`PYTHONIOENCODING` はインタプリタ起動時のみ参照されるため実行時設定は現在プロセスに無効（`fetch_topics.py` 旧コードの欠陥）。`reconfigure()` は既存オブジェクトをインプレースで書き換えるため、旧方式（TextIOWrapper差し替え）の旧stream参照分裂・二重ラッパー問題を回避でき、環境変数に依存せず別マシンでも確実に効く。`test_real_apis.py:33-36` に既に同じ方式があり、コードベースの先例として採用。
+
+**Rejected Alternatives**:
+- `os.environ["PYTHONIOENCODING"]`（実行時設定）: 現在プロセスに無効（起動時のみ参照）。子プロセス専用修正
+- `io.TextIOWrapper` 差し替え: 有効だが旧streamを保持するコードがcp932書き続行する分裂状態の恐れ、同一バッファ上の二重ラッパー
+- `_safe_print()` のみ: 逐次的な例外処理で出力先が2系統に分裂。根本対策にならない（防御として維持）
+- 環境変数 `PYTHONUTF8=1` のみ: 運用ベースとして `workflow-test-procedure.md` に記載済みだが、env未設定環境（別マシン・CI・新セッション）では無効になるためコード側の自己完結と併用
+- 共有ヘルパモジュール化: スクリプトは「単体実行前提」の独立設計のため、3行ブロックの重複を許容（`hf-space/app.py` は HF Space=Linux 実行のため対象外）
+
+**Impact**:
+- `scripts/fetch_topics.py`, `scripts/generate_article.py`, `scripts/fix_affiliate_links.py`, `scripts/fix_descriptions.py`: reconfigureブロック追加/置換
+- `docs/ai/workflow-test-procedure.md`: 「ローカル実行注意」セクション追加（`$env:PYTHONUTF8="1"` 現セッション設定・`python -X utf8` 1回限り代替）
+- pytest 200通過、パイプ環境スモークテストで utf-8 化確認
+
 ## 2026-10-09: 画像プロンプトのキャラ別表情/ポーズ指定
 
 **Decision**: kemono_story の画像プロンプトに場面ごとの表情/ポーズ指定を追加。形式は `[character_1: blushing, smile, character_2: frown, narrowed eyes] scene`（コロン=キャラ別）/ `[character_1, character_2, smile] scene`（コロンなし末尾エントリ=共有）/ `[character_1, character_2] scene`（legacy後方互換）の3種。`compose_image_prompt` が括弧をパースし、表情/ポーズタグを各キャラクター外見の直後にインターリーブ。全キャラの表情が同一の場合はキャラブロックの後に1回だけ出力（dedupe）。キャラ別ポーズは括弧内、相互作用ポーズ（hugging, facing each other 等）はシーンキーワードで指定。

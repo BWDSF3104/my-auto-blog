@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-09-windows-console-encoding.md` - Windowsコンソールエンコーディング対策の統一。**完了** (2026-10-09)
+  - **実装内容**: パイプ時のstdio cp932フォールバックによる`UnicodeEncodeError`・文字化けを解消。既存4パターンのワークアラウンドを`TextIOWrapper.reconfigure()`方式に統一（`fetch_topics.py`の無効なenv設定を置換、`generate_article.py`・`fix_descriptions.py`に新設、`fix_affiliate_links.py`をTextIOWrapper方式から移行）。`workflow-test-procedure.md`に`$env:PYTHONUTF8="1"`（現セッション）の手順記載
+  - **Verification** (2026-10-09): `pytest scripts/tests/ -v` → **200 passed** (3.41s)。パイプ環境スモークテストでutf-8化確認
+  - **Next Action**: なし
+
 - `docs/ai/tasks/2026-10-09-image-prompt-expressions.md` - 画像プロンプトに場面ごとの表情/ポーズ指定を追加。**実装完了・pytest検証済み** (2026-10-09)
   - **実装内容**: `kemono_story.txt` に2項目追加（キャラ別表情ルール: Danbooru実在タグ1人1-2個・同じ場合は1回指定 / シーンキーワードはポーズ・相互作用・背景・構図・光の簡潔なタグで構成）+ 例4箇所更新。`generate_article.py` に `_parse_image_prompt_targets`（コロン=キャラ別、コロンなし末尾エントリ=共有、legacy互換）新設、`compose_image_prompt` を各キャラ外見の直後にタグをインターリーブする合成へ変更（全同一時はdedupe）。`app.py` 不変、既存の合成順序維持
   - **テスト**: 5件新規（個別インターリーブ/単独/同一dedupe/共有/legacy互換）

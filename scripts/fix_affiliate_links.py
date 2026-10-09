@@ -17,12 +17,13 @@
 
 import re
 import sys
-import io
 from pathlib import Path
 
-# Windows コンソールのUTF-8出力対応
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+# Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
+# （TextIOWrapper差し替え方式からインプレースreconfigureへ統一: 旧stream参照の分裂・二重ラッパー回避）
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 POSTS_DIR = Path(__file__).resolve().parent.parent / "src" / "content" / "posts"
 

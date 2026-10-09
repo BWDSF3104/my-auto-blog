@@ -18,6 +18,12 @@ from google.genai import errors
 from gradio_client import Client
 import yaml
 
+# Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
+# （パイプ時はstdioがロケールcp932にフォールバックし、絵文字等非収録文字でUnicodeEncodeErrorになる）
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 # --------------------------------------------------
 # 設定
 # --------------------------------------------------

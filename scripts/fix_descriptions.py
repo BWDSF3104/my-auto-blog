@@ -7,6 +7,11 @@ import os
 import re
 import sys
 
+# Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 POSTS_DIR = "src/content/posts"
 MIN_DESC_LEN = 80
 MAX_DESC_LEN = 120

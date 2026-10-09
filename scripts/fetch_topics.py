@@ -32,8 +32,10 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
 # Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
+# （PYTHONIOENCODING は起動時のみ参照されるため実行時設定は無効。パイプ時はstdioがcp932にフォールバックする）
 if sys.platform == "win32":
-    os.environ["PYTHONIOENCODING"] = "utf-8"
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 # --------------------------------------------------
 # 定数
