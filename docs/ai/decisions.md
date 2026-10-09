@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-09: 画像プロンプトのキャラ別表情/ポーズ指定
+
+**Decision**: kemono_story の画像プロンプトに場面ごとの表情/ポーズ指定を追加。形式は `[character_1: blushing, smile, character_2: frown, narrowed eyes] scene`（コロン=キャラ別）/ `[character_1, character_2, smile] scene`（コロンなし末尾エントリ=共有）/ `[character_1, character_2] scene`（legacy後方互換）の3種。`compose_image_prompt` が括弧をパースし、表情/ポーズタグを各キャラクター外見の直後にインターリーブ。全キャラの表情が同一の場合はキャラブロックの後に1回だけ出力（dedupe）。キャラ別ポーズは括弧内、相互作用ポーズ（hugging, facing each other 等）はシーンキーワードで指定。
+
+**Reason**: 既存の画像プロンプトに表情データがなく、生成画像の2匹が同じ・無関係な表情になりストーリー再現度が低下。Illustrious系（Nova-Furry-XL）のベストプラクティス調査で、表情タグは各キャラの描述の直後（隣接性ヒューリスティック）がキャラへの結合に最も有効と判明。
+
+**Rejected Alternatives**:
+- 合成順序の変更（quality先頭化等）: ユーザーが「キャラ及びシチュエーションの再現度を最優先」と明示。既存順序（被写体数→キャラ→シチュエーション→artist→quality→style）を維持
+- `BREAK` / `(tag:1.2)` 重み付け: パイプラインは素のdiffusers（Compelなし）でパースされない
+- テンプレートに表情例の長いリスト: 22行目の「Danbooru互換タグ形式」ルールと冗長（ユーザー修正で削除）。「実在タグ」要求＋具体例2つで十分と判断
+- `app.py` 変更: HF Spaceアプリは最終プロンプト文字列をそのまま受け取るため、`compose_image_prompt` 側で合成
+
+**Impact**:
+- `scripts/prompts/kemono_story.txt`: ルール2項目（キャラ別表情・シーンキーワードの構成）追加＋例4箇所更新
+- `scripts/generate_article.py`: `_parse_image_prompt_targets()` 新設、`compose_image_prompt` をインターリーブ合成に変更
+- `scripts/tests/test_generate_article.py`: テスト5件追加（個別/単独/dedupe/共有/legacy）
+- `refine_story.txt`: 変更なし（82行目の「タグ内英語は変更しない」が新形式も維持するため）
+
 ## 2026-10-04: 重複YAMLキーの自動修復ロジック
 
 ## 2026-10-06: 画像生成上限を3枚→8枚に増加

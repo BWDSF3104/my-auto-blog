@@ -705,10 +705,59 @@ def extract_art_style(markdown_content: str) -> str:
 # --------------------------------------------------
 # プロンプト合成関数（複数キャラ対応）
 # --------------------------------------------------
+def _parse_image_prompt_targets(bracket_content: str, characters: dict[str, str]) -> tuple[list[str], dict[str, str], str]:
+    """画像プロンプトの括弧内 [character_1: tags, ...] を解析する。
+
+    対応形式:
+      [character_1]                                     (legacy)
+      [character_1, character_2]                        (legacy)
+      [character_1: blushing, character_2: frown]       (キャラ別表情/ポーズ)
+      [character_1, character_2, smile]                 (共有表情/ポーズ)
+    戻り値: (target_chars, per_char_tags, shared_tags)
+      - per_char_tags: コロン指定があるキャラのタグ（カンマ結合済み）
+      - shared_tags: コロンなし形式の末尾に続く全キャラ共通タグ
+    """
+    target_chars: list[str] = []
+    per_char_tags: dict[str, list[str]] = {}
+    shared_parts: list[str] = []
+    current: str | None = None
+    has_colon_ref = False
+
+    for raw_entry in re.split(r'[,、&]+', bracket_content):
+        entry = raw_entry.strip()
+        if not entry:
+            continue
+        ref_match = re.match(r'^(character_\d+)(?:\s*[:：]\s*(.*))?$', entry, re.IGNORECASE)
+        if ref_match:
+            has_colon_ref = has_colon_ref or ref_match.group(2) is not None
+            key = ref_match.group(1).lower()
+            matched = next((k for k in characters if k.lower() == key), None)
+            if matched and matched not in target_chars:
+                target_chars.append(matched)
+            current = matched
+            tags = (ref_match.group(2) or "").strip()
+            if tags:
+                per_char_tags.setdefault(matched, []).append(tags)
+        elif current is not None and has_colon_ref and current in characters:
+            # コロン指定モード: 直前のキャラIDに属するタグ
+            per_char_tags.setdefault(current, []).append(entry)
+        else:
+            # legacyの部分一致、または共有タグ
+            matched = next((k for k in characters if entry.lower() in k.lower()), None)
+            if matched and matched not in target_chars:
+                target_chars.append(matched)
+                current = matched
+            else:
+                shared_parts.append(entry)
+
+    return target_chars, {k: ", ".join(v) for k, v in per_char_tags.items()}, ", ".join(shared_parts)
+
+
 def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
     """
     指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
-    被写体数 + キャラクター外見 + シチュエーション + artist名 + 品質タグ + アートスタイル を合成する。
+    被写体数 + キャラクター外見 + 表情/ポーズ + シチュエーション + artist名 + 品質タグ + アートスタイル を合成する。
+    表情/ポーズは各キャラクター外見の直後に配置（全キャラ同一の場合は1回だけ出力）。
     Illustrious系の公式トレーニング順序に準拠（person count → character → situation → artist → quality → style）。
     """
     raw_prompt = raw_prompt.strip().strip('"\'"\"')
@@ -723,25 +772,20 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
 
     # 括弧 [character_1, ...] の検出 (複数対応)
     bracket_contents = re.findall(r'\[(.*?)\]', raw_prompt)
-    target_chars = []
+    target_chars: list[str] = []
+    per_char_tags: dict[str, str] = {}
+    shared_tags = ""
     clean_situation = re.sub(r'\[[^\]]*\]', '', raw_prompt).strip().strip(', ')
 
     for tag_content in bracket_contents:
-        # タグ内のキャラ指定を分割して解析 (カンマや空白等)
-        parts = re.split(r'[,&、\s]+', tag_content)
-        for part in parts:
-            part = part.strip()
-            if not part:
-                continue
-            num_match = re.search(r'\d+', part)
-            if num_match:
-                char_key = f"character_{num_match.group(0)}"
-                if char_key in characters and char_key not in target_chars:
-                    target_chars.append(char_key)
-            else:
-                for k in characters:
-                    if part.lower() in k.lower() and k not in target_chars:
-                        target_chars.append(k)
+        parsed_targets, parsed_tags, parsed_shared = _parse_image_prompt_targets(tag_content, characters)
+        for key in parsed_targets:
+            if key not in target_chars:
+                target_chars.append(key)
+        for key, tags in parsed_tags.items():
+            per_char_tags[key] = f"{per_char_tags[key]}, {tags}".strip(", ") if key in per_char_tags else tags
+        if parsed_shared and not shared_tags:
+            shared_tags = parsed_shared
 
     # ターゲットキャラが指定されていない場合のフォールバック
     if not target_chars:
@@ -769,6 +813,11 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
     if len(selected_char_prompts) == 1:
         char_desc = selected_char_prompts[0]
         parts = [char_desc]
+        char_tags = per_char_tags.get(target_chars[0], "") if target_chars else ""
+        if not char_tags:
+            char_tags = shared_tags
+        if char_tags:
+            parts.append(char_tags)
         if clean_situation:
             parts.append(clean_situation)
         if artist_name:
@@ -798,8 +847,25 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
         cleaned_p = re.sub(r'^\s*(?:1boy|1girl|1other|male|female)\s*,\s*', '', p, flags=re.IGNORECASE).strip()
         cleaned_char_descs.append(cleaned_p)
 
-    char_combined = ", ".join(cleaned_char_descs)
-    parts = [count_tag, char_combined]
+    # 表情/ポーズタグを各キャラの直後に配置（全キャラ同一の場合は1回だけ出力）
+    per_tags = [per_char_tags.get(k, "").strip() for k in target_chars]
+    non_empty_tags = [t for t in per_tags if t]
+    all_tags_same = (
+        len(non_empty_tags) == len(target_chars)
+        and len({t.lower() for t in non_empty_tags}) == 1
+    )
+
+    if all_tags_same:
+        char_block = ", ".join(cleaned_char_descs)
+        if non_empty_tags:
+            char_block = f"{char_block}, {non_empty_tags[0]}"
+    else:
+        segments = [f"{desc}, {tags}" if tags else desc for desc, tags in zip(cleaned_char_descs, per_tags)]
+        char_block = ", ".join(segments)
+    if shared_tags:
+        char_block = f"{char_block}, {shared_tags}"
+
+    parts = [count_tag, char_block]
     if clean_situation:
         parts.append(clean_situation)
     if artist_name:

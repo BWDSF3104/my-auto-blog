@@ -427,6 +427,52 @@ class TestComposeImagePrompt:
         result = compose_image_prompt("[character_1, character_2, character_3] scene", characters, DEFAULT_ART_STYLE)
         assert "3boys" in result
 
+    def test_compose_per_character_expressions(self):
+        characters = {
+            "character_1": "1boy, blue wolf, golden eyes, white chest fur",
+            "character_2": "1boy, black panther, emerald eyes, leather vest",
+        }
+        result = compose_image_prompt(
+            "[character_1: blushing, smile, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting",
+            characters, DEFAULT_ART_STYLE
+        )
+        # 表情/ポーズタグは各キャラ外見の直後にインターリーブ
+        assert "2boys, blue wolf, golden eyes, white chest fur, blushing, smile, black panther, emerald eyes, leather vest, frown, narrowed eyes, face-to-face confrontation" in result
+
+    def test_compose_single_character_expression(self):
+        characters = {"character_1": "1boy, blue wolf, golden eyes"}
+        result = compose_image_prompt("[character_1: teary eyes] quiet evening, moonlight", characters, DEFAULT_ART_STYLE)
+        assert "blue wolf, golden eyes, teary eyes, quiet evening, moonlight" in result
+
+    def test_compose_same_expression_dedup(self):
+        characters = {
+            "character_1": "1boy, blue wolf, golden eyes",
+            "character_2": "1boy, black panther, emerald eyes",
+        }
+        result = compose_image_prompt("[character_1: smile, character_2: smile] peaceful afternoon", characters, DEFAULT_ART_STYLE)
+        # 全キャラ同一の表情はキャラブロックの後に1回だけ出力
+        assert result.count("smile") == 1
+        assert "black panther, emerald eyes, smile, peaceful afternoon" in result
+
+    def test_compose_shared_expression(self):
+        characters = {
+            "character_1": "1boy, blue wolf, golden eyes",
+            "character_2": "1boy, black panther, emerald eyes",
+        }
+        result = compose_image_prompt("[character_1, character_2, smile] peaceful afternoon, warm lighting", characters, DEFAULT_ART_STYLE)
+        # コロンなしの共有形式: 全キャラ共通タグを1回出力
+        assert result.count("smile") == 1
+        assert "black panther, emerald eyes, smile, peaceful afternoon" in result
+
+    def test_compose_legacy_format_without_expressions(self):
+        characters = {
+            "character_1": "1boy, blue wolf, golden eyes",
+            "character_2": "1boy, black panther, emerald eyes",
+        }
+        result = compose_image_prompt("[character_1, character_2] sitting together", characters, DEFAULT_ART_STYLE)
+        # 旧フォーマット（表情なし）は後方互換
+        assert "2boys, blue wolf, golden eyes, black panther, emerald eyes, sitting together" in result
+
 
 # --------------------------------------------------
 # get_existing_posts tests

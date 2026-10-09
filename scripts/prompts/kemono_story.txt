@@ -27,6 +27,13 @@
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
 ・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-10語程度に簡潔にしてください。
+・各キャラクターの場面ごとの表情を、キャラクターIDの直後にコロン（:）で区切って指定してください。
+  - 表情はDanbooruの実在タグ（英語）を使用し、1人につき1-2個にしてください。
+  - 表情はその場面の2匹の感情・緊張感・関係性に必ず一致させてください。
+  - 2匹で表情が異なる場合はそれぞれに指定、同じ場合は2つのキャラクターIDの後に1回だけ記述してください。
+  - 例（表情が異なる）: "[character_1: blushing, smile, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting"
+  - 例（表情が同じ）: "[character_1, character_2, smile] peaceful afternoon, warm lighting"
+・シーンキーワードは、ポーズ/アクション、相互作用、背景、構図、光、などの簡潔なタグで構成してください。
 ・画質指定（masterpiece等）はシステム側で自動付与されるため含めないでください。
 ・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください。3-5タグ程度に簡潔にしてください。
   例: "anime style, illustration, cel shading, vibrant colors" や "digital painting, dramatic lighting, rich colors"
@@ -46,8 +53,8 @@
   各章ごとに少なくとも1つの画像プロンプトを挿入してください。
   章の冒頭または章内で最も視覚的に印象的な場面の直後に配置します。
   各章のトーン・情感・アクションに合わせたシーンを選び、全章で異なる瞬間を指定してください。
-  挿入形式：<!-- IMAGE_PROMPT: "[character_1] keyword, keyword, keyword" -->
-  または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1, character_2] keyword, keyword, keyword" -->
+  挿入形式：<!-- IMAGE_PROMPT: "[character_1: blushing, smile] keyword, keyword, keyword" -->
+  または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1: blushing, smile, character_2: frown, narrowed eyes] keyword, keyword, keyword" -->
 
 ・物語の結末付近または最終章の末尾に【1箇所】、関連書籍・グッズへのアフィリエイトリンクプレースホルダーを挿入してください。
   挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
@@ -72,7 +79,7 @@ tags: []
 art_style: "anime style, illustration, cel shading"
 character_1: "1boy, blue wolf, golden eyes, white chest fur, red scarf"
 character_2: "1boy, black panther, emerald eyes, leather vest"
-image_prompt: "[character_1, character_2] face-to-face confrontation, dramatic lighting, emotional"
+image_prompt: "[character_1: teary eyes, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting, emotional"
 product_recommendations:
   - name: "関連書籍のタイトル"
     category: "書籍"
@@ -107,16 +114,16 @@ product_recommendations:
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] scene matching chapter 1 mood, keywords" -->
+<!-- IMAGE_PROMPT: "[character_1, character_2, smile] scene matching chapter 1 mood, keywords" -->
 
 ## 第2章：タイトル
 
 （物語本文...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] scene matching chapter 2 mood, keywords" -->
+<!-- IMAGE_PROMPT: "[character_1: blushing, character_2: smirk] scene matching chapter 2 mood, keywords" -->
 
 ## 最終章：タイトル
 
 （結末...）
 
-<!-- IMAGE_PROMPT: "[character_1, character_2] scene matching final chapter mood, keywords" -->
+<!-- IMAGE_PROMPT: "[character_1: happy tears, character_2: smile] scene matching final chapter mood, keywords" -->
