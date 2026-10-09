@@ -506,3 +506,117 @@ class TestMainCache:
         assert exit_code == 0
         data = json.loads(out)
         assert data["cache_hit"] is True
+
+
+class TestScoreTopics:
+    def _make_topics_file(self, path, items):
+        data = {
+            "fetched_at": "2026-10-09T12:00:00+09:00",
+            "ttl_hours": 24,
+            "total": len(items),
+            "all": items,
+        }
+        path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+    def _make_copyrights_file(self, path, copyrights):
+        data = {
+            "posts": [],
+            "aggregates": {"copyrights": copyrights},
+            "updated_at": "2026-10-09T12:00:00+09:00",
+            "total_posts_analyzed": 25,
+        }
+        path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+    def test_scores_all_topics(self, tmp_path):
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "攻殻機動隊", "url": "https://example.com/1", "source": "rss", "category": "kemono"},
+            {"title": "ゼルダの伝説", "url": "https://example.com/2", "source": "rss", "category": "pokemon"},
+        ])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {"nintendo": 2})
+        out_path = str(tmp_path / "out" / "topics_scored.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 3.0, "fantasy": 1.0, "cyberpunk": 2.0, "action": 0.5})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            result = genre_score.score_topics(
+                topics_path=str(topics_path),
+                copyrights_path=str(cp_path),
+                output_path=out_path,
+                cache_path=cache_path,
+            )
+        assert len(result["topics"]) == 2
+        assert len(result["copyrights"]) == 1
+        assert result["api_calls"] == 3
+        assert result["cache_hits"] == 0
+        assert mock_post.call_count == 3
+        assert os.path.exists(out_path)
+
+    def test_cache_hit_on_second_run(self, tmp_path):
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "攻殻機動隊", "url": "https://example.com/1", "source": "rss", "category": "kemono"},
+        ])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {})
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 3.0, "fantasy": 1.0, "cyberpunk": 2.0, "action": 0.5})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            genre_score.score_topics(str(topics_path), str(cp_path), out_path, cache_path=cache_path)
+            result = genre_score.score_topics(str(topics_path), str(cp_path), out_path, cache_path=cache_path)
+        assert result["api_calls"] == 0
+        assert result["cache_hits"] == 1
+        assert mock_post.call_count == 1
+
+    def test_empty_topics(self, tmp_path):
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {})
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        with patch.dict(os.environ, ENV_CREDS):
+            result = genre_score.score_topics(str(topics_path), str(cp_path), out_path, cache_path=cache_path)
+        assert result["topics"] == []
+        assert result["copyrights"] == []
+        assert result["api_calls"] == 0
+
+    def test_skips_empty_titles(self, tmp_path):
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "", "url": "https://example.com/1", "source": "rss", "category": "kemono"},
+            {"title": "  ", "url": "https://example.com/2", "source": "rss", "category": "kemono"},
+            {"title": "valid", "url": "https://example.com/3", "source": "rss", "category": "kemono"},
+        ])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {})
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 2.0, "fantasy": 1.0, "cyberpunk": 0.5, "action": 3.0})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            result = genre_score.score_topics(str(topics_path), str(cp_path), out_path, cache_path=cache_path)
+        assert len(result["topics"]) == 1
+        assert result["api_calls"] == 1
+
+    def test_missing_copyrights_file(self, tmp_path):
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "t", "url": "https://example.com/1", "source": "rss", "category": "kemono"},
+        ])
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 2.0, "fantasy": 1.0, "cyberpunk": 0.5, "action": 3.0})
+        with patch("requests.post", return_value=_mock_post(payload)), \
+             patch.dict(os.environ, ENV_CREDS):
+            result = genre_score.score_topics(
+                str(topics_path),
+                str(tmp_path / "nonexistent.json"),
+                out_path,
+                cache_path=cache_path,
+            )
+        assert result["copyrights"] == []
+        assert result["api_calls"] == 1

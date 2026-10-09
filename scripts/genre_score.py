@@ -472,5 +472,106 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
+# --------------------------------------------------
+# トレンド・版権の事前スコアリング
+# --------------------------------------------------
+TOPICS_FILE = os.path.join("data", "topics", "latest.json")
+COPYRIGHTS_FILE = os.path.join("data", "character_features.json")
+TOPICS_OUTPUT = os.path.join(CACHE_DIR, "topics.json")
+
+
+def score_topics(
+    topics_path: str = TOPICS_FILE,
+    copyrights_path: str = COPYRIGHTS_FILE,
+    output_path: str = TOPICS_OUTPUT,
+    genres: list[str] | None = None,
+    cache_path: str | None = None,
+) -> dict:
+    """latest.json の全トレンドと character_features.json の版権を
+    Clef-flash で事前スコアリングし、結果を JSON に保存する。
+
+    戻り値:
+        {"scored_at": ..., "topics": [...], "copyrights": [...],
+         "api_calls": int, "cache_hits": int}
+    """
+    if genres is None:
+        genres = list(DEFAULT_GENRES)
+    if cache_path is None:
+        cache_path = DEFAULT_CACHE_PATH
+
+    with open(topics_path, "r", encoding="utf-8") as f:
+        topics_data = json.load(f)
+
+    api_calls = 0
+    cache_hits = 0
+    topic_results = []
+
+    for item in topics_data.get("all", []):
+        title = item.get("title", "").strip()
+        if not title:
+            continue
+        source = item.get("source", "unknown")
+        try:
+            result = score_text(title, genres, cache_path=cache_path, source=source)
+            if result.get("cache_hit"):
+                cache_hits += 1
+            else:
+                api_calls += 1
+            topic_results.append({
+                "key": item.get("url", title),
+                "title": title,
+                "source": source,
+                "category": item.get("category", ""),
+                "scores": result["scores"],
+            })
+        except GenreScoreError:
+            topic_results.append({
+                "key": item.get("url", title),
+                "title": title,
+                "source": source,
+                "category": item.get("category", ""),
+                "scores": None,
+            })
+
+    copyright_results = []
+    if os.path.exists(copyrights_path):
+        with open(copyrights_path, "r", encoding="utf-8") as f:
+            cf_data = json.load(f)
+        copyrights = cf_data.get("aggregates", {}).get("copyrights", {})
+        for name in sorted(copyrights.keys()):
+            try:
+                result = score_text(name, genres, cache_path=cache_path, source="e621")
+                if result.get("cache_hit"):
+                    cache_hits += 1
+                else:
+                    api_calls += 1
+                copyright_results.append({
+                    "name": name,
+                    "scores": result["scores"],
+                })
+            except GenreScoreError:
+                copyright_results.append({
+                    "name": name,
+                    "scores": None,
+                })
+
+    output = {
+        "scored_at": datetime.now(timezone.utc).isoformat(),
+        "topics": topic_results,
+        "copyrights": copyright_results,
+        "api_calls": api_calls,
+        "cache_hits": cache_hits,
+    }
+
+    out_dir = os.path.dirname(output_path)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+    return output
+
+
 if __name__ == "__main__":
     sys.exit(main())

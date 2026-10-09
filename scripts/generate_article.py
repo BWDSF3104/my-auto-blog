@@ -49,6 +49,8 @@ HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
 MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
 MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
+GENRE_SCORES_PATH = os.path.join("data", "genre_scores", "topics.json")
+GENRE_FILTER_MIN_SCORE = int(os.environ.get("GENRE_FILTER_MIN_SCORE", "30"))
 
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 # SFWタグを常に付与して安全な画像生成を強制
@@ -99,6 +101,40 @@ CHAR_COUNT_WEIGHTS = [
     (1, 40),
     (2, 60),
 ]
+
+
+WORLD_SETTING_GENRE_MAP = {
+    "fantasy": ["fantasy"],
+    "sf": ["sf"],
+    "slice_of_life": ["action"],
+    "fantasy+sf": ["fantasy", "sf"],
+}
+
+
+def _load_genre_scores() -> dict:
+    """data/genre_scores/topics.json を読み込む。存在しない・破損時は空 dict。"""
+    if not os.path.exists(GENRE_SCORES_PATH):
+        return {}
+    try:
+        with open(GENRE_SCORES_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _filter_by_genre(items: list[dict], target_genres: list[str], scores_data: dict) -> list[dict]:
+    """事前スコアリング結果でジャンル適合度の高い順にソートする。
+    スコア未登録の項目は末尾に保持（除外しない）。"""
+    topic_scores = {t["key"]: t.get("scores") for t in scores_data.get("topics", []) if t.get("scores")}
+    def _genre_score(item: dict) -> float:
+        url = item.get("url", item.get("title", ""))
+        scores = topic_scores.get(url)
+        if not scores:
+            return -1
+        return max(scores.get(g, 0) for g in target_genres)
+    scored = [(it, _genre_score(it)) for it in items]
+    scored.sort(key=lambda x: x[1], reverse=True)
+    return [it for it, _ in scored]
 
 
 def _is_valid_kemono_combination(transform, relationship, extra):
@@ -529,10 +565,11 @@ def _is_affiliate_excluded(cp: str) -> bool:
     return False
 
 
-def _load_character_features() -> str:
+def _load_character_features(target_genres: list[str] | None = None) -> str:
     """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。
     投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
     版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
+    target_genres 指定時は、事前スコアリング結果でジャンル適合度の高い版権を優先する。
     """
     features_path = os.path.join("data", "character_features.json")
     if not os.path.exists(features_path):
@@ -562,7 +599,17 @@ def _load_character_features() -> str:
 
     # 集計結果からベース版権を確保（アフィリエイト不適格は除外）
     aggregate_copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])
-    base_copyrights = [cp for cp, _ in aggregate_copyrights if not _is_affiliate_excluded(cp)][:10]
+    all_valid_cps = [cp for cp, _ in aggregate_copyrights if not _is_affiliate_excluded(cp)]
+    if target_genres:
+        scores_data = _load_genre_scores()
+        cp_scores = {c["name"]: c.get("scores") for c in scores_data.get("copyrights", []) if c.get("scores")}
+        def _cp_genre_score(cp: str) -> float:
+            s = cp_scores.get(cp)
+            if not s:
+                return -1
+            return max(s.get(g, 0) for g in target_genres)
+        all_valid_cps.sort(key=_cp_genre_score, reverse=True)
+    base_copyrights = all_valid_cps[:10]
 
     # 選出投稿から版権を抽出（アフィリエイト不適格は除外）
     post_copyrights = []
@@ -2059,10 +2106,16 @@ def _save_affiliate_link_log(
     print(f"[affiliate_log] リンク生成ログを保存: {filepath}")
 
 
-def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str, list[str], list[str]]:
+def _append_trending_topics(
+    ng_instruction: str,
+    prompt_type: str,
+    target_genres: list[str] | None = None,
+) -> tuple[str, list[str], list[str]]:
     """
     data/topics/latest.json が存在する場合、prompt_type に応じたカテゴリの
-    トレンドタイトルを score 降順で選択して ng_instruction の末尾へ付加する。
+    トレンドタイトルを選択して ng_instruction の末尾へ付加する。
+    target_genres が指定されている場合、事前スコアリング結果で
+    ジャンル適合度の高い項目を優先選択する。
     Per-source TTL で期限切れのカテゴリがある場合は自動再取得を試みる。
     第2要素としてアフィリエイト用のトレンドキーワードリストを返す。
     第3要素として frontmatter 用のソースURLリストを返す。
@@ -2151,10 +2204,13 @@ def _append_trending_topics(ng_instruction: str, prompt_type: str) -> tuple[str,
             if title:
                 candidates.append(item)
 
-    # 無作為に2件選択
     TREND_SELECT_COUNT = 2
+    if target_genres:
+        scores_data = _load_genre_scores()
+        if scores_data:
+            candidates = _filter_by_genre(candidates, target_genres, scores_data)
     if len(candidates) > TREND_SELECT_COUNT:
-        candidates = random.sample(candidates, TREND_SELECT_COUNT)
+        candidates = random.sample(candidates[:TREND_SELECT_COUNT * 3], TREND_SELECT_COUNT)
 
     for item in candidates:
         title = item.get("title", "").strip()
@@ -2945,16 +3001,21 @@ def generate_post():
                 f"{chars_joined}"
             )
 
-    # 1.5. 収集済みトレンドトピックをプロンプトに注入（fetch_topics.py が生成した JSON を参照）
-    ng_instruction, trend_keywords, trend_source_urls = _append_trending_topics(ng_instruction, prompt_type)
+    # 1.5. 世界設定を先に決定（ジャンルベースのトレンド選択に使用）
+    kemono_params = _randomize_kemono_params() if prompt_type == "kemono_story" else {}
+    target_genres = WORLD_SETTING_GENRE_MAP.get(kemono_params.get("world_setting", ""), []) or None
+
+    # 1.6. 収集済みトレンドトピックをプロンプトに注入（ジャンル適合度で優先選択）
+    ng_instruction, trend_keywords, trend_source_urls = _append_trending_topics(
+        ng_instruction, prompt_type, target_genres=target_genres
+    )
 
     # 2. テキスト記事の生成
     template = load_prompt_template(prompt_type)
-    kemono_params = _randomize_kemono_params() if prompt_type == "kemono_story" else {}
     prompt = template.format(
         ng_instruction=ng_instruction,
         pub_date_str=pub_date_str,
-        character_features_instruction=_load_character_features(),
+        character_features_instruction=_load_character_features(target_genres=target_genres),
         **kemono_params
     )
 
