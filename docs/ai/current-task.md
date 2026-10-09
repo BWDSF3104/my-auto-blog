@@ -11,7 +11,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 - `docs/ai/tasks/2026-10-09-genre-integration.md` - ジャンル事前スコアリングを記事生成フローに統合。**完了** (2026-10-09)
   - **実装内容**: `genre_score.py` に `score_topics()` 追加（latest.json 全件 + 版権を事前スコアリング → `data/genre_scores/topics.json`）。`generate_article.py` に `WORLD_SETTING_GENRE_MAP` / `_load_genre_scores()` / `_filter_by_genre()` 追加、`_append_trending_topics`・`_load_character_features` に `target_genres` パラメータ追加、生成フロー順序変更（world_setting 決定 → トレンド選択）。失敗時は従来のランダム選択にグレースフルフォールバック
   - **Verification** (2026-10-09): `pytest scripts/tests/` → **285 passed** (3.87s)
-  - **Next Action**: GitHub Actions E2E で実生成フロー確認
+  - **E2E Verification** (2026-10-09): run `37937164582`（deploy.yml）+ `37939935733`（deploy-only）
+    - V1 score_topics: PASS（119 topics + 19 copyrights, 138 API calls, 31s）
+    - V2 topics.json: PASS / V3 トレンドフィルタ: PASS / V4 版権フィルタ: PASS / V5 記事生成: PASS / V7 実行時間: PASS（5m52s）
+    - V6 build-and-deploy: **FAIL→FIX**（タグ「動物と獣人のハーフ / 動物」の `/` が Astro [tag].astro を破損。`ff9ac55` で `/` → `・` 置換）→ deploy-only 再実行 **SUCCESS**
+  - **追加修正**: `66d28e7` genre_scores/cache.json・topics.json をコミット対象化（CI キャッシュ再利用 + 追跡性）
+  - **Next Action**: 2回目実行でキャッシュヒット動作確認（API calls 大幅削減预期）
 
 - `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md` - Clef-flash ジャンルスコアリング（backlog #4）。**完了** (2026-10-09)
   - **実装内容**: `scripts/genre_score.py`（独立CLI、Clef-flash API呼び出し、SHA256キャッシュ、`--no-cache` フラグ）+ `scripts/tests/test_genre_score.py`（61件、全モック）+ `.github/workflows/genre-score.yml`（workflow_dispatch のみ）+ `api-rate-limits.md` にCloudflare追加 + `backlog.md` P3に2段構成追加
