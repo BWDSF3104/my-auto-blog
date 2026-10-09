@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-09-story-multi-images.md` - ストーリー記事の章内複数画像を許可する指示を追加。**完了** (2026-10-09)
+  - **実装内容**: `kemono_story.txt` の本文内挿絵ルールに「章内で展開が激しいシーンや印象的なシーンがある場合は、その章で複数枚の挿入を許可します（合計7箇所以内）」を1行追加。コード変更不要
+  - **Verification** (2026-10-09): `pytest scripts/tests/ -v` → **200 passed** (3.23s)
+  - **Next Action**: なし
+
 - `docs/ai/tasks/2026-10-09-windows-console-encoding.md` - Windowsコンソールエンコーディング対策の統一。**完了** (2026-10-09)
   - **実装内容**: パイプ時のstdio cp932フォールバックによる`UnicodeEncodeError`・文字化けを解消。既存4パターンのワークアラウンドを`TextIOWrapper.reconfigure()`方式に統一（`fetch_topics.py`の無効なenv設定を置換、`generate_article.py`・`fix_descriptions.py`に新設、`fix_affiliate_links.py`をTextIOWrapper方式から移行）。`workflow-test-procedure.md`に`$env:PYTHONUTF8="1"`（現セッション）の手順記載
   - **Verification** (2026-10-09): `pytest scripts/tests/ -v` → **200 passed** (3.41s)。パイプ環境スモークテストでutf-8化確認
