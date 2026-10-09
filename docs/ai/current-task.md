@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-09-genre-integration.md` - ジャンル事前スコアリングを記事生成フローに統合。**完了** (2026-10-09)
+  - **実装内容**: `genre_score.py` に `score_topics()` 追加（latest.json 全件 + 版権を事前スコアリング → `data/genre_scores/topics.json`）。`generate_article.py` に `WORLD_SETTING_GENRE_MAP` / `_load_genre_scores()` / `_filter_by_genre()` 追加、`_append_trending_topics`・`_load_character_features` に `target_genres` パラメータ追加、生成フロー順序変更（world_setting 決定 → トレンド選択）。失敗時は従来のランダム選択にグレースフルフォールバック
+  - **Verification** (2026-10-09): `pytest scripts/tests/` → **285 passed** (3.87s)
+  - **Next Action**: GitHub Actions E2E で実生成フロー確認
+
 - `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md` - Clef-flash ジャンルスコアリング（backlog #4）。**完了** (2026-10-09)
   - **実装内容**: `scripts/genre_score.py`（独立CLI、Clef-flash API呼び出し、SHA256キャッシュ、`--no-cache` フラグ）+ `scripts/tests/test_genre_score.py`（61件、全モック）+ `.github/workflows/genre-score.yml`（workflow_dispatch のみ）+ `api-rate-limits.md` にCloudflare追加 + `backlog.md` P3に2段構成追加
   - **Verification** (2026-10-09): `pytest scripts/tests/` → **261 passed** (3.52s)。実 API スモーク: "攻殻機動隊" → sf:84, fantasy:3, cyberpunk:86, action:47（0.68s、678 input tokens）
