@@ -3175,6 +3175,8 @@ def generate_post():
             tags_list.append(_KEMONO_RELATIONSHIP_AFFILIATE[rel_key])
         if kemono_params.get("extra_text"):
             tags_list.append(kemono_params["extra_text"])
+        # Astro [tag].astro ルートの / 区切り衝突を回避
+        tags_list = [t.replace(" / ", "・") for t in tags_list]
         tags_yaml = ", ".join(f'"{t}"' for t in tags_list)
         content = re.sub(r'^tags:.*$', f'tags: [{tags_yaml}]', content, count=1, flags=re.MULTILINE)
         print(f"🏷️  tagsをスクリプト値で設定: {tags_list}")
