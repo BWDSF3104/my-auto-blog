@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-10-09T22:30:33.673810+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-09T22:30:16.461836+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.0,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": true,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 71,
+    "after_score_filter": 71,
+    "after_rating_filter": 46,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Deborah Ann Woll",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/watch-god-of-war-laufey-star-smash-the-last-of-us-golf-club-prop-on-her-first-day/",
+      "score": 0,
+      "category": "kemono",
+      "rating": ""
+    },
+    {
+      "title": "Clair Obscur: Expedition 33",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/games/clair-obscur-expedition-33/",
+      "score": 0,
+      "category": "kemono",
+      "rating": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Deborah Ann Woll",
+    "Expedition 33"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/watch-god-of-war-laufey-star-smash-the-last-of-us-golf-club-prop-on-her-first-day/",
+    "https://www.gamespot.com/games/clair-obscur-expedition-33/"
+  ]
+}

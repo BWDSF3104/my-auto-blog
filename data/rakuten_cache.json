@@ -90,5 +90,27 @@
       "reviewCount": 4
     },
     "hits": 3
+  },
+  "BEASTARS 1巻": {
+    "fetched_at": "2026-10-09T13:34:58.857426+00:00",
+    "product": {
+      "itemName": "BEASTARS ビースターズ 1巻～22巻（完結）コミック全巻セット【 新品 】板垣巴留 チャンピオン 秋田書店 びーすたーず レゴシ ルイ ハル 動物 アニメ 原作 コミック 漫画 セット 全巻 まとめ買い プレゼント ギフト",
+      "itemPrice": 14817,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q2zmo.eo1qw781.g00q2zmo.eo1qxb7f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbooks-sanseido%2Fb_9784253227544_set%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbooks-sanseido%2Fi%2F10293772%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/books-sanseido/cabinet/books/c/imgrc0091792950.jpg?_ex=128x128",
+      "reviewCount": 4
+    },
+    "hits": 3
+  },
+  "BEASTARS": {
+    "fetched_at": "2026-10-09T13:35:00.066435+00:00",
+    "product": {
+      "itemName": "[新品]◆特典あり◆BEASTARS ビースターズ (1-22巻 全巻)[限定描き下ろしペーパー付き] 全巻セット",
+      "itemPrice": 14817,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00qci0o.eo1qw544.g00qci0o.eo1qx21a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmangazenkan%2Fm2352444572%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmangazenkan%2Fi%2F10215174%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/mangazenkan/cabinet/syncip_0020/m2352444572_01.jpg?_ex=128x128",
+      "reviewCount": 31
+    },
+    "hits": 3
   }
 }
