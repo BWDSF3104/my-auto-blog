@@ -6,6 +6,7 @@ test_genre_score.py — genre_score.py の単体テスト
 
 import json
 import os
+from datetime import datetime, timedelta, timezone
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -366,6 +367,51 @@ class TestCacheFunctions:
         path = str(tmp_path / "sub" / "dir" / "cache.json")
         genre_score._save_cache_entry(path, "k", {"scores": {}})
         assert os.path.exists(path)
+
+
+class TestCacheTTL:
+    def _make_entry(self, source="unknown", days_ago=1):
+        ts = (datetime.now(timezone.utc) - timedelta(days=days_ago)).isoformat()
+        return {"input": "t", "scores": {"sf": 50}, "source": source, "timestamp": ts}
+
+    def test_expired_non_protected_purged(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        entry = self._make_entry(source="rss", days_ago=10)
+        genre_score._save_cache_entry(path, "expired", entry)
+        cache = genre_score._load_cache(path)
+        assert "expired" not in cache
+
+    def test_recent_non_protected_kept(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        entry = self._make_entry(source="rss", days_ago=1)
+        genre_score._save_cache_entry(path, "recent", entry)
+        cache = genre_score._load_cache(path)
+        assert "recent" in cache
+
+    def test_expired_e621_protected(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        entry = self._make_entry(source="e621", days_ago=30)
+        genre_score._save_cache_entry(path, "e621_old", entry)
+        cache = genre_score._load_cache(path)
+        assert "e621_old" in cache
+        assert cache["e621_old"]["source"] == "e621"
+
+    def test_mixed_purge(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        genre_score._save_cache_entry(path, "trend_old", self._make_entry(source="rss", days_ago=10))
+        genre_score._save_cache_entry(path, "trend_new", self._make_entry(source="rss", days_ago=1))
+        genre_score._save_cache_entry(path, "e621_old", self._make_entry(source="e621", days_ago=30))
+        cache = genre_score._load_cache(path)
+        assert "trend_old" not in cache
+        assert "trend_new" in cache
+        assert "e621_old" in cache
+
+    def test_no_timestamp_not_purged(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        entry = {"input": "t", "scores": {"sf": 10}, "source": "rss"}
+        genre_score._save_cache_entry(path, "no_ts", entry)
+        cache = genre_score._load_cache(path)
+        assert "no_ts" in cache
 
 
 class TestScoreTextWithCache:

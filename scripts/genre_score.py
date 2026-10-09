@@ -28,7 +28,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import requests
 from dotenv import load_dotenv
@@ -82,6 +82,10 @@ _QUESTION_ID_RE = re.compile(r"^[A-Za-z0-9_.\-]{1,100}$")
 
 # 再試行しない恒久エラー（認証・権限・無料枠超過・リクエスト不正）
 PERMANENT_HTTP_ERRORS = {400, 401, 403, 404, 422, 429}
+
+# キャッシュ TTL
+CACHE_TTL_DAYS = 7
+PROTECTED_SOURCES = {"e621"}
 
 # キャッシュ
 CACHE_DIR = "data/genre_scores"
@@ -296,13 +300,32 @@ def _compute_cache_key(text: str, genres: list[str]) -> str:
 
 
 def _load_cache(cache_path: str) -> dict:
-    """キャッシュファイルを読み込む。存在しない・破損時は空 dict を返す。"""
+    """キャッシュファイルを読み込む。存在しない・破損時は空 dict を返す。
+
+    CACHE_TTL_DAYS を超過したエントリを破棄する（PROTECTED_SOURCES は除外）。
+    """
     if not os.path.exists(cache_path):
         return {}
     try:
         with open(cache_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-        return data if isinstance(data, dict) else {}
+        if not isinstance(data, dict):
+            return {}
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=CACHE_TTL_DAYS)).isoformat()
+        expired = [
+            k for k, v in data.items()
+            if isinstance(v, dict)
+            and v.get("source") not in PROTECTED_SOURCES
+            and v.get("timestamp")
+            and v["timestamp"] < cutoff
+        ]
+        if expired:
+            for k in expired:
+                del data[k]
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+                f.write("\n")
+        return data
     except (json.JSONDecodeError, OSError):
         return {}
 
@@ -327,6 +350,7 @@ def score_text(
     genres: list[str] | None = None,
     include_debug: bool = False,
     cache_path: str | None = None,
+    source: str = "unknown",
     **call_kwargs,
 ) -> dict:
     """文字列のジャンルスコアリングを実行し、結果 dict を返す。
@@ -389,6 +413,7 @@ def score_text(
             "probabilities": parsed["probabilities"],
             "usage": parsed["usage"],
             "model": MODEL_ID,
+            "source": source,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
         _save_cache_entry(cache_path, _compute_cache_key(text, genres), cache_entry)
