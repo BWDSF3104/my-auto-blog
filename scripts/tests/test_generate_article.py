@@ -62,6 +62,10 @@ from generate_article import (
     DRAFTS_DIR,
     _rakuten_search,
     _generate_rakuten_card,
+    _rakuten_is_relevant,
+    _rakuten_first_phrase,
+    _rakuten_api_keywords,
+    _rakuten_collect,
     _find_table_end_line,
     _rakuten_load_cache,
     _rakuten_save_cache,
@@ -519,7 +523,7 @@ class TestProcessInlineProducts:
 
     def test_rakuten_card_inserted_after_table(self):
         product = {
-            "itemName": "テスト商品",
+            "itemName": "ノートPC 15型",
             "itemPrice": 3000,
             "affiliateUrl": "https://hb.afl.rakuten.co.jp/pc=xxx",
             "imageUrl": "https://img.example.com/a.jpg",
@@ -536,10 +540,30 @@ class TestProcessInlineProducts:
         assert m.called
         assert "product-card" in result
         assert "pc-img" in result
-        assert "テスト商品" in result
+        assert "ノートPC 15型" in result
         assert "hb.afl.rakuten.co.jp" in result
         # カードはテーブル行の直後に挿入される
         assert result.index("product-card") > result.rindex("| テスト商品 |")
+
+    def test_rakuten_card_skipped_when_irrelevant(self):
+        product = {
+            "itemName": "スマホガラスフィルム 3枚セット",
+            "itemPrice": 1500,
+            "affiliateUrl": "https://hb.afl.rakuten.co.jp/pc=xxx",
+            "imageUrl": "https://img.example.com/a.jpg",
+            "reviewCount": 100,
+        }
+        content = (
+            'title: "Test"\n\n'
+            '| 商品 | リンク |\n'
+            '|---|---|\n'
+            '| フィルム | <!-- AFF_PRODUCT: "ノートPC" --> |\n'
+        )
+        with patch("generate_article._rakuten_search", return_value=product) as m:
+            result = process_inline_products(content)
+        assert m.called
+        # 関連性フィルタでカードは挿入されない
+        assert "product-card" not in result
 
 
 # --------------------------------------------------
@@ -642,6 +666,143 @@ class TestRakutenSearch:
              patch("generate_article.requests.get", side_effect=_rq.exceptions.ConnectionError("boom")):
             result = _rakuten_search("ノートPC")
         assert result is None
+
+
+class TestRakutenIsRelevant:
+    def test_kemono_generic_keyword_core_token_pass(self):
+        assert _rakuten_is_relevant("ケモノ娘 ペンケース", "ケモノ", "kemono_story")
+        assert _rakuten_is_relevant("アニマル スリッパ", "動物", "kemono_story")
+        assert _rakuten_is_relevant("獣人 ぬいぐるみ", "獣人", "kemono_story")
+
+    def test_kemono_generic_keyword_no_core_token_fail(self):
+        assert not _rakuten_is_relevant("シューファンタジー ポンプス", "ケモノ", "kemono_story")
+        assert not _rakuten_is_relevant("花百合 浴衣", "動物", "kemono_story")
+        assert not _rakuten_is_relevant("SF-3521 ガラスフィルム", "獣人", "kemono_story")
+
+    def test_kemono_genre_keyword_core_token(self):
+        assert _rakuten_is_relevant("ケモノ 制服 コスプレ", "ケモノ 制服", "kemono_story")
+        assert not _rakuten_is_relevant("制服 コスプレ", "ケモノ 制服", "kemono_story")
+
+    def test_non_kemono_keyword_token_containment(self):
+        assert _rakuten_is_relevant("ノートPC 15型", "ノートPC", "default")
+        assert _rakuten_is_relevant("Python 実践プログラミング", "Python 本", "default")
+        assert not _rakuten_is_relevant("ガラスフィルム 3枚", "ノートPC", "default")
+
+    def test_non_kemono_english_name_in_name(self):
+        assert _rakuten_is_relevant("Anthro Beast pen case", "Anthro pen case", "default")
+
+    def test_kemono_name_with_token_passes_as_gemini_name(self):
+        # Gemini商品名（kemono_story）: 実語トークン包含で判定
+        assert _rakuten_is_relevant("ケモノ娘 ポンチョ", "ケモノ娘 ポンチョ", "kemono_story")
+
+
+class TestRakutenFirstPhrase:
+    def test_english_name_first_token(self):
+        assert _rakuten_first_phrase("Anthro Beast Pen Case") == "Anthro"
+
+    def test_short_first_token_extends(self):
+        assert _rakuten_first_phrase("A Cat Tail") == "A Cat"
+
+    def test_japanese_delimiter_suffix(self):
+        # 用的/向け/用/的 で区切られて先頭部分を採用
+        assert _rakuten_first_phrase("ケモノ娘用のポンチョ") == "ケモノ娘"
+        assert _rakuten_first_phrase("ケモノ向けぬいぐるみ") == "ケモノ"
+        assert _rakuten_first_phrase("ケモノ用ポンチョ") == "ケモノ"
+
+    def test_single_hiragana_not_split(self):
+        # 平仮名1文字は区切りにならない（単語内での使用を避ける）
+        assert _rakuten_first_phrase("獣人村の生活指南書") == ""
+        assert _rakuten_first_phrase("にゃんこケモノぬいぐるみ") == ""
+
+    def test_english_title_token_kept(self):
+        # 作品名である「BNA」はそのまま採用
+        assert _rakuten_first_phrase("BNA 完全アニメ画集") == "BNA"
+
+    def test_unsplittable_name_skipped(self):
+        # 区切れない1語は商品名と重複するためスキップ
+        assert _rakuten_first_phrase("百合ケモノ恋愛小説") == ""
+        assert _rakuten_first_phrase("ケモノキャラ図鑑") == ""
+
+    def test_empty(self):
+        assert _rakuten_first_phrase("") == ""
+
+
+class TestRakutenApiKeywords:
+    def test_kemono_cascade_order(self):
+        kws = _rakuten_api_keywords(
+            gemini_products=["ケモノ娘 ポンチョ"],
+            base_keywords=["ケモノ コスプレ"],
+            prompt_type="kemono_story",
+            kemono_params={"world_setting": "獣人村", "relationship_key": "hetero"},
+        )
+        assert kws[0] == "ケモノ娘 ポンチョ"
+        # 先頭句は完全一致で重複するため除外される
+        assert "ケモノ娘用のポ" not in kws
+        assert kws.index("ケモノ 獣人村") == 2
+        # アンカーキーワードは末尾に並ぶ
+        assert kws[-3:] == ["ケモノ", "獣人", "動物"]
+
+    def test_english_only_name_excluded(self):
+        kws = _rakuten_api_keywords(
+            gemini_products=["Beast Mode Hoodie"],
+            base_keywords=[],
+            prompt_type="kemono_story",
+            kemono_params={},
+        )
+        assert "Beast Mode Hoodie" not in kws
+
+    def test_non_kemono_uses_base_keywords(self):
+        kws = _rakuten_api_keywords(
+            gemini_products=["ノートPC 15型"],
+            base_keywords=["ノートPC 高性能"],
+            prompt_type="default",
+            kemono_params=None,
+        )
+        assert kws == ["ノートPC 15型", "ノートPC", "ノートPC 高性能"]
+
+    def test_dedup_preserves_order(self):
+        kws = _rakuten_api_keywords(
+            gemini_products=["ケモノ ポンチョ", "ケモノ"],
+            base_keywords=[],
+            prompt_type="kemono_story",
+            kemono_params={"world_setting": "ポンチョ", "relationship_key": ""},
+        )
+        assert kws.count("ケモノ") == 1
+
+
+class TestRakutenCollect:
+    def test_stops_at_max_products(self):
+        products = {
+            "ケモノ": _item(name="ケモノ ぬいぐるみ"),
+            "獣人": _item(name="獣人 フィギュア", url="https://item.rakuten.co.jp/y/"),
+            "動物": _item(name="動物 置物", url="https://item.rakuten.co.jp/z/"),
+        }
+        with patch("generate_article._rakuten_search", side_effect=lambda kw: products.get(kw)) as m:
+            collected = _rakuten_collect(["ケモノ", "獣人", "動物"], "kemono_story", max_products=2)
+        assert len(collected) == 2
+        assert m.call_count == 2
+        assert collected[0][0] == "ケモノ"
+
+    def test_skips_irrelevant_and_continues(self):
+        products = {
+            "ケモノ": _item(name="靴下 3足セット", url="https://item.rakuten.co.jp/a/"),
+            "獣人": _item(name="獣人 ぬいぐるみ", url="https://item.rakuten.co.jp/b/"),
+        }
+        with patch("generate_article._rakuten_search", side_effect=lambda kw: products.get(kw)):
+            collected = _rakuten_collect(["ケモノ", "獣人"], "kemono_story", max_products=3)
+        assert len(collected) == 1
+        assert collected[0][0] == "獣人"
+
+    def test_dedup_by_affiliate_url(self):
+        same = _item(name="ケモノ ぬいぐるみ", url="https://item.rakuten.co.jp/dup/")
+        with patch("generate_article._rakuten_search", return_value=same):
+            collected = _rakuten_collect(["ケモノ", "獣人", "動物"], "kemono_story", max_products=3)
+        assert len(collected) == 1
+
+    def test_empty_results(self):
+        with patch("generate_article._rakuten_search", return_value=None):
+            collected = _rakuten_collect(["ケモノ"], "kemono_story", max_products=3)
+        assert collected == []
 
 
 class TestGenerateRakutenCard:

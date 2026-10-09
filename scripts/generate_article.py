@@ -955,6 +955,9 @@ def process_inline_products(content: str) -> str:
     title = title_match.group(1).strip() if title_match else "post"
     utm_content = urllib.parse.quote(title[:50])
 
+    type_match = re.search(r'^prompt_type:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    prompt_type = type_match.group(1).strip() if type_match else "default"
+
     print(f"🛒 比較表内商品プレースホルダーを {len(matches)} 箇所検出")
 
     keywords: list[str] = []
@@ -988,8 +991,10 @@ def process_inline_products(content: str) -> str:
         if _is_affiliate_bad_keyword(kw):
             continue
         product = _rakuten_search(kw)
-        if product:
+        if product and _rakuten_is_relevant(product.get("itemName", ""), kw, prompt_type):
             cards_html += _generate_rakuten_card(product, kw, title)
+        elif product:
+            print(f"   🛒 [filter] {kw} → 関連性不足、カードをスキップ: {product.get('itemName', '')[:40]}")
 
     if cards_html:
         # テーブルの最終行を特定し、その直後にカードを挿入
@@ -1383,7 +1388,135 @@ def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
     return result
 
 
-def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None) -> str:
+# kemono_story 商品名の関連性判定トークン（固定リスト）
+_KEMONO_CORE_TOKENS = ("ケモノ", "バケモノ", "獣人", "獣", "動物", "アニマル", "anthro", "beast")
+_KEMONO_ANCHOR_KEYWORDS = ("ケモノ", "獣人", "動物")
+
+
+def _rakuten_is_relevant(item_name: str, keyword: str, prompt_type: str) -> bool:
+    """楽天検索結果の関連性を判定する。
+
+    - kemono_story の汎用キーワード（ケモノ/獣人/動物/ケモノ＋ジャンル/関係性）:
+      商品名にコアトークンを1つ以上含むこと
+    - その他（Gemini商品名・tech系）:
+      検索キーワードの実語トークン（2文字以上）が商品名に1つ以上含まれること
+    """
+    name = item_name.lower()
+    is_kemono_generic = (
+        prompt_type == "kemono_story"
+        and (keyword in _KEMONO_ANCHOR_KEYWORDS or keyword.startswith("ケモノ "))
+    )
+    if is_kemono_generic:
+        return any(tok in name for tok in _KEMONO_CORE_TOKENS)
+    tokens = [t for t in keyword.split() if len(t) >= 2]
+    if not tokens:
+        return True
+    return any(t.lower() in name for t in tokens)
+
+
+# 先頭句分割用の区切り語（長いもの優先に並べる。平仮名1文字は単語内で使われるため使わない）
+_RAKUTEN_PHRASE_DELIMITERS = r'(?:用的|向け|用|的)'
+
+
+def _rakuten_first_phrase(name: str) -> str:
+    """Gemini生成商品名から先頭句を抽出する。
+
+    スペースと区切り語（用的/向け/用/的）で分割し先頭セグメントを採用する。
+    平仮名1文字（の/に/へ/と/や）は「にゃんこ」の「に」「けもの」の「の」のように
+    単語内で使われるため、区切り語に含めない。
+    先頭セグメントが2文字未満なら2番目のセグメントを連結する。
+    区切りがどこにも無く商品名そのまま（1語）になる場合は、
+    既に検索済みの商品名と重複するため空文字を返す（スキップ）。
+    """
+    name = name.strip()
+    if not name:
+        return ""
+    segments = [s for s in re.split(r'\s+|' + _RAKUTEN_PHRASE_DELIMITERS, name) if s]
+    if len(segments) < 2:
+        return ""
+    phrase = segments[0]
+    if len(phrase) < 2:
+        phrase = f"{phrase} {segments[1]}"
+    if phrase == name:
+        return ""
+    return phrase
+
+
+def _rakuten_api_keywords(
+    gemini_products: list[str] | None,
+    base_keywords: list[str],
+    prompt_type: str,
+    kemono_params: dict | None,
+) -> list[str]:
+    """楽天API検索キーワードリスト（カスケード順序）を構築する。
+
+    kemono_story:
+      Gemini商品名 → 先頭句 → ケモノ+ジャンル → ケモノ+関係性 → ケモノ → 獣人 → 動物
+    その他:
+      Gemini商品名 → 先頭句 → 基底キーワード（既存の改善キーワード）
+
+    ジャンル単体語・関係性単体語はAPIに送らない（検索リンクのみ）。
+    英語のみのキーワードも送らない（楽天では0ヒット）。
+    """
+    kws: list[str] = []
+    for name in gemini_products or []:
+        name = name.strip()
+        if not name or _is_affiliate_bad_keyword(name):
+            continue
+        if not re.search(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]', name):
+            continue
+        kws.append(name)
+        phrase = _rakuten_first_phrase(name)
+        if phrase and phrase != name and not _is_affiliate_bad_keyword(phrase):
+            kws.append(phrase)
+
+    if prompt_type == "kemono_story" and kemono_params:
+        for g in (g.strip() for g in (kemono_params.get("world_setting", "")).split("と") if g.strip()):
+            kws.append(f"ケモノ {g}")
+        rel = _KEMONO_RELATIONSHIP_AFFILIATE.get((kemono_params or {}).get("relationship_key", ""), "")
+        if rel:
+            kws.append(f"ケモノ {rel}")
+        kws.extend(_KEMONO_ANCHOR_KEYWORDS)
+    else:
+        kws.extend(base_keywords)
+
+    # 重複排除（順序維持）
+    seen: set[str] = set()
+    result: list[str] = []
+    for kw in kws:
+        if kw and kw not in seen:
+            seen.add(kw)
+            result.append(kw)
+    return result
+
+
+def _rakuten_collect(keywords: list[str], prompt_type: str, max_products: int = 3) -> list[tuple[str, dict]]:
+    """カスケード順序で楽天を順次検索し、関連性フィルタ通過した最大 max_products 商品を収集する。
+
+    max_products 到達で即停止。同一商品（affiliateUrl）は重複排除する。
+    戻り値: (keyword, product) タプルのリスト。
+    """
+    collected: list[tuple[str, dict]] = []
+    seen_urls: set[str] = set()
+    for kw in keywords:
+        if len(collected) >= max_products:
+            break
+        product = _rakuten_search(kw)
+        if not product:
+            continue
+        if not _rakuten_is_relevant(product.get("itemName", ""), kw, prompt_type):
+            print(f"   🛒 [filter] {kw} → 関連性不足、スキップ: {product.get('itemName', '')[:40]}")
+            continue
+        url = product.get("affiliateUrl", "")
+        if url in seen_urls:
+            continue
+        if url:
+            seen_urls.add(url)
+        collected.append((kw, product))
+    return collected
+
+
+def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None, gemini_products: list[str] = None, kemono_params: dict = None) -> str:
     """
     記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
 
@@ -1504,12 +1637,13 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
         })
 
     # 楽天API商品カードの生成（末尾セクション一番上に追加）
+    # カスケード検索: キーワードを優先順位順に辿り、関連性フィルタ通過した最大3商品を収集
     title_for_card = (title_match.group(1).strip() if title_match else "post")
-    rakuten_cards_html = ""
-    for kw in keywords_to_use:
-        product = _rakuten_search(kw)
-        if product:
-            rakuten_cards_html += _generate_rakuten_card(product, kw, title_for_card)
+    api_keywords = _rakuten_api_keywords(gemini_products, keywords_to_use, prompt_type, kemono_params)
+    collected = _rakuten_collect(api_keywords, prompt_type, max_products=3)
+    rakuten_cards_html = "".join(
+        _generate_rakuten_card(product, kw, title_for_card) for kw, product in collected
+    )
     if rakuten_cards_html:
         card_div_open = '<div class="product-card">'
         card_count = rakuten_cards_html.count(card_div_open)
@@ -2931,12 +3065,17 @@ def generate_post():
     # 5.45 比較表内商品プレースホルダーの実リンク置換
     content = process_inline_products(content)
 
+    # 5.47 楽天API用Gemini商品名を抽出（process_product_cardsがfrontmatterから除去するため先に取得）
+    gemini_product_names = [
+        p.get("name", "") for p in extract_product_recommendations(content) if p.get("name")
+    ]
+
     # 5.48 product_recommendations → 商品カードHTMLの生成と挿入
     content = process_product_cards(content)
 
     # 5.5 アフィリエイト（おすすめ商品・書籍検索リンク）ブロックの自動挿入
     skw = _kemono_affiliate_keywords(kemono_params) if prompt_type == "kemono_story" and kemono_params else None
-    content = inject_affiliate_links(content, trend_keywords=trend_keywords, script_keywords=skw, file_timestamp=file_timestamp)
+    content = inject_affiliate_links(content, trend_keywords=trend_keywords, script_keywords=skw, file_timestamp=file_timestamp, gemini_products=gemini_product_names, kemono_params=kemono_params)
 
     # 5.55 自動内部リンクの挿入
     content = inject_internal_links(content)
