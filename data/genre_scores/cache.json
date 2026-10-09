@@ -1,0 +1,93 @@
+{
+  "d56e8280f5686707ea8f5872a97cf81fbdbf1bb78fd5677c11172090dfe434f3": {
+    "input": "攻殻機動隊",
+    "genres": [
+      "fantasy",
+      "sf"
+    ],
+    "scores": {
+      "sf": 75,
+      "fantasy": 0
+    },
+    "raw_scores": {
+      "sf": 3.0,
+      "fantasy": 0.0
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2,
+        "1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2
+      },
+      "fantasy": {
+        "0": 0.2,
+        "1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2
+      }
+    },
+    "usage": {
+      "input_tokens": 120,
+      "output_tokens": 8
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "timestamp": "2026-10-09T10:20:59.060207+00:00"
+  },
+  "01d801661948e11fc0d23389430b472902ef1c2b10f37c9292eb0f8a80c84a41": {
+    "input": "テスト",
+    "genres": [
+      "sf"
+    ],
+    "scores": {
+      "sf": 50
+    },
+    "raw_scores": {
+      "sf": 2.0
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2,
+        "1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2
+      }
+    },
+    "usage": {
+      "input_tokens": 120,
+      "output_tokens": 8
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "timestamp": "2026-10-09T10:20:59.079203+00:00"
+  },
+  "3f5f75c0da2b06bbceb21c0f1924c1cc6985f4169bc89654bb961833583209b8": {
+    "input": "t",
+    "genres": [
+      "sf"
+    ],
+    "scores": {
+      "sf": 50
+    },
+    "raw_scores": {
+      "sf": 2.0
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2,
+        "1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2
+      }
+    },
+    "usage": {
+      "input_tokens": 120,
+      "output_tokens": 8
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "timestamp": "2026-10-09T10:20:59.104204+00:00"
+  }
+}

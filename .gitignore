@@ -33,8 +33,10 @@ __pycache__/
 # Temporary work files
 tmp/
 
-# Genre score cache
-data/genre_scores/
+# Genre score cache (committed for CI reuse + traceability)
+data/genre_scores/*
+!data/genre_scores/cache.json
+!data/genre_scores/topics.json
 
 # Real API test results
 scripts/data/api_test_results/
