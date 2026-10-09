@@ -79,5 +79,16 @@
       "reviewCount": 12
     },
     "hits": 3
+  },
+  "小林さんちのメイドラゴン": {
+    "fetched_at": "2026-10-09T02:56:19.545941+00:00",
+    "product": {
+      "itemName": "小林さんちのメイドラゴン 全13話+OVA DVD アニメ 輸入版",
+      "itemPrice": 4580,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00t9ofo.eo1qw229.g00t9ofo.eo1qx9c3/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fecoma-store%2F0598-016689%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fecoma-store%2Fi%2F10001270%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/ecoma-store/cabinet/amayahoo/07269332/0598-016689.jpg?_ex=128x128",
+      "reviewCount": 4
+    },
+    "hits": 3
   }
 }
