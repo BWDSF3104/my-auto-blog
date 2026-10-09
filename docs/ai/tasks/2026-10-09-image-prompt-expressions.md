@@ -1,6 +1,6 @@
 # 画像プロンプトに場面ごとの表情/ポーズ指定を追加 (2026-10-09)
 
-**状態: 実装完了・pytest検証済み (2026-10-09)。** E2E（実画像生成）未検証。
+**状態: 実装完了・pytest＋実Gemini出力検証済み (2026-10-09)。** 生成画像の見た目（E2E）未検証。
 
 ## 背景
 
@@ -65,8 +65,15 @@ kemono_story の画像プロンプトは `[character_1, character_2] scene` 形�
 
 - `pytest scripts/tests/` → **200 passed** (3.79s)（変更前: 195）
 - `pytest scripts/tests/test_generate_article.py::TestComposeImagePrompt` → 9 passed
+- 実Gemini API検証 (2026-10-09, ローカル): `generate_post` と同一のプロンプト構築（獣人/ハーフ + ファンタジーとSF + TSF + 相棒関係 + 2人）を再現しGeminiを1回呼び出し（gemini-3.6-flash、101.4s。3.8-flashは3回失敗してフォールバック）
+  - 全6画像プロンプト（ヘッダー1 + 本文内5）が**個別指定形式（コロン）**で出力、100%遵守
+  - `compose_image_prompt` のインターリーブ順序・既存順序維持・シーンとの表情一致を実出力で確認（例: desperate, straining + 崩落天井シーン）
+  - ポーズも反映（mid-air, combat stance, head pat, standing side by side 等）
+  - 軽微な逸脱: gentle smile（Danbooru単一タグでない自然言語句）1件。シーンキーワードに自然言語句2件（既存ルールの逸脱で本変更の範囲外）
+  - 共有形式・legacy・dedupe パスは単体テストでカバー（実出力では未使用）
+  - 出力保存: `C:\Users\fujim\AppData\Local\Temp\kilo\gemini_real_output.md`（ローカルのみ）
 
 ## 未検証
 
-- E2E（GitHub Actions）: Gemini の実際出力形式と生成画像の見た目（表情/ポーズが反映されるか）
+- E2E（GitHub Actions）: 生成画像の見た目（表情/ポーズが画像に反映されるか）
 - Nova-Furry-XL が表情タグに反応するか（ベストプラクティス調査では期待できるが実測なし）
