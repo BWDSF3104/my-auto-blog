@@ -102,8 +102,12 @@ jobs:
           [ -d "data/trend_usage" ] && git add data/trend_usage/
           # 2-pass draft metadata
           [ -d "data/drafts" ] && git add data/drafts/
-          # Rakuten API product cache (30-day TTL)
-          [ -f "data/rakuten_cache.json" ] && git add data/rakuten_cache.json
+           # Rakuten API product cache (30-day TTL)
+           [ -f "data/rakuten_cache.json" ] && git add data/rakuten_cache.json
+           # Used prompt (traceability)
+           [ -d "data/prompts" ] && git add data/prompts/
+           # Genre score cache + results (CI reuse + traceability)
+           [ -d "data/genre_scores" ] && git add data/genre_scores/
 
           git diff --quiet && git diff --staged --quiet || {
             git commit -m "docs: auto-generated daily post with image and draft metadata [skip ci]"
