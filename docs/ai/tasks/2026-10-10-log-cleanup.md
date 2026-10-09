@@ -1,6 +1,6 @@
 # ログ・メタファイルのクリーン処理（リネーム+期間削除）
 
-- **Status**: 完了（2026-10-10、コミット前）
+- **Status**: 完了（2026-10-10、コミット `dc2181b`）
 - **関連 Plan**: `plans.md` [2026-10-10]
 - **関連 Backlog**: `backlog.md` P2 #1（完了済み・P2(完了)へ移動）
 
@@ -76,6 +76,7 @@ git 履歴・コード・実ディレクトリで特定。
 - `python -m py_compile scripts/generate_article.py scripts/tests/test_generate_article.py` → OK
 - `python -c "import yaml; yaml.safe_load(...)"` → `deploy.yml` + `deploy-only.yml` OK
 - 機能コードに旧ディレクトリ名（`data/trend_usage\b` / `data/affiliate_links\b`）参照なし（grep 確認）
+- コミット: `dc2181b`（2026-10-10、commit + push 実施。変更ファイルが deploy-only.yml の paths（`src/**` 等）に該当しないため自動デプロイはトリガーされず、deploy 確認不要）
 
 ## 制約・注意事項
 

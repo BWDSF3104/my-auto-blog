@@ -8,10 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- `docs/ai/tasks/2026-10-10-log-cleanup.md` - ログ・メタファイルのクリーン処理（リネーム+期間削除、backlog P2 #1）。**完了・コミット未実施** (2026-10-10)
+- `docs/ai/tasks/2026-10-10-log-cleanup.md` - ログ・メタファイルのクリーン処理（リネーム+期間削除、backlog P2 #1）。**完了** (2026-10-10)
   - **実装内容**: `data/affiliate_links`→`affiliate_logs`・`data/trend_usage`→`trend_usage_logs` に `git mv`（`.gitkeep` 追加）。`generate_article.py` の `TREND_USAGE_DIR` / `AFFILIATE_LINKS_DIR` 定数と `deploy.yml` の `git add` 参照を新名称に更新。`_cleanup_old_logs(days=30)` 新設（ファイル名タイムスタンプ基準で `drafts/`・`trend_usage_logs/`・`affiliate_logs/`・`prompt_logs/` から30日前ファイルを削除、`.gitkeep`・タイムスタンプ外ファイルは削除対象外、非致命）を `generate_post()` 末尾で呼出。`deploy.yml` 第2コミットメッセージを「cleanup old log and topic files」に更新
   - **Verification** (2026-10-10): `pytest scripts/tests/` → **305 passed** (3.81s)（新規 `TestCleanupOldLogs` 8件含む、全モック）。`py_compile` OK。`deploy.yml` + `deploy-only.yml` YAML検証 OK。機能コードに旧ディレクトリ名参照なし（grep確認）
-  - **Next Action**: コミット+push（ユーザー指示待ち）
+  - **コミット**: `dc2181b`（commit + push 実施。変更ファイルが deploy-only.yml の paths（`src/**` 等）に該当しないため自動デプロイなし・deploy 確認不要）
+  - **Next Action**: なし
 
 - `docs/ai/tasks/2026-10-09-tag-split-refactor.md` - タグ生成ロジックの構造化リファクタ（体型タグ分割・「、」バグ修正・target_genresキー不一致修正）。**完了・コミット未実施** (2026-10-09)
   - **実装内容**: `CHAR_TYPE_WEIGHTS` をタグリスト化、`_KEMONO_WORLD_TAGS` / `_KEMONO_EXTRA_TAGS` 新設（旧結合文字列は派生）、`_randomize_kemono_params` を構造化データ（`char_types` / `world_tags` / `extra_tag`）+ プロンプト表示文字列の2層構成に変更、`_build_kemono_tags()` 新設でタグ生成の結合・分割往復を廃止。`_kemono_affiliate_keywords` / `_rakuten_api_keywords` も `world_tags` 直接使用。併せて `target_genres` のキー不一致バグ（`world_setting` → `world_setting_key`）修正。既存記事 `2026-10-09-223016` の tags 修正
