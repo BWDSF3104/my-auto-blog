@@ -50,8 +50,31 @@ jobs:
           python scripts/fetch_topics.py --prompt-type "$PROMPT_TYPE"
 
       # -------------------------------------------------------
-      # 1-B. Generate article with Gemini
+      # 1-B. Pre-score trends & copyrights with Clef-flash
+      #      Output: data/genre_scores/topics.json (genre fit scores)
+      #      Failure is non-fatal: generate_article.py falls back
+      #      to random selection when the score file is absent.
+      # -------------------------------------------------------
+      - name: Pre-score trends (Clef-flash)
+        id: genre_score
+        continue-on-error: true
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, 'scripts')
+          from genre_score import score_topics
+          result = score_topics()
+          print(f'Scored: {len(result[\"topics\"])} topics, {len(result[\"copyrights\"])} copyrights')
+          print(f'API calls: {result[\"api_calls\"]}, Cache hits: {result[\"cache_hits\"]}')
+          "
+
+      # -------------------------------------------------------
+      # 1-C. Generate article with Gemini
       #      Reads topics from data/topics/latest.json symlink
+      #      + genre scores from data/genre_scores/topics.json
       # -------------------------------------------------------
       - name: Run generation script
         env:
