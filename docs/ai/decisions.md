@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-09: kemono_tags の構造化データ化（結合・分割往復の廃止）
+
+**Decision**: `generate_article.py` の kemono パラメータを「構造化データ + プロンプト表示文字列」の2層構成に変更し、タグ生成を `_build_kemono_tags()` に集約する。`CHAR_TYPE_WEIGHTS` の値を体型タグのリスト化（`["獣人","動物"]` 等）、`_KEMONO_WORLD_TAGS`（世界設定→タグリスト）・`_KEMONO_EXTRA_TAGS`（追加設定→タグ文字列）を一次データとし、従来プロンプト向けに使用していた結合文字列（`char_type` = `" / " 結合`、`world_setting` = `と` 結合、`extra_text` = `、` 接頭）はこれらから派生生成する。`_randomize_kemono_params()` は `char_types` / `world_tags` / `extra_tag`（構造化）と従来キー（表示用）の両方を返す。`_kemono_affiliate_keywords` / `_rakuten_api_keywords` も `world_tags` を直接使用し、`split("と")` を廃止。併せて `target_genres` 参照のキー不一致バグ（表示文字列 `world_setting` → キー `world_setting_key`）を修正。
+
+**Reason**: 最新記事（2026-10-09-223016）の tags が `["ケモノ","動物と獣人のハーフ・動物","ファンタジー","BL","、ライバル関係"]` と不自然だった。原因は2つ: (1) ジャンルは `split("と")` で分割していたが体型タグは `replace(" / ","・")` のみで分割漏れ、(2) `extra_text` はプロンプト文（「…からランダムにテーマを選択してください」）への自然な接続のための「、」接頭であり、そのままタグに混入していた。根本原因は「結合文字列を一次データとして扱い、用途ごとに分割・結合を往復させる」設計。スクリプト内で最初から構造化データを保持しておけば往復処理自体が不要になる。併発発覚: `WORLD_SETTING_GENRE_MAP` のキーは `world_setting_key` だが `world_setting`（表示文字列）で参照していたため、genre-integration 実装のジャンルベーストレンド優先選択がサイレント無効化されていた（恒常的に `None`）。
+
+**Rejected Alternatives**:
+- タグブロック側の `split(" / ")` 追加のみ: 体型・ジャンル・追加設定で分割文字が異なる（` / ` / `と` / `、`）ため、各所で個別の分割ロジックが残り継続的に壊れる。結合文字列の一次データ化が根本原因
+- `extra_text` から「、」を除去しタグ側で補う: プロンプト側の文脈（「異性愛、ライバル関係からランダムに… 」）が不自然になるため、「、」接頭はプロンプト向け表示値として維持し、タグ用に別途カンマなし値を保持
+- 旧形式タグを持つ既存記事の遡及修正: 記事の再生成コストが高く、旧タグページへのリンク切れリスクがあるため未実施（最新記事1件のみ修正）
+
+**Impact**:
+- `scripts/generate_article.py`: `CHAR_TYPE_WEIGHTS` リスト化、`_KEMONO_WORLD_TAGS` / `_KEMONO_EXTRA_TAGS` 新設（旧結合文字列は派生）、`_randomize_kemono_params` 戻り値2層構成化、`_build_kemono_tags()` 新設、`generate_post` タグブロック置換、`_kemono_affiliate_keywords` / `_rakuten_api_keywords` を `world_tags` 使用へ、`target_genres` キー不一致修正
+- `scripts/tests/test_generate_article.py`: 13テスト追加（`TestBuildKemonoTags` 7 / `TestKemonoAffiliateKeywords` 3 / 整合性2 / char_types1）、旧テスト更新4件
+- `src/content/posts/2026-10-09-223016-auto-post.md`: tags 修正（`動物と獣人のハーフ` / `動物` / `ライバル関係` に分割・清浄化）
+- pytest 297通過、`npm run build` 131ページ成功（新タグページ `/tags/動物と獣人のハーフ/`・`/tags/ライバル関係/` 生成確認）
+- 次回以降の記事生成で `target_genres`（ジャンルベースのトレンド・版権優先選択）が初めて実効する
+
 ## 2026-10-09: リファインプロンプトに画像プロンプト形式チェックを追加
 
 **Decision**: `refine_story.txt`（【11. 画像プロンプト形式チェック】新設）と `refine_tech.txt`（【10. 画像プロンプト形式チェック】新設）に形式チェック節を追加し、2-passリファイナーの役割に「画像生成プロンプトの書式が正しいことの確認」を追加。修正権限は**形式のみ**に厳密限定: 括弧の欠落・無効なcharacter_N参照（有効IDへ）、自然言語句→簡潔タグ、masterpiece等品質タグの削除、日本語・全角→英語・半角、表情欠落時の1-2タグ（Danbooru実在タグ・場面感情に一致）追加。変更不可: シーンの選定・配置・枚数、シーンキーワードの意味、表情の意図、記事本文。「タグ内英語は変更しない」ルール（旧82行目）は「内容として書き換えない（形式誤りは新節に従って修正する）」へ書き換え、構成維持節の例外注記を併記。
@@ -188,21 +206,6 @@
 **Rejected Alternatives**:
 - trend_keywordsをそのまま使用: GitHubリポジトリ名が混入し、無関係な検索結果になる
 - tagsのみを使用: 記事のテーマを十分に反映できない
-
-## 2026-09-30: Affiliate Link HTML `<a>` Tag Conversion
-
-**Decision**: Change `inject_affiliate_links()` to generate HTML `<a>` tags instead of Markdown `[text](url)` links for affiliate search links.
-
-**Rationale**: Markdown link syntax exposes the full URL with UTM tracking parameters in the rendered page source and potentially in the visual output. HTML `<a>` tags hide the raw URL, showing only the link text. Existing post files are left unchanged as a separate batch-fix issue.
-
-**Rejected Alternatives**:
-- 内部リダイレクトページ: 実装コストが高く、既存のデプロイフローを変更する必要あり
-- CSSのみで隠蔽: MarkdownリンクのURLはHTMLソースに残るため完全な隠蔽不可能
-- 既存記事の一括修正: 修正スクリプトの作成・検証に時間がかかるため保留
-
-**Impact**:
-- `scripts/generate_article.py`: `inject_affiliate_links()` のリンク生成ロジックを `<a>` タグに変更
-- `docs/ai/known-issues.md`: 既存記事のリンク形式を保留イシューとして追加
 
 ## 2026-10-02: e621 rating:safe for Kemono Trending Works
 

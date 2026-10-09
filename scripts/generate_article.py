@@ -61,13 +61,15 @@ DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop,
 
 # kemono_story プロンプトのPython側ランダム化設定
 # 各項目の重み付き選択でテーマの多様性を確保
+# 値は体型タグのリスト（個別タグとしてそのまま使用）。
+# プロンプト表示文字列は " / " 結合（char_type）で生成する
 CHAR_TYPE_WEIGHTS = [
-    ("獣人", 30),
-    ("動物と獣人のハーフ", 20),
-    ("動物", 20),
-    ("獣人 / 動物と獣人のハーフ", 10),
-    ("獣人 / 動物", 10),
-    ("動物と獣人のハーフ / 動物", 10),
+    (["獣人"], 30),
+    (["動物と獣人のハーフ"], 20),
+    (["動物"], 20),
+    (["獣人", "動物と獣人のハーフ"], 10),
+    (["獣人", "動物"], 10),
+    (["動物と獣人のハーフ", "動物"], 10),
 ]
 
 WORLD_SETTING_WEIGHTS = [
@@ -144,12 +146,15 @@ def _is_valid_kemono_combination(transform, relationship, extra):
     return True
 
 
-_KEMONO_WORLD_TEXT = {
-    "fantasy": "ファンタジー",
-    "sf": "SF",
-    "slice_of_life": "日常",
-    "fantasy+sf": "ファンタジーとSF",
+# 世界設定のタグリスト（個別タグとしてそのまま使用）
+# プロンプト表示文字列は "と" 結合（_KEMONO_WORLD_TEXT）で生成する
+_KEMONO_WORLD_TAGS = {
+    "fantasy": ["ファンタジー"],
+    "sf": ["SF"],
+    "slice_of_life": ["日常"],
+    "fantasy+sf": ["ファンタジー", "SF"],
 }
+_KEMONO_WORLD_TEXT = {key: "と".join(tags) for key, tags in _KEMONO_WORLD_TAGS.items()}
 
 _KEMONO_TRANSFORM_TEXT = {
     "none": "",
@@ -165,11 +170,14 @@ _KEMONO_RELATIONSHIP_TEXT = {
     "hetero": "異性愛",
 }
 
-_KEMONO_EXTRA_TEXT = {
+# 追加設定のタグ（個別タグとしてそのまま使用）
+# プロンプト表示文字列は "、" 接頭（_KEMONO_EXTRA_TEXT）で生成する
+_KEMONO_EXTRA_TAGS = {
     "none": "",
-    "clone": "、クローンによる自分同士",
-    "rival": "、ライバル関係",
+    "clone": "クローンによる自分同士",
+    "rival": "ライバル関係",
 }
+_KEMONO_EXTRA_TEXT = {key: (f"、{text}" if text else "") for key, text in _KEMONO_EXTRA_TAGS.items()}
 
 _KEMONO_CHAR_COUNT_DESC_1 = ["クローン"]
 _KEMONO_CHAR_COUNT_DESC_2 = ["バディ", "ライバル", "カップル"]
@@ -180,7 +188,7 @@ def _randomize_kemono_params():
     バリデーションに失敗した場合は再試行（最大100回）。
     char_count=1 は extra=clone の時のみに制限。"""
     for _ in range(100):
-        char_type = random.choices(
+        char_types = random.choices(
             [v[0] for v in CHAR_TYPE_WEIGHTS],
             weights=[v[1] for v in CHAR_TYPE_WEIGHTS],
             k=1,
@@ -223,7 +231,12 @@ def _randomize_kemono_params():
         char_count = 2
 
     return {
-        "char_type": char_type,
+        # 構造化データ（タグ生成・アフィリエイトkwに直接使用）
+        "char_types": list(char_types),
+        "world_tags": list(_KEMONO_WORLD_TAGS[world_setting]),
+        "extra_tag": _KEMONO_EXTRA_TAGS[extra],
+        # プロンプト表示用（結合済み文字列）
+        "char_type": " / ".join(char_types),
         "world_setting_key": world_setting,
         "world_setting": _KEMONO_WORLD_TEXT[world_setting],
         "transform_key": transform,
@@ -1462,12 +1475,37 @@ _KEMONO_RELATIONSHIP_AFFILIATE = {
 }
 
 
+def _build_kemono_tags(kemono_params: dict) -> list[str]:
+    """kemono_story のパラメータからタグリストを生成する。
+
+    スクリプト内で決定した構造化データ（char_types / world_tags / extra_tag）を
+    直接使用するため、文字列の結合・分割処理は不要。
+
+    生成順:
+    1. ケモノ（固定）
+    2. キャラ体型タグ（char_types の各要素を個別タグに）
+    3. 世界設定タグ（world_tags の各要素を個別タグに）
+    4. キャラ関係性タグ（_KEMONO_RELATIONSHIP_AFFILIATE）
+    5. 追加設定タグ（extra_tag、空なら省略）
+    """
+    tags = ["ケモノ"]
+    tags.extend(kemono_params["char_types"])
+    tags.extend(kemono_params["world_tags"])
+    rel = _KEMONO_RELATIONSHIP_AFFILIATE.get(kemono_params.get("relationship_key", ""), "")
+    if rel:
+        tags.append(rel)
+    extra = kemono_params.get("extra_tag", "")
+    if extra:
+        tags.append(extra)
+    return tags
+
+
 def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
     """kemono_story のスクリプト決定パラメータからアフィリエイト検索キーワードを生成。
 
     生成順:
     1. ケモノ単体
-    2. ジャンル単体（「と」で分割）
+    2. ジャンル単体（world_tags）
     3. キャラ関係性単体
     4. ケモノ + ジャンル
     5. ケモノ + キャラ関係性
@@ -1477,9 +1515,8 @@ def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
     # 1. ケモノ単体
     kws.append("ケモノ")
 
-    # 2. ジャンルを「と」で分割して単体使用
-    world_setting = kemono_params["world_setting"]
-    genres = [g.strip() for g in world_setting.split("と") if g.strip()]
+    # 2. ジャンル（world_tags）を単体使用
+    genres = list(kemono_params["world_tags"])
     for g in genres:
         kws.append(g)
 
@@ -1590,7 +1627,7 @@ def _rakuten_api_keywords(
             kws.append(phrase)
 
     if prompt_type == "kemono_story" and kemono_params:
-        for g in (g.strip() for g in (kemono_params.get("world_setting", "")).split("と") if g.strip()):
+        for g in kemono_params.get("world_tags", []):
             kws.append(f"ケモノ {g}")
         rel = _KEMONO_RELATIONSHIP_AFFILIATE.get((kemono_params or {}).get("relationship_key", ""), "")
         if rel:
@@ -3003,7 +3040,7 @@ def generate_post():
 
     # 1.5. 世界設定を先に決定（ジャンルベースのトレンド選択に使用）
     kemono_params = _randomize_kemono_params() if prompt_type == "kemono_story" else {}
-    target_genres = WORLD_SETTING_GENRE_MAP.get(kemono_params.get("world_setting", ""), []) or None
+    target_genres = WORLD_SETTING_GENRE_MAP.get(kemono_params.get("world_setting_key", ""), []) or None
 
     # 1.6. 収集済みトレンドトピックをプロンプトに注入（ジャンル適合度で優先選択）
     ng_instruction, trend_keywords, trend_source_urls = _append_trending_topics(
@@ -3171,19 +3208,11 @@ def generate_post():
     if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:
         content = content.replace("---", f"---\nprompt_type: \"{prompt_type}\"", 1)
 
-    # ストーリー系: スクリプト決定パラメータからtagsを生成してfrontmatterに書き込む
+    # ストーリー系: スクリプト決定パラメータ（構造化データ）からtagsを生成してfrontmatterに書き込む
     if prompt_type == "kemono_story" and kemono_params:
-        tags_list = ["ケモノ", kemono_params["char_type"]]
-        # ジャンルは「と」で分割して個別タグとして設定
-        for g in (g.strip() for g in kemono_params["world_setting"].split("と") if g.strip()):
-            tags_list.append(g)
-        rel_key = kemono_params.get("relationship_key", "")
-        if rel_key in _KEMONO_RELATIONSHIP_AFFILIATE:
-            tags_list.append(_KEMONO_RELATIONSHIP_AFFILIATE[rel_key])
-        if kemono_params.get("extra_text"):
-            tags_list.append(kemono_params["extra_text"])
-        # Astro [tag].astro ルートの / 区切り衝突を回避
-        tags_list = [t.replace(" / ", "・") for t in tags_list]
+        tags_list = _build_kemono_tags(kemono_params)
+        # 安全策: タグ内の / はAstro [tag].astro ルート区切りと衝突するため置換
+        tags_list = [t.replace("/", "・") for t in tags_list]
         tags_yaml = ", ".join(f'"{t}"' for t in tags_list)
         content = re.sub(r'^tags:.*$', f'tags: [{tags_yaml}]', content, count=1, flags=re.MULTILINE)
         print(f"🏷️  tagsをスクリプト値で設定: {tags_list}")

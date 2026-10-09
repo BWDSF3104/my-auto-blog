@@ -42,8 +42,13 @@ from generate_article import (
     _extract_speakable_text,
     _is_valid_kemono_combination,
     _randomize_kemono_params,
+    _build_kemono_tags,
+    _kemono_affiliate_keywords,
     CHAR_TYPE_WEIGHTS,
     WORLD_SETTING_WEIGHTS,
+    _KEMONO_WORLD_TAGS,
+    _KEMONO_EXTRA_TAGS,
+    _KEMONO_RELATIONSHIP_AFFILIATE,
     TRANSFORM_WEIGHTS,
     RELATIONSHIP_WEIGHTS,
     EXTRA_SETTING_WEIGHTS,
@@ -779,7 +784,7 @@ class TestRakutenApiKeywords:
             gemini_products=["ケモノ娘 ポンチョ"],
             base_keywords=["ケモノ コスプレ"],
             prompt_type="kemono_story",
-            kemono_params={"world_setting": "獣人村", "relationship_key": "hetero"},
+            kemono_params={"world_tags": ["獣人村"], "relationship_key": "hetero"},
         )
         assert kws[0] == "ケモノ娘 ポンチョ"
         # 先頭句は完全一致で重複するため除外される
@@ -811,7 +816,7 @@ class TestRakutenApiKeywords:
             gemini_products=["ケモノ ポンチョ", "ケモノ"],
             base_keywords=[],
             prompt_type="kemono_story",
-            kemono_params={"world_setting": "ポンチョ", "relationship_key": ""},
+            kemono_params={"world_tags": ["ポンチョ"], "relationship_key": ""},
         )
         assert kws.count("ケモノ") == 1
 
@@ -1881,6 +1886,7 @@ class TestRandomizeKemonoParams:
     def test_return_keys(self):
         params = _randomize_kemono_params()
         expected_keys = {
+            "char_types", "world_tags", "extra_tag",
             "char_type", "world_setting_key", "world_setting",
             "transform_key", "transform_text",
             "relationship_key", "relationship_text",
@@ -1889,16 +1895,30 @@ class TestRandomizeKemonoParams:
         }
         assert set(params.keys()) == expected_keys
 
-    def test_char_type_in_options(self):
+    def test_char_types_in_options(self):
         for _ in range(50):
             params = _randomize_kemono_params()
             raw_types = [v[0] for v in CHAR_TYPE_WEIGHTS]
-            assert params["char_type"] in raw_types
+            assert params["char_types"] in raw_types
+            # 表示文字列はリストの " / " 結合と一致
+            assert params["char_type"] == " / ".join(params["char_types"])
 
     def test_world_setting_in_options(self):
         for _ in range(50):
             params = _randomize_kemono_params()
             assert params["world_setting"] in ("ファンタジー", "SF", "日常", "ファンタジーとSF")
+
+    def test_world_tags_consistent_with_display(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["world_tags"] == _KEMONO_WORLD_TAGS[params["world_setting_key"]]
+            assert params["world_setting"] == "と".join(params["world_tags"])
+
+    def test_extra_tag_consistent_with_display(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["extra_tag"] == _KEMONO_EXTRA_TAGS[params["extra_key"]]
+            assert params["extra_text"] == (f"、{params['extra_tag']}" if params["extra_tag"] else "")
 
     def test_transform_text_in_options(self):
         for _ in range(50):
@@ -1975,6 +1995,89 @@ class TestRandomizeKemonoParams:
             counts[params["char_count"]] += 1
         assert counts[1] + counts[2] == 1000
         assert 0 < counts[1] < counts[2]
+
+
+class TestBuildKemonoTags:
+    """kemono_params → タグリスト（構造化データ直接使用）。"""
+
+    def _params(self, **overrides):
+        base = {
+            "char_types": ["獣人", "動物"],
+            "world_tags": ["ファンタジー", "SF"],
+            "relationship_key": "yaoi",
+            "extra_tag": "ライバル関係",
+        }
+        base.update(overrides)
+        return base
+
+    def test_full_order(self):
+        tags = _build_kemono_tags(self._params())
+        assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF", "BL", "ライバル関係"]
+
+    def test_char_types_split_into_individual_tags(self):
+        tags = _build_kemono_tags(self._params(char_types=["動物と獣人のハーフ", "動物"]))
+        assert "動物と獣人のハーフ" in tags
+        assert "動物" in tags
+        # 結合済みタグ（旧バグ）が混入しない
+        assert "動物と獣人のハーフ / 動物" not in tags
+        assert "動物と獣人のハーフ・動物" not in tags
+
+    def test_world_tags_split_into_individual_tags(self):
+        tags = _build_kemono_tags(self._params(world_tags=["ファンタジー", "SF"]))
+        assert "ファンタジー" in tags
+        assert "SF" in tags
+        assert "ファンタジーとSF" not in tags
+
+    def test_extra_tag_has_no_leading_comma(self):
+        tags = _build_kemono_tags(self._params(extra_tag="ライバル関係"))
+        assert "ライバル関係" in tags
+        # 旧バグ: extra_text の「、」接頭がタグに混入
+        assert not any(t.startswith("、") for t in tags)
+
+    def test_empty_extra_omitted(self):
+        tags = _build_kemono_tags(self._params(extra_tag="", relationship_key="partnership"))
+        assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF", "バディ"]
+
+    def test_no_relationship_omitted(self):
+        tags = _build_kemono_tags(self._params(relationship_key="", extra_tag=""))
+        assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF"]
+
+    def test_single_char_type(self):
+        tags = _build_kemono_tags(self._params(char_types=["獣人"], world_tags=["ファンタジー"]))
+        assert tags[:3] == ["ケモノ", "獣人", "ファンタジー"]
+
+
+class TestKemonoAffiliateKeywords:
+    """kemono_params → アフィリエイト検索キーワード（world_tags 直接使用）。"""
+
+    def test_cascade_order(self):
+        kws = _kemono_affiliate_keywords({
+            "world_tags": ["ファンタジー", "SF"],
+            "relationship_key": "hetero",
+        })
+        assert kws == [
+            "ケモノ",
+            "ファンタジー", "SF",
+            "恋愛",
+            "ケモノ ファンタジー", "ケモノ SF",
+            "ケモノ 恋愛",
+        ]
+
+    def test_no_relationship(self):
+        kws = _kemono_affiliate_keywords({
+            "world_tags": ["SF"],
+            "relationship_key": "",
+        })
+        assert kws == ["ケモノ", "SF", "ケモノ SF"]
+
+    def test_world_tags_not_split_by_to(self):
+        # 旧実装は world_setting を「と」で分割していた。world_tags はそのまま使用
+        kws = _kemono_affiliate_keywords({
+            "world_tags": ["ファンタジー", "SF"],
+            "relationship_key": "yaoi",
+        })
+        assert "ファンタジーとSF" not in kws
+        assert kws.index("ケモノ ファンタジー") < kws.index("ケモノ SF")
 
 
 class TestSaveDraftMetadata:

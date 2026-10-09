@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-09-tag-split-refactor.md` - タグ生成ロジックの構造化リファクタ（体型タグ分割・「、」バグ修正・target_genresキー不一致修正）。**完了・コミット未実施** (2026-10-09)
+  - **実装内容**: `CHAR_TYPE_WEIGHTS` をタグリスト化、`_KEMONO_WORLD_TAGS` / `_KEMONO_EXTRA_TAGS` 新設（旧結合文字列は派生）、`_randomize_kemono_params` を構造化データ（`char_types` / `world_tags` / `extra_tag`）+ プロンプト表示文字列の2層構成に変更、`_build_kemono_tags()` 新設でタグ生成の結合・分割往復を廃止。`_kemono_affiliate_keywords` / `_rakuten_api_keywords` も `world_tags` 直接使用。併せて `target_genres` のキー不一致バグ（`world_setting` → `world_setting_key`）修正。既存記事 `2026-10-09-223016` の tags 修正
+  - **Verification** (2026-10-09): `pytest scripts/tests/` → **297 passed** (3.90s)。`npm run build` → **131 page(s) built** (8.95s) 成功、新タグページ・記事ページ出力確認
+  - **Next Action**: ユーザー指示があればコミット（commit + push 一体、workflow.md 手順）
+
 - `docs/ai/tasks/2026-10-09-genre-integration.md` - ジャンル事前スコアリングを記事生成フローに統合。**完了** (2026-10-09)
   - **実装内容**: `genre_score.py` に `score_topics()` 追加（latest.json 全件 + 版権を事前スコアリング → `data/genre_scores/topics.json`）。`generate_article.py` に `WORLD_SETTING_GENRE_MAP` / `_load_genre_scores()` / `_filter_by_genre()` 追加、`_append_trending_topics`・`_load_character_features` に `target_genres` パラメータ追加、生成フロー順序変更（world_setting 決定 → トレンド選択）。失敗時は従来のランダム選択にグレースフルフォールバック
   - **Verification** (2026-10-09): `pytest scripts/tests/` → **285 passed** (3.87s)

@@ -8,6 +8,8 @@
 
 # Completed Plans
 
+- [2026-10-09] タグ生成ロジックの構造化リファクタ: 最新記事の tags が「動物と獣人のハーフ・動物」（体型タグ未分割）・「、ライバル関係」（extra_text の「、」接頭混入）と不自然だったため、スクリプト内で最初から構造化データ（`char_types` / `world_tags` / `extra_tag`）を保持し、`_build_kemono_tags()` で結合・分割を往復せずにタグを生成する設計へ変更。プロンプト表示用結合文字列（`char_type` / `world_setting` / `extra_text`）は派生値として維持（`kemono_story.txt` の文脈自然さのため）。併せて `target_genres` のキー不一致バグ（`world_setting` 表示文字列 → `world_setting_key`）を修正し、ジャンルベースのトレンド優先選択を実効化。pytest 297通過、ビルド 131ページ成功。詳細: `docs/ai/tasks/2026-10-09-tag-split-refactor.md`
+
 - [2026-10-09] ジャンル事前スコアリングを記事生成フローに統合: 独立CLI（`genre_score.py`）が完成したClef-flashジャンルスコアリングを、記事生成のトレンド選択・版権選択に統合。`score_topics()` で latest.json 全件 + 版権を事前スコアリングし `data/genre_scores/topics.json` に保存。`generate_article.py` に world_setting→ジャンル変換（`WORLD_SETTING_GENRE_MAP`）を追加し、`_append_trending_topics` と `_load_character_features` に `target_genres` パラメータを追加（ジャンル適合度優先選択）。生成フローの順序を world_setting 決定 → トレンド選択に変更。失敗時は従来のランダム選択にグレースフルフォールバック。テスト19件追加（全285通過）。詳細: `docs/ai/tasks/2026-10-09-genre-integration.md`
 
 - [2026-10-09] Clef-flash ジャンルスコアリング（backlog #4）: Cloudflare Workers AI の判断特化モデル `@cf/cloudflare/clef-flash` で、文字列の複数ジャンル（sf/fantasy/cyberpunk/action、設定変更可能・最大64問）への関連度を 0-100 整数スコアで取得する。独立 CLI `scripts/genre_score.py`（env `CLOUDFLARE_ACCOUNT_ID`/`CLOUDFLARE_API_TOKEN`、5xx のみ限定的に再試行、4xx・無料枠超過は再試行せず、SHA256キャッシュ `data/genre_scores/cache.json`、`--no-cache` フラグ）+ 全モック単体テスト61件 + `workflow_dispatch` のみ `.github/workflows/genre-score.yml`。`generate_article.py` 組み込みはスコープ外。2段構成（LLM→Clef-flash）は backlog P3 #1 に追記。実 API スモーク: "攻殻機動隊" → sf:84, fantasy:3, cyberpunk:86, action:47（0.68s）。pytest 261通過。詳細: `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md`
