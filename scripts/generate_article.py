@@ -3020,9 +3020,9 @@ def generate_post():
     )
 
     # 使用プロンプトの保存（追跡性確保）
-    prompts_dir = os.path.join("data", "prompts")
-    os.makedirs(prompts_dir, exist_ok=True)
-    prompt_path = os.path.join(prompts_dir, f"{file_timestamp}.txt")
+    prompt_logs_dir = os.path.join("data", "prompt_logs")
+    os.makedirs(prompt_logs_dir, exist_ok=True)
+    prompt_path = os.path.join(prompt_logs_dir, f"{file_timestamp}.txt")
     with open(prompt_path, "w", encoding="utf-8") as f:
         f.write(prompt)
     print(f"📝 プロンプト保存: {prompt_path}")

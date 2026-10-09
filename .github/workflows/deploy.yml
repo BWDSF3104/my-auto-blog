@@ -104,8 +104,8 @@ jobs:
           [ -d "data/drafts" ] && git add data/drafts/
            # Rakuten API product cache (30-day TTL)
            [ -f "data/rakuten_cache.json" ] && git add data/rakuten_cache.json
-           # Used prompt (traceability)
-           [ -d "data/prompts" ] && git add data/prompts/
+           # Used prompt logs (traceability)
+           [ -d "data/prompt_logs" ] && git add data/prompt_logs/
            # Genre score cache + results (CI reuse + traceability)
            [ -d "data/genre_scores" ] && git add data/genre_scores/
 
