@@ -39,10 +39,21 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
+          echo "::notice::input: text=${GENRE_SCORE_TEXT} genres=${GENRE_SCORE_GENRES}"
           python scripts/genre_score.py \
             --text "$GENRE_SCORE_TEXT" \
             --genres "$GENRE_SCORE_GENRES" \
-            --output data/genre_score_result.json
+            --output data/genre_score_result.json \
+            --debug
+
+      - name: Show result
+        if: always()
+        run: |
+          if [ -f data/genre_score_result.json ]; then
+            echo "::group::Genre Score Result"
+            cat data/genre_score_result.json
+            echo "::endgroup::"
+          fi
 
       - name: Upload result
         if: always()
