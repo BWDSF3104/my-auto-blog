@@ -10,6 +10,7 @@ genre_score.py — Cloudflare Workers AI (clef-flash) ジャンルスコアリ�
 - 無料枠 10,000 neurons/日。超過（4xx: 401/403/429 等）は再試行せず明確なエラー
 - 一時的なエラー（5xx・タイムアウト・接続エラー）のみ最大3回まで退避して再試行
 - API トークンはログ・出力に出さない
+- 判定結果は `data/genre_scores/cache.json` にキャッシュ（SHA256キー）。`--no-cache` で無効化
 
 環境変数:
   CLOUDFLARE_ACCOUNT_ID : Cloudflare Account ID
@@ -21,11 +22,13 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
 import sys
 import time
+from datetime import datetime, timezone
 
 import requests
 from dotenv import load_dotenv
@@ -79,6 +82,11 @@ _QUESTION_ID_RE = re.compile(r"^[A-Za-z0-9_.\-]{1,100}$")
 
 # 再試行しない恒久エラー（認証・権限・無料枠超過・リクエスト不正）
 PERMANENT_HTTP_ERRORS = {400, 401, 403, 404, 422, 429}
+
+# キャッシュ
+CACHE_DIR = "data/genre_scores"
+CACHE_FILE_NAME = "cache.json"
+DEFAULT_CACHE_PATH = os.path.join(CACHE_DIR, CACHE_FILE_NAME)
 
 
 # --------------------------------------------------
@@ -278,25 +286,82 @@ def call_api(
 
 
 # --------------------------------------------------
+# キャッシュ
+# --------------------------------------------------
+def _compute_cache_key(text: str, genres: list[str]) -> str:
+    """テキストとジャンルリストから SHA256 キャッシュキーを生成する。"""
+    normalized = text.strip()
+    genres_key = ",".join(sorted(genres))
+    return hashlib.sha256(f"{normalized}|{genres_key}".encode("utf-8")).hexdigest()
+
+
+def _load_cache(cache_path: str) -> dict:
+    """キャッシュファイルを読み込む。存在しない・破損時は空 dict を返す。"""
+    if not os.path.exists(cache_path):
+        return {}
+    try:
+        with open(cache_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_cache_entry(cache_path: str, cache_key: str, entry: dict) -> None:
+    """キャッシュに 1 エントリを追加・更新する。"""
+    cache = _load_cache(cache_path)
+    cache[cache_key] = entry
+    cache_dir = os.path.dirname(cache_path)
+    if cache_dir:
+        os.makedirs(cache_dir, exist_ok=True)
+    with open(cache_path, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
+# --------------------------------------------------
 # オーケストレーション
 # --------------------------------------------------
 def score_text(
     text: str,
     genres: list[str] | None = None,
     include_debug: bool = False,
+    cache_path: str | None = None,
     **call_kwargs,
 ) -> dict:
     """文字列のジャンルスコアリングを実行し、結果 dict を返す。
 
+    cache_path が指定された場合、結果を JSON キャッシュに保存・再利用する。
+    cache_hit: True ならキャッシュから取得（API 未呼び出し）。
+
     戻り値:
         {"input": 入力文字列, "model": モデルID, "scores": {genre: int(0-100)}}
-        include_debug=True の場合:
-        + {"raw_scores", "probabilities", "usage"}
+        cache_path 指定時: + {"cache_hit": bool}
+        include_debug=True の場合: + {"raw_scores", "probabilities", "usage"}
     """
     if not text:
         raise ConfigError("入力文字列が空です")
     if genres is None:
         genres = list(DEFAULT_GENRES)
+
+    if cache_path:
+        cache_key = _compute_cache_key(text, genres)
+        cache = _load_cache(cache_path)
+        if cache_key in cache:
+            cached = cache[cache_key]
+            result = {
+                "input": cached["input"],
+                "model": MODEL_ID,
+                "scores": cached["scores"],
+                "cache_hit": True,
+            }
+            if include_debug:
+                result["raw_scores"] = cached.get("raw_scores", {})
+                result["probabilities"] = cached.get("probabilities", {})
+                result["usage"] = cached.get("usage", {})
+                result["timestamp"] = cached.get("timestamp")
+            return result
+
     account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
     api_token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
 
@@ -308,10 +373,26 @@ def score_text(
         "model": MODEL_ID,
         "scores": parsed["scores"],
     }
+    if cache_path:
+        result["cache_hit"] = False
     if include_debug:
         result["raw_scores"] = parsed["raw"]
         result["probabilities"] = parsed["probabilities"]
         result["usage"] = parsed["usage"]
+
+    if cache_path:
+        cache_entry = {
+            "input": text,
+            "genres": sorted(genres),
+            "scores": parsed["scores"],
+            "raw_scores": parsed["raw"],
+            "probabilities": parsed["probabilities"],
+            "usage": parsed["usage"],
+            "model": MODEL_ID,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
+        _save_cache_entry(cache_path, _compute_cache_key(text, genres), cache_entry)
+
     return result
 
 
@@ -336,15 +417,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--debug", action="store_true", help="生スコア・確率・トークン使用量を含めて出力"
     )
+    parser.add_argument(
+        "--no-cache", action="store_true",
+        help="キャッシュを使用しない（API を毎回呼び出し、キャッシュも保存しない）",
+    )
     args = parser.parse_args(argv)
 
     genres = _parse_genres(args.genres) if args.genres else list(DEFAULT_GENRES)
+    cache_path = None if args.no_cache else DEFAULT_CACHE_PATH
 
     try:
-        result = score_text(args.text, genres, include_debug=args.debug)
+        result = score_text(args.text, genres, include_debug=args.debug, cache_path=cache_path)
     except GenreScoreError as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         return 1
+
+    if result.get("cache_hit"):
+        print("[INFO] キャッシュヒット（API 未呼び出し）", file=sys.stderr)
 
     output = json.dumps(result, ensure_ascii=False, indent=2)
     if args.output:

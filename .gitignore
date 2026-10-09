@@ -33,6 +33,9 @@ __pycache__/
 # Temporary work files
 tmp/
 
+# Genre score cache
+data/genre_scores/
+
 # Real API test results
 scripts/data/api_test_results/
 

@@ -4,7 +4,7 @@
 
 # Active Plans
 
-(なし)
+- [2026-10-09] Clef-flash ジャンルスコアリング（backlog #4）: Cloudflare Workers AI の判断特化モデル `@cf/cloudflare/clef-flash` で、文字列の複数ジャンル（sf/fantasy/cyberpunk/action、設定変更可能・最大64問）への関連度を 0-100 整数スコアで取得する。独立 CLI `scripts/genre_score.py`（env `CLOUDFLARE_ACCOUNT_ID`/`CLOUDFLARE_API_TOKEN`、5xx のみ限定的に再試行、4xx・無料枠超過は再試行せず）+ 全モック単体テスト + `workflow_dispatch` のみ `.github/workflows/genre-score.yml`（入力文字列は env 経由で安全に渡す）。`generate_article.py` のジャンル選択への組み込みはスコープ外（別タスク）。API仕様は公式ドキュメント（clef-flash / rest-api / pricing）確認済み: レスポンスは `{result, success, errors}` envelope、score は浮動小数（probability-weighted, 5段階で0-4）、probabilities 取得可、無料枠 10,000 neurons/日（clef-flash=8182 neurons/M input tokens）。詳細・タスク切り分け: `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md`
 
 # Completed Plans
 

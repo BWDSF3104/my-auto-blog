@@ -1,0 +1,53 @@
+name: Genre Score (Clef-flash)
+
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "採点対象の文字列"
+        required: true
+        default: "攻殻機動隊"
+      genres:
+        description: "カンマ区切りのジャンルリスト"
+        required: false
+        default: "sf,fantasy,cyberpunk,action"
+
+permissions: {}
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+
+      - name: Run genre score
+        env:
+          # Pass the input text via env (never expand as shell code)
+          GENRE_SCORE_TEXT: ${{ inputs.text }}
+          GENRE_SCORE_GENRES: ${{ inputs.genres }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python scripts/genre_score.py \
+            --text "$GENRE_SCORE_TEXT" \
+            --genres "$GENRE_SCORE_GENRES" \
+            --output data/genre_score_result.json
+
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genre-score-result
+          path: data/genre_score_result.json
+          if-no-files-found: ignore

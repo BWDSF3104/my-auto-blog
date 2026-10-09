@@ -315,3 +315,148 @@ class TestMain:
             main(["--text", "t", "--genres", "sf", "--debug"])
         out = capsys.readouterr().out + capsys.readouterr().err
         assert "test-api-token" not in out
+
+
+class TestCacheKey:
+    def test_deterministic(self):
+        key1 = genre_score._compute_cache_key("攻殻機動隊", ["sf", "action"])
+        key2 = genre_score._compute_cache_key("攻殻機動隊", ["sf", "action"])
+        assert key1 == key2
+
+    def test_different_text_different_key(self):
+        key1 = genre_score._compute_cache_key("攻殻機動隊", ["sf"])
+        key2 = genre_score._compute_cache_key("マトリックス", ["sf"])
+        assert key1 != key2
+
+    def test_genre_order_independent(self):
+        key1 = genre_score._compute_cache_key("t", ["sf", "action"])
+        key2 = genre_score._compute_cache_key("t", ["action", "sf"])
+        assert key1 == key2
+
+    def test_whitespace_normalized(self):
+        key1 = genre_score._compute_cache_key("  t  ", ["sf"])
+        key2 = genre_score._compute_cache_key("t", ["sf"])
+        assert key1 == key2
+
+
+class TestCacheFunctions:
+    def test_load_cache_missing_file(self, tmp_path):
+        assert genre_score._load_cache(str(tmp_path / "nonexistent.json")) == {}
+
+    def test_load_cache_corrupt_file(self, tmp_path):
+        bad = tmp_path / "bad.json"
+        bad.write_text("not json", encoding="utf-8")
+        assert genre_score._load_cache(str(bad)) == {}
+
+    def test_save_and_load_roundtrip(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        entry = {"input": "t", "scores": {"sf": 50}}
+        genre_score._save_cache_entry(path, "abc123", entry)
+        cache = genre_score._load_cache(path)
+        assert cache["abc123"] == entry
+
+    def test_save_multiple_entries(self, tmp_path):
+        path = str(tmp_path / "cache.json")
+        genre_score._save_cache_entry(path, "k1", {"scores": {"sf": 10}})
+        genre_score._save_cache_entry(path, "k2", {"scores": {"sf": 20}})
+        cache = genre_score._load_cache(path)
+        assert "k1" in cache and "k2" in cache
+
+    def test_save_creates_directory(self, tmp_path):
+        path = str(tmp_path / "sub" / "dir" / "cache.json")
+        genre_score._save_cache_entry(path, "k", {"scores": {}})
+        assert os.path.exists(path)
+
+
+class TestScoreTextWithCache:
+    def test_cache_miss_then_hit(self, tmp_path):
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 4.0, "action": 1.0})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            result1 = score_text("攻殻機動隊", ["sf", "action"], cache_path=cache_path)
+            assert result1["cache_hit"] is False
+            assert mock_post.call_count == 1
+            result2 = score_text("攻殻機動隊", ["sf", "action"], cache_path=cache_path)
+            assert result2["cache_hit"] is True
+            assert mock_post.call_count == 1
+
+    def test_cache_hit_returns_same_scores(self, tmp_path):
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 3.0, "fantasy": 0.0})
+        with patch("requests.post", return_value=_mock_post(payload)), \
+             patch.dict(os.environ, ENV_CREDS):
+            result1 = score_text("t", ["sf", "fantasy"], cache_path=cache_path)
+            result2 = score_text("t", ["sf", "fantasy"], cache_path=cache_path)
+        assert result1["scores"] == result2["scores"]
+        assert result2["cache_hit"] is True
+
+    def test_cache_debug_fields(self, tmp_path):
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 2.0})
+        with patch("requests.post", return_value=_mock_post(payload)), \
+             patch.dict(os.environ, ENV_CREDS):
+            result = score_text("t", ["sf"], include_debug=True, cache_path=cache_path)
+        assert result["cache_hit"] is False
+        assert result["raw_scores"] == {"sf": 2.0}
+        result2 = score_text("t", ["sf"], include_debug=True, cache_path=cache_path)
+        assert result2["cache_hit"] is True
+        assert result2["raw_scores"] == {"sf": 2.0}
+        assert result2["usage"]["input_tokens"] == 120
+        assert "timestamp" in result2
+
+    def test_no_cache_path_no_caching(self):
+        payload = _api_response({"sf": 2.0})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            score_text("t", ["sf"], cache_path=None)
+            score_text("t", ["sf"], cache_path=None)
+        assert mock_post.call_count == 2
+
+    def test_different_genres_different_cache(self, tmp_path):
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({"sf": 2.0, "horror": 3.0})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            score_text("t", ["sf", "horror"], cache_path=cache_path)
+            score_text("t", ["sf"], cache_path=cache_path)
+        assert mock_post.call_count == 2
+
+
+class TestMainCache:
+    def test_cli_no_cache_flag(self, tmp_path, capsys):
+        payload = _api_response({"sf": 3.0})
+        tmp_cache = str(tmp_path / "cache.json")
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS), \
+             patch.object(genre_score, "DEFAULT_CACHE_PATH", tmp_cache):
+            main(["--text", "t", "--genres", "sf"])
+            assert mock_post.call_count == 1
+            main(["--text", "t", "--genres", "sf", "--no-cache"])
+            assert mock_post.call_count == 2
+
+    def test_cli_cache_hit_message(self, tmp_path, capsys):
+        payload = _api_response({"sf": 3.0})
+        tmp_cache = str(tmp_path / "cache.json")
+        with patch("requests.post", return_value=_mock_post(payload)), \
+             patch.dict(os.environ, ENV_CREDS), \
+             patch.object(genre_score, "DEFAULT_CACHE_PATH", tmp_cache):
+            main(["--text", "t", "--genres", "sf"])
+            capsys.readouterr()
+            main(["--text", "t", "--genres", "sf"])
+        err = capsys.readouterr().err
+        assert "キャッシュヒット" in err
+
+    def test_cli_cache_hit_in_output(self, tmp_path, capsys):
+        payload = _api_response({"sf": 3.0})
+        tmp_cache = str(tmp_path / "cache.json")
+        with patch("requests.post", return_value=_mock_post(payload)), \
+             patch.dict(os.environ, ENV_CREDS), \
+             patch.object(genre_score, "DEFAULT_CACHE_PATH", tmp_cache):
+            main(["--text", "t", "--genres", "sf"])
+            capsys.readouterr()
+            exit_code = main(["--text", "t", "--genres", "sf"])
+        out = capsys.readouterr().out
+        assert exit_code == 0
+        data = json.loads(out)
+        assert data["cache_hit"] is True
