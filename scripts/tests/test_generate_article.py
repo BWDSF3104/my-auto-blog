@@ -2112,3 +2112,198 @@ class TestSaveDraftMetadata:
                 data = json.load(f)
 
             assert data["pass1"]["content_line_count"] == 3
+
+
+# --------------------------------------------------
+# ジャンル事前スコアリング統合テスト
+# --------------------------------------------------
+
+class TestWorldSettingGenreMap:
+    def test_fantasy_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["fantasy"] == ["fantasy"]
+
+    def test_sf_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["sf"] == ["sf"]
+
+    def test_slice_of_life_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["slice_of_life"] == ["action"]
+
+    def test_fantasy_sf_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["fantasy+sf"] == ["fantasy", "sf"]
+
+    def test_unknown_setting_returns_none(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP.get("unknown_setting", []) == []
+
+
+class TestLoadGenreScores:
+    def test_missing_file_returns_empty(self, tmp_path):
+        import generate_article
+        with patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")):
+            result = generate_article._load_genre_scores()
+        assert result == {}
+
+    def test_valid_file(self, tmp_path):
+        import generate_article
+        path = tmp_path / "topics.json"
+        data = {"scored_at": "2026-10-09T12:00:00Z", "topics": [], "copyrights": []}
+        path.write_text(json.dumps(data), encoding="utf-8")
+        with patch.object(generate_article, "GENRE_SCORES_PATH", str(path)):
+            result = generate_article._load_genre_scores()
+        assert result["topics"] == []
+
+    def test_corrupt_file_returns_empty(self, tmp_path):
+        import generate_article
+        path = tmp_path / "topics.json"
+        path.write_text("{invalid json", encoding="utf-8")
+        with patch.object(generate_article, "GENRE_SCORES_PATH", str(path)):
+            result = generate_article._load_genre_scores()
+        assert result == {}
+
+
+class TestFilterByGenre:
+    def test_sorts_by_genre_score(self):
+        import generate_article
+        items = [
+            {"url": "https://a.com", "title": "low genre"},
+            {"url": "https://b.com", "title": "high genre"},
+            {"url": "https://c.com", "title": "no score"},
+        ]
+        scores_data = {
+            "topics": [
+                {"key": "https://a.com", "scores": {"sf": 10, "fantasy": 5, "cyberpunk": 3, "action": 2}},
+                {"key": "https://b.com", "scores": {"sf": 90, "fantasy": 80, "cyberpunk": 85, "action": 40}},
+            ]
+        }
+        result = generate_article._filter_by_genre(items, ["sf"], scores_data)
+        assert result[0]["url"] == "https://b.com"
+        assert result[1]["url"] == "https://a.com"
+        assert result[2]["url"] == "https://c.com"
+
+    def test_multi_genre_takes_max(self):
+        import generate_article
+        items = [
+            {"url": "https://a.com", "title": "fantasy high"},
+            {"url": "https://b.com", "title": "sf high"},
+        ]
+        scores_data = {
+            "topics": [
+                {"key": "https://a.com", "scores": {"sf": 10, "fantasy": 95, "cyberpunk": 20, "action": 5}},
+                {"key": "https://b.com", "scores": {"sf": 90, "fantasy": 15, "cyberpunk": 85, "action": 30}},
+            ]
+        }
+        result = generate_article._filter_by_genre(items, ["fantasy", "sf"], scores_data)
+        assert result[0]["url"] == "https://a.com"
+
+    def test_empty_scores_data(self):
+        import generate_article
+        items = [{"url": "https://a.com", "title": "t"}]
+        result = generate_article._filter_by_genre(items, ["sf"], {})
+        assert len(result) == 1
+
+
+class TestAppendTrendingTopicsGenre:
+    def test_genre_filter_applied(self, tmp_path):
+        import generate_article
+        topics_path = tmp_path / "latest.json"
+        topics_data = {
+            "fetched_at": "2026-10-09T12:00:00+09:00",
+            "ttl_hours": 24,
+            "total": 2,
+            "by_category": {
+                "kemono": [
+                    {"title": "sf topic", "url": "https://sf.com", "source": "rss", "category": "kemono", "score": 50},
+                    {"title": "fantasy topic", "url": "https://fan.com", "source": "rss", "category": "kemono", "score": 50},
+                ]
+            },
+        }
+        topics_path.write_text(json.dumps(topics_data, ensure_ascii=False), encoding="utf-8")
+        scores_path = tmp_path / "scores.json"
+        scores_data = {
+            "topics": [
+                {"key": "https://sf.com", "scores": {"sf": 95, "fantasy": 10, "cyberpunk": 80, "action": 20}},
+                {"key": "https://fan.com", "scores": {"sf": 15, "fantasy": 90, "cyberpunk": 25, "action": 30}},
+            ]
+        }
+        scores_path.write_text(json.dumps(scores_data), encoding="utf-8")
+
+        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
+             patch.object(generate_article, "GENRE_SCORES_PATH", str(scores_path)), \
+             patch.object(generate_article, "_save_trend_usage_log"), \
+             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
+             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+            result, keywords, urls = generate_article._append_trending_topics(
+                "", "kemono_story", target_genres=["sf"]
+            )
+        assert "sf topic" in result
+        assert "https://sf.com" in urls
+
+    def test_no_genre_scores_falls_back_to_random(self, tmp_path):
+        import generate_article
+        topics_path = tmp_path / "latest.json"
+        topics_data = {
+            "fetched_at": "2026-10-09T12:00:00+09:00",
+            "ttl_hours": 24,
+            "total": 1,
+            "by_category": {
+                "kemono": [
+                    {"title": "any topic", "url": "https://any.com", "source": "rss", "category": "kemono", "score": 50},
+                ]
+            },
+        }
+        topics_path.write_text(json.dumps(topics_data, ensure_ascii=False), encoding="utf-8")
+
+        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
+             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch.object(generate_article, "_save_trend_usage_log"), \
+             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
+             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+            result, keywords, urls = generate_article._append_trending_topics(
+                "", "kemono_story", target_genres=["sf"]
+            )
+        assert "any topic" in result
+
+
+class TestLoadCharacterFeaturesGenre:
+    def test_copyright_genre_priority(self, tmp_path):
+        import generate_article
+        cf_dir = tmp_path / "data"
+        cf_dir.mkdir()
+        cf_path = cf_dir / "character_features.json"
+        cf_data = {
+            "posts": [
+                {"species": ["wolf"], "colors": ["blue"], "physical": ["ears"], "characters": ["A"], "copyrights": ["nintendo"]},
+                {"species": ["fox"], "colors": ["red"], "physical": ["tail"], "characters": ["B"], "copyrights": ["harry_potter"]},
+            ],
+            "aggregates": {
+                "copyrights": {"nintendo": 10, "harry_potter": 5, "pokemon": 3},
+                "artists": {"artist_a": 5, "artist_b": 3},
+            },
+            "updated_at": "2026-10-09",
+            "total_posts_analyzed": 25,
+        }
+        cf_path.write_text(json.dumps(cf_data, ensure_ascii=False), encoding="utf-8")
+        scores_path = tmp_path / "scores.json"
+        scores_data = {
+            "copyrights": [
+                {"name": "nintendo", "scores": {"sf": 90, "fantasy": 20, "cyberpunk": 70, "action": 40}},
+                {"name": "harry_potter", "scores": {"sf": 10, "fantasy": 95, "cyberpunk": 15, "action": 30}},
+                {"name": "pokemon", "scores": {"sf": 85, "fantasy": 10, "cyberpunk": 60, "action": 50}},
+            ]
+        }
+        scores_path.write_text(json.dumps(scores_data), encoding="utf-8")
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch.object(generate_article, "GENRE_SCORES_PATH", str(scores_path)):
+                result = generate_article._load_character_features(target_genres=["fantasy"])
+        finally:
+            os.chdir(orig_cwd)
+
+        assert "harry_potter" in result
+        assert "nintendo" in result
