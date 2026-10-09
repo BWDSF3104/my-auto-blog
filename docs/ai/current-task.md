@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md` - Clef-flash ジャンルスコアリング（backlog #4）。**完了** (2026-10-09)
+  - **実装内容**: `scripts/genre_score.py`（独立CLI、Clef-flash API呼び出し、SHA256キャッシュ、`--no-cache` フラグ）+ `scripts/tests/test_genre_score.py`（61件、全モック）+ `.github/workflows/genre-score.yml`（workflow_dispatch のみ）+ `api-rate-limits.md` にCloudflare追加 + `backlog.md` P3に2段構成追加
+  - **Verification** (2026-10-09): `pytest scripts/tests/` → **261 passed** (3.52s)。実 API スモーク: "攻殻機動隊" → sf:84, fantasy:3, cyberpunk:86, action:47（0.68s、678 input tokens）
+  - **Next Action**: ワークフロー手動実行による実 API 疎通確認（ユーザー操作）
+
 - `docs/ai/tasks/2026-10-09-refiner-image-prompt-check.md` - リファインプロンプトに画像プロンプト形式チェックを追加。**完了** (2026-10-09)
   - **実装内容**: `refine_story.txt` に【11. 画像プロンプト形式チェック】新節＋82行目ルール書き換え＋【12. 構成と形式】番号振り直し＋自己検証1項目追加。`refine_tech.txt` に【10. 画像プロンプト形式チェック】新節＋【11. 情報追加に関する制限】番号振り直し＋【9】例外注記。コード変更不要
   - **Verification** (2026-10-09): `pytest scripts/tests/` → **200 passed** (3.28s)

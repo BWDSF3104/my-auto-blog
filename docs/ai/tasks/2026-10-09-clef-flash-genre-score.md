@@ -1,8 +1,8 @@
 # Clef-flash ジャンルスコアリング（backlog #4）
 
-- **Status**: 未着手（計画完了 2026-10-09）
-- **関連 Plan**: `plans.md` Active Plans [2026-10-09]
-- **関連 Backlog**: `backlog.md` P2 #4
+- **Status**: 完了（2026-10-09）
+- **関連 Plan**: `plans.md` Completed Plans [2026-10-09]
+- **関連 Backlog**: `backlog.md` P2 #4（削除済み）/ P3 #1（2段構成は後続タスク）
 
 ## 目的
 
@@ -51,46 +51,53 @@
 
 ## タスク切り分け
 
-### T1. モジュール `scripts/genre_score.py`
+### T1. モジュール `scripts/genre_score.py` ✅
 
-- [ ] ジャンル定義: `GENRE_INSTRUCTIONS`（sf/fantasy/cyberpunk/action、日本語 instructions）+ `DEFAULT_GENRES` + `SCORE_CRITERIA`（5段階: ほぼ該当しない / 弱い関連要素がある / 関連要素があるが主要ではない / 主要ジャンルの一つ / 中心的・代表的なジャンル）+ `MAX_QUESTIONS = 64`
-- [ ] `build_questions(genres)`: score 型質問 dict を生成。64 超はエラー。未知 id は汎用 instruction テンプレートにフォールバック
-- [ ] `validate_raw_score(raw, max_level=4)`: 数値かつ 0≤raw≤4 を検証 → `int(round(raw / 4 * 100))`。**欠落・非数値・範囲外は例外を送出（0点でごまかさない）**
-- [ ] `parse_response(payload, genres)`: `success` を検証し `result.answers.<id>.score` を取得。`probabilities`・`usage` は内部で保持（デバッグ用）
-- [ ] `call_api(text, genres, account_id, api_token, timeout=60, max_attempts=3)`: `requests.post`。**5xx・タイムアウト → 指数退避で最大3回まで再試行。4xx（401/403/429=無料枠超過含む）→ 再試行せず明確なエラー**。トークンはログ・出力に含めない
-- [ ] `score_text(...)`: 結果 dict `{input, model: "@cf/cloudflare/clef-flash", scores}` を組み立て（`--debug` 時に probabilities/usage 追加）
-- [ ] CLI: `python scripts/genre_score.py --text "攻殻機動隊" [--genres sf,fantasy] [--output PATH] [--debug]`
-- [ ] env: `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_API_TOKEN`（呼び出し時に取得。未設定 → 明確なエラーで exit 1）
-- [ ] JSON 出力は `ensure_ascii=False`、win32 stdout reconfigure 付き（日本語文字化け防止）
-- 受け入れ条件: テストから import 可能、`--help` 動作確認
+- [x] ジャンル定義: `GENRE_INSTRUCTIONS`（sf/fantasy/cyberpunk/action、日本語 instructions）+ `DEFAULT_GENRES` + `SCORE_CRITERIA`（5段階: ほぼ該当しない / 弱い関連要素がある / 関連要素があるが主要ではない / 主要ジャンルの一つ / 中心的・代表的なジャンル）+ `MAX_QUESTIONS = 64`
+- [x] `build_questions(genres)`: score 型質問 dict を生成。64 超はエラー。未知 id は汎用 instruction テンプレートにフォールバック
+- [x] `validate_raw_score(raw, max_level=4)`: 数値かつ 0≤raw≤4 を検証 → `int(round(raw / 4 * 100))`。**欠落・非数値・範囲外は例外を送出（0点でごまかさない）**
+- [x] `parse_response(payload, genres)`: `success` を検証し `result.answers.<id>.score` を取得。`probabilities`・`usage` は内部で保持（デバッグ用）
+- [x] `call_api(text, genres, account_id, api_token, timeout=60, max_attempts=3)`: `requests.post`。**5xx・タイムアウト → 指数退避で最大3回まで再試行。4xx（401/403/429=無料枠超過含む）→ 再試行せず明確なエラー**。トークンはログ・出力に含めない
+- [x] `score_text(...)`: 結果 dict `{input, model: "@cf/cloudflare/clef-flash", scores}` を組み立て（`--debug` 時に probabilities/usage 追加）+ **キャッシュ機構**（SHA256キー、`data/genre_scores/cache.json`、`--no-cache` フラグ）
+- [x] CLI: `python scripts/genre_score.py --text "攻殻機動隊" [--genres sf,fantasy] [--output PATH] [--debug] [--no-cache]`
+- [x] env: `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_API_TOKEN`（呼び出し時に取得。未設定 → 明確なエラーで exit 1）
+- [x] JSON 出力は `ensure_ascii=False`、win32 stdout reconfigure 付き（日本語文字化け防止）
+- 受け入れ条件: テストから import 可能、`--help` 動作確認 ✅
 
-### T2. 単体テスト `scripts/tests/test_genre_score.py`（全モック、API 未消費）
+### T2. 単体テスト `scripts/tests/test_genre_score.py`（全モック、API 未消費）✅
 
-- [ ] questions 生成（4ジャンルの score 型・criteria 順序・64超でエラー・未知idフォールバック）
-- [ ] スコア変換（0→0, 1→25, 2→50, 3→75, 4→100、小数 2.7→68、範囲外/非数値/欠落→エラー）
-- [ ] レスポンス解析（複数ジャンルの独立採点、answers 欠落→エラー、`success: false`→エラー）
-- [ ] HTTP（429/403 → 1回で即エラー、500 → 再試行後に成功、タイムアウト → 再試行。呼び出し回数を assert）
-- [ ] CLI（日本語文字列入出力、`ensure_ascii=False` 検証、出力にトークンが含まれない）
-- 受け入れ条件: `pytest scripts/tests/test_genre_score.py -v` 全通過、実 API 呼び出しゼロ
+- [x] questions 生成（4ジャンルの score 型・criteria 順序・64超でエラー・未知idフォールバック）
+- [x] スコア変換（0→0, 1→25, 2→50, 3→75, 4→100、小数 2.7→68、範囲外/非数値/欠落→エラー）
+- [x] レスポンス解析（複数ジャンルの独立採点、answers 欠落→エラー、`success: false`→エラー）
+- [x] HTTP（429/403 → 1回で即エラー、500 → 再試行後に成功、タイムアウト → 再試行。呼び出し回数を assert）
+- [x] CLI（日本語文字列入出力、`ensure_ascii=False` 検証、出力にトークンが含まれない）
+- [x] キャッシュ（TestCacheKey 4件 / TestCacheFunctions 5件 / TestScoreTextWithCache 5件 / TestMainCache 3件）
+- 受け入れ条件: `pytest scripts/tests/test_genre_score.py -v` 全通過（61件）、実 API 呼び出しゼロ ✅
 
-### T3. ワークフロー `.github/workflows/genre-score.yml`
+### T3. ワークフロー `.github/workflows/genre-score.yml` ✅
 
-- [ ] `workflow_dispatch` のみ（自動トリガー禁止）
-- [ ] inputs: `text`（必須、既定「攻殻機動隊」）/ `genres`（任意、既定 sf,fantasy,cyberpunk,action）
-- [ ] 入力文字列は env（`GENRE_SCORE_TEXT` / `GENRE_SCORE_GENRES`）経由で渡し、シェルコードとして展開しない
-- [ ] secrets: `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_API_TOKEN`（ログ・成果物に出さない）
-- [ ] `permissions: {}`（書き込み権限不要）
-- [ ] Python 3.11 + `pip install -r scripts/requirements.txt`、CLI 実行、結果 JSON を artifact 保存（`if-no-files-found: ignore` + `if: always()`）
-- 受け入れ条件: `yaml.safe_load` で検証通过
+- [x] `workflow_dispatch` のみ（自動トリガー禁止）
+- [x] inputs: `text`（必須、既定「攻殻機動隊」）/ `genres`（任意、既定 sf,fantasy,cyberpunk,action）
+- [x] 入力文字列は env（`GENRE_SCORE_TEXT` / `GENRE_SCORE_GENRES`）経由で渡し、シェルコードとして展開しない
+- [x] secrets: `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_API_TOKEN`（ログ・成果物に出さない）
+- [x] `permissions: {}`（書き込み権限不要）
+- [x] Python 3.11 + `pip install -r scripts/requirements.txt`、CLI 実行、結果 JSON を artifact 保存（`if-no-files-found: ignore` + `if: always()`）
+- 受け入れ条件: `yaml.safe_load` で検証通過 ✅
 
-### T4. 記録更新（コミット前）
+### T4. 記録更新（コミット前）✅
 
-- [ ] `docs/ai/api-rate-limits.md` に Cloudflare Workers AI（無料枠 10,000 neurons/日、clef-flash=8182 neurons/M input tokens）を追加
-- [ ] 本タスクファイルの Status・Verification 更新
-- [ ] `plans.md` を Active → Completed Plans へ移動
-- [ ] `backlog.md` P2 #4 を削除
-- [ ] `current-task.md` の参照行を完了扱いへ更新
-- 受け入れ条件: Memory Bank 一貫性確認
+- [x] `docs/ai/api-rate-limits.md` に Cloudflare Workers AI（無料枠 10,000 neurons/日、clef-flash=8182 neurons/M input tokens）を追加
+- [x] 本タスクファイルの Status・Verification 更新
+- [x] `plans.md` を Active → Completed Plans へ移動
+- [x] `backlog.md` P2 #4 を削除
+- [x] `current-task.md` の参照行を完了扱いへ更新
+- 受け入れ条件: Memory Bank 一貫性確認 ✅
+
+## Verification
+
+- `pytest scripts/tests/ -v` → **261 passed** (3.52s)（既存 200 + 新規 61）
+- 実 API スモーク: "攻殻機動隊" → sf:84, fantasy:3, cyberpunk:86, action:47、elapsed 0.68s、usage: 678 input tokens
+- `python -c "import yaml; yaml.safe_load(open('.github/workflows/genre-score.yml', encoding='utf-8'))"` → OK
 
 ## 検証（コミット前）
 

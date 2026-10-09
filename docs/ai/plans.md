@@ -4,9 +4,11 @@
 
 # Active Plans
 
-- [2026-10-09] Clef-flash ジャンルスコアリング（backlog #4）: Cloudflare Workers AI の判断特化モデル `@cf/cloudflare/clef-flash` で、文字列の複数ジャンル（sf/fantasy/cyberpunk/action、設定変更可能・最大64問）への関連度を 0-100 整数スコアで取得する。独立 CLI `scripts/genre_score.py`（env `CLOUDFLARE_ACCOUNT_ID`/`CLOUDFLARE_API_TOKEN`、5xx のみ限定的に再試行、4xx・無料枠超過は再試行せず）+ 全モック単体テスト + `workflow_dispatch` のみ `.github/workflows/genre-score.yml`（入力文字列は env 経由で安全に渡す）。`generate_article.py` のジャンル選択への組み込みはスコープ外（別タスク）。API仕様は公式ドキュメント（clef-flash / rest-api / pricing）確認済み: レスポンスは `{result, success, errors}` envelope、score は浮動小数（probability-weighted, 5段階で0-4）、probabilities 取得可、無料枠 10,000 neurons/日（clef-flash=8182 neurons/M input tokens）。詳細・タスク切り分け: `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md`
+(なし)
 
 # Completed Plans
+
+- [2026-10-09] Clef-flash ジャンルスコアリング（backlog #4）: Cloudflare Workers AI の判断特化モデル `@cf/cloudflare/clef-flash` で、文字列の複数ジャンル（sf/fantasy/cyberpunk/action、設定変更可能・最大64問）への関連度を 0-100 整数スコアで取得する。独立 CLI `scripts/genre_score.py`（env `CLOUDFLARE_ACCOUNT_ID`/`CLOUDFLARE_API_TOKEN`、5xx のみ限定的に再試行、4xx・無料枠超過は再試行せず、SHA256キャッシュ `data/genre_scores/cache.json`、`--no-cache` フラグ）+ 全モック単体テスト61件 + `workflow_dispatch` のみ `.github/workflows/genre-score.yml`。`generate_article.py` 組み込みはスコープ外。2段構成（LLM→Clef-flash）は backlog P3 #1 に追記。実 API スモーク: "攻殻機動隊" → sf:84, fantasy:3, cyberpunk:86, action:47（0.68s）。pytest 261通過。詳細: `docs/ai/tasks/2026-10-09-clef-flash-genre-score.md`
 
 - [2026-10-09] リファインプロンプトに画像プロンプト形式チェックを追加: 2-passリファイナーの役割に「画像生成プロンプトの書式が正しいことの確認」を追加。2026-10-09実Gemini検証で書式逸脱（自然言語句等）がリファイナー（画像プロンプトを変更しないよう明示指示）を無修正通過しPython側フォールバック解析で黙って劣化することを確認。refine_story.txt / refine_tech.txt に「画像プロンプト形式チェック」新節を追加し、修正権限は形式のみに厳密限定（シーンの選定・配置・枚数・キーワードの意味・表情の意図・本文は変更不可）。コード変更不要、pytest 200通過。詳細: `docs/ai/tasks/2026-10-09-refiner-image-prompt-check.md`
 - [2026-10-09] ストーリー記事の章内複数画像を許可: kemono_storyの画像指示は「各章ごとに少なくとも1つ」でモデル出力も各章1枚固定だったため、展開が激しい・印象的なシーンでは章内で複数枚の挿入を許可する指示を1行追加（合計上限はヘッダー1+本文内最大7枚のまま不変、被り禁止ルールは維持）。コード変更不要。pytest 200通過。詳細: `docs/ai/tasks/2026-10-09-story-multi-images.md`
