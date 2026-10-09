@@ -30,10 +30,15 @@
 
 | # | 項目 | 難易度 | 効果 | 備考 |
 |---|------|--------|------|------|
-| 1 | ドラフト・トレンドファイルのクリーン処理 | ⭐ | 中 | `data/drafts/` と `data/topics/` の旧ファイルを期間ベースで削除 |
 | 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
 | 3 | アフィリエイトCTAカードのスリム化 + テキストリンクの統一・被り排除 | ⭐ | 中 | 現状CTAカード（`generate_article.py:1530-1533`「🔥 …の今すぐチェックできるおすすめアイテム / Amazonで確認する →」）とテキストリンク（`links_html`「Amazonで「kw」を探す」）で同一キーワードが重複表示される。カードの見た目をもっとスリムにし、テーマ関連商品のテキストリンクを全てこのカード形式に統一、キーワードの被りを排除 |
 | 5 | RSS取得の強化（description・本文一部を追加） | ⭐ | 中 | RSSからtitleだけでなく、description（summary）や本文の一部（先頭N文字程度）も取得して保存し、ジャンル判断・記事生成に活用。`fetch_topics.py` のRSSパーサーを修正 |
+
+## P2 (完了)
+
+| # | 項目 | 完了日 | 備考 |
+|---|------|--------|------|
+| 1 | ログ・メタファイルのクリーン処理（リネーム+期間削除） | 2026-10-10 | リネーム `affiliate_links`→`affiliate_logs`・`trend_usage`→`trend_usage_logs`（機能コード1行+`git mv`+`.gitkeep`）。`generate_article.py` に `_cleanup_old_logs()`（ファイル名タイムスタンプで30日前の `drafts/`・`trend_usage_logs/`・`affiliate_logs/`・`prompt_logs/` を削除、`generate_post()` 末尾で呼出）。`deploy.yml` 参照+コミットメッセージ更新。全モックテスト8件、pytest 305件通過。詳細: `tasks/2026-10-10-log-cleanup.md` |
 
 ## P3
 

@@ -2036,7 +2036,7 @@ def _auto_fetch_topics(prompt_type: str, categories: list[str], data: dict) -> d
 # --------------------------------------------------
 # Trend usage logging
 # --------------------------------------------------
-TREND_USAGE_DIR = "data/trend_usage"
+TREND_USAGE_DIR = "data/trend_usage_logs"
 
 def _save_trend_usage_log(log_data: dict):
     """
@@ -2116,7 +2116,7 @@ def _save_draft_metadata(
 # --------------------------------------------------
 # Affiliate link generation log
 # --------------------------------------------------
-AFFILIATE_LINKS_DIR = "data/affiliate_links"
+AFFILIATE_LINKS_DIR = "data/affiliate_logs"
 
 
 def _save_affiliate_link_log(
@@ -2141,6 +2141,58 @@ def _save_affiliate_link_log(
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(log_data, f, ensure_ascii=False, indent=2)
     print(f"[affiliate_log] リンク生成ログを保存: {filepath}")
+
+
+# --------------------------------------------------
+# Log / metadata cleanup (time-based)
+# --------------------------------------------------
+LOG_CLEANUP_DAYS = 30
+LOG_CLEANUP_DIRS = [
+    DRAFTS_DIR,
+    TREND_USAGE_DIR,
+    AFFILIATE_LINKS_DIR,
+    os.path.join("data", "prompt_logs"),
+]
+_LOG_TS_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}-\d{6})\.")
+
+
+def _cleanup_old_logs(days: int = LOG_CLEANUP_DAYS) -> int:
+    """
+    ログ・メタデータディレクトリから `days` 日より古いファイルを削除する。
+    ファイル名内のタイムスタンプ（%Y-%m-%d-%H%M%S）を基準とする。
+    これらはパイプラインから読み戻されない監査ログのため削除して安全。
+    タイムスタンプ形式に合わないファイルは削除対象外（安全側）。
+    削除したファイル数を返す。
+    """
+    cutoff = datetime.now(timezone(timedelta(hours=9))) - timedelta(days=days)
+    removed = 0
+    for dir_path in LOG_CLEANUP_DIRS:
+        if not os.path.isdir(dir_path):
+            continue
+        for name in os.listdir(dir_path):
+            if name == ".gitkeep":
+                continue
+            full = os.path.join(dir_path, name)
+            if not os.path.isfile(full):
+                continue
+            m = _LOG_TS_RE.match(name)
+            if not m:
+                continue
+            try:
+                file_time = datetime.strptime(m.group(1), "%Y-%m-%d-%H%M%S").replace(
+                    tzinfo=timezone(timedelta(hours=9))
+                )
+            except ValueError:
+                continue
+            if file_time < cutoff:
+                try:
+                    os.remove(full)
+                    removed += 1
+                except OSError as e:
+                    print(f"[cleanup] 削除に失敗: {full}: {e}")
+    if removed:
+        print(f"[cleanup] 古いログファイル {removed} 件を削除（{days}日前）")
+    return removed
 
 
 def _append_trending_topics(
@@ -3297,6 +3349,10 @@ def generate_post():
         f.write(content)
 
     print(f"🎉 記事が正常に生成されました: {filepath}")
+
+    # 7. 古いログのクリーンアップ（期間ベースで N 日前のファイルを削除）
+    _cleanup_old_logs()
+
 
 if __name__ == "__main__":
     generate_post()

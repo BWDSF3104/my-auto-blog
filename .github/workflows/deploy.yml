@@ -99,7 +99,7 @@ jobs:
           # Cache JSON (timestamped file + latest.json copy)
           [ -d "data/topics" ] && git add data/topics/
           # Trend usage logs
-          [ -d "data/trend_usage" ] && git add data/trend_usage/
+          [ -d "data/trend_usage_logs" ] && git add data/trend_usage_logs/
           # 2-pass draft metadata
           [ -d "data/drafts" ] && git add data/drafts/
            # Rakuten API product cache (30-day TTL)
@@ -113,7 +113,7 @@ jobs:
             git commit -m "docs: auto-generated daily post with image and draft metadata [skip ci]"
             # Staging again to catch any remaining unstaged changes (e.g. cleanup deletions)
             git add -A
-            git diff --staged --quiet || git commit -m "chore: cleanup old topic files [skip ci]"
+            git diff --staged --quiet || git commit -m "chore: cleanup old log and topic files [skip ci]"
             git pull --rebase || git pull --no-edit
             git push
           }          

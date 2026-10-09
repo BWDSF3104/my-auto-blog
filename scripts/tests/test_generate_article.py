@@ -65,6 +65,8 @@ from generate_article import (
     validate_and_fix_frontmatter,
     _save_draft_metadata,
     DRAFTS_DIR,
+    _cleanup_old_logs,
+    LOG_CLEANUP_DIRS,
     _rakuten_search,
     _generate_rakuten_card,
     _rakuten_is_relevant,
@@ -2215,6 +2217,136 @@ class TestSaveDraftMetadata:
                 data = json.load(f)
 
             assert data["pass1"]["content_line_count"] == 3
+
+
+# --------------------------------------------------
+# ログ・メタファイルの期間ベースクリーンアップ
+# --------------------------------------------------
+
+class TestCleanupOldLogs:
+    """Test time-based cleanup of log/metadata directories."""
+
+    @staticmethod
+    def _now_jst():
+        from datetime import datetime, timedelta, timezone
+        return datetime.now(timezone(timedelta(hours=9)))
+
+    @staticmethod
+    def _make_file(dir_path, ts, ext=".json", content="{}"):
+        f = dir_path / f"{ts}{ext}"
+        f.write_text(content, encoding="utf-8")
+        return f
+
+    def test_deletes_old_keeps_recent(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        old_ts = (now - timedelta(days=60)).strftime("%Y-%m-%d-%H%M%S")
+        recent_ts = now.strftime("%Y-%m-%d-%H%M%S")
+
+        d = tmp_path / "logs"
+        d.mkdir()
+        old_file = self._make_file(d, old_ts)
+        recent_file = self._make_file(d, recent_ts)
+
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+            removed = _cleanup_old_logs(days=30)
+
+        assert removed == 1
+        assert not old_file.exists()
+        assert recent_file.exists()
+
+    def test_keeps_all_recent(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        ts1 = now.strftime("%Y-%m-%d-%H%M%S")
+        ts2 = (now - timedelta(days=5)).strftime("%Y-%m-%d-%H%M%S")
+
+        d = tmp_path / "logs"
+        d.mkdir()
+        f1 = self._make_file(d, ts1)
+        f2 = self._make_file(d, ts2)
+
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+            removed = _cleanup_old_logs(days=30)
+
+        assert removed == 0
+        assert f1.exists()
+        assert f2.exists()
+
+    def test_never_deletes_gitkeep(self, tmp_path):
+        d = tmp_path / "logs"
+        d.mkdir()
+        (d / ".gitkeep").write_text("", encoding="utf-8")
+
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+            removed = _cleanup_old_logs(days=30)
+
+        assert removed == 0
+        assert (d / ".gitkeep").exists()
+
+    def test_skips_non_timestamp_files(self, tmp_path):
+        d = tmp_path / "logs"
+        d.mkdir()
+        weird = self._make_file(d, "no-timestamp-here", ext=".json")
+
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+            removed = _cleanup_old_logs(days=30)
+
+        assert removed == 0
+        assert weird.exists()
+
+    def test_missing_dir_no_error(self, tmp_path):
+        missing = str(tmp_path / "does-not-exist")
+        with patch("generate_article.LOG_CLEANUP_DIRS", [missing]):
+            removed = _cleanup_old_logs(days=30)
+        assert removed == 0
+
+    def test_multiple_dirs(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        old_ts = (now - timedelta(days=90)).strftime("%Y-%m-%d-%H%M%S")
+        recent_ts = now.strftime("%Y-%m-%d-%H%M%S")
+
+        d1 = tmp_path / "a"
+        d2 = tmp_path / "b"
+        d1.mkdir()
+        d2.mkdir()
+        old_a = self._make_file(d1, old_ts)
+        recent_b = self._make_file(d2, recent_ts)
+
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d1), str(d2)]):
+            removed = _cleanup_old_logs(days=30)
+
+        assert removed == 1
+        assert not old_a.exists()
+        assert recent_b.exists()
+
+    def test_custom_days_threshold(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        ts_45 = (now - timedelta(days=45)).strftime("%Y-%m-%d-%H%M%S")
+
+        d = tmp_path / "logs"
+        d.mkdir()
+        f = self._make_file(d, ts_45)
+
+        # 30日基準なら削除対象、60日基準なら保持
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+            assert _cleanup_old_logs(days=30) == 1
+            assert not f.exists()
+
+        f2 = self._make_file(d, ts_45)
+        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+            assert _cleanup_old_logs(days=60) == 0
+            assert f2.exists()
+
+    def test_log_cleanup_dirs_covers_renamed_dirs(self):
+        """リネーム後のログディレクトリがクリーンアップ対象に含まれること。"""
+        dirs = [os.path.normpath(p) for p in LOG_CLEANUP_DIRS]
+        assert any(p.endswith("drafts") for p in dirs)
+        assert any(p.endswith("trend_usage_logs") for p in dirs)
+        assert any(p.endswith("affiliate_logs") for p in dirs)
+        assert any(p.endswith("prompt_logs") for p in dirs)
 
 
 # --------------------------------------------------
