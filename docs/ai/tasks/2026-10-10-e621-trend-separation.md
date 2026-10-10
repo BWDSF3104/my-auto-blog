@@ -54,9 +54,10 @@ e621 のデータは「キャラクター特徴の集計（`data/character_featu
 - `pytest scripts/tests/ -v` → **349 passed**（ベースライン 348 + 新規回帰 1）
 - e621 関連テスト: `test_e621_from_previous_never_inherited` 含む全通過
 - Astro 変更なし → `npm run build` 不要（AGENTS.md「Python のみ変更 → pytest」）
-- `fetch_topics.py` 更新後の `test_real_apis.py --save` は未実行（e621 の収集挙動は不変・集計のみ。必要なら次回実行時）
+- e621 ライブ検証（一時ファイル出力、追跡ファイル不変）: 8 タグクエリ取得成功、NSFW 3 件フィルタ、**18 件収集**、集計保存成功（species:107 / colors:36 / physical:237 / characters:24 / copyrights:16 / artists:16）。出力スキーマは既存 `character_features.json`（トップキー・post キー）と完全一致 → キャラクター特徴抽出経路への影響なし
+- `fetch_topics.py` 更新後の `test_real_apis.py --save` は未実行（e621 の API 呼び出し経路は diff で不変確認済・集計のみ。必要なら次回実行時）
 
 ## Next Action
 
-- **コミット**: ユーザー判断待ち（コード 2 + テスト 2 + data 12 + Memory Bank 群）
+- **コミット**: `611a28e`（commit + push 実施。変更ファイルが deploy-only.yml の paths（`src/**` 等）に該当しないため自動デプロイなし・deploy 確認不要）
 - merge 構造ドリフトの一般問題（e621 以外）は backlog P3 #7 で継続
