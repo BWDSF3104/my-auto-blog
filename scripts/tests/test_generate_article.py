@@ -2547,11 +2547,12 @@ class TestAppendTrendingTopicsGenre:
              patch.object(generate_article, "_save_trend_usage_log"), \
              patch.object(generate_article, "_check_topics_ttl", return_value=False), \
              patch.object(generate_article, "_check_per_source_ttl", return_value={}):
-            result, keywords, urls = generate_article._append_trending_topics(
+            result, keywords, urls, titles = generate_article._append_trending_topics(
                 "", "kemono_story", target_genres=["sf"]
             )
         assert "sf topic" in result
         assert "https://sf.com" in urls
+        assert titles == ["sf topic（rss）", "fantasy topic（rss）"]
 
     def test_no_genre_scores_falls_back_to_random(self, tmp_path):
         import generate_article
@@ -2573,10 +2574,11 @@ class TestAppendTrendingTopicsGenre:
              patch.object(generate_article, "_save_trend_usage_log"), \
              patch.object(generate_article, "_check_topics_ttl", return_value=False), \
              patch.object(generate_article, "_check_per_source_ttl", return_value={}):
-            result, keywords, urls = generate_article._append_trending_topics(
+            result, keywords, urls, titles = generate_article._append_trending_topics(
                 "", "kemono_story", target_genres=["sf"]
             )
         assert "any topic" in result
+        assert titles == ["any topic（rss）"]
 
 
 class TestAppendTrendingTopicsDescription:
@@ -2605,7 +2607,7 @@ class TestAppendTrendingTopicsDescription:
              patch.object(generate_article, "_save_trend_usage_log"), \
              patch.object(generate_article, "_check_topics_ttl", return_value=False), \
              patch.object(generate_article, "_check_per_source_ttl", return_value={}):
-            result, _, _ = generate_article._append_trending_topics("", "kemono_story")
+            result, _, _, _ = generate_article._append_trending_topics("", "kemono_story")
         assert "Game news" in result
         assert desc[:100] in result
         assert " — " in result
@@ -2621,7 +2623,7 @@ class TestAppendTrendingTopicsDescription:
              patch.object(generate_article, "_save_trend_usage_log"), \
              patch.object(generate_article, "_check_topics_ttl", return_value=False), \
              patch.object(generate_article, "_check_per_source_ttl", return_value={}):
-            result, _, _ = generate_article._append_trending_topics("", "kemono_story")
+            result, _, _, _ = generate_article._append_trending_topics("", "kemono_story")
         assert "Plain topic" in result
         assert " — " not in result
 
@@ -2637,7 +2639,7 @@ class TestAppendTrendingTopicsDescription:
              patch.object(generate_article, "_save_trend_usage_log"), \
              patch.object(generate_article, "_check_topics_ttl", return_value=False), \
              patch.object(generate_article, "_check_per_source_ttl", return_value={}):
-            result, _, _ = generate_article._append_trending_topics("", "kemono_story")
+            result, _, _, _ = generate_article._append_trending_topics("", "kemono_story")
         assert " — " + "あ" * 100 in result
         assert "あ" * 101 not in result
 
@@ -2657,6 +2659,83 @@ class TestAppendTrendingTopicsDescription:
             generate_article._append_trending_topics("", "kemono_story")
         log = mock_log.call_args[0][0]
         assert log["selected"][0]["description"] == "あ" * 200
+
+
+class TestBuildGenerationInfoSection:
+    """_build_generation_info_section() のテスト"""
+
+    KEMONO_PARAMS = {
+        "char_types": ["猫耳獣人", "犬耳獣人"],
+        "char_type": "猫耳獣人 / 犬耳獣人",
+        "world_setting_key": "fantasy",
+        "world_setting": "ファンタジー",
+        "transform_key": "tf",
+        "transform_text": "、TF(変身・変形)",
+        "relationship_key": "partnership",
+        "relationship_text": "相棒関係",
+        "extra_key": "rival",
+        "extra_tag": "ライバル関係",
+        "char_count": 2,
+    }
+
+    def test_kemono_full(self):
+        import generate_article
+        content = '---\ntitle: "x"\ncharacter_1: "cat_ears"\ncharacter_2: "dog_ears"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            ["Game news（GameSpot RSS）"], "kemono_story", self.KEMONO_PARAMS, content
+        )
+        assert '<details class="gen-info">' in section
+        assert "🤖 生成情報" in section
+        assert "Game news（GameSpot RSS）" in section
+        assert "猫耳獣人 / 犬耳獣人" in section
+        assert "ファンタジー" in section
+        assert "TF（変身・変形）" in section
+        assert "相棒関係" in section
+        assert "ライバル関係" in section
+        assert "cat_ears" in section
+        assert "dog_ears" in section
+
+    def test_transform_none_shows_nashi(self):
+        import generate_article
+        params = dict(self.KEMONO_PARAMS, transform_key="none", transform_text="")
+        content = '---\ntitle: "x"\ncharacter_1: "cat_ears"\ncharacter_2: "dog_ears"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            [], "kemono_story", params, content
+        )
+        assert "なし" in section
+
+    def test_extra_none_omitted(self):
+        import generate_article
+        params = dict(self.KEMONO_PARAMS, extra_key="none", extra_tag="")
+        content = '---\ntitle: "x"\ncharacter_1: "cat_ears"\ncharacter_2: "dog_ears"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            [], "kemono_story", params, content
+        )
+        assert "追加設定" not in section
+
+    def test_trend_only_non_kemono(self):
+        import generate_article
+        content = '---\ntitle: "x"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            ["AI news（GitHub）"], "default", {}, content
+        )
+        assert "使用したトレンド情報" in section
+        assert "キャラクターデータ" not in section
+
+    def test_empty_returns_empty_string(self):
+        import generate_article
+        content = '---\ntitle: "x"\n---\n\nbody'
+        assert generate_article._build_generation_info_section([], "default", {}, content) == ""
+
+    def test_html_escaped(self):
+        import generate_article
+        content = '---\ntitle: "x"\ncharacter_1: "cat & <dog>"\ncharacter_2: ""\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            ['<script>alert("x")</script>（rss）'], "kemono_story", self.KEMONO_PARAMS, content
+        )
+        assert "<script>" not in section
+        assert "&lt;script&gt;" in section
+        assert "cat &amp; &lt;dog&gt;" in section
 
 
 class TestLoadCharacterFeaturesGenre:

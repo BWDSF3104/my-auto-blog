@@ -2,6 +2,23 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-10: 記事末尾の「生成情報」セクションは Python 側で本文に直接追記
+
+**Decision**: 記事末尾の「生成情報」セクション（使用したトレンド情報＋キャラデータ）は `generate_article.py` が `<details class="gen-info">` HTML を生成し、本文末尾に直接追記する。frontmatter に新フィールドを追加して Layout 側で描画する方式は採用しない。`_append_trending_topics()` は第4要素としてクリーンなトレンドタイトル（`"{title}（{source}）"` 形式）を返すよう 3→4 タプル化。変身ラベルは `transform_text`（「、」接頭のプロンプト結合文字列）をそのまま表示せず `_KEMONO_TRANSFORM_LABEL` 定数で分離。表示要素が一切ない記事はセクション非表示（空文字列）。
+
+**Reason**: (1) ユーザーが「生成情報の作成はPythonスクリプト側で行う」と明示したため。(2) セクションを本文に直接入れることで既存記事への影響がゼロになりバックフィルが不要になる（frontmatter 方式なら Layout に表示条件分岐を追加し、既存記事との差分管理が必要）。(3) 保存直前の単一箇所に追記処理を置けるため、FAQ / speakable / 内部リンク等の本文解析ロジックとの干渉を避けやすい（それらはすべて追記前に実行済み）。(4) `<details>` + h2〜h4 不使用で TOC・JSON-LD・関連記事スコアリング（frontmatter 基準）に影響しない。
+
+**Rejected Alternatives**:
+- frontmatter 拡張（`trend_topics` / `char_type` 等）+ PostLayout 描画: 設計検討当初の方式。Layout に表示条件・セクション描画を追加する必要があり、ユーザーの Python 側生成指示により不採用
+- プロンプトに指示して Gemini が本文末尾へセクション出力: モデル依存で形式・文言が安定しない（HTML 生成指示は従来 NG 指示対象）のため不採用
+
+**Impact**:
+- `scripts/generate_article.py`: `import html`、`_KEMONO_TRANSFORM_LABEL` 新設、`_append_trending_topics()` 3→4 タプル化（全4 return 更新）、`_build_generation_info_section()` 新設、`generate_post()` に 5.8 追記処理（保存直前）
+- `src/layouts/PostLayout.astro`: `.gen-info` 系 CSS を `<style is:global>` に追加（描画ロジック変更なし）
+- `scripts/tests/test_generate_article.py`: 4 タプル unpack 5 箇所更新 + `TestBuildGenerationInfoSection` 6 件新規
+- pytest 355 passed（ベースライン 349 + 新規 6）。一時記事での build 検証で本文末尾配置・既定閉・TOC 非載入を確認
+- 既存記事: 影響なし（セクション非存在＝非表示）。次回 deploy 以降に生成される記事のみ表示
+
 ## 2026-10-10: e621 データのトレンド配管からの分離
 
 **Decision**: e621 をトレンドトピック出力（`data/topics/latest.json`）から完全に排除する。収集自体は継続（キャラクター特徴集計用）。`fetch_topics.py` に `NON_TREND_SOURCES = {"e621"}` 定数を新設し、`collect_e621()` はトレンド項目を組立せず収集数を `int` で返すのみ、`main()` は出力構築前に `sources` / `merged_by_category` / `all_topics_merged` を `NON_TREND_SOURCES` でフィルタする。

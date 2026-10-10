@@ -1,5 +1,6 @@
 import os
 import glob
+import html
 import json
 import random
 from dotenv import load_dotenv
@@ -185,6 +186,14 @@ _KEMONO_TRANSFORM_TEXT = {
     "tf": "、TF(変身・変形)",
     "tsf": "、TSF（性転換フィクション）",
     "tf+tsf": "、TF・TSF",
+}
+
+# 生成情報セクション用のクリーンな変身ラベル（プロンプト表示用の "、" 接頭文字列は表示に不適のため別定数）
+_KEMONO_TRANSFORM_LABEL = {
+    "none": "なし",
+    "tf": "TF（変身・変形）",
+    "tsf": "TSF（性転換フィクション）",
+    "tf+tsf": "TF・TSF",
 }
 
 _KEMONO_RELATIONSHIP_TEXT = {
@@ -2231,7 +2240,7 @@ def _append_trending_topics(
     ng_instruction: str,
     prompt_type: str,
     target_genres: list[str] | None = None,
-) -> tuple[str, list[str], list[str]]:
+) -> tuple[str, list[str], list[str], list[str]]:
     """
     data/topics/latest.json が存在する場合、prompt_type に応じたカテゴリの
     トレンドタイトルを選択して ng_instruction の末尾へ付加する。
@@ -2240,6 +2249,8 @@ def _append_trending_topics(
     Per-source TTL で期限切れのカテゴリがある場合は自動再取得を試みる。
     第2要素としてアフィリエイト用のトレンドキーワードリストを返す。
     第3要素として frontmatter 用のソースURLリストを返す。
+    第4要素として生成情報セクション用のクリーンなトレンドタイトルリスト
+    （"{title}（{source}）" 形式）を返す。
     ファイルが存在しない場合は元の ng_instruction と空リストを返す。
     """
     if not os.path.exists(TOPICS_JSON_PATH):
@@ -2253,7 +2264,7 @@ def _append_trending_topics(
             "affiliate_keywords": [],
             "trend_source_urls": [],
         })
-        return ng_instruction, [], []
+        return ng_instruction, [], [], []
 
     try:
         with open(TOPICS_JSON_PATH, "r", encoding="utf-8") as f:
@@ -2269,7 +2280,7 @@ def _append_trending_topics(
             "affiliate_keywords": [],
             "trend_source_urls": [],
         })
-        return ng_instruction, [], []
+        return ng_instruction, [], [], []
 
     # prompt_type に合わせてカテゴリを選択（カテゴリ厳格化）
     if prompt_type in ("kemono_story", "novel", "story"):
@@ -2299,6 +2310,7 @@ def _append_trending_topics(
     selected_titles: list[str] = []
     affiliate_keywords: list[str] = []
     trend_source_urls: list[str] = []
+    trend_topic_titles: list[str] = []
     story_mode = prompt_type in ("kemono_story", "novel", "story")
 
     # Log tracking variables
@@ -2343,6 +2355,7 @@ def _append_trending_topics(
             if desc:
                 line += f" — {desc[:100]}"
             selected_titles.append(line)
+            trend_topic_titles.append(f"{title}（{source}）" if source else title)
             if url:
                 trend_source_urls.append(url)
             selected_items.append({
@@ -2405,7 +2418,7 @@ def _append_trending_topics(
     })
 
     if not selected_titles:
-        return ng_instruction, affiliate_keywords, trend_source_urls
+        return ng_instruction, affiliate_keywords, trend_source_urls, trend_topic_titles
 
     trend_block = (
         "\n\n【参考：今日のトレンドトピック（インスピレーション源として活用してください）】\n"
@@ -2414,7 +2427,78 @@ def _append_trending_topics(
     print(f"[topics] {len(selected_titles)} 件のトレンドをプロンプトに注入しました")
     if affiliate_keywords:
         print(f"[affiliate] {len(affiliate_keywords)} 件のトレンドキーワードを抽出しました")
-    return ng_instruction + trend_block, affiliate_keywords, trend_source_urls
+    return ng_instruction + trend_block, affiliate_keywords, trend_source_urls, trend_topic_titles
+
+
+def _build_generation_info_section(
+    trend_topic_titles: list[str],
+    prompt_type: str,
+    kemono_params: dict,
+    content: str,
+) -> str:
+    """
+    記事本文末尾に追記する「生成情報」セクションの HTML を組立する。
+    使用したトレンド情報（タイトル＋ソース）とキャラクターデータ
+    （体型 / 世界設定 / 変身 / 関係性 / 追加設定 + キャラクタータグ）を表示する。
+    h2〜h4 を使わない `<details>` 折りたたみ構造のため TOC には載らない。
+    表示すべき内容が一切ない場合は空文字列を返す（セクション非表示）。
+    """
+    char1 = _extract_fm_field(content, "character_1")
+    char2 = _extract_fm_field(content, "character_2")
+
+    setting_rows: list[tuple[str, str]] = []
+    if prompt_type == "kemono_story" and kemono_params:
+        setting_rows.append(("体型", kemono_params.get("char_type", "")))
+        setting_rows.append(("世界設定", kemono_params.get("world_setting", "")))
+        transform_label = _KEMONO_TRANSFORM_LABEL.get(
+            kemono_params.get("transform_key", "none"), "なし"
+        )
+        setting_rows.append(("変身", transform_label))
+        setting_rows.append(("関係性", kemono_params.get("relationship_text", "")))
+        if kemono_params.get("extra_key", "none") != "none":
+            setting_rows.append(("追加設定", kemono_params.get("extra_tag", "")))
+
+    if not trend_topic_titles and not setting_rows and not char1 and not char2:
+        return ""
+
+    parts: list[str] = [
+        '<details class="gen-info">',
+        '  <summary class="gen-info-summary">🤖 生成情報</summary>',
+        '  <div class="gen-info-body">',
+        '    <p class="gen-info-note">この記事はAIパイプラインによる自動生成記事です。</p>',
+    ]
+
+    if trend_topic_titles:
+        items = "\n".join(f"      <li>{html.escape(t)}</li>" for t in trend_topic_titles)
+        parts += [
+            '    <div class="gen-info-block">',
+            '      <p class="gen-info-block-title">使用したトレンド情報</p>',
+            f'      <ul class="gen-info-list">\n{items}\n      </ul>',
+            '    </div>',
+        ]
+
+    data_rows: list[str] = []
+    for label, value in setting_rows:
+        if value:
+            data_rows.append(
+                f'      <div><dt>{html.escape(label)}</dt><dd>{html.escape(value)}</dd></div>'
+            )
+    if char1:
+        data_rows.append(f'      <div><dt>キャラクター1</dt><dd>{html.escape(char1)}</dd></div>')
+    if char2:
+        data_rows.append(f'      <div><dt>キャラクター2</dt><dd>{html.escape(char2)}</dd></div>')
+    if data_rows:
+        parts += [
+            '    <div class="gen-info-block">',
+            '      <p class="gen-info-block-title">キャラクターデータ</p>',
+            '      <dl class="gen-info-dl">',
+            "\n".join(data_rows),
+            '      </dl>',
+            '    </div>',
+        ]
+
+    parts += ['  </div>', '</details>']
+    return "\n".join(parts)
 
 
 def _extract_affiliate_keyword(title: str) -> str | None:
@@ -3132,7 +3216,7 @@ def generate_post():
     target_genres = WORLD_SETTING_GENRE_MAP.get(kemono_params.get("world_setting_key", ""), []) or None
 
     # 1.6. 収集済みトレンドトピックをプロンプトに注入（ジャンル適合度で優先選択）
-    ng_instruction, trend_keywords, trend_source_urls = _append_trending_topics(
+    ng_instruction, trend_keywords, trend_source_urls, trend_topic_titles = _append_trending_topics(
         ng_instruction, prompt_type, target_genres=target_genres
     )
 
@@ -3374,6 +3458,14 @@ def generate_post():
                 flags=re.MULTILINE,
             )
             print(f"📝 記述を補正: {len(desc)}→{len(corrected)}文字")
+
+    # 5.8 本文末尾に生成情報セクションを追記（トレンド情報＋キャラクターデータ）
+    gen_section = _build_generation_info_section(
+        trend_topic_titles, prompt_type, kemono_params, content
+    )
+    if gen_section:
+        content = content.rstrip() + "\n\n" + gen_section + "\n"
+        print(f"🤖 生成情報セクションを追記: {len(trend_topic_titles)}件のトレンド情報")
 
     # 6. 保存
     output_dir = "src/content/posts"
