@@ -8,15 +8,17 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- `docs/ai/tasks/2026-10-10-world-setting-expansion.md` - 世界設定の2段階拡大（7→12種・アンカワーク基準、スコアリングgenre 7種化）。**完了・コミット未実施** (2026-10-10)
+- `docs/ai/tasks/2026-10-10-world-setting-expansion.md` - 世界設定の2段階拡大（7→12種・アンカワーク基準、スコアリングgenre 7種化）。**完了** (2026-10-10)
   - **実装内容**: 世界設定 +5（isekai 10 / modern 10 / space_opera 7 / dungeon_crawl 6 / historical 5、既存再配分で合計100維持）。`WORLD_SETTING_GENRE_MAP` に5件追加（isekai/dungeon_crawl→[fantasy, action]、modern→[slice_of_life, action, mystery]、space_opera→[sf, action]、historical→[historical]）。`genre_score.py` に `historical` genre 追加（7種）+ 専用instruction。`genre-score.yml` の genres デフォルト更新
   - **Verification** (2026-10-10): `pytest scripts/tests/` → **315 passed** (4.08s)。実APIスモーク: "戦国武将"→historical:80、"スターフォックス"→action:69/sf:40
-  - **Next Action**: なし（前件と併せてコミット指示待ち）
+  - **コミット**: `dde9c5b`（commit + push 実施。リモートの自動 deploy コミット 2 件は stash → fast-forward pull → stash pop で取り込み（競合なし・マージコミットなし）。変更ファイルが deploy-only.yml の paths（`src/**` 等）に該当しないため自動デプロイなし・deploy 確認不要）
+  - **Next Action**: なし
 
-- `docs/ai/tasks/2026-10-10-genre-expansion.md` - ストーリー系ジャンル拡大（世界設定7種・スコアリングgenre6種へ一括変更）。**完了・コミット未実施** (2026-10-10)
+- `docs/ai/tasks/2026-10-10-genre-expansion.md` - ストーリー系ジャンル拡大（世界設定7種・スコアリングgenre6種へ一括変更）。**完了** (2026-10-10)
   - **実装内容**: `genre_score.py` の `DEFAULT_GENRES` を6種化（+slice_of_life/mystery、専用instruction）。`generate_article.py` の世界設定を7種化（+cyberpunk 12 / +adventure 8 / +mystery 5、fantasy 35→30 / slice_of_life 25→22 / sf 20→15 / fantasy+sf 20→8）+ `WORLD_SETTING_GENRE_MAP` に3件追加・`slice_of_life` を `[action]`→`[slice_of_life]` に修正（意味逆転解消）+ `_KEMONO_WORLD_TAGS` に3件追加
   - **Verification** (2026-10-10): `pytest scripts/tests/` → **308 passed** (3.81s)。実APIスモーク: "攻殻機動隊"→sf:81/cyberpunk:81/mystery:34/slice_of_life:16（1021 tokens≈8neurons）、"日常 四葉の妹"→slice_of_life:85（新genreのinstruction動作確認）
-  - **Next Action**: 次回deployで全件再スコアリング発生（一次性コスト、138 calls≈31s、無料枠内）
+  - **コミット**: `dde9c5b`（12種拡大と同一コミットに集約）
+  - **Next Action**: 次回deployで全件再スコアリング発生（一次性コスト、7-genre版、無料枠内）
 
 - `docs/ai/tasks/2026-10-10-log-cleanup.md` - ログ・メタファイルのクリーン処理（リネーム+期間削除、backlog P2 #1）。**完了** (2026-10-10)
   - **実装内容**: `data/affiliate_links`→`affiliate_logs`・`data/trend_usage`→`trend_usage_logs` に `git mv`（`.gitkeep` 追加）。`generate_article.py` の `TREND_USAGE_DIR` / `AFFILIATE_LINKS_DIR` 定数と `deploy.yml` の `git add` 参照を新名称に更新。`_cleanup_old_logs(days=30)` 新設（ファイル名タイムスタンプ基準で `drafts/`・`trend_usage_logs/`・`affiliate_logs/`・`prompt_logs/` から30日前ファイルを削除、`.gitkeep`・タイムスタンプ外ファイルは削除対象外、非致命）を `generate_post()` 末尾で呼出。`deploy.yml` 第2コミットメッセージを「cleanup old log and topic files」に更新
