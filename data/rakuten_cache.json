@@ -112,5 +112,16 @@
       "reviewCount": 31
     },
     "hits": 3
+  },
+  "ケモノ BL": {
+    "fetched_at": "2026-10-10T02:21:12.122112+00:00",
+    "product": {
+      "itemName": "バケモノの子 Blu-ray スタンダード・エディション（本編ディスク＋特典映像ディスク）【Blu-ray】 [ 役所広司 ]",
+      "itemPrice": 5104,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F13477275%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F17690217%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4082/4988021714082.jpg?_ex=128x128",
+      "reviewCount": 5
+    },
+    "hits": 3
   }
 }
