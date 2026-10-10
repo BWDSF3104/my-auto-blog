@@ -25,7 +25,7 @@ Collects trending topics from multiple sources:
 |--------|-----|----------|--------|-------|
 | HackerNews | Firebase API | tech | ✅ Active | |
 | Reddit | .json endpoint | kemono/pokemon/tech | ⏸️ Disabled | 403 Blocked (2026-10-06 コメントアウト) |
-| e621 | REST API | kemono/pokemon | ✅ Active | キャラクター特徴集計のみ。ストーリーインスピレーション注入は除外 |
+| e621 | REST API | —（トレンド出力に含めない） | ✅ Active | キャラクター特徴集計のみ。2026-10-10 以降トレンド配管から分離（`latest.json` に入れない、`NON_TREND_SOURCES` ガード） |
 | RSS (Zenn/Qiita) | xml.etree.ElementTree | tech | ✅ Active | |
 | RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters) | xml.etree.ElementTree | pokemon | ✅ Active | |
 | GitHub | Search API | kemono/pokemon | ✅ Active | 未認証 60req/h |
@@ -37,8 +37,8 @@ Collects trending topics from multiple sources:
 
 **カテゴリ別ソース構成:**
 - **tech**: HackerNews, RSS (Zenn/Qiita)
-- **kemono**: e621（キャラクター特徴のみ）, GitHub, GameSpot, IGN, Anime News Network, Crunchyroll
-- **pokemon**: e621, GitHub, RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters)
+- **kemono**: GitHub, GameSpot, IGN, Anime News Network, Crunchyroll
+- **pokemon**: GitHub, RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters)
 
 Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
 - `fetched_at`: Run start ISO timestamp
@@ -48,7 +48,7 @@ Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
 
 Category-based source filtering: each source can be configured to collect for specific categories. e621 is filtered by NSFW rating at collection time. Per-source TTL allows `generate_article.py` to auto-trigger `fetch_topics.py --prompt-type X` when needed categories are stale.
 
-e621 is excluded from story inspiration injection in `_append_trending_topics()` (story mode filters out all e621 sources). e621 data is used only for character feature aggregation (`_aggregate_and_save_character_features`).
+Since 2026-10-10, e621 is separated from the trend pipeline: `collect_e621()` collects posts for character feature aggregation only (no trend topics), and `main()` filters `latest.json` output via the `NON_TREND_SOURCES` constant (covers the merge-inheritance path from previous data as well). e621 data is used only for character feature aggregation (`_aggregate_and_save_character_features` → `data/character_features.json`).
 
 ### Article Generation (`scripts/generate_article.py`)
 

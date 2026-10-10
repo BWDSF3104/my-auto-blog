@@ -978,13 +978,13 @@ class TestCheckPerSourceTTL:
         JST = timezone(timedelta(hours=9))
         old = (datetime.now(JST) - timedelta(hours=48)).isoformat()
         data = self._make_data({
-            "e621": {
+            "reddit": {
                 "fetched_at": old,
-                "topics": [{"title": "T", "category": "kemono", "source": "e621"}],
+                "topics": [{"title": "T", "category": "kemono", "source": "reddit"}],
             }
         })
         result = _check_per_source_ttl(data, ["tech"])
-        assert result["e621"] is False  # 他カテゴリ専属 → 自動fetch のトリガーにしない
+        assert result["reddit"] is False  # 他カテゴリ専属 → 自動fetch のトリガーにしない
 
     def test_other_category_source_mixed_with_fresh_in_scope(self):
         """他カテゴリ専属 source と対象内 source が混在する場合、他カテゴリ側は False"""

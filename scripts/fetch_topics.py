@@ -3,7 +3,7 @@ fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収
 
 収集先:
   1. Hacker News       : Firebase API (認証不要・CORS対応) [tech]
-  2. e621              : REST API の公開検索 (User-Agent 必要) [kemono/pokemon]
+  2. e621              : REST API の公開検索 (User-Agent 必要) [kemono/pokemon] ※キャラクター特徴集計のみ（トレンドトピックには結合しない）
   3. RSS 各種          : Zenn / Qiita / PokéCommunity / PokeBeach など [tech/pokemon]
   4. GitHub Search     : REST API (未認証 60req/h) [kemono/pokemon]
   5. GameSpot RSS      : RSS解析（description取得） [kemono]
@@ -60,7 +60,7 @@ REDDIT_SUBS = [
 ]
 
 # e621 タグ検索 (公開 GET / 認証不要)
-# order:date = 最新順, order:score = 人気順 (トレンド作品追跡用)
+# order:date = 最新順, order:score = 人気順 (キャラクター特徴のカバレッジ確保用)
 # rating:safe または rating:questionable に限定して NSFW フィルタ回避
 E621_TAGS = [
     {"tags": "kemono rating:safe order:date", "category": "kemono"},
@@ -79,6 +79,10 @@ CHARACTER_FEATURES_PATH = os.path.join(PROJECT_DIR, "data", "character_features.
 # e621 タグのカテゴリ分類（キャラクター特徴抽出用）
 # species: 種族, general: 身体的特徴・色, character: キャラクター名, copyright: 作品名
 CHARACTER_FEATURE_CATEGORIES = ["species", "general", "character", "copyright", "artist"]
+
+# トレンド出力に結合しない source（latest.json から常に除外）
+# e621: キャラクター特徴集計専用（2026-10-10 トレンド配管から分離）
+NON_TREND_SOURCES = {"e621"}
 
 # RSS フィード一覧
 RSS_FEEDS = [
@@ -515,12 +519,15 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
     print(f"  [char-features] 特徴集計を保存しました ({len(raw_tags)} posts / species:{len(species_counter)}, colors:{len(color_counter)}, physical:{len(physical_counter)}, characters:{len(character_counter)}, copyrights:{len(copyright_counter)}, artists:{len(artist_counter)})")
 
 
-def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[dict]:
-    """e621 の公開 REST API で最新投稿を取得する（認証不要）。NSFW 投稿はフィルタする。"""
+def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> int:
+    """e621 の公開 REST API で最新投稿を取得する（認証不要）。NSFW 投稿はフィルタする。
+    キャラクター特徴集計（character_features.json）専用。トレンドトピックには結合しない。
+    収集した投稿件数を返す。
+    """
     headers = {"User-Agent": USER_AGENT}
-    results = []
     filtered = 0
     raw_tags = []
+    collected = 0
 
     for tag_config in E621_TAGS:
         tag_query = tag_config["tags"]
@@ -549,17 +556,7 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
                 filtered += 1
                 continue
             pid = post.get("id")
-            tags_general = post.get("tags", {}).get("general", [])
-            species_tags = post.get("tags", {}).get("species", [])
-            tag_summary = ", ".join((tags_general + species_tags)[:8])
-            results.append({
-                "title": f"e621 post #{pid}: {tag_summary}",
-                "url": f"https://e621.net/posts/{pid}",
-                "score": post.get("score", 0) if isinstance(post.get("score"), (int, float)) else post.get("score", {}).get("total", 0),
-                "source": "e621",
-                "category": cat,
-                "rating": post.get("rating", "q"),
-            })
+            collected += 1
             # 生タグを保存（キャラクター特徴集計用）
             raw_tags.append({
                 "post_id": pid,
@@ -569,13 +566,13 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> list[d
 
     if filtered:
         print(f"  [NSFW] {filtered} 件の投稿をフィルタしました")
-    print(f"  -> {len(results)} e621 posts collected")
+    print(f"  -> {collected} e621 posts collected (キャラクター特徴集計のみ)")
 
     # キャラクター特徴を集計して保存
     if raw_tags:
         _aggregate_and_save_character_features(raw_tags)
 
-    return results
+    return collected
 
 
 def _safe_print(text: str) -> None:
@@ -885,9 +882,9 @@ def main():
     # except Exception as e:
     #     print(f"[ERROR] Reddit: {e}")
 
-    # 3. e621
+    # 3. e621（キャラクター特徴集計のみ。トレンドトピックには結合しない）
     try:
-        all_topics.extend(collect_e621(limit_per_tag=5, categories=categories))
+        collect_e621(limit_per_tag=5, categories=categories)
     except Exception as e:
         print(f"[ERROR] e621: {e}")
 
@@ -975,6 +972,12 @@ def main():
     for src, src_data in sources.items():
         if src not in {t.get("source") for t in all_topics}:
             all_topics_merged.extend(src_data.get("topics", []))
+
+    # 非トレンド source（e621 等）: 前回データに混入していても出力から除外（merge 継承ドリフト防止）
+    sources = {src: src_data for src, src_data in sources.items() if src not in NON_TREND_SOURCES}
+    for cat in merged_by_category:
+        merged_by_category[cat] = [t for t in merged_by_category[cat] if t.get("source") not in NON_TREND_SOURCES]
+    all_topics_merged = [t for t in all_topics_merged if t.get("source") not in NON_TREND_SOURCES]
 
     output = {
         "fetched_at": now.isoformat(),

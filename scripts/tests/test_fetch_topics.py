@@ -133,7 +133,7 @@ class TestIsNSFWPost:
 
 def _run_main(tmp_path, collect_returns, prev_data=None):
     """main() をテスト用環境で実行して出力 JSON を返す。
-    collect_returns: {"hackernews": [...], "rss": [...], "reddit": [...], "e621": [...]}
+    collect_returns: {"hackernews": [...], "rss": [...], "reddit": [...]}
     """
     import fetch_topics
     topics_dir = tmp_path / "topics"
@@ -153,7 +153,7 @@ def _run_main(tmp_path, collect_returns, prev_data=None):
              patch.object(fetch_topics, "collect_hacker_news", return_value=collect_returns.get("hackernews", [])), \
              patch.object(fetch_topics, "collect_rss_feeds", return_value=collect_returns.get("rss", [])), \
              patch.object(fetch_topics, "collect_reddit", return_value=collect_returns.get("reddit", [])), \
-             patch.object(fetch_topics, "collect_e621", return_value=collect_returns.get("e621", [])), \
+              patch.object(fetch_topics, "collect_e621", return_value=0), \
              patch.object(fetch_topics, "collect_github_trending", return_value=[]), \
              patch.object(fetch_topics, "collect_bluesky", return_value=[]), \
              patch.object(fetch_topics, "collect_entertainment_trends", return_value=collect_returns.get("entertainment", [])):
@@ -225,8 +225,8 @@ class TestPartialFetchMerge:
             "ttl_hours": 24,
             "sources": {
                 "hackernews": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": []},
-                "e621": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
-                    {"title": "Prev e621", "source": "e621", "category": "kemono", "score": 5, "url": "https://e621.net/1"}
+                "reddit": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
+                    {"title": "Prev reddit", "source": "reddit", "category": "kemono", "score": 5, "url": "https://reddit.com/1"}
                 ]},
             },
             "by_category": {"kemono": []},
@@ -234,12 +234,11 @@ class TestPartialFetchMerge:
         }
         current_topics = {
             "hackernews": [{"title": "New HN", "source": "hackernews", "category": "tech", "score": 10, "url": "https://hn.com/1"}],
-            "e621": [],
         }
         result = _run_main(tmp_path, current_topics, prev_data=prev)
-        assert "e621" in result["sources"]
-        assert len(result["sources"]["e621"]["topics"]) == 1
-        assert result["sources"]["e621"]["topics"][0]["title"] == "Prev e621"
+        assert "reddit" in result["sources"]
+        assert len(result["sources"]["reddit"]["topics"]) == 1
+        assert result["sources"]["reddit"]["topics"][0]["title"] == "Prev reddit"
 
     def test_uncollected_source_fetched_at_preserved(self, tmp_path):
         """未収集 source の fetched_at は前の値を保持"""
@@ -247,8 +246,8 @@ class TestPartialFetchMerge:
             "fetched_at": "2026-01-01T00:00:00+09:00",
             "ttl_hours": 24,
             "sources": {
-                "e621": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
-                    {"title": "Prev", "source": "e621", "category": "kemono", "score": 5, "url": "https://e621.net/1"}
+                "reddit": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
+                    {"title": "Prev", "source": "reddit", "category": "kemono", "score": 5, "url": "https://reddit.com/1"}
                 ]},
             },
             "by_category": {},
@@ -256,10 +255,9 @@ class TestPartialFetchMerge:
         }
         current_topics = {
             "hackernews": [],
-            "e621": [],
         }
         result = _run_main(tmp_path, current_topics, prev_data=prev)
-        assert result["sources"]["e621"]["fetched_at"] == "2026-01-01T00:00:00+09:00"
+        assert result["sources"]["reddit"]["fetched_at"] == "2026-01-01T00:00:00+09:00"
 
     def test_by_category_uncollected_inherited(self, tmp_path):
         """未収集カテゴリの by_category は前のデータを継承"""
@@ -268,13 +266,12 @@ class TestPartialFetchMerge:
             "ttl_hours": 24,
             "sources": {},
             "by_category": {
-                "kemono": [{"title": "Prev kemono", "source": "e621", "category": "kemono", "score": 5, "url": "https://e621.net/1"}],
+                "kemono": [{"title": "Prev kemono", "source": "reddit", "category": "kemono", "score": 5, "url": "https://reddit.com/1"}],
             },
             "all": [],
         }
         current_topics = {
             "hackernews": [{"title": "New tech", "source": "hackernews", "category": "tech", "score": 10, "url": "https://hn.com/1"}],
-            "e621": [],
         }
         result = _run_main(tmp_path, current_topics, prev_data=prev)
         assert "kemono" in result["by_category"]
@@ -298,6 +295,46 @@ class TestPartialFetchMerge:
         result = _run_main(tmp_path, current_topics, prev_data=prev)
         assert len(result["by_category"]["tech"]) == 1
         assert result["by_category"]["tech"][0]["title"] == "New tech"
+
+    def test_e621_from_previous_never_inherited(self, tmp_path):
+        """e621（キャラクター特徴集計専用）は前回データに混入していても出力から除外される。
+        他の未収集 source（reddit）は従来どおり継承される。"""
+        prev = {
+            "fetched_at": "2026-01-01T00:00:00+09:00",
+            "ttl_hours": 24,
+            "sources": {
+                "e621": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
+                    {"title": "Old e621", "source": "e621", "category": "kemono", "score": 1, "url": "https://e621.net/1"}
+                ]},
+                "reddit": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
+                    {"title": "Old reddit", "source": "reddit", "category": "kemono", "score": 2, "url": "https://reddit.com/1"}
+                ]},
+            },
+            "by_category": {
+                "kemono": [
+                    {"title": "Old e621", "source": "e621", "category": "kemono", "score": 1, "url": "https://e621.net/1"},
+                    {"title": "Old reddit", "source": "reddit", "category": "kemono", "score": 2, "url": "https://reddit.com/1"},
+                ],
+            },
+            "all": [],
+        }
+        current_topics = {
+            "hackernews": [{"title": "New HN", "source": "hackernews", "category": "tech", "score": 10, "url": "https://hn.com/1"}],
+        }
+        result = _run_main(tmp_path, current_topics, prev_data=prev)
+        # e621 は sources / by_category / all いずれにも現れない
+        assert "e621" not in result["sources"]
+        assert all(t.get("source") != "e621" for t in result.get("all", []))
+        assert all(
+            t.get("source") != "e621"
+            for cat_topics in result.get("by_category", {}).values()
+            for t in cat_topics
+        )
+        # 他の未収集 source（reddit）は従来どおり継承される
+        assert "reddit" in result["sources"]
+        assert result["by_category"]["kemono"] == [
+            {"title": "Old reddit", "source": "reddit", "category": "kemono", "score": 2, "url": "https://reddit.com/1"},
+        ]
 
 
 class TestOldFileCleanup:

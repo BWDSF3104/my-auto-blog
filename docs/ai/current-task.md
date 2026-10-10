@@ -8,6 +8,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-10-e621-trend-separation.md` - e621 データのトレンド配管からの分離（キャラクター特徴集計のみ継続）。**実装完了・コミット未実施** (2026-10-10)
+  - **実装内容**: `fetch_topics.py` に `NON_TREND_SOURCES = {"e621"}` 新設、`collect_e621()` を収集・集計のみに（戻り値 `list[dict]`→`int`・トレンド項目組立廃止）、`main()` の `all_topics.extend` 廃止 + 出力構築前に `sources`/`merged_by_category`/`all_topics_merged` を `NON_TREND_SOURCES` でフィルタ（直前データからの merge 継承経路もカバー、KI-20261010-01 対応）。`data/topics/*.json` 12 ファイルから e621 一次性除去（旧 10 件: total 99→94 / 最新 2 件: 98→73、-7728 行）。テスト: e621 を前提とする 3+1 テストを reddit 例へ改名 + 回帰テスト `test_e621_from_previous_never_inherited` 新規。`generate_article.py` 不変（e621 参照は防御的残存）、`genre_score.py` の `PROTECTED_SOURCES` 維持、`data/genre_scores/topics.json` は派生キャッシュのため放置
+  - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **349 passed**（ベースライン 348 + 新規回帰 1）。Astro 変更なし → build 不要
+  - **コミット**: ユーザー判断待ち（コード 2 + テスト 2 + data 12 + Memory Bank 群）
+  - **Next Action**: コミット実施
+
 - `docs/ai/tasks/2026-10-10-trend-source-quality-fixes.md` - トレンドソース品質修正（ANNナビゴミ排除 + Crunchyroll一時無効化 + per-source TTL 誤検知修正）。**完了** (2026-10-10)
   - **実装内容**: `ENTERTAINMENT_ARTICLE_PATTERNS`（ANN = `^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/`）新設 + `_parse_entertainment_page()` を `urljoin` 絶対 URL 解決・重複除去・上限15件で書き換え。Crunchyroll を `ENTERTAINMENT_HTML_SOURCES` から一時無効化（静的 HTML に記事 0 件・JS 描画）。`_check_per_source_ttl()` 精緻化: 他カテゴリ専属 source（トピックあり・要求カテゴリ0件）は `expired=False`（自動 fetch トリガーしない）、トピック 0 件 source（完全失敗）は `True` 維持（自愈保持）。`latest.json` から Kemono 10 件 + Crunchyroll News 15 件のゴミ除去（total 124 → 99）。`by_category`/`all` merge ドリフト（pokemon 旧 7 件）は known-issues.md（KI-20261010-01）+ backlog P3 #7 へ記録のみで不変更
   - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **348 passed**（ベースライン 339 + 新規 9 + 既存 1 アサート更新）。ライブ fetch `--categories kemono` → ANN 14 件・全件正規記事絶対 URL、計 60 件（e621 25 / GitHub 1 / GameSpot 10 / IGN 10 / ANN 14）。TTL dry check: kemono = expired 空（不トリガー・修正前毎回トリガー）、pokemon = 4 件正しく expired（真の陳腐化）。`test_real_apis.py --save` → 9/11 pass（失敗 2 件は既知無効化 source: Reddit 403 / Bluesky 501）

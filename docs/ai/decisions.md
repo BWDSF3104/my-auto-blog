@@ -2,6 +2,27 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-10: e621 データのトレンド配管からの分離
+
+**Decision**: e621 をトレンドトピック出力（`data/topics/latest.json`）から完全に排除する。収集自体は継続（キャラクター特徴集計用）。`fetch_topics.py` に `NON_TREND_SOURCES = {"e621"}` 定数を新設し、`collect_e621()` はトレンド項目を組立せず収集数を `int` で返すのみ、`main()` は出力構築前に `sources` / `merged_by_category` / `all_topics_merged` を `NON_TREND_SOURCES` でフィルタする。
+
+**Reason**: e621 のデータは「キャラクター特徴の集計」（`data/character_features.json`）専用であり、ニュース的「トレンド」ではないため、トレンドトピックとして記事プロンプトに注入されると意味が不自然になる。さらに直前データからの merge 継承で e621 が `by_category` に残存し続ける（KI-20261010-01）構造的問題の温床になっていた。
+
+**Rejected Alternatives**:
+- e621 収集の完全無効化: キャラクター特徴集計（`_aggregate_and_save_character_features`）が壊れる
+- 注入時のみ除外（`generate_article.py` 側）: e621 が `latest.json` に残るため `score_topics()` が無駄にスコアリングし続ける、merge ドリフトも残存
+- `collect_e621()` 側の削除のみ: 直前データ（`prev`）の merge 継承経路から e621 が再混入するため不十分（回帰テスト `test_e621_from_previous_never_inherited` で実証）
+
+**Impact**:
+- `scripts/fetch_topics.py`: `NON_TREND_SOURCES` 新設、`collect_e621()` 戻り値 `list[dict]`→`int`、`main()` の `all_topics.extend` 廃止、出力前フィルタ 3 行
+- `scripts/tests/test_fetch_topics.py`: e621 を前提とする 3 テストを reddit 例へ改名、回帰テスト `test_e621_from_previous_never_inherited` 新規
+- `scripts/tests/test_generate_article.py`: 1 テストの例を e621→reddit
+- `scripts/generate_article.py`: 不変（:2321 / :2427 の e621 参照は防御的残存として維持）
+- `scripts/genre_score.py`: 不変（`PROTECTED_SOURCES = {"e621"}` は版権エントリ保護のため維持）
+- `data/topics/*.json`: 12 ファイルから e621 一次性除去（-7728 行）
+- `data/genre_scores/topics.json`: 放置（派生キャッシュ、次回 `score_topics()` で再生成）
+- pytest 349 passed
+
 ## 2026-10-10: トレンドソース品質（ANN whitelist + Crunchyroll一時無効化 + TTL誤検知修正）
 
 **Decision**: (1) `_parse_entertainment_page()` に source 別 URL whitelist（`ENTERTAINMENT_ARTICLE_PATTERNS`: ANN = `^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/`）を導入し、`urllib.parse.urljoin(base_url, href)` で相対リンクを絶対 URL 解決（`javascript:`/`mailto:`/`#` スキップ、URL 重複除去、上限 15 件）。(2) Crunchyroll を `ENTERTAINMENT_HTML_SOURCES` から一時無効化（静的 HTML に記事 0 件・JS 描画・RSS 404）。(3) `_check_per_source_ttl()` で他カテゴリ専属 source（トピックあり・要求カテゴリ 0 件）を `expired=False`（自動 fetch トリガーしない）、トピック 0 件 source（完全失敗）は従来どおり `expired=True` 維持（自愈保持）。(4) `by_category`/`all` の merge 構造ドリフト（pokemon 旧 7 件）は known-issues.md 記録のみで不変更。
@@ -246,20 +267,6 @@
 
 **Rejected Alternatives**:
 - スキップロジックを維持: 再生成が必要な場合にブロックされる問題が残る
-
-## 2026-10-01: Mandatory Impressive Scenes and 3-Image Role Distribution for Kemono Story
-
-**Decision**: Add condition 8 "印象的なシーンの必須配置" to `kemono_story.txt`, requiring at least one impressive scene from four categories: physical intimacy (kiss, hug, head pat, hand-holding), tense close contact (fall collision, narrow space closeness, protective embrace), intense action (duel, chase, magic battle, life-and-death fight), emotional decisive moments (tears, confession, parting, reunion, trust declaration). Redesign image prompt selection rules so the 3 images (1 header `image_prompt` + 2 inline `IMAGE_PROMPT`) each target a distinct moment with no overlap.
-
-**Rationale**: Stories lacked memorable, emotionally impactful scenes. Image prompts for header and inline images targeted "the most impressive scene" identically, causing visual duplication when only 3 images are generated total. Role-based distribution ensures the 3 images cover different emotional beats: header = poster/climax, inline 1 = early-mid intimate/emotional, inline 2 = mid-late action/introspective.
-
-**Rejected Alternatives**:
-- 全画像に「最も印象的なシーン」を指定: 3枚で同じ瞬間が描かれ、視覚的に被る
-- 画像枚数の増加: 生成コストと読み込み時間が伸びる
-
-**Impact**:
-- `scripts/prompts/kemono_story.txt`: 条件8追加、画像選出ルールを3枚の役割分担に書き換え、テンプレート例を更新
-- `scripts/prompts/refine_story.txt`: クライマックス精製段階に印象的なシーンの弱化防止チェックを追加
 
 
 

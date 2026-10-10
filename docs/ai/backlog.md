@@ -39,7 +39,7 @@
 | 4 | ソーシャルメディア自動投稿 | ⭐⭐⭐ | 中 | X/Twitter API, Bluesky API 連携 |
 | 5 | ページ間トランジション | ⭐⭐ | 低 | 実験的API。ブラウザサポート確認必要 |
 | 6 | Crunchyroll ニュース再収集 | ⭐⭐ | 低 | 静的HTMLは記事0件（JS描画）・RSS 404のため2026-10-10に一時無効化。代替RSSフィードの探索 or JS描画手段の検討。詳細: `tasks/2026-10-10-trend-source-quality-fixes.md` |
-| 7 | トレンドデータ `by_category`/`all` の merge 構造ドリフト修正 | ⭐⭐ | 低 | `by_category.pokemon` に `all` 未収載の旧 7 件が継承残存。カテゴリ単位継承 vs source 単位継承の再設計が必要。詳細: `known-issues.md` |
+| 7 | トレンドデータ `by_category`/`all` の merge 構造ドリフト修正 | ⭐⭐ | 低 | e621 5 件は 2026-10-10 のトレンド分離（`NON_TREND_SOURCES` ガード + データ一次性除去）で解消済み。GitHub 2 件と一般構造ドリフト（カテゴリ単位継承 vs source 単位継承の再設計）は残存。詳細: `known-issues.md` |
 
 ## P4 (超低優先度)
 

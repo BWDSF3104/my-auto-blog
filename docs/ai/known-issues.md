@@ -13,3 +13,5 @@
 **影響**: 低。`generate_article.py:2313` のトレンド注入は `by_category` を読むが score しきい値でフィルタするため、実注入は想定されない。理論上、pokemon 記事に旧トピック注入の可能性。
 
 **修正方針**: source 継承後に `by_category` を `all` から再構築する merge ロジックの再設計（単独で実施せず、関連変更とバッチ化が望ましい）。2026-10-10 に特定（`tasks/2026-10-10-trend-source-quality-fixes.md`）、backlog P3 #7 へ。
+
+**更新 (2026-10-10)**: e621 固有の部分は解消済み — e621 をトレンド配管から分離（`NON_TREND_SOURCES` ガード + `data/topics/*.json` 12 ファイルの一次性除去、`tasks/2026-10-10-e621-trend-separation.md` 参照）により、e621 5 件は再混入しなくなった。一般構造ドリフト（他 source の残存可能性）は backlog P3 #7 で継続。
