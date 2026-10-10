@@ -58,4 +58,4 @@
 
 ## コミット
 
-（commit 後に記入）
+`43e3aba`（2026-10-10、commit + push 実施。リモート差分なし。変更ファイルが deploy-only.yml の paths（`src/**` 等）に該当しないため自動デプロイなし・deploy 確認不要）
