@@ -2,6 +2,43 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-10: 世界設定の2段階拡大（12種・アンカワーク基準）
+
+**Decision**: kemono_story の世界設定を7種→12種に拡大。追加: `isekai`（異世界、10）/ `modern`（現代、10）/ `space_opera`（スペースオペラ、7）/ `dungeon_crawl`（ダンジョンクライム、6）/ `historical`（歴史、5）。既存再配分: fantasy 30→21 / slice_of_life 22→10 / sf 15→8 / cyberpunk 12→7 / adventure 8→7 / fantasy+sf 8→4（合計100維持）。ファンタジー族（fantasy+isekai+dungeon_crawl+fantasy+sf）は41/100に拡大。`WORLD_SETTING_GENRE_MAP` に5件追加（isekai/dungeon_crawl→`[fantasy, action]`、modern→`[slice_of_life, action, mystery]`、space_opera→`[sf, action]`、historical→`[historical]`）。スコアリングgenreは `historical` のみ新設（6→7種、専用instruction）し、未デプロイの6種変更と**同バッチ**に集約（一次性の全再スコアリングは次回 deploy 1回のみ）。追加基準を「ニッチでないか」から「ケモノに独立世界を定義するアンカワーク存在＋明確に異なる物語を生む」に変更。
+
+**Reason**: (1) ユーザー指摘: 現代人獣社会（furry 界で最も一般的な舞台、Zootopia 系）と時代・史前設定（史前獣人・戦国獣人）が表現不能だった。(2) 「ファンタジー・異世界方面のジャンルが少ない」— 異世界は読者目線では独立したラベルであり、`fantasy` 単独では「転生・異世界冒険」の読者意図を表現できない。(3) ポケモンの不思議のダンジョン的世界（モンスター主役＋ダンジョン攻略）は `adventure`（探索・宝探し）と明確に異なる。(4) Star Fox 系の宇宙冒険は汎用 `sf` とは異なる読者期待を持つ。(5) ユーザー指摘により「ニッチ」を除外理由から排除（ただし細分化しすぎも不好のためアンカワーク基準で制御）。
+
+**Rejected Alternatives**:
+- メカ / ポストアポカリプス / スポーツの世界設定追加: 独立したケモノ世界のアンカワークがなく、既存世界のバリアント（space_opera 内のメカ要素 / sf+action / slice_of_life+action）で表現可能。需要が観測されたら後日追加
+- `historical` を新 genre として採点せず `[fantasy, action]` へ弱マッピング: 時代系トレンド（歴史ニュース等）が `historical` 世界に優先選択されない。未デプロイ変更と同バッチ化で追加コストはゼロ（一次性再スコアリング回数は不変）のため、専用 genre 採用
+- `space_opera` / `isekai` / `dungeon_crawl` に専用採点 genre を追加: 既存 genre の複合マッピングで十分（sf+action / fantasy+action）。genre 増加は1callあたりの入トークン増と維持コスト
+
+**Impact**:
+- `scripts/genre_score.py`: `GENRE_INSTRUCTIONS` +historical、`DEFAULT_GENRES` 7種化
+- `scripts/generate_article.py`: `WORLD_SETTING_WEIGHTS`（12種）/ `WORLD_SETTING_GENRE_MAP`（12件）/ `_KEMONO_WORLD_TAGS`（12件）
+- `.github/workflows/genre-score.yml`: genres デフォルト入力 7種化
+- `scripts/tests/`: GENRE_MAP テスト+5、`test_weights_sum_to_100` / `test_all_settings_have_genre_map_entry` 新設、`test_world_setting_in_options` 12文字列化、`test_default_genres` 7種化
+- pytest 315通過、実APIスモーク: "戦国武将"→historical:80、"スターフォックス"→action:69/sf:40
+- 次回 `deploy.yml` 実行時に 7-genre 版の全件再スコアリング（一次性コスト）
+
+## 2026-10-10: ストーリー系ジャンルの一括拡大（世界設定7種・スコアリングgenre6種）
+
+**Decision**: kemono_story の世界設定を4種→7種（+`cyberpunk` 12 / +`adventure` 8 / +`mystery` 5。fantasy 35→30 / slice_of_life 25→22 / sf 20→15 / fantasy+sf 20→8 で合計100維持）、スコアリングgenreを4種→6種（+`slice_of_life` / +`mystery`、専用instruction）へ**一括変更**。`WORLD_SETTING_GENRE_MAP` に `cyberpunk`→`[cyberpunk]` / `adventure`→`[action, fantasy]` / `mystery`→`[mystery]` を追加し、`slice_of_life` の `[action]`→`[slice_of_life]` に修正。
+
+**Reason**: (1) 既存の `cyberpunk` genre が全トレンド・版権に毎回スコアリングされるのに世界設定から未使用で、コストのみの無駄だった。(2) `slice_of_life` → `[action]` は「日常」世界のトレンド候補をアクション高スコア順にソートしてしまう意味逆転バグ。(3) キャッシュキーが `SHA256(text|sorted genres)` のため genre 追加は全エントリ失効→次回 `deploy.yml` の `score_topics()` で全件再スコアリング（138 calls ≈ 31s）という一次性コストになる。ユーザー指示で追加するなら1回に集約する方針を採用。clef-flash の採点はgenre間独立（合計100正規化なし）のため、genre追加は既存genreの判別力を希薄化しない（コストは1callあたり入トークン微増のみ、6genreで1021 tokens ≈ 8 neurons）。
+
+**Rejected Alternatives**:
+- comedy / romance / horror 等の追加genre: いずれの世界設定からも未使用のため、`cyberpunk` と同じ「スコアリング済但未使用」の無駄を再現する。将来 world setting を追加する際にくる回で genre 追加（再スコアリング1回分が発生するが、必要になった時点でのみ支払う）
+- `adventure` を独立 genre として採点: 既存 `action` + `fantasy` の複合マッピングで十分カバーでき、新genreの追加コスト・維持コストを避けられる
+- Phase 1（既存genreのみ使用）と Phase 2（新genre追加）を分けて2回実施: 138件の全再スコアリングが2回発生する一次性コスト。無料枠（10,000 neurons/日）内で収まるため1回に集約
+
+**Impact**:
+- `scripts/genre_score.py`: `GENRE_INSTRUCTIONS` +2、`DEFAULT_GENRES` 6種化
+- `scripts/generate_article.py`: `WORLD_SETTING_WEIGHTS` / `WORLD_SETTING_GENRE_MAP` / `_KEMONO_WORLD_TAGS` 更新
+- `scripts/tests/`: `TestWorldSettingGenreMap` 3件追加、`test_world_setting_in_options` 新3文字列、`test_default_genres` セット更新、`TestScoreTopics` のモックpayloadを `DEFAULT_GENRES` 派生化（4件）
+- 次回 `deploy.yml` 実行時に全件再スコアリング（一次性コスト、138 calls ≈ 31s、無料枠内）
+- pytest 308通過、実APIスモーク: "攻殻機動隊"→sf:81/cyberpunk:81/mystery:34/slice_of_life:16、"日常 四葉の妹"→slice_of_life:85（新instructionの動作確認）
+
 ## 2026-10-09: kemono_tags の構造化データ化（結合・分割往復の廃止）
 
 **Decision**: `generate_article.py` の kemono パラメータを「構造化データ + プロンプト表示文字列」の2層構成に変更し、タグ生成を `_build_kemono_tags()` に集約する。`CHAR_TYPE_WEIGHTS` の値を体型タグのリスト化（`["獣人","動物"]` 等）、`_KEMONO_WORLD_TAGS`（世界設定→タグリスト）・`_KEMONO_EXTRA_TAGS`（追加設定→タグ文字列）を一次データとし、従来プロンプト向けに使用していた結合文字列（`char_type` = `" / " 結合`、`world_setting` = `と` 結合、`extra_text` = `、` 接頭）はこれらから派生生成する。`_randomize_kemono_params()` は `char_types` / `world_tags` / `extra_tag`（構造化）と従来キー（表示用）の両方を返す。`_kemono_affiliate_keywords` / `_rakuten_api_keywords` も `world_tags` を直接使用し、`split("と")` を廃止。併せて `target_genres` 参照のキー不一致バグ（表示文字列 `world_setting` → キー `world_setting_key`）を修正。

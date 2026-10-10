@@ -62,7 +62,7 @@ def _mock_post(payload: dict, status_code: int = 200) -> MagicMock:
 class TestBuildQuestions:
     def test_default_genres(self):
         questions = build_questions(genre_score.DEFAULT_GENRES)
-        assert set(questions) == {"sf", "fantasy", "cyberpunk", "action"}
+        assert set(questions) == {"sf", "fantasy", "cyberpunk", "action", "slice_of_life", "mystery", "historical"}
         for q in questions.values():
             assert q["type"] == "score"
             assert q["criteria"] == list(genre_score.SCORE_CRITERIA)
@@ -537,7 +537,7 @@ class TestScoreTopics:
         self._make_copyrights_file(cp_path, {"nintendo": 2})
         out_path = str(tmp_path / "out" / "topics_scored.json")
         cache_path = str(tmp_path / "cache.json")
-        payload = _api_response({"sf": 3.0, "fantasy": 1.0, "cyberpunk": 2.0, "action": 0.5})
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
         with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
              patch.dict(os.environ, ENV_CREDS):
             result = genre_score.score_topics(
@@ -562,7 +562,7 @@ class TestScoreTopics:
         self._make_copyrights_file(cp_path, {})
         out_path = str(tmp_path / "out.json")
         cache_path = str(tmp_path / "cache.json")
-        payload = _api_response({"sf": 3.0, "fantasy": 1.0, "cyberpunk": 2.0, "action": 0.5})
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
         with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
              patch.dict(os.environ, ENV_CREDS):
             genre_score.score_topics(str(topics_path), str(cp_path), out_path, cache_path=cache_path)
@@ -595,7 +595,7 @@ class TestScoreTopics:
         self._make_copyrights_file(cp_path, {})
         out_path = str(tmp_path / "out.json")
         cache_path = str(tmp_path / "cache.json")
-        payload = _api_response({"sf": 2.0, "fantasy": 1.0, "cyberpunk": 0.5, "action": 3.0})
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
         with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
              patch.dict(os.environ, ENV_CREDS):
             result = genre_score.score_topics(str(topics_path), str(cp_path), out_path, cache_path=cache_path)
@@ -609,7 +609,7 @@ class TestScoreTopics:
         ])
         out_path = str(tmp_path / "out.json")
         cache_path = str(tmp_path / "cache.json")
-        payload = _api_response({"sf": 2.0, "fantasy": 1.0, "cyberpunk": 0.5, "action": 3.0})
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
         with patch("requests.post", return_value=_mock_post(payload)), \
              patch.dict(os.environ, ENV_CREDS):
             result = genre_score.score_topics(

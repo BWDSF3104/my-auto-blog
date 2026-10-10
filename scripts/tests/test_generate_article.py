@@ -1908,7 +1908,11 @@ class TestRandomizeKemonoParams:
     def test_world_setting_in_options(self):
         for _ in range(50):
             params = _randomize_kemono_params()
-            assert params["world_setting"] in ("ファンタジー", "SF", "日常", "ファンタジーとSF")
+            assert params["world_setting"] in (
+                "ファンタジー", "異世界", "現代", "SF", "スペースオペラ", "日常",
+                "サイバーパンク", "冒険", "ダンジョンクライム", "ファンタジーとSF",
+                "ミステリー", "歴史",
+            )
 
     def test_world_tags_consistent_with_display(self):
         for _ in range(50):
@@ -2364,7 +2368,48 @@ class TestWorldSettingGenreMap:
 
     def test_slice_of_life_mapping(self):
         from generate_article import WORLD_SETTING_GENRE_MAP
-        assert WORLD_SETTING_GENRE_MAP["slice_of_life"] == ["action"]
+        assert WORLD_SETTING_GENRE_MAP["slice_of_life"] == ["slice_of_life"]
+
+    def test_cyberpunk_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["cyberpunk"] == ["cyberpunk"]
+
+    def test_adventure_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["adventure"] == ["action", "fantasy"]
+
+    def test_mystery_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["mystery"] == ["mystery"]
+
+    def test_isekai_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["isekai"] == ["fantasy", "action"]
+
+    def test_modern_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["modern"] == ["slice_of_life", "action", "mystery"]
+
+    def test_space_opera_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["space_opera"] == ["sf", "action"]
+
+    def test_dungeon_crawl_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["dungeon_crawl"] == ["fantasy", "action"]
+
+    def test_historical_mapping(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP
+        assert WORLD_SETTING_GENRE_MAP["historical"] == ["historical"]
+
+    def test_all_settings_have_genre_map_entry(self):
+        from generate_article import WORLD_SETTING_GENRE_MAP, WORLD_SETTING_WEIGHTS
+        for key, _ in WORLD_SETTING_WEIGHTS:
+            assert WORLD_SETTING_GENRE_MAP.get(key), f"{key} に genre map エントリがない"
+
+    def test_weights_sum_to_100(self):
+        from generate_article import WORLD_SETTING_WEIGHTS
+        assert sum(w for _, w in WORLD_SETTING_WEIGHTS) == 100
 
     def test_fantasy_sf_mapping(self):
         from generate_article import WORLD_SETTING_GENRE_MAP

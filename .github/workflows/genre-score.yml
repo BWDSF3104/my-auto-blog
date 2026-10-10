@@ -10,7 +10,7 @@ on:
       genres:
         description: "カンマ区切りのジャンルリスト"
         required: false
-        default: "sf,fantasy,cyberpunk,action"
+        default: "sf,fantasy,cyberpunk,action,slice_of_life,mystery,historical"
 
 permissions: {}
 

@@ -73,10 +73,18 @@ CHAR_TYPE_WEIGHTS = [
 ]
 
 WORLD_SETTING_WEIGHTS = [
-    ("fantasy", 35),
-    ("sf", 20),
-    ("slice_of_life", 25),
-    ("fantasy+sf", 20),
+    ("fantasy", 21),
+    ("isekai", 10),
+    ("modern", 10),
+    ("slice_of_life", 10),
+    ("sf", 8),
+    ("space_opera", 7),
+    ("adventure", 7),
+    ("cyberpunk", 7),
+    ("dungeon_crawl", 6),
+    ("mystery", 5),
+    ("historical", 5),
+    ("fantasy+sf", 4),
 ]
 
 TRANSFORM_WEIGHTS = [
@@ -107,8 +115,16 @@ CHAR_COUNT_WEIGHTS = [
 
 WORLD_SETTING_GENRE_MAP = {
     "fantasy": ["fantasy"],
+    "isekai": ["fantasy", "action"],
+    "modern": ["slice_of_life", "action", "mystery"],
     "sf": ["sf"],
-    "slice_of_life": ["action"],
+    "space_opera": ["sf", "action"],
+    "slice_of_life": ["slice_of_life"],
+    "cyberpunk": ["cyberpunk"],
+    "adventure": ["action", "fantasy"],
+    "dungeon_crawl": ["fantasy", "action"],
+    "mystery": ["mystery"],
+    "historical": ["historical"],
     "fantasy+sf": ["fantasy", "sf"],
 }
 
@@ -150,8 +166,16 @@ def _is_valid_kemono_combination(transform, relationship, extra):
 # プロンプト表示文字列は "と" 結合（_KEMONO_WORLD_TEXT）で生成する
 _KEMONO_WORLD_TAGS = {
     "fantasy": ["ファンタジー"],
+    "isekai": ["異世界"],
+    "modern": ["現代"],
     "sf": ["SF"],
+    "space_opera": ["スペースオペラ"],
     "slice_of_life": ["日常"],
+    "cyberpunk": ["サイバーパンク"],
+    "adventure": ["冒険"],
+    "dungeon_crawl": ["ダンジョンクライム"],
+    "mystery": ["ミステリー"],
+    "historical": ["歴史"],
     "fantasy+sf": ["ファンタジー", "SF"],
 }
 _KEMONO_WORLD_TEXT = {key: "と".join(tags) for key, tags in _KEMONO_WORLD_TAGS.items()}
