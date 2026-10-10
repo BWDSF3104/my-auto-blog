@@ -514,8 +514,11 @@ def score_topics(
         if not title:
             continue
         source = item.get("source", "unknown")
+        # description があればスコアリング入力に含める（ジャンル判断の精度向上）
+        desc = (item.get("description") or "").strip()
+        text = f"{title}\n{desc[:200]}" if desc else title
         try:
-            result = score_text(title, genres, cache_path=cache_path, source=source)
+            result = score_text(text, genres, cache_path=cache_path, source=source)
             if result.get("cache_hit"):
                 cache_hits += 1
             else:

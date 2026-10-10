@@ -2,6 +2,46 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-10: トレンドソース品質（ANN whitelist + Crunchyroll一時無効化 + TTL誤検知修正）
+
+**Decision**: (1) `_parse_entertainment_page()` に source 別 URL whitelist（`ENTERTAINMENT_ARTICLE_PATTERNS`: ANN = `^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/`）を導入し、`urllib.parse.urljoin(base_url, href)` で相対リンクを絶対 URL 解決（`javascript:`/`mailto:`/`#` スキップ、URL 重複除去、上限 15 件）。(2) Crunchyroll を `ENTERTAINMENT_HTML_SOURCES` から一時無効化（静的 HTML に記事 0 件・JS 描画・RSS 404）。(3) `_check_per_source_ttl()` で他カテゴリ専属 source（トピックあり・要求カテゴリ 0 件）を `expired=False`（自動 fetch トリガーしない）、トピック 0 件 source（完全失敗）は従来どおり `expired=True` 維持（自愈保持）。(4) `by_category`/`all` の merge 構造ドリフト（pokemon 旧 7 件）は known-issues.md 記録のみで不変更。
+
+**Reason**: (1) trend topics 実効化後のライブ検証で、ANN パース結果（`latest.json` の Crunchyroll News 15 件）が全件ナビ・フッター系の非記事 URL（記事本文 0 件）であり、スコアリング・スニペット注入が汚染されることを確認。記事パスは 5 種プレフィックス + 日付形式で閉集合だが、ナビ URL は開放集合のため whitelist 方式を採用。(2) Crunchyroll の静的 HTML には記事が 0 件（JS 描画）であり、収集してもゴミのみ。(3) `fetched_at` は source 横断で共有のため、kemono 実行時に e621（pokemon 専属）/GitHub（tech 専属）が「古い」だけで誤検知され、毎回の自動 fetch トリガーで API クォータを無駄消費していた。(4) merge ドリフトはカテゴリ単位継承と source 単位継承の構造差が原因で、単独修正は merge ロジックの再設計が必要。影響は低（注入は score しきい値でフィルタ）のため記録に留める。
+
+**Rejected Alternatives**:
+- ANN の blocklist（ナビ URL 除外）: ナビ・フッター URL の集合は開放的で新しいゴミが随時出現する一方、記事パスパターンは閉集合であり whitelist の方が堅牢
+- Crunchyroll を維持して JS 描画対応・代替フィード探索: headless browser かフィード探索が必要で効果（ゴミ 15 件 → 0 件）に見合わない。一時無効化とし、手段が見つかったら後日再追加（backlog P3）
+- TTL チェックで他カテゴリ専属 source を無条件スキップ: 「トピック 0 件 = 完全失敗」の source は自愈のため `True` 維持が必要であり、2 者を区別する条件分岐が必要だった
+- merge 構造ドリフトの単独修正: 影響が低（score しきい値でフィルタ）かつ merge ロジックの再設計が必要のため、known-issues.md に記録し P3 へ保留
+
+**Impact**:
+- `scripts/fetch_topics.py`: `ENTERTAINMENT_HTML_SOURCES` から Crunchyroll 削除、`ENTERTAINMENT_ARTICLE_PATTERNS` 新設、`_parse_entertainment_page()` 書き換え（urljoin + whitelist + 重複除去 + 上限15件、`base_url` パラメータ追加）、ヘッダ docstring 更新
+- `scripts/generate_article.py`: `_check_per_source_ttl()` 精緻化（他カテゴリ専属 source は `False`、完全失敗 source は `True`）
+- `scripts/tests/`: test_fetch_topics に `TestParseEntertainmentPage` 7件 + fixture 更新、test_generate_article に TTL 2件新規 + 既存1件アサート更新
+- `data/topics/latest.json`: Kemono 10 件 + Crunchyroll News 15 件のゴミ除去（total 124 → 99）
+- pytest 348通過（+9）。ライブ fetch で ANN 14 件・全件正規記事絶対 URL 確認。TTL dry check で kemono 不トリガー（修正前は毎回トリガー）・pokemon の真の陳腐化 4 件は正検知
+- 既存正常部分への影響なし: whitelist 対象は ANN のみ（GameSpot/IGN は RSS パース経路・e621/GitHub は別関数）、TTL の変更は「他カテゴリ専属 source がトリガー対象から除外」されるのみ（完全失敗の自愈・要求カテゴリ内の陳腐化検出は不変）
+
+## 2026-10-10: RSS description の取得・活用（backlog P2 #1, #5 統合）
+
+**Decision**: `fetch_rss()` に description 抽出を追加し、`latest.json` 保存 → `score_topics()`（title+description[:200] でスコアリング）→ `_append_trending_topics()`（description[:100] スニペットを「—」区切りでトレンドブロック注入）の全データフローを実装。切り詰めは段階別（保存 300 / スコアリング 200 / 注入 100）。抽出順は RSS 2.0: `content:encoded` → `description`、Atom: `content` → `summary`。GameSpot/IGN は実測で正規 RSS フィードのため HTML パースから `fetch_rss()` へ切り替え、ANN（RSS 404）/Crunchyroll は HTML パース維持（description=""）。全エンタメソース失敗時のフォールバック `STORY_INSPIRATION_THEMES`（未定義・NameError）を内蔵テーマ8件（title+description）の定数定義で修正。
+
+**Reason**: (1) kemono_story モードでは e621 がストーリーインスピレーションから除外され、残り候補（エンタメニュース・GitHub）が title のみの score=0-1 で物語テーマに反映されない問題（backlog P2 #1）。(2) description を取得しても保存されなければ下流（ジャンル判断・記事生成）で活用できないため #5 と #1 を1タスクに統合。(3) GameSpot/IGN は HTML パース扱いで description を捨てていたが、実測（2026-10-10）で両方とも正規 RSS 2.0（description あり）だったため正規 RSS パースへ。(4) `STORY_INSPIRATION_THEMES` の NameError は `main()` の try/except で吞まれ、全ソース失敗時に0件になる沈黙障害だったため恒久修正。
+
+**Rejected Alternatives**:
+- GitHub 収集に description 別フィールド追加: title が既に `f"{full_name}: {description}"` で description を埋め込んでいるため、別フィールド追加は二重計上になる
+- ANN を RSS パースへ変更: `https://www.animenewsnetwork.com/feeds/news` が 404（RSS 不存在）のため HTML パース維持
+- description を保存せずスコアリング時のみ利用: 記事生成時のスニペット注入（下流の再利用）が不可になる
+- source 名（"GameSpot RSS"/"IGN RSS"）の変更: per-source TTL（`_check_per_source_ttl`）のキーとなるため維持
+
+**Impact**:
+- `scripts/fetch_topics.py`: `_clean_rss_description()` / `_rss_item_description()` / `_atom_entry_description()` 新設、`fetch_rss()` / `collect_rss_feeds()` に description、`ENTERTAINMENT_RSS_SOURCES` / `ENTERTAINMENT_HTML_SOURCES` 分離、`collect_entertainment_trends()` 書き換え、`STORY_INSPIRATION_THEMES` 定数定義
+- `scripts/genre_score.py`: `score_topics()` のスコアリング入力を title+description[:200] に変更
+- `scripts/generate_article.py`: `_append_trending_topics()` にスニペット注入 + `selected_items` ログに description[:200]
+- `scripts/tests/`: 新規24件（fetch_topics 17 / genre_score 3 / generate_article 4）。`test_real_apis.py` に GameSpot/IGN フィード + description 出力
+- pytest 339通過（+24）。`test_real_apis.py --save` で GameSpot/IGN の description 出力確認（`api_test_20261010_074140Z.json`）
+- 次回 `deploy.yml` 実行時に `score_topics` の全件再スコアリング発生（入力テキスト変化によるキャッシュキー変化、一次性コスト）
+
 ## 2026-10-10: アフィリエイト商品推薦の書籍偏りの中性化（書籍例は維持）
 
 **Decision**: プロンプトテンプレート3種（`default.txt` / `ai_deep.txt` / `kemono_story.txt`）と `generate_article.py:694` 注入行を、「書籍」が先頭・単独例にならないよう**例の順序入れ替えと複数例化**で中性化する。例から「書籍」を削除せず、「カテゴリ構成を多様化せよ」「書籍に限定しない」等の禁止指示・否定表現も追加しない。kemono プロンプトの「実在作品を1つ選定」→「実在商品を1つ選定」（選定対象の中性化）、category 例は書籍を末尾へ順変（default/ai_deep: ソフトウェア, ツール, ガジェット, 書籍, フィギュア, ゲーム等 / kemono: フィギュア, グッズ, BD, ゲーム, 書籍等）。
@@ -221,77 +261,5 @@
 - `scripts/prompts/kemono_story.txt`: 条件8追加、画像選出ルールを3枚の役割分担に書き換え、テンプレート例を更新
 - `scripts/prompts/refine_story.txt`: クライマックス精製段階に印象的なシーンの弱化防止チェックを追加
 
-## 2026-10-01: Pollinations.ai Fallback for Image Generation
-
-**Decision**: Add Pollinations.ai as a fallback image generation service when HuggingFace API fails, plus an `IMAGE_PROVIDER` environment variable for direct Pollinations usage during local testing.
-
-**Rationale**: HuggingFace free tier has usage limits. When the quota is exhausted, article generation fails entirely. Pollinations.ai provides a free, no-API-key alternative using the Flux model. The `IMAGE_PROVIDER=pollinations` environment variable allows bypassing HF entirely for quick local testing without consuming HF quota.
-
-**Rejected Alternatives**:
-- HuggingFaceの完全な置き換え: HFの画質がPollinationsより安定しているため、プライマリは維持
-- APIキーが必要なサービス (SiliconFlow, Cloudflare Workers AI): 設定コストが高く、ローカルテストの利便性が下がる
-
-**Impact**:
-- `scripts/generate_article.py`: `import requests`追加、`_save_as_avif()` ヘルパー関数分離、`_generate_image_pollinations()` フォールバック関数追加、`generate_and_save_image()` にフォールバックロジック追加、`IMAGE_PROVIDER` 環境変数対応
-
-## 2026-09-30: Meta Description Validation
-
-**Decision**: Extract first sentence from article body to extend short descriptions. Add regex safety.
-
-**Rationale**: `_validate_description()` padded short descriptions with meaningless characters (`。` and spaces). 30% of recent articles had descriptions under 80 chars. Regex substitution was vulnerable to backslash characters in description text.
-
-**Rejected Alternatives**:
-- LLMでdescriptionを再生成: APIコストが高く、生成時間が伸びる
-- 既存記事の無視: SEOが継続的に劣化する
-
-## 2026-09-30: CSS-Only Bullet List Affiliate Card Styling
-
-**Decision**: Style bullet list affiliate links as card-style elements using CSS `:has()` selector, without modifying Python templates.
-
-**Rationale**: Bullet list links (`- 📦 [Amazonで〜を探す](url)`) were rendered as plain underlined text, inconsistent with the visual product cards. CSS-only approach avoids template changes and retroactively applies to all existing posts.
-
-**Rejected Alternatives**:
-- Pythonテンプレートの変更: 既存記事に遡及適用できない
-- HTMLの完全な書き換え: 既存記事の再生成が必要でコストが高い
-
-## 2026-09-30: Affiliate Keyword Contextualization
-
-**Decision**: Change affiliate keyword priority to "article-extracted > filtered trend_keywords > tags fallback".
-
-**Rationale**: `inject_affiliate_links()` used `trend_keywords` directly, which contained GitHub repo names (e.g., "o3-pro", "langgraph") that produced irrelevant affiliate search results. Article tags and body text reflect the actual article theme, producing more relevant product search links.
-
-**Rejected Alternatives**:
-- trend_keywordsをそのまま使用: GitHubリポジトリ名が混入し、無関係な検索結果になる
-- tagsのみを使用: 記事のテーマを十分に反映できない
-
-## 2026-10-02: e621 rating:safe for Kemono Trending Works
-
-**Decision**: Add `rating:safe` or `rating:questionable` to e621 tag queries to avoid NSFW filtering. Expand tags to include furry/wolf/fox/rabbit species with `order:score` for trending works tracking.
-
-**Reason**: Without rating restrictions, e621 queries returned mostly NSFW content that was filtered out (30/35 posts filtered). Adding `rating:safe` ensures usable SFW results. Expanding species tags captures more kemono/furry trending works.
-
-**Rejected Alternatives**:
-- NSFWフィルタの緩和: 生成された記事に不適切なコンテンツが含まれるリスク
-- e621の完全な置き換え: 公開APIで認証不要な代替ソースが限られる
-
-**Impact**:
-- `fetch_topics.py`: `E621_TAGS` に `rating:safe` または `rating:questionable` を追加、furry/wolf/fox/rabbit の `order:score` クエリを追加
-- kemono カテゴリの e621 収集件数が 3件 → 30件に増加
-
-## 2026-10-02: Replace latest.json Symlink with File Copy
-
-**Decision**: Replace `os.symlink()` with `shutil.copy2()` for `data/topics/latest.json`, converting it from a symlink to a regular file copy of the latest timestamped file.
-
-**Reason**: The symlink stored an absolute path (e.g., `/home/runner/work/...` from GitHub Actions) in git, making it broken on local Windows and GitHub Pages. Symlinks require `core.symlinks` configuration and admin privileges on Windows, causing cross-platform incompatibility. Both consumers (`generate_article.py` reading topics and `fetch_topics.py` inheriting `fetched_at`) only need the file content, not symlink behavior.
-
-**Rejected Alternatives**:
-- シンボリックリンクを維持: 絶対パスがコミットされ、クロスプラットフォームで壊れる
-- `.gitattributes` で `core.symlinks=true` 設定: 開発環境ごとに設定が必要で信頼性低い
-- `data/latest_topics.json` の単一ファイルに戻す: タイムスタンプファイルの履歴追跡が失われる
-
-**Impact**:
-- `fetch_topics.py`: `os.symlink()` → `shutil.copy2()`, `import shutil` 追加
-- `test_fetch_topics.py`: シンボリックリンク検証テストをファイルコピー検証に更新
-- `data/topics/latest.json`: git 管理下の通常ファイルとしてコミット可能に
 
 

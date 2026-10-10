@@ -4,27 +4,15 @@
 
 (完了済み項目は削除済み)
 
-## P1
-
-| # | 項目 | 難易度 | 効果 | 備考 |
-|---|------|--------|------|------|
-| 1 | エンドツーエンドテスト | ⭐ | 低 | `generate_article.py` からの完全フロー検証 |
-| 2 | HF Space デプロイ確認 | ⭐ | 低 | chunking実装が実際にHF Spaceで動作するか確認 |
-
 ## P1 (完了)
 
 | # | 項目 | 完了日 | 備考 |
 |---|------|--------|------|
+| 2 | HF Space デプロイ確認 | 2026-10-10 | 実質完了と確認 |
 | 1 | art_style 短縮 | 2026-10-06 | DEFAULT_ART_STYLEを5→3トークン、テンプレート指示に3-5タグ明記 |
 | 2 | キャラ定義のトークン最適化 | 2026-10-06 | 服装1-2つ制限、5-8タグ推奨、自然言語除去指示 |
 | 3 | フル解像度テスト | 2026-10-06 | 不要と判断 |
 | 1 | HuggingFace API 使用可能状況の確認 | 2026-10-05 | ZeroGPU 無料枠 3.5 分/日、1 日約 2 リクエスト。詳細は api-rate-limits.md |
-
-## P2 (後回し)
-
-| # | 項目 | 難易度 | 効果 | 備考 |
-|---|------|--------|------|------|
-| 1 | trend topics の実質的無効化 | ⭐⭐⭐ | 中 | kemono_story モードで e621 除外後、代替データ源が不足。使えるデータ源の追加調査必要。詳細: `tasks/2026-10-06-generation-pipeline-investigation.md` |
 
 ## P2
 
@@ -32,12 +20,13 @@
 |---|------|--------|------|------|
 | 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
 | 3 | アフィリエイトCTAカードのスリム化 + テキストリンクの統一・被り排除 | ⭐ | 中 | 現状CTAカード（`generate_article.py:1530-1533`「🔥 …の今すぐチェックできるおすすめアイテム / Amazonで確認する →」）とテキストリンク（`links_html`「Amazonで「kw」を探す」）で同一キーワードが重複表示される。カードの見た目をもっとスリムにし、テーマ関連商品のテキストリンクを全てこのカード形式に統一、キーワードの被りを排除 |
-| 5 | RSS取得の強化（description・本文一部を追加） | ⭐ | 中 | RSSからtitleだけでなく、description（summary）や本文の一部（先頭N文字程度）も取得して保存し、ジャンル判断・記事生成に活用。`fetch_topics.py` のRSSパーサーを修正 |
 
 ## P2 (完了)
 
 | # | 項目 | 完了日 | 備考 |
 |---|------|--------|------|
+| 1 | trend topics の実質的無効化（#5 と統合実施） | 2026-10-10 | GameSpot/IGN を正規 RSS パースへ（description 取得化）、全エンタメソース失敗時の `STORY_INSPIRATION_THEMES` NameError を内蔵テーマ8件で修正。詳細: `tasks/2026-10-10-trend-rss-enhancement.md` |
+| 5 | RSS取得の強化（description 追加） | 2026-10-10 | `fetch_rss()` が RSS2.0（content:encoded→description）/Atom（content→summary）から HTML除去・300文字切り詰めで抽出し `latest.json` に保存。`score_topics()` は title+description[:200] でスコアリング、`_append_trending_topics()` は description[:100] スニペット注入。pytest 339件通過。詳細: `tasks/2026-10-10-trend-rss-enhancement.md` |
 | 1 | ログ・メタファイルのクリーン処理（リネーム+期間削除） | 2026-10-10 | リネーム `affiliate_links`→`affiliate_logs`・`trend_usage`→`trend_usage_logs`（機能コード1行+`git mv`+`.gitkeep`）。`generate_article.py` に `_cleanup_old_logs()`（ファイル名タイムスタンプで30日前の `drafts/`・`trend_usage_logs/`・`affiliate_logs/`・`prompt_logs/` を削除、`generate_post()` 末尾で呼出）。`deploy.yml` 参照+コミットメッセージ更新。全モックテスト8件、pytest 305件通過。詳細: `tasks/2026-10-10-log-cleanup.md` |
 
 ## P3
@@ -49,6 +38,8 @@
 | 3 | Service Worker | ⭐⭐⭐ | 中 | オフライン対応、キャッシュ戦略 |
 | 4 | ソーシャルメディア自動投稿 | ⭐⭐⭐ | 中 | X/Twitter API, Bluesky API 連携 |
 | 5 | ページ間トランジション | ⭐⭐ | 低 | 実験的API。ブラウザサポート確認必要 |
+| 6 | Crunchyroll ニュース再収集 | ⭐⭐ | 低 | 静的HTMLは記事0件（JS描画）・RSS 404のため2026-10-10に一時無効化。代替RSSフィードの探索 or JS描画手段の検討。詳細: `tasks/2026-10-10-trend-source-quality-fixes.md` |
+| 7 | トレンドデータ `by_category`/`all` の merge 構造ドリフト修正 | ⭐⭐ | 低 | `by_category.pokemon` に `all` 未収載の旧 7 件が継承残存。カテゴリ単位継承 vs source 単位継承の再設計が必要。詳細: `known-issues.md` |
 
 ## P4 (超低優先度)
 

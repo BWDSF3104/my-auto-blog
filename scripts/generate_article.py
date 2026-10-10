@@ -1972,7 +1972,10 @@ def _check_topics_ttl(data: dict) -> bool:
 def _check_per_source_ttl(data: dict, categories: list[str]) -> dict[str, bool]:
     """
     Per-source TTL検証: sources の各エントリの fetched_at をチェック。
-    指定カテゴリのトピックを持たない source は有効期限切れとみなす。
+
+    要求カテゴリのトピックを持たない source の扱い:
+    - トピックを持つ source（他カテゴリ専属: pokemon 系等）: 対象外として False（期限切れ扱いしない）
+    - トピック 0 件の source（完全失敗・未収集）: 従来どおり期限切れ True
     戻り値: {source_name: is_expired} ディクショナリ
     """
     JST = timezone(timedelta(hours=9))
@@ -1986,6 +1989,11 @@ def _check_per_source_ttl(data: dict, categories: list[str]) -> dict[str, bool]:
         src_topics = src_data.get("topics", [])
         src_cats = set(t.get("category", "other") for t in src_topics)
         if not src_cats & set(categories):
+            if src_cats:
+                # 他カテゴリ専属の source は本チェックの対象外（自動fetchのトリガーにしない）
+                expired[src_name] = False
+                continue
+            # トピック 0 件（完全失敗・未収集）は従来どおり期限切れ
             expired[src_name] = True
             continue
         fetched_at_str = src_data.get("fetched_at", "")
@@ -2329,8 +2337,12 @@ def _append_trending_topics(
         title = item.get("title", "").strip()
         source = item.get("source", "")
         url = item.get("url", "")
+        desc = (item.get("description") or "").strip()
         if title:
-            selected_titles.append(f"[{source}] {title}")
+            line = f"[{source}] {title}"
+            if desc:
+                line += f" — {desc[:100]}"
+            selected_titles.append(line)
             if url:
                 trend_source_urls.append(url)
             selected_items.append({
@@ -2340,6 +2352,7 @@ def _append_trending_topics(
                 "score": item.get("score", 0),
                 "category": item.get("category", ""),
                 "rating": item.get("rating", ""),
+                "description": desc[:200],
             })
         # アフィリエイトキーワードは全カテゴリから抽出
         kw = _extract_affiliate_keyword(title)

@@ -8,6 +8,16 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-10-trend-source-quality-fixes.md` - トレンドソース品質修正（ANNナビゴミ排除 + Crunchyroll一時無効化 + per-source TTL 誤検知修正）。**実装・検証完了、コミット待ち（ユーザー指示待ち）** (2026-10-10)
+  - **実装内容**: `ENTERTAINMENT_ARTICLE_PATTERNS`（ANN = `^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/`）新設 + `_parse_entertainment_page()` を `urljoin` 絶対 URL 解決・重複除去・上限15件で書き換え。Crunchyroll を `ENTERTAINMENT_HTML_SOURCES` から一時無効化（静的 HTML に記事 0 件・JS 描画）。`_check_per_source_ttl()` 精緻化: 他カテゴリ専属 source（トピックあり・要求カテゴリ0件）は `expired=False`（自動 fetch トリガーしない）、トピック 0 件 source（完全失敗）は `True` 維持（自愈保持）。`latest.json` から Kemono 10 件 + Crunchyroll News 15 件のゴミ除去（total 124 → 99）。`by_category`/`all` merge ドリフト（pokemon 旧 7 件）は known-issues.md（KI-20261010-01）+ backlog P3 #7 へ記録のみで不変更
+  - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **348 passed**（ベースライン 339 + 新規 9 + 既存 1 アサート更新）。ライブ fetch `--categories kemono` → ANN 14 件・全件正規記事絶対 URL、計 60 件（e621 25 / GitHub 1 / GameSpot 10 / IGN 10 / ANN 14）。TTL dry check: kemono = expired 空（不トリガー・修正前毎回トリガー）、pokemon = 4 件正しく expired（真の陳腐化）。`test_real_apis.py --save` → 9/11 pass（失敗 2 件は既知無効化 source: Reddit 403 / Bluesky 501）
+  - **Next Action**: ユーザーのコミット指示待ち（変更 16 + 新規 2 + 削除 3）
+
+- `docs/ai/tasks/2026-10-10-trend-rss-enhancement.md` - トレンドデータRSS強化（description 取得）+ trend topics 実効化（GameSpot/IGN を正規RSSパースへ、STORY_INSPIRATION_THEMES 未定義バグ修正）。**完了** (2026-10-10)
+  - **実装内容**: `fetch_rss()` に description 抽出（RSS2.0: content:encoded→description / Atom: content→summary、`_clean_rss_description()` で HTML除去・300文字切り詰め）。`ENTERTAINMENT_SOURCES` を RSS/HTML に分離し GameSpot/IGN を RSS パースへ。`STORY_INSPIRATION_THEMES` 内蔵テーマ8件を定数定義で NameError 修正。`score_topics()` は title+description[:200] スコアリング、`_append_trending_topics()` は description[:100] スニペット注入 + trend_usage ログ記録。`test_real_apis.py` に GameSpot/IGN フィード + description 出力
+  - **Verification** (2026-10-10): `pytest scripts/tests/` → **339 passed** (7.26s)（ベースライン 315 + 新規 24）。`python scripts/tests/test_real_apis.py --save` → rss_gamespot 200 / 3 items / description 出力確認、rss_ign 200 / 3 items / description 出力確認。結果: `scripts/data/api_test_results/api_test_20261010_074140Z.json`
+  - **Next Action**: 次回 deploy で score_topics 全件再スコアリング発生（一次性コスト）+ トレンドブロックのスニペット注入確認
+
 - `docs/ai/tasks/2026-10-10-affiliate-product-diversity.md` - アフィリエイト商品推薦の書籍偏りの中性化（プロンプト例の順序入れ替え・複数例化 + Python 注入行1行）。**完了** (2026-10-10)
   - **実装内容**: プロンプトテンプレート3種（`default.txt` 6箇所 / `ai_deep.txt` 3箇所 / `kemono_story.txt` 4箇所）+ `generate_article.py:694` 注入行（語順のみ）。ユーザー方針: 書籍は例から削除しない・禁止指示・否定表現は追加しない。例の入れ替え（非書籍を先頭に）・非書籍例の1件追加（ai_deep: AI開発フレームワーク、default 比較表: 開発ツールA、kemono: 関連グッズ名）・kemono の「実在作品」→「実在商品」・category 例の順変（書籍を末尾へ）
   - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **315 passed** (3.90s)

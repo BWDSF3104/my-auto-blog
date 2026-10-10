@@ -10,7 +10,16 @@ from unittest.mock import patch, MagicMock
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pytest
-from fetch_topics import _is_nsfw_post, TOPICS_DIR, OUTPUT_PATH, TTL_HOURS
+from fetch_topics import (
+    _clean_rss_description,
+    _is_nsfw_post,
+    _parse_entertainment_page,
+    STORY_INSPIRATION_THEMES,
+    TOPICS_DIR,
+    OUTPUT_PATH,
+    TTL_HOURS,
+    fetch_rss,
+)
 
 
 class TestIsNSFWPost:
@@ -320,3 +329,233 @@ class TestTTLHours:
         import fetch_topics
         importlib.reload(fetch_topics)
         assert fetch_topics.TTL_HOURS == 48
+
+
+class TestCleanRssDescription:
+    """_clean_rss_description() のユニットテスト"""
+
+    def test_none_returns_empty(self):
+        assert _clean_rss_description(None) == ""
+
+    def test_empty_returns_empty(self):
+        assert _clean_rss_description("") == ""
+
+    def test_plain_text_unchanged(self):
+        assert _clean_rss_description("hello world") == "hello world"
+
+    def test_html_tags_stripped(self):
+        assert _clean_rss_description("<p>Today a <b>game</b> was announced.</p>") == "Today a game was announced."
+
+    def test_entities_unescaped(self):
+        assert _clean_rss_description("Tom &amp; Jerry") == "Tom & Jerry"
+
+    def test_whitespace_collapsed(self):
+        assert _clean_rss_description("line1\n\nline2   line3") == "line1 line2 line3"
+
+    def test_truncated_to_max(self):
+        result = _clean_rss_description("あ" * 500)
+        assert len(result) == 300
+
+
+class TestFetchRssDescription:
+    """fetch_rss() の description 抽出テスト（urlopen をモック）"""
+
+    @staticmethod
+    def _mock_feed(xml: str):
+        resp = MagicMock()
+        resp.read.return_value = xml.encode("utf-8")
+        resp.__enter__.return_value = resp
+        return resp
+
+    def test_rss20_description(self):
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8"?>'
+            "<rss version=\"2.0\"><channel><title>Feed</title>"
+            "<item><title>Game News</title><link>https://example.com/1</link>"
+            "<description>&lt;p&gt;Today a &lt;b&gt;game&lt;/b&gt; was announced.&lt;/p&gt;More details.</description>"
+            "</item></channel></rss>"
+        )
+        with patch("fetch_topics.urllib.request.urlopen", return_value=self._mock_feed(xml)):
+            items = fetch_rss("https://example.com/feed")
+        assert items[0]["title"] == "Game News"
+        assert items[0]["description"] == "Today a game was announced. More details."
+
+    def test_content_encoded_preferred(self):
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8"?>'
+            "<rss version=\"2.0\"><channel><title>Feed</title>"
+            "<item><title>Article</title><link>https://example.com/2</link>"
+            "<description>Short summary</description>"
+            '<content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/">'
+            "Full article body with extra details."
+            "</content:encoded></item></channel></rss>"
+        )
+        with patch("fetch_topics.urllib.request.urlopen", return_value=self._mock_feed(xml)):
+            items = fetch_rss("https://example.com/feed")
+        assert items[0]["description"] == "Full article body with extra details."
+
+    def test_atom_content_preferred_over_summary(self):
+        xml = (
+            '<?xml version="1.0" encoding="utf-8"?>'
+            '<feed xmlns="http://www.w3.org/2005/Atom">'
+            "<title>Feed</title>"
+            '<entry><title>Entry</title><link href="https://example.com/3"/>'
+            "<summary>Summary text</summary>"
+            "<content>Full content body here</content></entry>"
+            "</feed>"
+        )
+        with patch("fetch_topics.urllib.request.urlopen", return_value=self._mock_feed(xml)):
+            items = fetch_rss("https://example.com/feed")
+        assert items[0]["title"] == "Entry"
+        assert items[0]["description"] == "Full content body here"
+
+    def test_atom_summary_when_no_content(self):
+        xml = (
+            '<?xml version="1.0" encoding="utf-8"?>'
+            '<feed xmlns="http://www.w3.org/2005/Atom">'
+            "<title>Feed</title>"
+            '<entry><title>Entry</title><link href="https://example.com/4"/>'
+            "<summary>Only summary</summary></entry>"
+            "</feed>"
+        )
+        with patch("fetch_topics.urllib.request.urlopen", return_value=self._mock_feed(xml)):
+            items = fetch_rss("https://example.com/feed")
+        assert items[0]["description"] == "Only summary"
+
+    def test_no_description_returns_empty(self):
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8"?>'
+            "<rss version=\"2.0\"><channel><title>Feed</title>"
+            "<item><title>No Desc</title><link>https://example.com/5</link></item>"
+            "</channel></rss>"
+        )
+        with patch("fetch_topics.urllib.request.urlopen", return_value=self._mock_feed(xml)):
+            items = fetch_rss("https://example.com/feed")
+        assert items[0]["description"] == ""
+
+
+class TestCollectRssFeedsDescription:
+    """collect_rss_feeds() の description 引き継ぎテスト"""
+
+    def test_description_passthrough(self):
+        import fetch_topics
+        with patch.object(fetch_topics, "fetch_rss", return_value=[
+            {"title": "t", "url": "https://x.com/1", "description": "desc text"},
+        ]), patch.object(fetch_topics, "RSS_FEEDS", [
+            {"name": "TestFeed", "url": "https://x.com/feed", "category": "tech"},
+        ]):
+            results = fetch_topics.collect_rss_feeds()
+        assert results[0]["description"] == "desc text"
+
+
+class TestCollectEntertainmentTrends:
+    """collect_entertainment_trends() の RSS/HTML 分離とフォールバックテスト"""
+
+    def test_rss_sources_have_description(self):
+        import fetch_topics
+        with patch.object(fetch_topics, "fetch_rss", return_value=[
+            {"title": "Game news", "url": "https://gs.com/1", "description": "Game description text"},
+        ]), patch.object(fetch_topics, "ENTERTAINMENT_HTML_SOURCES", []):
+            results = fetch_topics.collect_entertainment_trends(["kemono"])
+        assert len(results) == 2
+        assert {r["source"] for r in results} == {"GameSpot RSS", "IGN RSS"}
+        assert all(r["description"] == "Game description text" for r in results)
+
+    def test_html_sources_have_empty_description(self):
+        import fetch_topics
+        mock_resp = MagicMock()
+        mock_resp.read.return_value = (
+            b'<html><body><a href="https://www.animenewsnetwork.com/news/2026-10-10/some-anime-news-headline">'
+            b'Some anime news headline</a></body></html>'
+        )
+        mock_resp.__enter__.return_value = mock_resp
+        with patch.object(fetch_topics, "fetch_rss", return_value=[]), \
+             patch.object(fetch_topics, "ENTERTAINMENT_RSS_SOURCES", []), \
+             patch.object(fetch_topics.urllib.request, "urlopen", return_value=mock_resp):
+            results = fetch_topics.collect_entertainment_trends(["kemono"])
+        assert len(results) > 0
+        assert all(r["description"] == "" for r in results)
+
+    def test_html_sources_excludes_crunchyroll(self):
+        """Crunchyroll は静的HTMLに記事リンクが 0 件のため収集対象外（2026-10-10 実測）"""
+        import fetch_topics
+        names = [s["name"] for s in fetch_topics.ENTERTAINMENT_HTML_SOURCES]
+        assert "Crunchyroll News" not in names
+
+    def test_all_sources_failed_uses_builtin_themes(self):
+        import fetch_topics
+        with patch.object(fetch_topics, "fetch_rss", return_value=[]), \
+             patch.object(fetch_topics, "ENTERTAINMENT_HTML_SOURCES", []):
+            results = fetch_topics.collect_entertainment_trends(["kemono"])
+        assert len(results) == len(STORY_INSPIRATION_THEMES)
+        assert all(r["source"] == "StoryInspiration" for r in results)
+        assert all(r["description"] for r in results)
+
+    def test_category_filter_excludes_non_kemono(self):
+        import fetch_topics
+        results = fetch_topics.collect_entertainment_trends(["tech"])
+        assert results == []
+
+
+class TestParseEntertainmentPage:
+    """_parse_entertainment_page() の whitelist 抽出テスト"""
+
+    ANN_BASE = "https://www.animenewsnetwork.com/"
+
+    def _html(self, body: str) -> str:
+        return f"<html><body>{body}</body></html>"
+
+    def test_nav_links_excluded(self):
+        """ナビ/フッター UI リンク（ログイン・登録・アーカイブ等）は除外される"""
+        html = self._html(
+            '<a href="/auth/facebook/login">Sign in with Facebook account</a>'
+            '<a href="/register">Create a new account now</a>'
+            '<a href="/character/index">Character index and archive page</a>'
+        )
+        results = _parse_entertainment_page(html, "Anime News Network", "kemono", base_url=self.ANN_BASE)
+        assert results == []
+
+    def test_article_links_kept_with_resolved_url(self):
+        """記事URL（日付付きパス）は抽出され、相対URLは base_url に対して解決される"""
+        html = self._html(
+            '<a href="/news/2026-10-10/some-anime-news-headline">Some anime news headline for testing</a>'
+            '<a href="/review/2026-09-01/show-a-movie-review">A review of the movie show</a>'
+        )
+        results = _parse_entertainment_page(html, "Anime News Network", "kemono", base_url=self.ANN_BASE)
+        assert [r["url"] for r in results] == [
+            "https://www.animenewsnetwork.com/news/2026-10-10/some-anime-news-headline",
+            "https://www.animenewsnetwork.com/review/2026-09-01/show-a-movie-review",
+        ]
+        assert results[0]["title"] == "Some anime news headline for testing"
+        assert all(r["source"] == "Anime News Network" and r["category"] == "kemono" for r in results)
+
+    def test_non_article_path_excluded(self):
+        """日付付きでないパス（動画・アーカイブ等）は除外される"""
+        html = self._html(
+            '<a href="/video/popular">Popular videos on the site page</a>'
+            '<a href="https://www.animenewsnetwork.com/news/archive">News archive page for all years</a>'
+        )
+        results = _parse_entertainment_page(html, "Anime News Network", "kemono", base_url=self.ANN_BASE)
+        assert results == []
+
+    def test_duplicate_urls_deduplicated(self):
+        html = self._html(
+            '<a href="/news/2026-10-10/some-anime-news-headline">Some anime news headline for testing</a>'
+            '<a href="/news/2026-10-10/some-anime-news-headline">Some anime news headline for testing</a>'
+        )
+        results = _parse_entertainment_page(html, "Anime News Network", "kemono", base_url=self.ANN_BASE)
+        assert len(results) == 1
+
+    def test_max_15_results(self):
+        parts = "".join(
+            f'<a href="/news/2026-10-10/article-number-{i:02d}">Article headline number {i:02d} here</a>'
+            for i in range(20)
+        )
+        results = _parse_entertainment_page(self._html(parts), "Anime News Network", "kemono", base_url=self.ANN_BASE)
+        assert len(results) == 15
+
+    def test_unknown_source_returns_empty(self):
+        """whitelist が定義されていない source は何も返さない"""
+        html = self._html('<a href="/news/2026-10-10/x">Some anime news headline for testing</a>')
+        results = _parse_entertainment_page(html, "Unknown Source", "kemono", base_url="https://unknown.example.com/")
+        assert results == []

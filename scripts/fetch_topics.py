@@ -6,20 +6,22 @@ fetch_topics.py — 設定不要（APIキー不要）でトレンド情報を収
   2. e621              : REST API の公開検索 (User-Agent 必要) [kemono/pokemon]
   3. RSS 各種          : Zenn / Qiita / PokéCommunity / PokeBeach など [tech/pokemon]
   4. GitHub Search     : REST API (未認証 60req/h) [kemono/pokemon]
-  5. GameSpot RSS      : HTMLパース [kemono]
-  6. IGN RSS           : HTMLパース [kemono]
-  7. Anime News Network: HTMLパース [kemono]
-  8. Crunchyroll News  : HTMLパース [kemono]
+  5. GameSpot RSS      : RSS解析（description取得） [kemono]
+  6. IGN RSS           : RSS解析（description取得） [kemono]
+  7. Anime News Network: HTMLパース（記事URL whitelist抽出） [kemono]
 
 一時無効化:
   - Reddit    : 403 Blocked (2026-10-06)
   - Bluesky   : 501 Not Implemented (2026-10-06)
+  - Crunchyroll News: 静的HTMLに記事リンクなし（JS描画のためナビUIのみ抽出）(2026-10-10 実測)
 
 出力: data/topics/{YYYY-MM-DD_HHMMSS}.json + data/topics/latest.json (コピー)
 """
 
+import html
 import json
 import os
+import re
 import shutil
 import sys
 import time
@@ -45,6 +47,7 @@ TOPICS_DIR = os.path.join(PROJECT_DIR, "data", "topics")
 OUTPUT_PATH = os.path.join(TOPICS_DIR, "latest.json")
 USER_AGENT = "my-auto-blog/1.0 (https://github.com)"  # Reddit / e621 用
 TTL_HOURS = int(os.environ.get("CACHE_TTL_HOURS", "24"))  # データの有効期間（時間）
+RSS_DESCRIPTION_MAX = 300  # description の切り詰め長（文字）
 
 # 収集する Subreddit 一覧（認証不要）
 REDDIT_SUBS = [
@@ -161,8 +164,40 @@ def fetch_json(url: str, headers: dict = None, timeout: int = 15) -> dict | list
         return None
 
 
+def _clean_rss_description(raw: str | None) -> str:
+    """description から HTML タグを除去しエンティティを復元、空白を圧縮して RSS_DESCRIPTION_MAX 文字に切り詰める。
+
+    raw が None または空の場合は空文字列を返す。
+    """
+    if not raw:
+        return ""
+    text = re.sub(r"<[^>]+>", " ", raw)
+    text = html.unescape(text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text[:RSS_DESCRIPTION_MAX]
+
+
+def _rss_item_description(item: ET.Element) -> str:
+    """RSS 2.0 item の description を抽出する（content:encoded → description の順）。"""
+    encoded = item.find("{http://purl.org/rss/1.0/modules/content/}encoded")
+    if encoded is not None and encoded.text:
+        return _clean_rss_description(encoded.text)
+    desc = item.find("description")
+    return _clean_rss_description(desc.text if desc is not None else None)
+
+
+def _atom_entry_description(entry: ET.Element) -> str:
+    """Atom entry の description を抽出する（content → summary の順）。"""
+    atom = "http://www.w3.org/2005/Atom"
+    content = entry.find(f"{{{atom}}}content")
+    if content is not None and content.text:
+        return _clean_rss_description(content.text)
+    summary = entry.find(f"{{{atom}}}summary")
+    return _clean_rss_description(summary.text if summary is not None else None)
+
+
 def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
-    """RSS / Atom フィードをパースしてタイトル+URL のリストを返す。"""
+    """RSS / Atom フィードをパースしてタイトル+URL+description のリストを返す。"""
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -174,7 +209,6 @@ def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
 
     items = []
     # RSS 2.0
-    ns = {"atom": "http://www.w3.org/2005/Atom"}
     for item in root.findall(".//item"):
         title_el = item.find("title")
         link_el = item.find("link")
@@ -182,6 +216,7 @@ def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
             items.append({
                 "title": title_el.text.strip().encode("utf-8", errors="replace").decode("utf-8"),
                 "url": link_el.text.strip() if link_el is not None and link_el.text else "",
+                "description": _rss_item_description(item),
             })
     # Atom
     if not items:
@@ -193,6 +228,7 @@ def fetch_rss(url: str, timeout: int = 15) -> list[dict]:
                 items.append({
                     "title": title_el.text.strip().encode("utf-8", errors="replace").decode("utf-8"),
                     "url": href,
+                    "description": _atom_entry_description(entry),
                 })
     return items[:10]  # 最大 10 件
 
@@ -563,6 +599,7 @@ def collect_rss_feeds(categories: list[str] = None) -> list[dict]:
             results.append({
                 "title": item["title"],
                 "url": item["url"],
+                "description": item.get("description", ""),
                 "score": 0,
                 "source": feed["name"],
                 "category": cat,
@@ -648,37 +685,74 @@ def collect_bluesky(limit_per_query: int = 5, categories: list[str] = None) -> l
 
 
 # アニメ・ゲーム・エンタメのトレンド情報源
-ENTERTAINMENT_SOURCES = [
+# GameSpot / IGN は実測（2026-10-10）で正規の RSS 2.0 フィードのため fetch_rss で description 付き取得
+# ANN は RSS が存在せず HTML パース（description なし）
+# Crunchyroll は 2026-10-10 実測で /news の静的HTMLに記事リンクが 0 件（JS描画）のため除外済み。
+#   静的に記事 URL を取得できる方法（__NEXT_DATA__ 等）が見つかったら再追加する
+ENTERTAINMENT_RSS_SOURCES = [
     {"name": "GameSpot RSS", "url": "https://www.gamespot.com/feeds/mashup/", "category": "kemono"},
     {"name": "IGN RSS", "url": "https://feeds.feedburner.com/ign/all", "category": "kemono"},
+]
+ENTERTAINMENT_HTML_SOURCES = [
     {"name": "Anime News Network", "url": "https://www.animenewsnetwork.com/", "category": "kemono"},
-    {"name": "Crunchyroll News", "url": "https://www.crunchyroll.com/news", "category": "kemono"},
+]
+
+# HTML ソース別: 記事 URL の whitelist パターン（ナビ/フッター UI リンクを除外）
+# ANN の正規記事は日付を含むパス（/news/2026-10-10/...）を持つ（2026-10-10 ライブ確認: 73 件）
+ENTERTAINMENT_ARTICLE_PATTERNS = {
+    "Anime News Network": re.compile(r"^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/"),
+}
+
+# 全ソース失敗時の内蔵ストーリーインスピレーションテーマ
+# 旧実装は未定義の STORY_INSPIRATION_THEMES を参照し NameError になっていた（2026-10-10 修正）
+STORY_INSPIRATION_THEMES = [
+    {"theme": "迷い込む異世界の獣人村", "description": "人間世界から獣人の村に迷い込み、仲間と暮らしながら自分の居場所を見出す物語"},
+    {"theme": "廃墟に眠る古代文明", "description": "獣人たちが守ってきた古代の力と、その末裔が抱える宿命"},
+    {"theme": "砂漠を横断する大商隊", "description": "オアシスを巡る長い旅路で結ばれる、異なる種族の獣人たち"},
+    {"theme": "海底都市と陸上の街", "description": "海と陸の境界で起きる文化衝突と、それを橋渡しする存在"},
+    {"theme": "戦場の獣人傭兵団", "description": "主を見出すことと、自らの戦いの理由を見つけるまでの旅"},
+    {"theme": "山間の隠れ里と外の世界", "description": "平和な里を守るため、初めて外の世界へ出る若き獣人"},
+    {"theme": "大都会の裏路地と秘密の店", "description": "多種多様な獣人が集う街で、ひとつの店を舞台にした人間模様"},
+    {"theme": "季節の祭りと巡り合わせ", "description": "年に一度の祭りをきっかけに起こる、かけがえのない出会い"},
 ]
 
 
-def _parse_entertainment_page(html_content: str, source_name: str, category: str) -> list[dict]:
-    """HTML コンテンツからタイトルとURLを抽出する（簡易パース）。"""
-    import re
+def _parse_entertainment_page(html_content: str, source_name: str, category: str, base_url: str = "") -> list[dict]:
+    """HTML コンテンツから記事リンクを抽出する（簡易パース）。
+
+    ENTERTAINMENT_ARTICLE_PATTERNS の whitelist に一致する記事 URL のみ収集し、
+    ナビ/フッター UI リンク（ログイン・登録・アーカイブ等）を除外する。
+    相対 URL は base_url に対して urljoin で解決する。
+    """
+    pattern = ENTERTAINMENT_ARTICLE_PATTERNS.get(source_name)
+    if pattern is None:
+        return []
+
     results = []
-    # <title> タグからページタイトルを抽出
-    title_matches = re.findall(r'<title[^>]*>(.*?)</title>', html_content, re.IGNORECASE | re.DOTALL)
-    # <a> タグからリンクを抽出
     link_matches = re.findall(r'<a[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', html_content, re.IGNORECASE | re.DOTALL)
 
-    seen_titles = set()
+    seen_urls = set()
     for href, text in link_matches:
+        if href.startswith(("javascript:", "mailto:", "#")):
+            continue
+        url = urllib.parse.urljoin(base_url, href) if base_url else href
+        parsed = urllib.parse.urlparse(url)
+        if not parsed.netloc:
+            continue
+        if not pattern.match(parsed.path):
+            continue
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
         # HTML エンティティをデコード
         clean_text = re.sub(r'<[^>]+>', '', text).strip()
         clean_text = clean_text.replace("&amp;", "&").replace("&quot;", '"').replace("&apos;", "'")
         clean_text = clean_text.replace("&lt;", "<").replace("&gt;", ">").replace("&nbsp;", " ")
         if len(clean_text) < 10 or len(clean_text) > 200:
             continue
-        if clean_text in seen_titles:
-            continue
-        seen_titles.add(clean_text)
         results.append({
             "title": clean_text,
-            "url": href if href.startswith("http") else f"https://{href}",
+            "url": url,
             "score": 0,
             "source": source_name,
             "category": category,
@@ -688,13 +762,39 @@ def _parse_entertainment_page(html_content: str, source_name: str, category: str
 
 
 def collect_entertainment_trends(categories: list[str] = None) -> list[dict]:
-    """アニメ・ゲーム・エンタメのトレンド情報を収集してストーリーインスピレーションに使用する。"""
+    """アニメ・ゲーム・エンタメのトレンド情報を収集してストーリーインスピレーションに使用する。
+
+    GameSpot / IGN は RSS フィードから description 付きで、
+    ANN は HTML パース（description なし・記事URL whitelist抽出）で収集する。
+    """
     if categories and "kemono" not in categories:
         return []
 
     results = []
 
-    for source in ENTERTAINMENT_SOURCES:
+    # RSS ソース（description 付き）
+    for source in ENTERTAINMENT_RSS_SOURCES:
+        name = source["name"]
+        category = source["category"]
+        print(f"[Entertainment] Fetching {name}...")
+        try:
+            items = fetch_rss(source["url"])
+            for item in items:
+                results.append({
+                    "title": item["title"],
+                    "url": item["url"],
+                    "description": item.get("description", ""),
+                    "score": 0,
+                    "source": name,
+                    "category": category,
+                })
+            print(f"  -> {len(items)} items from {name}")
+        except Exception as e:
+            print(f"  [WARN] Failed to fetch {name}: {e}")
+        time.sleep(0.5)
+
+    # HTML ソース（description なし）
+    for source in ENTERTAINMENT_HTML_SOURCES:
         name = source["name"]
         url = source["url"]
         category = source["category"]
@@ -703,7 +803,9 @@ def collect_entertainment_trends(categories: list[str] = None) -> list[dict]:
             req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
             with urllib.request.urlopen(req, timeout=15) as resp:
                 content = resp.read().decode("utf-8", errors="replace")
-            items = _parse_entertainment_page(content, name, category)
+            items = _parse_entertainment_page(content, name, category, base_url=url)
+            for item in items:
+                item["description"] = ""
             results.extend(items)
             print(f"  -> {len(items)} items from {name}")
         except Exception as e:
@@ -715,8 +817,9 @@ def collect_entertainment_trends(categories: list[str] = None) -> list[dict]:
         print("[Entertainment] 全ソース失敗、内蔵テーマを使用")
         for theme in STORY_INSPIRATION_THEMES:
             results.append({
-                "title": f"テーマ: {theme['theme']} - {theme['description']}",
+                "title": theme["theme"],
                 "url": "",
+                "description": theme["description"],
                 "score": 0,
                 "source": "StoryInspiration",
                 "category": "kemono",

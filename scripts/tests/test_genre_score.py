@@ -620,3 +620,66 @@ class TestScoreTopics:
             )
         assert result["copyrights"] == []
         assert result["api_calls"] == 1
+
+    def test_description_included_in_scored_text(self, tmp_path):
+        """description がある場合はスコアリング入力テキストに title と合わせて含まれる"""
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "Ghost in the Shell", "url": "https://example.com/1", "source": "rss",
+             "category": "kemono", "description": "A cyberpunk classic about androids and the soul."},
+        ])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {})
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            genre_score.score_topics(
+                topics_path=str(topics_path), copyrights_path=str(cp_path),
+                output_path=out_path, cache_path=cache_path,
+            )
+        body = mock_post.call_args.kwargs["json"]
+        assert body["state"] == "Ghost in the Shell\nA cyberpunk classic about androids and the soul."
+
+    def test_description_truncated_at_200_chars(self, tmp_path):
+        """description は 200 文字で切り詰められる"""
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "t", "url": "https://example.com/1", "source": "rss",
+             "category": "kemono", "description": "あ" * 250},
+        ])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {})
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            genre_score.score_topics(
+                topics_path=str(topics_path), copyrights_path=str(cp_path),
+                output_path=out_path, cache_path=cache_path,
+            )
+        body = mock_post.call_args.kwargs["json"]
+        assert body["state"] == "t\n" + "あ" * 200
+
+    def test_no_description_uses_title_only(self, tmp_path):
+        """description なしの場合は従来の title のみでスコアリングする"""
+        topics_path = tmp_path / "topics.json"
+        self._make_topics_file(topics_path, [
+            {"title": "Ghost in the Shell", "url": "https://example.com/1", "source": "rss",
+             "category": "kemono"},
+        ])
+        cp_path = tmp_path / "cf.json"
+        self._make_copyrights_file(cp_path, {})
+        out_path = str(tmp_path / "out.json")
+        cache_path = str(tmp_path / "cache.json")
+        payload = _api_response({g: 2.0 for g in genre_score.DEFAULT_GENRES})
+        with patch("requests.post", return_value=_mock_post(payload)) as mock_post, \
+             patch.dict(os.environ, ENV_CREDS):
+            genre_score.score_topics(
+                topics_path=str(topics_path), copyrights_path=str(cp_path),
+                output_path=out_path, cache_path=cache_path,
+            )
+        body = mock_post.call_args.kwargs["json"]
+        assert body["state"] == "Ghost in the Shell"

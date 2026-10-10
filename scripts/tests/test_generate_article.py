@@ -973,7 +973,7 @@ class TestCheckPerSourceTTL:
         assert result["hackernews"] is True
 
     def test_source_not_matching_category_not_checked(self):
-        """リクエストカテゴリと一致しない source は期限切れチェックされない"""
+        """リクエストカテゴリと一致しない source（他カテゴリ専属）は対象外（期限切れ扱いしない）"""
         from datetime import datetime, timezone, timedelta
         JST = timezone(timedelta(hours=9))
         old = (datetime.now(JST) - timedelta(hours=48)).isoformat()
@@ -984,7 +984,38 @@ class TestCheckPerSourceTTL:
             }
         })
         result = _check_per_source_ttl(data, ["tech"])
-        assert result["e621"] is True  # カテゴリ不一致 → 期限切れ
+        assert result["e621"] is False  # 他カテゴリ専属 → 自動fetch のトリガーにしない
+
+    def test_other_category_source_mixed_with_fresh_in_scope(self):
+        """他カテゴリ専属 source と対象内 source が混在する場合、他カテゴリ側は False"""
+        from datetime import datetime, timezone, timedelta
+        JST = timezone(timedelta(hours=9))
+        now = datetime.now(JST).isoformat()
+        old = (datetime.now(JST) - timedelta(hours=48)).isoformat()
+        data = self._make_data({
+            "hackernews": {
+                "fetched_at": now,
+                "topics": [{"title": "T", "category": "tech", "source": "hackernews"}],
+            },
+            "pokemon_blog": {
+                "fetched_at": old,
+                "topics": [{"title": "T", "category": "pokemon", "source": "pokemon_blog"}],
+            },
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["hackernews"] is False
+        assert result["pokemon_blog"] is False  # 他カテゴリ → スキップ
+
+    def test_zero_topic_source_still_expired(self):
+        """トピック 0 件の source は従来どおり期限切れ（完全失敗の自愈を保持）"""
+        data = self._make_data({
+            "broken_source": {
+                "fetched_at": "2026-10-10T00:00:00+09:00",
+                "topics": [],
+            }
+        })
+        result = _check_per_source_ttl(data, ["tech"])
+        assert result["broken_source"] is True
 
     def test_missing_fetched_at_is_expired(self):
         """fetched_at が空の source は期限切れ"""
@@ -2546,6 +2577,86 @@ class TestAppendTrendingTopicsGenre:
                 "", "kemono_story", target_genres=["sf"]
             )
         assert "any topic" in result
+
+
+class TestAppendTrendingTopicsDescription:
+    """_append_trending_topics() の description スニペット注入テスト"""
+
+    def _write_topics(self, tmp_path, items):
+        topics_path = tmp_path / "latest.json"
+        topics_data = {
+            "fetched_at": "2026-10-10T12:00:00+09:00",
+            "ttl_hours": 24,
+            "total": len(items),
+            "by_category": {"kemono": items},
+        }
+        topics_path.write_text(json.dumps(topics_data, ensure_ascii=False), encoding="utf-8")
+        return topics_path
+
+    def test_description_injected_into_trend_block(self, tmp_path):
+        import generate_article
+        desc = "A long description that explains the game features and world in detail."
+        topics_path = self._write_topics(tmp_path, [
+            {"title": "Game news", "url": "https://gs.com/1", "source": "GameSpot RSS",
+             "category": "kemono", "score": 0, "description": desc},
+        ])
+        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
+             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch.object(generate_article, "_save_trend_usage_log"), \
+             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
+             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+            result, _, _ = generate_article._append_trending_topics("", "kemono_story")
+        assert "Game news" in result
+        assert desc[:100] in result
+        assert " — " in result
+
+    def test_no_description_no_snippet(self, tmp_path):
+        import generate_article
+        topics_path = self._write_topics(tmp_path, [
+            {"title": "Plain topic", "url": "https://x.com/1", "source": "rss",
+             "category": "kemono", "score": 0},
+        ])
+        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
+             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch.object(generate_article, "_save_trend_usage_log"), \
+             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
+             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+            result, _, _ = generate_article._append_trending_topics("", "kemono_story")
+        assert "Plain topic" in result
+        assert " — " not in result
+
+    def test_description_truncated_to_100_in_prompt(self, tmp_path):
+        import generate_article
+        desc = "あ" * 150
+        topics_path = self._write_topics(tmp_path, [
+            {"title": "t", "url": "https://gs.com/1", "source": "GameSpot RSS",
+             "category": "kemono", "score": 0, "description": desc},
+        ])
+        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
+             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch.object(generate_article, "_save_trend_usage_log"), \
+             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
+             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+            result, _, _ = generate_article._append_trending_topics("", "kemono_story")
+        assert " — " + "あ" * 100 in result
+        assert "あ" * 101 not in result
+
+    def test_description_logged_in_trend_usage(self, tmp_path):
+        import generate_article
+        desc = "あ" * 250
+        topics_path = self._write_topics(tmp_path, [
+            {"title": "t", "url": "https://gs.com/1", "source": "GameSpot RSS",
+             "category": "kemono", "score": 0, "description": desc},
+        ])
+        mock_log = MagicMock()
+        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
+             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch.object(generate_article, "_save_trend_usage_log", mock_log), \
+             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
+             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+            generate_article._append_trending_topics("", "kemono_story")
+        log = mock_log.call_args[0][0]
+        assert log["selected"][0]["description"] == "あ" * 200
 
 
 class TestLoadCharacterFeaturesGenre:

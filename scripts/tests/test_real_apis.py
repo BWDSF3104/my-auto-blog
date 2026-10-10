@@ -27,6 +27,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# scripts ディレクトリから fetch_topics を import 可能にする
+SCRIPTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, SCRIPTS_DIR)
+from fetch_topics import _clean_rss_description  # noqa: E402
+
 # pytest による自動収集を無効化（このファイルは独立スクリプトとして実行する）
 __test__ = False
 
@@ -106,6 +111,9 @@ def _print_items(items: list[dict], source_name: str) -> None:
         _safe_print(f"    {i}. [{score if score else ' '}] {title}")
         if url:
             _safe_print(f"       {url}")
+        desc = item.get("description", "")
+        if desc:
+            _safe_print(f"       desc: {desc[:120]}")
     _safe_print(f"  [{source_name}] --- end ---")
 
 
@@ -239,15 +247,24 @@ def test_e621() -> dict:
 
 
 def test_rss_feeds() -> dict:
-    """RSS フィード（Zenn, Qiita, PokéCommunity）"""
+    """RSS フィード（Zenn, Qiita, PokéCommunity, GameSpot, IGN）"""
     feeds = [
         {"name": "Zenn AI", "url": "https://zenn.dev/topics/ai/feed"},
         {"name": "Qiita AI", "url": "https://qiita.com/tags/ai/feed"},
         {"name": "PokéCommunity", "url": "https://www.pokecommunity.com/forums/art-studio.21/index.rss"},
+        {"name": "GameSpot", "url": "https://www.gamespot.com/feeds/mashup/"},
+        {"name": "IGN", "url": "https://feeds.feedburner.com/ign/all"},
     ]
 
     all_items = []
     results = []
+    rss_content_ns = "{http://purl.org/rss/1.0/modules/content/}"
+    atom_ns = "{http://www.w3.org/2005/Atom}"
+
+    def _el_text(el) -> str:
+        if el is None:
+            return ""
+        return "".join(el.itertext())
 
     for feed in feeds:
         _safe_print(f"\n=== RSS: {feed['name']} ===")
@@ -268,21 +285,29 @@ def test_rss_feeds() -> dict:
                     title_el = item_el.find("title")
                     link_el = item_el.find("link")
                     if title_el is not None and title_el.text:
+                        desc_el = item_el.find(f"{rss_content_ns}encoded")
+                        if desc_el is None:
+                            desc_el = item_el.find("description")
                         items.append({
                             "title": title_el.text.strip(),
                             "url": link_el.text.strip() if link_el is not None and link_el.text else "",
                             "score": 0,
+                            "description": _clean_rss_description(_el_text(desc_el)),
                         })
                 # Atom (fallback)
                 if not items:
-                    for entry in root.findall(".//{http://www.w3.org/2005/Atom}entry")[:3]:
-                        title_el = entry.find("{http://www.w3.org/2005/Atom}title")
-                        link_el = entry.find("{http://www.w3.org/2005/Atom}link")
+                    for entry in root.findall(f".//{atom_ns}entry")[:3]:
+                        title_el = entry.find(f"{atom_ns}title")
+                        link_el = entry.find(f"{atom_ns}link")
                         if title_el is not None and title_el.text:
+                            desc_el = entry.find(f"{atom_ns}content")
+                            if desc_el is None:
+                                desc_el = entry.find(f"{atom_ns}summary")
                             items.append({
                                 "title": title_el.text.strip(),
                                 "url": link_el.get("href", "") if link_el is not None else "",
                                 "score": 0,
+                                "description": _clean_rss_description(_el_text(desc_el)),
                             })
             except ET.ParseError as e:
                 _safe_print(f"  Parse error: {e}")

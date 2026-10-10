@@ -4,6 +4,19 @@ Older decisions moved from `decisions.md`. Kept 15 most recent in `decisions.md`
 
 ---
 
+## 2026-10-01: Pollinations.ai Fallback for Image Generation
+
+**Decision**: Add Pollinations.ai as a fallback image generation service when HuggingFace API fails, plus an `IMAGE_PROVIDER` environment variable for direct Pollinations usage during local testing.
+
+**Rationale**: HuggingFace free tier has usage limits. When the quota is exhausted, article generation fails entirely. Pollinations.ai provides a free, no-API-key alternative using the Flux model. The `IMAGE_PROVIDER=pollinations` environment variable allows bypassing HF entirely for quick local testing without consuming HF quota.
+
+**Rejected Alternatives**:
+- HuggingFaceの完全な置き換え: HFの画質がPollinationsより安定しているため、プライマリは維持
+- APIキーが必要なサービス (SiliconFlow, Cloudflare Workers AI): 設定コストが高く、ローカルテストの利便性が下がる
+
+**Impact**:
+- `scripts/generate_article.py`: `import requests`追加、`_save_as_avif()` ヘルパー関数分離、`_generate_image_pollinations()` フォールバック関数追加、`generate_and_save_image()` にフォールバックロジック追加、`IMAGE_PROVIDER` 環境変数対応
+
 ## 2026-09-29: Score-Based Topic Sorting
 
 **Decision**: Sort topics by score descending within each category before output.
@@ -314,3 +327,63 @@ Older decisions moved from `decisions.md`. Kept 15 most recent in `decisions.md`
 **Impact**:
 - `scripts/generate_article.py`: `inject_affiliate_links()` のリンク生成ロジックを `<a>` タグに変更
 - `docs/ai/known-issues.md`: 既存記事のリンク形式を保留イシューとして追加
+
+## 2026-09-30: Meta Description Validation
+
+**Decision**: Extract first sentence from article body to extend short descriptions. Add regex safety.
+
+**Rationale**: `_validate_description()` padded short descriptions with meaningless characters (`。` and spaces). 30% of recent articles had descriptions under 80 chars. Regex substitution was vulnerable to backslash characters in description text.
+
+**Rejected Alternatives**:
+- LLMでdescriptionを再生成: APIコストが高く、生成時間が伸びる
+- 既存記事の無視: SEOが継続的に劣化する
+
+## 2026-09-30: CSS-Only Bullet List Affiliate Card Styling
+
+**Decision**: Style bullet list affiliate links as card-style elements using CSS `:has()` selector, without modifying Python templates.
+
+**Rationale**: Bullet list links (`- 📦 [Amazonで〜を探す](url)`) were rendered as plain underlined text, inconsistent with the visual product cards. CSS-only approach avoids template changes and retroactively applies to all existing posts.
+
+**Rejected Alternatives**:
+- Pythonテンプレートの変更: 既存記事に遡及適用できない
+- HTMLの完全な書き換え: 既存記事の再生成が必要でコストが高い
+
+## 2026-09-30: Affiliate Keyword Contextualization
+
+**Decision**: Change affiliate keyword priority to "article-extracted > filtered trend_keywords > tags fallback".
+
+**Rationale**: `inject_affiliate_links()` used `trend_keywords` directly, which contained GitHub repo names (e.g., "o3-pro", "langgraph") that produced irrelevant affiliate search results. Article tags and body text reflect the actual article theme, producing more relevant product search links.
+
+**Rejected Alternatives**:
+- trend_keywordsをそのまま使用: GitHubリポジトリ名が混入し、無関係な検索結果になる
+- tagsのみを使用: 記事のテーマを十分に反映できない
+
+## 2026-10-02: e621 rating:safe for Kemono Trending Works
+
+**Decision**: Add `rating:safe` or `rating:questionable` to e621 tag queries to avoid NSFW filtering. Expand tags to include furry/wolf/fox/rabbit species with `order:score` for trending works tracking.
+
+**Reason**: Without rating restrictions, e621 queries returned mostly NSFW content that was filtered out (30/35 posts filtered). Adding `rating:safe` ensures usable SFW results. Expanding species tags captures more kemono/furry trending works.
+
+**Rejected Alternatives**:
+- NSFWフィルタの緩和: 生成された記事に不適切なコンテンツが含まれるリスク
+- e621の完全な置き換え: 公開APIで認証不要な代替ソースが限られる
+
+**Impact**:
+- `fetch_topics.py`: `E621_TAGS` に `rating:safe` または `rating:questionable` を追加、furry/wolf/fox/rabbit の `order:score` クエリを追加
+- kemono カテゴリの e621 収集件数が 3件 → 30件に増加
+
+## 2026-10-02: Replace latest.json Symlink with File Copy
+
+**Decision**: Replace `os.symlink()` with `shutil.copy2()` for `data/topics/latest.json`, converting it from a symlink to a regular file copy of the latest timestamped file.
+
+**Reason**: The symlink stored an absolute path (e.g., `/home/runner/work/...` from GitHub Actions) in git, making it broken on local Windows and GitHub Pages. Symlinks require `core.symlinks` configuration and admin privileges on Windows, causing cross-platform incompatibility. Both consumers (`generate_article.py` reading topics and `fetch_topics.py` inheriting `fetched_at`) only need the file content, not symlink behavior.
+
+**Rejected Alternatives**:
+- シンボリックリンクを維持: 絶対パスがコミットされ、クロスプラットフォームで壊れる
+- `.gitattributes` で `core.symlinks=true` 設定: 開発環境ごとに設定が必要で信頼性低い
+- `data/latest_topics.json` の単一ファイルに戻す: タイムスタンプファイルの履歴追跡が失われる
+
+**Impact**:
+- `fetch_topics.py`: `os.symlink()` → `shutil.copy2()`, `import shutil` 追加
+- `test_fetch_topics.py`: シンボリックリンク検証テストをファイルコピー検証に更新
+- `data/topics/latest.json`: git 管理下の通常ファイルとしてコミット可能に
