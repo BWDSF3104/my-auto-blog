@@ -11,7 +11,7 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 - `docs/ai/tasks/2026-10-10-generation-info-section.md` - 記事末尾の「生成情報」セクション追加（トレンド情報＋キャラクターデータ）。**完了** (2026-10-10)
   - **実装内容**: `generate_article.py` に `_KEMONO_TRANSFORM_LABEL` 新設、`_append_trending_topics()` を 3→4 タプル化（第4要素: `"{title}（{source}）"` 形式のクリーンタイトル）、新ヘルパー `_build_generation_info_section()`（`<details class="gen-info">` HTML 組立・表示要素なしなら空文字列＝非表示）、`generate_post()` 保存前に本文末尾へ追記。`PostLayout.astro` に `.gen-info` CSS（`<style is:global>`、ページ HTML にインライン出力）。テスト: 4 タプル unpack 5 箇所更新 + `TestBuildGenerationInfoSection` 6 件新規
   - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **355 passed** (7.11s)（ベースライン 349 + 新規 6）。`npm run build`（一時記事投入時）→ **137 page(s) built** (9.99s)、出力 HTML で本文末尾配置（`</article>` 直前）・既定閉・セクション内 h2〜h4 なし（TOC 非載入）確認。一時ファイル削除後の再 build → **135 page(s) built** (2.80s) クリーン状態確認。実データ E2E は次回 deploy 時に確認
-  - **コミット**: （commit 実施中）
+  - **コミット**: `c90dc83` feat: 記事末尾に「生成情報」セクション追加（トレンド情報＋キャラクターデータ）+ .gen-info CSS + テスト6件新規（push 済み 2026-10-10）
   - **Next Action**: 次回 deploy 実行で実際に生成された記事のセクション表示を確認
 
 - `docs/ai/tasks/2026-10-10-e621-trend-separation.md` - e621 データのトレンド配管からの分離（キャラクター特徴集計のみ継続）。**実装完了・コミット未実施** (2026-10-10)
