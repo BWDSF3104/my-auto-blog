@@ -8,6 +8,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-10-affiliate-product-diversity.md` - アフィリエイト商品推薦の書籍偏りの中性化（プロンプト例の順序入れ替え・複数例化 + Python 注入行1行）。**完了** (2026-10-10)
+  - **実装内容**: プロンプトテンプレート3種（`default.txt` 6箇所 / `ai_deep.txt` 3箇所 / `kemono_story.txt` 4箇所）+ `generate_article.py:694` 注入行（語順のみ）。ユーザー方針: 書籍は例から削除しない・禁止指示・否定表現は追加しない。例の入れ替え（非書籍を先頭に）・非書籍例の1件追加（ai_deep: AI開発フレームワーク、default 比較表: 開発ツールA、kemono: 関連グッズ名）・kemono の「実在作品」→「実在商品」・category 例の順変（書籍を末尾へ）
+  - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **315 passed** (3.90s)
+  - **コミット**: （記入待ち）
+  - **Next Action**: 次回 deploy 実行で商品カードのカテゴリ分布を観察
+
 - `docs/ai/tasks/2026-10-10-world-setting-expansion.md` - 世界設定の2段階拡大（7→12種・アンカワーク基準、スコアリングgenre 7種化）。**完了** (2026-10-10)
   - **実装内容**: 世界設定 +5（isekai 10 / modern 10 / space_opera 7 / dungeon_crawl 6 / historical 5、既存再配分で合計100維持）。`WORLD_SETTING_GENRE_MAP` に5件追加（isekai/dungeon_crawl→[fantasy, action]、modern→[slice_of_life, action, mystery]、space_opera→[sf, action]、historical→[historical]）。`genre_score.py` に `historical` genre 追加（7種）+ 専用instruction。`genre-score.yml` の genres デフォルト更新
   - **Verification** (2026-10-10): `pytest scripts/tests/` → **315 passed** (4.08s)。実APIスモーク: "戦国武将"→historical:80、"スターフォックス"→action:69/sf:40

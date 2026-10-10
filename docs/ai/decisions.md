@@ -2,6 +2,26 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-10: アフィリエイト商品推薦の書籍偏りの中性化（書籍例は維持）
+
+**Decision**: プロンプトテンプレート3種（`default.txt` / `ai_deep.txt` / `kemono_story.txt`）と `generate_article.py:694` 注入行を、「書籍」が先頭・単独例にならないよう**例の順序入れ替えと複数例化**で中性化する。例から「書籍」を削除せず、「カテゴリ構成を多様化せよ」「書籍に限定しない」等の禁止指示・否定表現も追加しない。kemono プロンプトの「実在作品を1つ選定」→「実在商品を1つ選定」（選定対象の中性化）、category 例は書籍を末尾へ順変（default/ai_deep: ソフトウェア, ツール, ガジェット, 書籍, フィギュア, ゲーム等 / kemono: フィギュア, グッズ, BD, ゲーム, 書籍等）。
+
+**Reason**: (1) ユーザー報告 + 実測: 直近記事の商品カード約34件中約6割が書籍・漫画・アートブック（BEASTARS ×6、ケモノキャラクター図鑑公式ガイド ×3、アートブック ×4）。(2) LLM はプロンプト内の例を強く模倣するため、Frontmatter 例の1件目・唯一の例・category 列挙の先頭が「書籍」だと商品選定が書籍にアンカーされる。(3) ユーザー指示: 書籍自体は正規の商品カテゴリ（テック記事でも自然）のため、修正は「削除」ではなく「順序」で行う。(4) Gemini 商品名は楽天API検索カスケード（`_rakuten_api_keywords()`）にも波及するため、プロンプト段階の修正で商品カードと API カードの双方を改善できる。
+
+**Rejected Alternatives**:
+- 「書籍」を例・カテゴリ列挙から削除: ユーザー指示「書籍自体は別にあっていい、プロンプト側もやはり書籍は例として残す」に反する
+- 「カテゴリ構成を多様化せよ」「書籍に限定しない」等の禁止指示を追加: ユーザー指示「そんな記載は要らない」。明示的な否定指示はプロンプトノイズになる可能性がある
+- `_KEYWORD_ENHANCEMENT` / `_improve_keyword`（フォールバック検索リンクキーワード）の併せて修正: Gemini 商品名とは別メカニズムであり、今回の偏りの原因ではない
+- 既存記事の遡及書き直し: 再生成コストが高く、新プロンプトで新規記事は自然に改善するため見送り
+
+**Impact**:
+- `scripts/prompts/default.txt`: 6箇所（例入れ替え2・比較表例+1行・Frontmatter 例入れ替え・category 列挙2）
+- `scripts/prompts/ai_deep.txt`: 3箇所（例入れ替え + AI開発フレームワーク例追加・Frontmatter 例入れ替え・ルール文言の順変）
+- `scripts/prompts/kemono_story.txt`: 4箇所（関連グッズ・書籍・Frontmatter 例にグッズ項目+1・実在作品→実在商品・category 列挙順変）
+- `scripts/generate_article.py`: 注入行1行の語順のみ（書籍・ゲーム・グッズ → ゲーム・書籍・グッズ）
+- pytest 315通過。変更ファイルが deploy-only.yml の paths に該当しないため自動デプロイなし・deploy 確認不要
+- 効果の観察: 次回 deploy 実行の商品カードのカテゴリ分布
+
 ## 2026-10-10: 世界設定の2段階拡大（12種・アンカワーク基準）
 
 **Decision**: kemono_story の世界設定を7種→12種に拡大。追加: `isekai`（異世界、10）/ `modern`（現代、10）/ `space_opera`（スペースオペラ、7）/ `dungeon_crawl`（ダンジョンクライム、6）/ `historical`（歴史、5）。既存再配分: fantasy 30→21 / slice_of_life 22→10 / sf 15→8 / cyberpunk 12→7 / adventure 8→7 / fantasy+sf 8→4（合計100維持）。ファンタジー族（fantasy+isekai+dungeon_crawl+fantasy+sf）は41/100に拡大。`WORLD_SETTING_GENRE_MAP` に5件追加（isekai/dungeon_crawl→`[fantasy, action]`、modern→`[slice_of_life, action, mystery]`、space_opera→`[sf, action]`、historical→`[historical]`）。スコアリングgenreは `historical` のみ新設（6→7種、専用instruction）し、未デプロイの6種変更と**同バッチ**に集約（一次性の全再スコアリングは次回 deploy 1回のみ）。追加基準を「ニッチでないか」から「ケモノに独立世界を定義するアンカワーク存在＋明確に異なる物語を生む」に変更。

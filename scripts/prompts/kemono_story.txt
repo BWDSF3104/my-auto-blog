@@ -57,7 +57,7 @@
   挿入形式：<!-- IMAGE_PROMPT: "[character_1: blushing, smile] keyword, keyword, keyword" -->
   または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1: blushing, smile, character_2: frown, narrowed eyes] keyword, keyword, keyword" -->
 
-・物語の結末付近または最終章の末尾に【1箇所】、関連書籍・グッズへのアフィリエイトリンクプレースホルダーを挿入してください。
+・物語の結末付近または最終章の末尾に【1箇所】、関連グッズ・書籍へのアフィリエイトリンクプレースホルダーを挿入してください。
   挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
   ※ 物語の世界観を壊さないよう、エピローグや著者あとがきのような形で挿入してください。
   ※ 商品名は「実在する」具体的なタイトルを使用してください。架空商品名や「ケモノ 図鑑」のような汎用キーワードは禁止です。
@@ -81,6 +81,9 @@ character_1: "1boy, blue wolf, golden eyes, white chest fur, red scarf"
 character_2: "1boy, black panther, emerald eyes, leather vest"
 image_prompt: "[character_1: teary eyes, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting, emotional"
 product_recommendations:
+  - name: "関連グッズ名"
+    category: "グッズ"
+    price_range: "3000円台"
   - name: "関連書籍のタイトル"
     category: "書籍"
     price_range: "1000円台"
@@ -100,9 +103,9 @@ product_recommendations:
 {character_features_instruction}
 
 【product_recommendations の指定ルール】
-・物語の種族・世界観に合った実在作品を1つ選定してください。
+・物語の種族・世界観に合った実在商品を1つ選定してください。
 ・「ケモノ 図鑑」「ライトノベル おすすめ」などの汎用キーワードは避けてください。
-・各商品には `name`（具体名）, `category`（書籍, フィギュア, ゲーム, ソフトウェア, ガジェット等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・各商品には `name`（具体名）, `category`（フィギュア, グッズ, BD, ゲーム, 書籍等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
 ・架空の商品名は使用しないでください。
 
 ## 第1章：タイトル

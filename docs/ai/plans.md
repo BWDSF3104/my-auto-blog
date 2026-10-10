@@ -8,6 +8,8 @@
 
 # Completed Plans
 
+- [2026-10-10] アフィリエイト商品推薦の書籍偏りの中性化: 直近記事の商品カード約34件中約6割が書籍・漫画・アートブックで、原因はプロンプトテンプレート内の書籍先頭例・書籍単独例・category 列挙の書籍先頭。ユーザー方針で「書籍」は例から削除せず（書籍自体は正規カテゴリ）、「多様化せよ」系の禁止指示も追加せず、例の順序入れ替え（非書籍先頭）と複数例化で中性化。プロンプト3ファイル + `generate_article.py:694` 注入行（語順のみ）。kemono の「実在作品を1つ選定」→「実在商品を1つ選定」で選定対象を中性化。pytest 315通過。詳細: `docs/ai/tasks/2026-10-10-affiliate-product-diversity.md`
+
 - [2026-10-10] 世界設定の2段階拡大（7→12種）: 追加決定の modern（現代・Zootopia系）/ historical（歴史・時代）/ space_opera（Star Fox）に加え、ユーザー指摘（ファンタジー・異世界方面の薄さ、ポケモンの不思議のダンジョン的世界の親和性）で isekai（異世界）/ dungeon_crawl（ダンジョンクライム）を新設。追加基準を「ニッチでないか」から「ケモノのアンカワーク存在＋明確に異なる物語」へ変更（メカ/ポストアポ/スポーツは独立世界定義不足のため後日）。スコアリングgenreに historical 追加（7種）し直前の6種変更と同バッチ化（一次性の全再スコアリングは次回 deploy 1回のみ）。重み: fantasy 21 / isekai 10 / modern 10 / slice_of_life 10 / sf 8 / space_opera 7 / adventure 7 / cyberpunk 7 / dungeon_crawl 6 / mystery 5 / historical 5 / fantasy+sf 4。pytest 315通過、実APIスモーク（"戦国武将"→historical:80、"スターフォックス"→action:69/sf:40）。詳細: `docs/ai/tasks/2026-10-10-world-setting-expansion.md`
 
 - [2026-10-10] ストーリー系ジャンル拡大: 世界設定4種（fantasy/sf/slice_of_life/fantasy+sf）のみの現状に対し、事前スコアリングの `cyberpunk` が未使用のままコストを消費し、`slice_of_life` → `[action]` の意味逆転マッピングが存在。世界設定を7種（+cyberpunk/adventure/mystery）、スコアリングgenreを6種（+slice_of_life/mystery）へ**一括変更**（キャッシュキー変更による全件再スコアリングという一次性コストを1回に集約）。comedy/romance等の未使用genreは追加しない（cyberpunk型の「スコアリング済但未使用」を再現しない）。重み再配分（合計100: fantasy 30 / slice_of_life 22 / sf 15 / cyberpunk 12 / adventure 8 / fantasy+sf 8 / mystery 5）。pytest 308通過、実APIスモークで新genreの動作確認（"攻殻機動隊"→sf:81/cyberpunk:81、"日常 四葉の妹"→slice_of_life:85）。詳細: `docs/ai/tasks/2026-10-10-genre-expansion.md`

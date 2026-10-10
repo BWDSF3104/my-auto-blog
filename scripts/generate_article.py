@@ -691,7 +691,7 @@ def _load_character_features(target_genres: list[str] | None = None) -> str:
     lines.append(f"・人気版権: {copyright_names}")
     lines.append(f"・人気artist: {artist_names}")
     lines.append("")
-    lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連する書籍・ゲーム・グッズを推奨してください。")
+    lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。")
 
     print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyright_names)}, artists={len(artist_names)}")
 
