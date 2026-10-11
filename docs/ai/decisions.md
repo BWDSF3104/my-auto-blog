@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-11: コメント機能は Giscus（GitHub Discussions バックエンド）を採用
+
+**Decision**: 記事のコメント機能に Giscus（https://giscus.app、GitHub Discussions をバックエンドとするクライアントサイド iframe ウィジェット）を採用。新規 `src/components/GiscusComments.astro` を `src/layouts/PostLayout.astro` の記事末尾（Social Sharing セクション直後）に組み込み、frontmatter `comments: false` で記事単位無効化（`src/content.config.ts` schema に `comments: z.boolean().optional()` 追加）。`data-mapping="pathname"`（base `/my-auto-blog` で開発・本番の pathname が一致し同一 Discussion 共有）。テーマ同期は `documentElement` の class 変化を MutationObserver で監視し giscus script の `data-theme` を更新（サイトのダーク切替はイベントを発火しないため、`Header.astro` 無変更）。設定は `PUBLIC_GISCUS_REPO` / `PUBLIC_GISCUS_REPO_ID` / `PUBLIC_GISCUS_CATEGORY` / `PUBLIC_GISCUS_CATEGORY_ID` の 4 値（`data-lang="ja"` / `data-loading="lazy"` / `data-strict="0"` / reactions on / emit-metadata off / input bottom）、いずれか欠落時はコンポーネントが early return してセクション非表示。`deploy.yml` / `deploy-only.yml` の build ステップに `env:` で `${{ vars.PUBLIC_GISCUS_* }}` を追加（現状この 2 ワークフローは `PUBLIC_*` を一切渡していないため必須）。
+
+**Reason**: (1) 本プロジェクトは静的サイト（GitHub Pages）+ バックエンド/DB/SSR なしの設計哲学であり、セルフホスト型コメントサービス（Cusdis/Remark42/Isso）は常時稼働サーバーを新規追加するため矛盾。(2) Giscus は無料・広告なし・トラッキングなし・サーバー/DB 不要で、コメントがブログ本体のリポジトリ `BWDSF3104/my-auto-blog` の Discussions に保存されるため「GitHub で生成し Pages にデプロイ」構成と整合。(3) 投稿は GitHub OAuth 必須でスパム抑制が強く、AI 自動生成記事はスパムボットに狙われやすい点で有効。(4) Discussions はスレッド返信・リアクション・カテゴリ・GitHub 側で完結するモデレーションを提供。(5) サイト独自のテーマ切替と両立可能（giscus client は `data-theme` 属性変化で再描画）。
+
+**Rejected Alternatives**:
+- Utterances（GitHub Issues バックエンド）: スレッド返信なし・モデレーション弱く、Giscus が機能の上位互換
+- セルフホスト型（Cusdis/Remark42/Isso/Commento）: 匿名投稿可能な利点はあるが、サーバー（Fly.io 等）の運用負荷・障害点・バックアップが新規発生。将来匿名投稿が必須化すれば再検討
+- SaaS（Disqus/Hyvor Talk/Cusdis Cloud）: 広告・トラッキング（Disqus）、有料（Hyvor）、無料枠制限（Cusdis Cloud）で収益化個人ブログと相性不良
+- GitHub Actions + 静的生成による独自実装: 自動生成記事とのコミット競合・非リアルタイムで不向き
+
+**Impact**（計画段階・未実装）:
+- 新規 `src/components/GiscusComments.astro`、修正 `src/layouts/PostLayout.astro` / `src/content.config.ts` / `.github/workflows/deploy.yml` / `.github/workflows/deploy-only.yml`
+- 手動 1 タスク: Discussions 有効化 + カテゴリ「Comments」（Announcements 種別）作成 + giscus.app ウィザードで giscus app 導入 + 4 値を `.env` と GitHub Variables に登録
+- 既知のトレードオフ: 投稿者は GitHub アカウント必須（匿名不可）/ slug リネーム（`slug-redirects.json`）でコメントが引き継がれない / giscus.app と GitHub Discussions API に依存 / コメントデータは Discussions に紐づく（エクスポート API なし）
+- タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md` / `-env-config.md` / `-component.md` / `-workflow-env.md` / `-verification.md`（バックログ P2 #4）
+
 ## 2026-10-11: 生成情報の e621 ブロックは「実際にプロンプトに使った選出データ」を Python 側で表示
 
 **Decision**: 記事末尾の「生成情報」セクションに e621 キャラクター特徴（参考キャラクター2投稿・人気版権・人気artist・データ時点）を表示する。`_load_character_features()`（プロンプト指示文字列返却・選出データを破棄）を `_select_character_features(target_genres) -> dict | None`（`{updated_at, total_posts, raw_posts, posts, copyrights, artists}` 返却）と `_format_character_features_instruction(info) -> str` に分割し、`generate_post()` で `_select_character_features()` を 1 回だけ呼び出して選出 dict をプロンプト（`character_features_instruction`）と `_build_generation_info_section(..., e621_info)` の両方に渡す。`_build_generation_info_section()` の「キャラクターデータ」ブロック直後に「参考キャラクターデータ（e621）」ブロックを `html.escape` 付きで追加（参考キャラ1/2 は 種族/色/身体的特徴/参照/作品 を `<br>` 連結・空は `-`、データ時点は `datetime.fromisoformat` で UTC 整形）。表示は **`prompt_type == "kemono_story"` 限定**（`show_e621 = bool(e621_info) and prompt_type == "kemono_story"`）。既存 `.gen-info-block` / `.gen-info-dl` CSS を流用し Layout 変更なし。
@@ -258,31 +276,6 @@
 **Impact**:
 - `scripts/generate_article.py`: `_fix_duplicate_yaml_keys()` と `_is_character_like_key()` ヘルパー関数を追加、`validate_and_fix_frontmatter()` に无条件の重複チェックを組み込み
 - `scripts/tests/test_generate_article.py`: 重複キー修復のテストケースを追加
-
-## 2026-10-03: npm サプライチェーン攻撃対策の適用
-
-**Decision**: npm の依存パッケージをバージョン固定化し、npm グローバル設定でサプライチェーン攻撃対策を有効化。
-
-**Reason**: 2025-2026年にnpmエコシステムで複数の大規模なサプライチェーン攻撃（Shai-Hulud, ChainDrop, Miasma, IronWorm, GHAPPIER など）が発生。自己複製型のマルウェアが500〜1300以上のパッケージを汚染し、install-time script を経て資格情報を窃取する攻撃が常態化。本项目の直のパッケージ（astro, tailwindcss 等）は汚染リストには含まれていないが、推移的依存の `http-cache-semantics` に high 脆弱性（GHSA-ch52-4w7c-c8xp）が存在。
-
-**Applied Settings**:
-
-- `package.json`: 全パッケージのバージョン指定を `^` から exact version に変更（例: `^7.3.5` → `7.3.5`）
-- `npm config set save-exact=true`: 今後 `npm install` する際にexact versionを記録
-- `npm config set min-release-age=7`: 公開後7日未満のバージョンはインストールしない（汚染された新バージョンの回避）
-- `npm config set ignore-scripts=true`: install-time script（postinstall, preinstall など）を無効化（マルウェア拡散経路の遮断）
-
-**Impact**:
-- `package.json`: `astro`, `tailwindcss`, `@tailwindcss/vite`, `@tailwindcss/typography` のバージョンを固定
-- `package-lock.json`: 既存のロックファイルと整合性あり
-- `allowScripts.esbuild`: `ignore-scripts=true` により無効化されるが、esbuildのネイティブバイナリは別パッケージとしてインストールされるためビルドに影響なし
-- ビルド動作は確認済み（`npm run build` 成功）
-- 今後 install script が必要なパッケージを追加する場合は `npm install --ignore-scripts=false` で明示的に有効化する必要がある
-
-**Rejected Alternatives**:
-- `^` を維持: メジャーバージョン内の自動更新が許可され、汚染された新バージョンがインストールされるリスク
-- `~` (minor以下のみ) の使用: patch版本の自動更新が許可され、完全な固定ではない
-- npm v12のリリースを待機: npm v12ではinstall scriptがデフォルト無効化されるが、リリース時期が不明確
 
 
 
