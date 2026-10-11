@@ -1,0 +1,185 @@
+あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
+動物と獣人のハーフのキャラクターたちが活躍するミステリー、TSF（性転換フィクション）から単一または複数のテーマを選択し短編物語を作成してください。
+相棒関係からランダムにテーマを選択してください。
+登場キャラクターは2人（ライバル）を中心に設定してください。
+
+【物語の質を高めるための必須条件】
+1. **キャラクターの深み**: 各主要キャラクターには外見だけでなく「性格の核（強みと弱み）」「背景（過去の出来事）」「動機（この物語で何を求めているか）」を設定してください。キャラクターの行動はこれらの設定に一貫して従ってください。
+2. **物語構造**: 明確な「起（導入）→承（展開）→転（クライマックス・転換点）→結（解決）」の構造で構成してください。読者の感情を揺さぶるクライマックスを必ず設け、結末には余韻を残してください。
+3. **描写の質**: 「示して語らず（show, don't tell）」の原則を適用してください。感情を直接説明するのではなく、動作・表情・周囲の反応・環境描写で示してください。五感（視覚・聴覚・嗅覚・触覚・味覚）を活用した情景描写を随所に取り入れてください。
+4. **対話の質**: 各キャラクターは独自の口調・語尾・話し方を持ってください。対話は単なる情報伝達ではなく、キャラクター関係の緊張・親密さ・変化を表現する手段として機能させてください。不自然な説明台詞は避けてください。
+5. **テンポの管理**: 静かな内省シーンと動きの多いアクションシーンを交互に配置し、読者の集中を維持してください。重要な場面では描写を細かく、通過点では簡潔に記述してください。
+6. **世界観の一貫性**: 物語内で設定したルール（魔法・テクノロジー・社会構造など）は最後まで矛盾なく運用してください。読者が没入できる詳細な世界観を、本文に自然に溶け込ませてください。
+7. **設定の整合性**: 物語途中で設定した伏線は回収してください。キャラクターの外見・性格・関係性は最初から最後まで矛盾なく維持してください。
+8. **印象的なシーンの必須配置**: 物語中に以下のカテゴリから少なくとも1つ以上の印象的なシーンを含めてください。キャラクターの関係性や物語のトーンに合ったものを選択してください。
+   - 身体的な親密さ: キス、ハグ、頭なで、手をつなぐ、寄り添う、肩を組むなど
+   - 緊張感ある密着: 転倒時の体当たり、狭い空間での密着、保護のための抱きしめなど
+   - 激しいアクション: 決闘、追跡戦、魔法バトル、生死をかけた戦いなど
+   - 感情的な決定的瞬間: 涙、告白、別れ、再会、信頼の表明など
+   これらのシーンは「示して語らず」の原則で描写し、感情を直接説明するのではなく動作・表情・反応・環境で表現してください。SFWの範囲内で描写してください。
+
+【画像プロンプトのキーワード形式】
+・art_style, character_1/2, image_prompt, IMAGE_PROMPT のキーワードは、Danbooru互換の簡潔なタグ形式を使用してください。
+・自然言語的な表現（例: "wearing a red scarf", "inside an antique shop"）は避けて、簡潔なキーワード（例: "red scarf", "antique shop interior"）にしてください。
+
+【キャラクターの一貫性と画像プロンプトのルール】
+・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
+  - 主人公: `character_1`（必須）
+  - 2人目の主要キャラがいる場合: `character_2`（任意）
+・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-10語程度に簡潔にしてください。
+・各キャラクターの場面ごとの表情を、キャラクターIDの直後にコロン（:）で区切って指定してください。
+  - 表情はDanbooruの実在タグ（英語）を使用し、1人につき1-2個にしてください。
+  - 表情はその場面の2匹の感情・緊張感・関係性に必ず一致させてください。
+  - 2匹で表情が異なる場合はそれぞれに指定、同じ場合は2つのキャラクターIDの後に1回だけ記述してください。
+  - 例（表情が異なる）: "[character_1: blushing, smile, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting"
+  - 例（表情が同じ）: "[character_1, character_2, smile] peaceful afternoon, warm lighting"
+・シーンキーワードは、ポーズ/アクション、相互作用、背景、構図、光、などの簡潔なタグで構成してください。
+・画質指定（masterpiece等）はシステム側で自動付与されるため含めないでください。
+・art_styleにはこの記事の画像に適用するアートスタイルを英語で指定してください。3-5タグ程度に簡潔にしてください。
+  例: "anime style, illustration, cel shading, vibrant colors" や "digital painting, dramatic lighting, rich colors"
+  記事内の全画像はこのスタイルで統一されます。
+  トレンドデータで提示されたartist名をスタイル参照として使用できます（例: "by dimwitdog" や "by wolfy-nail"）。
+・画像は必ずSFW（Safe For Work）にしてください。性的な描写、ヌード、暴力的な表現、グロテスクな内容は含めないでください。
+
+【画像シーンの選出ルール（合計最大8枚、ヘッダー1 + 本文内最大7枚、被り禁止）】
+・各画像は異なる瞬間を指定してください。同じシーンの複数アングルは禁止。
+・全画像で物語の異なる感情・場面をカバーするよう選出してください。
+
+・アイキャッチ画像（image_prompt）: 物語全体の「ポスター画像」相当。
+  最も視覚的にインパクトのある1瞬間を選びます（クライマックスの決着、
+  2人の決定的な接触など）。平淡な導入シーンや単独の静かな場面は避けてください。
+
+・本文内挿絵（<!-- IMAGE_PROMPT -->、最大7箇所）:
+  各章ごとに少なくとも1つの画像プロンプトを挿入してください。
+  章内で展開が激しいシーンや印象的なシーンがある場合は、その章で複数枚の挿入を許可します（合計7箇所以内）。
+  章の冒頭または章内で最も視覚的に印象的な場面の直後に配置します。
+  各章のトーン・情感・アクションに合わせたシーンを選び、全章で異なる瞬間を指定してください。
+  挿入形式：<!-- IMAGE_PROMPT: "[character_1: blushing, smile] keyword, keyword, keyword" -->
+  または（2人登場時）：<!-- IMAGE_PROMPT: "[character_1: blushing, smile, character_2: frown, narrowed eyes] keyword, keyword, keyword" -->
+
+・物語の結末付近または最終章の末尾に【1箇所】、関連グッズ・書籍へのアフィリエイトリンクプレースホルダーを挿入してください。
+  挿入形式：<!-- AFFILIATE: "商品名" | "アンカーテキスト" -->
+  ※ 物語の世界観を壊さないよう、エピローグや著者あとがきのような形で挿入してください。
+  ※ 商品名は「実在する」具体的なタイトルを使用してください。架空商品名や「ケモノ 図鑑」のような汎用キーワードは禁止です。
+
+【直近の執筆作品（テーマ・展開被り防止）】
+直近で以下の物語を作成済みです。これらとシチュエーションや展開が極力被らないよう、新しいテーマで作成してください:
+- 二重螺旋の孤影
+- 陽炎の回廊と牙の誓い
+- 蒼鱗の心臓と宵闇の羽音
+- 白銀の残響、黄金の爪痕
+- 虚空のスカイ・チェイサー
+
+【キャラクター・テーマ被り防止】
+以下のキャラクター設定・テーマは直近で使用済みです。同じ組み合わせや非常に類似した設定を使わず、新しいキャラクター・テーマで作成してください:
+「二重螺旋の孤影」
+  キャラ1: 1boy, red fox anthro, russet fur, black ear tips, amber eyes, long bushy tail, damaged leather trench coat
+  キャラ2: 1boy, red fox anthro, russet fur, black ear tips, amber eyes, long bushy tail, pristine white sorcerer robe
+  アートスタイル: digital painting, dark fantasy, dramatic cinematic lighting, rich fur texture, by suurin_2
+  タグ: ["ケモノ", "獣人", "ファンタジー", "BL", "クローンによる自分同士"]
+「陽炎の回廊と牙の誓い」
+  キャラ1: 1boy, caracal anthro, sandy fur, long tufted black ears, golden eyes, hooded cloak, rapier
+  キャラ2: 1boy, striped hyena anthro, silver mane, dark striped fur, amber eyes, leather duster, heavy gauntlets
+  アートスタイル: digital painting, dramatic cinematic lighting, rich fur texture, atmospheric dust, by cobalt_snow
+  タグ: ["ケモノ", "動物と獣人のハーフ", "動物", "ファンタジー", "BL", "ライバル関係"]
+「蒼鱗の心臓と宵闇の羽音」
+  キャラ1: 1girl, raven anthro, glossy black feathers, violet eyes, dark hooded cloak, silver monocle
+  キャラ2: 1girl, dragon anthro, cerulean scales, golden horns, amber slit eyes, leather shoulder guard
+  アートスタイル: digital painting, dark fantasy, glowing bioluminescence, painterly texture, dramatic lighting
+  タグ: ["ケモノ", "動物", "ファンタジー", "百合"]
+「白銀の残響、黄金の爪痕」
+  キャラ1: 1girl, arctic hare anthro, white fur, ruby red eyes, long ears, sleek black bodysuit
+  キャラ2: 1girl, lynx anthro, spotted tawny fur, tufted ears, golden eyes, crimson jacket
+  アートスタイル: digital painting, anime style, dramatic cinematic lighting, glowing bioluminescence, rich fur texture, by cobalt_snow
+  タグ: ["ケモノ", "動物と獣人のハーフ", "ファンタジーとSF", "百合（女性同士の恋愛）"]
+「虚空のスカイ・チェイサー」
+  キャラ1: 1boy, doberman anthro, short black and rust fur, sharp amber eyes, leather flight jacket, fingerless gloves
+  キャラ2: 1boy, siberian husky anthro, thick silver-white fur, blue eyes, tactical pilot vest, tech visor on forehead
+  アートスタイル: digital painting, anime style, dramatic rim lighting, cinematic sci-fi, vibrant glow, by cobalt_snow
+  タグ: ["ケモノ", "SF", "ライバル", "恋愛", "BL"]
+
+【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
+- [IGN RSS] Image Comics' Roam Reunites Paper Girls Creators Brian K. Vaughan and Cliff Chiang — In what is easily one of the most exciting comic book-related announcements to come out of NYCC 2026
+- [IGN RSS] Crystal Lake Showrunner on Retelling the Friday the 13th Story: ‘It's Always Ripe for Reinterpretation’ — Spoilers follow for the first episode of Crystal Lake , which debuts on Peacock on October 15! The c
+
+【出力フォーマット指定】
+必ず以下のYAML Frontmatterヘッダー形式から始めてください。
+余計な挨拶文や ```markdown などのコードブロック囲みは含めないでください。
+
+---
+title: "物語のタイトル"
+slug: "seo-friendly-romaji-slug-based-on-title"
+pubDate: "2026-10-11 10:46:56"
+description: "物語のあらすじ（80〜120文字程度）"
+author: "AI Storyteller"
+prompt_type: "kemono_story"
+tags: []
+art_style: "anime style, illustration, cel shading"
+character_1: "1boy, blue wolf, golden eyes, white chest fur, red scarf"
+character_2: "1boy, black panther, emerald eyes, leather vest"
+image_prompt: "[character_1: teary eyes, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting, emotional"
+product_recommendations:
+  - name: "関連グッズ名"
+    category: "グッズ"
+    price_range: "3000円台"
+  - name: "関連書籍のタイトル"
+    category: "書籍"
+    price_range: "1000円台"
+---
+
+【slug の指定ルール】
+・タイトルに基づいてSEOに優しいURLスラッグを英小文字＋ハイフン区切りで生成してください（例: "ao-ryu-to-kuro-hyou-no-natsuyasumi"）。
+・日本語タイトルは読みやすいローマ字に変換し、英語タイトルは小文字+ハイフンに変換してください。
+・2-5語程度に簡潔にしてください。
+
+【character_1 / character_2 の指定ルール】
+・性別（1boy, 1girl等）＋種族（例: wolf, fox）＋anthro/feral/semi-anthroの種族タイプタグ＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリ（0-2つ）のみを英語で簡潔に記述してください。
+・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
+・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
+・外見はSFWにしてください。
+・1人のみの物語の場合は character_2 を省略して構いません。
+
+【キャラクター特徴のトレンドデータ（参考）】
+
+・参考キャラクター1:
+  種族: canid, canine, fox, mammal
+  色: blue_body, blue_fur, blue_hair, yellow_eyes
+  身体的特徴: 5_toes, anthro, barefoot, bendy_straw, blonde_highlights, bottomwear, breasts, claws
+  参照: nanahoshi_suzu
+  作品: vtuber
+
+・参考キャラクター2:
+  種族: canid, canine, fox, mammal
+  色: -
+  身体的特徴: anthro, breaking_the_fourth_wall, fanboy, tail
+  参照: tank_model_vixen
+  作品: -
+
+・人気版権: vtuber, sdorica, mars_incorporated, playboy, christmas, sega, nintendo, pokemon
+・人気artist: greyofpta, slypon, aotadobukitch, kisaragi_syoo, moki_(artist), ikttknn, ikuta_takanon, aruurara
+
+アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
+
+【product_recommendations の指定ルール】
+・物語の種族・世界観に合った実在商品を1つ選定してください。
+・「ケモノ 図鑑」「ライトノベル おすすめ」などの汎用キーワードは避けてください。
+・各商品には `name`（具体名）, `category`（フィギュア, グッズ, BD, ゲーム, 書籍等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・架空の商品名は使用しないでください。
+
+## 第1章：タイトル
+
+（物語本文...）
+
+<!-- IMAGE_PROMPT: "[character_1, character_2, smile] scene matching chapter 1 mood, keywords" -->
+
+## 第2章：タイトル
+
+（物語本文...）
+
+<!-- IMAGE_PROMPT: "[character_1: blushing, character_2: smirk] scene matching chapter 2 mood, keywords" -->
+
+## 最終章：タイトル
+
+（結末...）
+
+<!-- IMAGE_PROMPT: "[character_1: happy tears, character_2: smile] scene matching final chapter mood, keywords" -->

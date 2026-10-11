@@ -8557,5 +8557,7837 @@
     "model": "@cf/cloudflare/clef-flash",
     "source": "e621",
     "timestamp": "2026-10-10T02:15:17.852868+00:00"
+  },
+  "7837b1c24bac8fa90a4a6b981fb2697e0fe871585b27bc64e3edb0eb8738131b": {
+    "input": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 23,
+      "fantasy": 45,
+      "cyberpunk": 13,
+      "action": 15,
+      "slice_of_life": 52,
+      "mystery": 24,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.9351,
+      "fantasy": 1.8192,
+      "cyberpunk": 0.5072,
+      "action": 0.5914,
+      "slice_of_life": 2.0744,
+      "mystery": 0.9704,
+      "historical": 0.4188
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4542,
+        "1": 0.2844,
+        "2": 0.1742,
+        "3": 0.0466,
+        "4": 0.0406
+      },
+      "fantasy": {
+        "0": 0.2064,
+        "1": 0.2341,
+        "2": 0.2496,
+        "3": 0.1536,
+        "4": 0.1563
+      },
+      "cyberpunk": {
+        "0": 0.6659,
+        "1": 0.2091,
+        "2": 0.0932,
+        "3": 0.0155,
+        "4": 0.0163
+      },
+      "action": {
+        "0": 0.5648,
+        "1": 0.3073,
+        "2": 0.1082,
+        "3": 0.011,
+        "4": 0.0087
+      },
+      "slice_of_life": {
+        "0": 0.1729,
+        "1": 0.1958,
+        "2": 0.2308,
+        "3": 0.185,
+        "4": 0.2155
+      },
+      "mystery": {
+        "0": 0.3876,
+        "1": 0.3514,
+        "2": 0.1975,
+        "3": 0.0302,
+        "4": 0.0333
+      },
+      "historical": {
+        "0": 0.6988,
+        "1": 0.2159,
+        "2": 0.0642,
+        "3": 0.0101,
+        "4": 0.011
+      }
+    },
+    "usage": {
+      "input_tokens": 1215,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GitHub",
+    "timestamp": "2026-10-11T01:46:22.024371+00:00"
+  },
+  "2c5febb28936c39eb680c2d313bca40cdb548f9fa4b2d1049334197c7e4d68ac": {
+    "input": "There’s Never Been a Better Time To Play Fire Emblem: Awakening\nIf you feel like the Persona-ification of Fire Emblem has gone too far, it may be a good time to go back to a 3DS classic.",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 74,
+      "cyberpunk": 5,
+      "action": 43,
+      "slice_of_life": 21,
+      "mystery": 16,
+      "historical": 50
+    },
+    "raw_scores": {
+      "sf": 0.5438,
+      "fantasy": 2.9727,
+      "cyberpunk": 0.2066,
+      "action": 1.7164,
+      "slice_of_life": 0.8589,
+      "mystery": 0.6245,
+      "historical": 1.9943
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7148,
+        "1": 0.1411,
+        "2": 0.0711,
+        "3": 0.0316,
+        "4": 0.0414
+      },
+      "fantasy": {
+        "0": 0.067,
+        "1": 0.0635,
+        "2": 0.1062,
+        "3": 0.3564,
+        "4": 0.4069
+      },
+      "cyberpunk": {
+        "0": 0.8606,
+        "1": 0.0907,
+        "2": 0.0362,
+        "3": 0.0065,
+        "4": 0.006
+      },
+      "action": {
+        "0": 0.1803,
+        "1": 0.2654,
+        "2": 0.3246,
+        "3": 0.117,
+        "4": 0.1127
+      },
+      "slice_of_life": {
+        "0": 0.4291,
+        "1": 0.3434,
+        "2": 0.1861,
+        "3": 0.0223,
+        "4": 0.0191
+      },
+      "mystery": {
+        "0": 0.5504,
+        "1": 0.2993,
+        "2": 0.1336,
+        "3": 0.0088,
+        "4": 0.0079
+      },
+      "historical": {
+        "0": 0.1605,
+        "1": 0.2096,
+        "2": 0.2774,
+        "3": 0.18,
+        "4": 0.1725
+      }
+    },
+    "usage": {
+      "input_tokens": 1230,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:22.440004+00:00"
+  },
+  "fa890399d0642b10b57a16719625ba917d13f79747c65a444fbe62b2fa9cc01d": {
+    "input": "Marvel Darkhold Destiny Is Magic: The Gathering’s First Universes Beyond Set Of 2027\nToday at New York Comic Con, Wizards of the Coast announced the first 2027 Universes Beyond expansion set for Magic: The Gathering. Marvel’s Darkhold Destiny will pit Doctor Strange, Thor, Ghost Rider",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 24,
+      "fantasy": 45,
+      "cyberpunk": 4,
+      "action": 43,
+      "slice_of_life": 10,
+      "mystery": 18,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.9541,
+      "fantasy": 1.7975,
+      "cyberpunk": 0.1764,
+      "action": 1.7181,
+      "slice_of_life": 0.3949,
+      "mystery": 0.7205,
+      "historical": 0.2839
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4589,
+        "1": 0.2633,
+        "2": 0.1875,
+        "3": 0.0454,
+        "4": 0.0449
+      },
+      "fantasy": {
+        "0": 0.2145,
+        "1": 0.2233,
+        "2": 0.2662,
+        "3": 0.1422,
+        "4": 0.1538
+      },
+      "cyberpunk": {
+        "0": 0.8768,
+        "1": 0.0857,
+        "2": 0.0276,
+        "3": 0.0042,
+        "4": 0.0057
+      },
+      "action": {
+        "0": 0.2179,
+        "1": 0.231,
+        "2": 0.2956,
+        "3": 0.1262,
+        "4": 0.1293
+      },
+      "slice_of_life": {
+        "0": 0.6641,
+        "1": 0.291,
+        "2": 0.0358,
+        "3": 0.0042,
+        "4": 0.0049
+      },
+      "mystery": {
+        "0": 0.4906,
+        "1": 0.3202,
+        "2": 0.1748,
+        "3": 0.0068,
+        "4": 0.0076
+      },
+      "historical": {
+        "0": 0.7885,
+        "1": 0.1551,
+        "2": 0.0462,
+        "3": 0.0044,
+        "4": 0.0058
+      }
+    },
+    "usage": {
+      "input_tokens": 1250,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:22.820689+00:00"
+  },
+  "a942f3ed5d2796e1d1d9d450708274da392b0928cf80f86283f8515d701617de": {
+    "input": "Let’s All Be Happy This AAA Minesweeper Game Isn’t Real\nMinesweeper has been around for decades and it's probably overdue for some modern flourishes. Now there's a Triple-A Minesweeper parody that offers a hilarious look at what a Minesweeper update might ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 6,
+      "cyberpunk": 14,
+      "action": 10,
+      "slice_of_life": 17,
+      "mystery": 13,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.5228,
+      "fantasy": 0.2204,
+      "cyberpunk": 0.5795,
+      "action": 0.3992,
+      "slice_of_life": 0.6876,
+      "mystery": 0.504,
+      "historical": 0.1893
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6662,
+        "1": 0.1937,
+        "2": 0.1068,
+        "3": 0.0176,
+        "4": 0.0157
+      },
+      "fantasy": {
+        "0": 0.8466,
+        "1": 0.1037,
+        "2": 0.0386,
+        "3": 0.0051,
+        "4": 0.006
+      },
+      "cyberpunk": {
+        "0": 0.6171,
+        "1": 0.2301,
+        "2": 0.1232,
+        "3": 0.0155,
+        "4": 0.0141
+      },
+      "action": {
+        "0": 0.7198,
+        "1": 0.1859,
+        "2": 0.0771,
+        "3": 0.0099,
+        "4": 0.0073
+      },
+      "slice_of_life": {
+        "0": 0.5663,
+        "1": 0.2542,
+        "2": 0.1307,
+        "3": 0.0231,
+        "4": 0.0257
+      },
+      "mystery": {
+        "0": 0.6527,
+        "1": 0.2197,
+        "2": 0.1077,
+        "3": 0.0107,
+        "4": 0.0092
+      },
+      "historical": {
+        "0": 0.8542,
+        "1": 0.1145,
+        "2": 0.0232,
+        "3": 0.0039,
+        "4": 0.0042
+      }
+    },
+    "usage": {
+      "input_tokens": 1243,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:23.193501+00:00"
+  },
+  "1c4162f7df3ac88b59ce3e173540cc5cfe6a22324ffbd1b5ff9c84f4878ffea8": {
+    "input": "These Are Easily The Most Unique Fortnite Skins\nThere are a lot of Fortnite skins that look cool or have an interesting gimmick, but there are very few that have any kind of feature that's truly unique, something you genuinely cannot get from any o",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 9,
+      "fantasy": 11,
+      "cyberpunk": 15,
+      "action": 23,
+      "slice_of_life": 13,
+      "mystery": 8,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.3648,
+      "fantasy": 0.4487,
+      "cyberpunk": 0.5851,
+      "action": 0.9123,
+      "slice_of_life": 0.5261,
+      "mystery": 0.3312,
+      "historical": 0.2829
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7682,
+        "1": 0.1434,
+        "2": 0.0581,
+        "3": 0.0159,
+        "4": 0.0144
+      },
+      "fantasy": {
+        "0": 0.6992,
+        "1": 0.1904,
+        "2": 0.0857,
+        "3": 0.012,
+        "4": 0.0127
+      },
+      "cyberpunk": {
+        "0": 0.6254,
+        "1": 0.2214,
+        "2": 0.1153,
+        "3": 0.0184,
+        "4": 0.0195
+      },
+      "action": {
+        "0": 0.4526,
+        "1": 0.2982,
+        "2": 0.1726,
+        "3": 0.0376,
+        "4": 0.039
+      },
+      "slice_of_life": {
+        "0": 0.5835,
+        "1": 0.3303,
+        "2": 0.0704,
+        "3": 0.0082,
+        "4": 0.0076
+      },
+      "mystery": {
+        "0": 0.7273,
+        "1": 0.2271,
+        "2": 0.0369,
+        "3": 0.0044,
+        "4": 0.0043
+      },
+      "historical": {
+        "0": 0.7965,
+        "1": 0.1419,
+        "2": 0.0499,
+        "3": 0.0057,
+        "4": 0.006
+      }
+    },
+    "usage": {
+      "input_tokens": 1235,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:23.546397+00:00"
+  },
+  "a7c8663334333899eab3b53c06b5e1435656413875d7cab209bbbfde15c04b5d": {
+    "input": "Dragon’s Dogma 2: Dark Arisen Is Great, But At a Cost\nCapcom choosing the exact same subtitle for two separate expansions in two different games makes a lot of sense. Dragon's Dogma 2: Dark Arisen is not only a thematically relevant title, but thanks to ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 6,
+      "fantasy": 87,
+      "cyberpunk": 3,
+      "action": 71,
+      "slice_of_life": 5,
+      "mystery": 13,
+      "historical": 26
+    },
+    "raw_scores": {
+      "sf": 0.2395,
+      "fantasy": 3.4608,
+      "cyberpunk": 0.1339,
+      "action": 2.8518,
+      "slice_of_life": 0.1824,
+      "mystery": 0.5366,
+      "historical": 1.0538
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8452,
+        "1": 0.0999,
+        "2": 0.036,
+        "3": 0.0082,
+        "4": 0.0107
+      },
+      "fantasy": {
+        "0": 0.0181,
+        "1": 0.0163,
+        "2": 0.03,
+        "3": 0.3581,
+        "4": 0.5775
+      },
+      "cyberpunk": {
+        "0": 0.9152,
+        "1": 0.0513,
+        "2": 0.0235,
+        "3": 0.0045,
+        "4": 0.0055
+      },
+      "action": {
+        "0": 0.0657,
+        "1": 0.0666,
+        "2": 0.1564,
+        "3": 0.3728,
+        "4": 0.3385
+      },
+      "slice_of_life": {
+        "0": 0.8587,
+        "1": 0.1111,
+        "2": 0.023,
+        "3": 0.0035,
+        "4": 0.0037
+      },
+      "mystery": {
+        "0": 0.615,
+        "1": 0.2531,
+        "2": 0.1191,
+        "3": 0.006,
+        "4": 0.0068
+      },
+      "historical": {
+        "0": 0.3823,
+        "1": 0.3113,
+        "2": 0.2204,
+        "3": 0.0423,
+        "4": 0.0437
+      }
+    },
+    "usage": {
+      "input_tokens": 1246,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:23.939445+00:00"
+  },
+  "d0ea4a4111a37c46eef72f2c86295119d461f3ecba19a9b03922a79b0c83cd44": {
+    "input": "Call Of Duty: MW4 Early Access Also Includes DMZ, Here’s How To Get In\nCall of Duty: Modern Warfare 4's campaign is playable a week early for people who preorder, and now we know the DMZ mode will be as well. Activision has announced that MW4's extraction-based DMZ mode ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 4,
+      "cyberpunk": 24,
+      "action": 83,
+      "slice_of_life": 5,
+      "mystery": 11,
+      "historical": 18
+    },
+    "raw_scores": {
+      "sf": 0.5679,
+      "fantasy": 0.1532,
+      "cyberpunk": 0.9473,
+      "action": 3.3153,
+      "slice_of_life": 0.199,
+      "mystery": 0.4347,
+      "historical": 0.7261
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6867,
+        "1": 0.1669,
+        "2": 0.0794,
+        "3": 0.0258,
+        "4": 0.0412
+      },
+      "fantasy": {
+        "0": 0.9083,
+        "1": 0.0531,
+        "2": 0.0245,
+        "3": 0.0053,
+        "4": 0.0088
+      },
+      "cyberpunk": {
+        "0": 0.452,
+        "1": 0.2731,
+        "2": 0.1951,
+        "3": 0.0352,
+        "4": 0.0446
+      },
+      "action": {
+        "0": 0.0282,
+        "1": 0.0286,
+        "2": 0.0622,
+        "3": 0.3619,
+        "4": 0.5191
+      },
+      "slice_of_life": {
+        "0": 0.8445,
+        "1": 0.1254,
+        "2": 0.0213,
+        "3": 0.0041,
+        "4": 0.0047
+      },
+      "mystery": {
+        "0": 0.6774,
+        "1": 0.2313,
+        "2": 0.0779,
+        "3": 0.0062,
+        "4": 0.0072
+      },
+      "historical": {
+        "0": 0.5607,
+        "1": 0.2408,
+        "2": 0.1426,
+        "3": 0.0237,
+        "4": 0.0322
+      }
+    },
+    "usage": {
+      "input_tokens": 1251,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:24.314673+00:00"
+  },
+  "66d0004d0f7974cdca4561be817bbb9b1bdeb4e988b2d82679d987c071318af8": {
+    "input": "2026 Upcoming Games Release Schedule\n2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move fu",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 23,
+      "fantasy": 19,
+      "cyberpunk": 25,
+      "action": 40,
+      "slice_of_life": 19,
+      "mystery": 19,
+      "historical": 13
+    },
+    "raw_scores": {
+      "sf": 0.9029,
+      "fantasy": 0.7696,
+      "cyberpunk": 1.0183,
+      "action": 1.6139,
+      "slice_of_life": 0.7713,
+      "mystery": 0.7635,
+      "historical": 0.5101
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5202,
+        "1": 0.225,
+        "2": 0.1471,
+        "3": 0.0472,
+        "4": 0.0605
+      },
+      "fantasy": {
+        "0": 0.5642,
+        "1": 0.2237,
+        "2": 0.1309,
+        "3": 0.0408,
+        "4": 0.0404
+      },
+      "cyberpunk": {
+        "0": 0.4745,
+        "1": 0.2175,
+        "2": 0.1846,
+        "3": 0.0619,
+        "4": 0.0615
+      },
+      "action": {
+        "0": 0.2769,
+        "1": 0.2302,
+        "2": 0.2198,
+        "3": 0.1484,
+        "4": 0.1247
+      },
+      "slice_of_life": {
+        "0": 0.5138,
+        "1": 0.2948,
+        "2": 0.129,
+        "3": 0.0312,
+        "4": 0.0312
+      },
+      "mystery": {
+        "0": 0.5222,
+        "1": 0.2748,
+        "2": 0.147,
+        "3": 0.0293,
+        "4": 0.0267
+      },
+      "historical": {
+        "0": 0.663,
+        "1": 0.2198,
+        "2": 0.0797,
+        "3": 0.019,
+        "4": 0.0185
+      }
+    },
+    "usage": {
+      "input_tokens": 1243,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:24.719548+00:00"
+  },
+  "3763c22f528627287e32ecbdcc7f153ab67147a9d798464358a187c6069610b4": {
+    "input": "Gears Of War: E-Day–How’s It Selling? Let’s Unpack Things\nMicrosoft's latest console exclusive, Gears of War: E-Day , launched this week, and now we've gotten the first glimpse at how the game is performing commercially. Multiple analysts have weighed in, an",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 5,
+      "cyberpunk": 26,
+      "action": 82,
+      "slice_of_life": 5,
+      "mystery": 9,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 0.6606,
+      "fantasy": 0.2093,
+      "cyberpunk": 1.0276,
+      "action": 3.2647,
+      "slice_of_life": 0.2094,
+      "mystery": 0.3495,
+      "historical": 0.4341
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.634,
+        "1": 0.1884,
+        "2": 0.1003,
+        "3": 0.0376,
+        "4": 0.0397
+      },
+      "fantasy": {
+        "0": 0.8706,
+        "1": 0.0776,
+        "2": 0.0341,
+        "3": 0.0073,
+        "4": 0.0104
+      },
+      "cyberpunk": {
+        "0": 0.4259,
+        "1": 0.2758,
+        "2": 0.1986,
+        "3": 0.0443,
+        "4": 0.0554
+      },
+      "action": {
+        "0": 0.0343,
+        "1": 0.0275,
+        "2": 0.0527,
+        "3": 0.4102,
+        "4": 0.4753
+      },
+      "slice_of_life": {
+        "0": 0.8347,
+        "1": 0.135,
+        "2": 0.0215,
+        "3": 0.004,
+        "4": 0.0048
+      },
+      "mystery": {
+        "0": 0.7298,
+        "1": 0.2068,
+        "2": 0.0531,
+        "3": 0.0047,
+        "4": 0.0056
+      },
+      "historical": {
+        "0": 0.7011,
+        "1": 0.1962,
+        "2": 0.0817,
+        "3": 0.0096,
+        "4": 0.0114
+      }
+    },
+    "usage": {
+      "input_tokens": 1244,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:25.094101+00:00"
+  },
+  "3f768ebf2cf09a4a0c3a22f85d9a8647055a9c29bc4c0c7db2f14ea2aae1c92d": {
+    "input": "World of Warcraft: Forever – “Your Adventure Begins” Trailer\nLearn about the new quests, characters, and rewards waiting ahead of your leveling journey through Azeroth.",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 20,
+      "fantasy": 68,
+      "cyberpunk": 5,
+      "action": 36,
+      "slice_of_life": 10,
+      "mystery": 12,
+      "historical": 22
+    },
+    "raw_scores": {
+      "sf": 0.8009,
+      "fantasy": 2.7151,
+      "cyberpunk": 0.208,
+      "action": 1.4509,
+      "slice_of_life": 0.3916,
+      "mystery": 0.4962,
+      "historical": 0.8878
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.544,
+        "1": 0.2472,
+        "2": 0.1155,
+        "3": 0.0504,
+        "4": 0.0429
+      },
+      "fantasy": {
+        "0": 0.1124,
+        "1": 0.0913,
+        "2": 0.1383,
+        "3": 0.2848,
+        "4": 0.3732
+      },
+      "cyberpunk": {
+        "0": 0.8524,
+        "1": 0.1032,
+        "2": 0.034,
+        "3": 0.0049,
+        "4": 0.0055
+      },
+      "action": {
+        "0": 0.2187,
+        "1": 0.3179,
+        "2": 0.3257,
+        "3": 0.0692,
+        "4": 0.0685
+      },
+      "slice_of_life": {
+        "0": 0.6801,
+        "1": 0.2644,
+        "2": 0.0449,
+        "3": 0.0051,
+        "4": 0.0055
+      },
+      "mystery": {
+        "0": 0.6266,
+        "1": 0.2722,
+        "2": 0.0867,
+        "3": 0.0074,
+        "4": 0.0071
+      },
+      "historical": {
+        "0": 0.4554,
+        "1": 0.2988,
+        "2": 0.179,
+        "3": 0.0363,
+        "4": 0.0305
+      }
+    },
+    "usage": {
+      "input_tokens": 1218,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:25.477012+00:00"
+  },
+  "f5ff7f95c4b2a4414a323c634952f1345e9a3c8b81c4a44b1a5c11f040cf05fc": {
+    "input": "Arc Raiders When Everything Falls Quest Guide\nArc Raiders is sending you back to Spaceport once again, this time to the Water Towers to track down a stash of weapons. This quest requires you to take a lot of photos, though, so come prepared to sh",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 50,
+      "fantasy": 5,
+      "cyberpunk": 37,
+      "action": 62,
+      "slice_of_life": 10,
+      "mystery": 19,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 1.9877,
+      "fantasy": 0.1839,
+      "cyberpunk": 1.4795,
+      "action": 2.472,
+      "slice_of_life": 0.401,
+      "mystery": 0.7796,
+      "historical": 0.2013
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1956,
+        "1": 0.1853,
+        "2": 0.2709,
+        "3": 0.1323,
+        "4": 0.2159
+      },
+      "fantasy": {
+        "0": 0.8853,
+        "1": 0.0677,
+        "2": 0.0323,
+        "3": 0.0071,
+        "4": 0.0076
+      },
+      "cyberpunk": {
+        "0": 0.2447,
+        "1": 0.2914,
+        "2": 0.2905,
+        "3": 0.0866,
+        "4": 0.0868
+      },
+      "action": {
+        "0": 0.118,
+        "1": 0.1185,
+        "2": 0.2047,
+        "3": 0.291,
+        "4": 0.2678
+      },
+      "slice_of_life": {
+        "0": 0.6555,
+        "1": 0.301,
+        "2": 0.0348,
+        "3": 0.0043,
+        "4": 0.0044
+      },
+      "mystery": {
+        "0": 0.4741,
+        "1": 0.3227,
+        "2": 0.1697,
+        "3": 0.0166,
+        "4": 0.0169
+      },
+      "historical": {
+        "0": 0.8409,
+        "1": 0.1314,
+        "2": 0.0186,
+        "3": 0.0036,
+        "4": 0.0055
+      }
+    },
+    "usage": {
+      "input_tokens": 1236,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-10-11T01:46:25.886089+00:00"
+  },
+  "8d561ca214316cce102aaf9a99c5f109055dcb9ad03aea1cc848a500a29a6f24": {
+    "input": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series\nNaruto is alive and well, as author Masashi Kishimoto has announced a new manga called Shadow Rising – and a new anime crossover series is on the way, too. Both Naruto projects were announced during t",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 56,
+      "cyberpunk": 4,
+      "action": 64,
+      "slice_of_life": 13,
+      "mystery": 14,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.5157,
+      "fantasy": 2.242,
+      "cyberpunk": 0.1733,
+      "action": 2.5689,
+      "slice_of_life": 0.534,
+      "mystery": 0.5591,
+      "historical": 0.4052
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7175,
+        "1": 0.1535,
+        "2": 0.0605,
+        "3": 0.0328,
+        "4": 0.0357
+      },
+      "fantasy": {
+        "0": 0.1401,
+        "1": 0.1578,
+        "2": 0.2489,
+        "3": 0.2262,
+        "4": 0.227
+      },
+      "cyberpunk": {
+        "0": 0.886,
+        "1": 0.0724,
+        "2": 0.0303,
+        "3": 0.0049,
+        "4": 0.0064
+      },
+      "action": {
+        "0": 0.0884,
+        "1": 0.105,
+        "2": 0.2295,
+        "3": 0.3035,
+        "4": 0.2736
+      },
+      "slice_of_life": {
+        "0": 0.6034,
+        "1": 0.2911,
+        "2": 0.0846,
+        "3": 0.01,
+        "4": 0.0109
+      },
+      "mystery": {
+        "0": 0.5763,
+        "1": 0.3062,
+        "2": 0.1056,
+        "3": 0.006,
+        "4": 0.0059
+      },
+      "historical": {
+        "0": 0.7123,
+        "1": 0.2014,
+        "2": 0.0661,
+        "3": 0.0091,
+        "4": 0.0111
+      }
+    },
+    "usage": {
+      "input_tokens": 1245,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:26.261699+00:00"
+  },
+  "c8c805552c57a7acdcf9459637f7e8fd08099558fbf5f5d384d9745eae7f757e": {
+    "input": "Blade Runner 2099 Trailer Teases Replicant Mystery With Hunter Schafer and Michelle Yeoh\nPrime Video has published a new Blade Runner 2099 trailer, revealing more about the mystery surrounding its missing Replicants, as well as the roles Hunter Schafer and Michelle Yeoh play in the story.",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 87,
+      "fantasy": 4,
+      "cyberpunk": 81,
+      "action": 37,
+      "slice_of_life": 9,
+      "mystery": 37,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 3.4758,
+      "fantasy": 0.1618,
+      "cyberpunk": 3.2219,
+      "action": 1.4876,
+      "slice_of_life": 0.3467,
+      "mystery": 1.4781,
+      "historical": 0.1665
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.0134,
+        "1": 0.0143,
+        "2": 0.0208,
+        "3": 0.386,
+        "4": 0.5655
+      },
+      "fantasy": {
+        "0": 0.8977,
+        "1": 0.0639,
+        "2": 0.0255,
+        "3": 0.0046,
+        "4": 0.0083
+      },
+      "cyberpunk": {
+        "0": 0.037,
+        "1": 0.0442,
+        "2": 0.0692,
+        "3": 0.359,
+        "4": 0.4906
+      },
+      "action": {
+        "0": 0.1579,
+        "1": 0.3476,
+        "2": 0.3908,
+        "3": 0.0565,
+        "4": 0.0472
+      },
+      "slice_of_life": {
+        "0": 0.701,
+        "1": 0.2609,
+        "2": 0.0318,
+        "3": 0.003,
+        "4": 0.0033
+      },
+      "mystery": {
+        "0": 0.1649,
+        "1": 0.3291,
+        "2": 0.4145,
+        "3": 0.046,
+        "4": 0.0455
+      },
+      "historical": {
+        "0": 0.8713,
+        "1": 0.1036,
+        "2": 0.0171,
+        "3": 0.0034,
+        "4": 0.0046
+      }
+    },
+    "usage": {
+      "input_tokens": 1250,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:26.645167+00:00"
+  },
+  "46ed6a4a13b4505d785f15d655bb8761457067c4908f972e5a5231b19b5dab68": {
+    "input": "Arc Raiders' 2.0 Update and 'Spider-Man' Grappling Hook Drive Player Count to Reach 7-Month High\nThe new Arc Raiders 2.0 update has triggered a seven-month high for its concurrent player count on Steam as fans show up for its \"Spider-Man\" grappling hook, a new map, a free weekend, and more. Embar",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 32,
+      "fantasy": 7,
+      "cyberpunk": 33,
+      "action": 71,
+      "slice_of_life": 8,
+      "mystery": 9,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 1.2783,
+      "fantasy": 0.2718,
+      "cyberpunk": 1.3122,
+      "action": 2.8544,
+      "slice_of_life": 0.3347,
+      "mystery": 0.3475,
+      "historical": 0.2487
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3446,
+        "1": 0.2817,
+        "2": 0.2138,
+        "3": 0.0707,
+        "4": 0.0892
+      },
+      "fantasy": {
+        "0": 0.8247,
+        "1": 0.1083,
+        "2": 0.0478,
+        "3": 0.0088,
+        "4": 0.0104
+      },
+      "cyberpunk": {
+        "0": 0.2735,
+        "1": 0.3244,
+        "2": 0.2814,
+        "3": 0.0578,
+        "4": 0.0629
+      },
+      "action": {
+        "0": 0.077,
+        "1": 0.0672,
+        "2": 0.1367,
+        "3": 0.3625,
+        "4": 0.3566
+      },
+      "slice_of_life": {
+        "0": 0.7286,
+        "1": 0.2225,
+        "2": 0.0394,
+        "3": 0.0046,
+        "4": 0.0049
+      },
+      "mystery": {
+        "0": 0.7344,
+        "1": 0.1994,
+        "2": 0.0558,
+        "3": 0.0051,
+        "4": 0.0053
+      },
+      "historical": {
+        "0": 0.8146,
+        "1": 0.136,
+        "2": 0.0404,
+        "3": 0.0042,
+        "4": 0.0048
+      }
+    },
+    "usage": {
+      "input_tokens": 1260,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:27.049501+00:00"
+  },
+  "7dbf75055d103595721f9dcb973a1e1df179a0f90f61604621dd9b29f899c943": {
+    "input": "Image Comics' Roam Reunites Paper Girls Creators Brian K. Vaughan and Cliff Chiang\nIn what is easily one of the most exciting comic book-related announcements to come out of NYCC 2026, IGN can exclusively reveal that Paper Girls creators Brian K. Vaughan and Cliff Chiang are reuniti",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 59,
+      "fantasy": 15,
+      "cyberpunk": 31,
+      "action": 26,
+      "slice_of_life": 28,
+      "mystery": 33,
+      "historical": 25
+    },
+    "raw_scores": {
+      "sf": 2.3509,
+      "fantasy": 0.6156,
+      "cyberpunk": 1.2265,
+      "action": 1.0474,
+      "slice_of_life": 1.1122,
+      "mystery": 1.3162,
+      "historical": 0.983
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1507,
+        "1": 0.1226,
+        "2": 0.2159,
+        "3": 0.2468,
+        "4": 0.264
+      },
+      "fantasy": {
+        "0": 0.5857,
+        "1": 0.2561,
+        "2": 0.1299,
+        "3": 0.0134,
+        "4": 0.0149
+      },
+      "cyberpunk": {
+        "0": 0.3198,
+        "1": 0.3239,
+        "2": 0.2356,
+        "3": 0.0516,
+        "4": 0.0691
+      },
+      "action": {
+        "0": 0.3293,
+        "1": 0.3733,
+        "2": 0.2437,
+        "3": 0.0282,
+        "4": 0.0255
+      },
+      "slice_of_life": {
+        "0": 0.337,
+        "1": 0.3355,
+        "2": 0.25,
+        "3": 0.0334,
+        "4": 0.0441
+      },
+      "mystery": {
+        "0": 0.2559,
+        "1": 0.3342,
+        "2": 0.3026,
+        "3": 0.0524,
+        "4": 0.0549
+      },
+      "historical": {
+        "0": 0.4187,
+        "1": 0.3044,
+        "2": 0.1927,
+        "3": 0.0437,
+        "4": 0.0405
+      }
+    },
+    "usage": {
+      "input_tokens": 1248,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:27.436344+00:00"
+  },
+  "aef7363b0920fbd10b766a97934146a1acadd5491921678ee79e8836d501138b": {
+    "input": "Crystal Lake Showrunner on Retelling the Friday the 13th Story: ‘It's Always Ripe for Reinterpretation’\nSpoilers follow for the first episode of Crystal Lake , which debuts on Peacock on October 15! The cast and creator of Crystal Lake showed up at New York Comic Con this week to prep fans for the launc",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 6,
+      "cyberpunk": 6,
+      "action": 38,
+      "slice_of_life": 15,
+      "mystery": 40,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.7369,
+      "fantasy": 0.2534,
+      "cyberpunk": 0.2323,
+      "action": 1.5251,
+      "slice_of_life": 0.5981,
+      "mystery": 1.6037,
+      "historical": 0.238
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5414,
+        "1": 0.2572,
+        "2": 0.1488,
+        "3": 0.0284,
+        "4": 0.0242
+      },
+      "fantasy": {
+        "0": 0.8365,
+        "1": 0.1019,
+        "2": 0.0438,
+        "3": 0.0073,
+        "4": 0.0105
+      },
+      "cyberpunk": {
+        "0": 0.8497,
+        "1": 0.092,
+        "2": 0.0432,
+        "3": 0.0064,
+        "4": 0.0087
+      },
+      "action": {
+        "0": 0.2354,
+        "1": 0.2801,
+        "2": 0.2972,
+        "3": 0.0985,
+        "4": 0.0888
+      },
+      "slice_of_life": {
+        "0": 0.5691,
+        "1": 0.2926,
+        "2": 0.1183,
+        "3": 0.0111,
+        "4": 0.0089
+      },
+      "mystery": {
+        "0": 0.2256,
+        "1": 0.2674,
+        "2": 0.2899,
+        "3": 0.1118,
+        "4": 0.1053
+      },
+      "historical": {
+        "0": 0.8127,
+        "1": 0.149,
+        "2": 0.0299,
+        "3": 0.0042,
+        "4": 0.0042
+      }
+    },
+    "usage": {
+      "input_tokens": 1258,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:27.819616+00:00"
+  },
+  "2340bc1c5a7f620865feb6ff47d80e35c3989d8e5ad8180f6280244afe54c61e": {
+    "input": "DC Legend Grant Morrison Criticizes 'Morally and Legally Incoherent' Lanterns Finale\nDC veteran Grant Morrison reviewed Lanterns , and they had more than a few criticisms of its \"morally and legally incoherent\" finale. The comic book writer – who worked on projects like The Green Lant",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 46,
+      "fantasy": 16,
+      "cyberpunk": 22,
+      "action": 37,
+      "slice_of_life": 12,
+      "mystery": 25,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 1.846,
+      "fantasy": 0.6408,
+      "cyberpunk": 0.8922,
+      "action": 1.4757,
+      "slice_of_life": 0.4716,
+      "mystery": 1.004,
+      "historical": 0.387
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2039,
+        "1": 0.2271,
+        "2": 0.2566,
+        "3": 0.1438,
+        "4": 0.1686
+      },
+      "fantasy": {
+        "0": 0.5883,
+        "1": 0.2404,
+        "2": 0.1328,
+        "3": 0.0191,
+        "4": 0.0194
+      },
+      "cyberpunk": {
+        "0": 0.4556,
+        "1": 0.3016,
+        "2": 0.1727,
+        "3": 0.0351,
+        "4": 0.035
+      },
+      "action": {
+        "0": 0.2286,
+        "1": 0.3054,
+        "2": 0.3032,
+        "3": 0.0874,
+        "4": 0.0754
+      },
+      "slice_of_life": {
+        "0": 0.6213,
+        "1": 0.3017,
+        "2": 0.0662,
+        "3": 0.0056,
+        "4": 0.0052
+      },
+      "mystery": {
+        "0": 0.3484,
+        "1": 0.3711,
+        "2": 0.2302,
+        "3": 0.0286,
+        "4": 0.0217
+      },
+      "historical": {
+        "0": 0.7042,
+        "1": 0.2223,
+        "2": 0.0623,
+        "3": 0.0047,
+        "4": 0.0065
+      }
+    },
+    "usage": {
+      "input_tokens": 1248,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:28.295681+00:00"
+  },
+  "0a3a1ed947c42da5d814cf323dcd0d92a53a8726f6be850f879e9fbb5aa804b4": {
+    "input": "Nicolas Cage Says He'll 'Probably Not Work With' Amazon Again After Declining Spider-Noir AI Waiver\nNicolas Cage said he'll \"probably not work with\" Amazon again after declining to sign a waiver to use AI on Spider-Noir . The National Treasure actor made his position on the controversial technology ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 23,
+      "fantasy": 4,
+      "cyberpunk": 18,
+      "action": 26,
+      "slice_of_life": 13,
+      "mystery": 29,
+      "historical": 16
+    },
+    "raw_scores": {
+      "sf": 0.931,
+      "fantasy": 0.176,
+      "cyberpunk": 0.7087,
+      "action": 1.0458,
+      "slice_of_life": 0.5395,
+      "mystery": 1.168,
+      "historical": 0.6518
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4917,
+        "1": 0.2357,
+        "2": 0.1734,
+        "3": 0.0482,
+        "4": 0.051
+      },
+      "fantasy": {
+        "0": 0.8832,
+        "1": 0.079,
+        "2": 0.024,
+        "3": 0.0061,
+        "4": 0.0077
+      },
+      "cyberpunk": {
+        "0": 0.6028,
+        "1": 0.1903,
+        "2": 0.1385,
+        "3": 0.0321,
+        "4": 0.0363
+      },
+      "action": {
+        "0": 0.387,
+        "1": 0.3339,
+        "2": 0.1767,
+        "3": 0.0511,
+        "4": 0.0513
+      },
+      "slice_of_life": {
+        "0": 0.6451,
+        "1": 0.2281,
+        "2": 0.0887,
+        "3": 0.0184,
+        "4": 0.0197
+      },
+      "mystery": {
+        "0": 0.356,
+        "1": 0.3127,
+        "2": 0.2,
+        "3": 0.0696,
+        "4": 0.0617
+      },
+      "historical": {
+        "0": 0.6012,
+        "1": 0.2301,
+        "2": 0.1111,
+        "3": 0.031,
+        "4": 0.0266
+      }
+    },
+    "usage": {
+      "input_tokens": 1248,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:28.708436+00:00"
+  },
+  "b78085bf583e266e9e656fb1a8f6fa6c6d0ee3b7ab53915dbf2ba97f555ebb9e": {
+    "input": "GTA 6 Leaker Threatens to Release Build With Full Story Mode Played to the End, Ties Lucia's Clothing to Crypto Scheme\nThe GTA 6 leaker has reportedly threatened to release a build of the game with the full story mode played to the end, as part of their heavily criticized crypto scheme. According to online reports , t",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 16,
+      "fantasy": 6,
+      "cyberpunk": 36,
+      "action": 51,
+      "slice_of_life": 12,
+      "mystery": 21,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 0.6402,
+      "fantasy": 0.2371,
+      "cyberpunk": 1.4293,
+      "action": 2.0546,
+      "slice_of_life": 0.497,
+      "mystery": 0.8356,
+      "historical": 0.4426
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6907,
+        "1": 0.1404,
+        "2": 0.0705,
+        "3": 0.0347,
+        "4": 0.0637
+      },
+      "fantasy": {
+        "0": 0.8647,
+        "1": 0.0689,
+        "2": 0.0433,
+        "3": 0.0108,
+        "4": 0.0123
+      },
+      "cyberpunk": {
+        "0": 0.2676,
+        "1": 0.3002,
+        "2": 0.2633,
+        "3": 0.0731,
+        "4": 0.0958
+      },
+      "action": {
+        "0": 0.2088,
+        "1": 0.1939,
+        "2": 0.1678,
+        "3": 0.193,
+        "4": 0.2365
+      },
+      "slice_of_life": {
+        "0": 0.6398,
+        "1": 0.2516,
+        "2": 0.0897,
+        "3": 0.0096,
+        "4": 0.0093
+      },
+      "mystery": {
+        "0": 0.4525,
+        "1": 0.3291,
+        "2": 0.1706,
+        "3": 0.0259,
+        "4": 0.0219
+      },
+      "historical": {
+        "0": 0.6841,
+        "1": 0.2127,
+        "2": 0.0873,
+        "3": 0.0082,
+        "4": 0.0077
+      }
+    },
+    "usage": {
+      "input_tokens": 1254,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:29.098521+00:00"
+  },
+  "c6b7a2b9516190872bebabe8ba12a53f3fa70f4f099055e2492c9af438c37751": {
+    "input": "Blumhouse Gives Updates on Paranormal Activity 8, Saw 11, River, Something Is Killing the Children, and More | NYCC 2026\nFriday night at New York Comic Con was all about Blumhouse, with a 90 minute \"Blumfest\" panel that was devoted to a ton of upcoming films from the combined forces of Jason Blum's Blumhouse and James W",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 5,
+      "cyberpunk": 7,
+      "action": 21,
+      "slice_of_life": 12,
+      "mystery": 40,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.5602,
+      "fantasy": 0.1989,
+      "cyberpunk": 0.2843,
+      "action": 0.8588,
+      "slice_of_life": 0.4639,
+      "mystery": 1.5924,
+      "historical": 0.2161
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6475,
+        "1": 0.2082,
+        "2": 0.1017,
+        "3": 0.0217,
+        "4": 0.0209
+      },
+      "fantasy": {
+        "0": 0.8716,
+        "1": 0.0792,
+        "2": 0.035,
+        "3": 0.007,
+        "4": 0.0072
+      },
+      "cyberpunk": {
+        "0": 0.8047,
+        "1": 0.1329,
+        "2": 0.045,
+        "3": 0.0082,
+        "4": 0.0092
+      },
+      "action": {
+        "0": 0.4362,
+        "1": 0.3368,
+        "2": 0.1799,
+        "3": 0.026,
+        "4": 0.0211
+      },
+      "slice_of_life": {
+        "0": 0.6467,
+        "1": 0.261,
+        "2": 0.0792,
+        "3": 0.0078,
+        "4": 0.0053
+      },
+      "mystery": {
+        "0": 0.2167,
+        "1": 0.2765,
+        "2": 0.3035,
+        "3": 0.1044,
+        "4": 0.0989
+      },
+      "historical": {
+        "0": 0.8225,
+        "1": 0.1491,
+        "2": 0.0218,
+        "3": 0.003,
+        "4": 0.0036
+      }
+    },
+    "usage": {
+      "input_tokens": 1270,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:29.445187+00:00"
+  },
+  "4d5fa0be4ae14fc56598e4416e77f513a5da2a97f6c810b4729540818cd97260": {
+    "input": "Hands-on Impressions of Hoid's Storybook Collection by Brandon Sanderson\nCosmere fans rejoice! The latest Brandon Sanderson Cosmere book , as a part of Hoid’s Storybook Collection, has started arriving for BackerKit backers. I had backed at the Storyteller tier when the ca",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 56,
+      "fantasy": 82,
+      "cyberpunk": 4,
+      "action": 22,
+      "slice_of_life": 16,
+      "mystery": 24,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 2.2417,
+      "fantasy": 3.2896,
+      "cyberpunk": 0.1423,
+      "action": 0.8646,
+      "slice_of_life": 0.634,
+      "mystery": 0.9423,
+      "historical": 0.4117
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1528,
+        "1": 0.1622,
+        "2": 0.2315,
+        "3": 0.1974,
+        "4": 0.2561
+      },
+      "fantasy": {
+        "0": 0.0335,
+        "1": 0.0313,
+        "2": 0.0492,
+        "3": 0.3843,
+        "4": 0.5017
+      },
+      "cyberpunk": {
+        "0": 0.9052,
+        "1": 0.0629,
+        "2": 0.022,
+        "3": 0.0042,
+        "4": 0.0057
+      },
+      "action": {
+        "0": 0.4349,
+        "1": 0.3239,
+        "2": 0.202,
+        "3": 0.0203,
+        "4": 0.0189
+      },
+      "slice_of_life": {
+        "0": 0.5293,
+        "1": 0.3363,
+        "2": 0.1152,
+        "3": 0.0095,
+        "4": 0.0097
+      },
+      "mystery": {
+        "0": 0.3942,
+        "1": 0.3327,
+        "2": 0.2303,
+        "3": 0.0223,
+        "4": 0.0205
+      },
+      "historical": {
+        "0": 0.6958,
+        "1": 0.2139,
+        "2": 0.0791,
+        "3": 0.0053,
+        "4": 0.0059
+      }
+    },
+    "usage": {
+      "input_tokens": 1246,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-11T01:46:29.794065+00:00"
+  },
+  "eea0bacbd5b73477d68b29cee95a173040cc7e1fc58342da1c2e687b4484dc4c": {
+    "input": "Japanese Studio Creative Freaks to Lead Production on Sentinel 6 Anime Executive Produced by NBA, NFL Players Michael Carter-Williams, Jamaal Williams",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 39,
+      "fantasy": 27,
+      "cyberpunk": 28,
+      "action": 53,
+      "slice_of_life": 20,
+      "mystery": 24,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 1.5466,
+      "fantasy": 1.0906,
+      "cyberpunk": 1.1344,
+      "action": 2.1192,
+      "slice_of_life": 0.8059,
+      "mystery": 0.9661,
+      "historical": 0.3745
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2564,
+        "1": 0.2701,
+        "2": 0.2475,
+        "3": 0.1227,
+        "4": 0.1033
+      },
+      "fantasy": {
+        "0": 0.3625,
+        "1": 0.341,
+        "2": 0.1913,
+        "3": 0.0538,
+        "4": 0.0514
+      },
+      "cyberpunk": {
+        "0": 0.3693,
+        "1": 0.309,
+        "2": 0.2005,
+        "3": 0.0606,
+        "4": 0.0606
+      },
+      "action": {
+        "0": 0.1577,
+        "1": 0.193,
+        "2": 0.2266,
+        "3": 0.2177,
+        "4": 0.205
+      },
+      "slice_of_life": {
+        "0": 0.4237,
+        "1": 0.404,
+        "2": 0.1333,
+        "3": 0.0207,
+        "4": 0.0183
+      },
+      "mystery": {
+        "0": 0.3772,
+        "1": 0.3757,
+        "2": 0.1804,
+        "3": 0.0371,
+        "4": 0.0296
+      },
+      "historical": {
+        "0": 0.6881,
+        "1": 0.2644,
+        "2": 0.0377,
+        "3": 0.0045,
+        "4": 0.0053
+      }
+    },
+    "usage": {
+      "input_tokens": 1212,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:30.172630+00:00"
+  },
+  "5ac5bd5cabb103074115a0b1979305dcfd6f364dbbf6854a931c4209e81507d9": {
+    "input": "One-Punch Man Season 3 Anime's 2nd Part Reveals January 2027 Debut in Video",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 16,
+      "fantasy": 14,
+      "cyberpunk": 16,
+      "action": 80,
+      "slice_of_life": 15,
+      "mystery": 11,
+      "historical": 3
+    },
+    "raw_scores": {
+      "sf": 0.6345,
+      "fantasy": 0.5717,
+      "cyberpunk": 0.6563,
+      "action": 3.189,
+      "slice_of_life": 0.5893,
+      "mystery": 0.4317,
+      "historical": 0.1314
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5988,
+        "1": 0.2401,
+        "2": 0.1091,
+        "3": 0.0317,
+        "4": 0.0203
+      },
+      "fantasy": {
+        "0": 0.6281,
+        "1": 0.2214,
+        "2": 0.1179,
+        "3": 0.0161,
+        "4": 0.0165
+      },
+      "cyberpunk": {
+        "0": 0.5687,
+        "1": 0.2481,
+        "2": 0.1551,
+        "3": 0.0144,
+        "4": 0.0137
+      },
+      "action": {
+        "0": 0.0337,
+        "1": 0.0377,
+        "2": 0.0746,
+        "3": 0.4139,
+        "4": 0.4401
+      },
+      "slice_of_life": {
+        "0": 0.5854,
+        "1": 0.27,
+        "2": 0.1246,
+        "3": 0.0101,
+        "4": 0.0099
+      },
+      "mystery": {
+        "0": 0.6524,
+        "1": 0.2788,
+        "2": 0.0592,
+        "3": 0.0041,
+        "4": 0.0055
+      },
+      "historical": {
+        "0": 0.9064,
+        "1": 0.0698,
+        "2": 0.0149,
+        "3": 0.0038,
+        "4": 0.0051
+      }
+    },
+    "usage": {
+      "input_tokens": 1209,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:30.521134+00:00"
+  },
+  "e62109a53cd9bb08ff99bab38002d69752f56087bc3d18ad3155e1c65e2ba9be": {
+    "input": "Naruto Mobile Game to Get Worldwide Release; Naruto Card Game Reveals Demo, Release Dates",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 45,
+      "cyberpunk": 5,
+      "action": 49,
+      "slice_of_life": 16,
+      "mystery": 12,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 0.4092,
+      "fantasy": 1.8135,
+      "cyberpunk": 0.2058,
+      "action": 1.9788,
+      "slice_of_life": 0.6366,
+      "mystery": 0.4827,
+      "historical": 0.3414
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7772,
+        "1": 0.1121,
+        "2": 0.0562,
+        "3": 0.0332,
+        "4": 0.0213
+      },
+      "fantasy": {
+        "0": 0.2134,
+        "1": 0.2138,
+        "2": 0.2666,
+        "3": 0.1583,
+        "4": 0.1479
+      },
+      "cyberpunk": {
+        "0": 0.8646,
+        "1": 0.0843,
+        "2": 0.0384,
+        "3": 0.0061,
+        "4": 0.0066
+      },
+      "action": {
+        "0": 0.1769,
+        "1": 0.1989,
+        "2": 0.2675,
+        "3": 0.1819,
+        "4": 0.1748
+      },
+      "slice_of_life": {
+        "0": 0.565,
+        "1": 0.2722,
+        "2": 0.1363,
+        "3": 0.0142,
+        "4": 0.0123
+      },
+      "mystery": {
+        "0": 0.6295,
+        "1": 0.276,
+        "2": 0.0826,
+        "3": 0.006,
+        "4": 0.0059
+      },
+      "historical": {
+        "0": 0.7581,
+        "1": 0.1617,
+        "2": 0.0678,
+        "3": 0.0054,
+        "4": 0.007
+      }
+    },
+    "usage": {
+      "input_tokens": 1203,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:30.887865+00:00"
+  },
+  "1601d11dc00741025df254a9da5d90ceb2cb25ae76f9911cca91aabcb6a08d18": {
+    "input": "Masashi Kishimoto to Launch New Naruto Manga",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 49,
+      "cyberpunk": 5,
+      "action": 67,
+      "slice_of_life": 17,
+      "mystery": 14,
+      "historical": 12
+    },
+    "raw_scores": {
+      "sf": 0.5615,
+      "fantasy": 1.9407,
+      "cyberpunk": 0.2122,
+      "action": 2.6631,
+      "slice_of_life": 0.6629,
+      "mystery": 0.5624,
+      "historical": 0.4834
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7054,
+        "1": 0.1365,
+        "2": 0.0878,
+        "3": 0.0317,
+        "4": 0.0386
+      },
+      "fantasy": {
+        "0": 0.1801,
+        "1": 0.2142,
+        "2": 0.2607,
+        "3": 0.1749,
+        "4": 0.1701
+      },
+      "cyberpunk": {
+        "0": 0.8562,
+        "1": 0.0917,
+        "2": 0.0417,
+        "3": 0.0047,
+        "4": 0.0057
+      },
+      "action": {
+        "0": 0.0918,
+        "1": 0.0846,
+        "2": 0.1957,
+        "3": 0.3244,
+        "4": 0.3035
+      },
+      "slice_of_life": {
+        "0": 0.5384,
+        "1": 0.2963,
+        "2": 0.1403,
+        "3": 0.0139,
+        "4": 0.0111
+      },
+      "mystery": {
+        "0": 0.5727,
+        "1": 0.3077,
+        "2": 0.1089,
+        "3": 0.0059,
+        "4": 0.0048
+      },
+      "historical": {
+        "0": 0.6908,
+        "1": 0.1872,
+        "2": 0.0871,
+        "3": 0.0176,
+        "4": 0.0173
+      }
+    },
+    "usage": {
+      "input_tokens": 1194,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:31.254666+00:00"
+  },
+  "bc6827219186f3a6d37aa1f51e5b77d787867de898c70e8289051f76f95e11cd": {
+    "input": "Naruto Gets Crossover Anime With Ninku Franchise",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 16,
+      "fantasy": 54,
+      "cyberpunk": 6,
+      "action": 72,
+      "slice_of_life": 17,
+      "mystery": 13,
+      "historical": 12
+    },
+    "raw_scores": {
+      "sf": 0.6386,
+      "fantasy": 2.1483,
+      "cyberpunk": 0.235,
+      "action": 2.884,
+      "slice_of_life": 0.6715,
+      "mystery": 0.5065,
+      "historical": 0.4932
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6009,
+        "1": 0.2333,
+        "2": 0.1174,
+        "3": 0.0232,
+        "4": 0.0252
+      },
+      "fantasy": {
+        "0": 0.1622,
+        "1": 0.1719,
+        "2": 0.2415,
+        "3": 0.2042,
+        "4": 0.2202
+      },
+      "cyberpunk": {
+        "0": 0.8363,
+        "1": 0.1078,
+        "2": 0.0459,
+        "3": 0.0044,
+        "4": 0.0056
+      },
+      "action": {
+        "0": 0.0686,
+        "1": 0.062,
+        "2": 0.1471,
+        "3": 0.3615,
+        "4": 0.3608
+      },
+      "slice_of_life": {
+        "0": 0.5244,
+        "1": 0.3193,
+        "2": 0.1298,
+        "3": 0.0135,
+        "4": 0.013
+      },
+      "mystery": {
+        "0": 0.6115,
+        "1": 0.2895,
+        "2": 0.0865,
+        "3": 0.0058,
+        "4": 0.0067
+      },
+      "historical": {
+        "0": 0.6796,
+        "1": 0.1901,
+        "2": 0.1036,
+        "3": 0.011,
+        "4": 0.0157
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:31.607191+00:00"
+  },
+  "5c2ada0fdf5747779d20adcb5a7080bf6b1e504ba105d91ec3ed12a4b93d8dd2": {
+    "input": "Japan's Video Game Rankings, September 21-27",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 34,
+      "fantasy": 51,
+      "cyberpunk": 44,
+      "action": 65,
+      "slice_of_life": 30,
+      "mystery": 26,
+      "historical": 16
+    },
+    "raw_scores": {
+      "sf": 1.3704,
+      "fantasy": 2.0314,
+      "cyberpunk": 1.7401,
+      "action": 2.588,
+      "slice_of_life": 1.218,
+      "mystery": 1.06,
+      "historical": 0.6337
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3205,
+        "1": 0.2638,
+        "2": 0.2275,
+        "3": 0.1014,
+        "4": 0.0868
+      },
+      "fantasy": {
+        "0": 0.1947,
+        "1": 0.1908,
+        "2": 0.2059,
+        "3": 0.2056,
+        "4": 0.203
+      },
+      "cyberpunk": {
+        "0": 0.236,
+        "1": 0.2413,
+        "2": 0.2326,
+        "3": 0.1269,
+        "4": 0.1632
+      },
+      "action": {
+        "0": 0.1217,
+        "1": 0.1018,
+        "2": 0.1615,
+        "3": 0.2968,
+        "4": 0.3182
+      },
+      "slice_of_life": {
+        "0": 0.3639,
+        "1": 0.2814,
+        "2": 0.2055,
+        "3": 0.0712,
+        "4": 0.078
+      },
+      "mystery": {
+        "0": 0.3916,
+        "1": 0.3165,
+        "2": 0.1843,
+        "3": 0.0553,
+        "4": 0.0523
+      },
+      "historical": {
+        "0": 0.6307,
+        "1": 0.2074,
+        "2": 0.095,
+        "3": 0.0313,
+        "4": 0.0356
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:31.994410+00:00"
+  },
+  "339570ddcaaf079267b703979815e8792c06a7f3bdb114824a31a2758fb291ca": {
+    "input": "Japan's Video Game Rankings, September 14-20",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 38,
+      "fantasy": 52,
+      "cyberpunk": 40,
+      "action": 64,
+      "slice_of_life": 28,
+      "mystery": 27,
+      "historical": 18
+    },
+    "raw_scores": {
+      "sf": 1.5096,
+      "fantasy": 2.0678,
+      "cyberpunk": 1.5926,
+      "action": 2.5778,
+      "slice_of_life": 1.1259,
+      "mystery": 1.0738,
+      "historical": 0.7041
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3126,
+        "1": 0.2309,
+        "2": 0.2114,
+        "3": 0.1244,
+        "4": 0.1207
+      },
+      "fantasy": {
+        "0": 0.1908,
+        "1": 0.1836,
+        "2": 0.1923,
+        "3": 0.2335,
+        "4": 0.1998
+      },
+      "cyberpunk": {
+        "0": 0.2603,
+        "1": 0.2537,
+        "2": 0.2476,
+        "3": 0.1099,
+        "4": 0.1285
+      },
+      "action": {
+        "0": 0.1205,
+        "1": 0.1032,
+        "2": 0.15,
+        "3": 0.3307,
+        "4": 0.2956
+      },
+      "slice_of_life": {
+        "0": 0.3881,
+        "1": 0.3031,
+        "2": 0.1736,
+        "3": 0.0652,
+        "4": 0.07
+      },
+      "mystery": {
+        "0": 0.4209,
+        "1": 0.2756,
+        "2": 0.1769,
+        "3": 0.062,
+        "4": 0.0646
+      },
+      "historical": {
+        "0": 0.5979,
+        "1": 0.2182,
+        "2": 0.1063,
+        "3": 0.0371,
+        "4": 0.0405
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:32.359943+00:00"
+  },
+  "537256531a2458ecb99ba3181ab737ca6daf5a2ed58f2b39a85537a6f4289205": {
+    "input": "Japanese Animation TV Ranking, September 21-27",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 40,
+      "fantasy": 55,
+      "cyberpunk": 29,
+      "action": 55,
+      "slice_of_life": 43,
+      "mystery": 27,
+      "historical": 19
+    },
+    "raw_scores": {
+      "sf": 1.5862,
+      "fantasy": 2.2138,
+      "cyberpunk": 1.1582,
+      "action": 2.1812,
+      "slice_of_life": 1.726,
+      "mystery": 1.0936,
+      "historical": 0.7467
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2637,
+        "1": 0.2654,
+        "2": 0.219,
+        "3": 0.1248,
+        "4": 0.1271
+      },
+      "fantasy": {
+        "0": 0.1514,
+        "1": 0.1743,
+        "2": 0.2069,
+        "3": 0.2441,
+        "4": 0.2233
+      },
+      "cyberpunk": {
+        "0": 0.3632,
+        "1": 0.3083,
+        "2": 0.2031,
+        "3": 0.058,
+        "4": 0.0674
+      },
+      "action": {
+        "0": 0.1516,
+        "1": 0.1743,
+        "2": 0.2264,
+        "3": 0.2367,
+        "4": 0.211
+      },
+      "slice_of_life": {
+        "0": 0.2412,
+        "1": 0.2373,
+        "2": 0.2305,
+        "3": 0.1364,
+        "4": 0.1546
+      },
+      "mystery": {
+        "0": 0.3597,
+        "1": 0.3438,
+        "2": 0.1939,
+        "3": 0.0485,
+        "4": 0.0541
+      },
+      "historical": {
+        "0": 0.56,
+        "1": 0.2514,
+        "2": 0.1131,
+        "3": 0.033,
+        "4": 0.0425
+      }
+    },
+    "usage": {
+      "input_tokens": 1196,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:32.708385+00:00"
+  },
+  "89911841e27635b1d4b965af6549136386eccc70b2f9d6d0acd42edccf513aa8": {
+    "input": "Japanese Animation TV Ranking, September 14-20",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 37,
+      "fantasy": 55,
+      "cyberpunk": 31,
+      "action": 54,
+      "slice_of_life": 43,
+      "mystery": 30,
+      "historical": 22
+    },
+    "raw_scores": {
+      "sf": 1.487,
+      "fantasy": 2.1931,
+      "cyberpunk": 1.2501,
+      "action": 2.1769,
+      "slice_of_life": 1.7309,
+      "mystery": 1.2169,
+      "historical": 0.8713
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2997,
+        "1": 0.2536,
+        "2": 0.2122,
+        "3": 0.1291,
+        "4": 0.1054
+      },
+      "fantasy": {
+        "0": 0.1568,
+        "1": 0.1769,
+        "2": 0.2053,
+        "3": 0.2385,
+        "4": 0.2225
+      },
+      "cyberpunk": {
+        "0": 0.345,
+        "1": 0.2854,
+        "2": 0.2231,
+        "3": 0.0674,
+        "4": 0.0791
+      },
+      "action": {
+        "0": 0.1621,
+        "1": 0.1739,
+        "2": 0.2115,
+        "3": 0.2298,
+        "4": 0.2227
+      },
+      "slice_of_life": {
+        "0": 0.2474,
+        "1": 0.2348,
+        "2": 0.2147,
+        "3": 0.1458,
+        "4": 0.1573
+      },
+      "mystery": {
+        "0": 0.3214,
+        "1": 0.3368,
+        "2": 0.2106,
+        "3": 0.0659,
+        "4": 0.0653
+      },
+      "historical": {
+        "0": 0.4952,
+        "1": 0.2779,
+        "2": 0.1351,
+        "3": 0.0442,
+        "4": 0.0476
+      }
+    },
+    "usage": {
+      "input_tokens": 1196,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:33.110027+00:00"
+  },
+  "860e1ed7aace86c8e056a68a6dffa5b64dc500cab9ed04ab00e9d6089b4cbcc2": {
+    "input": "Dr. Stone TV Anime Gets Terraforming Sequel",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 73,
+      "fantasy": 10,
+      "cyberpunk": 15,
+      "action": 28,
+      "slice_of_life": 19,
+      "mystery": 14,
+      "historical": 36
+    },
+    "raw_scores": {
+      "sf": 2.9194,
+      "fantasy": 0.3847,
+      "cyberpunk": 0.6097,
+      "action": 1.115,
+      "slice_of_life": 0.7567,
+      "mystery": 0.5728,
+      "historical": 1.4343
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.076,
+        "1": 0.0726,
+        "2": 0.1221,
+        "3": 0.3148,
+        "4": 0.4145
+      },
+      "fantasy": {
+        "0": 0.73,
+        "1": 0.179,
+        "2": 0.0754,
+        "3": 0.0074,
+        "4": 0.0082
+      },
+      "cyberpunk": {
+        "0": 0.5973,
+        "1": 0.2362,
+        "2": 0.1394,
+        "3": 0.0138,
+        "4": 0.0133
+      },
+      "action": {
+        "0": 0.2996,
+        "1": 0.3719,
+        "2": 0.2694,
+        "3": 0.0322,
+        "4": 0.0269
+      },
+      "slice_of_life": {
+        "0": 0.4696,
+        "1": 0.3446,
+        "2": 0.1581,
+        "3": 0.0149,
+        "4": 0.0128
+      },
+      "mystery": {
+        "0": 0.5514,
+        "1": 0.3399,
+        "2": 0.0986,
+        "3": 0.0047,
+        "4": 0.0054
+      },
+      "historical": {
+        "0": 0.2675,
+        "1": 0.2716,
+        "2": 0.3029,
+        "3": 0.0751,
+        "4": 0.0829
+      }
+    },
+    "usage": {
+      "input_tokens": 1194,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:33.459456+00:00"
+  },
+  "fb6948cb778987f171339b584c6671e686007d99c51413e9cb621137fc9d10e2": {
+    "input": "All of Us Are Dead Creator Dong-geun Joo Talks Zombies, Adaptations, and His Global Fans",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 39,
+      "fantasy": 11,
+      "cyberpunk": 13,
+      "action": 42,
+      "slice_of_life": 16,
+      "mystery": 23,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 1.572,
+      "fantasy": 0.4591,
+      "cyberpunk": 0.5089,
+      "action": 1.6714,
+      "slice_of_life": 0.632,
+      "mystery": 0.9045,
+      "historical": 0.3504
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2555,
+        "1": 0.2466,
+        "2": 0.2938,
+        "3": 0.0788,
+        "4": 0.1253
+      },
+      "fantasy": {
+        "0": 0.6935,
+        "1": 0.1947,
+        "2": 0.0851,
+        "3": 0.0128,
+        "4": 0.0139
+      },
+      "cyberpunk": {
+        "0": 0.6416,
+        "1": 0.2456,
+        "2": 0.0872,
+        "3": 0.0136,
+        "4": 0.012
+      },
+      "action": {
+        "0": 0.2001,
+        "1": 0.2498,
+        "2": 0.329,
+        "3": 0.1209,
+        "4": 0.1002
+      },
+      "slice_of_life": {
+        "0": 0.552,
+        "1": 0.3063,
+        "2": 0.1139,
+        "3": 0.0135,
+        "4": 0.0143
+      },
+      "mystery": {
+        "0": 0.3933,
+        "1": 0.3772,
+        "2": 0.183,
+        "3": 0.0248,
+        "4": 0.0217
+      },
+      "historical": {
+        "0": 0.7081,
+        "1": 0.2476,
+        "2": 0.0349,
+        "3": 0.0048,
+        "4": 0.0046
+      }
+    },
+    "usage": {
+      "input_tokens": 1206,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:33.809502+00:00"
+  },
+  "a85a9413f459ff3c065d5f0cb5724e253fd4e51d1c0df327fcdcee83d0e86953": {
+    "input": "Interview with Takako Shimura, Creator of the Scenes of AWAJIMA Manga",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 15,
+      "fantasy": 27,
+      "cyberpunk": 26,
+      "action": 22,
+      "slice_of_life": 63,
+      "mystery": 24,
+      "historical": 15
+    },
+    "raw_scores": {
+      "sf": 0.597,
+      "fantasy": 1.0647,
+      "cyberpunk": 1.0359,
+      "action": 0.8643,
+      "slice_of_life": 2.5263,
+      "mystery": 0.9561,
+      "historical": 0.5985
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6448,
+        "1": 0.1886,
+        "2": 0.1175,
+        "3": 0.0231,
+        "4": 0.026
+      },
+      "fantasy": {
+        "0": 0.384,
+        "1": 0.3232,
+        "2": 0.1867,
+        "3": 0.0563,
+        "4": 0.0498
+      },
+      "cyberpunk": {
+        "0": 0.4123,
+        "1": 0.2942,
+        "2": 0.1926,
+        "3": 0.047,
+        "4": 0.0539
+      },
+      "action": {
+        "0": 0.4226,
+        "1": 0.3633,
+        "2": 0.1643,
+        "3": 0.027,
+        "4": 0.0228
+      },
+      "slice_of_life": {
+        "0": 0.1262,
+        "1": 0.1174,
+        "2": 0.1672,
+        "3": 0.2824,
+        "4": 0.3068
+      },
+      "mystery": {
+        "0": 0.3888,
+        "1": 0.3617,
+        "2": 0.1851,
+        "3": 0.0334,
+        "4": 0.031
+      },
+      "historical": {
+        "0": 0.5989,
+        "1": 0.2636,
+        "2": 0.0986,
+        "3": 0.0178,
+        "4": 0.0211
+      }
+    },
+    "usage": {
+      "input_tokens": 1201,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:34.146633+00:00"
+  },
+  "5cae37b868f6f703ec4138b7c705d3b3bbf6b393709d6ea45a0770d3250d1a16": {
+    "input": "Behind the Scenes with Villion:Code Game Designer Ilya Kuvshinov",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 5,
+      "cyberpunk": 17,
+      "action": 9,
+      "slice_of_life": 32,
+      "mystery": 10,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.6957,
+      "fantasy": 0.2106,
+      "cyberpunk": 0.6685,
+      "action": 0.3768,
+      "slice_of_life": 1.2922,
+      "mystery": 0.3896,
+      "historical": 0.2124
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5629,
+        "1": 0.2327,
+        "2": 0.1678,
+        "3": 0.0191,
+        "4": 0.0175
+      },
+      "fantasy": {
+        "0": 0.857,
+        "1": 0.0933,
+        "2": 0.038,
+        "3": 0.0055,
+        "4": 0.0062
+      },
+      "cyberpunk": {
+        "0": 0.5869,
+        "1": 0.2251,
+        "2": 0.1442,
+        "3": 0.0203,
+        "4": 0.0235
+      },
+      "action": {
+        "0": 0.7158,
+        "1": 0.2057,
+        "2": 0.0686,
+        "3": 0.0056,
+        "4": 0.0043
+      },
+      "slice_of_life": {
+        "0": 0.3201,
+        "1": 0.2905,
+        "2": 0.2442,
+        "3": 0.0674,
+        "4": 0.0778
+      },
+      "mystery": {
+        "0": 0.6988,
+        "1": 0.2278,
+        "2": 0.0634,
+        "3": 0.0049,
+        "4": 0.0051
+      },
+      "historical": {
+        "0": 0.8379,
+        "1": 0.124,
+        "2": 0.0301,
+        "3": 0.0037,
+        "4": 0.0043
+      }
+    },
+    "usage": {
+      "input_tokens": 1200,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:34.507964+00:00"
+  },
+  "18e055bd635e627fb47c9ebd943a0f2d7032d89060b114a4e95d287b0c6e5b3c": {
+    "input": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 32,
+      "fantasy": 83,
+      "cyberpunk": 5,
+      "action": 40,
+      "slice_of_life": 22,
+      "mystery": 13,
+      "historical": 23
+    },
+    "raw_scores": {
+      "sf": 1.2603,
+      "fantasy": 3.3365,
+      "cyberpunk": 0.1991,
+      "action": 1.5895,
+      "slice_of_life": 0.8846,
+      "mystery": 0.5172,
+      "historical": 0.9125
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2858,
+        "1": 0.3166,
+        "2": 0.2957,
+        "3": 0.0552,
+        "4": 0.0467
+      },
+      "fantasy": {
+        "0": 0.0244,
+        "1": 0.024,
+        "2": 0.0389,
+        "3": 0.416,
+        "4": 0.4967
+      },
+      "cyberpunk": {
+        "0": 0.8552,
+        "1": 0.1035,
+        "2": 0.0328,
+        "3": 0.004,
+        "4": 0.0045
+      },
+      "action": {
+        "0": 0.16,
+        "1": 0.2971,
+        "2": 0.4015,
+        "3": 0.0762,
+        "4": 0.0652
+      },
+      "slice_of_life": {
+        "0": 0.3912,
+        "1": 0.3837,
+        "2": 0.1907,
+        "3": 0.0179,
+        "4": 0.0165
+      },
+      "mystery": {
+        "0": 0.5899,
+        "1": 0.3191,
+        "2": 0.0802,
+        "3": 0.0054,
+        "4": 0.0054
+      },
+      "historical": {
+        "0": 0.4194,
+        "1": 0.3392,
+        "2": 0.1801,
+        "3": 0.0319,
+        "4": 0.0294
+      }
+    },
+    "usage": {
+      "input_tokens": 1200,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-11T01:46:34.906165+00:00"
+  },
+  "03e458dcfca217ad19132515d9b604f931bfa7f496ef34af76db7e3a620440e1": {
+    "input": "Let's Yap 🎨",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 29,
+      "fantasy": 24,
+      "cyberpunk": 31,
+      "action": 24,
+      "slice_of_life": 31,
+      "mystery": 17,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 1.1422,
+      "fantasy": 0.9776,
+      "cyberpunk": 1.2201,
+      "action": 0.944,
+      "slice_of_life": 1.2315,
+      "mystery": 0.6765,
+      "historical": 0.3734
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4012,
+        "1": 0.2568,
+        "2": 0.2087,
+        "3": 0.0652,
+        "4": 0.0681
+      },
+      "fantasy": {
+        "0": 0.4458,
+        "1": 0.2996,
+        "2": 0.1444,
+        "3": 0.0518,
+        "4": 0.0584
+      },
+      "cyberpunk": {
+        "0": 0.3797,
+        "1": 0.2677,
+        "2": 0.1929,
+        "3": 0.0721,
+        "4": 0.0876
+      },
+      "action": {
+        "0": 0.4211,
+        "1": 0.3295,
+        "2": 0.1728,
+        "3": 0.0378,
+        "4": 0.0388
+      },
+      "slice_of_life": {
+        "0": 0.3423,
+        "1": 0.3129,
+        "2": 0.1935,
+        "3": 0.0735,
+        "4": 0.0778
+      },
+      "mystery": {
+        "0": 0.5573,
+        "1": 0.2788,
+        "2": 0.1167,
+        "3": 0.0246,
+        "4": 0.0226
+      },
+      "historical": {
+        "0": 0.7233,
+        "1": 0.2092,
+        "2": 0.0484,
+        "3": 0.0089,
+        "4": 0.0102
+      }
+    },
+    "usage": {
+      "input_tokens": 1190,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:35.283747+00:00"
+  },
+  "d9e0e49c915426fc3a9156dc273ea21dd17fc27d5faa64dd3a7de55d0b3e62fa": {
+    "input": "The PC Coloring Book (Now Open!)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 23,
+      "cyberpunk": 18,
+      "action": 8,
+      "slice_of_life": 32,
+      "mystery": 9,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.4808,
+      "fantasy": 0.9141,
+      "cyberpunk": 0.7023,
+      "action": 0.338,
+      "slice_of_life": 1.2786,
+      "mystery": 0.3628,
+      "historical": 0.2968
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7251,
+        "1": 0.1399,
+        "2": 0.0846,
+        "3": 0.0299,
+        "4": 0.0205
+      },
+      "fantasy": {
+        "0": 0.4924,
+        "1": 0.2588,
+        "2": 0.1454,
+        "3": 0.0489,
+        "4": 0.0545
+      },
+      "cyberpunk": {
+        "0": 0.6153,
+        "1": 0.1825,
+        "2": 0.125,
+        "3": 0.039,
+        "4": 0.0382
+      },
+      "action": {
+        "0": 0.7537,
+        "1": 0.1803,
+        "2": 0.0478,
+        "3": 0.0107,
+        "4": 0.0075
+      },
+      "slice_of_life": {
+        "0": 0.3325,
+        "1": 0.3168,
+        "2": 0.1798,
+        "3": 0.0814,
+        "4": 0.0895
+      },
+      "mystery": {
+        "0": 0.7066,
+        "1": 0.2415,
+        "2": 0.0401,
+        "3": 0.006,
+        "4": 0.0058
+      },
+      "historical": {
+        "0": 0.7649,
+        "1": 0.1934,
+        "2": 0.0287,
+        "3": 0.006,
+        "4": 0.007
+      }
+    },
+    "usage": {
+      "input_tokens": 1192,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:35.640782+00:00"
+  },
+  "a4b4a1fbb393064f49502feaa9c47f2fe12ed997e28bd2c14cbccc70c7787418": {
+    "input": "Yume Tsuki's arts & comics",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 28,
+      "fantasy": 47,
+      "cyberpunk": 30,
+      "action": 30,
+      "slice_of_life": 56,
+      "mystery": 26,
+      "historical": 15
+    },
+    "raw_scores": {
+      "sf": 1.1277,
+      "fantasy": 1.8771,
+      "cyberpunk": 1.201,
+      "action": 1.1974,
+      "slice_of_life": 2.2361,
+      "mystery": 1.059,
+      "historical": 0.6017
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3707,
+        "1": 0.2746,
+        "2": 0.2523,
+        "3": 0.0609,
+        "4": 0.0415
+      },
+      "fantasy": {
+        "0": 0.1975,
+        "1": 0.2354,
+        "2": 0.2288,
+        "3": 0.1693,
+        "4": 0.169
+      },
+      "cyberpunk": {
+        "0": 0.3609,
+        "1": 0.2973,
+        "2": 0.2003,
+        "3": 0.0629,
+        "4": 0.0786
+      },
+      "action": {
+        "0": 0.3021,
+        "1": 0.3551,
+        "2": 0.2361,
+        "3": 0.0565,
+        "4": 0.0502
+      },
+      "slice_of_life": {
+        "0": 0.157,
+        "1": 0.1579,
+        "2": 0.2132,
+        "3": 0.2358,
+        "4": 0.2361
+      },
+      "mystery": {
+        "0": 0.3538,
+        "1": 0.3583,
+        "2": 0.2034,
+        "3": 0.0443,
+        "4": 0.0402
+      },
+      "historical": {
+        "0": 0.6058,
+        "1": 0.2526,
+        "2": 0.0977,
+        "3": 0.0219,
+        "4": 0.022
+      }
+    },
+    "usage": {
+      "input_tokens": 1192,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:36.003183+00:00"
+  },
+  "9ab33a7a7d1385f8f8d8cf8fad09a2cb403c90e6106d7db696985fa161473db0": {
+    "input": "Goobs art dump . ܁₊ ⊹ . ܁ ⟡ ܁ . ⊹ ₊ ܁.",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 8,
+      "fantasy": 16,
+      "cyberpunk": 10,
+      "action": 6,
+      "slice_of_life": 23,
+      "mystery": 6,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 0.303,
+      "fantasy": 0.6284,
+      "cyberpunk": 0.3822,
+      "action": 0.2444,
+      "slice_of_life": 0.9238,
+      "mystery": 0.2396,
+      "historical": 0.1615
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8316,
+        "1": 0.0916,
+        "2": 0.0395,
+        "3": 0.0168,
+        "4": 0.0205
+      },
+      "fantasy": {
+        "0": 0.5918,
+        "1": 0.2749,
+        "2": 0.0749,
+        "3": 0.0298,
+        "4": 0.0286
+      },
+      "cyberpunk": {
+        "0": 0.7628,
+        "1": 0.1461,
+        "2": 0.0557,
+        "3": 0.017,
+        "4": 0.0184
+      },
+      "action": {
+        "0": 0.8136,
+        "1": 0.1484,
+        "2": 0.0248,
+        "3": 0.0065,
+        "4": 0.0067
+      },
+      "slice_of_life": {
+        "0": 0.4237,
+        "1": 0.3814,
+        "2": 0.095,
+        "3": 0.0472,
+        "4": 0.0527
+      },
+      "mystery": {
+        "0": 0.8062,
+        "1": 0.1638,
+        "2": 0.0196,
+        "3": 0.005,
+        "4": 0.0054
+      },
+      "historical": {
+        "0": 0.8832,
+        "1": 0.0901,
+        "2": 0.015,
+        "3": 0.0054,
+        "4": 0.0063
+      }
+    },
+    "usage": {
+      "input_tokens": 1214,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:36.439090+00:00"
+  },
+  "450ff94e4deb1d5aed16da4bbf89f7dabbe7079f9b3563da2beabce236c290d6": {
+    "input": "Monthly Pokémon Page Thread",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 47,
+      "cyberpunk": 10,
+      "action": 34,
+      "slice_of_life": 33,
+      "mystery": 16,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.664,
+      "fantasy": 1.876,
+      "cyberpunk": 0.4119,
+      "action": 1.3495,
+      "slice_of_life": 1.3386,
+      "mystery": 0.6415,
+      "historical": 0.306
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6327,
+        "1": 0.1883,
+        "2": 0.1011,
+        "3": 0.038,
+        "4": 0.0399
+      },
+      "fantasy": {
+        "0": 0.2162,
+        "1": 0.2214,
+        "2": 0.2166,
+        "3": 0.1619,
+        "4": 0.1839
+      },
+      "cyberpunk": {
+        "0": 0.7512,
+        "1": 0.1393,
+        "2": 0.0733,
+        "3": 0.0188,
+        "4": 0.0174
+      },
+      "action": {
+        "0": 0.2839,
+        "1": 0.3037,
+        "2": 0.2612,
+        "3": 0.0813,
+        "4": 0.0699
+      },
+      "slice_of_life": {
+        "0": 0.3203,
+        "1": 0.2777,
+        "2": 0.2274,
+        "3": 0.0922,
+        "4": 0.0824
+      },
+      "mystery": {
+        "0": 0.5499,
+        "1": 0.3069,
+        "2": 0.1103,
+        "3": 0.0175,
+        "4": 0.0154
+      },
+      "historical": {
+        "0": 0.7788,
+        "1": 0.162,
+        "2": 0.0424,
+        "3": 0.0081,
+        "4": 0.0087
+      }
+    },
+    "usage": {
+      "input_tokens": 1188,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:36.780789+00:00"
+  },
+  "3a5ec2472678cbc3e2fbadc6d0cf74801a5aaaad6780a939e3d776713262e9d1": {
+    "input": "♡ IIIIIT'S SHOWTIME - Auticorn's Mixed Gallery ♡",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 19,
+      "fantasy": 38,
+      "cyberpunk": 15,
+      "action": 23,
+      "slice_of_life": 32,
+      "mystery": 16,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 0.7667,
+      "fantasy": 1.5184,
+      "cyberpunk": 0.619,
+      "action": 0.9038,
+      "slice_of_life": 1.2929,
+      "mystery": 0.6418,
+      "historical": 0.3525
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5456,
+        "1": 0.2394,
+        "2": 0.1499,
+        "3": 0.0329,
+        "4": 0.0322
+      },
+      "fantasy": {
+        "0": 0.2422,
+        "1": 0.2964,
+        "2": 0.259,
+        "3": 0.1054,
+        "4": 0.097
+      },
+      "cyberpunk": {
+        "0": 0.6047,
+        "1": 0.2397,
+        "2": 0.1111,
+        "3": 0.0209,
+        "4": 0.0236
+      },
+      "action": {
+        "0": 0.4205,
+        "1": 0.3462,
+        "2": 0.1711,
+        "3": 0.0333,
+        "4": 0.0289
+      },
+      "slice_of_life": {
+        "0": 0.3019,
+        "1": 0.3257,
+        "2": 0.221,
+        "3": 0.0804,
+        "4": 0.071
+      },
+      "mystery": {
+        "0": 0.5162,
+        "1": 0.3565,
+        "2": 0.1063,
+        "3": 0.0113,
+        "4": 0.0097
+      },
+      "historical": {
+        "0": 0.7252,
+        "1": 0.2151,
+        "2": 0.0477,
+        "3": 0.0059,
+        "4": 0.0061
+      }
+    },
+    "usage": {
+      "input_tokens": 1199,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:37.150093+00:00"
+  },
+  "265f450082cf6bd6fbbe8a55d99c4728013223ccd112c610cc1fba52db615c2b": {
+    "input": "drawings, pixels and stuff (mainly OCs for now)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 29,
+      "cyberpunk": 21,
+      "action": 12,
+      "slice_of_life": 27,
+      "mystery": 10,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.692,
+      "fantasy": 1.1411,
+      "cyberpunk": 0.8422,
+      "action": 0.4951,
+      "slice_of_life": 1.0939,
+      "mystery": 0.4177,
+      "historical": 0.2979
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5616,
+        "1": 0.271,
+        "2": 0.1108,
+        "3": 0.027,
+        "4": 0.0296
+      },
+      "fantasy": {
+        "0": 0.3432,
+        "1": 0.3513,
+        "2": 0.186,
+        "3": 0.06,
+        "4": 0.0595
+      },
+      "cyberpunk": {
+        "0": 0.4858,
+        "1": 0.2897,
+        "2": 0.1559,
+        "3": 0.0337,
+        "4": 0.0349
+      },
+      "action": {
+        "0": 0.6215,
+        "1": 0.2835,
+        "2": 0.0804,
+        "3": 0.0076,
+        "4": 0.007
+      },
+      "slice_of_life": {
+        "0": 0.3598,
+        "1": 0.3561,
+        "2": 0.1715,
+        "3": 0.0557,
+        "4": 0.0569
+      },
+      "mystery": {
+        "0": 0.6466,
+        "1": 0.3018,
+        "2": 0.0432,
+        "3": 0.0042,
+        "4": 0.0042
+      },
+      "historical": {
+        "0": 0.7599,
+        "1": 0.1985,
+        "2": 0.0315,
+        "3": 0.0041,
+        "4": 0.006
+      }
+    },
+    "usage": {
+      "input_tokens": 1198,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:37.501719+00:00"
+  },
+  "1f6538251c1b7d2a0d6a75ef5e7f66e58e24c7c7ae2655f9c9abe409d5db88e9": {
+    "input": "Bella’s Poké-Doodles",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 29,
+      "fantasy": 47,
+      "cyberpunk": 15,
+      "action": 20,
+      "slice_of_life": 42,
+      "mystery": 15,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 1.1699,
+      "fantasy": 1.8817,
+      "cyberpunk": 0.6178,
+      "action": 0.7954,
+      "slice_of_life": 1.6793,
+      "mystery": 0.6179,
+      "historical": 0.3833
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3771,
+        "1": 0.269,
+        "2": 0.2299,
+        "3": 0.0549,
+        "4": 0.0691
+      },
+      "fantasy": {
+        "0": 0.2066,
+        "1": 0.2232,
+        "2": 0.2295,
+        "3": 0.1634,
+        "4": 0.1773
+      },
+      "cyberpunk": {
+        "0": 0.61,
+        "1": 0.2332,
+        "2": 0.1089,
+        "3": 0.0249,
+        "4": 0.023
+      },
+      "action": {
+        "0": 0.464,
+        "1": 0.3468,
+        "2": 0.142,
+        "3": 0.0243,
+        "4": 0.0229
+      },
+      "slice_of_life": {
+        "0": 0.2351,
+        "1": 0.2575,
+        "2": 0.24,
+        "3": 0.1278,
+        "4": 0.1396
+      },
+      "mystery": {
+        "0": 0.5344,
+        "1": 0.3448,
+        "2": 0.1003,
+        "3": 0.0097,
+        "4": 0.0108
+      },
+      "historical": {
+        "0": 0.7011,
+        "1": 0.2339,
+        "2": 0.0526,
+        "3": 0.0054,
+        "4": 0.007
+      }
+    },
+    "usage": {
+      "input_tokens": 1191,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:37.880289+00:00"
+  },
+  "b5521010669411d669d9f46d9c1e05a286b398c092527dfa3ba5154f7a329181": {
+    "input": "Kory's oc Drawings Thread",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 21,
+      "fantasy": 27,
+      "cyberpunk": 25,
+      "action": 23,
+      "slice_of_life": 36,
+      "mystery": 14,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.851,
+      "fantasy": 1.0662,
+      "cyberpunk": 0.9811,
+      "action": 0.9138,
+      "slice_of_life": 1.4213,
+      "mystery": 0.5597,
+      "historical": 0.384
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5012,
+        "1": 0.287,
+        "2": 0.1191,
+        "3": 0.045,
+        "4": 0.0477
+      },
+      "fantasy": {
+        "0": 0.3987,
+        "1": 0.3093,
+        "2": 0.1792,
+        "3": 0.0529,
+        "4": 0.0599
+      },
+      "cyberpunk": {
+        "0": 0.4512,
+        "1": 0.275,
+        "2": 0.1688,
+        "3": 0.0515,
+        "4": 0.0535
+      },
+      "action": {
+        "0": 0.4237,
+        "1": 0.3392,
+        "2": 0.1699,
+        "3": 0.0341,
+        "4": 0.0331
+      },
+      "slice_of_life": {
+        "0": 0.2852,
+        "1": 0.2979,
+        "2": 0.2254,
+        "3": 0.0936,
+        "4": 0.0979
+      },
+      "mystery": {
+        "0": 0.5758,
+        "1": 0.3212,
+        "2": 0.0819,
+        "3": 0.0096,
+        "4": 0.0115
+      },
+      "historical": {
+        "0": 0.7002,
+        "1": 0.2389,
+        "2": 0.0458,
+        "3": 0.0069,
+        "4": 0.0082
+      }
+    },
+    "usage": {
+      "input_tokens": 1191,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:38.223090+00:00"
+  },
+  "9facea2c4290ab65144f8716aa2f5d1cb2e1ee5dc2b32d9e26398f44bcb53a8f": {
+    "input": "tiramisu's (new and improved) art log!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 15,
+      "fantasy": 18,
+      "cyberpunk": 16,
+      "action": 13,
+      "slice_of_life": 43,
+      "mystery": 14,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.5902,
+      "fantasy": 0.7057,
+      "cyberpunk": 0.6467,
+      "action": 0.5195,
+      "slice_of_life": 1.7129,
+      "mystery": 0.5514,
+      "historical": 0.3093
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6519,
+        "1": 0.1901,
+        "2": 0.1027,
+        "3": 0.0267,
+        "4": 0.0286
+      },
+      "fantasy": {
+        "0": 0.5474,
+        "1": 0.2853,
+        "2": 0.1092,
+        "3": 0.0305,
+        "4": 0.0276
+      },
+      "cyberpunk": {
+        "0": 0.6135,
+        "1": 0.218,
+        "2": 0.1088,
+        "3": 0.0276,
+        "4": 0.0321
+      },
+      "action": {
+        "0": 0.643,
+        "1": 0.2396,
+        "2": 0.0865,
+        "3": 0.0168,
+        "4": 0.0141
+      },
+      "slice_of_life": {
+        "0": 0.2432,
+        "1": 0.2367,
+        "2": 0.2271,
+        "3": 0.1501,
+        "4": 0.1429
+      },
+      "mystery": {
+        "0": 0.6084,
+        "1": 0.2687,
+        "2": 0.0983,
+        "3": 0.0124,
+        "4": 0.0122
+      },
+      "historical": {
+        "0": 0.7701,
+        "1": 0.1726,
+        "2": 0.0429,
+        "3": 0.0066,
+        "4": 0.0078
+      }
+    },
+    "usage": {
+      "input_tokens": 1196,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokéCommunity Art Studio",
+    "timestamp": "2026-10-11T01:46:38.570593+00:00"
+  },
+  "28811e54f2b6f9f90dd2ded94b90da7058bf7bf230801b47aee3474a50150fa3": {
+    "input": "Pokemon to Release First-Ever Valentine’s Day TCG Set!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 27,
+      "cyberpunk": 5,
+      "action": 20,
+      "slice_of_life": 19,
+      "mystery": 10,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.5241,
+      "fantasy": 1.0873,
+      "cyberpunk": 0.1941,
+      "action": 0.8183,
+      "slice_of_life": 0.769,
+      "mystery": 0.3902,
+      "historical": 0.1911
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.695,
+        "1": 0.1685,
+        "2": 0.0828,
+        "3": 0.0249,
+        "4": 0.0288
+      },
+      "fantasy": {
+        "0": 0.418,
+        "1": 0.2576,
+        "2": 0.1998,
+        "3": 0.0683,
+        "4": 0.0563
+      },
+      "cyberpunk": {
+        "0": 0.882,
+        "1": 0.0683,
+        "2": 0.0318,
+        "3": 0.0092,
+        "4": 0.0087
+      },
+      "action": {
+        "0": 0.5133,
+        "1": 0.2504,
+        "2": 0.1706,
+        "3": 0.036,
+        "4": 0.0297
+      },
+      "slice_of_life": {
+        "0": 0.5075,
+        "1": 0.2944,
+        "2": 0.1463,
+        "3": 0.0254,
+        "4": 0.0264
+      },
+      "mystery": {
+        "0": 0.6988,
+        "1": 0.2322,
+        "2": 0.0559,
+        "3": 0.006,
+        "4": 0.0071
+      },
+      "historical": {
+        "0": 0.8589,
+        "1": 0.1066,
+        "2": 0.0244,
+        "3": 0.0048,
+        "4": 0.0053
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:38.958557+00:00"
+  },
+  "a79a579e1549ac00218f529f2672df3eed152813c09ddc6db02b0ddffee7ba2a": {
+    "input": "30+ Pokemon European Space Agency and Other TCG Accessories Released on Pokemon Center!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 20,
+      "cyberpunk": 6,
+      "action": 13,
+      "slice_of_life": 15,
+      "mystery": 9,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.4726,
+      "fantasy": 0.798,
+      "cyberpunk": 0.2311,
+      "action": 0.5015,
+      "slice_of_life": 0.607,
+      "mystery": 0.3424,
+      "historical": 0.2184
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.71,
+        "1": 0.1679,
+        "2": 0.0817,
+        "3": 0.0203,
+        "4": 0.0201
+      },
+      "fantasy": {
+        "0": 0.5291,
+        "1": 0.2411,
+        "2": 0.1631,
+        "3": 0.036,
+        "4": 0.0307
+      },
+      "cyberpunk": {
+        "0": 0.843,
+        "1": 0.1004,
+        "2": 0.0447,
+        "3": 0.0063,
+        "4": 0.0056
+      },
+      "action": {
+        "0": 0.6522,
+        "1": 0.2319,
+        "2": 0.0891,
+        "3": 0.0158,
+        "4": 0.011
+      },
+      "slice_of_life": {
+        "0": 0.5663,
+        "1": 0.3134,
+        "2": 0.0856,
+        "3": 0.0162,
+        "4": 0.0185
+      },
+      "mystery": {
+        "0": 0.7182,
+        "1": 0.2352,
+        "2": 0.0372,
+        "3": 0.0048,
+        "4": 0.0046
+      },
+      "historical": {
+        "0": 0.8336,
+        "1": 0.1273,
+        "2": 0.0306,
+        "3": 0.0041,
+        "4": 0.0044
+      }
+    },
+    "usage": {
+      "input_tokens": 1201,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:39.306763+00:00"
+  },
+  "5339cd09556d43b2738fdee89bb055106d893e06f8d4921e7e8e47c88c9cbc29": {
+    "input": "Carpe Diem – Seizing Opportunity in the Pokemon TCG",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 32,
+      "cyberpunk": 7,
+      "action": 27,
+      "slice_of_life": 24,
+      "mystery": 13,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.4058,
+      "fantasy": 1.2762,
+      "cyberpunk": 0.2874,
+      "action": 1.0697,
+      "slice_of_life": 0.9555,
+      "mystery": 0.5295,
+      "historical": 0.2965
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7677,
+        "1": 0.1191,
+        "2": 0.0725,
+        "3": 0.021,
+        "4": 0.0197
+      },
+      "fantasy": {
+        "0": 0.3392,
+        "1": 0.2642,
+        "2": 0.2491,
+        "3": 0.0763,
+        "4": 0.0712
+      },
+      "cyberpunk": {
+        "0": 0.8234,
+        "1": 0.0937,
+        "2": 0.0643,
+        "3": 0.0091,
+        "4": 0.0095
+      },
+      "action": {
+        "0": 0.4035,
+        "1": 0.2766,
+        "2": 0.2163,
+        "3": 0.0539,
+        "4": 0.0497
+      },
+      "slice_of_life": {
+        "0": 0.4159,
+        "1": 0.309,
+        "2": 0.2101,
+        "3": 0.0338,
+        "4": 0.0312
+      },
+      "mystery": {
+        "0": 0.6095,
+        "1": 0.2739,
+        "2": 0.1012,
+        "3": 0.0084,
+        "4": 0.007
+      },
+      "historical": {
+        "0": 0.7848,
+        "1": 0.1503,
+        "2": 0.0535,
+        "3": 0.0063,
+        "4": 0.0051
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:39.654637+00:00"
+  },
+  "589b7b173bd2a646550a2d08bff1af0534c6e32fcab5975626f7209e63af6a20": {
+    "input": "“Delta Reign” Preorders Now Live on Pokemon Center!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 35,
+      "cyberpunk": 9,
+      "action": 29,
+      "slice_of_life": 20,
+      "mystery": 15,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 0.6813,
+      "fantasy": 1.4152,
+      "cyberpunk": 0.3596,
+      "action": 1.1452,
+      "slice_of_life": 0.8104,
+      "mystery": 0.5848,
+      "historical": 0.3676
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6226,
+        "1": 0.1879,
+        "2": 0.1154,
+        "3": 0.0336,
+        "4": 0.0405
+      },
+      "fantasy": {
+        "0": 0.3486,
+        "1": 0.2177,
+        "2": 0.215,
+        "3": 0.1072,
+        "4": 0.1115
+      },
+      "cyberpunk": {
+        "0": 0.7809,
+        "1": 0.1228,
+        "2": 0.0677,
+        "3": 0.0131,
+        "4": 0.0155
+      },
+      "action": {
+        "0": 0.3574,
+        "1": 0.2837,
+        "2": 0.2593,
+        "3": 0.0555,
+        "4": 0.0441
+      },
+      "slice_of_life": {
+        "0": 0.4753,
+        "1": 0.3001,
+        "2": 0.1829,
+        "3": 0.0223,
+        "4": 0.0194
+      },
+      "mystery": {
+        "0": 0.564,
+        "1": 0.3127,
+        "2": 0.106,
+        "3": 0.0091,
+        "4": 0.0082
+      },
+      "historical": {
+        "0": 0.7506,
+        "1": 0.1575,
+        "2": 0.0743,
+        "3": 0.0089,
+        "4": 0.0087
+      }
+    },
+    "usage": {
+      "input_tokens": 1196,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:40.023728+00:00"
+  },
+  "60f1eecab9fa80934658e01f2cd2353d342b0e3d1a97bd36a75942b3c5f808f7": {
+    "input": "All 429 “Deluxe Pack Mega” Cards Revealed for “Pocket!”",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 26,
+      "cyberpunk": 15,
+      "action": 28,
+      "slice_of_life": 18,
+      "mystery": 14,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.7293,
+      "fantasy": 1.0222,
+      "cyberpunk": 0.5912,
+      "action": 1.1215,
+      "slice_of_life": 0.718,
+      "mystery": 0.5447,
+      "historical": 0.3231
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5994,
+        "1": 0.1998,
+        "2": 0.1161,
+        "3": 0.0415,
+        "4": 0.0432
+      },
+      "fantasy": {
+        "0": 0.4713,
+        "1": 0.2274,
+        "2": 0.1681,
+        "3": 0.0743,
+        "4": 0.0589
+      },
+      "cyberpunk": {
+        "0": 0.6622,
+        "1": 0.1805,
+        "2": 0.0935,
+        "3": 0.0316,
+        "4": 0.0322
+      },
+      "action": {
+        "0": 0.3829,
+        "1": 0.29,
+        "2": 0.208,
+        "3": 0.061,
+        "4": 0.0581
+      },
+      "slice_of_life": {
+        "0": 0.5259,
+        "1": 0.3097,
+        "2": 0.1105,
+        "3": 0.0283,
+        "4": 0.0256
+      },
+      "mystery": {
+        "0": 0.6048,
+        "1": 0.2786,
+        "2": 0.0942,
+        "3": 0.0118,
+        "4": 0.0106
+      },
+      "historical": {
+        "0": 0.7387,
+        "1": 0.2165,
+        "2": 0.0337,
+        "3": 0.0051,
+        "4": 0.006
+      }
+    },
+    "usage": {
+      "input_tokens": 1202,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:40.406210+00:00"
+  },
+  "69c5da983e739b8dba87a4cc400950b7f0176456683b8ccf518cea8f960708e5": {
+    "input": "“Delta Reign” Prerelease Promos and More English Cards Revealed!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 19,
+      "cyberpunk": 12,
+      "action": 20,
+      "slice_of_life": 10,
+      "mystery": 10,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 0.571,
+      "fantasy": 0.7799,
+      "cyberpunk": 0.4636,
+      "action": 0.8152,
+      "slice_of_life": 0.4195,
+      "mystery": 0.4198,
+      "historical": 0.3607
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6813,
+        "1": 0.1715,
+        "2": 0.0771,
+        "3": 0.0351,
+        "4": 0.035
+      },
+      "fantasy": {
+        "0": 0.5605,
+        "1": 0.2228,
+        "2": 0.1349,
+        "3": 0.0399,
+        "4": 0.0419
+      },
+      "cyberpunk": {
+        "0": 0.722,
+        "1": 0.155,
+        "2": 0.0825,
+        "3": 0.0185,
+        "4": 0.022
+      },
+      "action": {
+        "0": 0.5083,
+        "1": 0.2674,
+        "2": 0.1565,
+        "3": 0.0363,
+        "4": 0.0315
+      },
+      "slice_of_life": {
+        "0": 0.6763,
+        "1": 0.2506,
+        "2": 0.057,
+        "3": 0.0096,
+        "4": 0.0065
+      },
+      "mystery": {
+        "0": 0.686,
+        "1": 0.2308,
+        "2": 0.0677,
+        "3": 0.0082,
+        "4": 0.0073
+      },
+      "historical": {
+        "0": 0.7393,
+        "1": 0.1853,
+        "2": 0.0586,
+        "3": 0.0091,
+        "4": 0.0077
+      }
+    },
+    "usage": {
+      "input_tokens": 1200,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:40.751447+00:00"
+  },
+  "1c4727000a6c86e23fe880d3dfd294e315906cbf989357689b8d76b615e6208e": {
+    "input": "McDonald’s Pokemon TCG Promotion to Launch in November for 30th Anniversary!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 11,
+      "fantasy": 17,
+      "cyberpunk": 4,
+      "action": 7,
+      "slice_of_life": 17,
+      "mystery": 6,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.4542,
+      "fantasy": 0.6627,
+      "cyberpunk": 0.1662,
+      "action": 0.2806,
+      "slice_of_life": 0.6827,
+      "mystery": 0.2409,
+      "historical": 0.2661
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7063,
+        "1": 0.1802,
+        "2": 0.0812,
+        "3": 0.0178,
+        "4": 0.0145
+      },
+      "fantasy": {
+        "0": 0.5925,
+        "1": 0.2124,
+        "2": 0.1541,
+        "3": 0.0218,
+        "4": 0.0192
+      },
+      "cyberpunk": {
+        "0": 0.8935,
+        "1": 0.0666,
+        "2": 0.0269,
+        "3": 0.0061,
+        "4": 0.0069
+      },
+      "action": {
+        "0": 0.8003,
+        "1": 0.1434,
+        "2": 0.0397,
+        "3": 0.0086,
+        "4": 0.008
+      },
+      "slice_of_life": {
+        "0": 0.5267,
+        "1": 0.3261,
+        "2": 0.1059,
+        "3": 0.0203,
+        "4": 0.021
+      },
+      "mystery": {
+        "0": 0.7989,
+        "1": 0.1737,
+        "2": 0.0192,
+        "3": 0.004,
+        "4": 0.0042
+      },
+      "historical": {
+        "0": 0.806,
+        "1": 0.1399,
+        "2": 0.0423,
+        "3": 0.0056,
+        "4": 0.0062
+      }
+    },
+    "usage": {
+      "input_tokens": 1202,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:41.109686+00:00"
+  },
+  "7670507b1eefce47de600e608d9a8c69b5888293f1df90a88ccc007dcc3086e0": {
+    "input": "Upgrades People, Upgrades! — Fixing Mega Excadrill",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 9,
+      "cyberpunk": 8,
+      "action": 21,
+      "slice_of_life": 16,
+      "mystery": 7,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 0.4729,
+      "fantasy": 0.3733,
+      "cyberpunk": 0.3072,
+      "action": 0.8562,
+      "slice_of_life": 0.6378,
+      "mystery": 0.2708,
+      "historical": 0.1795
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7103,
+        "1": 0.1626,
+        "2": 0.088,
+        "3": 0.0221,
+        "4": 0.017
+      },
+      "fantasy": {
+        "0": 0.7435,
+        "1": 0.1683,
+        "2": 0.0684,
+        "3": 0.0111,
+        "4": 0.0087
+      },
+      "cyberpunk": {
+        "0": 0.8001,
+        "1": 0.1204,
+        "2": 0.061,
+        "3": 0.0091,
+        "4": 0.0094
+      },
+      "action": {
+        "0": 0.4788,
+        "1": 0.289,
+        "2": 0.1624,
+        "3": 0.0368,
+        "4": 0.033
+      },
+      "slice_of_life": {
+        "0": 0.551,
+        "1": 0.3145,
+        "2": 0.098,
+        "3": 0.0186,
+        "4": 0.0179
+      },
+      "mystery": {
+        "0": 0.79,
+        "1": 0.164,
+        "2": 0.0361,
+        "3": 0.005,
+        "4": 0.0049
+      },
+      "historical": {
+        "0": 0.8627,
+        "1": 0.1106,
+        "2": 0.0164,
+        "3": 0.0051,
+        "4": 0.0052
+      }
+    },
+    "usage": {
+      "input_tokens": 1198,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:41.467614+00:00"
+  },
+  "c5d299e8bf7b80eb3f15a1b303d1fba44909ef46f517988185f0f4e50434e81d": {
+    "input": "New Pokemon TCG Premium Binders to Release Featuring Numbered Pokedex Slots for All 1,025 Pokemon!",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 9,
+      "fantasy": 21,
+      "cyberpunk": 4,
+      "action": 10,
+      "slice_of_life": 13,
+      "mystery": 7,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.3587,
+      "fantasy": 0.8456,
+      "cyberpunk": 0.1466,
+      "action": 0.382,
+      "slice_of_life": 0.5174,
+      "mystery": 0.2636,
+      "historical": 0.2559
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7726,
+        "1": 0.1378,
+        "2": 0.061,
+        "3": 0.0156,
+        "4": 0.013
+      },
+      "fantasy": {
+        "0": 0.5124,
+        "1": 0.2442,
+        "2": 0.1663,
+        "3": 0.0398,
+        "4": 0.0373
+      },
+      "cyberpunk": {
+        "0": 0.906,
+        "1": 0.0594,
+        "2": 0.0229,
+        "3": 0.0056,
+        "4": 0.0061
+      },
+      "action": {
+        "0": 0.7551,
+        "1": 0.1461,
+        "2": 0.0726,
+        "3": 0.0141,
+        "4": 0.0121
+      },
+      "slice_of_life": {
+        "0": 0.6312,
+        "1": 0.2586,
+        "2": 0.0839,
+        "3": 0.0144,
+        "4": 0.0119
+      },
+      "mystery": {
+        "0": 0.7921,
+        "1": 0.1676,
+        "2": 0.0302,
+        "3": 0.0047,
+        "4": 0.0054
+      },
+      "historical": {
+        "0": 0.8143,
+        "1": 0.1304,
+        "2": 0.0457,
+        "3": 0.0044,
+        "4": 0.0052
+      }
+    },
+    "usage": {
+      "input_tokens": 1209,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:41.814800+00:00"
+  },
+  "0185cefbb6a89f426c6227c1dd8a10488bf3849e8979164850ffdddb002133b1": {
+    "input": "Dragapult / Blaziken is the Best Play for Regionals",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 20,
+      "cyberpunk": 5,
+      "action": 32,
+      "slice_of_life": 14,
+      "mystery": 10,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.5472,
+      "fantasy": 0.8027,
+      "cyberpunk": 0.2167,
+      "action": 1.2836,
+      "slice_of_life": 0.5609,
+      "mystery": 0.3938,
+      "historical": 0.2551
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.687,
+        "1": 0.1706,
+        "2": 0.0837,
+        "3": 0.0258,
+        "4": 0.0329
+      },
+      "fantasy": {
+        "0": 0.5375,
+        "1": 0.2386,
+        "2": 0.146,
+        "3": 0.0395,
+        "4": 0.0384
+      },
+      "cyberpunk": {
+        "0": 0.8585,
+        "1": 0.0904,
+        "2": 0.035,
+        "3": 0.0082,
+        "4": 0.0079
+      },
+      "action": {
+        "0": 0.3243,
+        "1": 0.296,
+        "2": 0.2261,
+        "3": 0.0789,
+        "4": 0.0747
+      },
+      "slice_of_life": {
+        "0": 0.5749,
+        "1": 0.3184,
+        "2": 0.0863,
+        "3": 0.0118,
+        "4": 0.0086
+      },
+      "mystery": {
+        "0": 0.6887,
+        "1": 0.2463,
+        "2": 0.0535,
+        "3": 0.0056,
+        "4": 0.0059
+      },
+      "historical": {
+        "0": 0.7968,
+        "1": 0.1661,
+        "2": 0.0273,
+        "3": 0.0049,
+        "4": 0.0049
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokeBeach News",
+    "timestamp": "2026-10-11T01:46:42.152834+00:00"
+  },
+  "df6db7c72b588c49983124ddb060f5d8b7900a0a3ce86337f2079162b98d2947": {
+    "input": "Nintendo Switch 2 update 23.0.1 released, fixes software startup and closing issue",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 9,
+      "fantasy": 4,
+      "cyberpunk": 10,
+      "action": 12,
+      "slice_of_life": 11,
+      "mystery": 5,
+      "historical": 3
+    },
+    "raw_scores": {
+      "sf": 0.3786,
+      "fantasy": 0.1471,
+      "cyberpunk": 0.3852,
+      "action": 0.4898,
+      "slice_of_life": 0.4251,
+      "mystery": 0.1926,
+      "historical": 0.1387
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7878,
+        "1": 0.1252,
+        "2": 0.0339,
+        "3": 0.0266,
+        "4": 0.0265
+      },
+      "fantasy": {
+        "0": 0.9128,
+        "1": 0.0515,
+        "2": 0.0201,
+        "3": 0.007,
+        "4": 0.0086
+      },
+      "cyberpunk": {
+        "0": 0.7768,
+        "1": 0.1222,
+        "2": 0.0602,
+        "3": 0.0208,
+        "4": 0.02
+      },
+      "action": {
+        "0": 0.6755,
+        "1": 0.2192,
+        "2": 0.0658,
+        "3": 0.0191,
+        "4": 0.0204
+      },
+      "slice_of_life": {
+        "0": 0.6895,
+        "1": 0.231,
+        "2": 0.0558,
+        "3": 0.0125,
+        "4": 0.0112
+      },
+      "mystery": {
+        "0": 0.8539,
+        "1": 0.1146,
+        "2": 0.0218,
+        "3": 0.0044,
+        "4": 0.0053
+      },
+      "historical": {
+        "0": 0.8954,
+        "1": 0.0831,
+        "2": 0.0132,
+        "3": 0.0041,
+        "4": 0.0042
+      }
+    },
+    "usage": {
+      "input_tokens": 1204,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:42.534183+00:00"
+  },
+  "4c1b027bab4a5e3e03878d9b4cdae7ccf610cfbff049225fe031fed781fe9670": {
+    "input": "Nintendo Switch update 23.0.1 released, fixing software startup, pause and closing issues",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 4,
+      "cyberpunk": 9,
+      "action": 12,
+      "slice_of_life": 12,
+      "mystery": 6,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 0.4638,
+      "fantasy": 0.1792,
+      "cyberpunk": 0.3676,
+      "action": 0.4937,
+      "slice_of_life": 0.4972,
+      "mystery": 0.2208,
+      "historical": 0.1753
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7735,
+        "1": 0.1039,
+        "2": 0.0486,
+        "3": 0.0334,
+        "4": 0.0406
+      },
+      "fantasy": {
+        "0": 0.8965,
+        "1": 0.0595,
+        "2": 0.0234,
+        "3": 0.0097,
+        "4": 0.0109
+      },
+      "cyberpunk": {
+        "0": 0.7995,
+        "1": 0.099,
+        "2": 0.0583,
+        "3": 0.0206,
+        "4": 0.0226
+      },
+      "action": {
+        "0": 0.697,
+        "1": 0.1867,
+        "2": 0.0665,
+        "3": 0.0254,
+        "4": 0.0244
+      },
+      "slice_of_life": {
+        "0": 0.6744,
+        "1": 0.2208,
+        "2": 0.061,
+        "3": 0.0209,
+        "4": 0.0229
+      },
+      "mystery": {
+        "0": 0.8472,
+        "1": 0.1089,
+        "2": 0.0282,
+        "3": 0.0074,
+        "4": 0.0083
+      },
+      "historical": {
+        "0": 0.896,
+        "1": 0.0599,
+        "2": 0.0259,
+        "3": 0.0093,
+        "4": 0.0089
+      }
+    },
+    "usage": {
+      "input_tokens": 1204,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:42.890302+00:00"
+  },
+  "9e0b8f6c9dce46cee46e7d7ab8883818de6d4cddf531f6b70c7454fc1f36b5b0": {
+    "input": "Pokémon Masters EX October 2026 update: Iono & Bellibolt, Wally, Korrina and Sinnoh Gym Leaders",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 46,
+      "cyberpunk": 5,
+      "action": 30,
+      "slice_of_life": 27,
+      "mystery": 10,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.4862,
+      "fantasy": 1.8519,
+      "cyberpunk": 0.1802,
+      "action": 1.2139,
+      "slice_of_life": 1.0821,
+      "mystery": 0.4073,
+      "historical": 0.2759
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6896,
+        "1": 0.1874,
+        "2": 0.0863,
+        "3": 0.0207,
+        "4": 0.016
+      },
+      "fantasy": {
+        "0": 0.1959,
+        "1": 0.2209,
+        "2": 0.2639,
+        "3": 0.1741,
+        "4": 0.1452
+      },
+      "cyberpunk": {
+        "0": 0.8733,
+        "1": 0.0858,
+        "2": 0.0327,
+        "3": 0.0039,
+        "4": 0.0043
+      },
+      "action": {
+        "0": 0.2972,
+        "1": 0.3264,
+        "2": 0.2849,
+        "3": 0.0484,
+        "4": 0.0431
+      },
+      "slice_of_life": {
+        "0": 0.3469,
+        "1": 0.3291,
+        "2": 0.2551,
+        "3": 0.0329,
+        "4": 0.036
+      },
+      "mystery": {
+        "0": 0.6855,
+        "1": 0.239,
+        "2": 0.0642,
+        "3": 0.0053,
+        "4": 0.006
+      },
+      "historical": {
+        "0": 0.793,
+        "1": 0.1518,
+        "2": 0.0464,
+        "3": 0.004,
+        "4": 0.0048
+      }
+    },
+    "usage": {
+      "input_tokens": 1215,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:43.229850+00:00"
+  },
+  "3f7310fd0bfcc9361decd882174b939227193a12465fe223fc1951bf33b0c021": {
+    "input": "Pokémon GO 30th Anniversary Mall Exploration event launches with party hat Pikachu",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 11,
+      "fantasy": 42,
+      "cyberpunk": 6,
+      "action": 22,
+      "slice_of_life": 24,
+      "mystery": 10,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.4521,
+      "fantasy": 1.6893,
+      "cyberpunk": 0.235,
+      "action": 0.8831,
+      "slice_of_life": 0.9778,
+      "mystery": 0.4095,
+      "historical": 0.306
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7477,
+        "1": 0.1357,
+        "2": 0.0615,
+        "3": 0.0272,
+        "4": 0.0279
+      },
+      "fantasy": {
+        "0": 0.2127,
+        "1": 0.249,
+        "2": 0.2979,
+        "3": 0.1171,
+        "4": 0.1233
+      },
+      "cyberpunk": {
+        "0": 0.8434,
+        "1": 0.0992,
+        "2": 0.0431,
+        "3": 0.0076,
+        "4": 0.0067
+      },
+      "action": {
+        "0": 0.4481,
+        "1": 0.3048,
+        "2": 0.1893,
+        "3": 0.0316,
+        "4": 0.0262
+      },
+      "slice_of_life": {
+        "0": 0.383,
+        "1": 0.357,
+        "2": 0.1961,
+        "3": 0.0271,
+        "4": 0.0368
+      },
+      "mystery": {
+        "0": 0.6792,
+        "1": 0.248,
+        "2": 0.0623,
+        "3": 0.0052,
+        "4": 0.0053
+      },
+      "historical": {
+        "0": 0.7857,
+        "1": 0.1389,
+        "2": 0.0649,
+        "3": 0.0048,
+        "4": 0.0057
+      }
+    },
+    "usage": {
+      "input_tokens": 1200,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:43.575783+00:00"
+  },
+  "7fe7925435d2345f7727bdd9ce58651d18140cb1ce07acb8f41fc114bd213a51": {
+    "input": "Pokémon TCG 30th Celebration products expand across October 2026 lineup",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 9,
+      "fantasy": 32,
+      "cyberpunk": 5,
+      "action": 18,
+      "slice_of_life": 17,
+      "mystery": 9,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.3644,
+      "fantasy": 1.2792,
+      "cyberpunk": 0.1875,
+      "action": 0.7368,
+      "slice_of_life": 0.688,
+      "mystery": 0.3698,
+      "historical": 0.2707
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.791,
+        "1": 0.1038,
+        "2": 0.071,
+        "3": 0.0183,
+        "4": 0.0159
+      },
+      "fantasy": {
+        "0": 0.3262,
+        "1": 0.2739,
+        "2": 0.2593,
+        "3": 0.0759,
+        "4": 0.0647
+      },
+      "cyberpunk": {
+        "0": 0.8714,
+        "1": 0.0864,
+        "2": 0.0309,
+        "3": 0.0058,
+        "4": 0.0055
+      },
+      "action": {
+        "0": 0.5629,
+        "1": 0.2208,
+        "2": 0.1603,
+        "3": 0.0284,
+        "4": 0.0276
+      },
+      "slice_of_life": {
+        "0": 0.5185,
+        "1": 0.3183,
+        "2": 0.1334,
+        "3": 0.0163,
+        "4": 0.0135
+      },
+      "mystery": {
+        "0": 0.7218,
+        "1": 0.2049,
+        "2": 0.0608,
+        "3": 0.0068,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.7995,
+        "1": 0.1459,
+        "2": 0.044,
+        "3": 0.0056,
+        "4": 0.005
+      }
+    },
+    "usage": {
+      "input_tokens": 1203,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:43.953277+00:00"
+  },
+  "c2034311bc437e2fd49faedc2a68d3b0b5f88a5e601851ac2715ed8a895b7200": {
+    "input": "Pokémon Scarlet and Violet bring back Mighty Tyranitar in 7-star Tera Raid Battles",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 11,
+      "fantasy": 34,
+      "cyberpunk": 4,
+      "action": 38,
+      "slice_of_life": 13,
+      "mystery": 12,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.4511,
+      "fantasy": 1.3705,
+      "cyberpunk": 0.1746,
+      "action": 1.5042,
+      "slice_of_life": 0.5253,
+      "mystery": 0.4623,
+      "historical": 0.236
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7757,
+        "1": 0.1036,
+        "2": 0.0514,
+        "3": 0.0325,
+        "4": 0.0368
+      },
+      "fantasy": {
+        "0": 0.3362,
+        "1": 0.2498,
+        "2": 0.2121,
+        "3": 0.1111,
+        "4": 0.0908
+      },
+      "cyberpunk": {
+        "0": 0.8859,
+        "1": 0.072,
+        "2": 0.0298,
+        "3": 0.0063,
+        "4": 0.006
+      },
+      "action": {
+        "0": 0.2416,
+        "1": 0.2735,
+        "2": 0.309,
+        "3": 0.0908,
+        "4": 0.0851
+      },
+      "slice_of_life": {
+        "0": 0.6393,
+        "1": 0.2268,
+        "2": 0.1135,
+        "3": 0.0101,
+        "4": 0.0103
+      },
+      "mystery": {
+        "0": 0.6519,
+        "1": 0.2506,
+        "2": 0.0864,
+        "3": 0.0054,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.833,
+        "1": 0.1163,
+        "2": 0.0388,
+        "3": 0.0054,
+        "4": 0.0065
+      }
+    },
+    "usage": {
+      "input_tokens": 1203,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:44.314580+00:00"
+  },
+  "d99dc19de118db7831b6eab681ada97d25c580fe9585bff645d2fc42fa5222e2": {
+    "input": "Pokémon Sleep Growth Week Vol. 6 boosts Sleep EXP and Candy rewards in October",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 26,
+      "cyberpunk": 5,
+      "action": 20,
+      "slice_of_life": 21,
+      "mystery": 6,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.3967,
+      "fantasy": 1.0466,
+      "cyberpunk": 0.19,
+      "action": 0.7843,
+      "slice_of_life": 0.8569,
+      "mystery": 0.2582,
+      "historical": 0.22
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7626,
+        "1": 0.1329,
+        "2": 0.0677,
+        "3": 0.0188,
+        "4": 0.018
+      },
+      "fantasy": {
+        "0": 0.4232,
+        "1": 0.2715,
+        "2": 0.1971,
+        "3": 0.0518,
+        "4": 0.0564
+      },
+      "cyberpunk": {
+        "0": 0.8781,
+        "1": 0.0776,
+        "2": 0.0288,
+        "3": 0.0072,
+        "4": 0.0083
+      },
+      "action": {
+        "0": 0.5285,
+        "1": 0.2499,
+        "2": 0.1605,
+        "3": 0.0311,
+        "4": 0.03
+      },
+      "slice_of_life": {
+        "0": 0.4533,
+        "1": 0.3313,
+        "2": 0.1533,
+        "3": 0.0295,
+        "4": 0.0326
+      },
+      "mystery": {
+        "0": 0.7968,
+        "1": 0.163,
+        "2": 0.0306,
+        "3": 0.0045,
+        "4": 0.0051
+      },
+      "historical": {
+        "0": 0.8359,
+        "1": 0.1234,
+        "2": 0.0308,
+        "3": 0.0047,
+        "4": 0.0052
+      }
+    },
+    "usage": {
+      "input_tokens": 1201,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:44.686885+00:00"
+  },
+  "96ee330ca916124299d9161ad30f9e2d502b78f4e49b4750be2612091cf3746e": {
+    "input": "Pokémon Pokopia panel discussion archive reveals development insights from PokémonXP",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 28,
+      "cyberpunk": 14,
+      "action": 16,
+      "slice_of_life": 20,
+      "mystery": 11,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.5183,
+      "fantasy": 1.1149,
+      "cyberpunk": 0.5785,
+      "action": 0.6395,
+      "slice_of_life": 0.8069,
+      "mystery": 0.4217,
+      "historical": 0.2918
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6853,
+        "1": 0.1815,
+        "2": 0.0859,
+        "3": 0.0241,
+        "4": 0.0232
+      },
+      "fantasy": {
+        "0": 0.3924,
+        "1": 0.2621,
+        "2": 0.2372,
+        "3": 0.0549,
+        "4": 0.0534
+      },
+      "cyberpunk": {
+        "0": 0.644,
+        "1": 0.1918,
+        "2": 0.123,
+        "3": 0.0242,
+        "4": 0.017
+      },
+      "action": {
+        "0": 0.5692,
+        "1": 0.2643,
+        "2": 0.1362,
+        "3": 0.0185,
+        "4": 0.0118
+      },
+      "slice_of_life": {
+        "0": 0.4588,
+        "1": 0.3446,
+        "2": 0.1495,
+        "3": 0.0252,
+        "4": 0.0219
+      },
+      "mystery": {
+        "0": 0.6716,
+        "1": 0.2515,
+        "2": 0.0662,
+        "3": 0.005,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.7727,
+        "1": 0.175,
+        "2": 0.044,
+        "3": 0.0044,
+        "4": 0.0039
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PokemonBlog",
+    "timestamp": "2026-10-11T01:46:45.037040+00:00"
+  },
+  "875e25c165e2e78acc4f6b96cc3cc4d63eacb81c34c525ea5d664ded495a6527": {
+    "input": "Pokémon GO - Dynamax Uxie, Mesprit, and Azelf Max Battle Day - Saturday, October 24, 2026",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 40,
+      "cyberpunk": 6,
+      "action": 30,
+      "slice_of_life": 14,
+      "mystery": 12,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.5385,
+      "fantasy": 1.586,
+      "cyberpunk": 0.2428,
+      "action": 1.1839,
+      "slice_of_life": 0.5528,
+      "mystery": 0.4674,
+      "historical": 0.2128
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6628,
+        "1": 0.1957,
+        "2": 0.0996,
+        "3": 0.024,
+        "4": 0.0179
+      },
+      "fantasy": {
+        "0": 0.2497,
+        "1": 0.2595,
+        "2": 0.2617,
+        "3": 0.1131,
+        "4": 0.116
+      },
+      "cyberpunk": {
+        "0": 0.842,
+        "1": 0.0952,
+        "2": 0.0483,
+        "3": 0.007,
+        "4": 0.0075
+      },
+      "action": {
+        "0": 0.3338,
+        "1": 0.3058,
+        "2": 0.2546,
+        "3": 0.0543,
+        "4": 0.0515
+      },
+      "slice_of_life": {
+        "0": 0.5857,
+        "1": 0.3028,
+        "2": 0.093,
+        "3": 0.01,
+        "4": 0.0085
+      },
+      "mystery": {
+        "0": 0.6272,
+        "1": 0.2954,
+        "2": 0.066,
+        "3": 0.0057,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.8426,
+        "1": 0.1167,
+        "2": 0.0312,
+        "3": 0.0044,
+        "4": 0.0051
+      }
+    },
+    "usage": {
+      "input_tokens": 1215,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:45.437478+00:00"
+  },
+  "e3bee0f84281c76f61f098f024d1291b5adc9def5982f8e4ee235514407e84b1": {
+    "input": "Pokémon Sleep - Pokémon Growth Week Vol. 6",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 66,
+      "cyberpunk": 5,
+      "action": 27,
+      "slice_of_life": 39,
+      "mystery": 14,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.4671,
+      "fantasy": 2.6552,
+      "cyberpunk": 0.1867,
+      "action": 1.0955,
+      "slice_of_life": 1.5532,
+      "mystery": 0.5677,
+      "historical": 0.3
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.72,
+        "1": 0.1549,
+        "2": 0.0834,
+        "3": 0.0215,
+        "4": 0.0202
+      },
+      "fantasy": {
+        "0": 0.1096,
+        "1": 0.101,
+        "2": 0.1521,
+        "3": 0.2991,
+        "4": 0.3382
+      },
+      "cyberpunk": {
+        "0": 0.864,
+        "1": 0.1016,
+        "2": 0.0238,
+        "3": 0.0048,
+        "4": 0.0058
+      },
+      "action": {
+        "0": 0.3641,
+        "1": 0.3154,
+        "2": 0.228,
+        "3": 0.0459,
+        "4": 0.0466
+      },
+      "slice_of_life": {
+        "0": 0.2346,
+        "1": 0.2983,
+        "2": 0.2618,
+        "3": 0.0899,
+        "4": 0.1154
+      },
+      "mystery": {
+        "0": 0.5705,
+        "1": 0.3139,
+        "2": 0.1009,
+        "3": 0.0068,
+        "4": 0.0079
+      },
+      "historical": {
+        "0": 0.7822,
+        "1": 0.1535,
+        "2": 0.053,
+        "3": 0.0048,
+        "4": 0.0065
+      }
+    },
+    "usage": {
+      "input_tokens": 1195,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:45.790630+00:00"
+  },
+  "b09ae5760c79d916473914977572e3aa1dfcf751de1b437e0e6f06d2045c88d8": {
+    "input": "Pokémon Legends: Z-A - Ranked Battles Season 18",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 50,
+      "cyberpunk": 8,
+      "action": 39,
+      "slice_of_life": 17,
+      "mystery": 15,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.6772,
+      "fantasy": 1.985,
+      "cyberpunk": 0.3176,
+      "action": 1.5637,
+      "slice_of_life": 0.6656,
+      "mystery": 0.5873,
+      "historical": 0.2612
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6054,
+        "1": 0.2072,
+        "2": 0.1198,
+        "3": 0.04,
+        "4": 0.0276
+      },
+      "fantasy": {
+        "0": 0.1837,
+        "1": 0.1967,
+        "2": 0.2424,
+        "3": 0.2052,
+        "4": 0.172
+      },
+      "cyberpunk": {
+        "0": 0.7938,
+        "1": 0.1239,
+        "2": 0.0629,
+        "3": 0.0097,
+        "4": 0.0097
+      },
+      "action": {
+        "0": 0.2166,
+        "1": 0.2824,
+        "2": 0.3055,
+        "3": 0.1118,
+        "4": 0.0837
+      },
+      "slice_of_life": {
+        "0": 0.519,
+        "1": 0.3306,
+        "2": 0.1262,
+        "3": 0.0142,
+        "4": 0.01
+      },
+      "mystery": {
+        "0": 0.5663,
+        "1": 0.3029,
+        "2": 0.1146,
+        "3": 0.0094,
+        "4": 0.0068
+      },
+      "historical": {
+        "0": 0.8037,
+        "1": 0.1457,
+        "2": 0.0413,
+        "3": 0.0043,
+        "4": 0.005
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:46.162710+00:00"
+  },
+  "350c2d1c87762ebb9281b215718a083dab28be1a18005c33e90c0c7227761daf": {
+    "input": "Pokémon GO - Minior Showers in Pokémon GO - Minior Debut",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 44,
+      "cyberpunk": 5,
+      "action": 28,
+      "slice_of_life": 20,
+      "mystery": 11,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.5317,
+      "fantasy": 1.7516,
+      "cyberpunk": 0.1838,
+      "action": 1.1353,
+      "slice_of_life": 0.7992,
+      "mystery": 0.4596,
+      "historical": 0.303
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6957,
+        "1": 0.1571,
+        "2": 0.0928,
+        "3": 0.0287,
+        "4": 0.0257
+      },
+      "fantasy": {
+        "0": 0.2243,
+        "1": 0.2266,
+        "2": 0.2583,
+        "3": 0.1547,
+        "4": 0.1361
+      },
+      "cyberpunk": {
+        "0": 0.8733,
+        "1": 0.0853,
+        "2": 0.0309,
+        "3": 0.0053,
+        "4": 0.0052
+      },
+      "action": {
+        "0": 0.3388,
+        "1": 0.3205,
+        "2": 0.2494,
+        "3": 0.0493,
+        "4": 0.042
+      },
+      "slice_of_life": {
+        "0": 0.4545,
+        "1": 0.3458,
+        "2": 0.1627,
+        "3": 0.02,
+        "4": 0.017
+      },
+      "mystery": {
+        "0": 0.6313,
+        "1": 0.2929,
+        "2": 0.066,
+        "3": 0.0046,
+        "4": 0.0052
+      },
+      "historical": {
+        "0": 0.7663,
+        "1": 0.1817,
+        "2": 0.0409,
+        "3": 0.0049,
+        "4": 0.0062
+      }
+    },
+    "usage": {
+      "input_tokens": 1200,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:46.530748+00:00"
+  },
+  "f1328ecea41b17d4c2484383b3229c957e1145984ac4708a3ade4ed05318ea9b": {
+    "input": "Pokémon's 30 Years of Joy Festival Walk - Pokémon Center POP-UP STORE in Hong Kong",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 9,
+      "fantasy": 43,
+      "cyberpunk": 5,
+      "action": 23,
+      "slice_of_life": 22,
+      "mystery": 9,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.3456,
+      "fantasy": 1.7243,
+      "cyberpunk": 0.1851,
+      "action": 0.9147,
+      "slice_of_life": 0.8915,
+      "mystery": 0.3657,
+      "historical": 0.3153
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8157,
+        "1": 0.0932,
+        "2": 0.0449,
+        "3": 0.0222,
+        "4": 0.024
+      },
+      "fantasy": {
+        "0": 0.246,
+        "1": 0.2208,
+        "2": 0.2466,
+        "3": 0.1361,
+        "4": 0.1505
+      },
+      "cyberpunk": {
+        "0": 0.8733,
+        "1": 0.0839,
+        "2": 0.0327,
+        "3": 0.0048,
+        "4": 0.0053
+      },
+      "action": {
+        "0": 0.4726,
+        "1": 0.2518,
+        "2": 0.1991,
+        "3": 0.0412,
+        "4": 0.0353
+      },
+      "slice_of_life": {
+        "0": 0.4215,
+        "1": 0.3477,
+        "2": 0.1749,
+        "3": 0.0295,
+        "4": 0.0264
+      },
+      "mystery": {
+        "0": 0.7324,
+        "1": 0.1899,
+        "2": 0.0644,
+        "3": 0.0063,
+        "4": 0.007
+      },
+      "historical": {
+        "0": 0.7619,
+        "1": 0.1771,
+        "2": 0.0507,
+        "3": 0.0043,
+        "4": 0.006
+      }
+    },
+    "usage": {
+      "input_tokens": 1205,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:46.927285+00:00"
+  },
+  "c5213eb10d5ea8ccdaaeed82a6bcbfde6a2837114635431ee5da9c1d41aecee6": {
+    "input": "Pokémon Pokopia - Pumpkaboo’s Sweet Surprises",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 11,
+      "fantasy": 52,
+      "cyberpunk": 3,
+      "action": 19,
+      "slice_of_life": 40,
+      "mystery": 17,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.4457,
+      "fantasy": 2.0704,
+      "cyberpunk": 0.1045,
+      "action": 0.7494,
+      "slice_of_life": 1.6091,
+      "mystery": 0.6618,
+      "historical": 0.192
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7505,
+        "1": 0.1318,
+        "2": 0.0643,
+        "3": 0.0284,
+        "4": 0.025
+      },
+      "fantasy": {
+        "0": 0.185,
+        "1": 0.1811,
+        "2": 0.2109,
+        "3": 0.2245,
+        "4": 0.1985
+      },
+      "cyberpunk": {
+        "0": 0.9303,
+        "1": 0.0484,
+        "2": 0.0125,
+        "3": 0.0042,
+        "4": 0.0046
+      },
+      "action": {
+        "0": 0.5188,
+        "1": 0.2668,
+        "2": 0.1772,
+        "3": 0.0207,
+        "4": 0.0165
+      },
+      "slice_of_life": {
+        "0": 0.2357,
+        "1": 0.2629,
+        "2": 0.2745,
+        "3": 0.1103,
+        "4": 0.1166
+      },
+      "mystery": {
+        "0": 0.5357,
+        "1": 0.3058,
+        "2": 0.1321,
+        "3": 0.0139,
+        "4": 0.0125
+      },
+      "historical": {
+        "0": 0.86,
+        "1": 0.1033,
+        "2": 0.0268,
+        "3": 0.0045,
+        "4": 0.0054
+      }
+    },
+    "usage": {
+      "input_tokens": 1196,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:47.463632+00:00"
+  },
+  "13265fad0e93d5deb73a84555a959d7684f2d96033e16affd6487ff24730a4dc": {
+    "input": "Pokémon LEGENDS Z-A + DLC / Pokémon Pokopia + Expansion Pass DLC Sets",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 20,
+      "fantasy": 56,
+      "cyberpunk": 6,
+      "action": 35,
+      "slice_of_life": 18,
+      "mystery": 16,
+      "historical": 14
+    },
+    "raw_scores": {
+      "sf": 0.7998,
+      "fantasy": 2.2543,
+      "cyberpunk": 0.2461,
+      "action": 1.3845,
+      "slice_of_life": 0.706,
+      "mystery": 0.6401,
+      "historical": 0.5765
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5522,
+        "1": 0.2129,
+        "2": 0.1541,
+        "3": 0.0445,
+        "4": 0.0363
+      },
+      "fantasy": {
+        "0": 0.1492,
+        "1": 0.1508,
+        "2": 0.2312,
+        "3": 0.2342,
+        "4": 0.2346
+      },
+      "cyberpunk": {
+        "0": 0.8374,
+        "1": 0.0946,
+        "2": 0.0574,
+        "3": 0.0056,
+        "4": 0.005
+      },
+      "action": {
+        "0": 0.2576,
+        "1": 0.2985,
+        "2": 0.3127,
+        "3": 0.0641,
+        "4": 0.0671
+      },
+      "slice_of_life": {
+        "0": 0.5215,
+        "1": 0.3027,
+        "2": 0.1396,
+        "3": 0.0209,
+        "4": 0.0153
+      },
+      "mystery": {
+        "0": 0.5669,
+        "1": 0.2535,
+        "2": 0.1614,
+        "3": 0.009,
+        "4": 0.0092
+      },
+      "historical": {
+        "0": 0.6126,
+        "1": 0.2415,
+        "2": 0.1176,
+        "3": 0.0132,
+        "4": 0.0151
+      }
+    },
+    "usage": {
+      "input_tokens": 1202,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:47.830584+00:00"
+  },
+  "ce648305e719a6d2e1a2761e474967b22313494ab364fc65be17a191c8b926e0": {
+    "input": "Shiny Magikarp and Shiny Gyarados Pokémon Center × Bear Walker Skateboards",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 34,
+      "cyberpunk": 5,
+      "action": 10,
+      "slice_of_life": 23,
+      "mystery": 6,
+      "historical": 3
+    },
+    "raw_scores": {
+      "sf": 0.469,
+      "fantasy": 1.3798,
+      "cyberpunk": 0.2109,
+      "action": 0.4103,
+      "slice_of_life": 0.9133,
+      "mystery": 0.2201,
+      "historical": 0.1394
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7014,
+        "1": 0.1881,
+        "2": 0.0681,
+        "3": 0.025,
+        "4": 0.0174
+      },
+      "fantasy": {
+        "0": 0.2876,
+        "1": 0.2747,
+        "2": 0.2845,
+        "3": 0.0767,
+        "4": 0.0765
+      },
+      "cyberpunk": {
+        "0": 0.8618,
+        "1": 0.0845,
+        "2": 0.0411,
+        "3": 0.0061,
+        "4": 0.0065
+      },
+      "action": {
+        "0": 0.7015,
+        "1": 0.2134,
+        "2": 0.0673,
+        "3": 0.009,
+        "4": 0.0088
+      },
+      "slice_of_life": {
+        "0": 0.4176,
+        "1": 0.3621,
+        "2": 0.1466,
+        "3": 0.0367,
+        "4": 0.037
+      },
+      "mystery": {
+        "0": 0.828,
+        "1": 0.1393,
+        "2": 0.0225,
+        "3": 0.005,
+        "4": 0.0052
+      },
+      "historical": {
+        "0": 0.8983,
+        "1": 0.0782,
+        "2": 0.0141,
+        "3": 0.0046,
+        "4": 0.0048
+      }
+    },
+    "usage": {
+      "input_tokens": 1202,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:48.176711+00:00"
+  },
+  "4ac55e241d425c945699317094878480dda6d46868919ab502fbb004c717a5dd": {
+    "input": "Pokémon TCG: Mega Evolution Delta Reign Prerelease Event / Build &amp; Battle Box",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 35,
+      "cyberpunk": 8,
+      "action": 26,
+      "slice_of_life": 13,
+      "mystery": 10,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.5512,
+      "fantasy": 1.3936,
+      "cyberpunk": 0.3016,
+      "action": 1.0279,
+      "slice_of_life": 0.5089,
+      "mystery": 0.4045,
+      "historical": 0.2993
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6853,
+        "1": 0.1585,
+        "2": 0.0975,
+        "3": 0.037,
+        "4": 0.0217
+      },
+      "fantasy": {
+        "0": 0.2948,
+        "1": 0.257,
+        "2": 0.2819,
+        "3": 0.0923,
+        "4": 0.074
+      },
+      "cyberpunk": {
+        "0": 0.8,
+        "1": 0.1176,
+        "2": 0.0693,
+        "3": 0.0069,
+        "4": 0.0062
+      },
+      "action": {
+        "0": 0.4008,
+        "1": 0.3026,
+        "2": 0.2089,
+        "3": 0.0432,
+        "4": 0.0445
+      },
+      "slice_of_life": {
+        "0": 0.6259,
+        "1": 0.2643,
+        "2": 0.0927,
+        "3": 0.0092,
+        "4": 0.0079
+      },
+      "mystery": {
+        "0": 0.6765,
+        "1": 0.2589,
+        "2": 0.0539,
+        "3": 0.0051,
+        "4": 0.0056
+      },
+      "historical": {
+        "0": 0.7801,
+        "1": 0.1593,
+        "2": 0.048,
+        "3": 0.0062,
+        "4": 0.0064
+      }
+    },
+    "usage": {
+      "input_tokens": 1204,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:49.157085+00:00"
+  },
+  "dc48a3266eb820b8101942164f1830ff803ea6a3f213315bad0ca258db710a2f": {
+    "input": "Pokémon Masters EX - Story Event Treasures of Ruin Ghetsis / 5★ Sygna Suit Ghetsis &amp; Chien-Pao",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 41,
+      "cyberpunk": 7,
+      "action": 36,
+      "slice_of_life": 16,
+      "mystery": 14,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.3863,
+      "fantasy": 1.634,
+      "cyberpunk": 0.2667,
+      "action": 1.4253,
+      "slice_of_life": 0.625,
+      "mystery": 0.5649,
+      "historical": 0.3312
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.769,
+        "1": 0.1306,
+        "2": 0.0647,
+        "3": 0.0165,
+        "4": 0.0192
+      },
+      "fantasy": {
+        "0": 0.2231,
+        "1": 0.2646,
+        "2": 0.2822,
+        "3": 0.1156,
+        "4": 0.1145
+      },
+      "cyberpunk": {
+        "0": 0.8086,
+        "1": 0.1338,
+        "2": 0.0456,
+        "3": 0.0063,
+        "4": 0.0057
+      },
+      "action": {
+        "0": 0.2389,
+        "1": 0.31,
+        "2": 0.3093,
+        "3": 0.0703,
+        "4": 0.0715
+      },
+      "slice_of_life": {
+        "0": 0.5501,
+        "1": 0.3047,
+        "2": 0.1241,
+        "3": 0.0124,
+        "4": 0.0087
+      },
+      "mystery": {
+        "0": 0.578,
+        "1": 0.2999,
+        "2": 0.1084,
+        "3": 0.0064,
+        "4": 0.0073
+      },
+      "historical": {
+        "0": 0.7492,
+        "1": 0.1864,
+        "2": 0.0539,
+        "3": 0.005,
+        "4": 0.0055
+      }
+    },
+    "usage": {
+      "input_tokens": 1217,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "PocketMonsters",
+    "timestamp": "2026-10-11T01:46:49.558733+00:00"
+  },
+  "8402938a04ba36b98aaf3066a824efb037db087915005f71b9d46cf7f7b32774": {
+    "input": "animal_crossing",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 24,
+      "cyberpunk": 4,
+      "action": 13,
+      "slice_of_life": 42,
+      "mystery": 10,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.4711,
+      "fantasy": 0.9761,
+      "cyberpunk": 0.1625,
+      "action": 0.5099,
+      "slice_of_life": 1.6699,
+      "mystery": 0.4104,
+      "historical": 0.2717
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7433,
+        "1": 0.1332,
+        "2": 0.0602,
+        "3": 0.0356,
+        "4": 0.0277
+      },
+      "fantasy": {
+        "0": 0.4169,
+        "1": 0.3234,
+        "2": 0.1702,
+        "3": 0.0459,
+        "4": 0.0436
+      },
+      "cyberpunk": {
+        "0": 0.8828,
+        "1": 0.0851,
+        "2": 0.0237,
+        "3": 0.0038,
+        "4": 0.0046
+      },
+      "action": {
+        "0": 0.6142,
+        "1": 0.2856,
+        "2": 0.0839,
+        "3": 0.0087,
+        "4": 0.0076
+      },
+      "slice_of_life": {
+        "0": 0.2151,
+        "1": 0.2809,
+        "2": 0.25,
+        "3": 0.127,
+        "4": 0.127
+      },
+      "mystery": {
+        "0": 0.6779,
+        "1": 0.2475,
+        "2": 0.0651,
+        "3": 0.0051,
+        "4": 0.0044
+      },
+      "historical": {
+        "0": 0.7813,
+        "1": 0.178,
+        "2": 0.0328,
+        "3": 0.0035,
+        "4": 0.0044
+      }
+    },
+    "usage": {
+      "input_tokens": 1187,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:49.926475+00:00"
+  },
+  "32be1b6f109be23034b0f5f37cde8772d4a06f363765b0b3b1a9ab3f035452ea": {
+    "input": "christmas",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 20,
+      "fantasy": 32,
+      "cyberpunk": 8,
+      "action": 22,
+      "slice_of_life": 42,
+      "mystery": 18,
+      "historical": 19
+    },
+    "raw_scores": {
+      "sf": 0.7859,
+      "fantasy": 1.2707,
+      "cyberpunk": 0.3198,
+      "action": 0.8678,
+      "slice_of_life": 1.6843,
+      "mystery": 0.7329,
+      "historical": 0.7643
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5743,
+        "1": 0.1863,
+        "2": 0.1597,
+        "3": 0.0386,
+        "4": 0.0411
+      },
+      "fantasy": {
+        "0": 0.3177,
+        "1": 0.3108,
+        "2": 0.2305,
+        "3": 0.065,
+        "4": 0.076
+      },
+      "cyberpunk": {
+        "0": 0.8035,
+        "1": 0.1148,
+        "2": 0.0539,
+        "3": 0.0141,
+        "4": 0.0137
+      },
+      "action": {
+        "0": 0.4479,
+        "1": 0.3321,
+        "2": 0.1573,
+        "3": 0.0298,
+        "4": 0.0329
+      },
+      "slice_of_life": {
+        "0": 0.2192,
+        "1": 0.2745,
+        "2": 0.2449,
+        "3": 0.1257,
+        "4": 0.1357
+      },
+      "mystery": {
+        "0": 0.5184,
+        "1": 0.3028,
+        "2": 0.1321,
+        "3": 0.0208,
+        "4": 0.0259
+      },
+      "historical": {
+        "0": 0.5531,
+        "1": 0.2442,
+        "2": 0.1266,
+        "3": 0.0375,
+        "4": 0.0386
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:50.283976+00:00"
+  },
+  "d4e8f27df2cbb29b1a40b9680f7b0c604cdcfdc5b4c9395afc0af2f62b274c42": {
+    "input": "hasbro",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 28,
+      "fantasy": 8,
+      "cyberpunk": 15,
+      "action": 40,
+      "slice_of_life": 13,
+      "mystery": 10,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 1.1309,
+      "fantasy": 0.3369,
+      "cyberpunk": 0.611,
+      "action": 1.5923,
+      "slice_of_life": 0.5012,
+      "mystery": 0.4194,
+      "historical": 0.2841
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4175,
+        "1": 0.2413,
+        "2": 0.2026,
+        "3": 0.0699,
+        "4": 0.0687
+      },
+      "fantasy": {
+        "0": 0.7904,
+        "1": 0.1231,
+        "2": 0.0583,
+        "3": 0.0156,
+        "4": 0.0126
+      },
+      "cyberpunk": {
+        "0": 0.6709,
+        "1": 0.1497,
+        "2": 0.1129,
+        "3": 0.0306,
+        "4": 0.0359
+      },
+      "action": {
+        "0": 0.2569,
+        "1": 0.2582,
+        "2": 0.2353,
+        "3": 0.135,
+        "4": 0.1146
+      },
+      "slice_of_life": {
+        "0": 0.6386,
+        "1": 0.255,
+        "2": 0.0833,
+        "3": 0.013,
+        "4": 0.0101
+      },
+      "mystery": {
+        "0": 0.677,
+        "1": 0.2454,
+        "2": 0.0652,
+        "3": 0.0061,
+        "4": 0.0063
+      },
+      "historical": {
+        "0": 0.8173,
+        "1": 0.1146,
+        "2": 0.0462,
+        "3": 0.0105,
+        "4": 0.0114
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:50.639363+00:00"
+  },
+  "de39aa5e3a264e2be0120e05e3f7fe9540a1b1aa78d953cbd9b8058dcd1b9fea": {
+    "input": "mars_incorporated",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 59,
+      "fantasy": 12,
+      "cyberpunk": 42,
+      "action": 34,
+      "slice_of_life": 26,
+      "mystery": 24,
+      "historical": 14
+    },
+    "raw_scores": {
+      "sf": 2.3464,
+      "fantasy": 0.4606,
+      "cyberpunk": 1.6857,
+      "action": 1.3697,
+      "slice_of_life": 1.0321,
+      "mystery": 0.9622,
+      "historical": 0.563
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1554,
+        "1": 0.1523,
+        "2": 0.1731,
+        "3": 0.2287,
+        "4": 0.2905
+      },
+      "fantasy": {
+        "0": 0.7079,
+        "1": 0.1734,
+        "2": 0.0852,
+        "3": 0.0171,
+        "4": 0.0164
+      },
+      "cyberpunk": {
+        "0": 0.2311,
+        "1": 0.2591,
+        "2": 0.2424,
+        "3": 0.1278,
+        "4": 0.1396
+      },
+      "action": {
+        "0": 0.2838,
+        "1": 0.2985,
+        "2": 0.2583,
+        "3": 0.0828,
+        "4": 0.0766
+      },
+      "slice_of_life": {
+        "0": 0.3899,
+        "1": 0.324,
+        "2": 0.1963,
+        "3": 0.0438,
+        "4": 0.046
+      },
+      "mystery": {
+        "0": 0.4037,
+        "1": 0.3407,
+        "2": 0.182,
+        "3": 0.037,
+        "4": 0.0366
+      },
+      "historical": {
+        "0": 0.6349,
+        "1": 0.2321,
+        "2": 0.0913,
+        "3": 0.0185,
+        "4": 0.0232
+      }
+    },
+    "usage": {
+      "input_tokens": 1188,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:51.103903+00:00"
+  },
+  "85d8cf40d808640d156c9ad2605e6958665e8c42699fb0e9314973a3debbcf9b": {
+    "input": "my_little_pony",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 65,
+      "cyberpunk": 3,
+      "action": 16,
+      "slice_of_life": 37,
+      "mystery": 10,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.5591,
+      "fantasy": 2.5817,
+      "cyberpunk": 0.1042,
+      "action": 0.646,
+      "slice_of_life": 1.4809,
+      "mystery": 0.409,
+      "historical": 0.3187
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7216,
+        "1": 0.1283,
+        "2": 0.0675,
+        "3": 0.0347,
+        "4": 0.0479
+      },
+      "fantasy": {
+        "0": 0.1088,
+        "1": 0.1233,
+        "2": 0.171,
+        "3": 0.2714,
+        "4": 0.3255
+      },
+      "cyberpunk": {
+        "0": 0.9305,
+        "1": 0.0481,
+        "2": 0.0129,
+        "3": 0.0036,
+        "4": 0.0049
+      },
+      "action": {
+        "0": 0.5476,
+        "1": 0.3012,
+        "2": 0.123,
+        "3": 0.0141,
+        "4": 0.0141
+      },
+      "slice_of_life": {
+        "0": 0.2306,
+        "1": 0.3273,
+        "2": 0.2681,
+        "3": 0.0787,
+        "4": 0.0953
+      },
+      "mystery": {
+        "0": 0.6949,
+        "1": 0.2201,
+        "2": 0.0729,
+        "3": 0.0051,
+        "4": 0.007
+      },
+      "historical": {
+        "0": 0.7594,
+        "1": 0.1809,
+        "2": 0.0478,
+        "3": 0.0052,
+        "4": 0.0067
+      }
+    },
+    "usage": {
+      "input_tokens": 1190,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:51.479030+00:00"
+  },
+  "9c35f64c33500670e7bb1511ee1e28d2b11e6bc5a710168387b6b2a12c60a2bd": {
+    "input": "mythology",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 38,
+      "fantasy": 55,
+      "cyberpunk": 6,
+      "action": 20,
+      "slice_of_life": 17,
+      "mystery": 19,
+      "historical": 46
+    },
+    "raw_scores": {
+      "sf": 1.5014,
+      "fantasy": 2.2037,
+      "cyberpunk": 0.2237,
+      "action": 0.8075,
+      "slice_of_life": 0.6867,
+      "mystery": 0.7673,
+      "historical": 1.8582
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4711,
+        "1": 0.0912,
+        "2": 0.0878,
+        "3": 0.1651,
+        "4": 0.1848
+      },
+      "fantasy": {
+        "0": 0.141,
+        "1": 0.1958,
+        "2": 0.228,
+        "3": 0.1887,
+        "4": 0.2465
+      },
+      "cyberpunk": {
+        "0": 0.847,
+        "1": 0.106,
+        "2": 0.0313,
+        "3": 0.0076,
+        "4": 0.0081
+      },
+      "action": {
+        "0": 0.4308,
+        "1": 0.3775,
+        "2": 0.1594,
+        "3": 0.0181,
+        "4": 0.0142
+      },
+      "slice_of_life": {
+        "0": 0.5313,
+        "1": 0.3059,
+        "2": 0.1259,
+        "3": 0.0187,
+        "4": 0.0182
+      },
+      "mystery": {
+        "0": 0.4786,
+        "1": 0.3352,
+        "2": 0.147,
+        "3": 0.0186,
+        "4": 0.0206
+      },
+      "historical": {
+        "0": 0.2103,
+        "1": 0.2268,
+        "2": 0.2457,
+        "3": 0.1287,
+        "4": 0.1885
+      }
+    },
+    "usage": {
+      "input_tokens": 1187,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:51.824902+00:00"
+  },
+  "87a8dcfa7964c5ae3f02bff69275c314081d3851d4f665161f73a7928dc61b2f": {
+    "input": "nintendo",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 26,
+      "fantasy": 19,
+      "cyberpunk": 27,
+      "action": 39,
+      "slice_of_life": 21,
+      "mystery": 17,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 1.0528,
+      "fantasy": 0.7408,
+      "cyberpunk": 1.0776,
+      "action": 1.5463,
+      "slice_of_life": 0.8546,
+      "mystery": 0.6689,
+      "historical": 0.4219
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4493,
+        "1": 0.2462,
+        "2": 0.1677,
+        "3": 0.0759,
+        "4": 0.0609
+      },
+      "fantasy": {
+        "0": 0.6003,
+        "1": 0.1927,
+        "2": 0.1136,
+        "3": 0.0527,
+        "4": 0.0407
+      },
+      "cyberpunk": {
+        "0": 0.4285,
+        "1": 0.2583,
+        "2": 0.1806,
+        "3": 0.0721,
+        "4": 0.0605
+      },
+      "action": {
+        "0": 0.2644,
+        "1": 0.2784,
+        "2": 0.2235,
+        "3": 0.1138,
+        "4": 0.1199
+      },
+      "slice_of_life": {
+        "0": 0.473,
+        "1": 0.304,
+        "2": 0.1524,
+        "3": 0.0367,
+        "4": 0.0339
+      },
+      "mystery": {
+        "0": 0.5532,
+        "1": 0.2842,
+        "2": 0.1222,
+        "3": 0.0214,
+        "4": 0.019
+      },
+      "historical": {
+        "0": 0.7178,
+        "1": 0.1868,
+        "2": 0.0674,
+        "3": 0.0117,
+        "4": 0.0163
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:52.228338+00:00"
+  },
+  "1aade08382cb9a894ba554e9b3e884c30ee870070120d3fa049a34ea1ec31e87": {
+    "input": "playboy",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 16,
+      "fantasy": 7,
+      "cyberpunk": 20,
+      "action": 30,
+      "slice_of_life": 32,
+      "mystery": 22,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.6501,
+      "fantasy": 0.2914,
+      "cyberpunk": 0.8053,
+      "action": 1.1894,
+      "slice_of_life": 1.2779,
+      "mystery": 0.8799,
+      "historical": 0.4027
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6366,
+        "1": 0.1727,
+        "2": 0.1276,
+        "3": 0.0301,
+        "4": 0.033
+      },
+      "fantasy": {
+        "0": 0.8103,
+        "1": 0.1189,
+        "2": 0.0511,
+        "3": 0.0084,
+        "4": 0.0113
+      },
+      "cyberpunk": {
+        "0": 0.5555,
+        "1": 0.2234,
+        "2": 0.1311,
+        "3": 0.0404,
+        "4": 0.0496
+      },
+      "action": {
+        "0": 0.361,
+        "1": 0.2977,
+        "2": 0.2017,
+        "3": 0.0702,
+        "4": 0.0694
+      },
+      "slice_of_life": {
+        "0": 0.35,
+        "1": 0.281,
+        "2": 0.2007,
+        "3": 0.0775,
+        "4": 0.0908
+      },
+      "mystery": {
+        "0": 0.4651,
+        "1": 0.3003,
+        "2": 0.1611,
+        "3": 0.0367,
+        "4": 0.0368
+      },
+      "historical": {
+        "0": 0.7321,
+        "1": 0.1782,
+        "2": 0.0608,
+        "3": 0.0129,
+        "4": 0.016
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:52.585773+00:00"
+  },
+  "dc99c4585367bb1c179cae0b57b7a50e03a5e0e0d95ae8fbf8487c46e24dab01": {
+    "input": "pokemon",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 24,
+      "fantasy": 57,
+      "cyberpunk": 10,
+      "action": 39,
+      "slice_of_life": 25,
+      "mystery": 17,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 0.9694,
+      "fantasy": 2.2671,
+      "cyberpunk": 0.4026,
+      "action": 1.5777,
+      "slice_of_life": 1.0041,
+      "mystery": 0.6872,
+      "historical": 0.3578
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4748,
+        "1": 0.2323,
+        "2": 0.1915,
+        "3": 0.0515,
+        "4": 0.0499
+      },
+      "fantasy": {
+        "0": 0.1466,
+        "1": 0.1638,
+        "2": 0.2124,
+        "3": 0.2302,
+        "4": 0.247
+      },
+      "cyberpunk": {
+        "0": 0.7473,
+        "1": 0.1407,
+        "2": 0.0867,
+        "3": 0.0127,
+        "4": 0.0126
+      },
+      "action": {
+        "0": 0.2002,
+        "1": 0.2906,
+        "2": 0.3238,
+        "3": 0.102,
+        "4": 0.0834
+      },
+      "slice_of_life": {
+        "0": 0.4072,
+        "1": 0.2851,
+        "2": 0.2387,
+        "3": 0.0343,
+        "4": 0.0347
+      },
+      "mystery": {
+        "0": 0.5241,
+        "1": 0.2997,
+        "2": 0.1525,
+        "3": 0.0123,
+        "4": 0.0114
+      },
+      "historical": {
+        "0": 0.747,
+        "1": 0.1794,
+        "2": 0.0545,
+        "3": 0.0072,
+        "4": 0.0119
+      }
+    },
+    "usage": {
+      "input_tokens": 1185,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:52.950967+00:00"
+  },
+  "6b8c55185759b3df9066128e4eda397af07d53644180864d82aa790ac37c2177": {
+    "input": "pringles",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 6,
+      "fantasy": 4,
+      "cyberpunk": 6,
+      "action": 9,
+      "slice_of_life": 24,
+      "mystery": 5,
+      "historical": 3
+    },
+    "raw_scores": {
+      "sf": 0.2289,
+      "fantasy": 0.148,
+      "cyberpunk": 0.2316,
+      "action": 0.346,
+      "slice_of_life": 0.9708,
+      "mystery": 0.1839,
+      "historical": 0.1159
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8652,
+        "1": 0.0818,
+        "2": 0.0256,
+        "3": 0.0137,
+        "4": 0.0137
+      },
+      "fantasy": {
+        "0": 0.9101,
+        "1": 0.0575,
+        "2": 0.0158,
+        "3": 0.0077,
+        "4": 0.0089
+      },
+      "cyberpunk": {
+        "0": 0.8584,
+        "1": 0.0854,
+        "2": 0.0335,
+        "3": 0.0115,
+        "4": 0.0112
+      },
+      "action": {
+        "0": 0.7447,
+        "1": 0.196,
+        "2": 0.0376,
+        "3": 0.012,
+        "4": 0.0097
+      },
+      "slice_of_life": {
+        "0": 0.4356,
+        "1": 0.3252,
+        "2": 0.1297,
+        "3": 0.0517,
+        "4": 0.0578
+      },
+      "mystery": {
+        "0": 0.8614,
+        "1": 0.1089,
+        "2": 0.0192,
+        "3": 0.0054,
+        "4": 0.0051
+      },
+      "historical": {
+        "0": 0.916,
+        "1": 0.0637,
+        "2": 0.0127,
+        "3": 0.0035,
+        "4": 0.0041
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:53.310406+00:00"
+  },
+  "157049ca029e344bb09d17e713593169155b79618bdd0fdbd04ad7d22339a876": {
+    "input": "sdorica",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 36,
+      "fantasy": 29,
+      "cyberpunk": 29,
+      "action": 31,
+      "slice_of_life": 33,
+      "mystery": 28,
+      "historical": 16
+    },
+    "raw_scores": {
+      "sf": 1.4572,
+      "fantasy": 1.1611,
+      "cyberpunk": 1.1452,
+      "action": 1.2397,
+      "slice_of_life": 1.3031,
+      "mystery": 1.134,
+      "historical": 0.6266
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3023,
+        "1": 0.2606,
+        "2": 0.2279,
+        "3": 0.096,
+        "4": 0.1132
+      },
+      "fantasy": {
+        "0": 0.4059,
+        "1": 0.2698,
+        "2": 0.166,
+        "3": 0.0738,
+        "4": 0.0845
+      },
+      "cyberpunk": {
+        "0": 0.4194,
+        "1": 0.2499,
+        "2": 0.179,
+        "3": 0.0697,
+        "4": 0.082
+      },
+      "action": {
+        "0": 0.3345,
+        "1": 0.3209,
+        "2": 0.1928,
+        "3": 0.0739,
+        "4": 0.0779
+      },
+      "slice_of_life": {
+        "0": 0.319,
+        "1": 0.3158,
+        "2": 0.1954,
+        "3": 0.0826,
+        "4": 0.0872
+      },
+      "mystery": {
+        "0": 0.3695,
+        "1": 0.3231,
+        "2": 0.1771,
+        "3": 0.0645,
+        "4": 0.0658
+      },
+      "historical": {
+        "0": 0.61,
+        "1": 0.2385,
+        "2": 0.0957,
+        "3": 0.0266,
+        "4": 0.0292
+      }
+    },
+    "usage": {
+      "input_tokens": 1187,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:53.677717+00:00"
+  },
+  "84c251d8c7cc8f3e64aeccdaa95b87f4d4ad080c7c993393f316d4b9df796e25": {
+    "input": "sega",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 31,
+      "fantasy": 17,
+      "cyberpunk": 31,
+      "action": 48,
+      "slice_of_life": 17,
+      "mystery": 18,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 1.2559,
+      "fantasy": 0.6605,
+      "cyberpunk": 1.2324,
+      "action": 1.9027,
+      "slice_of_life": 0.6956,
+      "mystery": 0.7386,
+      "historical": 0.377
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3739,
+        "1": 0.2456,
+        "2": 0.2139,
+        "3": 0.084,
+        "4": 0.0826
+      },
+      "fantasy": {
+        "0": 0.6009,
+        "1": 0.2302,
+        "2": 0.1039,
+        "3": 0.0374,
+        "4": 0.0276
+      },
+      "cyberpunk": {
+        "0": 0.3754,
+        "1": 0.2744,
+        "2": 0.1803,
+        "3": 0.0822,
+        "4": 0.0877
+      },
+      "action": {
+        "0": 0.2067,
+        "1": 0.2231,
+        "2": 0.2148,
+        "3": 0.1717,
+        "4": 0.1837
+      },
+      "slice_of_life": {
+        "0": 0.5335,
+        "1": 0.3022,
+        "2": 0.1219,
+        "3": 0.0202,
+        "4": 0.0222
+      },
+      "mystery": {
+        "0": 0.5158,
+        "1": 0.2983,
+        "2": 0.141,
+        "3": 0.0213,
+        "4": 0.0236
+      },
+      "historical": {
+        "0": 0.7298,
+        "1": 0.1973,
+        "2": 0.0513,
+        "3": 0.0094,
+        "4": 0.0122
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:54.062164+00:00"
+  },
+  "13db4616b0f42a6bf256b2833e1d0239cc0319be6a036796e572078143723fc9": {
+    "input": "sonic_boom",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 33,
+      "fantasy": 16,
+      "cyberpunk": 20,
+      "action": 50,
+      "slice_of_life": 13,
+      "mystery": 13,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 1.3219,
+      "fantasy": 0.6421,
+      "cyberpunk": 0.8146,
+      "action": 1.9838,
+      "slice_of_life": 0.522,
+      "mystery": 0.5371,
+      "historical": 0.2058
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.331,
+        "1": 0.2511,
+        "2": 0.2653,
+        "3": 0.0701,
+        "4": 0.0825
+      },
+      "fantasy": {
+        "0": 0.6104,
+        "1": 0.2202,
+        "2": 0.1136,
+        "3": 0.0283,
+        "4": 0.0275
+      },
+      "cyberpunk": {
+        "0": 0.5357,
+        "1": 0.2386,
+        "2": 0.1458,
+        "3": 0.0352,
+        "4": 0.0447
+      },
+      "action": {
+        "0": 0.1975,
+        "1": 0.1898,
+        "2": 0.2304,
+        "3": 0.1959,
+        "4": 0.1864
+      },
+      "slice_of_life": {
+        "0": 0.6012,
+        "1": 0.3009,
+        "2": 0.0809,
+        "3": 0.0086,
+        "4": 0.0084
+      },
+      "mystery": {
+        "0": 0.5975,
+        "1": 0.2923,
+        "2": 0.0934,
+        "3": 0.0092,
+        "4": 0.0076
+      },
+      "historical": {
+        "0": 0.8545,
+        "1": 0.1042,
+        "2": 0.0294,
+        "3": 0.0049,
+        "4": 0.007
+      }
+    },
+    "usage": {
+      "input_tokens": 1188,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:54.617939+00:00"
+  },
+  "fcbf9aa7230d12d766f0425897bfda6992df42e70a602bd82f36db14ac31657a": {
+    "input": "sonic_the_hedgehog_(series)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 33,
+      "fantasy": 18,
+      "cyberpunk": 22,
+      "action": 65,
+      "slice_of_life": 12,
+      "mystery": 13,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 1.3061,
+      "fantasy": 0.701,
+      "cyberpunk": 0.8777,
+      "action": 2.5816,
+      "slice_of_life": 0.4855,
+      "mystery": 0.5275,
+      "historical": 0.2375
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2818,
+        "1": 0.2979,
+        "2": 0.307,
+        "3": 0.0592,
+        "4": 0.0541
+      },
+      "fantasy": {
+        "0": 0.5519,
+        "1": 0.2563,
+        "2": 0.1501,
+        "3": 0.0221,
+        "4": 0.0196
+      },
+      "cyberpunk": {
+        "0": 0.4618,
+        "1": 0.285,
+        "2": 0.1953,
+        "3": 0.0295,
+        "4": 0.0284
+      },
+      "action": {
+        "0": 0.0991,
+        "1": 0.0916,
+        "2": 0.2142,
+        "3": 0.3188,
+        "4": 0.2763
+      },
+      "slice_of_life": {
+        "0": 0.6277,
+        "1": 0.2751,
+        "2": 0.0858,
+        "3": 0.0067,
+        "4": 0.0047
+      },
+      "mystery": {
+        "0": 0.6024,
+        "1": 0.2846,
+        "2": 0.1018,
+        "3": 0.0055,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.8252,
+        "1": 0.1273,
+        "2": 0.038,
+        "3": 0.0039,
+        "4": 0.0056
+      }
+    },
+    "usage": {
+      "input_tokens": 1193,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:54.995645+00:00"
+  },
+  "dd94f9d1d837799ce21b41143bab4ec39515051d4c89192b580ba4280c657079": {
+    "input": "utau",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 30,
+      "fantasy": 18,
+      "cyberpunk": 34,
+      "action": 26,
+      "slice_of_life": 29,
+      "mystery": 16,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 1.1915,
+      "fantasy": 0.7145,
+      "cyberpunk": 1.3532,
+      "action": 1.0279,
+      "slice_of_life": 1.1524,
+      "mystery": 0.6234,
+      "historical": 0.3848
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4224,
+        "1": 0.2074,
+        "2": 0.2071,
+        "3": 0.0824,
+        "4": 0.0807
+      },
+      "fantasy": {
+        "0": 0.6146,
+        "1": 0.1801,
+        "2": 0.1209,
+        "3": 0.0451,
+        "4": 0.0393
+      },
+      "cyberpunk": {
+        "0": 0.3365,
+        "1": 0.2633,
+        "2": 0.2115,
+        "3": 0.0881,
+        "4": 0.1006
+      },
+      "action": {
+        "0": 0.4077,
+        "1": 0.303,
+        "2": 0.1905,
+        "3": 0.0514,
+        "4": 0.0474
+      },
+      "slice_of_life": {
+        "0": 0.3571,
+        "1": 0.3283,
+        "2": 0.1868,
+        "3": 0.0606,
+        "4": 0.0672
+      },
+      "mystery": {
+        "0": 0.6011,
+        "1": 0.2405,
+        "2": 0.1145,
+        "3": 0.0217,
+        "4": 0.0222
+      },
+      "historical": {
+        "0": 0.75,
+        "1": 0.1591,
+        "2": 0.0622,
+        "3": 0.0136,
+        "4": 0.0151
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:55.338685+00:00"
+  },
+  "a26442f0f78286bf30b0dd64fd7359e51bb1c0a82858f62966fd130a5b3dc3fd": {
+    "input": "vtuber",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 21,
+      "fantasy": 16,
+      "cyberpunk": 33,
+      "action": 18,
+      "slice_of_life": 34,
+      "mystery": 14,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.8509,
+      "fantasy": 0.6361,
+      "cyberpunk": 1.3189,
+      "action": 0.7303,
+      "slice_of_life": 1.3657,
+      "mystery": 0.544,
+      "historical": 0.267
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5208,
+        "1": 0.2426,
+        "2": 0.1465,
+        "3": 0.045,
+        "4": 0.0451
+      },
+      "fantasy": {
+        "0": 0.594,
+        "1": 0.2338,
+        "2": 0.1321,
+        "3": 0.0224,
+        "4": 0.0177
+      },
+      "cyberpunk": {
+        "0": 0.3174,
+        "1": 0.279,
+        "2": 0.2536,
+        "3": 0.0674,
+        "4": 0.0826
+      },
+      "action": {
+        "0": 0.5046,
+        "1": 0.3087,
+        "2": 0.1528,
+        "3": 0.0196,
+        "4": 0.0143
+      },
+      "slice_of_life": {
+        "0": 0.2707,
+        "1": 0.3248,
+        "2": 0.2475,
+        "3": 0.082,
+        "4": 0.075
+      },
+      "mystery": {
+        "0": 0.5765,
+        "1": 0.3217,
+        "2": 0.0896,
+        "3": 0.0058,
+        "4": 0.0064
+      },
+      "historical": {
+        "0": 0.787,
+        "1": 0.172,
+        "2": 0.0326,
+        "3": 0.004,
+        "4": 0.0044
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-11T01:46:55.696233+00:00"
   }
 }

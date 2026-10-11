@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-11T10:46:56.309158+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-11T10:46:04.391030+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 35,
+    "after_score_filter": 35,
+    "after_rating_filter": 35,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Image Comics' Roam Reunites Paper Girls Creators Brian K. Vaughan and Cliff Chiang",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/image-comics-roam-reunites-paper-girls-creators-brian-k-vaughan-and-cliff-chiang",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "In what is easily one of the most exciting comic book-related announcements to come out of NYCC 2026, IGN can exclusively reveal that Paper Girls creators Brian K. Vaughan and Cliff Chiang are reuniti"
+    },
+    {
+      "title": "Crystal Lake Showrunner on Retelling the Friday the 13th Story: ‘It's Always Ripe for Reinterpretation’",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/crystal-lake-showrunner-on-retelling-the-friday-the-13th-story-its-always-ripe-for-reinterpretation",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Spoilers follow for the first episode of Crystal Lake , which debuts on Peacock on October 15! The cast and creator of Crystal Lake showed up at New York Comic Con this week to prep fans for the launc"
+    }
+  ],
+  "affiliate_keywords": [
+    "Image Comics  Roam",
+    "It s Always Ripe for Reinterpr"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/image-comics-roam-reunites-paper-girls-creators-brian-k-vaughan-and-cliff-chiang",
+    "https://www.ign.com/articles/crystal-lake-showrunner-on-retelling-the-friday-the-13th-story-its-always-ripe-for-reinterpretation"
+  ]
+}

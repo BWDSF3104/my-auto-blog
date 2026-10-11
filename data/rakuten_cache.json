@@ -123,5 +123,38 @@
       "reviewCount": 5
     },
     "hits": 3
+  },
+  "オクトパストラベラーII": {
+    "fetched_at": "2026-10-11T01:51:20.048200+00:00",
+    "product": {
+      "itemName": "オクトパストラベラーII　公式コンプリートガイド&アート設定資料集 （SE-MOOK） [ スクウェア・エニックス ]",
+      "itemPrice": 2420,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17378260%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F20849863%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3733/9784757583733.jpg?_ex=128x128",
+      "reviewCount": 4
+    },
+    "hits": 3
+  },
+  "ケモノ ミステリー": {
+    "fetched_at": "2026-10-11T01:51:21.268077+00:00",
+    "product": {
+      "itemName": "ケモノの城 【電子書籍】[ 誉田哲也 ]",
+      "itemPrice": 671,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00reb4o.eo1qw8b7.g00reb4o.eo1qx933/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F71de55f94d3f3fe585071b1aa422c522%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F16933100%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakutenkobo-ebooks/cabinet/3687/2000005713687.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "ケモノ バディ": {
+    "fetched_at": "2026-10-11T01:51:22.817963+00:00",
+    "product": {
+      "itemName": "Delta Children Cozee Buddy Chair, Sloth (ナマケモノ) - 子供用 フォームチェア",
+      "itemPrice": 11980,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00upw5o.eo1qwd6b.g00upw5o.eo1qx009/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Famericagoodvibes%2Fay33w8rkpz%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Famericagoodvibes%2Fi%2F10012373%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/americagoodvibes/cabinet/img_20260309/4/ay33w8rkpz_0.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 3
   }
 }
