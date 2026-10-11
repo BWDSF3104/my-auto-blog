@@ -1646,33 +1646,33 @@ class TestSlugRedirects:
     def test_load_redirects_empty_file(self, tmp_path):
         f = tmp_path / "slug-redirects.json"
         f.write_text("{}")
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             result = _load_slug_redirects()
         assert result == {}
 
     def test_load_redirects_missing_file(self, tmp_path):
         f = tmp_path / "nonexistent.json"
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             result = _load_slug_redirects()
         assert result == {}
 
     def test_load_redirects_with_data(self, tmp_path):
         f = tmp_path / "slug-redirects.json"
         f.write_text(json.dumps({"old-slug": "new-slug"}))
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             result = _load_slug_redirects()
         assert result == {"old-slug": "new-slug"}
 
     def test_load_redirects_invalid_json(self, tmp_path):
         f = tmp_path / "slug-redirects.json"
         f.write_text("{invalid json}")
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             result = _load_slug_redirects()
         assert result == {}
 
     def test_save_redirects(self, tmp_path):
         f = tmp_path / "slug-redirects.json"
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             _save_slug_redirects({"a": "b"})
         assert json.loads(f.read_text()) == {"a": "b"}
 
@@ -1698,7 +1698,7 @@ class TestSlugRedirects:
     def test_resolve_collision_first(self, tmp_path):
         f = tmp_path / "slug-redirects.json"
         f.write_text("{}")
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             slug, changed = _resolve_slug_collision("duplicate", {"duplicate"})
         assert slug == "duplicate-2"
         assert changed is True
@@ -1707,7 +1707,7 @@ class TestSlugRedirects:
     def test_resolve_collision_multiple(self, tmp_path):
         f = tmp_path / "slug-redirects.json"
         f.write_text("{}")
-        with patch("generate_article.SLUG_REDIRECTS_FILE", str(f)):
+        with patch("article.slug_links.SLUG_REDIRECTS_FILE", str(f)):
             slug, changed = _resolve_slug_collision("dup", {"dup", "dup-2", "dup-3"})
         assert slug == "dup-4"
 
@@ -2121,7 +2121,7 @@ class TestSaveDraftMetadata:
     """Test 2-pass draft metadata tracking."""
 
     def test_saves_json_file(self, tmp_path):
-        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+        with patch("article.meta.DRAFTS_DIR", str(tmp_path / "drafts")):
             _save_draft_metadata(
                 file_timestamp="2026-10-06-120000",
                 prompt_type="kemono_story",
@@ -2145,7 +2145,7 @@ class TestSaveDraftMetadata:
             assert data["article_file"] == "2026-10-06-120000-auto-post.md"
 
     def test_records_pass1_info(self, tmp_path):
-        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+        with patch("article.meta.DRAFTS_DIR", str(tmp_path / "drafts")):
             _save_draft_metadata(
                 file_timestamp="2026-10-06-120000",
                 prompt_type="default",
@@ -2168,7 +2168,7 @@ class TestSaveDraftMetadata:
             assert data["pass1"]["content_char_count"] == len("Draft text content.")
 
     def test_records_pass2_info(self, tmp_path):
-        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+        with patch("article.meta.DRAFTS_DIR", str(tmp_path / "drafts")):
             _save_draft_metadata(
                 file_timestamp="2026-10-06-120000",
                 prompt_type="default",
@@ -2189,7 +2189,7 @@ class TestSaveDraftMetadata:
             assert data["pass2"]["model"] is None
 
     def test_diff_stats(self, tmp_path):
-        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+        with patch("article.meta.DRAFTS_DIR", str(tmp_path / "drafts")):
             draft = "Short."
             refined = "Much longer refined content here."
             _save_draft_metadata(
@@ -2216,7 +2216,7 @@ class TestSaveDraftMetadata:
         drafts_path = tmp_path / "drafts"
         assert not drafts_path.exists()
 
-        with patch("generate_article.DRAFTS_DIR", str(drafts_path)):
+        with patch("article.meta.DRAFTS_DIR", str(drafts_path)):
             _save_draft_metadata(
                 file_timestamp="2026-10-06-120000",
                 prompt_type="default",
@@ -2233,7 +2233,7 @@ class TestSaveDraftMetadata:
         assert (drafts_path / "2026-10-06-120000.json").exists()
 
     def test_line_count(self, tmp_path):
-        with patch("generate_article.DRAFTS_DIR", str(tmp_path / "drafts")):
+        with patch("article.meta.DRAFTS_DIR", str(tmp_path / "drafts")):
             draft = "line1\nline2\nline3"
             _save_draft_metadata(
                 file_timestamp="2026-10-06-120000",
@@ -2283,7 +2283,7 @@ class TestCleanupOldLogs:
         old_file = self._make_file(d, old_ts)
         recent_file = self._make_file(d, recent_ts)
 
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d)]):
             removed = _cleanup_old_logs(days=30)
 
         assert removed == 1
@@ -2301,7 +2301,7 @@ class TestCleanupOldLogs:
         f1 = self._make_file(d, ts1)
         f2 = self._make_file(d, ts2)
 
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d)]):
             removed = _cleanup_old_logs(days=30)
 
         assert removed == 0
@@ -2313,7 +2313,7 @@ class TestCleanupOldLogs:
         d.mkdir()
         (d / ".gitkeep").write_text("", encoding="utf-8")
 
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d)]):
             removed = _cleanup_old_logs(days=30)
 
         assert removed == 0
@@ -2324,7 +2324,7 @@ class TestCleanupOldLogs:
         d.mkdir()
         weird = self._make_file(d, "no-timestamp-here", ext=".json")
 
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d)]):
             removed = _cleanup_old_logs(days=30)
 
         assert removed == 0
@@ -2332,7 +2332,7 @@ class TestCleanupOldLogs:
 
     def test_missing_dir_no_error(self, tmp_path):
         missing = str(tmp_path / "does-not-exist")
-        with patch("generate_article.LOG_CLEANUP_DIRS", [missing]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [missing]):
             removed = _cleanup_old_logs(days=30)
         assert removed == 0
 
@@ -2349,7 +2349,7 @@ class TestCleanupOldLogs:
         old_a = self._make_file(d1, old_ts)
         recent_b = self._make_file(d2, recent_ts)
 
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d1), str(d2)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d1), str(d2)]):
             removed = _cleanup_old_logs(days=30)
 
         assert removed == 1
@@ -2366,12 +2366,12 @@ class TestCleanupOldLogs:
         f = self._make_file(d, ts_45)
 
         # 30日基準なら削除対象、60日基準なら保持
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d)]):
             assert _cleanup_old_logs(days=30) == 1
             assert not f.exists()
 
         f2 = self._make_file(d, ts_45)
-        with patch("generate_article.LOG_CLEANUP_DIRS", [str(d)]):
+        with patch("article.meta.LOG_CLEANUP_DIRS", [str(d)]):
             assert _cleanup_old_logs(days=60) == 0
             assert f2.exists()
 

@@ -35,6 +35,25 @@ if not GEMINI_API_KEY:
 # 定数・パス・重み・パターン等の静的設定は article/config.py へ集約。
 # env 読取りは load_dotenv()（上）の後に評価されるため、ここで読み込む。
 from article.config import *  # noqa: F401,F403
+from article.meta import (
+    _cleanup_old_logs,
+    _extract_fm_field,
+    _save_affiliate_link_log,
+    _save_draft_metadata,
+    _save_trend_usage_log,
+    get_existing_posts,
+    get_recent_meta_by_type,
+    get_recent_titles_by_type,
+)
+from article.slug_links import (
+    _existing_link_spans,
+    _get_existing_slugs,
+    _load_posts_for_links,
+    _load_slug_redirects,
+    _resolve_slug_collision,
+    _save_slug_redirects,
+    inject_internal_links,
+)
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -137,7 +156,6 @@ def _randomize_kemono_params():
         "char_count": char_count,
         "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_1 if char_count == 1 else _KEMONO_CHAR_COUNT_DESC_2),
     }
-
 
 
 # --------------------------------------------------
@@ -245,158 +263,6 @@ def generate_and_save_image(prompt: str, output_filename: str, seed: int = -1) -
 
 
 # --------------------------------------------------
-# 過去記事情報の取得・重複防止
-# --------------------------------------------------
-def get_existing_posts(posts_dir="src/content/posts"):
-    """
-    既存の全記事からタイトル、日付、prompt_type（系統）を抽出して新しい順（降順）にソートして返す。
-    """
-    posts = []
-    if not os.path.exists(posts_dir):
-        return posts
-    
-    md_files = glob.glob(os.path.join(posts_dir, "*.md"))
-    for filepath in md_files:
-        try:
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = f.read()
-
-            title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-            if not title_match:
-                continue
-            title = title_match.group(1).strip()
-
-            date_match = re.search(r'^pubDate:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-            pub_date = date_match.group(1).strip() if date_match else os.path.basename(filepath)
-
-            # 系統（prompt_type）判定
-            type_match = re.search(r'^prompt_type:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-            if type_match:
-                p_type = type_match.group(1).strip()
-            else:
-                # 既存記事用のフォールバック推測（author, tags, character定義から判定）
-                if 'author: "AI Storyteller"' in content or 'tags: ["Kemono"' in content or 'character_1:' in content:
-                    p_type = "kemono_story"
-                else:
-                    p_type = "default"
-
-            posts.append({
-                "title": title,
-                "pub_date": pub_date,
-                "prompt_type": p_type
-            })
-        except Exception as e:
-            print(f"⚠️ 記事ファイル読み込みスキップ ({filepath}): {e}")
-            continue
-
-    # 日付降順（新しい順）にソート
-    posts.sort(key=lambda x: x["pub_date"], reverse=True)
-    return posts
-
-
-
-def get_recent_titles_by_type(current_prompt_type: str, posts_dir="src/content/posts") -> list[str]:
-    """
-    同系統の記事から直近のタイトルを指定件数分取得する。
-    物語生成（kemono_story等）の場合は直近5件程度、通常記事は直近30件。
-    """
-    LIMITS_BY_TYPE = {
-        "kemono_story": 5,  # 物語系は直近5件に緩和
-        "default": 30       # 技術記事などは直近30件
-    }
-    limit = LIMITS_BY_TYPE.get(current_prompt_type, 10)
-
-    posts = get_existing_posts(posts_dir)
-
-    # 物語系とみなす系統一覧
-    story_types = {"kemono_story", "novel", "story"}
-
-    same_type_titles = []
-    for p in posts:
-        post_type = p["prompt_type"]
-        is_same = False
-        if current_prompt_type in story_types and post_type in story_types:
-            is_same = True
-        elif current_prompt_type == post_type:
-            is_same = True
-
-        if is_same:
-            same_type_titles.append(p["title"])
-
-    print(f"📚 同系統（{current_prompt_type}）の過去記事を {len(same_type_titles)} 件検出（直近 {min(len(same_type_titles), limit)} 件を参照）")
-    return same_type_titles[:limit]
-
-
-def get_recent_meta_by_type(current_prompt_type: str, posts_dir="src/content/posts") -> list[dict]:
-    """
-    同系統の記事から直近N件の frontmatter メタデータを抽出する。
-    返り値: [{title, character_1, character_2, tags, art_style}, ...]
-    """
-    LIMITS_BY_TYPE = {
-        "kemono_story": 5,
-        "default": 10,
-    }
-    limit = LIMITS_BY_TYPE.get(current_prompt_type, 5)
-
-    posts = get_existing_posts(posts_dir)
-
-    story_types = {"kemono_story", "novel", "story"}
-    metas = []
-
-    for p in posts:
-        post_type = p["prompt_type"]
-        is_same = False
-        if current_prompt_type in story_types and post_type in story_types:
-            is_same = True
-        elif current_prompt_type == post_type:
-            is_same = True
-
-        if not is_same:
-            continue
-
-        filepath = None
-        for md_file in glob.glob(os.path.join(posts_dir, "*.md")):
-            with open(md_file, "r", encoding="utf-8") as f:
-                fc = f.read()
-            tm = re.search(r'^title:\s*["\']?(.*?)["\']?$', fc, re.MULTILINE)
-            if tm and tm.group(1).strip() == p["title"]:
-                filepath = md_file
-                break
-
-        if not filepath:
-            continue
-
-        with open(filepath, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        meta = {"title": p["title"]}
-
-        c1 = _extract_fm_field(content, "character_1")
-        c2 = _extract_fm_field(content, "character_2")
-        if c1:
-            meta["character_1"] = c1
-        if c2:
-            meta["character_2"] = c2
-
-        tags = _extract_fm_field(content, "tags")
-        if tags:
-            meta["tags"] = tags
-
-        art = _extract_fm_field(content, "art_style")
-        if art:
-            meta["art_style"] = art
-
-        metas.append(meta)
-
-        if len(metas) >= limit:
-            break
-
-    if metas:
-        print(f"🔍 被り検出用メタデータを {len(metas)} 件取得")
-    return metas
-
-
-# --------------------------------------------------
 # プロンプト読み込み
 # --------------------------------------------------
 def load_prompt_template(prompt_type="default"):
@@ -406,7 +272,6 @@ def load_prompt_template(prompt_type="default"):
 
     with open(prompt_path, "r", encoding="utf-8") as f:
         return f.read()
-
 
 
 def _is_affiliate_excluded(cp: str) -> bool:
@@ -1297,7 +1162,6 @@ def _extract_article_keywords(content: str, max_kw: int = 2, prompt_type: str = 
     return keywords
 
 
-
 def _build_kemono_tags(kemono_params: dict) -> list[str]:
     """kemono_story のパラメータからタグリストを生成する。
 
@@ -1367,7 +1231,6 @@ def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
     return result
 
 
-
 def _rakuten_is_relevant(item_name: str, keyword: str, prompt_type: str) -> bool:
     """楽天検索結果の関連性を判定する。
 
@@ -1387,8 +1250,6 @@ def _rakuten_is_relevant(item_name: str, keyword: str, prompt_type: str) -> bool
     if not tokens:
         return True
     return any(t.lower() in name for t in tokens)
-
-
 
 
 def _rakuten_first_phrase(name: str) -> str:
@@ -1658,7 +1519,6 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
     return content.strip() + "\n" + affiliate_section
 
 
-
 # --------------------------------------------------
 # 2-pass 生成: 下書きの精製
 # プロンプトは scripts/prompts/refine_tech.txt, refine_story.txt に分離
@@ -1853,150 +1713,6 @@ def _auto_fetch_topics(prompt_type: str, categories: list[str], data: dict) -> d
     except Exception as e:
         print(f"[topics] 自動取得後のJSON読み込み失敗: {e}")
         return None
-
-
-# --------------------------------------------------
-# Trend usage logging
-# --------------------------------------------------
-def _save_trend_usage_log(log_data: dict):
-    """
-    テンデントデータの使用状況を JSON ログとして保存する。
-    候補プールの統計、フィルタ結果、選択されたトピックのメタデータを記録。
-    """
-    os.makedirs(TREND_USAGE_DIR, exist_ok=True)
-    JST = timezone(timedelta(hours=9))
-    timestamp = datetime.now(JST).strftime("%Y-%m-%d-%H%M%S")
-    filepath = os.path.join(TREND_USAGE_DIR, f"{timestamp}.json")
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(log_data, f, ensure_ascii=False, indent=2)
-    print(f"[trend_log] 使用状況ログを保存: {filepath}")
-
-
-# --------------------------------------------------
-# Draft metadata tracking (2-pass 生成の追跡)
-# --------------------------------------------------
-def _save_draft_metadata(
-    file_timestamp: str,
-    prompt_type: str,
-    article_filename: str,
-    draft_content: str,
-    refined_content: str,
-    pass1_model: str,
-    pass1_duration: float,
-    pass2_model: str,
-    pass2_duration: float,
-):
-    """
-    2-pass生成のメタデータを JSON として保存する。
-    1回目（下書き）と2回目（精製）の内容・モデル・時間を記録。
-    """
-    os.makedirs(DRAFTS_DIR, exist_ok=True)
-    filepath = os.path.join(DRAFTS_DIR, f"{file_timestamp}.json")
-
-    draft_char_count = len(draft_content)
-    draft_line_count = draft_content.count("\n") + 1
-    refined_char_count = len(refined_content)
-    refined_line_count = refined_content.count("\n") + 1
-
-    metadata = {
-        "timestamp": file_timestamp,
-        "prompt_type": prompt_type,
-        "article_file": article_filename,
-        "pass1": {
-            "model": pass1_model,
-            "duration_seconds": round(pass1_duration, 2),
-            "content_char_count": draft_char_count,
-            "content_line_count": draft_line_count,
-            "content": draft_content,
-        },
-        "pass2": {
-            "model": pass2_model,
-            "duration_seconds": round(pass2_duration, 2),
-            "content_char_count": refined_char_count,
-            "content_line_count": refined_line_count,
-            "content": refined_content,
-        },
-        "diff_stats": {
-            "char_count_change": refined_char_count - draft_char_count,
-            "line_count_change": refined_line_count - draft_line_count,
-            "char_count_change_percent": round(
-                (refined_char_count - draft_char_count) / draft_char_count * 100, 2
-            ) if draft_char_count else 0,
-        },
-    }
-
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(metadata, f, ensure_ascii=False, indent=2)
-    print(f"[draft_meta] 2-passメタデータを保存: {filepath}")
-
-
-# --------------------------------------------------
-# Affiliate link generation log
-# --------------------------------------------------
-def _save_affiliate_link_log(
-    file_timestamp: str,
-    prompt_type: str,
-    article_title: str,
-    keywords: list[dict],
-):
-    """
-    アフィリエイト末尾セクションのキーワード・URL生成ログをJSON保存する。
-    keywords: [{"keyword": str, "source": str, "amazon_url": str, "rakuten_url": str}, ...]
-    """
-    os.makedirs(AFFILIATE_LINKS_DIR, exist_ok=True)
-    filepath = os.path.join(AFFILIATE_LINKS_DIR, f"{file_timestamp}.json")
-    log_data = {
-        "timestamp": datetime.now(timezone(timedelta(hours=9))).isoformat(),
-        "file_timestamp": file_timestamp,
-        "prompt_type": prompt_type,
-        "article_title": article_title,
-        "keywords": keywords,
-    }
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(log_data, f, ensure_ascii=False, indent=2)
-    print(f"[affiliate_log] リンク生成ログを保存: {filepath}")
-
-
-# --------------------------------------------------
-# Log / metadata cleanup (time-based)
-# --------------------------------------------------
-def _cleanup_old_logs(days: int = LOG_CLEANUP_DAYS) -> int:
-    """
-    ログ・メタデータディレクトリから `days` 日より古いファイルを削除する。
-    ファイル名内のタイムスタンプ（%Y-%m-%d-%H%M%S）を基準とする。
-    これらはパイプラインから読み戻されない監査ログのため削除して安全。
-    タイムスタンプ形式に合わないファイルは削除対象外（安全側）。
-    削除したファイル数を返す。
-    """
-    cutoff = datetime.now(timezone(timedelta(hours=9))) - timedelta(days=days)
-    removed = 0
-    for dir_path in LOG_CLEANUP_DIRS:
-        if not os.path.isdir(dir_path):
-            continue
-        for name in os.listdir(dir_path):
-            if name == ".gitkeep":
-                continue
-            full = os.path.join(dir_path, name)
-            if not os.path.isfile(full):
-                continue
-            m = _LOG_TS_RE.match(name)
-            if not m:
-                continue
-            try:
-                file_time = datetime.strptime(m.group(1), "%Y-%m-%d-%H%M%S").replace(
-                    tzinfo=timezone(timedelta(hours=9))
-                )
-            except ValueError:
-                continue
-            if file_time < cutoff:
-                try:
-                    os.remove(full)
-                    removed += 1
-                except OSError as e:
-                    print(f"[cleanup] 削除に失敗: {full}: {e}")
-    if removed:
-        print(f"[cleanup] 古いログファイル {removed} 件を削除（{days}日前）")
-    return removed
 
 
 def _append_trending_topics(
@@ -2550,14 +2266,6 @@ def _validate_description(desc: str, content: str = "") -> str:
     return desc
 
 
-def _extract_fm_field(content: str, field: str) -> str:
-    """Frontmatterから指定フィールドの値を抽出する"""
-    match = re.search(r'^' + field + r':\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    if match and match.group(1):
-        return match.group(1).strip()
-    return ""
-
-
 def _extract_fm_tags(content: str) -> list:
     """Frontmatterの tags フィールドからタグリストを抽出する"""
     match = re.search(r'^tags:\s*\[([^\]]*)\]', content, re.MULTILINE)
@@ -2838,132 +2546,6 @@ def validate_and_fix_frontmatter(content: str) -> str:
 
     print("[ERROR] Frontmatter YAML の修復に失敗しました")
     return content
-
-
-# --------------------------------------------------
-# slug リダイレクトの追跡
-# --------------------------------------------------
-def _load_slug_redirects():
-    if not os.path.exists(SLUG_REDIRECTS_FILE):
-        return {}
-    try:
-        with open(SLUG_REDIRECTS_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
-
-def _save_slug_redirects(redirects):
-    os.makedirs(os.path.dirname(SLUG_REDIRECTS_FILE), exist_ok=True)
-    with open(SLUG_REDIRECTS_FILE, "w", encoding="utf-8") as f:
-        json.dump(redirects, f, ensure_ascii=False, indent=2)
-
-def _get_existing_slugs(posts_dir="src/content/posts"):
-    slugs = set()
-    if not os.path.exists(posts_dir):
-        return slugs
-    for filepath in glob.glob(os.path.join(posts_dir, "*.md")):
-        try:
-            with open(filepath, "r", encoding="utf-8") as f:
-                c = f.read()
-        except Exception:
-            continue
-        slug_m = re.search(r'^slug:\s*["\']?(.*?)["\']?$', c, re.MULTILINE)
-        if slug_m and slug_m.group(1).strip():
-            slugs.add(slug_m.group(1).strip())
-    return slugs
-
-def _resolve_slug_collision(slug, existing_slugs):
-    redirects = _load_slug_redirects()
-    if slug not in existing_slugs:
-        return slug, False
-    counter = 2
-    unique_slug = f"{slug}-{counter}"
-    while unique_slug in existing_slugs:
-        counter += 1
-        unique_slug = f"{slug}-{counter}"
-    redirects[slug] = unique_slug
-    _save_slug_redirects(redirects)
-    print(f"🔗 slug競合を検出: {slug} → {unique_slug} (リダイレクト記録)")
-    return unique_slug, True
-
-# --------------------------------------------------
-# 自動内部リンクの挿入
-# --------------------------------------------------
-def _load_posts_for_links(posts_dir="src/content/posts"):
-    result = []
-    if not os.path.exists(posts_dir):
-        return result
-    for filepath in glob.glob(os.path.join(posts_dir, "*.md")):
-        try:
-            with open(filepath, "r", encoding="utf-8") as f:
-                c = f.read()
-        except Exception:
-            continue
-        title_m = re.search(r'^title:\s*["\']?(.*?)["\']?$', c, re.MULTILINE)
-        if not title_m:
-            continue
-        title = title_m.group(1).strip()
-        slug_m = re.search(r'^slug:\s*["\']?(.*?)["\']?$', c, re.MULTILINE)
-        slug = slug_m.group(1).strip() if slug_m else ""
-        if not slug:
-            base = os.path.basename(filepath)
-            slug = base.replace("-auto-post.md", "").replace(".md", "").lower()
-        tags_m = re.search(r'^tags:\s*\[([^\]]*)\]', c, re.MULTILINE)
-        tags = []
-        if tags_m:
-            tags = [t.strip().strip('"\'') for t in tags_m.group(1).split(",") if t.strip()]
-        result.append({"title": title, "slug": slug, "tags": tags})
-    return result
-
-
-def _existing_link_spans(content):
-    spans = []
-    for m in re.finditer(r'!\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\([^)]*\)', content):
-        spans.append((m.start(), m.end()))
-    return spans
-
-
-def inject_internal_links(content, posts_dir="src/content/posts", max_links=5):
-    posts = _load_posts_for_links(posts_dir)
-    if not posts:
-        return content
-    fm_end = content.find("---\n", 4)
-    if fm_end == -1:
-        body_start = 0
-    else:
-        body_start = fm_end + 4
-    body = content[body_start:]
-    link_spans = _existing_link_spans(body)
-    replacements = []
-    for post in posts:
-        title = post["title"]
-        slug = post["slug"]
-        if len(title) < 3:
-            continue
-        pattern = re.escape(title)
-        for m in re.finditer(pattern, body):
-            pos = m.start()
-            length = len(title)
-            overlap = False
-            for s, e in link_spans:
-                if pos < e and pos + length > s:
-                    overlap = True
-                    break
-            if overlap:
-                continue
-            url = f"{BASE_URL}/posts/{slug}"
-            link_md = f"[{title}]({url})"
-            replacements.append((pos, pos + length, link_md))
-            if len(replacements) >= max_links:
-                break
-        if len(replacements) >= max_links:
-            break
-    if not replacements:
-        return content
-    replacements.sort(key=lambda x: x[0], reverse=True)
-    for start, end, replacement in replacements:
-        body = body[:start] + replacement + body[end:]
-    return content[:body_start] + body
 
 
 # --------------------------------------------------

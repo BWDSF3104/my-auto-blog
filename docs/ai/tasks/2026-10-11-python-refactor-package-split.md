@@ -90,6 +90,8 @@ scripts/
 
 ## 移行フェーズ（各フェーズ末に pytest 緑で止める）
 
+> **コミット方針（2026-10-11 ユーザー承認）**: 各フェーズが pytest 緑の検証済み状態で確定したら、その境界で `git commit` + `git push` を実施（後段失敗時のロールバック点として）。メッセージは `refactor: <日本語>`。
+
 | フェーズ | 内容 | リスク |
 |---|---|---|
 | 0 | ベースライン: `pytest scripts/tests/ -v` 実行・記録 | - |
@@ -105,8 +107,10 @@ scripts/
 
 - **Phase 0 (2026-10-11)**: `pytest scripts/tests/ -v` → **365 passed** (7.80s)。失敗 0。ベースライン確立
 - **Phase 1 (2026-10-11)**: `fetch_topics.py::main()` 関数抽出。`main()`（CC52/185行）→ 約45行・CC<10（解析閾値未満に）。新関数: `collect_all_topics`（各 source try/except 収集）/ `load_previous_output`（latest.json 読取・破損耐性）/ `build_output`（CC26/68行・純粋関数化、merge/継承ロジック）/ `save_output`（ts書き出し+latestコピー）/ `cleanup_old_topic_files(keep=10)`。テストは `patch.object(fetch_topics, ...)` + `TOPICS_DIR`/`OUTPUT_PATH` monkeypatch 方式のため**無変更で全緑**。`pytest scripts/tests/ -q` → **365 passed** (6.81s)。`--help` で CLI エントリ動作確認。`build_output` CC26 は純粋データ変換のため許容（Phase 6 で必要なら再分解）
+- **Phase 2a (2026-10-11)**: `scripts/article/` パッケージ雛形 + `config.py` へ静的定数 56 件を移設（`__all__` 定義 + `generate_article.py` で `from article.config import *`）。`PROJECT_DIR` は 3 階層 dirname で `<root>` に正解決（`scripts/fetch_topics.py` 存在確認）。関数移設なしのためテスト patch 経路無変更。`py_compile` OK + `pytest scripts/tests/ -q` → **365 passed** (6.69s)。コミット `08dc13c`（+ `a9446f9`=Phase 1）を push
+- **Phase 2b (2026-10-11)**: `meta.py`（`get_existing_posts` / `get_recent_titles_by_type` / `get_recent_meta_by_type` / `_save_trend_usage_log` / `_save_draft_metadata` / `_save_affiliate_link_log` / `_cleanup_old_logs` / `_extract_fm_field`）+ `slug_links.py`（`_load_slug_redirects` / `_save_slug_redirects` / `_get_existing_slugs` / `_resolve_slug_collision` / `_load_posts_for_links` / `_existing_link_spans` / `inject_internal_links`）へ 15 関数移設。`generate_article.py` は再エクスポート import で留置（`generate_post` 等の呼出元はそのまま）。テスト patch 経路更新: `SLUG_REDIRECTS_FILE` 7 / `DRAFTS_DIR` 6 / `LOG_CLEANUP_DIRS` 8 を `article.meta.` / `article.slug_links.` へ（`patch.object(generate_article, "_save_trend_usage_log")` と `BASE_URL` は呼び出し元留置のため維持）。`_extract_fm_field` は meta.py へ（Phase 5 の frontmatter.py へ移行する可能性を残す）。AST ベース削除スクリプトで 437 行除去し孤立セクションコメントも除去。`py_compile` OK + `pytest scripts/tests/ -q` → **365 passed** (7.02s)
 - （以降フェーズごとに追記）
 
 ## Next Action
 
-Phase 2: `scripts/article/` パッケージ雛形作成 + `config.py`（定数群）/ `meta.py`（記事メタ・ログ管理）へ移設 + テスト更新 + pytest 緑確認
+Phase 3: `image.py` へ kemono パラメータ / 画像生成（`_generate_header_image` 等）/ キャラ抽出 / `compose_image_prompt` / 本文画像処理を移設 + テスト patch 経路更新 + pytest 緑確認（完了時は `08dc13c` に続く形で commit+push）
