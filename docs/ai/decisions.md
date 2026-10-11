@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-11: 生成情報の e621 ブロックは「実際にプロンプトに使った選出データ」を Python 側で表示
+
+**Decision**: 記事末尾の「生成情報」セクションに e621 キャラクター特徴（参考キャラクター2投稿・人気版権・人気artist・データ時点）を表示する。`_load_character_features()`（プロンプト指示文字列返却・選出データを破棄）を `_select_character_features(target_genres) -> dict | None`（`{updated_at, total_posts, raw_posts, posts, copyrights, artists}` 返却）と `_format_character_features_instruction(info) -> str` に分割し、`generate_post()` で `_select_character_features()` を 1 回だけ呼び出して選出 dict をプロンプト（`character_features_instruction`）と `_build_generation_info_section(..., e621_info)` の両方に渡す。`_build_generation_info_section()` の「キャラクターデータ」ブロック直後に「参考キャラクターデータ（e621）」ブロックを `html.escape` 付きで追加（参考キャラ1/2 は 種族/色/身体的特徴/参照/作品 を `<br>` 連結・空は `-`、データ時点は `datetime.fromisoformat` で UTC 整形）。表示は **`prompt_type == "kemono_story"` 限定**（`show_e621 = bool(e621_info) and prompt_type == "kemono_story"`）。既存 `.gen-info-block` / `.gen-info-dl` CSS を流用し Layout 変更なし。
+
+**Reason**: (1) e621 データがプロンプトに注入される経路は kemono_story の `{character_features_instruction}` プレースホルダーのみ（`scripts/prompts/kemono_story.txt:103`）であり、非ケモノ記事では「使用したデータ」ではないため非表示が正しい。(2) 従来は `_load_character_features()` が `random.choice` で選出した 2 投稿を文字列化して返すだけだったため、記事側で「どの投稿を使ったか」を復元不能。選出を dict に分離し 1 回だけ呼び出せば、プロンプトと表示が**同一選出データ**になる（2 回呼び出しでは選出がずれる）。(3) `_load_character_features()` は既存テスト（`TestLoadCharacterFeaturesGenre`）が文字列返却を前提とするため、ラッパーとして残置し互換を維持。(4) 前回決定（2026-10-10 生成情報セクション）と同様に本文直接追記方式で、既存記事への影響・バックフィルなし。
+
+**Rejected Alternatives**:
+- `_load_character_features()` をそのまま使い表示側でもう一度選出する: `random.choice` が 2 回独立実行され、プロンプトと表示の参考キャラクターが一致しない
+- frontmatter に e621 選出データを保存して Layout が描画: 2026-10-10 決定で frontmatter 方式を不採用済み。本文直接追記で既存記事影響ゼロを維持
+- 非ケモノ記事にも e621 ブロック表示（「利用可能なデータ」として）: ユーザー要望は「使用データを載せる」であり、使用していないデータの表示は誤解を招くため不採用
+
+**Impact**:
+- `scripts/generate_article.py`: `_select_character_features()` / `_format_character_features_instruction()` 新設、`_load_character_features()` を 2 関数ラッパー化、`generate_post()` で 1 回の選出を共有、`_build_generation_info_section()` に `e621_info: dict | None = None` パラメータ＋e621 ブロック追加
+- `scripts/tests/test_generate_article.py`: `TestBuildGenerationInfoSection` に `E621_INFO` fixture + 4 件追加、`TestSelectCharacterFeatures` 新設 6 件（全モック/ローカルファイル）
+- `src/layouts/PostLayout.astro` / `scripts/prompts/*.txt` / `fetch_topics.py`: 不変
+- pytest 365 passed（ベースライン 355 + 新規 10）。一時記事 build（140 page(s)）で本文末尾配置・既定閉・セクション内 h2〜h4 なし（TOC 非載入）・実データ表示を確認、一時ファイル削除後再 build（138 page(s)）でクリーン状態確認
+- 既存記事: 影響なし（`e621_info=None` 時=従来挙動）。次回 deploy 以降に生成される kemono_story 記事のみ表示
+
 ## 2026-10-10: 記事末尾の「生成情報」セクションは Python 側で本文に直接追記
 
 **Decision**: 記事末尾の「生成情報」セクション（使用したトレンド情報＋キャラデータ）は `generate_article.py` が `<details class="gen-info">` HTML を生成し、本文末尾に直接追記する。frontmatter に新フィールドを追加して Layout 側で描画する方式は採用しない。`_append_trending_topics()` は第4要素としてクリーンなトレンドタイトル（`"{title}（{source}）"` 形式）を返すよう 3→4 タプル化。変身ラベルは `transform_text`（「、」接頭のプロンプト結合文字列）をそのまま表示せず `_KEMONO_TRANSFORM_LABEL` 定数で分離。表示要素が一切ない記事はセクション非表示（空文字列）。
@@ -265,25 +283,6 @@
 - `^` を維持: メジャーバージョン内の自動更新が許可され、汚染された新バージョンがインストールされるリスク
 - `~` (minor以下のみ) の使用: patch版本の自動更新が許可され、完全な固定ではない
 - npm v12のリリースを待機: npm v12ではinstall scriptがデフォルト無効化されるが、リリース時期が不明確
-
-## 2026-10-02: レート制限テーブルを独立ドキュメントに分離
-
-**Decision**: AGENTS.md のレート制限テーブルを `docs/ai/api-rate-limits.md` に分離。`fetch_topics.py` 更新後に `test_real_apis.py --save` を実行する検証ルールを追加。
-
-**Reason**: AGENTS.md にインラインで配置していたレート制限テーブルがファイル肥大化の原因。分離して保守性を向上し、AGENTS.md を運用ルールに集中させる。検証ルールにより、トレンド収集スクリプト変更後のデータソース可用性をチェック。
-
-**Impact**:
-- `AGENTS.md`: インラインレート制限テーブルを `docs/ai/api-rate-limits.md` への参照に置換。`fetch_topics.py` 変更後の `test_real_apis.py --save` 検証ルールを追加。
-- `docs/ai/api-rate-limits.md`: 確認済みのレート制限テーブルを含む新ファイル。
-
-## 2026-10-01: Remove Deploy Success Skip Logic
-
-**Decision**: Remove `check_deploy_success()` function and `data/.last-deploy-success.json` deploy timestamp recording. Generation no longer skips based on same-day deploy records.
-
-**Reason**: The skip logic was intended to prevent duplicate generation on the same day, but it blocked legitimate regeneration when needed. Removing it simplifies the pipeline and allows the workflow to generate articles on each run.
-
-**Rejected Alternatives**:
-- スキップロジックを維持: 再生成が必要な場合にブロックされる問題が残る
 
 
 

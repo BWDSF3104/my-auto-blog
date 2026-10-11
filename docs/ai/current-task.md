@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-11-e621-generation-info.md` - 記事末尾の生成情報に e621 からの使用データ（参考キャラクター2投稿・人気版権・人気artist・データ時点）を表示。**完了** (2026-10-11)
+  - **実装内容**: `_load_character_features()` を `_select_character_features()`（選出 dict 返却・None ならスキップ）/ `_format_character_features_instruction()`（指示文組立）に分割（`_load_character_features()` はラッパーとして残存）、`generate_post()` で 1 回の選出をプロンプト＋生成情報セクションの両方に使用（同一データ保証）、`_build_generation_info_section()` に `e621_info` パラメータ＋「参考キャラクターデータ（e621）」ブロック追加（kemono_story 限定・UTC 整形日付表示）。CSS 追加なし（`.gen-info-dl` 流用）
+  - **Verification** (2026-10-11): `pytest scripts/tests/` → **365 passed** (7.00s)（ベースライン 355 + 新規 10）。一時記事投入 build → **140 page(s) built** (2.89s)、出力 HTML で本文末尾配置（`</article>` 直前）・既定閉・セクション内 h2〜h4 なし（TOC 非載入）・e621 ブロックの実データ表示（参考キャラ2投稿・人気版権/artist・`2026-10-11 01:46 UTC（25投稿を分析）`）確認。一時ファイル削除後の再 build → **138 page(s) built** (2.88s) クリーン状態確認
+  - **Next Action**: なし（次回 deploy 実行で実際に生成された記事の e621 ブロック表示を確認）
+
 - `docs/ai/tasks/2026-10-11-utf8-encoding-audit.md` - 全ファイル UTF-8 化検討（エンコード監査 + BOM 除去 + worktree 整理）。**完了** (2026-10-11)
   - **調査結果**: テキストファイル 323 件中、ASCII 85 / UTF-8（BOM なし）205 / UTF-8 BOM 付き 32（旧記事 30 + `affiliate-link-context.txt` + `safe-remove.ps1`）/ CP932 1（旧 worktree の `deploy.yml`、文字化け済み）。新規ファイル生成経路は全て `encoding="utf-8"` 明示指定で問題なし
   - **実施**: #1・#2 BOM 除去 31 ファイル（旧記事 30 + `affiliate-link-context.txt`、CRLF 維持。`safe-remove.ps1` の BOM は PS 5.1 必須で維持）。#2 影響確認: コード参照なし=影響なし。#4 旧 worktree `hallowed-fedora` 削除（セッション停止→`git worktree remove`+`branch -d`、ahead 0 で安全）。#5 `.gitattributes` 改行正規化は backlog P3 #8 へ別タスク化

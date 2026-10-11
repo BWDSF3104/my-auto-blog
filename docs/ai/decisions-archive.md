@@ -401,3 +401,22 @@ Older decisions moved from `decisions.md`. Kept 15 most recent in `decisions.md`
 - `fetch_topics.py`: `os.symlink()` → `shutil.copy2()`, `import shutil` 追加
 - `test_fetch_topics.py`: シンボリックリンク検証テストをファイルコピー検証に更新
 - `data/topics/latest.json`: git 管理下の通常ファイルとしてコミット可能に
+
+## 2026-10-02: レート制限テーブルを独立ドキュメントに分離
+
+**Decision**: AGENTS.md のレート制限テーブルを `docs/ai/api-rate-limits.md` に分離。`fetch_topics.py` 更新後に `test_real_apis.py --save` を実行する検証ルールを追加。
+
+**Reason**: AGENTS.md にインラインで配置していたレート制限テーブルがファイル肥大化の原因。分離して保守性を向上し、AGENTS.md を運用ルールに集中させる。検証ルールにより、トレンド収集スクリプト変更後のデータソース可用性をチェック。
+
+**Impact**:
+- `AGENTS.md`: インラインレート制限テーブルを `docs/ai/api-rate-limits.md` への参照に置換。`fetch_topics.py` 変更後の `test_real_apis.py --save` 検証ルールを追加。
+- `docs/ai/api-rate-limits.md`: 確認済みのレート制限テーブルを含む新ファイル。
+
+## 2026-10-01: Remove Deploy Success Skip Logic
+
+**Decision**: Remove `check_deploy_success()` function and `data/.last-deploy-success.json` deploy timestamp recording. Generation no longer skips based on same-day deploy records.
+
+**Reason**: The skip logic was intended to prevent duplicate generation on the same day, but it blocked legitimate regeneration when needed. Removing it simplifies the pipeline and allows the workflow to generate articles on each run.
+
+**Rejected Alternatives**:
+- スキップロジックを維持: 再生成が必要な場合にブロックされる問題が残る

@@ -2737,6 +2737,93 @@ class TestBuildGenerationInfoSection:
         assert "&lt;script&gt;" in section
         assert "cat &amp; &lt;dog&gt;" in section
 
+    E621_INFO = {
+        "updated_at": "2026-10-11T01:46:12+00:00",
+        "total_posts": 18,
+        "raw_posts": 18,
+        "posts": [
+            {
+                "species": ["wolf"],
+                "colors": ["blue"],
+                "physical": ["ears", "tail"],
+                "characters": ["char_a"],
+                "copyrights": ["nintendo"],
+            },
+            {
+                "species": ["fox"],
+                "colors": ["red"],
+                "physical": [],
+                "characters": [],
+                "copyrights": [],
+            },
+        ],
+        "copyrights": "nintendo, pokemon",
+        "artists": "artist_a, artist_b",
+    }
+
+    def test_e621_block_rendered(self):
+        import generate_article
+        content = '---\ntitle: "x"\ncharacter_1: "cat_ears"\ncharacter_2: "dog_ears"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            ["Game news（GameSpot RSS）"], "kemono_story", self.KEMONO_PARAMS, content, self.E621_INFO
+        )
+        assert "参考キャラクターデータ（e621）" in section
+        assert "参考キャラクター1" in section
+        assert "参考キャラクター2" in section
+        assert "種族: wolf" in section
+        assert "色: blue" in section
+        assert "身体的特徴: ears, tail" in section
+        assert "参照: char_a" in section
+        assert "作品: nintendo" in section
+        # 2投稿目は空フィールドで「-」表示
+        assert "種族: fox" in section
+        assert "身体的特徴: -" in section
+        assert "作品: -" in section
+        assert "人気版権" in section
+        assert "nintendo, pokemon" in section
+        assert "人気artist" in section
+        assert "artist_a, artist_b" in section
+        assert "2026-10-11 01:46 UTC" in section
+        assert "18投稿を分析" in section
+
+    def test_e621_block_omitted_for_non_kemono(self):
+        import generate_article
+        content = '---\ntitle: "x"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            ["AI news（GitHub）"], "default", {}, content, self.E621_INFO
+        )
+        assert "e621" not in section
+        assert "参考キャラクター" not in section
+
+    def test_e621_only_section_shown(self):
+        import generate_article
+        content = '---\ntitle: "x"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            [], "kemono_story", {}, content, self.E621_INFO
+        )
+        assert '<details class="gen-info">' in section
+        assert "参考キャラクターデータ（e621）" in section
+        assert 'gen-info-block-title">キャラクターデータ</p>' not in section
+
+    def test_e621_escaped(self):
+        import generate_article
+        info = dict(self.E621_INFO, posts=[
+            {
+                "species": ["<b>wolf</b>"],
+                "colors": [],
+                "physical": [],
+                "characters": ["a & b"],
+                "copyrights": [],
+            }
+        ])
+        content = '---\ntitle: "x"\ncharacter_1: "x"\ncharacter_2: "y"\n---\n\nbody'
+        section = generate_article._build_generation_info_section(
+            [], "kemono_story", self.KEMONO_PARAMS, content, info
+        )
+        assert "<b>wolf</b>" not in section
+        assert "&lt;b&gt;wolf&lt;/b&gt;" in section
+        assert "a &amp; b" in section
+
 
 class TestLoadCharacterFeaturesGenre:
     def test_copyright_genre_priority(self, tmp_path):
@@ -2777,3 +2864,111 @@ class TestLoadCharacterFeaturesGenre:
 
         assert "harry_potter" in result
         assert "nintendo" in result
+
+
+class TestSelectCharacterFeatures:
+    """_select_character_features() / _format_character_features_instruction() のテスト"""
+
+    CF_DATA = {
+        "posts": [
+            {"species": ["wolf"], "colors": ["blue"], "physical": ["ears"], "characters": ["A"], "copyrights": ["nintendo"]},
+            {"species": ["fox"], "colors": ["red"], "physical": ["tail"], "characters": ["B"], "copyrights": ["harry_potter"]},
+        ],
+        "aggregates": {
+            "copyrights": {"nintendo": 10, "harry_potter": 5, "pokemon": 3},
+            "artists": {"artist_a": 5, "artist_b": 3},
+        },
+        "updated_at": "2026-10-09",
+        "total_posts_analyzed": 25,
+    }
+
+    def _write_cf(self, tmp_path, data):
+        cf_dir = tmp_path / "data"
+        cf_dir.mkdir(exist_ok=True)
+        cf_path = cf_dir / "character_features.json"
+        cf_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+    def test_missing_file_returns_none(self, tmp_path):
+        import generate_article
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            assert generate_article._select_character_features() is None
+        finally:
+            os.chdir(orig_cwd)
+
+    def test_empty_posts_returns_none(self, tmp_path):
+        import generate_article
+        self._write_cf(tmp_path, {"posts": [], "aggregates": {}, "updated_at": "x", "total_posts_analyzed": 0})
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            assert generate_article._select_character_features() is None
+        finally:
+            os.chdir(orig_cwd)
+
+    def test_returns_structured_dict(self, tmp_path):
+        import generate_article
+        self._write_cf(tmp_path, self.CF_DATA)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            info = generate_article._select_character_features()
+        finally:
+            os.chdir(orig_cwd)
+
+        assert info is not None
+        assert info["updated_at"] == "2026-10-09"
+        assert info["total_posts"] == 25
+        assert info["raw_posts"] == 2
+        assert len(info["posts"]) == 2
+        assert {tuple(p["copyrights"]) for p in info["posts"]} == {("nintendo",), ("harry_potter",)}
+        # 版権: 選出投稿の版権を先頭に、集計ベースで補完
+        cps = [c.strip() for c in info["copyrights"].split(",")]
+        assert set(cps) == {"nintendo", "harry_potter", "pokemon"}
+        assert len(cps) == 3
+        assert info["artists"] == "artist_a, artist_b"
+
+    def test_format_instruction_none(self):
+        import generate_article
+        assert generate_article._format_character_features_instruction(None) == ""
+
+    def test_format_instruction_content(self):
+        import generate_article
+        info = dict(self.CF_DATA)
+        info["raw_posts"] = 2
+        info["copyrights"] = "nintendo, harry_potter, pokemon"
+        info["artists"] = "artist_a, artist_b"
+        info["total_posts"] = 25
+        info["updated_at"] = "2026-10-09"
+        text = generate_article._format_character_features_instruction(info)
+        assert "【キャラクター特徴のトレンドデータ（参考）】" in text
+        assert "・参考キャラクター1:" in text
+        assert "・参考キャラクター2:" in text
+        assert "種族: wolf" in text
+        assert "色: red" in text
+        assert "・人気版権: nintendo, harry_potter, pokemon" in text
+        assert "・人気artist: artist_a, artist_b" in text
+        assert "アフィリエイト" in text
+
+    def test_load_character_features_wrapper_uses_selection(self, tmp_path):
+        """_load_character_features() が _select_character_features() と同一の選出データを使用すること"""
+        import generate_article
+        self._write_cf(tmp_path, self.CF_DATA)
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            # 同一シードで選出を固定し、ラッパーと直接呼び出しが一致することを検証
+            import random
+            random.seed(42)
+            info = generate_article._select_character_features()
+            random.seed(42)
+            text = generate_article._load_character_features()
+        finally:
+            os.chdir(orig_cwd)
+
+        for post in info["posts"]:
+            species = ", ".join(post.get("species", [])) or "-"
+            assert f"種族: {species}" in text
+        assert info["copyrights"] in text
+        assert info["artists"] in text

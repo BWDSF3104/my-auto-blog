@@ -611,36 +611,33 @@ def _is_affiliate_excluded(cp: str) -> bool:
     return False
 
 
-def _load_character_features(target_genres: list[str] | None = None) -> str:
-    """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。
+def _select_character_features(target_genres: list[str] | None = None) -> dict | None:
+    """e621 から集計したキャラクター特徴を読み込み、プロンプト注入・生成情報表示に使用する参考データを選出する。
     投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
     版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
     target_genres 指定時は、事前スコアリング結果でジャンル適合度の高い版権を優先する。
+    character_features.json が無い・読み取り不能・投稿データが空の場合は None を返す。
     """
     features_path = os.path.join("data", "character_features.json")
     if not os.path.exists(features_path):
         print("  [char-features] character_features.json が見つかりません（注入スキップ）")
-        return ""
+        return None
 
     try:
         with open(features_path, "r", encoding="utf-8") as f:
             data = json.load(f)
     except Exception as e:
         print(f"  [char-features] 読み取り失敗: {e}（注入スキップ）")
-        return ""
+        return None
 
     posts = data.get("posts", [])
     aggregates = data.get("aggregates", data)
 
     if not posts:
         print("  [char-features] 投稿データが空です（注入スキップ）")
-        return ""
-
-    updated_at = data.get("updated_at", "unknown")
-    total_posts = data.get("total_posts_analyzed", 0)
+        return None
 
     # 投稿からランダムに2つ選出（版権重複時は再抽選）
-    import random
     selected = _select_two_posts(posts, max_retries=10)
 
     # 集計結果からベース版権を確保（アフィリエイト不適格は除外）
@@ -676,6 +673,22 @@ def _load_character_features(target_genres: list[str] | None = None) -> str:
     aggregate_artists = sorted(aggregates.get("artists", {}).items(), key=lambda x: -x[1])
     artist_names = ", ".join(a for a, _ in aggregate_artists[:8]) if aggregate_artists else "-"
 
+    return {
+        "updated_at": data.get("updated_at", "unknown"),
+        "total_posts": data.get("total_posts_analyzed", 0),
+        "raw_posts": len(posts),
+        "posts": selected,
+        "copyrights": copyright_names,
+        "artists": artist_names,
+    }
+
+
+def _format_character_features_instruction(info: dict | None) -> str:
+    """e621 キャラクター特徴の参考データ（_select_character_features の戻り値）から、
+    kemono_story プロンプトに注入する指示文を生成する。None の場合は空文字列。"""
+    if not info:
+        return ""
+
     lines = [
         "",
         "【キャラクター特徴のトレンドデータ（参考）】",
@@ -683,7 +696,7 @@ def _load_character_features(target_genres: list[str] | None = None) -> str:
     ]
 
     # 各投稿からキャラクタープロファイルを生成
-    for i, post in enumerate(selected, 1):
+    for i, post in enumerate(info["posts"], 1):
         species = ", ".join(post.get("species", [])) or "-"
         colors = ", ".join(post.get("colors", [])) or "-"
         physical = ", ".join(post.get("physical", [])[:8]) or "-"
@@ -697,14 +710,23 @@ def _load_character_features(target_genres: list[str] | None = None) -> str:
         lines.append(f"  作品: {post_copyrights}")
         lines.append("")
 
-    lines.append(f"・人気版権: {copyright_names}")
-    lines.append(f"・人気artist: {artist_names}")
+    lines.append(f"・人気版権: {info['copyrights']}")
+    lines.append(f"・人気artist: {info['artists']}")
     lines.append("")
     lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。")
 
-    print(f"  [char-features] 注入: updated_at={updated_at}, posts={total_posts} (raw:{len(posts)}), selected={len(selected)}, copyrights={len(copyright_names)}, artists={len(artist_names)}")
+    print(f"  [char-features] 注入: updated_at={info['updated_at']}, posts={info['total_posts']} (raw:{info['raw_posts']}), selected={len(info['posts'])}, copyrights={len(info['copyrights'])}, artists={len(info['artists'])}")
 
     return "\n".join(lines)
+
+
+def _load_character_features(target_genres: list[str] | None = None) -> str:
+    """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。
+    投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
+    版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
+    target_genres 指定時は、事前スコアリング結果でジャンル適合度の高い版権を優先する。
+    """
+    return _format_character_features_instruction(_select_character_features(target_genres))
 
 
 def _select_two_posts(posts: list[dict], max_retries: int = 10) -> list[dict]:
@@ -2435,11 +2457,15 @@ def _build_generation_info_section(
     prompt_type: str,
     kemono_params: dict,
     content: str,
+    e621_info: dict | None = None,
 ) -> str:
     """
     記事本文末尾に追記する「生成情報」セクションの HTML を組立する。
     使用したトレンド情報（タイトル＋ソース）とキャラクターデータ
-    （体型 / 世界設定 / 変身 / 関係性 / 追加設定 + キャラクタータグ）を表示する。
+    （体型 / 世界設定 / 変身 / 関係性 / 追加設定 + キャラクタータグ）、
+    さらに e621 から使用した参考キャラクターデータ
+    （参考キャラクター / 人気版権 / 人気artist / データ時点）を表示する。
+    e621 データは kemono_story プロンプトのみで実際に使われるため、kemono_story 記事のみ表示。
     h2〜h4 を使わない `<details>` 折りたたみ構造のため TOC には載らない。
     表示すべき内容が一切ない場合は空文字列を返す（セクション非表示）。
     """
@@ -2458,7 +2484,9 @@ def _build_generation_info_section(
         if kemono_params.get("extra_key", "none") != "none":
             setting_rows.append(("追加設定", kemono_params.get("extra_tag", "")))
 
-    if not trend_topic_titles and not setting_rows and not char1 and not char2:
+    show_e621 = bool(e621_info) and prompt_type == "kemono_story"
+
+    if not trend_topic_titles and not setting_rows and not char1 and not char2 and not show_e621:
         return ""
 
     parts: list[str] = [
@@ -2493,6 +2521,50 @@ def _build_generation_info_section(
             '      <p class="gen-info-block-title">キャラクターデータ</p>',
             '      <dl class="gen-info-dl">',
             "\n".join(data_rows),
+            '      </dl>',
+            '    </div>',
+        ]
+
+    if show_e621:
+        e621_rows: list[str] = []
+        for i, post in enumerate(e621_info["posts"], 1):
+            species = ", ".join(post.get("species", [])) or "-"
+            colors = ", ".join(post.get("colors", [])) or "-"
+            physical = ", ".join(post.get("physical", [])[:8]) or "-"
+            characters = ", ".join(post.get("characters", [])) or "-"
+            post_copyrights = ", ".join(cp for cp in post.get("copyrights", []) if not _is_affiliate_excluded(cp)) or "-"
+            detail = "<br>".join([
+                f"種族: {html.escape(species)}",
+                f"色: {html.escape(colors)}",
+                f"身体的特徴: {html.escape(physical)}",
+                f"参照: {html.escape(characters)}",
+                f"作品: {html.escape(post_copyrights)}",
+            ])
+            e621_rows.append(f'      <div><dt>参考キャラクター{i}</dt><dd>{detail}</dd></div>')
+        e621_rows.append(
+            f'      <div><dt>人気版権</dt><dd>{html.escape(e621_info.get("copyrights", "-"))}</dd></div>'
+        )
+        e621_rows.append(
+            f'      <div><dt>人気artist</dt><dd>{html.escape(e621_info.get("artists", "-"))}</dd></div>'
+        )
+        updated_at = str(e621_info.get("updated_at", "unknown"))
+        try:
+            dt = datetime.fromisoformat(updated_at)
+            if dt.tzinfo is not None:
+                updated_label = dt.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+            else:
+                updated_label = dt.strftime("%Y-%m-%d %H:%M")
+        except (ValueError, TypeError):
+            updated_label = updated_at
+        e621_rows.append(
+            f'      <div><dt>データ</dt><dd>{html.escape(updated_label)}'
+            f"（{e621_info.get('total_posts', 0)}投稿を分析）</dd></div>"
+        )
+        parts += [
+            '    <div class="gen-info-block">',
+            '      <p class="gen-info-block-title">参考キャラクターデータ（e621）</p>',
+            '      <dl class="gen-info-dl">',
+            "\n".join(e621_rows),
             '      </dl>',
             '    </div>',
         ]
@@ -3221,11 +3293,13 @@ def generate_post():
     )
 
     # 2. テキスト記事の生成
+    # e621 参考データは1回選出し、プロンプト注入と生成情報表示の両方で同一データを使用
     template = load_prompt_template(prompt_type)
+    e621_info = _select_character_features(target_genres=target_genres)
     prompt = template.format(
         ng_instruction=ng_instruction,
         pub_date_str=pub_date_str,
-        character_features_instruction=_load_character_features(target_genres=target_genres),
+        character_features_instruction=_format_character_features_instruction(e621_info),
         **kemono_params
     )
 
@@ -3459,9 +3533,9 @@ def generate_post():
             )
             print(f"📝 記述を補正: {len(desc)}→{len(corrected)}文字")
 
-    # 5.8 本文末尾に生成情報セクションを追記（トレンド情報＋キャラクターデータ）
+    # 5.8 本文末尾に生成情報セクションを追記（トレンド情報＋キャラクターデータ＋e621参考データ）
     gen_section = _build_generation_info_section(
-        trend_topic_titles, prompt_type, kemono_params, content
+        trend_topic_titles, prompt_type, kemono_params, content, e621_info
     )
     if gen_section:
         content = content.rstrip() + "\n\n" + gen_section + "\n"
