@@ -25,6 +25,7 @@
 
 | # | 項目 | 完了日 | 備考 |
 |---|------|--------|------|
+| 4 | 旧記事の UTF-8 BOM 除去（30 件 + `affiliate-link-context.txt`） | 2026-10-11 | BOM 付き 31 ファイルをバイト列除去（CRLF 維持）。`safe-remove.ps1` の BOM は PS 5.1 必須で維持。`npm run build` 135 pages 成功。詳細: `tasks/2026-10-11-utf8-encoding-audit.md` |
 | 1 | trend topics の実質的無効化（#5 と統合実施） | 2026-10-10 | GameSpot/IGN を正規 RSS パースへ（description 取得化）、全エンタメソース失敗時の `STORY_INSPIRATION_THEMES` NameError を内蔵テーマ8件で修正。詳細: `tasks/2026-10-10-trend-rss-enhancement.md` |
 | 5 | RSS取得の強化（description 追加） | 2026-10-10 | `fetch_rss()` が RSS2.0（content:encoded→description）/Atom（content→summary）から HTML除去・300文字切り詰めで抽出し `latest.json` に保存。`score_topics()` は title+description[:200] でスコアリング、`_append_trending_topics()` は description[:100] スニペット注入。pytest 339件通過。詳細: `tasks/2026-10-10-trend-rss-enhancement.md` |
 | 1 | ログ・メタファイルのクリーン処理（リネーム+期間削除） | 2026-10-10 | リネーム `affiliate_links`→`affiliate_logs`・`trend_usage`→`trend_usage_logs`（機能コード1行+`git mv`+`.gitkeep`）。`generate_article.py` に `_cleanup_old_logs()`（ファイル名タイムスタンプで30日前の `drafts/`・`trend_usage_logs/`・`affiliate_logs/`・`prompt_logs/` を削除、`generate_post()` 末尾で呼出）。`deploy.yml` 参照+コミットメッセージ更新。全モックテスト8件、pytest 305件通過。詳細: `tasks/2026-10-10-log-cleanup.md` |
@@ -33,6 +34,7 @@
 
 | # | 項目 | 難易度 | 効果 | 備考 |
 |---|------|--------|------|------|
+| 8 | 改行コードの `.gitattributes` による正規化（別タスク化 2026-10-11） | ⭐ | 低 | CRLF/LF 混在（例: `deploy.yml` CRLF+LF, `test_fetch_topics.py` CRLF+LF, `PostLayout.astro` CRLF+LF）。エンコード監査（`tasks/2026-10-11-utf8-encoding-audit.md`）で発覚。`* text=auto eol=lf` 等の導入は全ファイルに改行変更diffを生むため単独タスクで実施 |
 | 1 | ジャンル候補を LLM で自動生成 → Clef-flash でスコアリング（2段構成） | ⭐⭐ | 中 | 固定リストでは未知ジャンルを発見できない問題を解消。`@cf/meta/llama-3.1-8b-instruct`（JSON schema 出力）で候補生成→Clef-flash で採点。`genre_score.py` に `--auto-genre` フラグ追加。API 2回/作品 |
 | 2 | PWA 対応 | ⭐⭐⭐ | 中 | Service Worker + manifest.json |
 | 3 | Service Worker | ⭐⭐⭐ | 中 | オフライン対応、キャッシュ戦略 |

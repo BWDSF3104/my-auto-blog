@@ -8,6 +8,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-11-utf8-encoding-audit.md` - 全ファイル UTF-8 化検討（エンコード監査 + BOM 除去 + worktree 整理）。**完了** (2026-10-11)
+  - **調査結果**: テキストファイル 323 件中、ASCII 85 / UTF-8（BOM なし）205 / UTF-8 BOM 付き 32（旧記事 30 + `affiliate-link-context.txt` + `safe-remove.ps1`）/ CP932 1（旧 worktree の `deploy.yml`、文字化け済み）。新規ファイル生成経路は全て `encoding="utf-8"` 明示指定で問題なし
+  - **実施**: #1・#2 BOM 除去 31 ファイル（旧記事 30 + `affiliate-link-context.txt`、CRLF 維持。`safe-remove.ps1` の BOM は PS 5.1 必須で維持）。#2 影響確認: コード参照なし=影響なし。#4 旧 worktree `hallowed-fedora` 削除（セッション停止→`git worktree remove`+`branch -d`、ahead 0 で安全）。#5 `.gitattributes` 改行正規化は backlog P3 #8 へ別タスク化
+  - **Verification**: 再スキャンで BOM 付きは `safe-remove.ps1` のみ・CP932 解消。`npm run build` → **135 page(s) built** (8.78s) 成功
+  - **Next Action**: なし
+
 - `docs/ai/tasks/2026-10-10-generation-info-section.md` - 記事末尾の「生成情報」セクション追加（トレンド情報＋キャラクターデータ）。**完了** (2026-10-10)
   - **実装内容**: `generate_article.py` に `_KEMONO_TRANSFORM_LABEL` 新設、`_append_trending_topics()` を 3→4 タプル化（第4要素: `"{title}（{source}）"` 形式のクリーンタイトル）、新ヘルパー `_build_generation_info_section()`（`<details class="gen-info">` HTML 組立・表示要素なしなら空文字列＝非表示）、`generate_post()` 保存前に本文末尾へ追記。`PostLayout.astro` に `.gen-info` CSS（`<style is:global>`、ページ HTML にインライン出力）。テスト: 4 タプル unpack 5 箇所更新 + `TestBuildGenerationInfoSection` 6 件新規
   - **Verification** (2026-10-10): `pytest scripts/tests/ -v` → **355 passed** (7.11s)（ベースライン 349 + 新規 6）。`npm run build`（一時記事投入時）→ **137 page(s) built** (9.99s)、出力 HTML で本文末尾配置（`</article>` 直前）・既定閉・セクション内 h2〜h4 なし（TOC 非載入）確認。一時ファイル削除後の再 build → **135 page(s) built** (2.80s) クリーン状態確認。実データ E2E は次回 deploy 時に確認
