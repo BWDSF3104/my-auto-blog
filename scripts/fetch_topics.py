@@ -841,33 +841,8 @@ PROMPT_CATEGORIES = {
 # メイン処理
 # --------------------------------------------------
 
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description="トレンド情報を収集")
-    parser.add_argument("--categories", nargs="+", help="収集するカテゴリ (例: tech kemono pokemon)")
-    parser.add_argument("--prompt-type", choices=list(PROMPT_CATEGORIES.keys()),
-                        help="プロンプトタイプを指定すると対応カテゴリが自動選択される")
-    args = parser.parse_args()
-
-    # カテゴリを決定
-    categories: list[str] = None
-    if args.categories:
-        categories = args.categories
-    elif args.prompt_type:
-        categories = PROMPT_CATEGORIES.get(args.prompt_type, None)
-        if categories:
-            print(f"[INFO] prompt_type={args.prompt_type} -> categories={categories}")
-
-    if categories:
-        print(f"[INFO] カテゴリフィルタ有効: {categories}")
-
-    JST = timezone(timedelta(hours=9))
-    now = datetime.now(JST)
-
-    print("=" * 50)
-    print(f"fetch_topics.py 実行開始: {now.isoformat()}")
-    print("=" * 50)
-
+def collect_all_topics(categories: list[str] | None) -> list[dict]:
+    """全 source からトピックを収集（個別 source の失敗で全体を止めない）"""
     all_topics: list[dict] = []
 
     # 1. Hacker News
@@ -912,6 +887,22 @@ def main():
     except Exception as e:
         print(f"[ERROR] EntertainmentTrends: {e}")
 
+    return all_topics
+
+
+def load_previous_output() -> dict:
+    """latest.json から前回出力を読み込む（不存在・破損時は空 dict）"""
+    if os.path.exists(OUTPUT_PATH):
+        try:
+            with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+def build_output(all_topics: list[dict], now: datetime, prev: dict) -> dict:
+    """収集トピックと前回データから出力 JSON を構築（純粋関数）"""
     # カテゴリ別に整理（score降順でソート）
     by_category = {
         "tech": [],
@@ -928,17 +919,8 @@ def main():
     for cat in by_category:
         by_category[cat].sort(key=lambda t: t.get("score", 0), reverse=True)
 
-    # 既存の latest.json から sources を読み込んで未収集 source の fetched_at を継承
-    prev_sources = {}
-    prev_by_category = {}
-    if os.path.exists(OUTPUT_PATH):
-        try:
-            with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
-                prev = json.load(f)
-            prev_sources = prev.get("sources", {})
-            prev_by_category = prev.get("by_category", {})
-        except Exception:
-            pass
+    prev_sources = prev.get("sources", {})
+    prev_by_category = prev.get("by_category", {})
 
     # source ごとにグループ化して per-source TTL 構造を構築
     sources = {}
@@ -979,7 +961,7 @@ def main():
         merged_by_category[cat] = [t for t in merged_by_category[cat] if t.get("source") not in NON_TREND_SOURCES]
     all_topics_merged = [t for t in all_topics_merged if t.get("source") not in NON_TREND_SOURCES]
 
-    output = {
+    return {
         "fetched_at": now.isoformat(),
         "ttl_hours": TTL_HOURS,
         "total": len(all_topics_merged),
@@ -988,29 +970,17 @@ def main():
         "all": sorted(all_topics_merged, key=lambda t: t.get("score", 0), reverse=True),
     }
 
-    # タイムスタンプ付きファイルに出力
+
+def save_output(output: dict, now: datetime) -> str:
+    """タイムスタンプ付き JSON を書き出し、latest.json をコピー更新してパスを返す"""
     os.makedirs(TOPICS_DIR, exist_ok=True)
     ts = now.strftime("%Y-%m-%d_%H%M%S")
     ts_path = os.path.join(TOPICS_DIR, f"{ts}.json")
     with open(ts_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    # 古いタイムスタンプファイルを削除（最新10件を保持）
-    try:
-        ts_files = sorted(
-            [f for f in os.listdir(TOPICS_DIR) if f.endswith(".json") and f != "latest.json"],
-            reverse=True
-        )
-        for old_file in ts_files[10:]:
-            old_path = os.path.join(TOPICS_DIR, old_file)
-            if os.path.islink(old_path) or os.path.exists(old_path):
-                os.remove(old_path)
-    except Exception as e:
-        print(f"[WARN] 古いファイルのクリーンアップに失敗しました: {e}")
-
     # latest.json を最新ファイルのコピーとして更新
     try:
-        os.makedirs(TOPICS_DIR, exist_ok=True)
         with open(ts_path, "r", encoding="utf-8") as src:
             content = src.read()
         with open(OUTPUT_PATH, "w", encoding="utf-8") as dst:
@@ -1021,9 +991,59 @@ def main():
         with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
 
+    return ts_path
+
+
+def cleanup_old_topic_files(keep: int = 10) -> None:
+    """古いタイムスタンプファイルを削除（最新 keep 件を保持）"""
+    try:
+        ts_files = sorted(
+            [f for f in os.listdir(TOPICS_DIR) if f.endswith(".json") and f != "latest.json"],
+            reverse=True
+        )
+        for old_file in ts_files[keep:]:
+            old_path = os.path.join(TOPICS_DIR, old_file)
+            if os.path.islink(old_path) or os.path.exists(old_path):
+                os.remove(old_path)
+    except Exception as e:
+        print(f"[WARN] 古いファイルのクリーンアップに失敗しました: {e}")
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="トレンド情報を収集")
+    parser.add_argument("--categories", nargs="+", help="収集するカテゴリ (例: tech kemono pokemon)")
+    parser.add_argument("--prompt-type", choices=list(PROMPT_CATEGORIES.keys()),
+                        help="プロンプトタイプを指定すると対応カテゴリが自動選択される")
+    args = parser.parse_args()
+
+    # カテゴリを決定
+    categories: list[str] = None
+    if args.categories:
+        categories = args.categories
+    elif args.prompt_type:
+        categories = PROMPT_CATEGORIES.get(args.prompt_type, None)
+        if categories:
+            print(f"[INFO] prompt_type={args.prompt_type} -> categories={categories}")
+
+    if categories:
+        print(f"[INFO] カテゴリフィルタ有効: {categories}")
+
+    JST = timezone(timedelta(hours=9))
+    now = datetime.now(JST)
+
+    print("=" * 50)
+    print(f"fetch_topics.py 実行開始: {now.isoformat()}")
+    print("=" * 50)
+
+    all_topics = collect_all_topics(categories)
+    output = build_output(all_topics, now, load_previous_output())
+    ts_path = save_output(output, now)
+    cleanup_old_topic_files()
+
     print("=" * 50)
     print(f"完了: {len(all_topics)} 件のトピックを {ts_path} に保存しました")
-    for cat, items in by_category.items():
+    for cat, items in output["by_category"].items():
         print(f"  [{cat}] {len(items)} 件")
     print("=" * 50)
 
