@@ -41,6 +41,12 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 - Dev server: `astro dev --background`
 - Background server: `astro dev stop`, `astro dev status`, `astro dev logs`
 
+## Image Analysis
+
+- 画像の視覚解析（スクリーンショットの文字/UI 読み取り、レイアウト検証、生成画像の確認）は MCP ツール `analyze_image_with_groq` を使用。
+- 使い方・焦点化分析の例・メンテナンス手順は `docs/ai/image-analysis.md` を参照。
+- 画像はクラウド（Groq API）へ送信されるため、送信前にユーザーの確認を取る。
+
 ## Code Standards
 
 - Python scripts: UTF-8 encoding
