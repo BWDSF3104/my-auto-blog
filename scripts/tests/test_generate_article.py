@@ -1220,7 +1220,7 @@ class TestSaveAsAvif:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch("generate_article.BASE_URL", "/test"):
+            with patch("article.image.BASE_URL", "/test"):
                 result = _save_as_avif(img_path, "test-image.png")
         finally:
             os.chdir(orig_cwd)
@@ -1237,7 +1237,7 @@ class TestSaveAsAvif:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch("generate_article.BASE_URL", "/test"):
+            with patch("article.image.BASE_URL", "/test"):
                 result = _save_as_avif(str(img_path), "rgba-test.png")
         finally:
             os.chdir(orig_cwd)
@@ -1251,7 +1251,7 @@ class TestSaveAsAvif:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch("generate_article.BASE_URL", "/test"):
+            with patch("article.image.BASE_URL", "/test"):
                 result = _save_as_avif(img_path, "test-image.jpg")
         finally:
             os.chdir(orig_cwd)
@@ -1284,7 +1284,7 @@ class TestGenerateImagePollinations:
         try:
             os.chdir(str(tmp_path))
             with patch("requests.get", return_value=mock_resp), \
-                 patch("generate_article.BASE_URL", "/test"):
+                 patch("article.image.BASE_URL", "/test"):
                 result = _generate_image_pollinations("test prompt", "test-file.png")
         finally:
             os.chdir(orig_cwd)
@@ -1319,7 +1319,7 @@ class TestGenerateImagePollinations:
         try:
             os.chdir(str(tmp_path))
             with patch("requests.get", return_value=mock_resp) as mock_get, \
-                 patch("generate_article.BASE_URL", "/test"):
+                 patch("article.image.BASE_URL", "/test"):
                 _generate_image_pollinations("test prompt with spaces & symbols", "out.png")
         finally:
             os.chdir(orig_cwd)
@@ -1343,7 +1343,7 @@ class TestGenerateAndSaveImage:
 
     def test_hf_provider_success(self, tmp_path, monkeypatch):
         """HFプロバイダーで正常に画像が生成される"""
-        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "hf")
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
         monkeypatch.setenv("HF_TOKEN", "test-token")
 
         temp_img = tmp_path / "hf_temp.png"
@@ -1356,8 +1356,8 @@ class TestGenerateAndSaveImage:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch("generate_article.Client", return_value=mock_client), \
-                 patch("generate_article.BASE_URL", "/test"):
+            with patch("article.image.Client", return_value=mock_client), \
+                 patch("article.image.BASE_URL", "/test"):
                 result = generate_and_save_image("test prompt", "out.png")
         finally:
             os.chdir(orig_cwd)
@@ -1367,7 +1367,7 @@ class TestGenerateAndSaveImage:
 
     def test_hf_failure_fallback_to_pollinations(self, tmp_path, monkeypatch):
         """HF失敗後にPollinationsにフォールバックする"""
-        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "hf")
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
         monkeypatch.setenv("HF_TOKEN", "test-token")
 
         fake_bytes = self._fake_jpeg_bytes()
@@ -1382,10 +1382,10 @@ class TestGenerateAndSaveImage:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch("generate_article.Client", return_value=mock_client), \
+            with patch("article.image.Client", return_value=mock_client), \
                  patch("requests.get", return_value=mock_poll_resp), \
                  patch("time.sleep", return_value=None), \
-                 patch("generate_article.BASE_URL", "/test"):
+                 patch("article.image.BASE_URL", "/test"):
                 result = generate_and_save_image("test prompt", "out.png")
         finally:
             os.chdir(orig_cwd)
@@ -1395,7 +1395,7 @@ class TestGenerateAndSaveImage:
 
     def test_hf_and_pollinations_both_fail(self, tmp_path, monkeypatch):
         """HFとPollinationsの両方が失敗すると空文字列を返す"""
-        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "hf")
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
         monkeypatch.setenv("HF_TOKEN", "test-token")
 
         mock_poll_resp = MagicMock()
@@ -1408,7 +1408,7 @@ class TestGenerateAndSaveImage:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch("generate_article.Client", return_value=mock_client), \
+            with patch("article.image.Client", return_value=mock_client), \
                  patch("requests.get", return_value=mock_poll_resp), \
                  patch("time.sleep", return_value=None):
                 result = generate_and_save_image("test prompt", "out.png")
@@ -1419,7 +1419,7 @@ class TestGenerateAndSaveImage:
 
     def test_pollinations_provider_direct(self, tmp_path, monkeypatch):
         """IMAGE_PROVIDER=pollinationsの場合はHFをスキップ"""
-        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "pollinations")
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "pollinations")
 
         fake_bytes = self._fake_jpeg_bytes()
         mock_resp = MagicMock()
@@ -1431,8 +1431,8 @@ class TestGenerateAndSaveImage:
         try:
             os.chdir(str(tmp_path))
             with patch("requests.get", return_value=mock_resp), \
-                 patch("generate_article.Client") as mock_client_cls, \
-                 patch("generate_article.BASE_URL", "/test"):
+                 patch("article.image.Client") as mock_client_cls, \
+                 patch("article.image.BASE_URL", "/test"):
                 result = generate_and_save_image("test prompt", "out.png")
         finally:
             os.chdir(orig_cwd)
@@ -1442,7 +1442,7 @@ class TestGenerateAndSaveImage:
 
     def test_pollinations_provider_only_fails(self, tmp_path, monkeypatch):
         """IMAGE_PROVIDER=pollinationsでPollinationsも失敗すると空文字列"""
-        monkeypatch.setattr("generate_article.IMAGE_PROVIDER", "pollinations")
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "pollinations")
 
         mock_resp = MagicMock()
         mock_resp.raise_for_status.side_effect = Exception("error")
