@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-11-python-refactor-package-split.md` - Pythonスクリプトのリファクタリング（`generate_article.py` → `article/` パッケージ分割 + 大関数ステージ分解、`fetch_topics.py::main()` 関数抽出）。**進行中** (2026-10-11)
+  - **設計**: `scripts/generate_article.py` は入口+パイプラインに縮約、責務群8種を `scripts/article/`（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta）へ分離。`generate_post()`（CC81/325行）を8ステージ関数に分解。`fetch_topics.py` は `main()` から `collect_all_topics`/`build_output`/`save_output`/`cleanup_old_topic_files` を抽出（パッケージ化不要）。入口ファイル名（`deploy.yml` 参照）は不変。関数移設とテストの `patch("generate_article.X")` 経路更新はセットで実施
+  - **Verification** (2026-10-11): Phase 0 ベースライン `pytest scripts/tests/ -v` → **365 passed** (7.80s)。Phase 1 `fetch_topics.py` 関数抽出（`main()` CC52/185行 → 約45行/CC<10、新関数 5 件、テスト無変更）→ **365 passed** (6.81s)
+  - **Next Action**: Phase 2 — `scripts/article/` パッケージ雛形 + `config.py` / `meta.py` 移設 + テスト更新 + pytest 緑確認
+
 - `docs/ai/tasks/2026-10-11-readme-rewrite.md` - README を Astro スターター既定からプロジェクト説明へ書き換え（使用技術 + 生成フロー）。**完了** (2026-10-11)
   - **実装内容**: `README.md` 全面書き換え（Astro スターター既定 46 行 → 231 行）: 特徴、6ステップの生成フロー図 + `generate_article.py` 11ステップ詳細、技術スタック / データソース / 環境変数表（変数名のみ）、プロジェクト構造、ローカル開発手順、CI/CD ワークフロー表、テスト規則
   - **機微情報排除**: API キー値 / 個人名 / HuggingFace リポジトリ名（ユーザー指示）/ Cloudflare アカウント ID / ユーザー名入り URL を全て除外。`.env` キー値断片と既知別子の全文正規表現スキャンで該当なしを確認。BOM なし UTF-8

@@ -2,6 +2,26 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-11: Pythonスクリプトの構造は「入口ファイル固定 + `scripts/article/` パッケージ + フェーズ分割移行」
+
+**Decision**: `scripts/generate_article.py`（3561行・`generate_post()` CC81/325行）は `scripts/article/` パッケージ（`config` / `gemini` / `image` / `affiliate` / `trends` / `frontmatter` / `slug_links` / `meta`）へ責務群を分離し、`generate_article.py` 自体は「入口 + `generate_post()` パイプライン」に縮約する。`generate_post()` は 8 ステージ関数（`build_ng_instruction` / `resolve_kemono` / `generate_content` / `build_header_image` / `apply_frontmatter_fields` / `postprocess_content` / `apply_seo_schemas` / `finalize_and_save`）に分解（本体は約70行・CC約12）。`scripts/fetch_topics.py`（1032行・`main()` CC52）はパッケージ化せず、`main()` 内の関数抽出（`collect_all_topics` / `build_output`（純粋関数）/ `save_output` / `cleanup_old_topic_files`）のみ行う。移行は 8 フェーズ（0=ベースライン → 1=fetch_topics → 2=article/雛形+config/meta → 3=image → 4=affiliate → 5=trends/frontmatter/slug_links → 6=大関数分解 → 7=入口縮約+docs更新）で、各フェーズ末に `pytest scripts/tests/` 緑を確認して進行する。
+
+**Reason**: (1) プロダクション入口は `deploy.yml:50` / `deploy.yml:89` がファイル名固定で起動するため、`fetch_topics.py` / `generate_article.py` は入口として残置し、中身だけを分離する。（2）`generate_article.py::_auto_fetch_topics`（L2077）が `fetch_topics.py` をパス指定 subprocess で実行するため、`fetch_topics.py` は独立実行可能のまま維持（`main()` は同ファイル内に残す）。（3）テストが `patch("generate_article.X")` 形式で内部関数に強く結合しているため、**関数移設と patch 経路更新（→ `patch("article.<module>.X")`）を同一フェーズで実施**しないと mock が実コードに効かなくなる（サイレントなテスト無効化が最悪ケース）。(4) 8 フェーズ分割で各フェーズが独立に pytest 検証可能なため、中間状態での回帰を最小単位で検出できる。
+
+**Rejected Alternatives**:
+- `generate_article.py` 内の関数抽出のみ（パッケージ分割しない・保守的案）: 3561行の単一ファイルが残り責務の混在（Gemini/画像/アフィリエイト/トレンド/SEO/ログ管理）が解消されないため、管理のしやすさという目的に不达
+- `fetch_topics.py` も `scripts/topics/` パッケージ化: 1032行で問題は `main()` への集中のみ。入口 subprocess 起動経路・テストの patch 対象（`fetch_topics.TOPICS_DIR` / `urllib` 等）の更新コストに見合わない
+- 1回の大型コミットで一括移行: 中間状態を pytest で検証できず、3561行 + テスト 2974行の同時変更で回帰の切り分け不能
+- `scripts/article/` を `scripts/generate_article/`（ディレクトリ同名化）に: `generate_article.py` と `generate_article/` が同名混在し Windows / import の曖昧性が高まるため不採用
+
+**Impact**:
+- 新規: `scripts/article/{__init__,config,gemini,image,affiliate,trends,frontmatter,slug_links,meta}.py`、`scripts/generate_article.py` は入口+パイプラインに縮約（行数は Phase 7 完了時点で確定）
+- `scripts/fetch_topics.py`: `main()` 関数抽出（入口は不変）
+- `scripts/tests/test_generate_article.py` / `test_fetch_topics.py`: import と `patch` 経路をフェーズごとに更新
+- `.github/workflows/*.yml`: 不変（入口ファイル名は維持）
+- 完了条件: 全フェーズ pytest 緑 + `npm run build` 緑 + README / AGENTS.md の構造記載更新
+- 詳細: `tasks/2026-10-11-python-refactor-package-split.md`
+
 ## 2026-10-11: コメント機能は Giscus（GitHub Discussions バックエンド）を採用
 
 **Decision**: 記事のコメント機能に Giscus（https://giscus.app、GitHub Discussions をバックエンドとするクライアントサイド iframe ウィジェット）を採用。新規 `src/components/GiscusComments.astro` を `src/layouts/PostLayout.astro` の記事末尾（Social Sharing セクション直後）に組み込み、frontmatter `comments: false` で記事単位無効化（`src/content.config.ts` schema に `comments: z.boolean().optional()` 追加）。`data-mapping="pathname"`（base `/my-auto-blog` で開発・本番の pathname が一致し同一 Discussion 共有）。テーマ同期は `documentElement` の class 変化を MutationObserver で監視し giscus script の `data-theme` を更新（サイトのダーク切替はイベントを発火しないため、`Header.astro` 無変更）。設定は `PUBLIC_GISCUS_REPO` / `PUBLIC_GISCUS_REPO_ID` / `PUBLIC_GISCUS_CATEGORY` / `PUBLIC_GISCUS_CATEGORY_ID` の 4 値（`data-lang="ja"` / `data-loading="lazy"` / `data-strict="0"` / reactions on / emit-metadata off / input bottom）、いずれか欠落時はコンポーネントが early return してセクション非表示。`deploy.yml` / `deploy-only.yml` の build ステップに `env:` で `${{ vars.PUBLIC_GISCUS_* }}` を追加（現状この 2 ワークフローは `PUBLIC_*` を一切渡していないため必須）。

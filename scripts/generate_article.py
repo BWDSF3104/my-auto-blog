@@ -32,102 +32,11 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY is not set in environment variables.")
 
-HF_TOKEN = os.environ.get("HF_TOKEN")
-
-# 画像生成プロバイダー: "hf" (デフォルト) または "pollinations"
-IMAGE_PROVIDER = os.environ.get("IMAGE_PROVIDER", "hf").lower()
+# 定数・パス・重み・パターン等の静的設定は article/config.py へ集約。
+# env 読取りは load_dotenv()（上）の後に評価されるため、ここで読み込む。
+from article.config import *  # noqa: F401,F403
 
 client = genai.Client(api_key=GEMINI_API_KEY)
-
-MODELS_TO_TRY = [
-    "gemini-3.8-flash",
-    "gemini-3.6-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-3.1-flash-lite"
-]
-
-HF_SPACE_ID = "blume/kemono-image-api"
-BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
-MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
-MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
-GENRE_SCORES_PATH = os.path.join("data", "genre_scores", "topics.json")
-GENRE_FILTER_MIN_SCORE = int(os.environ.get("GENRE_FILTER_MIN_SCORE", "30"))
-
-# 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
-# SFWタグを常に付与して安全な画像生成を強制
-# アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
-BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, furry, safe for work"
-DEFAULT_ART_STYLE = "anime style, illustration, cel shading"
-DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
-
-# kemono_story プロンプトのPython側ランダム化設定
-# 各項目の重み付き選択でテーマの多様性を確保
-# 値は体型タグのリスト（個別タグとしてそのまま使用）。
-# プロンプト表示文字列は " / " 結合（char_type）で生成する
-CHAR_TYPE_WEIGHTS = [
-    (["獣人"], 30),
-    (["動物と獣人のハーフ"], 20),
-    (["動物"], 20),
-    (["獣人", "動物と獣人のハーフ"], 10),
-    (["獣人", "動物"], 10),
-    (["動物と獣人のハーフ", "動物"], 10),
-]
-
-WORLD_SETTING_WEIGHTS = [
-    ("fantasy", 21),
-    ("isekai", 10),
-    ("modern", 10),
-    ("slice_of_life", 10),
-    ("sf", 8),
-    ("space_opera", 7),
-    ("adventure", 7),
-    ("cyberpunk", 7),
-    ("dungeon_crawl", 6),
-    ("mystery", 5),
-    ("historical", 5),
-    ("fantasy+sf", 4),
-]
-
-TRANSFORM_WEIGHTS = [
-    ("none", 40),
-    ("tf", 25),
-    ("tsf", 25),
-    ("tf+tsf", 10),
-]
-
-RELATIONSHIP_WEIGHTS = [
-    ("partnership", 30),
-    ("yaoi", 25),
-    ("yuri", 25),
-    ("hetero", 20),
-]
-
-EXTRA_SETTING_WEIGHTS = [
-    ("none", 70),
-    ("clone", 20),
-    ("rival", 10),
-]
-
-CHAR_COUNT_WEIGHTS = [
-    (1, 40),
-    (2, 60),
-]
-
-
-WORLD_SETTING_GENRE_MAP = {
-    "fantasy": ["fantasy"],
-    "isekai": ["fantasy", "action"],
-    "modern": ["slice_of_life", "action", "mystery"],
-    "sf": ["sf"],
-    "space_opera": ["sf", "action"],
-    "slice_of_life": ["slice_of_life"],
-    "cyberpunk": ["cyberpunk"],
-    "adventure": ["action", "fantasy"],
-    "dungeon_crawl": ["fantasy", "action"],
-    "mystery": ["mystery"],
-    "historical": ["historical"],
-    "fantasy+sf": ["fantasy", "sf"],
-}
 
 
 def _load_genre_scores() -> dict:
@@ -161,59 +70,6 @@ def _is_valid_kemono_combination(transform, relationship, extra):
     if extra == "clone" and relationship == "hetero" and "tsf" not in transform:
         return False
     return True
-
-
-# 世界設定のタグリスト（個別タグとしてそのまま使用）
-# プロンプト表示文字列は "と" 結合（_KEMONO_WORLD_TEXT）で生成する
-_KEMONO_WORLD_TAGS = {
-    "fantasy": ["ファンタジー"],
-    "isekai": ["異世界"],
-    "modern": ["現代"],
-    "sf": ["SF"],
-    "space_opera": ["スペースオペラ"],
-    "slice_of_life": ["日常"],
-    "cyberpunk": ["サイバーパンク"],
-    "adventure": ["冒険"],
-    "dungeon_crawl": ["ダンジョンクライム"],
-    "mystery": ["ミステリー"],
-    "historical": ["歴史"],
-    "fantasy+sf": ["ファンタジー", "SF"],
-}
-_KEMONO_WORLD_TEXT = {key: "と".join(tags) for key, tags in _KEMONO_WORLD_TAGS.items()}
-
-_KEMONO_TRANSFORM_TEXT = {
-    "none": "",
-    "tf": "、TF(変身・変形)",
-    "tsf": "、TSF（性転換フィクション）",
-    "tf+tsf": "、TF・TSF",
-}
-
-# 生成情報セクション用のクリーンな変身ラベル（プロンプト表示用の "、" 接頭文字列は表示に不適のため別定数）
-_KEMONO_TRANSFORM_LABEL = {
-    "none": "なし",
-    "tf": "TF（変身・変形）",
-    "tsf": "TSF（性転換フィクション）",
-    "tf+tsf": "TF・TSF",
-}
-
-_KEMONO_RELATIONSHIP_TEXT = {
-    "partnership": "相棒関係",
-    "yaoi": "同性愛（男性同士の恋愛）",
-    "yuri": "百合（女性同士の恋愛）",
-    "hetero": "異性愛",
-}
-
-# 追加設定のタグ（個別タグとしてそのまま使用）
-# プロンプト表示文字列は "、" 接頭（_KEMONO_EXTRA_TEXT）で生成する
-_KEMONO_EXTRA_TAGS = {
-    "none": "",
-    "clone": "クローンによる自分同士",
-    "rival": "ライバル関係",
-}
-_KEMONO_EXTRA_TEXT = {key: (f"、{text}" if text else "") for key, text in _KEMONO_EXTRA_TAGS.items()}
-
-_KEMONO_CHAR_COUNT_DESC_1 = ["クローン"]
-_KEMONO_CHAR_COUNT_DESC_2 = ["バディ", "ライバル", "カップル"]
 
 
 def _randomize_kemono_params():
@@ -282,28 +138,6 @@ def _randomize_kemono_params():
         "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_1 if char_count == 1 else _KEMONO_CHAR_COUNT_DESC_2),
     }
 
-
-# SEOメタ記述の文字数制約
-MIN_DESC_LEN = 80
-MAX_DESC_LEN = 120
-
-# 本文内画像プレースホルダーの正規表現 (例: <!-- IMAGE_PROMPT: "..." -->)
-INLINE_IMAGE_PATTERN = re.compile(
-    r'<!--\s*IMAGE_PROMPT:\s*(.*?)\s*-->',
-    re.IGNORECASE
-)
-
-# 本文内アフィリエイトプレースホルダーの正規表現 (例: <!-- AFFILIATE: "kw" | "anchor" -->)
-INLINE_AFFILIATE_PATTERN = re.compile(
-    r'<!--\s*AFFILIATE:\s*"([^"]+)"\s*\|\s*"([^"]+)"\s*-->',
-    re.IGNORECASE
-)
-
-# 比較表内の商品リンクプレースホルダー (例: <!-- AFF_PRODUCT: "keyword" -->)
-INLINE_AFF_PRODUCT_PATTERN = re.compile(
-    r'<!--\s*AFF_PRODUCT:\s*"([^"]+)"\s*-->',
-    re.IGNORECASE
-)
 
 
 # --------------------------------------------------
@@ -573,32 +407,6 @@ def load_prompt_template(prompt_type="default"):
     with open(prompt_path, "r", encoding="utf-8") as f:
         return f.read()
 
-
-# アフィリエイト不適格なコピーライト
-_AF_EXCLUDE_CP_PATTERNS = ("mythology", "_mythology", "inktober")
-_AF_EXCLUDE_CPS = {
-    # 放送局
-    "adult_swim", "cartoon_network", "british_broadcasting_corporation",
-    # 食品・飲料・小売
-    "monster_energy", "cup_noodles", "jack_in_the_box_(restaurant)",
-    "cheetos", "frito-lay", "pepsico", "ikea",
-    # ミーム
-    "the_harkness_test_(meme)", "let_me_do_it_for_you", "casualties:_unknown",
-    "gigachad", "low_tier_god", "no_thoughts_head_empty",
-    "is_that_your_fucking_fursona?_that's_cringe",
-    # プラットフォーム
-    "e621", "scratch21", "gameoverse", "glitch_productions", "patreon", "bilibili",
-    # 音楽
-    "ac/dc", "doja_cat", "nirvana", "michael_jackson", "in_utero_(album)",
-    # ライセンス
-    "cc0", "creative_commons",
-    # 政府機関
-    "fbi",
-    # 抽象・イベント
-    "mood", "halloween", "father's_day",
-    # 成人向け
-    "takeshi_loves_sex",
-}
 
 
 def _is_affiliate_excluded(cp: str) -> bool:
@@ -1202,34 +1010,6 @@ def process_inline_products(content: str) -> str:
 # アフィリエイトリンク自動挿入
 # --------------------------------------------------
 
-# 無意味なキーワードのフィルタリスト（アフィリエイト検索に不適切な語）
-_AFFILIATE_BAD_PREFIXES = (
-    "a ", "an ", "the ", "how to", "what is", "why ", "best ",
-    "top ", "new ", "latest", "review", "tutorial", "guide ",
-    "e621", "github", "repo ", "repository", "source code",
-    "open source", "free ", "download", "install", "setup ",
-)
-
-# キーワード改善辞書：一般的なタグ → 購買意欲の高い検索語
-_KEYWORD_ENHANCEMENT = {
-    "tech": "プログラミング 入門書",
-    "ai": "AI 入門 書籍",
-    "pokemon": "ポケモン 公式",
-    "game": "ゲーム 周辺機器",
-    "programming": "プログラミング 本",
-    "web": "Web開発 書籍",
-    "javascript": "JavaScript 本",
-    "python": "Python 本",
-    "rust": "Rust 本",
-    "react": "React 書籍",
-    "vue": "Vue.js 本",
-    "next": "Next.js 書籍",
-    "docker": "Docker 入門",
-    "linux": "Linux 本",
-    "css": "CSS 本",
-    "html": "HTML 本",
-}
-
 
 def _is_affiliate_bad_keyword(kw: str) -> bool:
     """アフィリエイト検索に適さないキーワードを判定"""
@@ -1298,11 +1078,6 @@ def _is_github_repo_name(keyword: str) -> bool:
 # --------------------------------------------------
 # 楽天市場API 商品検索
 # --------------------------------------------------
-RAKUTEN_API_URL = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
-RAKUTEN_ORIGIN = "https://bwdsf3104.github.io"
-RAKUTEN_REFERER = "https://bwdsf3104.github.io/my-auto-blog/"
-RAKUTEN_CACHE_FILE = "data/rakuten_cache.json"
-RAKUTEN_CACHE_TTL_DAYS = 30
 _rakuten_last_call_time: float = 0.0
 
 
@@ -1522,13 +1297,6 @@ def _extract_article_keywords(content: str, max_kw: int = 2, prompt_type: str = 
     return keywords
 
 
-_KEMONO_RELATIONSHIP_AFFILIATE = {
-    "partnership": "バディ",
-    "yaoi": "BL",
-    "yuri": "百合",
-    "hetero": "恋愛",
-}
-
 
 def _build_kemono_tags(kemono_params: dict) -> list[str]:
     """kemono_story のパラメータからタグリストを生成する。
@@ -1599,10 +1367,6 @@ def _kemono_affiliate_keywords(kemono_params: dict) -> list[str]:
     return result
 
 
-# kemono_story 商品名の関連性判定トークン（固定リスト）
-_KEMONO_CORE_TOKENS = ("ケモノ", "バケモノ", "獣人", "獣", "動物", "アニマル", "anthro", "beast")
-_KEMONO_ANCHOR_KEYWORDS = ("ケモノ", "獣人", "動物")
-
 
 def _rakuten_is_relevant(item_name: str, keyword: str, prompt_type: str) -> bool:
     """楽天検索結果の関連性を判定する。
@@ -1625,8 +1389,6 @@ def _rakuten_is_relevant(item_name: str, keyword: str, prompt_type: str) -> bool
     return any(t.lower() in name for t in tokens)
 
 
-# 先頭句分割用の区切り語（長いもの優先に並べる。平仮名1文字は単語内で使われるため使わない）
-_RAKUTEN_PHRASE_DELIMITERS = r'(?:用的|向け|用|的)'
 
 
 def _rakuten_first_phrase(name: str) -> str:
@@ -1971,9 +1733,6 @@ def generate_content_with_retry(prompt):
 # --------------------------------------------------
 # トレンドトピック注入ヘルパー
 # --------------------------------------------------
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TOPICS_DIR = os.path.join(PROJECT_DIR, "data", "topics")
-TOPICS_JSON_PATH = os.path.join(TOPICS_DIR, "latest.json")
 
 def _check_topics_ttl(data: dict) -> bool:
     """
@@ -2099,8 +1858,6 @@ def _auto_fetch_topics(prompt_type: str, categories: list[str], data: dict) -> d
 # --------------------------------------------------
 # Trend usage logging
 # --------------------------------------------------
-TREND_USAGE_DIR = "data/trend_usage_logs"
-
 def _save_trend_usage_log(log_data: dict):
     """
     テンデントデータの使用状況を JSON ログとして保存する。
@@ -2118,9 +1875,6 @@ def _save_trend_usage_log(log_data: dict):
 # --------------------------------------------------
 # Draft metadata tracking (2-pass 生成の追跡)
 # --------------------------------------------------
-DRAFTS_DIR = "data/drafts"
-
-
 def _save_draft_metadata(
     file_timestamp: str,
     prompt_type: str,
@@ -2179,9 +1933,6 @@ def _save_draft_metadata(
 # --------------------------------------------------
 # Affiliate link generation log
 # --------------------------------------------------
-AFFILIATE_LINKS_DIR = "data/affiliate_logs"
-
-
 def _save_affiliate_link_log(
     file_timestamp: str,
     prompt_type: str,
@@ -2209,16 +1960,6 @@ def _save_affiliate_link_log(
 # --------------------------------------------------
 # Log / metadata cleanup (time-based)
 # --------------------------------------------------
-LOG_CLEANUP_DAYS = 30
-LOG_CLEANUP_DIRS = [
-    DRAFTS_DIR,
-    TREND_USAGE_DIR,
-    AFFILIATE_LINKS_DIR,
-    os.path.join("data", "prompt_logs"),
-]
-_LOG_TS_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}-\d{6})\.")
-
-
 def _cleanup_old_logs(days: int = LOG_CLEANUP_DAYS) -> int:
     """
     ログ・メタデータディレクトリから `days` 日より古いファイルを削除する。
@@ -3102,8 +2843,6 @@ def validate_and_fix_frontmatter(content: str) -> str:
 # --------------------------------------------------
 # slug リダイレクトの追跡
 # --------------------------------------------------
-SLUG_REDIRECTS_FILE = "data/slug-redirects.json"
-
 def _load_slug_redirects():
     if not os.path.exists(SLUG_REDIRECTS_FILE):
         return {}
