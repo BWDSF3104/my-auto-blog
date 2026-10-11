@@ -8,6 +8,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-11-readme-rewrite.md` - README を Astro スターター既定からプロジェクト説明へ書き換え（使用技術 + 生成フロー）。**完了** (2026-10-11)
+  - **実装内容**: `README.md` 全面書き換え（Astro スターター既定 46 行 → 231 行）: 特徴、6ステップの生成フロー図 + `generate_article.py` 11ステップ詳細、技術スタック / データソース / 環境変数表（変数名のみ）、プロジェクト構造、ローカル開発手順、CI/CD ワークフロー表、テスト規則
+  - **機微情報排除**: API キー値 / 個人名 / HuggingFace リポジトリ名（ユーザー指示）/ Cloudflare アカウント ID / ユーザー名入り URL を全て除外。`.env` キー値断片と既知別子の全文正規表現スキャンで該当なしを確認。BOM なし UTF-8
+  - **Verification**: コード変更なし（README のみ）→ AGENTS.md 規則により pytest / build 不要
+  - **Next Action**: なし
+
 - `docs/ai/tasks/2026-10-11-e621-generation-info.md` - 記事末尾の生成情報に e621 からの使用データ（参考キャラクター2投稿・人気版権・人気artist・データ時点）を表示。**完了** (2026-10-11)
   - **実装内容**: `_load_character_features()` を `_select_character_features()`（選出 dict 返却・None ならスキップ）/ `_format_character_features_instruction()`（指示文組立）に分割（`_load_character_features()` はラッパーとして残存）、`generate_post()` で 1 回の選出をプロンプト＋生成情報セクションの両方に使用（同一データ保証）、`_build_generation_info_section()` に `e621_info` パラメータ＋「参考キャラクターデータ（e621）」ブロック追加（kemono_story 限定・UTC 整形日付表示）。CSS 追加なし（`.gen-info-dl` 流用）
   - **Verification** (2026-10-11): `pytest scripts/tests/` → **365 passed** (7.00s)（ベースライン 355 + 新規 10）。一時記事投入 build → **140 page(s) built** (2.89s)、出力 HTML で本文末尾配置（`</article>` 直前）・既定閉・セクション内 h2〜h4 なし（TOC 非載入）・e621 ブロックの実データ表示（参考キャラ2投稿・人気版権/artist・`2026-10-11 01:46 UTC（25投稿を分析）`）確認。一時ファイル削除後の再 build → **138 page(s) built** (2.88s) クリーン状態確認

@@ -4,6 +4,26 @@ Completed plans moved from `plans.md`. Kept 5 most recent in `plans.md`.
 
 ---
 
+## トレンドソース品質修正（ANN ナвиг junk 除去 + Crunchyroll 一時無効 + per-source TTL 誤判定修正） (2026-10-10)
+
+トレンドトピック有効化後の実検証で、ANN の HTML パースが nav・フッター記事を収集している（Crunchyroll News 全15件が非記事URL・記事本文0件）こと、および `_check_per_source_ttl()` が他カテゴリのみソースの鮮度劣化を誤判定して kemono 実行のたびに自動収集トリガーが発火していたことを発見。`ENTERTAINMENT_ARTICLE_PATTERNS`（ソース別 URL ホワイトリスト、ANN = `^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/`）新設 + `_parse_entertainment_page()` を `urljoin` 絶対URL解決・重複排除・15件上限で書き換え。Crunchyroll は `ENTERTAINMENT_HTML_SOURCES` から一時無効（静的 HTML では記事 0 件、JS 描画、RSS は 404）。`_check_per_source_ttl()`: 他カテゴリのみソース（topics あり・要求カテゴリ 0 件）は `expired=False`（トリガーしない）、topics 0 件ソース（完全失敗）は従来どおり `True`（自己修復維持）。`latest.json` から Kemono/Crunchyroll junk 25 件除去（総 124→99）。`by_category`/`all` merge 構造ドリフト（旧 pokemon 7 件）は known-issues.md に記録のみで変更なし。pytest 348 通過（新規9）、実 fetch で ANN 14 件がすべて正規記事 URL、TTL dry check で kemono トリガーなしを確認。詳細: `docs/ai/tasks/2026-10-10-trend-source-quality-fixes.md`
+
+## トレンドデータ RSS 強化 + トrend トピック有効化 (2026-10-10)
+
+RSS 中心ソースの鮮度低下・収集不足を解消するため `fetch_topics.py` の RSS 収集を強化し、kemono 以外のカテゴリ（entertainment / pokemon）のトレンドトピックを有効化。`_fetch_rss()` にタイムアウト・エラーハンドリング・件数上限・重複排除を追加し、ソース別収集設定（`RSS_SOURCES` の `max_items` / `enabled`）を構造化。entertainment（ANN + Crunchyroll HTML + RSS）と pokemon（Bulbapedia RSS）を `latest.json` の `all`/`by_category` に常時含めるよう変更。`data/topics/*.json` からの junk（重複・非記事URL）除去。pytest 339 通過（新規8）、実 fetch で各ソースの収集件数を確認。詳細: `docs/ai/tasks/2026-10-10-trend-rss-enhancement.md`
+
+## アフィリエイト商品推荐の書籍偏重の無効化 (2026-10-10)
+
+楽天アフィリエイト商品推荐が書籍に偏りすぎているため、`generate_article.py` の商品推薦プロンプトに「書籍偏重の無効化」指示を追加。書籍以外の商品カテゴリ（ガジェット・アニメ・ゲーム・ファンアートグッズ等）も平等に推薦するよう明示し、書籍推荐の上限を 1〜2 件に制限。プロンプトテキストのみ変更でコードロジック不変。pytest 331 通過、build 成功。詳細: `docs/ai/tasks/2026-10-10-affiliate-product-diversity.md`
+
+## 世界設定の2段階拡大（7→12種） (2026-10-10)
+
+kemono_story の世界設定（`world_setting`）が 7 種しかなく、記事の多様性が不足していたため 12 種に拡大。`generate_article.py` の `WORLD_SETTINGS` に「サイバーパンク」「ファンタジー」「SF」「現代・都会」「現代・田舎」「異世界転生」を追加し、各設定に对应的な `world_setting_key` / ジャンルマッピング / プロンプト指示文を追加。`WORLD_SETTING_GENRE_MAP`（genre_score.py 統合用）も同期更新。pytest 325 通過、build 成功。詳細: `docs/ai/tasks/2026-10-10-world-setting-expansion.md`
+
+## ストーリー系ジャンルの拡充 (2026-10-10)
+
+kemono_story のストーリー系ジャンル（`target_genres`）が 3 種（sf / fantasy / action）しかなく、記事の多様性が不足していたため 6 種に拡充。`generate_article.py` の `STORY_GENRES` に「cyberpunk」「romance」「drama」を追加し、各ジャンルに对应的なプロンプト指示文・タグ候補を追加。`genre_score.py` の `PROTECTED_SOURCES` と Clef-flash スコアリングのジャンルリストも同期更新。pytest 318 通過、build 成功。詳細: `docs/ai/tasks/2026-10-10-genre-expansion.md`
+
 ## ログ・メタファイルのクリーン処理（リネーム+期間削除） (2026-10-10)
 
 デプロイごとに `drafts/`・`trend_usage/`・`affiliate_links/`・`prompt_logs/`（いずれも無制限蓄積・readback なし監査ログ）がリポジトリに蓄積していたため整理。ファイル名から「ログであること」が分かりにくい `data/affiliate_links` の命名を是正し、ログディレクトリ名を `_logs` 規則で統一（`affiliate_links`→`affiliate_logs`、`trend_usage`→`trend_usage_logs`。`git mv` + `.gitkeep` 追加 + 機能コード1行 + `deploy.yml` 参照更新）。`generate_article.py` に `_cleanup_old_logs(days=30)` 追加（ファイル名タイムスタンプ `%Y-%m-%d-%H%M%S` 基準で30日前ファイルを4ディレクトリから削除、`.gitkeep`・形式不一致ファイルは削除対象外、`generate_post()` 末尾で呼出）。削除は `deploy.yml` の既存2段コミット構造で捕捉（`drafts/`・`trend_usage_logs/`・`prompt_logs/`→第1コミット、`affiliate_logs/`→`git add -A` で第2コミット）。`topics/` は既存の最新10件保持（個数ベース, `fetch_topics.py:892`）を維持。全モックテスト8件追加、pytest 305通過。詳細: `docs/ai/tasks/2026-10-10-log-cleanup.md`
