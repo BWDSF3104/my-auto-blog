@@ -1113,7 +1113,7 @@ class TestAutoFetchTopics:
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(returncode=0, stdout="完了: 10 件", stderr="")
             with patch("builtins.open", mock_open(read_data=json.dumps({"test": True}))), \
-                 patch("generate_article.TOPICS_JSON_PATH", "data/topics/latest.json"):
+                 patch("article.trends.TOPICS_JSON_PATH", "data/topics/latest.json"):
                 result = _auto_fetch_topics("default", ["tech"], data)
         mock_run.assert_called_once()
         call_args = mock_run.call_args
@@ -1141,7 +1141,7 @@ class TestAutoFetchTopics:
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(returncode=0, stdout="完了: 10 件", stderr="")
             with patch("builtins.open", mock_open(read_data=json.dumps({"test": True}))), \
-                 patch("generate_article.TOPICS_JSON_PATH", "data/topics/latest.json"):
+                 patch("article.trends.TOPICS_JSON_PATH", "data/topics/latest.json"):
                 result = _auto_fetch_topics("default", ["tech"], data)
         mock_run.assert_called_once()
 
@@ -2454,7 +2454,7 @@ class TestWorldSettingGenreMap:
 class TestLoadGenreScores:
     def test_missing_file_returns_empty(self, tmp_path):
         import generate_article
-        with patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")):
+        with patch("article.trends.GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")):
             result = generate_article._load_genre_scores()
         assert result == {}
 
@@ -2463,7 +2463,7 @@ class TestLoadGenreScores:
         path = tmp_path / "topics.json"
         data = {"scored_at": "2026-10-09T12:00:00Z", "topics": [], "copyrights": []}
         path.write_text(json.dumps(data), encoding="utf-8")
-        with patch.object(generate_article, "GENRE_SCORES_PATH", str(path)):
+        with patch("article.trends.GENRE_SCORES_PATH", str(path)):
             result = generate_article._load_genre_scores()
         assert result["topics"] == []
 
@@ -2471,7 +2471,7 @@ class TestLoadGenreScores:
         import generate_article
         path = tmp_path / "topics.json"
         path.write_text("{invalid json", encoding="utf-8")
-        with patch.object(generate_article, "GENRE_SCORES_PATH", str(path)):
+        with patch("article.trends.GENRE_SCORES_PATH", str(path)):
             result = generate_article._load_genre_scores()
         assert result == {}
 
@@ -2542,11 +2542,11 @@ class TestAppendTrendingTopicsGenre:
         }
         scores_path.write_text(json.dumps(scores_data), encoding="utf-8")
 
-        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
-             patch.object(generate_article, "GENRE_SCORES_PATH", str(scores_path)), \
-             patch.object(generate_article, "_save_trend_usage_log"), \
-             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
-             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+        with patch("article.trends.TOPICS_JSON_PATH", str(topics_path)), \
+             patch("article.trends.GENRE_SCORES_PATH", str(scores_path)), \
+             patch("article.trends._save_trend_usage_log"), \
+             patch("article.trends._check_topics_ttl", return_value=False), \
+             patch("article.trends._check_per_source_ttl", return_value={}):
             result, keywords, urls, titles = generate_article._append_trending_topics(
                 "", "kemono_story", target_genres=["sf"]
             )
@@ -2569,11 +2569,11 @@ class TestAppendTrendingTopicsGenre:
         }
         topics_path.write_text(json.dumps(topics_data, ensure_ascii=False), encoding="utf-8")
 
-        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
-             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
-             patch.object(generate_article, "_save_trend_usage_log"), \
-             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
-             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+        with patch("article.trends.TOPICS_JSON_PATH", str(topics_path)), \
+             patch("article.trends.GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch("article.trends._save_trend_usage_log"), \
+             patch("article.trends._check_topics_ttl", return_value=False), \
+             patch("article.trends._check_per_source_ttl", return_value={}):
             result, keywords, urls, titles = generate_article._append_trending_topics(
                 "", "kemono_story", target_genres=["sf"]
             )
@@ -2602,11 +2602,11 @@ class TestAppendTrendingTopicsDescription:
             {"title": "Game news", "url": "https://gs.com/1", "source": "GameSpot RSS",
              "category": "kemono", "score": 0, "description": desc},
         ])
-        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
-             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
-             patch.object(generate_article, "_save_trend_usage_log"), \
-             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
-             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+        with patch("article.trends.TOPICS_JSON_PATH", str(topics_path)), \
+             patch("article.trends.GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch("article.trends._save_trend_usage_log"), \
+             patch("article.trends._check_topics_ttl", return_value=False), \
+             patch("article.trends._check_per_source_ttl", return_value={}):
             result, _, _, _ = generate_article._append_trending_topics("", "kemono_story")
         assert "Game news" in result
         assert desc[:100] in result
@@ -2618,11 +2618,11 @@ class TestAppendTrendingTopicsDescription:
             {"title": "Plain topic", "url": "https://x.com/1", "source": "rss",
              "category": "kemono", "score": 0},
         ])
-        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
-             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
-             patch.object(generate_article, "_save_trend_usage_log"), \
-             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
-             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+        with patch("article.trends.TOPICS_JSON_PATH", str(topics_path)), \
+             patch("article.trends.GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch("article.trends._save_trend_usage_log"), \
+             patch("article.trends._check_topics_ttl", return_value=False), \
+             patch("article.trends._check_per_source_ttl", return_value={}):
             result, _, _, _ = generate_article._append_trending_topics("", "kemono_story")
         assert "Plain topic" in result
         assert " — " not in result
@@ -2634,11 +2634,11 @@ class TestAppendTrendingTopicsDescription:
             {"title": "t", "url": "https://gs.com/1", "source": "GameSpot RSS",
              "category": "kemono", "score": 0, "description": desc},
         ])
-        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
-             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
-             patch.object(generate_article, "_save_trend_usage_log"), \
-             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
-             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+        with patch("article.trends.TOPICS_JSON_PATH", str(topics_path)), \
+             patch("article.trends.GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch("article.trends._save_trend_usage_log"), \
+             patch("article.trends._check_topics_ttl", return_value=False), \
+             patch("article.trends._check_per_source_ttl", return_value={}):
             result, _, _, _ = generate_article._append_trending_topics("", "kemono_story")
         assert " — " + "あ" * 100 in result
         assert "あ" * 101 not in result
@@ -2651,11 +2651,11 @@ class TestAppendTrendingTopicsDescription:
              "category": "kemono", "score": 0, "description": desc},
         ])
         mock_log = MagicMock()
-        with patch.object(generate_article, "TOPICS_JSON_PATH", str(topics_path)), \
-             patch.object(generate_article, "GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
-             patch.object(generate_article, "_save_trend_usage_log", mock_log), \
-             patch.object(generate_article, "_check_topics_ttl", return_value=False), \
-             patch.object(generate_article, "_check_per_source_ttl", return_value={}):
+        with patch("article.trends.TOPICS_JSON_PATH", str(topics_path)), \
+             patch("article.trends.GENRE_SCORES_PATH", str(tmp_path / "nonexistent.json")), \
+             patch("article.trends._save_trend_usage_log", mock_log), \
+             patch("article.trends._check_topics_ttl", return_value=False), \
+             patch("article.trends._check_per_source_ttl", return_value={}):
             generate_article._append_trending_topics("", "kemono_story")
         log = mock_log.call_args[0][0]
         assert log["selected"][0]["description"] == "あ" * 200
@@ -2857,7 +2857,7 @@ class TestLoadCharacterFeaturesGenre:
         orig_cwd = os.getcwd()
         try:
             os.chdir(str(tmp_path))
-            with patch.object(generate_article, "GENRE_SCORES_PATH", str(scores_path)):
+            with patch("article.trends.GENRE_SCORES_PATH", str(scores_path)):
                 result = generate_article._load_character_features(target_genres=["fantasy"])
         finally:
             os.chdir(orig_cwd)
