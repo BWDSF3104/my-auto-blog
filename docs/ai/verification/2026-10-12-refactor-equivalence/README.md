@@ -17,7 +17,7 @@ L3（実 Gemini 1 回）で実 API 経路の構造健全性を確認。リファ
 |---|---|---|
 | L0 | `pytest scripts/tests/ -v`（365 テスト） | **PASS**（`pytest_full.log`） |
 | L1 | 決定論的リプレイ A/B: baseline `69bb5e8` vs 現行、全バリアント（default / kemono_story / ai_deep）× 自己整合 2 回 + A/B 1 回 | **PASS**（`l1_report.txt`、`runs/`） |
-| L2 | 本番 CI（`deploy.yml` 毎日実行）のデプロイ検証 | 2026-10-13 実行予定（push 後 `gh run list --workflow=deploy-only.yml` で確認） |
+| L2 | 本番生成 CI（`deploy.yml` 毎日 cron `0 23 * * *` UTC、実測で約 3 時間遅延して ~02:00 UTC 開始）のリファクタ後初回実行 | 2026-10-13 実行予定（`gh run list --workflow=deploy.yml --limit 2` で確認。リファクタ push 10-12 08:51 UTC 後の初回 = 10-13 の run） |
 | L3 | 実 Gemini API 1 回（`gemini-3.8-flash`、pass1 実呼び出し / pass2・画像はモック）の構造健全性チェック | **PASS**（`l3_report.txt`、`runs/realrun_default/`） |
 
 ## 方法（L1）
