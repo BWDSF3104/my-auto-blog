@@ -579,31 +579,65 @@ def _rakuten_collect(keywords: list[str], prompt_type: str, max_products: int = 
     return collected
 
 
-def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None, gemini_products: list[str] = None, kemono_params: dict = None) -> str:
-    """
-    記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
+def _fallback_keyword_from_tags_title(content: str) -> str | None:
+    """frontmatter の tags 先頭、なければ title の先頭語からフォールバックキーワードを抽出する。"""
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    title = title_match.group(1).strip() if title_match else ""
 
-    キーワード優先順位:
+    tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
+    keyword = None
+    if tags_match:
+        tag_items = [t.strip().strip('"\'') for t in tags_match.group(1).split(',') if t.strip()]
+        if tag_items:
+            keyword = tag_items[0]
+
+    if not keyword:
+        cleaned = re.sub(r'[【】「」『』\[\]()（）\s]', ' ', title).strip()
+        words = [w for w in cleaned.split() if len(w) > 1]
+        keyword = words[0] if words else None
+
+    return keyword
+
+
+def _append_trend_keywords(
+    keywords_to_use: list[str],
+    keyword_sources: list[str],
+    trend_keywords: list[str] | None,
+    prompt_type: str,
+) -> None:
+    """trend_keywords で最大3件まで補充する（GitHubリポジトリ名・重複・悪質キーワードは除外）。"""
+    if not trend_keywords or len(keywords_to_use) >= 3:
+        return
+    seen = set(k.replace(" 書籍", "").replace(" 関連グッズ", "").replace(" 関連作品", "") for k in keywords_to_use)
+    for kw in trend_keywords:
+        kw_clean = kw.strip()
+        if _is_github_repo_name(kw_clean):
+            continue
+        if _is_affiliate_bad_keyword(kw_clean):
+            continue
+        if kw_clean in seen:
+            continue
+        seen.add(kw_clean)
+        improved = _improve_keyword(kw_clean, prompt_type)
+        keywords_to_use.append(improved)
+        keyword_sources.append("trend")
+        if len(keywords_to_use) >= 3:
+            break
+
+
+def _resolve_affiliate_keywords(
+    content: str,
+    prompt_type: str,
+    script_keywords: list[str] | None,
+    trend_keywords: list[str] | None,
+) -> tuple[list[str], list[str]]:
+    """
+    アフィリエイト検索キーワードを優先順位で解決する。
     1. script_keywords（スクリプトが直接生成したキーワード。ストーリー系）
-    2. trend_keywords（GitHubリポジトリ名は除外）
-    3. tags / title のフォールバック
-
-    改善点:
-    - スクリプト決定パラメータからキーワード生成（ストーリー系）
-    - UTM パラメータによるトラッキング
-    - 複数のプラットフォーム対応
-    - 購買意欲を促すCTA文言
+    2. 記事本文からの抽出 → trend_keywords で補充（GitHubリポジトリ名は除外）
+    3. tags / title のフォールバック → 最終フォールバック
+    戻り値: (keywords, keyword_sources)
     """
-    if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
-        return content
-
-    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
-    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
-
-    # prompt_type を取得（キーワード改善用）
-    type_match = re.search(r'^prompt_type:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    prompt_type = type_match.group(1).strip() if type_match else "default"
-
     keywords_to_use: list[str] = []
     keyword_sources: list[str] = []
 
@@ -624,40 +658,11 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
             keyword_sources.append("article_extract")
 
     # 2. trend_keywords を補充（GitHubリポジトリ名は除外）
-    if trend_keywords and len(keywords_to_use) < 3:
-        seen = set(k.replace(" 書籍", "").replace(" 関連グッズ", "").replace(" 関連作品", "") for k in keywords_to_use)
-        for kw in trend_keywords:
-            kw_clean = kw.strip()
-            if _is_github_repo_name(kw_clean):
-                continue
-            if _is_affiliate_bad_keyword(kw_clean):
-                continue
-            if kw_clean in seen:
-                continue
-            seen.add(kw_clean)
-            improved = _improve_keyword(kw_clean, prompt_type)
-            keywords_to_use.append(improved)
-            keyword_sources.append("trend")
-            if len(keywords_to_use) >= 3:
-                break
+    _append_trend_keywords(keywords_to_use, keyword_sources, trend_keywords, prompt_type)
 
     # 3. 全て空の場合は tags / title 抽出にフォールバック
     if not keywords_to_use:
-        title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-        title = title_match.group(1).strip() if title_match else ""
-
-        tags_match = re.search(r'^tags:\s*\[(.*?)\]', content, re.MULTILINE)
-        keyword = None
-        if tags_match:
-            tag_items = [t.strip().strip('"\'') for t in tags_match.group(1).split(',') if t.strip()]
-            if tag_items:
-                keyword = tag_items[0]
-
-        if not keyword:
-            cleaned = re.sub(r'[【】「」『』\[\]()（）\s]', ' ', title).strip()
-            words = [w for w in cleaned.split() if len(w) > 1]
-            keyword = words[0] if words else None
-
+        keyword = _fallback_keyword_from_tags_title(content)
         if keyword:
             keywords_to_use = [_improve_keyword(keyword, prompt_type)]
             keyword_sources = ["fallback_tags_title"]
@@ -669,10 +674,17 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
                 keywords_to_use = ["プログラミング 入門書"]
             keyword_sources = ["fallback_default"]
 
-    # UTM トラッキングパラメータ
-    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
+    return keywords_to_use, keyword_sources
 
+
+def _build_affiliate_links_html(
+    keywords_to_use: list[str],
+    keyword_sources: list[str],
+    amazon_tag: str,
+    rakuten_id: str,
+    utm_content: str,
+) -> tuple[str, list[dict]]:
+    """キーワードごとの Amazon / 楽天検索リンク HTML とリンクログエントリを組立する。"""
     links_html = ""
     link_log_entries: list[dict] = []
     for i, kw in enumerate(keywords_to_use):
@@ -698,10 +710,18 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
             "amazon_url": amazon_url,
             "rakuten_url": rakuten_url,
         })
+    return links_html, link_log_entries
 
-    # 楽天API商品カードの生成（末尾セクション一番上に追加）
-    # カスケード検索: キーワードを優先順位順に辿り、関連性フィルタ通過した最大3商品を収集
-    title_for_card = (title_match.group(1).strip() if title_match else "post")
+
+def _build_rakuten_cards_section(
+    gemini_products: list[str] | None,
+    keywords_to_use: list[str],
+    prompt_type: str,
+    kemono_params: dict | None,
+    title_for_card: str,
+) -> str:
+    """楽天API商品カードセクションを組立する（末尾セクション一番上に追加）。
+    カスケード検索: キーワードを優先順位順に辿り、関連性フィルタ通過した最大3商品を収集。"""
     api_keywords = _rakuten_api_keywords(gemini_products, keywords_to_use, prompt_type, kemono_params)
     collected = _rakuten_collect(api_keywords, prompt_type, max_products=3)
     rakuten_cards_html = "".join(
@@ -712,22 +732,71 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
         card_count = rakuten_cards_html.count(card_div_open)
         rakuten_cards_html = f'\n<div class="product-cards">{rakuten_cards_html}\n</div>'
         print(f"   🖼️ 楽天API商品カードを末尾セクションに {card_count} 枚追加")
+    return rakuten_cards_html
 
-    # 複数キーワードがある場合はセクションを分割
-    sections = ""
-    if len(keywords_to_use) > 1:
-        # 1つ目のキーワードはメインCTAとして強調
-        kw0 = keywords_to_use[0]
-        encoded_kw0 = urllib.parse.quote(kw0)
-        main_amazon = (
-            f"https://www.amazon.co.jp/s?k={encoded_kw0}&tag={amazon_tag}"
-            f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
-        )
-        sections = f"""
+
+def _build_main_cta_section(
+    keywords_to_use: list[str],
+    amazon_tag: str,
+    utm_content: str,
+) -> str:
+    """複数キーワード時、1つ目のキーワードをメインCTAとして強調するセクションを組立する。"""
+    if len(keywords_to_use) <= 1:
+        return ""
+    kw0 = keywords_to_use[0]
+    encoded_kw0 = urllib.parse.quote(kw0)
+    main_amazon = (
+        f"https://www.amazon.co.jp/s?k={encoded_kw0}&tag={amazon_tag}"
+        f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
+    )
+    return f"""
 <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; padding: 16px 20px; margin: 16px 0; text-align: center;">
 <p style="font-size: 1.1em; font-weight: bold; margin: 0 0 12px 0;">🔥 「{kw0}」の今すぐチェックできるおすすめアイテム</p>
 <a href="{main_amazon}" style="display: inline-block; background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1em;">Amazonで確認する →</a>
 </div>"""
+
+
+def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None, gemini_products: list[str] = None, kemono_params: dict = None) -> str:
+    """
+    記事末尾にAmazon・楽天のアフィリエイト検索リンクブロックを自動挿入する。
+
+    キーワード優先順位:
+    1. script_keywords（スクリプトが直接生成したキーワード。ストーリー系）
+    2. trend_keywords（GitHubリポジトリ名は除外）
+    3. tags / title のフォールバック
+
+    改善点:
+    - スクリプト決定パラメータからキーワード生成（ストーリー系）
+    - UTM パラメータによるトラッキング
+    - 複数のプラットフォーム対応
+    - 購買意欲を促すCTA文言
+    """
+    if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
+        return content
+
+    amazon_tag = os.environ.get("AMAZON_TRACKING_ID", "your-amazon-tag-22")
+    rakuten_id = os.environ.get("RAKUTEN_AFFILIATE_ID", "your-rakuten-id")
+
+    # prompt_type を取得（キーワード改善用）
+    type_match = re.search(r'^prompt_type:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    prompt_type = type_match.group(1).strip() if type_match else "default"
+
+    keywords_to_use, keyword_sources = _resolve_affiliate_keywords(
+        content, prompt_type, script_keywords, trend_keywords
+    )
+
+    # UTM トラッキングパラメータ
+    title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
+
+    links_html, link_log_entries = _build_affiliate_links_html(
+        keywords_to_use, keyword_sources, amazon_tag, rakuten_id, utm_content
+    )
+    rakuten_cards_html = _build_rakuten_cards_section(
+        gemini_products, keywords_to_use, prompt_type, kemono_params,
+        title_match.group(1).strip() if title_match else "post",
+    )
+    sections = _build_main_cta_section(keywords_to_use, amazon_tag, utm_content)
 
     affiliate_section = f"""
 
