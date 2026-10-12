@@ -85,7 +85,8 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 my-auto-blog/
 ├── scripts/               # Python automation scripts
 │   ├── fetch_topics.py    # Trend data collection
-│   ├── generate_article.py # Article generation
+│   ├── generate_article.py # Article generation (entry + pipeline)
+│   ├── article/            # article/ package (config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo)
 │   └── prompts/           # Prompt templates
 ├── src/                   # Astro source
 │   └── content/posts/     # Generated markdown posts

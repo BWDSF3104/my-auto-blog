@@ -1,6 +1,5 @@
 import os
 import glob
-import html
 import json
 import random
 from dotenv import load_dotenv
@@ -9,8 +8,6 @@ import re
 from datetime import datetime, timezone, timedelta
 import sys
 import time
-from google import genai
-from google.genai import errors
 
 # Windows コンソールで cp932 → UTF-8 変換エラーを防ぐ
 # （パイプ時はstdioがロケールcp932にフォールバックし、絵文字等非収録文字でUnicodeEncodeErrorになる）
@@ -107,416 +104,32 @@ from article.frontmatter import (
     _validate_description,
     validate_and_fix_frontmatter,
 )
-
-client = genai.Client(api_key=GEMINI_API_KEY)
-
-
-# --------------------------------------------------
-# プロンプト読み込み
-# --------------------------------------------------
-def load_prompt_template(prompt_type="default"):
-    prompt_path = os.path.join("scripts", "prompts", f"{prompt_type}.txt")
-    if not os.path.exists(prompt_path):
-        prompt_path = os.path.join("scripts", "prompts", "default.txt")
-
-    with open(prompt_path, "r", encoding="utf-8") as f:
-        return f.read()
-
-
-def _is_affiliate_excluded(cp: str) -> bool:
-    if cp in _AF_EXCLUDE_CPS:
-        return True
-    if any(cp.startswith(p) for p in _AF_EXCLUDE_CP_PATTERNS):
-        return True
-    if any(cp.endswith(p) for p in _AF_EXCLUDE_CP_PATTERNS):
-        return True
-    return False
-
-
-def _cp_genre_score(cp: str, cp_scores: dict, target_genres: list[str]) -> float:
-    """版権のジャンル適合スコア（target_genres の最大値、無スコア時は -1）を返す。"""
-    s = cp_scores.get(cp)
-    if not s:
-        return -1
-    return max(s.get(g, 0) for g in target_genres)
-
-
-def _filter_valid_copyrights(aggregates: dict, target_genres: list[str] | None = None) -> list[str]:
-    """集計版権を件数降順に並べアフィリエイト不適格を除外し、
-    target_genres 指定時はジャンル適合度で優先する。最大10件を返す。"""
-    aggregate_copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])
-    valid_cps = [cp for cp, _ in aggregate_copyrights if not _is_affiliate_excluded(cp)]
-    if target_genres:
-        scores_data = _load_genre_scores()
-        cp_scores = {c["name"]: c.get("scores") for c in scores_data.get("copyrights", []) if c.get("scores")}
-        valid_cps.sort(key=lambda cp: _cp_genre_score(cp, cp_scores, target_genres), reverse=True)
-    return valid_cps[:10]
-
-
-def _extract_post_copyrights(selected: list[dict]) -> list[str]:
-    """選出投稿から版権を抽出する（アフィリエイト不適格は除外・重複排除）。"""
-    post_copyrights = []
-    for post in selected:
-        for cp in post.get("copyrights", []):
-            if not _is_affiliate_excluded(cp) and cp not in post_copyrights:
-                post_copyrights.append(cp)
-    return post_copyrights
-
-
-def _merge_copyrights(post_copyrights: list[str], base_copyrights: list[str]) -> str:
-    """選出投稿の版権を先頭に、不足分を集計ベースで補完し上位8件のカンマ結合文字列を返す。"""
-    all_copyrights = list(post_copyrights)
-    for cp in base_copyrights:
-        if cp not in all_copyrights:
-            all_copyrights.append(cp)
-    return ", ".join(c for c in all_copyrights[:8]) if all_copyrights else "-"
-
-
-def _extract_top_artists(aggregates: dict) -> str:
-    """人気artistを抽出し（unknown_artistは既に除外済み）上位8件のカンマ結合文字列を返す。"""
-    aggregate_artists = sorted(aggregates.get("artists", {}).items(), key=lambda x: -x[1])
-    return ", ".join(a for a, _ in aggregate_artists[:8]) if aggregate_artists else "-"
-
-
-def _select_character_features(target_genres: list[str] | None = None) -> dict | None:
-    """e621 から集計したキャラクター特徴を読み込み、プロンプト注入・生成情報表示に使用する参考データを選出する。
-    投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
-    版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
-    target_genres 指定時は、事前スコアリング結果でジャンル適合度の高い版権を優先する。
-    character_features.json が無い・読み取り不能・投稿データが空の場合は None を返す。
-    """
-    features_path = os.path.join("data", "character_features.json")
-    if not os.path.exists(features_path):
-        print("  [char-features] character_features.json が見つかりません（注入スキップ）")
-        return None
-
-    try:
-        with open(features_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception as e:
-        print(f"  [char-features] 読み取り失敗: {e}（注入スキップ）")
-        return None
-
-    posts = data.get("posts", [])
-    aggregates = data.get("aggregates", data)
-
-    if not posts:
-        print("  [char-features] 投稿データが空です（注入スキップ）")
-        return None
-
-    # 投稿からランダムに2つ選出（版権重複時は再抽選）
-    selected = _select_two_posts(posts, max_retries=10)
-
-    # 集計結果からベース版権を確保（アフィリエイト不適格は除外）
-    base_copyrights = _filter_valid_copyrights(aggregates, target_genres)
-
-    # 選出投稿から版権を抽出（アフィリエイト不適格は除外）
-    post_copyrights = _extract_post_copyrights(selected)
-
-    # 選出投稿の版権を先頭に、不足分を集計ベースで補完
-    copyright_names = _merge_copyrights(post_copyrights, base_copyrights)
-
-    # 人気artistを抽出（unknown_artistは既に除外済み）
-    artist_names = _extract_top_artists(aggregates)
-
-    return {
-        "updated_at": data.get("updated_at", "unknown"),
-        "total_posts": data.get("total_posts_analyzed", 0),
-        "raw_posts": len(posts),
-        "posts": selected,
-        "copyrights": copyright_names,
-        "artists": artist_names,
-    }
-
-
-def _format_character_features_instruction(info: dict | None) -> str:
-    """e621 キャラクター特徴の参考データ（_select_character_features の戻り値）から、
-    kemono_story プロンプトに注入する指示文を生成する。None の場合は空文字列。"""
-    if not info:
-        return ""
-
-    lines = [
-        "",
-        "【キャラクター特徴のトレンドデータ（参考）】",
-        "",
-    ]
-
-    # 各投稿からキャラクタープロファイルを生成
-    for i, post in enumerate(info["posts"], 1):
-        species = ", ".join(post.get("species", [])) or "-"
-        colors = ", ".join(post.get("colors", [])) or "-"
-        physical = ", ".join(post.get("physical", [])[:8]) or "-"
-        characters = ", ".join(post.get("characters", [])) or "-"
-        post_copyrights = ", ".join(cp for cp in post.get("copyrights", []) if not _is_affiliate_excluded(cp)) or "-"
-        lines.append(f"・参考キャラクター{i}:")
-        lines.append(f"  種族: {species}")
-        lines.append(f"  色: {colors}")
-        lines.append(f"  身体的特徴: {physical}")
-        lines.append(f"  参照: {characters}")
-        lines.append(f"  作品: {post_copyrights}")
-        lines.append("")
-
-    lines.append(f"・人気版権: {info['copyrights']}")
-    lines.append(f"・人気artist: {info['artists']}")
-    lines.append("")
-    lines.append("アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。")
-
-    print(f"  [char-features] 注入: updated_at={info['updated_at']}, posts={info['total_posts']} (raw:{info['raw_posts']}), selected={len(info['posts'])}, copyrights={len(info['copyrights'])}, artists={len(info['artists'])}")
-
-    return "\n".join(lines)
-
-
-def _load_character_features(target_genres: list[str] | None = None) -> str:
-    """e621 から集計したキャラクター特徴を読み込んで、プロンプト用の指示文を生成する。
-    投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
-    版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
-    target_genres 指定時は、事前スコアリング結果でジャンル適合度の高い版権を優先する。
-    """
-    return _format_character_features_instruction(_select_character_features(target_genres))
-
-
-def _select_two_posts(posts: list[dict], max_retries: int = 10) -> list[dict]:
-    """投稿リストからランダムに2つ選出。版権が重複する場合は再抽選。"""
-    import random
-
-    if len(posts) < 2:
-        return list(posts)
-
-    # 最初の投稿をランダム選択
-    first = random.choice(posts)
-    first_copyrights = set(first.get("copyrights", []))
-
-    # 2つ目の投稿を版権重複なしで選択
-    for _ in range(max_retries):
-        second = random.choice(posts)
-        second_copyrights = set(second.get("copyrights", []))
-        if not (first_copyrights & second_copyrights):
-            return [first, second]
-
-    # 再試行しても重複回避できない場合は最初の2投稿を返す
-    return posts[:2]
-
-
-# --------------------------------------------------
-# 2-pass 生成: 下書きの精製
-# プロンプトは scripts/prompts/refine_tech.txt, refine_story.txt に分離
-
-
-def refine_content(draft: str, prompt_type: str):
-    """
-    下書き記事を2回目のGemini API呼び出しで精製する。
-    技術記事と物語で異なる精製プロンプトを使用する。
-    返り値: (refined_content, model_name) のタプル。
-    失敗時は (draft, None) を返す。
-    """
-    if prompt_type in ("kemono_story", "novel", "story"):
-        refine_template = load_prompt_template("refine_story")
-    else:
-        refine_template = load_prompt_template("refine_tech")
-    refine_prompt = refine_template + f"\n\n【下書き】\n{draft}"
-
-    try:
-        print("✨ 2-pass 精製中...")
-        response, model_name = generate_content_with_retry(refine_prompt)
-        refined = response.text.strip()
-
-        # コードブロック装飾の除外
-        if refined.startswith("```"):
-            lines = refined.splitlines()
-            if lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines[-1].startswith("```"):
-                lines = lines[:-1]
-            refined = "\n".join(lines)
-
-        print("✨ 精製完了")
-        return (refined.strip(), model_name)
-    except Exception as e:
-        print(f"⚠️ 精製パスでエラーが発生しました: {e}")
-        print("⚠️ 下書きのまま続行します")
-        return (draft, None)
-
-
-# --------------------------------------------------
-# Gemini API 呼び出し
-# --------------------------------------------------
-def generate_content_with_retry(prompt):
-    """Gemini APIを呼び出して (response, model_name) のタプルを返す。"""
-    max_retries = 3
-    for model_name in MODELS_TO_TRY:
-        for attempt in range(1, max_retries + 1):
-            try:
-                print(f"Gemini API ({model_name}) リクエスト中... (試行 {attempt}/{max_retries})")
-                response = client.models.generate_content(
-                    model=model_name,
-                    contents=prompt,
-                )
-                return (response, model_name)
-            except errors.APIError as e:
-                err_str = str(e)
-                if "404" in err_str or "NOT_FOUND" in err_str:
-                    break
-                if attempt < max_retries:
-                    time.sleep(5 * (2 ** (attempt - 1)))
-                else:
-                    break
-            except Exception:
-                if attempt < max_retries:
-                    time.sleep(5 * (2 ** (attempt - 1)))
-                else:
-                    break
-    raise RuntimeError("すべてのモデルおよび再試行が失敗しました。")
-
-
-def _gen_info_setting_rows(prompt_type: str, kemono_params: dict) -> list[tuple[str, str]]:
-    """kemono_story のキャラクター設定行（体型 / 世界設定 / 変身 / 関係性 / 追加設定）を組立する。"""
-    if prompt_type != "kemono_story" or not kemono_params:
-        return []
-    setting_rows: list[tuple[str, str]] = []
-    setting_rows.append(("体型", kemono_params.get("char_type", "")))
-    setting_rows.append(("世界設定", kemono_params.get("world_setting", "")))
-    transform_label = _KEMONO_TRANSFORM_LABEL.get(
-        kemono_params.get("transform_key", "none"), "なし"
-    )
-    setting_rows.append(("変身", transform_label))
-    setting_rows.append(("関係性", kemono_params.get("relationship_text", "")))
-    if kemono_params.get("extra_key", "none") != "none":
-        setting_rows.append(("追加設定", kemono_params.get("extra_tag", "")))
-    return setting_rows
-
-
-def _gen_info_trend_block(trend_topic_titles: list[str]) -> list[str]:
-    """「使用したトレンド情報」ブロックの HTML 行を組立する。"""
-    items = "\n".join(f"      <li>{html.escape(t)}</li>" for t in trend_topic_titles)
-    return [
-        '    <div class="gen-info-block">',
-        '      <p class="gen-info-block-title">使用したトレンド情報</p>',
-        f'      <ul class="gen-info-list">\n{items}\n      </ul>',
-        '    </div>',
-    ]
-
-
-def _gen_info_char_data_block(
-    setting_rows: list[tuple[str, str]], char1: str, char2: str
-) -> list[str]:
-    """「キャラクターデータ」ブロックの HTML 行を組立する（行がなければ空リスト）。"""
-    data_rows: list[str] = []
-    for label, value in setting_rows:
-        if value:
-            data_rows.append(
-                f'      <div><dt>{html.escape(label)}</dt><dd>{html.escape(value)}</dd></div>'
-            )
-    if char1:
-        data_rows.append(f'      <div><dt>キャラクター1</dt><dd>{html.escape(char1)}</dd></div>')
-    if char2:
-        data_rows.append(f'      <div><dt>キャラクター2</dt><dd>{html.escape(char2)}</dd></div>')
-    if not data_rows:
-        return []
-    return [
-        '    <div class="gen-info-block">',
-        '      <p class="gen-info-block-title">キャラクターデータ</p>',
-        '      <dl class="gen-info-dl">',
-        "\n".join(data_rows),
-        '      </dl>',
-        '    </div>',
-    ]
-
-
-def _gen_info_e621_updated_label(e621_info: dict) -> str:
-    """e621 データの updated_at を表示ラベルへ整形する（UTC 優先、破損時は原文）。"""
-    updated_at = str(e621_info.get("updated_at", "unknown"))
-    try:
-        dt = datetime.fromisoformat(updated_at)
-        if dt.tzinfo is not None:
-            return dt.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-        return dt.strftime("%Y-%m-%d %H:%M")
-    except (ValueError, TypeError):
-        return updated_at
-
-
-def _gen_info_e621_block(e621_info: dict) -> list[str]:
-    """「参考キャラクターデータ（e621）」ブロックの HTML 行を組立する。"""
-    e621_rows: list[str] = []
-    for i, post in enumerate(e621_info["posts"], 1):
-        species = ", ".join(post.get("species", [])) or "-"
-        colors = ", ".join(post.get("colors", [])) or "-"
-        physical = ", ".join(post.get("physical", [])[:8]) or "-"
-        characters = ", ".join(post.get("characters", [])) or "-"
-        post_copyrights = ", ".join(cp for cp in post.get("copyrights", []) if not _is_affiliate_excluded(cp)) or "-"
-        detail = "<br>".join([
-            f"種族: {html.escape(species)}",
-            f"色: {html.escape(colors)}",
-            f"身体的特徴: {html.escape(physical)}",
-            f"参照: {html.escape(characters)}",
-            f"作品: {html.escape(post_copyrights)}",
-        ])
-        e621_rows.append(f'      <div><dt>参考キャラクター{i}</dt><dd>{detail}</dd></div>')
-    e621_rows.append(
-        f'      <div><dt>人気版権</dt><dd>{html.escape(e621_info.get("copyrights", "-"))}</dd></div>'
-    )
-    e621_rows.append(
-        f'      <div><dt>人気artist</dt><dd>{html.escape(e621_info.get("artists", "-"))}</dd></div>'
-    )
-    updated_label = _gen_info_e621_updated_label(e621_info)
-    e621_rows.append(
-        f'      <div><dt>データ</dt><dd>{html.escape(updated_label)}'
-        f"（{e621_info.get('total_posts', 0)}投稿を分析）</dd></div>"
-    )
-    return [
-        '    <div class="gen-info-block">',
-        '      <p class="gen-info-block-title">参考キャラクターデータ（e621）</p>',
-        '      <dl class="gen-info-dl">',
-        "\n".join(e621_rows),
-        '      </dl>',
-        '    </div>',
-    ]
-
-
-def _build_generation_info_section(
-    trend_topic_titles: list[str],
-    prompt_type: str,
-    kemono_params: dict,
-    content: str,
-    e621_info: dict | None = None,
-) -> str:
-    """
-    記事本文末尾に追記する「生成情報」セクションの HTML を組立する。
-    使用したトレンド情報（タイトル＋ソース）とキャラクターデータ
-    （体型 / 世界設定 / 変身 / 関係性 / 追加設定 + キャラクタータグ）、
-    さらに e621 から使用した参考キャラクターデータ
-    （参考キャラクター / 人気版権 / 人気artist / データ時点）を表示する。
-    e621 データは kemono_story プロンプトのみで実際に使われるため、kemono_story 記事のみ表示。
-    h2〜h4 を使わない `<details>` 折りたたみ構造のため TOC には載らない。
-    表示すべき内容が一切ない場合は空文字列を返す（セクション非表示）。
-    """
-    char1 = _extract_fm_field(content, "character_1")
-    char2 = _extract_fm_field(content, "character_2")
-
-    setting_rows = _gen_info_setting_rows(prompt_type, kemono_params)
-    show_e621 = bool(e621_info) and prompt_type == "kemono_story"
-
-    if not trend_topic_titles and not setting_rows and not char1 and not char2 and not show_e621:
-        return ""
-
-    parts: list[str] = [
-        '<details class="gen-info">',
-        '  <summary class="gen-info-summary">🤖 生成情報</summary>',
-        '  <div class="gen-info-body">',
-        '    <p class="gen-info-note">この記事はAIパイプラインによる自動生成記事です。</p>',
-    ]
-
-    if trend_topic_titles:
-        parts += _gen_info_trend_block(trend_topic_titles)
-
-    char_data_block = _gen_info_char_data_block(setting_rows, char1, char2)
-    if char_data_block:
-        parts += char_data_block
-
-    if show_e621:
-        parts += _gen_info_e621_block(e621_info)
-
-    parts += ['  </div>', '</details>']
-    return "\n".join(parts)
+from article.gemini import (
+    client,
+    generate_content_with_retry,
+    load_prompt_template,
+    refine_content,
+)
+from article.characters import (
+    _cp_genre_score,
+    _extract_post_copyrights,
+    _extract_top_artists,
+    _filter_valid_copyrights,
+    _format_character_features_instruction,
+    _is_affiliate_excluded,
+    _load_character_features,
+    _merge_copyrights,
+    _select_character_features,
+    _select_two_posts,
+)
+from article.geninfo import (
+    _build_generation_info_section,
+    _gen_info_char_data_block,
+    _gen_info_e621_block,
+    _gen_info_e621_updated_label,
+    _gen_info_setting_rows,
+    _gen_info_trend_block,
+)
 
 
 # --------------------------------------------------

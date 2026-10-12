@@ -150,7 +150,8 @@ my-auto-blog/
 ├── scripts/
 │   ├── fetch_topics.py       # トレンドデータ収集（APIキー不要）
 │   ├── genre_score.py        # ジャンルスコアリング（Cloudflare Workers AI）
-│   ├── generate_article.py   # 記事・画像生成（中核スクリプト）
+│   ├── generate_article.py   # 記事・画像生成（入口 + パイプライン）
+│   ├── article/              # article/ パッケージ（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo）
 │   ├── generate-search-index.js  # サイト内検索インデックス生成
 │   ├── prompts/              # プロンプトテンプレート
 │   ├── hf-space/             # 自社ホスト HuggingFace Space のソース（SDXL パイプライン）
