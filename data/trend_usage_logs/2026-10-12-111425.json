@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-12T11:14:25.765844+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-12T11:13:46.134731+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+      "source": "GitHub",
+      "url": "https://github.com/LinKennt/LoFS-VN",
+      "score": 1,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "LoFS-VN",
+    "Voice Actress Idol"
+  ],
+  "trend_source_urls": [
+    "https://github.com/LinKennt/LoFS-VN",
+    "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716"
+  ]
+}

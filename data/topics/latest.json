@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-10-11T10:46:04.391030+09:00",
+  "fetched_at": "2026-10-12T11:13:46.134731+09:00",
   "ttl_hours": 24,
-  "total": 73,
+  "total": 74,
   "by_category": {
     "tech": [],
     "kemono": [
@@ -10,6 +10,14 @@
         "url": "https://github.com/LinKennt/LoFS-VN",
         "score": 1,
         "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+        "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+        "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk 2077, or The Blood of Dawnwalker. Perhaps I’ll be enjoying Kingdom Hearts or a dash of Pokémon, but",
+        "score": 0,
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
@@ -85,11 +93,75 @@
         "category": "kemono"
       },
       {
-        "title": "Arc Raiders When Everything Falls Quest Guide",
-        "url": "https://www.gamespot.com/articles/arc-raiders-when-everything-falls-quest-guide/",
-        "description": "Arc Raiders is sending you back to Spaceport once again, this time to the Water Towers to track down a stash of weapons. This quest requires you to take a lot of photos, though, so come prepared to show off your photography skills. When you're ready to dive in, here's what you need to know about com",
+        "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+        "url": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+        "description": "Artemis Fowl is coming back to TV screens in the form of an animated show on Disney Channel and Disney+. Author Eoin Colfer announced that Disney had greenlit another series project based on his family fantasy novels at the 25 Years of Artemis Fowl panel at New York Comic Con 2026. He'll remain invo",
         "score": 0,
-        "source": "GameSpot RSS",
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+        "url": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+        "description": "Resident Evil beat Weapons to become director Zach Cregger's highest-grossing film while The Social Reckoning bombed at the box office. The live-action adaptation of Capcom's classic survival horror series turned heads as it reached an estimated worldwide total of $320.2 million over the weekend. Wi",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+        "url": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+        "description": "A new weekend has arrived, and today, you can save big on Doom: The Dark Ages, Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, LEGO KPop: Demon Hunters, and more. Check out our top picks for Sunday, October 11, below. Doom: The Dark Ages - Premium Edition for $30.09 Fanatical ha",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+        "url": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+        "description": "Call of Duty fans are torn about NetEase Games' ECC: Redline, a new FPS that many have called a \"rip-off\" with the power to fill the void for frustrated Warzone players. NetEase called its new shooter a \"self-developed extreme-sports tactical shooter\" when revealing it just days ago. It's yet anothe",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+        "url": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+        "description": "Bandai Namco has revealed a first look at Tekken 8 DLC character Yujiro Hanma, and the Baki rep is looking just as uncanny as fans expected. The new trailer for the fighting game's Season 3 characters debuted alongside Evo France 2026. Following Kunimitsu's release in June and Bob's release in Augus",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+        "url": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+        "description": "There are over 230 million copies of Grand Theft Auto 5 in the world. As the second-highest selling game of all time, it has been played for billions of hours by players across the globe, making it one of the most significant pastimes in the entire world. That’s an impressive achievement for what in",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+        "url": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+        "description": "Marvel Tokon: Fighting Souls will continue its Year 1 DLC roadmap with Thor (Jane Foster) this winter, with two more characters coming in 2027. Developer Arc System Works confirmed the lineup alongside Evo France 2026. The Jane Foster version of Asgard's God of Thunder is now officially set to follo",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Wildwood Review",
+        "url": "https://www.ign.com/articles/wildwood-review",
+        "description": "Wildwood is in theaters on October 23. There’s something wondrous about the transportive power of stop-motion animated films when they’re executed at the standard that Laika sets for themselves, and wonder is certainly the name of the game in Wildwood. Adapted from the first novel in Colin Meloy and",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+        "url": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+        "description": "Toho's latest Godzilla Minus Zero trailer is here and puts the spotlight on King Ghidorah's lightning-like gravity beams and Godzilla's iconic atomic breath. This new sneak peek at the King of the Monsters and the latest iteration of his archnemesis debuted as part of New York Comic Con 2026. Toho r",
+        "score": 0,
+        "source": "IGN RSS",
         "category": "kemono"
       },
       {
@@ -101,152 +173,80 @@
         "category": "kemono"
       },
       {
-        "title": "Blade Runner 2099 Trailer Teases Replicant Mystery With Hunter Schafer and Michelle Yeoh",
-        "url": "https://www.ign.com/articles/blade-runner-2099-trailer-teases-replicant-mystery-with-hunter-schafer-and-michelle-yeoh",
-        "description": "Prime Video has published a new Blade Runner 2099 trailer, revealing more about the mystery surrounding its missing Replicants, as well as the roles Hunter Schafer and Michelle Yeoh play in the story. This more detailed look at the Amazon-backed limited series and its dystopian sci-fi setting arrive",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Arc Raiders' 2.0 Update and 'Spider-Man' Grappling Hook Drive Player Count to Reach 7-Month High",
-        "url": "https://www.ign.com/articles/arc-raiders-20-update-and-spider-man-grappling-hook-drive-player-count-to-reach-7-month-high",
-        "description": "The new Arc Raiders 2.0 update has triggered a seven-month high for its concurrent player count on Steam as fans show up for its \"Spider-Man\" grappling hook, a new map, a free weekend, and more. Embark's once-viral extraction experience has had a rough few months. As the studio slowed down updates a",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Image Comics' Roam Reunites Paper Girls Creators Brian K. Vaughan and Cliff Chiang",
-        "url": "https://www.ign.com/articles/image-comics-roam-reunites-paper-girls-creators-brian-k-vaughan-and-cliff-chiang",
-        "description": "In what is easily one of the most exciting comic book-related announcements to come out of NYCC 2026, IGN can exclusively reveal that Paper Girls creators Brian K. Vaughan and Cliff Chiang are reuniting for a new project at Image Comics. That series is called Roam, and it's their first collaboration",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Crystal Lake Showrunner on Retelling the Friday the 13th Story: ‘It's Always Ripe for Reinterpretation’",
-        "url": "https://www.ign.com/articles/crystal-lake-showrunner-on-retelling-the-friday-the-13th-story-its-always-ripe-for-reinterpretation",
-        "description": "Spoilers follow for the first episode of Crystal Lake , which debuts on Peacock on October 15! The cast and creator of Crystal Lake showed up at New York Comic Con this week to prep fans for the launch of their Friday the 13th sequel series' next week. That included a panel discussion, a Camp Crysta",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "DC Legend Grant Morrison Criticizes 'Morally and Legally Incoherent' Lanterns Finale",
-        "url": "https://www.ign.com/articles/dc-legend-grant-morrison-criticizes-morally-and-legally-incoherent-lanterns-finale",
-        "description": "DC veteran Grant Morrison reviewed Lanterns , and they had more than a few criticisms of its \"morally and legally incoherent\" finale. The comic book writer – who worked on projects like The Green Lantern, Doom Patrol, and many more – made their feelings about the new DCU TV show clear in a new post ",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Nicolas Cage Says He'll 'Probably Not Work With' Amazon Again After Declining Spider-Noir AI Waiver",
-        "url": "https://www.ign.com/articles/nicolas-cage-says-hell-probably-never-work-with-amazon-again-after-declining-spider-noir-ai-waiver",
-        "description": "Nicolas Cage said he'll \"probably not work with\" Amazon again after declining to sign a waiver to use AI on Spider-Noir . The National Treasure actor made his position on the controversial technology clear during a New York Comic Con 2026 panel attended by IGN. His work on Amazon's Prime Video Spide",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "GTA 6 Leaker Threatens to Release Build With Full Story Mode Played to the End, Ties Lucia's Clothing to Crypto Scheme",
-        "url": "https://www.ign.com/articles/gta-6-leaker-threatens-to-release-build-with-full-story-mode-played-to-the-end-ties-lucias-clothing-to-crypto-scheme",
-        "description": "The GTA 6 leaker has reportedly threatened to release a build of the game with the full story mode played to the end, as part of their heavily criticized crypto scheme. According to online reports , the Cyberleek website was updated with a warning that if its memecoin reached a market cap of $30 mil",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Blumhouse Gives Updates on Paranormal Activity 8, Saw 11, River, Something Is Killing the Children, and More | NYCC 2026",
-        "url": "https://www.ign.com/articles/blumhouse-atomic-monster-nycc-2026",
-        "description": "Friday night at New York Comic Con was all about Blumhouse, with a 90 minute \"Blumfest\" panel that was devoted to a ton of upcoming films from the combined forces of Jason Blum's Blumhouse and James Wan's Atomic Monster. The panel kicked off with the reveal that moderator and YouTuber MatPat had sig",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Hands-on Impressions of Hoid's Storybook Collection by Brandon Sanderson",
-        "url": "https://www.ign.com/articles/hands-on-impressions-of-hoids-storybook-cosmere-collection-by-brandon-sanderson",
-        "description": "Cosmere fans rejoice! The latest Brandon Sanderson Cosmere book , as a part of Hoid’s Storybook Collection, has started arriving for BackerKit backers. I had backed at the Storyteller tier when the campaign first launched and received my ebooks, PDFs, and audiobook all at once on Sept. 15. Then on O",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Japanese Studio Creative Freaks to Lead Production on Sentinel 6 Anime Executive Produced by NBA, NFL Players Michael Carter-Williams, Jamaal Williams",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-studio-creative-freaks-to-lead-production-on-sentinel-6-anime-executive-produced-by-nba-/.242697",
+        "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "One-Punch Man Season 3 Anime's 2nd Part Reveals January 2027 Debut in Video",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/one-punch-man-season-3-anime-2nd-part-reveals-january-2027-debut-in-video/.242696",
+        "title": "Godzilla Minus Zero Film Streams Final Trailer",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Naruto Mobile Game to Get Worldwide Release; Naruto Card Game Reveals Demo, Release Dates",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/naruto-mobile-game-to-get-worldwide-release-naruto-card-game-reveals-demo-release-dates/.242694",
+        "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Masashi Kishimoto to Launch New Naruto Manga",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+        "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Naruto Gets Crossover Anime With Ninku Franchise",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/naruto-gets-crossover-anime-with-ninku-franchise/.242693",
+        "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Japan's Video Game Rankings, September 21-27",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/japan-video-game-rankings-september-21-27/.242610",
+        "title": "Boichi's The Marshal King Manga Ends on October 16",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Japan's Video Game Rankings, September 14-20",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/japan-video-game-rankings-september-14-20/.242539",
+        "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Japanese Animation TV Ranking, September 21-27",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-animation-tv-ranking-september-21-27/.242684",
+        "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Japanese Animation TV Ranking, September 14-20",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-animation-tv-ranking-september-14-20/.242405",
+        "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Dr. Stone TV Anime Gets Terraforming Sequel",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-10/dr-stone-tv-anime-gets-terraforming-sequel/.242690",
+        "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
@@ -279,6 +279,14 @@
       {
         "title": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
         "url": "https://www.animenewsnetwork.com/interview/2026-09-28/bringing-magic-knight-rayearth-to-a-new-generation-with-director-yui-miura/.239694",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
@@ -580,10 +588,18 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-11T10:46:04.391030+09:00"
+      "fetched_at": "2026-10-12T11:13:46.134731+09:00"
     },
     "GameSpot RSS": {
       "topics": [
+        {
+          "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+          "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+          "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk 2077, or The Blood of Dawnwalker. Perhaps I’ll be enjoying Kingdom Hearts or a dash of Pokémon, but",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
         {
           "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
           "url": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
@@ -655,20 +671,84 @@
           "score": 0,
           "source": "GameSpot RSS",
           "category": "kemono"
-        },
-        {
-          "title": "Arc Raiders When Everything Falls Quest Guide",
-          "url": "https://www.gamespot.com/articles/arc-raiders-when-everything-falls-quest-guide/",
-          "description": "Arc Raiders is sending you back to Spaceport once again, this time to the Water Towers to track down a stash of weapons. This quest requires you to take a lot of photos, though, so come prepared to show off your photography skills. When you're ready to dive in, here's what you need to know about com",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-11T10:46:04.391030+09:00"
+      "fetched_at": "2026-10-12T11:13:46.134731+09:00"
     },
     "IGN RSS": {
       "topics": [
+        {
+          "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+          "url": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+          "description": "Artemis Fowl is coming back to TV screens in the form of an animated show on Disney Channel and Disney+. Author Eoin Colfer announced that Disney had greenlit another series project based on his family fantasy novels at the 25 Years of Artemis Fowl panel at New York Comic Con 2026. He'll remain invo",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+          "url": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+          "description": "Resident Evil beat Weapons to become director Zach Cregger's highest-grossing film while The Social Reckoning bombed at the box office. The live-action adaptation of Capcom's classic survival horror series turned heads as it reached an estimated worldwide total of $320.2 million over the weekend. Wi",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+          "url": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+          "description": "A new weekend has arrived, and today, you can save big on Doom: The Dark Ages, Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, LEGO KPop: Demon Hunters, and more. Check out our top picks for Sunday, October 11, below. Doom: The Dark Ages - Premium Edition for $30.09 Fanatical ha",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+          "url": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+          "description": "Call of Duty fans are torn about NetEase Games' ECC: Redline, a new FPS that many have called a \"rip-off\" with the power to fill the void for frustrated Warzone players. NetEase called its new shooter a \"self-developed extreme-sports tactical shooter\" when revealing it just days ago. It's yet anothe",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+          "url": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+          "description": "Bandai Namco has revealed a first look at Tekken 8 DLC character Yujiro Hanma, and the Baki rep is looking just as uncanny as fans expected. The new trailer for the fighting game's Season 3 characters debuted alongside Evo France 2026. Following Kunimitsu's release in June and Bob's release in Augus",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+          "url": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+          "description": "There are over 230 million copies of Grand Theft Auto 5 in the world. As the second-highest selling game of all time, it has been played for billions of hours by players across the globe, making it one of the most significant pastimes in the entire world. That’s an impressive achievement for what in",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+          "url": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+          "description": "Marvel Tokon: Fighting Souls will continue its Year 1 DLC roadmap with Thor (Jane Foster) this winter, with two more characters coming in 2027. Developer Arc System Works confirmed the lineup alongside Evo France 2026. The Jane Foster version of Asgard's God of Thunder is now officially set to follo",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Wildwood Review",
+          "url": "https://www.ign.com/articles/wildwood-review",
+          "description": "Wildwood is in theaters on October 23. There’s something wondrous about the transportive power of stop-motion animated films when they’re executed at the standard that Laika sets for themselves, and wonder is certainly the name of the game in Wildwood. Adapted from the first novel in Colin Meloy and",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+          "url": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+          "description": "Toho's latest Godzilla Minus Zero trailer is here and puts the spotlight on King Ghidorah's lightning-like gravity beams and Godzilla's iconic atomic breath. This new sneak peek at the King of the Monsters and the latest iteration of his archnemesis debuted as part of New York Comic Con 2026. Toho r",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
         {
           "title": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series",
           "url": "https://www.ign.com/articles/naruto-teasers-reveal-new-shadow-rising-manga-and-anime-crossover-series",
@@ -676,159 +756,87 @@
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
-        },
-        {
-          "title": "Blade Runner 2099 Trailer Teases Replicant Mystery With Hunter Schafer and Michelle Yeoh",
-          "url": "https://www.ign.com/articles/blade-runner-2099-trailer-teases-replicant-mystery-with-hunter-schafer-and-michelle-yeoh",
-          "description": "Prime Video has published a new Blade Runner 2099 trailer, revealing more about the mystery surrounding its missing Replicants, as well as the roles Hunter Schafer and Michelle Yeoh play in the story. This more detailed look at the Amazon-backed limited series and its dystopian sci-fi setting arrive",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Arc Raiders' 2.0 Update and 'Spider-Man' Grappling Hook Drive Player Count to Reach 7-Month High",
-          "url": "https://www.ign.com/articles/arc-raiders-20-update-and-spider-man-grappling-hook-drive-player-count-to-reach-7-month-high",
-          "description": "The new Arc Raiders 2.0 update has triggered a seven-month high for its concurrent player count on Steam as fans show up for its \"Spider-Man\" grappling hook, a new map, a free weekend, and more. Embark's once-viral extraction experience has had a rough few months. As the studio slowed down updates a",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Image Comics' Roam Reunites Paper Girls Creators Brian K. Vaughan and Cliff Chiang",
-          "url": "https://www.ign.com/articles/image-comics-roam-reunites-paper-girls-creators-brian-k-vaughan-and-cliff-chiang",
-          "description": "In what is easily one of the most exciting comic book-related announcements to come out of NYCC 2026, IGN can exclusively reveal that Paper Girls creators Brian K. Vaughan and Cliff Chiang are reuniting for a new project at Image Comics. That series is called Roam, and it's their first collaboration",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Crystal Lake Showrunner on Retelling the Friday the 13th Story: ‘It's Always Ripe for Reinterpretation’",
-          "url": "https://www.ign.com/articles/crystal-lake-showrunner-on-retelling-the-friday-the-13th-story-its-always-ripe-for-reinterpretation",
-          "description": "Spoilers follow for the first episode of Crystal Lake , which debuts on Peacock on October 15! The cast and creator of Crystal Lake showed up at New York Comic Con this week to prep fans for the launch of their Friday the 13th sequel series' next week. That included a panel discussion, a Camp Crysta",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "DC Legend Grant Morrison Criticizes 'Morally and Legally Incoherent' Lanterns Finale",
-          "url": "https://www.ign.com/articles/dc-legend-grant-morrison-criticizes-morally-and-legally-incoherent-lanterns-finale",
-          "description": "DC veteran Grant Morrison reviewed Lanterns , and they had more than a few criticisms of its \"morally and legally incoherent\" finale. The comic book writer – who worked on projects like The Green Lantern, Doom Patrol, and many more – made their feelings about the new DCU TV show clear in a new post ",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Nicolas Cage Says He'll 'Probably Not Work With' Amazon Again After Declining Spider-Noir AI Waiver",
-          "url": "https://www.ign.com/articles/nicolas-cage-says-hell-probably-never-work-with-amazon-again-after-declining-spider-noir-ai-waiver",
-          "description": "Nicolas Cage said he'll \"probably not work with\" Amazon again after declining to sign a waiver to use AI on Spider-Noir . The National Treasure actor made his position on the controversial technology clear during a New York Comic Con 2026 panel attended by IGN. His work on Amazon's Prime Video Spide",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "GTA 6 Leaker Threatens to Release Build With Full Story Mode Played to the End, Ties Lucia's Clothing to Crypto Scheme",
-          "url": "https://www.ign.com/articles/gta-6-leaker-threatens-to-release-build-with-full-story-mode-played-to-the-end-ties-lucias-clothing-to-crypto-scheme",
-          "description": "The GTA 6 leaker has reportedly threatened to release a build of the game with the full story mode played to the end, as part of their heavily criticized crypto scheme. According to online reports , the Cyberleek website was updated with a warning that if its memecoin reached a market cap of $30 mil",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Blumhouse Gives Updates on Paranormal Activity 8, Saw 11, River, Something Is Killing the Children, and More | NYCC 2026",
-          "url": "https://www.ign.com/articles/blumhouse-atomic-monster-nycc-2026",
-          "description": "Friday night at New York Comic Con was all about Blumhouse, with a 90 minute \"Blumfest\" panel that was devoted to a ton of upcoming films from the combined forces of Jason Blum's Blumhouse and James Wan's Atomic Monster. The panel kicked off with the reveal that moderator and YouTuber MatPat had sig",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Hands-on Impressions of Hoid's Storybook Collection by Brandon Sanderson",
-          "url": "https://www.ign.com/articles/hands-on-impressions-of-hoids-storybook-cosmere-collection-by-brandon-sanderson",
-          "description": "Cosmere fans rejoice! The latest Brandon Sanderson Cosmere book , as a part of Hoid’s Storybook Collection, has started arriving for BackerKit backers. I had backed at the Storyteller tier when the campaign first launched and received my ebooks, PDFs, and audiobook all at once on Sept. 15. Then on O",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-11T10:46:04.391030+09:00"
+      "fetched_at": "2026-10-12T11:13:46.134731+09:00"
     },
     "Anime News Network": {
       "topics": [
         {
-          "title": "Japanese Studio Creative Freaks to Lead Production on Sentinel 6 Anime Executive Produced by NBA, NFL Players Michael Carter-Williams, Jamaal Williams",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-studio-creative-freaks-to-lead-production-on-sentinel-6-anime-executive-produced-by-nba-/.242697",
+          "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "One-Punch Man Season 3 Anime's 2nd Part Reveals January 2027 Debut in Video",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/one-punch-man-season-3-anime-2nd-part-reveals-january-2027-debut-in-video/.242696",
+          "title": "Godzilla Minus Zero Film Streams Final Trailer",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Naruto Mobile Game to Get Worldwide Release; Naruto Card Game Reveals Demo, Release Dates",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/naruto-mobile-game-to-get-worldwide-release-naruto-card-game-reveals-demo-release-dates/.242694",
+          "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Masashi Kishimoto to Launch New Naruto Manga",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+          "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Naruto Gets Crossover Anime With Ninku Franchise",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/naruto-gets-crossover-anime-with-ninku-franchise/.242693",
+          "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Japan's Video Game Rankings, September 21-27",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/japan-video-game-rankings-september-21-27/.242610",
+          "title": "Boichi's The Marshal King Manga Ends on October 16",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Japan's Video Game Rankings, September 14-20",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/japan-video-game-rankings-september-14-20/.242539",
+          "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Japanese Animation TV Ranking, September 21-27",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-animation-tv-ranking-september-21-27/.242684",
+          "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Japanese Animation TV Ranking, September 14-20",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-animation-tv-ranking-september-14-20/.242405",
+          "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Dr. Stone TV Anime Gets Terraforming Sequel",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-10/dr-stone-tv-anime-gets-terraforming-sequel/.242690",
+          "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
@@ -865,9 +873,17 @@
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
+        },
+        {
+          "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
         }
       ],
-      "fetched_at": "2026-10-11T10:46:04.391030+09:00"
+      "fetched_at": "2026-10-12T11:13:46.134731+09:00"
     },
     "PokéCommunity Art Studio": {
       "topics": [
@@ -1165,6 +1181,14 @@
       "category": "kemono"
     },
     {
+      "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+      "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+      "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk 2077, or The Blood of Dawnwalker. Perhaps I’ll be enjoying Kingdom Hearts or a dash of Pokémon, but",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
       "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
       "url": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
       "description": "If you feel like the Persona-ification of Fire Emblem has gone too far, it may be a good time to go back to a 3DS classic.",
@@ -1237,11 +1261,75 @@
       "category": "kemono"
     },
     {
-      "title": "Arc Raiders When Everything Falls Quest Guide",
-      "url": "https://www.gamespot.com/articles/arc-raiders-when-everything-falls-quest-guide/",
-      "description": "Arc Raiders is sending you back to Spaceport once again, this time to the Water Towers to track down a stash of weapons. This quest requires you to take a lot of photos, though, so come prepared to show off your photography skills. When you're ready to dive in, here's what you need to know about com",
+      "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+      "url": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+      "description": "Artemis Fowl is coming back to TV screens in the form of an animated show on Disney Channel and Disney+. Author Eoin Colfer announced that Disney had greenlit another series project based on his family fantasy novels at the 25 Years of Artemis Fowl panel at New York Comic Con 2026. He'll remain invo",
       "score": 0,
-      "source": "GameSpot RSS",
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+      "url": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+      "description": "Resident Evil beat Weapons to become director Zach Cregger's highest-grossing film while The Social Reckoning bombed at the box office. The live-action adaptation of Capcom's classic survival horror series turned heads as it reached an estimated worldwide total of $320.2 million over the weekend. Wi",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+      "url": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+      "description": "A new weekend has arrived, and today, you can save big on Doom: The Dark Ages, Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, LEGO KPop: Demon Hunters, and more. Check out our top picks for Sunday, October 11, below. Doom: The Dark Ages - Premium Edition for $30.09 Fanatical ha",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+      "url": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+      "description": "Call of Duty fans are torn about NetEase Games' ECC: Redline, a new FPS that many have called a \"rip-off\" with the power to fill the void for frustrated Warzone players. NetEase called its new shooter a \"self-developed extreme-sports tactical shooter\" when revealing it just days ago. It's yet anothe",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+      "url": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+      "description": "Bandai Namco has revealed a first look at Tekken 8 DLC character Yujiro Hanma, and the Baki rep is looking just as uncanny as fans expected. The new trailer for the fighting game's Season 3 characters debuted alongside Evo France 2026. Following Kunimitsu's release in June and Bob's release in Augus",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+      "url": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+      "description": "There are over 230 million copies of Grand Theft Auto 5 in the world. As the second-highest selling game of all time, it has been played for billions of hours by players across the globe, making it one of the most significant pastimes in the entire world. That’s an impressive achievement for what in",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+      "url": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+      "description": "Marvel Tokon: Fighting Souls will continue its Year 1 DLC roadmap with Thor (Jane Foster) this winter, with two more characters coming in 2027. Developer Arc System Works confirmed the lineup alongside Evo France 2026. The Jane Foster version of Asgard's God of Thunder is now officially set to follo",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Wildwood Review",
+      "url": "https://www.ign.com/articles/wildwood-review",
+      "description": "Wildwood is in theaters on October 23. There’s something wondrous about the transportive power of stop-motion animated films when they’re executed at the standard that Laika sets for themselves, and wonder is certainly the name of the game in Wildwood. Adapted from the first novel in Colin Meloy and",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+      "url": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+      "description": "Toho's latest Godzilla Minus Zero trailer is here and puts the spotlight on King Ghidorah's lightning-like gravity beams and Godzilla's iconic atomic breath. This new sneak peek at the King of the Monsters and the latest iteration of his archnemesis debuted as part of New York Comic Con 2026. Toho r",
+      "score": 0,
+      "source": "IGN RSS",
       "category": "kemono"
     },
     {
@@ -1253,152 +1341,80 @@
       "category": "kemono"
     },
     {
-      "title": "Blade Runner 2099 Trailer Teases Replicant Mystery With Hunter Schafer and Michelle Yeoh",
-      "url": "https://www.ign.com/articles/blade-runner-2099-trailer-teases-replicant-mystery-with-hunter-schafer-and-michelle-yeoh",
-      "description": "Prime Video has published a new Blade Runner 2099 trailer, revealing more about the mystery surrounding its missing Replicants, as well as the roles Hunter Schafer and Michelle Yeoh play in the story. This more detailed look at the Amazon-backed limited series and its dystopian sci-fi setting arrive",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Arc Raiders' 2.0 Update and 'Spider-Man' Grappling Hook Drive Player Count to Reach 7-Month High",
-      "url": "https://www.ign.com/articles/arc-raiders-20-update-and-spider-man-grappling-hook-drive-player-count-to-reach-7-month-high",
-      "description": "The new Arc Raiders 2.0 update has triggered a seven-month high for its concurrent player count on Steam as fans show up for its \"Spider-Man\" grappling hook, a new map, a free weekend, and more. Embark's once-viral extraction experience has had a rough few months. As the studio slowed down updates a",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Image Comics' Roam Reunites Paper Girls Creators Brian K. Vaughan and Cliff Chiang",
-      "url": "https://www.ign.com/articles/image-comics-roam-reunites-paper-girls-creators-brian-k-vaughan-and-cliff-chiang",
-      "description": "In what is easily one of the most exciting comic book-related announcements to come out of NYCC 2026, IGN can exclusively reveal that Paper Girls creators Brian K. Vaughan and Cliff Chiang are reuniting for a new project at Image Comics. That series is called Roam, and it's their first collaboration",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Crystal Lake Showrunner on Retelling the Friday the 13th Story: ‘It's Always Ripe for Reinterpretation’",
-      "url": "https://www.ign.com/articles/crystal-lake-showrunner-on-retelling-the-friday-the-13th-story-its-always-ripe-for-reinterpretation",
-      "description": "Spoilers follow for the first episode of Crystal Lake , which debuts on Peacock on October 15! The cast and creator of Crystal Lake showed up at New York Comic Con this week to prep fans for the launch of their Friday the 13th sequel series' next week. That included a panel discussion, a Camp Crysta",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "DC Legend Grant Morrison Criticizes 'Morally and Legally Incoherent' Lanterns Finale",
-      "url": "https://www.ign.com/articles/dc-legend-grant-morrison-criticizes-morally-and-legally-incoherent-lanterns-finale",
-      "description": "DC veteran Grant Morrison reviewed Lanterns , and they had more than a few criticisms of its \"morally and legally incoherent\" finale. The comic book writer – who worked on projects like The Green Lantern, Doom Patrol, and many more – made their feelings about the new DCU TV show clear in a new post ",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Nicolas Cage Says He'll 'Probably Not Work With' Amazon Again After Declining Spider-Noir AI Waiver",
-      "url": "https://www.ign.com/articles/nicolas-cage-says-hell-probably-never-work-with-amazon-again-after-declining-spider-noir-ai-waiver",
-      "description": "Nicolas Cage said he'll \"probably not work with\" Amazon again after declining to sign a waiver to use AI on Spider-Noir . The National Treasure actor made his position on the controversial technology clear during a New York Comic Con 2026 panel attended by IGN. His work on Amazon's Prime Video Spide",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "GTA 6 Leaker Threatens to Release Build With Full Story Mode Played to the End, Ties Lucia's Clothing to Crypto Scheme",
-      "url": "https://www.ign.com/articles/gta-6-leaker-threatens-to-release-build-with-full-story-mode-played-to-the-end-ties-lucias-clothing-to-crypto-scheme",
-      "description": "The GTA 6 leaker has reportedly threatened to release a build of the game with the full story mode played to the end, as part of their heavily criticized crypto scheme. According to online reports , the Cyberleek website was updated with a warning that if its memecoin reached a market cap of $30 mil",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Blumhouse Gives Updates on Paranormal Activity 8, Saw 11, River, Something Is Killing the Children, and More | NYCC 2026",
-      "url": "https://www.ign.com/articles/blumhouse-atomic-monster-nycc-2026",
-      "description": "Friday night at New York Comic Con was all about Blumhouse, with a 90 minute \"Blumfest\" panel that was devoted to a ton of upcoming films from the combined forces of Jason Blum's Blumhouse and James Wan's Atomic Monster. The panel kicked off with the reveal that moderator and YouTuber MatPat had sig",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Hands-on Impressions of Hoid's Storybook Collection by Brandon Sanderson",
-      "url": "https://www.ign.com/articles/hands-on-impressions-of-hoids-storybook-cosmere-collection-by-brandon-sanderson",
-      "description": "Cosmere fans rejoice! The latest Brandon Sanderson Cosmere book , as a part of Hoid’s Storybook Collection, has started arriving for BackerKit backers. I had backed at the Storyteller tier when the campaign first launched and received my ebooks, PDFs, and audiobook all at once on Sept. 15. Then on O",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Japanese Studio Creative Freaks to Lead Production on Sentinel 6 Anime Executive Produced by NBA, NFL Players Michael Carter-Williams, Jamaal Williams",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-studio-creative-freaks-to-lead-production-on-sentinel-6-anime-executive-produced-by-nba-/.242697",
+      "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "One-Punch Man Season 3 Anime's 2nd Part Reveals January 2027 Debut in Video",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/one-punch-man-season-3-anime-2nd-part-reveals-january-2027-debut-in-video/.242696",
+      "title": "Godzilla Minus Zero Film Streams Final Trailer",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Naruto Mobile Game to Get Worldwide Release; Naruto Card Game Reveals Demo, Release Dates",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/naruto-mobile-game-to-get-worldwide-release-naruto-card-game-reveals-demo-release-dates/.242694",
+      "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Masashi Kishimoto to Launch New Naruto Manga",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+      "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Naruto Gets Crossover Anime With Ninku Franchise",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/naruto-gets-crossover-anime-with-ninku-franchise/.242693",
+      "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Japan's Video Game Rankings, September 21-27",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/japan-video-game-rankings-september-21-27/.242610",
+      "title": "Boichi's The Marshal King Manga Ends on October 16",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Japan's Video Game Rankings, September 14-20",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/japan-video-game-rankings-september-14-20/.242539",
+      "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Japanese Animation TV Ranking, September 21-27",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-animation-tv-ranking-september-21-27/.242684",
+      "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Japanese Animation TV Ranking, September 14-20",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/japanese-animation-tv-ranking-september-14-20/.242405",
+      "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Dr. Stone TV Anime Gets Terraforming Sequel",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-10/dr-stone-tv-anime-gets-terraforming-sequel/.242690",
+      "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
@@ -1431,6 +1447,14 @@
     {
       "title": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
       "url": "https://www.animenewsnetwork.com/interview/2026-09-28/bringing-magic-knight-rayearth-to-a-new-generation-with-director-yui-miura/.239694",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
