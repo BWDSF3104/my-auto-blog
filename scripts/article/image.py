@@ -28,46 +28,33 @@ def _is_valid_kemono_combination(transform, relationship, extra):
     return True
 
 
+def _weighted_pick(weights: list):
+    """重み付きリストから1つの値を抽選する。"""
+    return random.choices(
+        [v[0] for v in weights],
+        weights=[v[1] for v in weights],
+        k=1,
+    )[0]
+
+
+def _pick_char_count(extra: str) -> int:
+    """extra=clone の時のみ CHAR_COUNT_WEIGHTS から char_count を抽選、それ以外は 2。"""
+    if extra == "clone":
+        return _weighted_pick(CHAR_COUNT_WEIGHTS)
+    return 2
+
+
 def _randomize_kemono_params():
     """kemono_story プロンプト用のランダムパラメータを重み付き選択で生成する。
     バリデーションに失敗した場合は再試行（最大100回）。
     char_count=1 は extra=clone の時のみに制限。"""
     for _ in range(100):
-        char_types = random.choices(
-            [v[0] for v in CHAR_TYPE_WEIGHTS],
-            weights=[v[1] for v in CHAR_TYPE_WEIGHTS],
-            k=1,
-        )[0]
-        world_setting = random.choices(
-            [v[0] for v in WORLD_SETTING_WEIGHTS],
-            weights=[v[1] for v in WORLD_SETTING_WEIGHTS],
-            k=1,
-        )[0]
-        transform = random.choices(
-            [v[0] for v in TRANSFORM_WEIGHTS],
-            weights=[v[1] for v in TRANSFORM_WEIGHTS],
-            k=1,
-        )[0]
-        relationship = random.choices(
-            [v[0] for v in RELATIONSHIP_WEIGHTS],
-            weights=[v[1] for v in RELATIONSHIP_WEIGHTS],
-            k=1,
-        )[0]
-        extra = random.choices(
-            [v[0] for v in EXTRA_SETTING_WEIGHTS],
-            weights=[v[1] for v in EXTRA_SETTING_WEIGHTS],
-            k=1,
-        )[0]
-
-        if extra == "clone":
-            char_count = random.choices(
-                [v[0] for v in CHAR_COUNT_WEIGHTS],
-                weights=[v[1] for v in CHAR_COUNT_WEIGHTS],
-                k=1,
-            )[0]
-        else:
-            char_count = 2
-
+        char_types = _weighted_pick(CHAR_TYPE_WEIGHTS)
+        world_setting = _weighted_pick(WORLD_SETTING_WEIGHTS)
+        transform = _weighted_pick(TRANSFORM_WEIGHTS)
+        relationship = _weighted_pick(RELATIONSHIP_WEIGHTS)
+        extra = _weighted_pick(EXTRA_SETTING_WEIGHTS)
+        char_count = _pick_char_count(extra)
         if _is_valid_kemono_combination(transform, relationship, extra):
             break
     else:
@@ -323,29 +310,22 @@ def _parse_image_prompt_targets(bracket_content: str, characters: dict[str, str]
     return target_chars, {k: ", ".join(v) for k, v in per_char_tags.items()}, ", ".join(shared_parts)
 
 
-def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
-    """
-    指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
-    被写体数 + キャラクター外見 + 表情/ポーズ + シチュエーション + artist名 + 品質タグ + アートスタイル を合成する。
-    表情/ポーズは各キャラクター外見の直後に配置（全キャラ同一の場合は1回だけ出力）。
-    Illustrious系の公式トレーニング順序に準拠（person count → character → situation → artist → quality → style）。
-    """
-    raw_prompt = raw_prompt.strip().strip('"\'"\"')
-
-    # art_styleからartist名を抽出（"by artist_name"形式）
-    artist_name = ""
-    style_without_artist = art_style
+def _extract_artist_name(art_style: str) -> tuple[str, str]:
+    """art_style から artist 名（"by artist_name"形式）を抽出する。
+    (artist_name, style_without_artist) を返す。"""
     artist_match = re.search(r'\s*by\s+([\w-]+)\s*$', art_style)
-    if artist_match:
-        artist_name = "by " + artist_match.group(1)
-        style_without_artist = art_style[:artist_match.start()].rstrip(', ')
+    if not artist_match:
+        return "", art_style
+    return "by " + artist_match.group(1), art_style[:artist_match.start()].rstrip(', ')
 
-    # 括弧 [character_1, ...] の検出 (複数対応)
+
+def _collect_prompt_targets(raw_prompt: str, characters: dict[str, str]) -> tuple[list[str], dict[str, str], str]:
+    """[character_1, ...] 括弧区間を解析して (target_chars, per_char_tags, shared_tags) に集約する。
+    ターゲット未指定時は character_1（なければ先頭キー）へフォールバック。"""
     bracket_contents = re.findall(r'\[(.*?)\]', raw_prompt)
     target_chars: list[str] = []
     per_char_tags: dict[str, str] = {}
     shared_tags = ""
-    clean_situation = re.sub(r'\[[^\]]*\]', '', raw_prompt).strip().strip(', ')
 
     for tag_content in bracket_contents:
         parsed_targets, parsed_tags, parsed_shared = _parse_image_prompt_targets(tag_content, characters)
@@ -357,67 +337,41 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
         if parsed_shared and not shared_tags:
             shared_tags = parsed_shared
 
-    # ターゲットキャラが指定されていない場合のフォールバック
     if not target_chars:
         if "character_1" in characters:
             target_chars.append("character_1")
         elif characters:
             target_chars.append(next(iter(characters.keys())))
 
-    # 選択されたキャラのプロンプトリスト
-    selected_char_prompts = [characters[k] for k in target_chars if k in characters]
+    return target_chars, per_char_tags, shared_tags
 
-    # キャラ定義が無い場合（技術記事など）
-    if not selected_char_prompts:
-        parts = []
-        if clean_situation:
-            parts.append(clean_situation)
-        if artist_name:
-            parts.append(artist_name)
-        parts.append(BASE_QUALITY_PROMPT)
-        if style_without_artist:
-            parts.append(style_without_artist)
-        return ", ".join(parts)
 
-    # 1人の場合
-    if len(selected_char_prompts) == 1:
-        char_desc = selected_char_prompts[0]
-        parts = [char_desc]
-        char_tags = per_char_tags.get(target_chars[0], "") if target_chars else ""
-        if not char_tags:
-            char_tags = shared_tags
-        if char_tags:
-            parts.append(char_tags)
-        if clean_situation:
-            parts.append(clean_situation)
-        if artist_name:
-            parts.append(artist_name)
-        parts.append(BASE_QUALITY_PROMPT)
-        if style_without_artist:
-            parts.append(style_without_artist)
-        return ", ".join(parts)
-
-    # 2人以上の場合: 全体カウントタグ（2boys, 1boy and 1girl, 2characters等）を計算
+def _compute_count_tag(selected_char_prompts: list[str]) -> str:
+    """全体カウントタグ（2boys, 1boy and 1girl, 2characters等）を計算する。"""
     boys_count = sum(1 for p in selected_char_prompts if re.search(r'\b(1boy|boy|male)\b', p, re.IGNORECASE))
     girls_count = sum(1 for p in selected_char_prompts if re.search(r'\b(1girl|girl|female)\b', p, re.IGNORECASE))
     total_count = len(selected_char_prompts)
 
     if boys_count == total_count:
-        count_tag = f"{total_count}boys"
-    elif girls_count == total_count:
-        count_tag = f"{total_count}girls"
-    elif boys_count > 0 and girls_count > 0 and (boys_count + girls_count == total_count):
-        count_tag = f"{boys_count}boy{'s' if boys_count > 1 else ''}, {girls_count}girl{'s' if girls_count > 1 else ''}"
-    else:
-        count_tag = f"{total_count}characters"
+        return f"{total_count}boys"
+    if girls_count == total_count:
+        return f"{total_count}girls"
+    if boys_count > 0 and girls_count > 0 and (boys_count + girls_count == total_count):
+        return f"{boys_count}boy{'s' if boys_count > 1 else ''}, {girls_count}girl{'s' if girls_count > 1 else ''}"
+    return f"{total_count}characters"
 
-    # 各キャラ定義から単独カウントタグ（1boy, 1girl等）を除去して整理
-    cleaned_char_descs = []
-    for p in selected_char_prompts:
-        cleaned_p = re.sub(r'^\s*(?:1boy|1girl|1other|male|female)\s*,\s*', '', p, flags=re.IGNORECASE).strip()
-        cleaned_char_descs.append(cleaned_p)
 
-    # 表情/ポーズタグを各キャラの直後に配置（全キャラ同一の場合は1回だけ出力）
+def _strip_single_count_tags(selected_char_prompts: list[str]) -> list[str]:
+    """各キャラ定義先頭から単独カウントタグ（1boy, 1girl等）を除去して整理する。"""
+    return [
+        re.sub(r'^\s*(?:1boy|1girl|1other|male|female)\s*,\s*', '', p, flags=re.IGNORECASE).strip()
+        for p in selected_char_prompts
+    ]
+
+
+def _build_char_block(target_chars: list[str], per_char_tags: dict[str, str], shared_tags: str, cleaned_char_descs: list[str]) -> str:
+    """表情/ポーズタグを各キャラの直後に配置（全キャラ同一の場合は1回だけ出力）。
+    shared_tags がある場合は末尾に追加する。"""
     per_tags = [per_char_tags.get(k, "").strip() for k in target_chars]
     non_empty_tags = [t for t in per_tags if t]
     all_tags_same = (
@@ -434,8 +388,11 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
         char_block = ", ".join(segments)
     if shared_tags:
         char_block = f"{char_block}, {shared_tags}"
+    return char_block
 
-    parts = [count_tag, char_block]
+
+def _finalize_prompt_parts(parts: list[str], clean_situation: str, artist_name: str, style_without_artist: str) -> str:
+    """situation/artist/品質タグ/スタイル を順に付加して結合する（Illustrious 公式順序）。"""
     if clean_situation:
         parts.append(clean_situation)
     if artist_name:
@@ -443,8 +400,45 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
     parts.append(BASE_QUALITY_PROMPT)
     if style_without_artist:
         parts.append(style_without_artist)
-
     return ", ".join(parts)
+
+
+def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
+    """
+    指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
+    被写体数 + キャラクター外見 + 表情/ポーズ + シチュエーション + artist名 + 品質タグ + アートスタイル を合成する。
+    表情/ポーズは各キャラクター外見の直後に配置（全キャラ同一の場合は1回だけ出力）。
+    Illustrious系の公式トレーニング順序に準拠（person count → character → situation → artist → quality → style）。
+    """
+    raw_prompt = raw_prompt.strip().strip('"\'"\"')
+    artist_name, style_without_artist = _extract_artist_name(art_style)
+    target_chars, per_char_tags, shared_tags = _collect_prompt_targets(raw_prompt, characters)
+    clean_situation = re.sub(r'\[[^\]]*\]', '', raw_prompt).strip().strip(', ')
+
+    # 選択されたキャラのプロンプトリスト
+    selected_char_prompts = [characters[k] for k in target_chars if k in characters]
+
+    # キャラ定義が無い場合（技術記事など）
+    if not selected_char_prompts:
+        return _finalize_prompt_parts([], clean_situation, artist_name, style_without_artist)
+
+    # 1人の場合
+    if len(selected_char_prompts) == 1:
+        char_desc = selected_char_prompts[0]
+        parts = [char_desc]
+        char_tags = per_char_tags.get(target_chars[0], "") if target_chars else ""
+        if not char_tags:
+            char_tags = shared_tags
+        if char_tags:
+            parts.append(char_tags)
+        return _finalize_prompt_parts(parts, clean_situation, artist_name, style_without_artist)
+
+    # 2人以上: 全体カウントタグ + キャラブロック
+    count_tag = _compute_count_tag(selected_char_prompts)
+    cleaned_char_descs = _strip_single_count_tags(selected_char_prompts)
+    char_block = _build_char_block(target_chars, per_char_tags, shared_tags, cleaned_char_descs)
+    parts = [count_tag, char_block]
+    return _finalize_prompt_parts(parts, clean_situation, artist_name, style_without_artist)
 
 
 # --------------------------------------------------

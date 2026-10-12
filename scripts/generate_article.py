@@ -133,6 +133,51 @@ def _is_affiliate_excluded(cp: str) -> bool:
     return False
 
 
+def _cp_genre_score(cp: str, cp_scores: dict, target_genres: list[str]) -> float:
+    """版権のジャンル適合スコア（target_genres の最大値、無スコア時は -1）を返す。"""
+    s = cp_scores.get(cp)
+    if not s:
+        return -1
+    return max(s.get(g, 0) for g in target_genres)
+
+
+def _filter_valid_copyrights(aggregates: dict, target_genres: list[str] | None = None) -> list[str]:
+    """集計版権を件数降順に並べアフィリエイト不適格を除外し、
+    target_genres 指定時はジャンル適合度で優先する。最大10件を返す。"""
+    aggregate_copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])
+    valid_cps = [cp for cp, _ in aggregate_copyrights if not _is_affiliate_excluded(cp)]
+    if target_genres:
+        scores_data = _load_genre_scores()
+        cp_scores = {c["name"]: c.get("scores") for c in scores_data.get("copyrights", []) if c.get("scores")}
+        valid_cps.sort(key=lambda cp: _cp_genre_score(cp, cp_scores, target_genres), reverse=True)
+    return valid_cps[:10]
+
+
+def _extract_post_copyrights(selected: list[dict]) -> list[str]:
+    """選出投稿から版権を抽出する（アフィリエイト不適格は除外・重複排除）。"""
+    post_copyrights = []
+    for post in selected:
+        for cp in post.get("copyrights", []):
+            if not _is_affiliate_excluded(cp) and cp not in post_copyrights:
+                post_copyrights.append(cp)
+    return post_copyrights
+
+
+def _merge_copyrights(post_copyrights: list[str], base_copyrights: list[str]) -> str:
+    """選出投稿の版権を先頭に、不足分を集計ベースで補完し上位8件のカンマ結合文字列を返す。"""
+    all_copyrights = list(post_copyrights)
+    for cp in base_copyrights:
+        if cp not in all_copyrights:
+            all_copyrights.append(cp)
+    return ", ".join(c for c in all_copyrights[:8]) if all_copyrights else "-"
+
+
+def _extract_top_artists(aggregates: dict) -> str:
+    """人気artistを抽出し（unknown_artistは既に除外済み）上位8件のカンマ結合文字列を返す。"""
+    aggregate_artists = sorted(aggregates.get("artists", {}).items(), key=lambda x: -x[1])
+    return ", ".join(a for a, _ in aggregate_artists[:8]) if aggregate_artists else "-"
+
+
 def _select_character_features(target_genres: list[str] | None = None) -> dict | None:
     """e621 から集計したキャラクター特徴を読み込み、プロンプト注入・生成情報表示に使用する参考データを選出する。
     投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
@@ -163,37 +208,16 @@ def _select_character_features(target_genres: list[str] | None = None) -> dict |
     selected = _select_two_posts(posts, max_retries=10)
 
     # 集計結果からベース版権を確保（アフィリエイト不適格は除外）
-    aggregate_copyrights = sorted(aggregates.get("copyrights", {}).items(), key=lambda x: -x[1])
-    all_valid_cps = [cp for cp, _ in aggregate_copyrights if not _is_affiliate_excluded(cp)]
-    if target_genres:
-        scores_data = _load_genre_scores()
-        cp_scores = {c["name"]: c.get("scores") for c in scores_data.get("copyrights", []) if c.get("scores")}
-        def _cp_genre_score(cp: str) -> float:
-            s = cp_scores.get(cp)
-            if not s:
-                return -1
-            return max(s.get(g, 0) for g in target_genres)
-        all_valid_cps.sort(key=_cp_genre_score, reverse=True)
-    base_copyrights = all_valid_cps[:10]
+    base_copyrights = _filter_valid_copyrights(aggregates, target_genres)
 
     # 選出投稿から版権を抽出（アフィリエイト不適格は除外）
-    post_copyrights = []
-    for post in selected:
-        for cp in post.get("copyrights", []):
-            if not _is_affiliate_excluded(cp) and cp not in post_copyrights:
-                post_copyrights.append(cp)
+    post_copyrights = _extract_post_copyrights(selected)
 
     # 選出投稿の版権を先頭に、不足分を集計ベースで補完
-    all_copyrights = list(post_copyrights)
-    for cp in base_copyrights:
-        if cp not in all_copyrights:
-            all_copyrights.append(cp)
-
-    copyright_names = ", ".join(c for c in all_copyrights[:8]) if all_copyrights else "-"
+    copyright_names = _merge_copyrights(post_copyrights, base_copyrights)
 
     # 人気artistを抽出（unknown_artistは既に除外済み）
-    aggregate_artists = sorted(aggregates.get("artists", {}).items(), key=lambda x: -x[1])
-    artist_names = ", ".join(a for a, _ in aggregate_artists[:8]) if aggregate_artists else "-"
+    artist_names = _extract_top_artists(aggregates)
 
     return {
         "updated_at": data.get("updated_at", "unknown"),
