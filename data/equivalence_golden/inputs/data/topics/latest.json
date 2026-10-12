@@ -1,0 +1,1778 @@
+{
+  "fetched_at": "2026-10-12T09:00:00+09:00",
+  "ttl_hours": 24,
+  "total": 76,
+  "by_category": {
+    "tech": [
+      {
+        "title": "Rust 1.90 が公開され新機能追加",
+        "url": "https://www.rust-lang.org/blog",
+        "score": 1,
+        "source": "TechCrunch RSS",
+        "category": "tech"
+      },
+      {
+        "title": "Python の新機能が開発効率を向上",
+        "url": "https://techcrunch.com/python",
+        "score": 1,
+        "source": "TechCrunch RSS",
+        "category": "tech"
+      }
+    ],
+    "kemono": [
+      {
+        "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+        "url": "https://github.com/LinKennt/LoFS-VN",
+        "score": 1,
+        "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+        "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+        "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk 2077, or The Blood of Dawnwalker. Perhaps I’ll be enjoying Kingdom Hearts or a dash of Pokémon, but",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
+        "url": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
+        "description": "If you feel like the Persona-ification of Fire Emblem has gone too far, it may be a good time to go back to a 3DS classic.",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Marvel Darkhold Destiny Is Magic: The Gathering’s First Universes Beyond Set Of 2027",
+        "url": "https://www.gamespot.com/articles/marvel-darkhold-destiny-is-magic-the-gatherings-first-universes-beyond-set-of-2027/",
+        "description": "Today at New York Comic Con, Wizards of the Coast announced the first 2027 Universes Beyond expansion set for Magic: The Gathering. Marvel’s Darkhold Destiny will pit Doctor Strange, Thor, Ghost Rider, and more against cosmic villains like Hela and Dormammu in 2027. The set will include normal and C",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Let’s All Be Happy This AAA Minesweeper Game Isn’t Real",
+        "url": "https://www.gamespot.com/articles/lets-all-be-happy-this-aaa-minesweeper-game-isnt-real/",
+        "description": "Minesweeper has been around for decades and it's probably overdue for some modern flourishes. Now there's a Triple-A Minesweeper parody that offers a hilarious look at what a Minesweeper update might look like. The Triple-A Minesweeper was created by writer and programmer Mike Lacher, and it's fully",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "These Are Easily The Most Unique Fortnite Skins",
+        "url": "https://www.gamespot.com/articles/these-are-easily-the-most-unique-fortnite-skins/",
+        "description": "There are a lot of Fortnite skins that look cool or have an interesting gimmick, but there are very few that have any kind of feature that's truly unique, something you genuinely cannot get from any of the dozens of skins sitting in the item shop each day. For example, there are dozens of skins that",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Dragon’s Dogma 2: Dark Arisen Is Great, But At a Cost",
+        "url": "https://www.gamespot.com/reviews/dragons-dogma-2-dark-arisen-is-great-but-at-a-cost/",
+        "description": "Capcom choosing the exact same subtitle for two separate expansions in two different games makes a lot of sense. Dragon's Dogma 2: Dark Arisen is not only a thematically relevant title, but thanks to the first game's expansion of the same name, it also conveys to longtime fans what to expect: namely",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Call Of Duty: MW4 Early Access Also Includes DMZ, Here’s How To Get In",
+        "url": "https://www.gamespot.com/articles/call-of-duty-mw4-early-access-also-includes-dmz-heres-how-to-get-in/",
+        "description": "Call of Duty: Modern Warfare 4's campaign is playable a week early for people who preorder, and now we know the DMZ mode will be as well. Activision has announced that MW4's extraction-based DMZ mode will be playable starting Tuesday, October 20, which is three days before the game launches. Campaig",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "2026 Upcoming Games Release Schedule",
+        "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
+        "description": "2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move further into the year--2026 will also see the release of Grand Theft Auto 6, which is widely anticipat",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Gears Of War: E-Day–How’s It Selling? Let’s Unpack Things",
+        "url": "https://www.gamespot.com/articles/gears-of-war-e-day-hows-it-selling-lets-unpack-things/",
+        "description": "Microsoft's latest console exclusive, Gears of War: E-Day , launched this week, and now we've gotten the first glimpse at how the game is performing commercially. Multiple analysts have weighed in, and there are numerous factors at play beyond pure sales, due to Game Pass and other factors. So let's",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "World of Warcraft: Forever – “Your Adventure Begins” Trailer",
+        "url": "https://www.gamespot.com/videos/world-of-warcraft-forever-your-adventure-begins-trailer/",
+        "description": "Learn about the new quests, characters, and rewards waiting ahead of your leveling journey through Azeroth.",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+        "url": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+        "description": "Artemis Fowl is coming back to TV screens in the form of an animated show on Disney Channel and Disney+. Author Eoin Colfer announced that Disney had greenlit another series project based on his family fantasy novels at the 25 Years of Artemis Fowl panel at New York Comic Con 2026. He'll remain invo",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+        "url": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+        "description": "Resident Evil beat Weapons to become director Zach Cregger's highest-grossing film while The Social Reckoning bombed at the box office. The live-action adaptation of Capcom's classic survival horror series turned heads as it reached an estimated worldwide total of $320.2 million over the weekend. Wi",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+        "url": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+        "description": "A new weekend has arrived, and today, you can save big on Doom: The Dark Ages, Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, LEGO KPop: Demon Hunters, and more. Check out our top picks for Sunday, October 11, below. Doom: The Dark Ages - Premium Edition for $30.09 Fanatical ha",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+        "url": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+        "description": "Call of Duty fans are torn about NetEase Games' ECC: Redline, a new FPS that many have called a \"rip-off\" with the power to fill the void for frustrated Warzone players. NetEase called its new shooter a \"self-developed extreme-sports tactical shooter\" when revealing it just days ago. It's yet anothe",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+        "url": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+        "description": "Bandai Namco has revealed a first look at Tekken 8 DLC character Yujiro Hanma, and the Baki rep is looking just as uncanny as fans expected. The new trailer for the fighting game's Season 3 characters debuted alongside Evo France 2026. Following Kunimitsu's release in June and Bob's release in Augus",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+        "url": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+        "description": "There are over 230 million copies of Grand Theft Auto 5 in the world. As the second-highest selling game of all time, it has been played for billions of hours by players across the globe, making it one of the most significant pastimes in the entire world. That’s an impressive achievement for what in",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+        "url": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+        "description": "Marvel Tokon: Fighting Souls will continue its Year 1 DLC roadmap with Thor (Jane Foster) this winter, with two more characters coming in 2027. Developer Arc System Works confirmed the lineup alongside Evo France 2026. The Jane Foster version of Asgard's God of Thunder is now officially set to follo",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Wildwood Review",
+        "url": "https://www.ign.com/articles/wildwood-review",
+        "description": "Wildwood is in theaters on October 23. There’s something wondrous about the transportive power of stop-motion animated films when they’re executed at the standard that Laika sets for themselves, and wonder is certainly the name of the game in Wildwood. Adapted from the first novel in Colin Meloy and",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+        "url": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+        "description": "Toho's latest Godzilla Minus Zero trailer is here and puts the spotlight on King Ghidorah's lightning-like gravity beams and Godzilla's iconic atomic breath. This new sneak peek at the King of the Monsters and the latest iteration of his archnemesis debuted as part of New York Comic Con 2026. Toho r",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series",
+        "url": "https://www.ign.com/articles/naruto-teasers-reveal-new-shadow-rising-manga-and-anime-crossover-series",
+        "description": "Naruto is alive and well, as author Masashi Kishimoto has announced a new manga called Shadow Rising – and a new anime crossover series is on the way, too. Both Naruto projects were announced during the Naruto panel at New York Comic Con 2026. Details about the manga, specifically, were light, with ",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Godzilla Minus Zero Film Streams Final Trailer",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Boichi's The Marshal King Manga Ends on October 16",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "All of Us Are Dead Creator Dong-geun Joo Talks Zombies, Adaptations, and His Global Fans",
+        "url": "https://www.animenewsnetwork.com/interview/2026-10-09/all-of-us-are-dead-creator-dong-geun-joo-talks-zombies-adaptations-and-his-global-fans/.242054",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Interview with Takako Shimura, Creator of the Scenes of AWAJIMA Manga",
+        "url": "https://www.animenewsnetwork.com/interview/2026-10-07/with-takako-shimura-creator-of-the-scenes-of-awajima-manga/.241507",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Behind the Scenes with Villion:Code Game Designer Ilya Kuvshinov",
+        "url": "https://www.animenewsnetwork.com/interview/2026-10-05/behind-the-scenes-with-villion-code-game-designer-ilya-kuvshinov/.241719",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
+        "url": "https://www.animenewsnetwork.com/interview/2026-09-28/bringing-magic-knight-rayearth-to-a-new-generation-with-director-yui-miura/.239694",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      }
+    ],
+    "pokemon": [
+      {
+        "title": "ivi-vink/Akkamon: A pokemon MMO demo I wrote in 3 weeks. It uses the actor model programming language Akka Typed for the backend, WebSockets infrastructure, and Phaser3 typescript for the game engine.",
+        "url": "https://github.com/ivi-vink/Akkamon",
+        "score": 2,
+        "source": "GitHub",
+        "category": "pokemon"
+      },
+      {
+        "title": "Let's Yap 🎨",
+        "url": "https://www.pokecommunity.com/threads/lets-yap-%F0%9F%8E%A8.543804/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "The PC Coloring Book (Now Open!)",
+        "url": "https://www.pokecommunity.com/threads/the-pc-coloring-book-now-open.543993/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "Yume Tsuki's arts & comics",
+        "url": "https://www.pokecommunity.com/threads/yume-tsukis-arts-comics.458913/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "Goobs art dump . ܁₊ ⊹ . ܁ ⟡ ܁ . ⊹ ₊ ܁.",
+        "url": "https://www.pokecommunity.com/threads/goobs-art-dump-%DC%81%E2%82%8A-%E2%8A%B9-%DC%81-%E2%9F%A1-%DC%81-%E2%8A%B9-%E2%82%8A-%DC%81.543976/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "Monthly Pokémon Page Thread",
+        "url": "https://www.pokecommunity.com/threads/monthly-pok%C3%A9mon-page-thread.537599/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "♡ IIIIIT'S SHOWTIME - Auticorn's Mixed Gallery ♡",
+        "url": "https://www.pokecommunity.com/threads/%E2%99%A1-iiiiits-showtime-auticorns-mixed-gallery-%E2%99%A1.535082/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "drawings, pixels and stuff (mainly OCs for now)",
+        "url": "https://www.pokecommunity.com/threads/drawings-pixels-and-stuff-mainly-ocs-for-now.538186/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "Bella’s Poké-Doodles",
+        "url": "https://www.pokecommunity.com/threads/bella%E2%80%99s-pok%C3%A9-doodles.543840/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "Kory's oc Drawings Thread",
+        "url": "https://www.pokecommunity.com/threads/korys-oc-drawings-thread.476186/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "tiramisu's (new and improved) art log!",
+        "url": "https://www.pokecommunity.com/threads/tiramisus-new-and-improved-art-log.535518/",
+        "score": 0,
+        "source": "PokéCommunity Art Studio",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokemon to Release First-Ever Valentine’s Day TCG Set!",
+        "url": "https://www.pokebeach.com/2026/10/pokemon-to-release-first-ever-valentines-day-tcg-set",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "30+ Pokemon European Space Agency and Other TCG Accessories Released on Pokemon Center!",
+        "url": "https://www.pokebeach.com/2026/10/30-pokemon-european-space-agency-and-other-tcg-accessories-released-on-pokemon-center",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "Carpe Diem – Seizing Opportunity in the Pokemon TCG",
+        "url": "https://www.pokebeach.com/2026/09/carpe-diem-seizing-opportunity-in-the-pokemon-tcg",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "“Delta Reign” Preorders Now Live on Pokemon Center!",
+        "url": "https://www.pokebeach.com/2026/09/delta-reign-preorders-now-live-on-pokemon-center",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "All 429 “Deluxe Pack Mega” Cards Revealed for “Pocket!”",
+        "url": "https://www.pokebeach.com/2026/09/all-429-deluxe-pack-mega-cards-revealed-for-pocket",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "“Delta Reign” Prerelease Promos and More English Cards Revealed!",
+        "url": "https://www.pokebeach.com/2026/09/delta-reign-prerelease-promos-and-more-english-cards-revealed",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "McDonald’s Pokemon TCG Promotion to Launch in November for 30th Anniversary!",
+        "url": "https://www.pokebeach.com/2026/09/mcdonalds-pokemon-tcg-promotion-to-launch-in-november-for-30th-anniversary",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "Upgrades People, Upgrades! — Fixing Mega Excadrill",
+        "url": "https://www.pokebeach.com/2026/09/upgrades-people-upgrades-fixing-mega-excadrill",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "New Pokemon TCG Premium Binders to Release Featuring Numbered Pokedex Slots for All 1,025 Pokemon!",
+        "url": "https://www.pokebeach.com/2026/09/new-pokemon-tcg-premium-binders-to-release-featuring-numbered-pokedex-slots-for-all-1025-pokemon",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "Dragapult / Blaziken is the Best Play for Regionals",
+        "url": "https://www.pokebeach.com/2026/09/dragapult-blaziken-is-the-best-play-for-regionals",
+        "score": 0,
+        "source": "PokeBeach News",
+        "category": "pokemon"
+      },
+      {
+        "title": "Nintendo Switch 2 update 23.0.1 released, fixes software startup and closing issue",
+        "url": "https://pokemonblog.com/2026/10/01/nintendo-switch-2-update-23-0-1-released-fixes-software-startup-and-closing-issue/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Nintendo Switch update 23.0.1 released, fixing software startup, pause and closing issues",
+        "url": "https://pokemonblog.com/2026/10/01/nintendo-switch-update-23-0-1-released-fixing-software-startup-pause-and-closing-issues/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Masters EX October 2026 update: Iono & Bellibolt, Wally, Korrina and Sinnoh Gym Leaders",
+        "url": "https://pokemonblog.com/2026/10/01/pokemon-masters-ex-october-2026-update-iono-bellibolt-wally-korrina-and-sinnoh-gym-leaders/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon GO 30th Anniversary Mall Exploration event launches with party hat Pikachu",
+        "url": "https://pokemonblog.com/2026/10/01/pokemon-go-30th-anniversary-mall-exploration-event-launches-with-party-hat-pikachu/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon TCG 30th Celebration products expand across October 2026 lineup",
+        "url": "https://pokemonblog.com/2026/10/01/pokemon-tcg-30th-celebration-products-expand-across-october-2026-lineup/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Scarlet and Violet bring back Mighty Tyranitar in 7-star Tera Raid Battles",
+        "url": "https://pokemonblog.com/2026/10/01/pokemon-scarlet-and-violet-bring-back-mighty-tyranitar-in-7-star-tera-raid-battles/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Sleep Growth Week Vol. 6 boosts Sleep EXP and Candy rewards in October",
+        "url": "https://pokemonblog.com/2026/10/01/pokemon-sleep-growth-week-vol-6-boosts-sleep-exp-and-candy-rewards-in-october/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Pokopia panel discussion archive reveals development insights from PokémonXP",
+        "url": "https://pokemonblog.com/2026/10/01/pokemon-pokopia-panel-discussion-archive-reveals-development-insights-from-pokemonxp/",
+        "score": 0,
+        "source": "PokemonBlog",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon GO - Dynamax Uxie, Mesprit, and Azelf Max Battle Day - Saturday, October 24, 2026",
+        "url": "https://pocketmonsters.net/news/9590",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Sleep - Pokémon Growth Week Vol. 6",
+        "url": "https://pocketmonsters.net/news/9589",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Legends: Z-A - Ranked Battles Season 18",
+        "url": "https://pocketmonsters.net/news/9588",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon GO - Minior Showers in Pokémon GO - Minior Debut",
+        "url": "https://pocketmonsters.net/news/9587",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon's 30 Years of Joy Festival Walk - Pokémon Center POP-UP STORE in Hong Kong",
+        "url": "https://pocketmonsters.net/news/9586",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Pokopia - Pumpkaboo’s Sweet Surprises",
+        "url": "https://pocketmonsters.net/news/9585",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon LEGENDS Z-A + DLC / Pokémon Pokopia + Expansion Pass DLC Sets",
+        "url": "https://pocketmonsters.net/news/9584",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Shiny Magikarp and Shiny Gyarados Pokémon Center × Bear Walker Skateboards",
+        "url": "https://pocketmonsters.net/news/9583",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon TCG: Mega Evolution Delta Reign Prerelease Event / Build &amp; Battle Box",
+        "url": "https://pocketmonsters.net/news/9582",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Pokémon Masters EX - Story Event Treasures of Ruin Ghetsis / 5★ Sygna Suit Ghetsis &amp; Chien-Pao",
+        "url": "https://pocketmonsters.net/news/9581",
+        "score": 0,
+        "source": "PocketMonsters",
+        "category": "pokemon"
+      },
+      {
+        "title": "Ahmadsadin36/pokedex: A fast, modern Pokédex built with Next.js 16, TypeScript, and PokeAPI. Browse 151 Pokémon with advanced search, sorting, filtering, and multi-language support (English/Italian).",
+        "url": "https://github.com/Ahmadsadin36/pokedex",
+        "score": 0,
+        "source": "GitHub",
+        "category": "pokemon"
+      }
+    ],
+    "other": []
+  },
+  "sources": {
+    "GitHub": {
+      "topics": [
+        {
+          "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+          "url": "https://github.com/LinKennt/LoFS-VN",
+          "score": 1,
+          "source": "GitHub",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-12T09:00:00+09:00"
+    },
+    "GameSpot RSS": {
+      "topics": [
+        {
+          "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+          "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+          "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk 2077, or The Blood of Dawnwalker. Perhaps I’ll be enjoying Kingdom Hearts or a dash of Pokémon, but",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
+          "url": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
+          "description": "If you feel like the Persona-ification of Fire Emblem has gone too far, it may be a good time to go back to a 3DS classic.",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Marvel Darkhold Destiny Is Magic: The Gathering’s First Universes Beyond Set Of 2027",
+          "url": "https://www.gamespot.com/articles/marvel-darkhold-destiny-is-magic-the-gatherings-first-universes-beyond-set-of-2027/",
+          "description": "Today at New York Comic Con, Wizards of the Coast announced the first 2027 Universes Beyond expansion set for Magic: The Gathering. Marvel’s Darkhold Destiny will pit Doctor Strange, Thor, Ghost Rider, and more against cosmic villains like Hela and Dormammu in 2027. The set will include normal and C",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Let’s All Be Happy This AAA Minesweeper Game Isn’t Real",
+          "url": "https://www.gamespot.com/articles/lets-all-be-happy-this-aaa-minesweeper-game-isnt-real/",
+          "description": "Minesweeper has been around for decades and it's probably overdue for some modern flourishes. Now there's a Triple-A Minesweeper parody that offers a hilarious look at what a Minesweeper update might look like. The Triple-A Minesweeper was created by writer and programmer Mike Lacher, and it's fully",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "These Are Easily The Most Unique Fortnite Skins",
+          "url": "https://www.gamespot.com/articles/these-are-easily-the-most-unique-fortnite-skins/",
+          "description": "There are a lot of Fortnite skins that look cool or have an interesting gimmick, but there are very few that have any kind of feature that's truly unique, something you genuinely cannot get from any of the dozens of skins sitting in the item shop each day. For example, there are dozens of skins that",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Dragon’s Dogma 2: Dark Arisen Is Great, But At a Cost",
+          "url": "https://www.gamespot.com/reviews/dragons-dogma-2-dark-arisen-is-great-but-at-a-cost/",
+          "description": "Capcom choosing the exact same subtitle for two separate expansions in two different games makes a lot of sense. Dragon's Dogma 2: Dark Arisen is not only a thematically relevant title, but thanks to the first game's expansion of the same name, it also conveys to longtime fans what to expect: namely",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Call Of Duty: MW4 Early Access Also Includes DMZ, Here’s How To Get In",
+          "url": "https://www.gamespot.com/articles/call-of-duty-mw4-early-access-also-includes-dmz-heres-how-to-get-in/",
+          "description": "Call of Duty: Modern Warfare 4's campaign is playable a week early for people who preorder, and now we know the DMZ mode will be as well. Activision has announced that MW4's extraction-based DMZ mode will be playable starting Tuesday, October 20, which is three days before the game launches. Campaig",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "2026 Upcoming Games Release Schedule",
+          "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
+          "description": "2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move further into the year--2026 will also see the release of Grand Theft Auto 6, which is widely anticipat",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Gears Of War: E-Day–How’s It Selling? Let’s Unpack Things",
+          "url": "https://www.gamespot.com/articles/gears-of-war-e-day-hows-it-selling-lets-unpack-things/",
+          "description": "Microsoft's latest console exclusive, Gears of War: E-Day , launched this week, and now we've gotten the first glimpse at how the game is performing commercially. Multiple analysts have weighed in, and there are numerous factors at play beyond pure sales, due to Game Pass and other factors. So let's",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "World of Warcraft: Forever – “Your Adventure Begins” Trailer",
+          "url": "https://www.gamespot.com/videos/world-of-warcraft-forever-your-adventure-begins-trailer/",
+          "description": "Learn about the new quests, characters, and rewards waiting ahead of your leveling journey through Azeroth.",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-12T09:00:00+09:00"
+    },
+    "IGN RSS": {
+      "topics": [
+        {
+          "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+          "url": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+          "description": "Artemis Fowl is coming back to TV screens in the form of an animated show on Disney Channel and Disney+. Author Eoin Colfer announced that Disney had greenlit another series project based on his family fantasy novels at the 25 Years of Artemis Fowl panel at New York Comic Con 2026. He'll remain invo",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+          "url": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+          "description": "Resident Evil beat Weapons to become director Zach Cregger's highest-grossing film while The Social Reckoning bombed at the box office. The live-action adaptation of Capcom's classic survival horror series turned heads as it reached an estimated worldwide total of $320.2 million over the weekend. Wi",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+          "url": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+          "description": "A new weekend has arrived, and today, you can save big on Doom: The Dark Ages, Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, LEGO KPop: Demon Hunters, and more. Check out our top picks for Sunday, October 11, below. Doom: The Dark Ages - Premium Edition for $30.09 Fanatical ha",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+          "url": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+          "description": "Call of Duty fans are torn about NetEase Games' ECC: Redline, a new FPS that many have called a \"rip-off\" with the power to fill the void for frustrated Warzone players. NetEase called its new shooter a \"self-developed extreme-sports tactical shooter\" when revealing it just days ago. It's yet anothe",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+          "url": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+          "description": "Bandai Namco has revealed a first look at Tekken 8 DLC character Yujiro Hanma, and the Baki rep is looking just as uncanny as fans expected. The new trailer for the fighting game's Season 3 characters debuted alongside Evo France 2026. Following Kunimitsu's release in June and Bob's release in Augus",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+          "url": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+          "description": "There are over 230 million copies of Grand Theft Auto 5 in the world. As the second-highest selling game of all time, it has been played for billions of hours by players across the globe, making it one of the most significant pastimes in the entire world. That’s an impressive achievement for what in",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+          "url": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+          "description": "Marvel Tokon: Fighting Souls will continue its Year 1 DLC roadmap with Thor (Jane Foster) this winter, with two more characters coming in 2027. Developer Arc System Works confirmed the lineup alongside Evo France 2026. The Jane Foster version of Asgard's God of Thunder is now officially set to follo",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Wildwood Review",
+          "url": "https://www.ign.com/articles/wildwood-review",
+          "description": "Wildwood is in theaters on October 23. There’s something wondrous about the transportive power of stop-motion animated films when they’re executed at the standard that Laika sets for themselves, and wonder is certainly the name of the game in Wildwood. Adapted from the first novel in Colin Meloy and",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+          "url": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+          "description": "Toho's latest Godzilla Minus Zero trailer is here and puts the spotlight on King Ghidorah's lightning-like gravity beams and Godzilla's iconic atomic breath. This new sneak peek at the King of the Monsters and the latest iteration of his archnemesis debuted as part of New York Comic Con 2026. Toho r",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series",
+          "url": "https://www.ign.com/articles/naruto-teasers-reveal-new-shadow-rising-manga-and-anime-crossover-series",
+          "description": "Naruto is alive and well, as author Masashi Kishimoto has announced a new manga called Shadow Rising – and a new anime crossover series is on the way, too. Both Naruto projects were announced during the Naruto panel at New York Comic Con 2026. Details about the manga, specifically, were light, with ",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        }
+      ],
+      "fetched_at": "2026-10-12T09:00:00+09:00"
+    },
+    "Anime News Network": {
+      "topics": [
+        {
+          "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Godzilla Minus Zero Film Streams Final Trailer",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Boichi's The Marshal King Manga Ends on October 16",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "All of Us Are Dead Creator Dong-geun Joo Talks Zombies, Adaptations, and His Global Fans",
+          "url": "https://www.animenewsnetwork.com/interview/2026-10-09/all-of-us-are-dead-creator-dong-geun-joo-talks-zombies-adaptations-and-his-global-fans/.242054",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Interview with Takako Shimura, Creator of the Scenes of AWAJIMA Manga",
+          "url": "https://www.animenewsnetwork.com/interview/2026-10-07/with-takako-shimura-creator-of-the-scenes-of-awajima-manga/.241507",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Behind the Scenes with Villion:Code Game Designer Ilya Kuvshinov",
+          "url": "https://www.animenewsnetwork.com/interview/2026-10-05/behind-the-scenes-with-villion-code-game-designer-ilya-kuvshinov/.241719",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
+          "url": "https://www.animenewsnetwork.com/interview/2026-09-28/bringing-magic-knight-rayearth-to-a-new-generation-with-director-yui-miura/.239694",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        }
+      ],
+      "fetched_at": "2026-10-12T09:00:00+09:00"
+    },
+    "PokéCommunity Art Studio": {
+      "topics": [
+        {
+          "title": "Let's Yap 🎨",
+          "url": "https://www.pokecommunity.com/threads/lets-yap-%F0%9F%8E%A8.543804/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "The PC Coloring Book (Now Open!)",
+          "url": "https://www.pokecommunity.com/threads/the-pc-coloring-book-now-open.543993/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "Yume Tsuki's arts & comics",
+          "url": "https://www.pokecommunity.com/threads/yume-tsukis-arts-comics.458913/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "Goobs art dump . ܁₊ ⊹ . ܁ ⟡ ܁ . ⊹ ₊ ܁.",
+          "url": "https://www.pokecommunity.com/threads/goobs-art-dump-%DC%81%E2%82%8A-%E2%8A%B9-%DC%81-%E2%9F%A1-%DC%81-%E2%8A%B9-%E2%82%8A-%DC%81.543976/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "Monthly Pokémon Page Thread",
+          "url": "https://www.pokecommunity.com/threads/monthly-pok%C3%A9mon-page-thread.537599/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "♡ IIIIIT'S SHOWTIME - Auticorn's Mixed Gallery ♡",
+          "url": "https://www.pokecommunity.com/threads/%E2%99%A1-iiiiits-showtime-auticorns-mixed-gallery-%E2%99%A1.535082/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "drawings, pixels and stuff (mainly OCs for now)",
+          "url": "https://www.pokecommunity.com/threads/drawings-pixels-and-stuff-mainly-ocs-for-now.538186/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "Bella’s Poké-Doodles",
+          "url": "https://www.pokecommunity.com/threads/bella%E2%80%99s-pok%C3%A9-doodles.543840/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "Kory's oc Drawings Thread",
+          "url": "https://www.pokecommunity.com/threads/korys-oc-drawings-thread.476186/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        },
+        {
+          "title": "tiramisu's (new and improved) art log!",
+          "url": "https://www.pokecommunity.com/threads/tiramisus-new-and-improved-art-log.535518/",
+          "score": 0,
+          "source": "PokéCommunity Art Studio",
+          "category": "pokemon"
+        }
+      ],
+      "fetched_at": "2026-10-02T14:45:14.346442+09:00"
+    },
+    "PokeBeach News": {
+      "topics": [
+        {
+          "title": "Pokemon to Release First-Ever Valentine’s Day TCG Set!",
+          "url": "https://www.pokebeach.com/2026/10/pokemon-to-release-first-ever-valentines-day-tcg-set",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "30+ Pokemon European Space Agency and Other TCG Accessories Released on Pokemon Center!",
+          "url": "https://www.pokebeach.com/2026/10/30-pokemon-european-space-agency-and-other-tcg-accessories-released-on-pokemon-center",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "Carpe Diem – Seizing Opportunity in the Pokemon TCG",
+          "url": "https://www.pokebeach.com/2026/09/carpe-diem-seizing-opportunity-in-the-pokemon-tcg",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "“Delta Reign” Preorders Now Live on Pokemon Center!",
+          "url": "https://www.pokebeach.com/2026/09/delta-reign-preorders-now-live-on-pokemon-center",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "All 429 “Deluxe Pack Mega” Cards Revealed for “Pocket!”",
+          "url": "https://www.pokebeach.com/2026/09/all-429-deluxe-pack-mega-cards-revealed-for-pocket",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "“Delta Reign” Prerelease Promos and More English Cards Revealed!",
+          "url": "https://www.pokebeach.com/2026/09/delta-reign-prerelease-promos-and-more-english-cards-revealed",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "McDonald’s Pokemon TCG Promotion to Launch in November for 30th Anniversary!",
+          "url": "https://www.pokebeach.com/2026/09/mcdonalds-pokemon-tcg-promotion-to-launch-in-november-for-30th-anniversary",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "Upgrades People, Upgrades! — Fixing Mega Excadrill",
+          "url": "https://www.pokebeach.com/2026/09/upgrades-people-upgrades-fixing-mega-excadrill",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "New Pokemon TCG Premium Binders to Release Featuring Numbered Pokedex Slots for All 1,025 Pokemon!",
+          "url": "https://www.pokebeach.com/2026/09/new-pokemon-tcg-premium-binders-to-release-featuring-numbered-pokedex-slots-for-all-1025-pokemon",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        },
+        {
+          "title": "Dragapult / Blaziken is the Best Play for Regionals",
+          "url": "https://www.pokebeach.com/2026/09/dragapult-blaziken-is-the-best-play-for-regionals",
+          "score": 0,
+          "source": "PokeBeach News",
+          "category": "pokemon"
+        }
+      ],
+      "fetched_at": "2026-10-02T14:45:14.346442+09:00"
+    },
+    "PokemonBlog": {
+      "topics": [
+        {
+          "title": "Nintendo Switch 2 update 23.0.1 released, fixes software startup and closing issue",
+          "url": "https://pokemonblog.com/2026/10/01/nintendo-switch-2-update-23-0-1-released-fixes-software-startup-and-closing-issue/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Nintendo Switch update 23.0.1 released, fixing software startup, pause and closing issues",
+          "url": "https://pokemonblog.com/2026/10/01/nintendo-switch-update-23-0-1-released-fixing-software-startup-pause-and-closing-issues/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Masters EX October 2026 update: Iono & Bellibolt, Wally, Korrina and Sinnoh Gym Leaders",
+          "url": "https://pokemonblog.com/2026/10/01/pokemon-masters-ex-october-2026-update-iono-bellibolt-wally-korrina-and-sinnoh-gym-leaders/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon GO 30th Anniversary Mall Exploration event launches with party hat Pikachu",
+          "url": "https://pokemonblog.com/2026/10/01/pokemon-go-30th-anniversary-mall-exploration-event-launches-with-party-hat-pikachu/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon TCG 30th Celebration products expand across October 2026 lineup",
+          "url": "https://pokemonblog.com/2026/10/01/pokemon-tcg-30th-celebration-products-expand-across-october-2026-lineup/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Scarlet and Violet bring back Mighty Tyranitar in 7-star Tera Raid Battles",
+          "url": "https://pokemonblog.com/2026/10/01/pokemon-scarlet-and-violet-bring-back-mighty-tyranitar-in-7-star-tera-raid-battles/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Sleep Growth Week Vol. 6 boosts Sleep EXP and Candy rewards in October",
+          "url": "https://pokemonblog.com/2026/10/01/pokemon-sleep-growth-week-vol-6-boosts-sleep-exp-and-candy-rewards-in-october/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Pokopia panel discussion archive reveals development insights from PokémonXP",
+          "url": "https://pokemonblog.com/2026/10/01/pokemon-pokopia-panel-discussion-archive-reveals-development-insights-from-pokemonxp/",
+          "score": 0,
+          "source": "PokemonBlog",
+          "category": "pokemon"
+        }
+      ],
+      "fetched_at": "2026-10-02T14:45:14.346442+09:00"
+    },
+    "PocketMonsters": {
+      "topics": [
+        {
+          "title": "Pokémon GO - Dynamax Uxie, Mesprit, and Azelf Max Battle Day - Saturday, October 24, 2026",
+          "url": "https://pocketmonsters.net/news/9590",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Sleep - Pokémon Growth Week Vol. 6",
+          "url": "https://pocketmonsters.net/news/9589",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Legends: Z-A - Ranked Battles Season 18",
+          "url": "https://pocketmonsters.net/news/9588",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon GO - Minior Showers in Pokémon GO - Minior Debut",
+          "url": "https://pocketmonsters.net/news/9587",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon's 30 Years of Joy Festival Walk - Pokémon Center POP-UP STORE in Hong Kong",
+          "url": "https://pocketmonsters.net/news/9586",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Pokopia - Pumpkaboo’s Sweet Surprises",
+          "url": "https://pocketmonsters.net/news/9585",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon LEGENDS Z-A + DLC / Pokémon Pokopia + Expansion Pass DLC Sets",
+          "url": "https://pocketmonsters.net/news/9584",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Shiny Magikarp and Shiny Gyarados Pokémon Center × Bear Walker Skateboards",
+          "url": "https://pocketmonsters.net/news/9583",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon TCG: Mega Evolution Delta Reign Prerelease Event / Build &amp; Battle Box",
+          "url": "https://pocketmonsters.net/news/9582",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        },
+        {
+          "title": "Pokémon Masters EX - Story Event Treasures of Ruin Ghetsis / 5★ Sygna Suit Ghetsis &amp; Chien-Pao",
+          "url": "https://pocketmonsters.net/news/9581",
+          "score": 0,
+          "source": "PocketMonsters",
+          "category": "pokemon"
+        }
+      ],
+      "fetched_at": "2026-10-02T14:45:14.346442+09:00"
+    },
+    "TechCrunch RSS": {
+      "topics": [
+        {
+          "title": "Rust 1.90 が公開され新機能追加",
+          "url": "https://www.rust-lang.org/blog",
+          "score": 1,
+          "source": "TechCrunch RSS",
+          "category": "tech"
+        },
+        {
+          "title": "Python の新機能が開発効率を向上",
+          "url": "https://techcrunch.com/python",
+          "score": 1,
+          "source": "TechCrunch RSS",
+          "category": "tech"
+        }
+      ],
+      "fetched_at": "2026-10-12T09:00:00+09:00"
+    }
+  },
+  "all": [
+    {
+      "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+      "url": "https://github.com/LinKennt/LoFS-VN",
+      "score": 1,
+      "source": "GitHub",
+      "category": "kemono"
+    },
+    {
+      "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+      "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+      "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk 2077, or The Blood of Dawnwalker. Perhaps I’ll be enjoying Kingdom Hearts or a dash of Pokémon, but",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
+      "url": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
+      "description": "If you feel like the Persona-ification of Fire Emblem has gone too far, it may be a good time to go back to a 3DS classic.",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Marvel Darkhold Destiny Is Magic: The Gathering’s First Universes Beyond Set Of 2027",
+      "url": "https://www.gamespot.com/articles/marvel-darkhold-destiny-is-magic-the-gatherings-first-universes-beyond-set-of-2027/",
+      "description": "Today at New York Comic Con, Wizards of the Coast announced the first 2027 Universes Beyond expansion set for Magic: The Gathering. Marvel’s Darkhold Destiny will pit Doctor Strange, Thor, Ghost Rider, and more against cosmic villains like Hela and Dormammu in 2027. The set will include normal and C",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Let’s All Be Happy This AAA Minesweeper Game Isn’t Real",
+      "url": "https://www.gamespot.com/articles/lets-all-be-happy-this-aaa-minesweeper-game-isnt-real/",
+      "description": "Minesweeper has been around for decades and it's probably overdue for some modern flourishes. Now there's a Triple-A Minesweeper parody that offers a hilarious look at what a Minesweeper update might look like. The Triple-A Minesweeper was created by writer and programmer Mike Lacher, and it's fully",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "These Are Easily The Most Unique Fortnite Skins",
+      "url": "https://www.gamespot.com/articles/these-are-easily-the-most-unique-fortnite-skins/",
+      "description": "There are a lot of Fortnite skins that look cool or have an interesting gimmick, but there are very few that have any kind of feature that's truly unique, something you genuinely cannot get from any of the dozens of skins sitting in the item shop each day. For example, there are dozens of skins that",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Dragon’s Dogma 2: Dark Arisen Is Great, But At a Cost",
+      "url": "https://www.gamespot.com/reviews/dragons-dogma-2-dark-arisen-is-great-but-at-a-cost/",
+      "description": "Capcom choosing the exact same subtitle for two separate expansions in two different games makes a lot of sense. Dragon's Dogma 2: Dark Arisen is not only a thematically relevant title, but thanks to the first game's expansion of the same name, it also conveys to longtime fans what to expect: namely",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Call Of Duty: MW4 Early Access Also Includes DMZ, Here’s How To Get In",
+      "url": "https://www.gamespot.com/articles/call-of-duty-mw4-early-access-also-includes-dmz-heres-how-to-get-in/",
+      "description": "Call of Duty: Modern Warfare 4's campaign is playable a week early for people who preorder, and now we know the DMZ mode will be as well. Activision has announced that MW4's extraction-based DMZ mode will be playable starting Tuesday, October 20, which is three days before the game launches. Campaig",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "2026 Upcoming Games Release Schedule",
+      "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
+      "description": "2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move further into the year--2026 will also see the release of Grand Theft Auto 6, which is widely anticipat",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Gears Of War: E-Day–How’s It Selling? Let’s Unpack Things",
+      "url": "https://www.gamespot.com/articles/gears-of-war-e-day-hows-it-selling-lets-unpack-things/",
+      "description": "Microsoft's latest console exclusive, Gears of War: E-Day , launched this week, and now we've gotten the first glimpse at how the game is performing commercially. Multiple analysts have weighed in, and there are numerous factors at play beyond pure sales, due to Game Pass and other factors. So let's",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "World of Warcraft: Forever – “Your Adventure Begins” Trailer",
+      "url": "https://www.gamespot.com/videos/world-of-warcraft-forever-your-adventure-begins-trailer/",
+      "description": "Learn about the new quests, characters, and rewards waiting ahead of your leveling journey through Azeroth.",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+      "url": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+      "description": "Artemis Fowl is coming back to TV screens in the form of an animated show on Disney Channel and Disney+. Author Eoin Colfer announced that Disney had greenlit another series project based on his family fantasy novels at the 25 Years of Artemis Fowl panel at New York Comic Con 2026. He'll remain invo",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+      "url": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+      "description": "Resident Evil beat Weapons to become director Zach Cregger's highest-grossing film while The Social Reckoning bombed at the box office. The live-action adaptation of Capcom's classic survival horror series turned heads as it reached an estimated worldwide total of $320.2 million over the weekend. Wi",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+      "url": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+      "description": "A new weekend has arrived, and today, you can save big on Doom: The Dark Ages, Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, LEGO KPop: Demon Hunters, and more. Check out our top picks for Sunday, October 11, below. Doom: The Dark Ages - Premium Edition for $30.09 Fanatical ha",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+      "url": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+      "description": "Call of Duty fans are torn about NetEase Games' ECC: Redline, a new FPS that many have called a \"rip-off\" with the power to fill the void for frustrated Warzone players. NetEase called its new shooter a \"self-developed extreme-sports tactical shooter\" when revealing it just days ago. It's yet anothe",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+      "url": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+      "description": "Bandai Namco has revealed a first look at Tekken 8 DLC character Yujiro Hanma, and the Baki rep is looking just as uncanny as fans expected. The new trailer for the fighting game's Season 3 characters debuted alongside Evo France 2026. Following Kunimitsu's release in June and Bob's release in Augus",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+      "url": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+      "description": "There are over 230 million copies of Grand Theft Auto 5 in the world. As the second-highest selling game of all time, it has been played for billions of hours by players across the globe, making it one of the most significant pastimes in the entire world. That’s an impressive achievement for what in",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+      "url": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+      "description": "Marvel Tokon: Fighting Souls will continue its Year 1 DLC roadmap with Thor (Jane Foster) this winter, with two more characters coming in 2027. Developer Arc System Works confirmed the lineup alongside Evo France 2026. The Jane Foster version of Asgard's God of Thunder is now officially set to follo",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Wildwood Review",
+      "url": "https://www.ign.com/articles/wildwood-review",
+      "description": "Wildwood is in theaters on October 23. There’s something wondrous about the transportive power of stop-motion animated films when they’re executed at the standard that Laika sets for themselves, and wonder is certainly the name of the game in Wildwood. Adapted from the first novel in Colin Meloy and",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+      "url": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+      "description": "Toho's latest Godzilla Minus Zero trailer is here and puts the spotlight on King Ghidorah's lightning-like gravity beams and Godzilla's iconic atomic breath. This new sneak peek at the King of the Monsters and the latest iteration of his archnemesis debuted as part of New York Comic Con 2026. Toho r",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series",
+      "url": "https://www.ign.com/articles/naruto-teasers-reveal-new-shadow-rising-manga-and-anime-crossover-series",
+      "description": "Naruto is alive and well, as author Masashi Kishimoto has announced a new manga called Shadow Rising – and a new anime crossover series is on the way, too. Both Naruto projects were announced during the Naruto panel at New York Comic Con 2026. Details about the manga, specifically, were light, with ",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Godzilla Minus Zero Film Streams Final Trailer",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Boichi's The Marshal King Manga Ends on October 16",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "All of Us Are Dead Creator Dong-geun Joo Talks Zombies, Adaptations, and His Global Fans",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-09/all-of-us-are-dead-creator-dong-geun-joo-talks-zombies-adaptations-and-his-global-fans/.242054",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Interview with Takako Shimura, Creator of the Scenes of AWAJIMA Manga",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-07/with-takako-shimura-creator-of-the-scenes-of-awajima-manga/.241507",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Behind the Scenes with Villion:Code Game Designer Ilya Kuvshinov",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-05/behind-the-scenes-with-villion-code-game-designer-ilya-kuvshinov/.241719",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
+      "url": "https://www.animenewsnetwork.com/interview/2026-09-28/bringing-magic-knight-rayearth-to-a-new-generation-with-director-yui-miura/.239694",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Let's Yap 🎨",
+      "url": "https://www.pokecommunity.com/threads/lets-yap-%F0%9F%8E%A8.543804/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "The PC Coloring Book (Now Open!)",
+      "url": "https://www.pokecommunity.com/threads/the-pc-coloring-book-now-open.543993/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "Yume Tsuki's arts & comics",
+      "url": "https://www.pokecommunity.com/threads/yume-tsukis-arts-comics.458913/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "Goobs art dump . ܁₊ ⊹ . ܁ ⟡ ܁ . ⊹ ₊ ܁.",
+      "url": "https://www.pokecommunity.com/threads/goobs-art-dump-%DC%81%E2%82%8A-%E2%8A%B9-%DC%81-%E2%9F%A1-%DC%81-%E2%8A%B9-%E2%82%8A-%DC%81.543976/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "Monthly Pokémon Page Thread",
+      "url": "https://www.pokecommunity.com/threads/monthly-pok%C3%A9mon-page-thread.537599/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "♡ IIIIIT'S SHOWTIME - Auticorn's Mixed Gallery ♡",
+      "url": "https://www.pokecommunity.com/threads/%E2%99%A1-iiiiits-showtime-auticorns-mixed-gallery-%E2%99%A1.535082/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "drawings, pixels and stuff (mainly OCs for now)",
+      "url": "https://www.pokecommunity.com/threads/drawings-pixels-and-stuff-mainly-ocs-for-now.538186/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "Bella’s Poké-Doodles",
+      "url": "https://www.pokecommunity.com/threads/bella%E2%80%99s-pok%C3%A9-doodles.543840/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "Kory's oc Drawings Thread",
+      "url": "https://www.pokecommunity.com/threads/korys-oc-drawings-thread.476186/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "tiramisu's (new and improved) art log!",
+      "url": "https://www.pokecommunity.com/threads/tiramisus-new-and-improved-art-log.535518/",
+      "score": 0,
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokemon to Release First-Ever Valentine’s Day TCG Set!",
+      "url": "https://www.pokebeach.com/2026/10/pokemon-to-release-first-ever-valentines-day-tcg-set",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "30+ Pokemon European Space Agency and Other TCG Accessories Released on Pokemon Center!",
+      "url": "https://www.pokebeach.com/2026/10/30-pokemon-european-space-agency-and-other-tcg-accessories-released-on-pokemon-center",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "Carpe Diem – Seizing Opportunity in the Pokemon TCG",
+      "url": "https://www.pokebeach.com/2026/09/carpe-diem-seizing-opportunity-in-the-pokemon-tcg",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "“Delta Reign” Preorders Now Live on Pokemon Center!",
+      "url": "https://www.pokebeach.com/2026/09/delta-reign-preorders-now-live-on-pokemon-center",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "All 429 “Deluxe Pack Mega” Cards Revealed for “Pocket!”",
+      "url": "https://www.pokebeach.com/2026/09/all-429-deluxe-pack-mega-cards-revealed-for-pocket",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "“Delta Reign” Prerelease Promos and More English Cards Revealed!",
+      "url": "https://www.pokebeach.com/2026/09/delta-reign-prerelease-promos-and-more-english-cards-revealed",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "McDonald’s Pokemon TCG Promotion to Launch in November for 30th Anniversary!",
+      "url": "https://www.pokebeach.com/2026/09/mcdonalds-pokemon-tcg-promotion-to-launch-in-november-for-30th-anniversary",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "Upgrades People, Upgrades! — Fixing Mega Excadrill",
+      "url": "https://www.pokebeach.com/2026/09/upgrades-people-upgrades-fixing-mega-excadrill",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "New Pokemon TCG Premium Binders to Release Featuring Numbered Pokedex Slots for All 1,025 Pokemon!",
+      "url": "https://www.pokebeach.com/2026/09/new-pokemon-tcg-premium-binders-to-release-featuring-numbered-pokedex-slots-for-all-1025-pokemon",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "Dragapult / Blaziken is the Best Play for Regionals",
+      "url": "https://www.pokebeach.com/2026/09/dragapult-blaziken-is-the-best-play-for-regionals",
+      "score": 0,
+      "source": "PokeBeach News",
+      "category": "pokemon"
+    },
+    {
+      "title": "Nintendo Switch 2 update 23.0.1 released, fixes software startup and closing issue",
+      "url": "https://pokemonblog.com/2026/10/01/nintendo-switch-2-update-23-0-1-released-fixes-software-startup-and-closing-issue/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Nintendo Switch update 23.0.1 released, fixing software startup, pause and closing issues",
+      "url": "https://pokemonblog.com/2026/10/01/nintendo-switch-update-23-0-1-released-fixing-software-startup-pause-and-closing-issues/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Masters EX October 2026 update: Iono & Bellibolt, Wally, Korrina and Sinnoh Gym Leaders",
+      "url": "https://pokemonblog.com/2026/10/01/pokemon-masters-ex-october-2026-update-iono-bellibolt-wally-korrina-and-sinnoh-gym-leaders/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon GO 30th Anniversary Mall Exploration event launches with party hat Pikachu",
+      "url": "https://pokemonblog.com/2026/10/01/pokemon-go-30th-anniversary-mall-exploration-event-launches-with-party-hat-pikachu/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon TCG 30th Celebration products expand across October 2026 lineup",
+      "url": "https://pokemonblog.com/2026/10/01/pokemon-tcg-30th-celebration-products-expand-across-october-2026-lineup/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Scarlet and Violet bring back Mighty Tyranitar in 7-star Tera Raid Battles",
+      "url": "https://pokemonblog.com/2026/10/01/pokemon-scarlet-and-violet-bring-back-mighty-tyranitar-in-7-star-tera-raid-battles/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Sleep Growth Week Vol. 6 boosts Sleep EXP and Candy rewards in October",
+      "url": "https://pokemonblog.com/2026/10/01/pokemon-sleep-growth-week-vol-6-boosts-sleep-exp-and-candy-rewards-in-october/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Pokopia panel discussion archive reveals development insights from PokémonXP",
+      "url": "https://pokemonblog.com/2026/10/01/pokemon-pokopia-panel-discussion-archive-reveals-development-insights-from-pokemonxp/",
+      "score": 0,
+      "source": "PokemonBlog",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon GO - Dynamax Uxie, Mesprit, and Azelf Max Battle Day - Saturday, October 24, 2026",
+      "url": "https://pocketmonsters.net/news/9590",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Sleep - Pokémon Growth Week Vol. 6",
+      "url": "https://pocketmonsters.net/news/9589",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Legends: Z-A - Ranked Battles Season 18",
+      "url": "https://pocketmonsters.net/news/9588",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon GO - Minior Showers in Pokémon GO - Minior Debut",
+      "url": "https://pocketmonsters.net/news/9587",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon's 30 Years of Joy Festival Walk - Pokémon Center POP-UP STORE in Hong Kong",
+      "url": "https://pocketmonsters.net/news/9586",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Pokopia - Pumpkaboo’s Sweet Surprises",
+      "url": "https://pocketmonsters.net/news/9585",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon LEGENDS Z-A + DLC / Pokémon Pokopia + Expansion Pass DLC Sets",
+      "url": "https://pocketmonsters.net/news/9584",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Shiny Magikarp and Shiny Gyarados Pokémon Center × Bear Walker Skateboards",
+      "url": "https://pocketmonsters.net/news/9583",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon TCG: Mega Evolution Delta Reign Prerelease Event / Build &amp; Battle Box",
+      "url": "https://pocketmonsters.net/news/9582",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Pokémon Masters EX - Story Event Treasures of Ruin Ghetsis / 5★ Sygna Suit Ghetsis &amp; Chien-Pao",
+      "url": "https://pocketmonsters.net/news/9581",
+      "score": 0,
+      "source": "PocketMonsters",
+      "category": "pokemon"
+    },
+    {
+      "title": "Rust 1.90 が公開され新機能追加",
+      "url": "https://www.rust-lang.org/blog",
+      "score": 1,
+      "source": "TechCrunch RSS",
+      "category": "tech"
+    },
+    {
+      "title": "Python の新機能が開発効率を向上",
+      "url": "https://techcrunch.com/python",
+      "score": 1,
+      "source": "TechCrunch RSS",
+      "category": "tech"
+    }
+  ]
+}

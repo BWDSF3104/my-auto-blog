@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-10-12T10:00:00+09:00",
+  "prompt_type": "ai_deep",
+  "data_file": "<ROOT>\\data\\topics\\latest.json",
+  "data_fetched_at": "2026-10-12T09:00:00+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 1.0,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "tech",
+      "kemono"
+    ],
+    "total_raw": 38,
+    "after_score_filter": 38,
+    "after_rating_filter": 38,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "If you walked into my room at any time (please don’t), chances are you’ll find me playing more adult games. No, not talking about those—I mean specifically Call of Duty, Grand Theft Auto VI, Cyberpunk"
+    },
+    {
+      "title": "Rust 1.90 が公開され新機能追加",
+      "source": "TechCrunch RSS",
+      "url": "https://www.rust-lang.org/blog",
+      "score": 1,
+      "category": "tech",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Gave Up My",
+    "Rust 1 90 が公開され新機能追加"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+    "https://www.rust-lang.org/blog"
+  ]
+}

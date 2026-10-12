@@ -1,0 +1,15 @@
+﻿ scripts/article/__init__.py            |    3 +
+ scripts/article/affiliate.py           | 1009 +++++++++
+ scripts/article/characters.py          |  187 ++
+ scripts/article/config.py              |  308 +++
+ scripts/article/frontmatter.py         |  387 ++++
+ scripts/article/gemini.py              |  102 +
+ scripts/article/geninfo.py             |  165 ++
+ scripts/article/image.py               |  560 +++++
+ scripts/article/meta.py                |  302 +++
+ scripts/article/slug_links.py          |  130 ++
+ scripts/article/trends.py              |  422 ++++
+ scripts/fetch_topics.py                |  130 +-
+ scripts/generate_article.py            | 3489 ++------------------------------
+ scripts/tests/test_generate_article.py |  200 +-
+ 14 files changed, 3956 insertions(+), 3438 deletions(-)

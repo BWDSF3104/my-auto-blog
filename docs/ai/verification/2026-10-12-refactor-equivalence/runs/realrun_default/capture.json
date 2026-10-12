@@ -1,0 +1,26 @@
+{
+  "gemini_calls": [
+    {
+      "model": "eq-fake-refine",
+      "contents": "<pass2: fake refine>"
+    }
+  ],
+  "image_calls": [
+    {
+      "prompt": "ルナ（狼、青い目、白い毛皮）, a wolf anthro programmer at a desk with a laptop, blue eyes, white fur, modern office, masterpiece, best quality, very aesthetic, ultra-detailed, furry, safe for work, anime style, illustration, cel shading",
+      "output_filename": "2026-10-12-100000-header.png",
+      "seed": 216632973
+    },
+    {
+      "prompt": "ルナ（狼、青い目、白い毛皮）, a wolf anthro programmer typing code on a laptop, focused expression, modern office background, masterpiece, best quality, very aesthetic, ultra-detailed, furry, safe for work, anime style, illustration, cel shading",
+      "output_filename": "2026-10-12-100000-inline-1.png",
+      "seed": 216632973
+    },
+    {
+      "prompt": "ルナ（狼、青い目、白い毛皮）, a fox anthro developer setting up a terminal on a large monitor, code on screen, cozy room, masterpiece, best quality, very aesthetic, ultra-detailed, furry, safe for work, anime style, illustration, cel shading",
+      "output_filename": "2026-10-12-100000-inline-2.png",
+      "seed": 216632973
+    }
+  ],
+  "subprocess_calls": []
+}

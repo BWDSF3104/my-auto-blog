@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-12T10:00:00+09:00",
+  "prompt_type": "default",
+  "data_file": "<ROOT>\\data\\topics\\latest.json",
+  "data_fetched_at": "2026-10-12T09:00:00+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 1.0,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "tech"
+    ],
+    "total_raw": 2,
+    "after_score_filter": 2,
+    "after_rating_filter": 2,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Rust 1.90 が公開され新機能追加",
+      "source": "TechCrunch RSS",
+      "url": "https://www.rust-lang.org/blog",
+      "score": 1,
+      "category": "tech",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Python の新機能が開発効率を向上",
+      "source": "TechCrunch RSS",
+      "url": "https://techcrunch.com/python",
+      "score": 1,
+      "category": "tech",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Rust 1 90 が公開され新機能追加",
+    "Python の新機能が開発効率を向上"
+  ],
+  "trend_source_urls": [
+    "https://www.rust-lang.org/blog",
+    "https://techcrunch.com/python"
+  ]
+}

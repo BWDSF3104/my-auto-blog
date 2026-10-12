@@ -1,0 +1,16 @@
+baseline: 69bb5e8
+current:  9ac496e82b66f5b3033096e965d7e786763793b8
+variants: default, kemono_story, ai_deep
+
+git archive 展開中...
+[SELFTEST OK] default: 2 回実行の出力がバイト一致
+[AB OK*] default: 機能等価（成果物全て一致・表示順序のみ差異）
+order-only-differs: stdout.log（行内容同一・順序のみ異なる）
+[SELFTEST OK] kemono_story: 2 回実行の出力がバイト一致
+[AB OK*] kemono_story: 機能等価（成果物全て一致・表示順序のみ差異）
+order-only-differs: stdout.log（行内容同一・順序のみ異なる）
+[SELFTEST OK] ai_deep: 2 回実行の出力がバイト一致
+[AB OK*] ai_deep: 機能等価（成果物全て一致・表示順序のみ差異）
+order-only-differs: stdout.log（行内容同一・順序のみ異なる）
+
+RESULT: PASS

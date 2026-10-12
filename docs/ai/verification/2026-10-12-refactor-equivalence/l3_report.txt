@@ -1,0 +1,9 @@
+baseline: 69bb5e8
+current:  9ac496e82b66f5b3033096e965d7e786763793b8
+variants: default
+
+=== L3 recheck: 既存成果物の構造健全性チェック（API 呼び出しなし）===
+[L3 RECHECK OK] default: 構造健全性チェック通過（詳細: out/realrun_default/）
+L3 RECHECK PASS
+
+RESULT: PASS

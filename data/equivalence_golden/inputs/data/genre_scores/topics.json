@@ -1,0 +1,1359 @@
+{
+  "scored_at": "2026-10-12T02:14:25.155459+00:00",
+  "topics": [
+    {
+      "key": "https://github.com/LinKennt/LoFS-VN",
+      "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+      "source": "GitHub",
+      "category": "kemono",
+      "scores": {
+        "sf": 23,
+        "fantasy": 45,
+        "cyberpunk": 13,
+        "action": 15,
+        "slice_of_life": 52,
+        "mystery": 24,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
+      "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 33,
+        "fantasy": 31,
+        "cyberpunk": 39,
+        "action": 37,
+        "slice_of_life": 42,
+        "mystery": 21,
+        "historical": 22
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
+      "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 14,
+        "fantasy": 74,
+        "cyberpunk": 5,
+        "action": 43,
+        "slice_of_life": 21,
+        "mystery": 16,
+        "historical": 50
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/marvel-darkhold-destiny-is-magic-the-gatherings-first-universes-beyond-set-of-2027/",
+      "title": "Marvel Darkhold Destiny Is Magic: The Gathering’s First Universes Beyond Set Of 2027",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 24,
+        "fantasy": 45,
+        "cyberpunk": 4,
+        "action": 43,
+        "slice_of_life": 10,
+        "mystery": 18,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/lets-all-be-happy-this-aaa-minesweeper-game-isnt-real/",
+      "title": "Let’s All Be Happy This AAA Minesweeper Game Isn’t Real",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 6,
+        "cyberpunk": 14,
+        "action": 10,
+        "slice_of_life": 17,
+        "mystery": 13,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/these-are-easily-the-most-unique-fortnite-skins/",
+      "title": "These Are Easily The Most Unique Fortnite Skins",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 9,
+        "fantasy": 11,
+        "cyberpunk": 15,
+        "action": 23,
+        "slice_of_life": 13,
+        "mystery": 8,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/reviews/dragons-dogma-2-dark-arisen-is-great-but-at-a-cost/",
+      "title": "Dragon’s Dogma 2: Dark Arisen Is Great, But At a Cost",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 6,
+        "fantasy": 87,
+        "cyberpunk": 3,
+        "action": 71,
+        "slice_of_life": 5,
+        "mystery": 13,
+        "historical": 26
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/call-of-duty-mw4-early-access-also-includes-dmz-heres-how-to-get-in/",
+      "title": "Call Of Duty: MW4 Early Access Also Includes DMZ, Here’s How To Get In",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 14,
+        "fantasy": 4,
+        "cyberpunk": 24,
+        "action": 83,
+        "slice_of_life": 5,
+        "mystery": 11,
+        "historical": 18
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
+      "title": "2026 Upcoming Games Release Schedule",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 23,
+        "fantasy": 19,
+        "cyberpunk": 25,
+        "action": 40,
+        "slice_of_life": 19,
+        "mystery": 19,
+        "historical": 13
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/gears-of-war-e-day-hows-it-selling-lets-unpack-things/",
+      "title": "Gears Of War: E-Day–How’s It Selling? Let’s Unpack Things",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 5,
+        "cyberpunk": 26,
+        "action": 82,
+        "slice_of_life": 5,
+        "mystery": 9,
+        "historical": 11
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/videos/world-of-warcraft-forever-your-adventure-begins-trailer/",
+      "title": "World of Warcraft: Forever – “Your Adventure Begins” Trailer",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 20,
+        "fantasy": 68,
+        "cyberpunk": 5,
+        "action": 36,
+        "slice_of_life": 10,
+        "mystery": 12,
+        "historical": 22
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
+      "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 44,
+        "fantasy": 53,
+        "cyberpunk": 23,
+        "action": 34,
+        "slice_of_life": 19,
+        "mystery": 38,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
+      "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 4,
+        "cyberpunk": 26,
+        "action": 50,
+        "slice_of_life": 10,
+        "mystery": 27,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/best-deals-for-october-11-2026",
+      "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 36,
+        "fantasy": 39,
+        "cyberpunk": 26,
+        "action": 51,
+        "slice_of_life": 15,
+        "mystery": 18,
+        "historical": 26
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
+      "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 4,
+        "cyberpunk": 27,
+        "action": 58,
+        "slice_of_life": 5,
+        "mystery": 7,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
+      "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
+        "fantasy": 8,
+        "cyberpunk": 16,
+        "action": 71,
+        "slice_of_life": 7,
+        "mystery": 9,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
+      "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 14,
+        "fantasy": 7,
+        "cyberpunk": 32,
+        "action": 71,
+        "slice_of_life": 21,
+        "mystery": 13,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
+      "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 22,
+        "fantasy": 14,
+        "cyberpunk": 18,
+        "action": 71,
+        "slice_of_life": 11,
+        "mystery": 13,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/wildwood-review",
+      "title": "Wildwood Review",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 57,
+        "cyberpunk": 4,
+        "action": 12,
+        "slice_of_life": 34,
+        "mystery": 16,
+        "historical": 19
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
+      "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 34,
+        "fantasy": 18,
+        "cyberpunk": 8,
+        "action": 59,
+        "slice_of_life": 9,
+        "mystery": 10,
+        "historical": 13
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/naruto-teasers-reveal-new-shadow-rising-manga-and-anime-crossover-series",
+      "title": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 56,
+        "cyberpunk": 4,
+        "action": 64,
+        "slice_of_life": 13,
+        "mystery": 14,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
+      "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 36,
+        "fantasy": 59,
+        "cyberpunk": 20,
+        "action": 41,
+        "slice_of_life": 21,
+        "mystery": 27,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
+      "title": "Godzilla Minus Zero Film Streams Final Trailer",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 56,
+        "fantasy": 12,
+        "cyberpunk": 29,
+        "action": 61,
+        "slice_of_life": 16,
+        "mystery": 16,
+        "historical": 28
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
+      "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 31,
+        "fantasy": 26,
+        "cyberpunk": 23,
+        "action": 32,
+        "slice_of_life": 56,
+        "mystery": 23,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
+      "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 10,
+        "fantasy": 9,
+        "cyberpunk": 11,
+        "action": 13,
+        "slice_of_life": 41,
+        "mystery": 10,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
+      "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 29,
+        "fantasy": 36,
+        "cyberpunk": 17,
+        "action": 43,
+        "slice_of_life": 33,
+        "mystery": 36,
+        "historical": 14
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
+      "title": "Boichi's The Marshal King Manga Ends on October 16",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 19,
+        "fantasy": 34,
+        "cyberpunk": 9,
+        "action": 60,
+        "slice_of_life": 17,
+        "mystery": 20,
+        "historical": 65
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
+      "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 23,
+        "fantasy": 36,
+        "cyberpunk": 17,
+        "action": 41,
+        "slice_of_life": 30,
+        "mystery": 22,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
+      "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
+        "fantasy": 20,
+        "cyberpunk": 2,
+        "action": 11,
+        "slice_of_life": 62,
+        "mystery": 32,
+        "historical": 80
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
+      "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 45,
+        "fantasy": 51,
+        "cyberpunk": 17,
+        "action": 66,
+        "slice_of_life": 16,
+        "mystery": 27,
+        "historical": 11
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
+      "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 20,
+        "fantasy": 44,
+        "cyberpunk": 3,
+        "action": 76,
+        "slice_of_life": 9,
+        "mystery": 8,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/interview/2026-10-09/all-of-us-are-dead-creator-dong-geun-joo-talks-zombies-adaptations-and-his-global-fans/.242054",
+      "title": "All of Us Are Dead Creator Dong-geun Joo Talks Zombies, Adaptations, and His Global Fans",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 39,
+        "fantasy": 11,
+        "cyberpunk": 13,
+        "action": 42,
+        "slice_of_life": 16,
+        "mystery": 23,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/interview/2026-10-07/with-takako-shimura-creator-of-the-scenes-of-awajima-manga/.241507",
+      "title": "Interview with Takako Shimura, Creator of the Scenes of AWAJIMA Manga",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 15,
+        "fantasy": 27,
+        "cyberpunk": 26,
+        "action": 22,
+        "slice_of_life": 63,
+        "mystery": 24,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/interview/2026-10-05/behind-the-scenes-with-villion-code-game-designer-ilya-kuvshinov/.241719",
+      "title": "Behind the Scenes with Villion:Code Game Designer Ilya Kuvshinov",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 5,
+        "cyberpunk": 17,
+        "action": 9,
+        "slice_of_life": 32,
+        "mystery": 10,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/interview/2026-09-28/bringing-magic-knight-rayearth-to-a-new-generation-with-director-yui-miura/.239694",
+      "title": "Bringing Magic Knight Rayearth to a New Generation with Director Yui Miura",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 32,
+        "fantasy": 83,
+        "cyberpunk": 5,
+        "action": 40,
+        "slice_of_life": 22,
+        "mystery": 13,
+        "historical": 23
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-10/masashi-kishimoto-to-launch-new-naruto-manga/.242695",
+      "title": "Masashi Kishimoto to Launch New Naruto Manga\n      More details to be revealed at Jump Festa '27 event on December 19-20",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 15,
+        "fantasy": 43,
+        "cyberpunk": 5,
+        "action": 65,
+        "slice_of_life": 15,
+        "mystery": 13,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/lets-yap-%F0%9F%8E%A8.543804/",
+      "title": "Let's Yap 🎨",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 29,
+        "fantasy": 24,
+        "cyberpunk": 31,
+        "action": 24,
+        "slice_of_life": 31,
+        "mystery": 17,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/the-pc-coloring-book-now-open.543993/",
+      "title": "The PC Coloring Book (Now Open!)",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 23,
+        "cyberpunk": 18,
+        "action": 8,
+        "slice_of_life": 32,
+        "mystery": 9,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/yume-tsukis-arts-comics.458913/",
+      "title": "Yume Tsuki's arts & comics",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 28,
+        "fantasy": 47,
+        "cyberpunk": 30,
+        "action": 30,
+        "slice_of_life": 56,
+        "mystery": 26,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/goobs-art-dump-%DC%81%E2%82%8A-%E2%8A%B9-%DC%81-%E2%9F%A1-%DC%81-%E2%8A%B9-%E2%82%8A-%DC%81.543976/",
+      "title": "Goobs art dump . ܁₊ ⊹ . ܁ ⟡ ܁ . ⊹ ₊ ܁.",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 8,
+        "fantasy": 16,
+        "cyberpunk": 10,
+        "action": 6,
+        "slice_of_life": 23,
+        "mystery": 6,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/monthly-pok%C3%A9mon-page-thread.537599/",
+      "title": "Monthly Pokémon Page Thread",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 17,
+        "fantasy": 47,
+        "cyberpunk": 10,
+        "action": 34,
+        "slice_of_life": 33,
+        "mystery": 16,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/%E2%99%A1-iiiiits-showtime-auticorns-mixed-gallery-%E2%99%A1.535082/",
+      "title": "♡ IIIIIT'S SHOWTIME - Auticorn's Mixed Gallery ♡",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 19,
+        "fantasy": 38,
+        "cyberpunk": 15,
+        "action": 23,
+        "slice_of_life": 32,
+        "mystery": 16,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/drawings-pixels-and-stuff-mainly-ocs-for-now.538186/",
+      "title": "drawings, pixels and stuff (mainly OCs for now)",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 17,
+        "fantasy": 29,
+        "cyberpunk": 21,
+        "action": 12,
+        "slice_of_life": 27,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/bella%E2%80%99s-pok%C3%A9-doodles.543840/",
+      "title": "Bella’s Poké-Doodles",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 29,
+        "fantasy": 47,
+        "cyberpunk": 15,
+        "action": 20,
+        "slice_of_life": 42,
+        "mystery": 15,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/korys-oc-drawings-thread.476186/",
+      "title": "Kory's oc Drawings Thread",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 21,
+        "fantasy": 27,
+        "cyberpunk": 25,
+        "action": 23,
+        "slice_of_life": 36,
+        "mystery": 14,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.pokecommunity.com/threads/tiramisus-new-and-improved-art-log.535518/",
+      "title": "tiramisu's (new and improved) art log!",
+      "source": "PokéCommunity Art Studio",
+      "category": "pokemon",
+      "scores": {
+        "sf": 15,
+        "fantasy": 18,
+        "cyberpunk": 16,
+        "action": 13,
+        "slice_of_life": 43,
+        "mystery": 14,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/10/pokemon-to-release-first-ever-valentines-day-tcg-set",
+      "title": "Pokemon to Release First-Ever Valentine’s Day TCG Set!",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 13,
+        "fantasy": 27,
+        "cyberpunk": 5,
+        "action": 20,
+        "slice_of_life": 19,
+        "mystery": 10,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/10/30-pokemon-european-space-agency-and-other-tcg-accessories-released-on-pokemon-center",
+      "title": "30+ Pokemon European Space Agency and Other TCG Accessories Released on Pokemon Center!",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 20,
+        "cyberpunk": 6,
+        "action": 13,
+        "slice_of_life": 15,
+        "mystery": 9,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/carpe-diem-seizing-opportunity-in-the-pokemon-tcg",
+      "title": "Carpe Diem – Seizing Opportunity in the Pokemon TCG",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 10,
+        "fantasy": 32,
+        "cyberpunk": 7,
+        "action": 27,
+        "slice_of_life": 24,
+        "mystery": 13,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/delta-reign-preorders-now-live-on-pokemon-center",
+      "title": "“Delta Reign” Preorders Now Live on Pokemon Center!",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 17,
+        "fantasy": 35,
+        "cyberpunk": 9,
+        "action": 29,
+        "slice_of_life": 20,
+        "mystery": 15,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/all-429-deluxe-pack-mega-cards-revealed-for-pocket",
+      "title": "All 429 “Deluxe Pack Mega” Cards Revealed for “Pocket!”",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 18,
+        "fantasy": 26,
+        "cyberpunk": 15,
+        "action": 28,
+        "slice_of_life": 18,
+        "mystery": 14,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/delta-reign-prerelease-promos-and-more-english-cards-revealed",
+      "title": "“Delta Reign” Prerelease Promos and More English Cards Revealed!",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 14,
+        "fantasy": 19,
+        "cyberpunk": 12,
+        "action": 20,
+        "slice_of_life": 10,
+        "mystery": 10,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/mcdonalds-pokemon-tcg-promotion-to-launch-in-november-for-30th-anniversary",
+      "title": "McDonald’s Pokemon TCG Promotion to Launch in November for 30th Anniversary!",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 11,
+        "fantasy": 17,
+        "cyberpunk": 4,
+        "action": 7,
+        "slice_of_life": 17,
+        "mystery": 6,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/upgrades-people-upgrades-fixing-mega-excadrill",
+      "title": "Upgrades People, Upgrades! — Fixing Mega Excadrill",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 9,
+        "cyberpunk": 8,
+        "action": 21,
+        "slice_of_life": 16,
+        "mystery": 7,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/new-pokemon-tcg-premium-binders-to-release-featuring-numbered-pokedex-slots-for-all-1025-pokemon",
+      "title": "New Pokemon TCG Premium Binders to Release Featuring Numbered Pokedex Slots for All 1,025 Pokemon!",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 9,
+        "fantasy": 21,
+        "cyberpunk": 4,
+        "action": 10,
+        "slice_of_life": 13,
+        "mystery": 7,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.pokebeach.com/2026/09/dragapult-blaziken-is-the-best-play-for-regionals",
+      "title": "Dragapult / Blaziken is the Best Play for Regionals",
+      "source": "PokeBeach News",
+      "category": "pokemon",
+      "scores": {
+        "sf": 14,
+        "fantasy": 20,
+        "cyberpunk": 5,
+        "action": 32,
+        "slice_of_life": 14,
+        "mystery": 10,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/nintendo-switch-2-update-23-0-1-released-fixes-software-startup-and-closing-issue/",
+      "title": "Nintendo Switch 2 update 23.0.1 released, fixes software startup and closing issue",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 9,
+        "fantasy": 4,
+        "cyberpunk": 10,
+        "action": 12,
+        "slice_of_life": 11,
+        "mystery": 5,
+        "historical": 3
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/nintendo-switch-update-23-0-1-released-fixing-software-startup-pause-and-closing-issues/",
+      "title": "Nintendo Switch update 23.0.1 released, fixing software startup, pause and closing issues",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 4,
+        "cyberpunk": 9,
+        "action": 12,
+        "slice_of_life": 12,
+        "mystery": 6,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/pokemon-masters-ex-october-2026-update-iono-bellibolt-wally-korrina-and-sinnoh-gym-leaders/",
+      "title": "Pokémon Masters EX October 2026 update: Iono & Bellibolt, Wally, Korrina and Sinnoh Gym Leaders",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 46,
+        "cyberpunk": 5,
+        "action": 30,
+        "slice_of_life": 27,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/pokemon-go-30th-anniversary-mall-exploration-event-launches-with-party-hat-pikachu/",
+      "title": "Pokémon GO 30th Anniversary Mall Exploration event launches with party hat Pikachu",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 11,
+        "fantasy": 42,
+        "cyberpunk": 6,
+        "action": 22,
+        "slice_of_life": 24,
+        "mystery": 10,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/pokemon-tcg-30th-celebration-products-expand-across-october-2026-lineup/",
+      "title": "Pokémon TCG 30th Celebration products expand across October 2026 lineup",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 9,
+        "fantasy": 32,
+        "cyberpunk": 5,
+        "action": 18,
+        "slice_of_life": 17,
+        "mystery": 9,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/pokemon-scarlet-and-violet-bring-back-mighty-tyranitar-in-7-star-tera-raid-battles/",
+      "title": "Pokémon Scarlet and Violet bring back Mighty Tyranitar in 7-star Tera Raid Battles",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 11,
+        "fantasy": 34,
+        "cyberpunk": 4,
+        "action": 38,
+        "slice_of_life": 13,
+        "mystery": 12,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/pokemon-sleep-growth-week-vol-6-boosts-sleep-exp-and-candy-rewards-in-october/",
+      "title": "Pokémon Sleep Growth Week Vol. 6 boosts Sleep EXP and Candy rewards in October",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 10,
+        "fantasy": 26,
+        "cyberpunk": 5,
+        "action": 20,
+        "slice_of_life": 21,
+        "mystery": 6,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://pokemonblog.com/2026/10/01/pokemon-pokopia-panel-discussion-archive-reveals-development-insights-from-pokemonxp/",
+      "title": "Pokémon Pokopia panel discussion archive reveals development insights from PokémonXP",
+      "source": "PokemonBlog",
+      "category": "pokemon",
+      "scores": {
+        "sf": 13,
+        "fantasy": 28,
+        "cyberpunk": 14,
+        "action": 16,
+        "slice_of_life": 20,
+        "mystery": 11,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9590",
+      "title": "Pokémon GO - Dynamax Uxie, Mesprit, and Azelf Max Battle Day - Saturday, October 24, 2026",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 13,
+        "fantasy": 40,
+        "cyberpunk": 6,
+        "action": 30,
+        "slice_of_life": 14,
+        "mystery": 12,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9589",
+      "title": "Pokémon Sleep - Pokémon Growth Week Vol. 6",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 66,
+        "cyberpunk": 5,
+        "action": 27,
+        "slice_of_life": 39,
+        "mystery": 14,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9588",
+      "title": "Pokémon Legends: Z-A - Ranked Battles Season 18",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 17,
+        "fantasy": 50,
+        "cyberpunk": 8,
+        "action": 39,
+        "slice_of_life": 17,
+        "mystery": 15,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9587",
+      "title": "Pokémon GO - Minior Showers in Pokémon GO - Minior Debut",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 13,
+        "fantasy": 44,
+        "cyberpunk": 5,
+        "action": 28,
+        "slice_of_life": 20,
+        "mystery": 11,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9586",
+      "title": "Pokémon's 30 Years of Joy Festival Walk - Pokémon Center POP-UP STORE in Hong Kong",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 9,
+        "fantasy": 43,
+        "cyberpunk": 5,
+        "action": 23,
+        "slice_of_life": 22,
+        "mystery": 9,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9585",
+      "title": "Pokémon Pokopia - Pumpkaboo’s Sweet Surprises",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 11,
+        "fantasy": 52,
+        "cyberpunk": 3,
+        "action": 19,
+        "slice_of_life": 40,
+        "mystery": 17,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9584",
+      "title": "Pokémon LEGENDS Z-A + DLC / Pokémon Pokopia + Expansion Pass DLC Sets",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 20,
+        "fantasy": 56,
+        "cyberpunk": 6,
+        "action": 35,
+        "slice_of_life": 18,
+        "mystery": 16,
+        "historical": 14
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9583",
+      "title": "Shiny Magikarp and Shiny Gyarados Pokémon Center × Bear Walker Skateboards",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 12,
+        "fantasy": 34,
+        "cyberpunk": 5,
+        "action": 10,
+        "slice_of_life": 23,
+        "mystery": 6,
+        "historical": 3
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9582",
+      "title": "Pokémon TCG: Mega Evolution Delta Reign Prerelease Event / Build &amp; Battle Box",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 14,
+        "fantasy": 35,
+        "cyberpunk": 8,
+        "action": 26,
+        "slice_of_life": 13,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://pocketmonsters.net/news/9581",
+      "title": "Pokémon Masters EX - Story Event Treasures of Ruin Ghetsis / 5★ Sygna Suit Ghetsis &amp; Chien-Pao",
+      "source": "PocketMonsters",
+      "category": "pokemon",
+      "scores": {
+        "sf": 10,
+        "fantasy": 41,
+        "cyberpunk": 7,
+        "action": 36,
+        "slice_of_life": 16,
+        "mystery": 14,
+        "historical": 8
+      }
+    }
+  ],
+  "copyrights": [
+    {
+      "name": "chucklefish",
+      "scores": {
+        "sf": 34,
+        "fantasy": 34,
+        "cyberpunk": 22,
+        "action": 34,
+        "slice_of_life": 39,
+        "mystery": 24,
+        "historical": 10
+      }
+    },
+    {
+      "name": "disney",
+      "scores": {
+        "sf": 19,
+        "fantasy": 68,
+        "cyberpunk": 6,
+        "action": 26,
+        "slice_of_life": 25,
+        "mystery": 16,
+        "historical": 18
+      }
+    },
+    {
+      "name": "dreamworks",
+      "scores": {
+        "sf": 27,
+        "fantasy": 47,
+        "cyberpunk": 11,
+        "action": 29,
+        "slice_of_life": 24,
+        "mystery": 15,
+        "historical": 16
+      }
+    },
+    {
+      "name": "five_nights_at_freddy's",
+      "scores": {
+        "sf": 17,
+        "fantasy": 8,
+        "cyberpunk": 5,
+        "action": 24,
+        "slice_of_life": 6,
+        "mystery": 41,
+        "historical": 4
+      }
+    },
+    {
+      "name": "five_nights_at_freddy's:_security_breach",
+      "scores": {
+        "sf": 9,
+        "fantasy": 4,
+        "cyberpunk": 15,
+        "action": 29,
+        "slice_of_life": 7,
+        "mystery": 39,
+        "historical": 3
+      }
+    },
+    {
+      "name": "inception",
+      "scores": {
+        "sf": 44,
+        "fantasy": 10,
+        "cyberpunk": 28,
+        "action": 40,
+        "slice_of_life": 11,
+        "mystery": 34,
+        "historical": 7
+      }
+    },
+    {
+      "name": "inktober",
+      "scores": {
+        "sf": 13,
+        "fantasy": 20,
+        "cyberpunk": 10,
+        "action": 12,
+        "slice_of_life": 31,
+        "mystery": 12,
+        "historical": 12
+      }
+    },
+    {
+      "name": "isla_aukate",
+      "scores": {
+        "sf": 33,
+        "fantasy": 41,
+        "cyberpunk": 19,
+        "action": 30,
+        "slice_of_life": 37,
+        "mystery": 28,
+        "historical": 27
+      }
+    },
+    {
+      "name": "mythology",
+      "scores": {
+        "sf": 38,
+        "fantasy": 55,
+        "cyberpunk": 6,
+        "action": 20,
+        "slice_of_life": 17,
+        "mystery": 19,
+        "historical": 46
+      }
+    },
+    {
+      "name": "scottgames",
+      "scores": {
+        "sf": 39,
+        "fantasy": 49,
+        "cyberpunk": 30,
+        "action": 33,
+        "slice_of_life": 31,
+        "mystery": 34,
+        "historical": 26
+      }
+    },
+    {
+      "name": "sega",
+      "scores": {
+        "sf": 31,
+        "fantasy": 17,
+        "cyberpunk": 31,
+        "action": 48,
+        "slice_of_life": 17,
+        "mystery": 18,
+        "historical": 9
+      }
+    },
+    {
+      "name": "shining_(sega)",
+      "scores": {
+        "sf": 36,
+        "fantasy": 36,
+        "cyberpunk": 38,
+        "action": 53,
+        "slice_of_life": 26,
+        "mystery": 26,
+        "historical": 14
+      }
+    },
+    {
+      "name": "shining_force",
+      "scores": {
+        "sf": 45,
+        "fantasy": 46,
+        "cyberpunk": 25,
+        "action": 39,
+        "slice_of_life": 21,
+        "mystery": 22,
+        "historical": 16
+      }
+    },
+    {
+      "name": "starbound",
+      "scores": {
+        "sf": 56,
+        "fantasy": 36,
+        "cyberpunk": 7,
+        "action": 29,
+        "slice_of_life": 27,
+        "mystery": 14,
+        "historical": 12
+      }
+    },
+    {
+      "name": "starwarriors",
+      "scores": {
+        "sf": 56,
+        "fantasy": 28,
+        "cyberpunk": 28,
+        "action": 47,
+        "slice_of_life": 17,
+        "mystery": 17,
+        "historical": 14
+      }
+    },
+    {
+      "name": "steel_wool_studios",
+      "scores": {
+        "sf": 40,
+        "fantasy": 17,
+        "cyberpunk": 36,
+        "action": 34,
+        "slice_of_life": 39,
+        "mystery": 29,
+        "historical": 10
+      }
+    },
+    {
+      "name": "the_bad_guys",
+      "scores": {
+        "sf": 18,
+        "fantasy": 6,
+        "cyberpunk": 23,
+        "action": 57,
+        "slice_of_life": 15,
+        "mystery": 25,
+        "historical": 12
+      }
+    },
+    {
+      "name": "undertale",
+      "scores": {
+        "sf": 21,
+        "fantasy": 40,
+        "cyberpunk": 12,
+        "action": 32,
+        "slice_of_life": 29,
+        "mystery": 23,
+        "historical": 15
+      }
+    },
+    {
+      "name": "undertale_(series)",
+      "scores": {
+        "sf": 22,
+        "fantasy": 41,
+        "cyberpunk": 14,
+        "action": 32,
+        "slice_of_life": 31,
+        "mystery": 23,
+        "historical": 13
+      }
+    },
+    {
+      "name": "zootopia",
+      "scores": {
+        "sf": 20,
+        "fantasy": 29,
+        "cyberpunk": 17,
+        "action": 31,
+        "slice_of_life": 33,
+        "mystery": 40,
+        "historical": 5
+      }
+    }
+  ],
+  "api_calls": 39,
+  "cache_hits": 55
+}

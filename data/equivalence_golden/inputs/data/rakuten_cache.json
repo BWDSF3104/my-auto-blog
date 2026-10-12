@@ -1,0 +1,255 @@
+{
+  "Python 実践プログラミング 5版": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "Python 実践プログラミング 5版 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/Python%20%E5%AE%9F%E8%B7%B5%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%205%E7%89%88",
+      "imageUrl": "https://example.com/img/Python%20%E5%AE%9F%E8%B7%B5%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%205%E7%89%88.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "プログラマー 人間工学 座椅子": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "プログラマー 人間工学 座椅子 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9E%E3%83%BC%20%E4%BA%BA%E9%96%93%E5%B7%A5%E5%AD%A6%20%E5%BA%A7%E6%A4%85%E5%AD%90",
+      "imageUrl": "https://example.com/img/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9E%E3%83%BC%20%E4%BA%BA%E9%96%93%E5%B7%A5%E5%AD%A6%20%E5%BA%A7%E6%A4%85%E5%AD%90.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "AI 開発ツール": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "AI 開発ツール テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/AI%20%E9%96%8B%E7%99%BA%E3%83%84%E3%83%BC%E3%83%AB",
+      "imageUrl": "https://example.com/img/AI%20%E9%96%8B%E7%99%BA%E3%83%84%E3%83%BC%E3%83%AB.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "Python 本": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "Python 本 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/Python%20%E6%9C%AC",
+      "imageUrl": "https://example.com/img/Python%20%E6%9C%AC.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "AI 入門 書籍": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "AI 入門 書籍 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/AI%20%E5%85%A5%E9%96%80%20%E6%9B%B8%E7%B1%8D",
+      "imageUrl": "https://example.com/img/AI%20%E5%85%A5%E9%96%80%20%E6%9B%B8%E7%B1%8D.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ ファンタジー": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ ファンタジー テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%B8%E3%83%BC",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%B8%E3%83%BC.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 異世界": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 異世界 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E7%95%B0%E4%B8%96%E7%95%8C",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E7%95%B0%E4%B8%96%E7%95%8C.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 現代": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 現代 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E7%8F%BE%E4%BB%A3",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E7%8F%BE%E4%BB%A3.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ SF": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ SF テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20SF",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20SF.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ スペースオペラ": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ スペースオペラ テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%AA%E3%83%9A%E3%83%A9",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%AA%E3%83%9A%E3%83%A9.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 日常": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 日常 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%97%A5%E5%B8%B8",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%97%A5%E5%B8%B8.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ サイバーパンク": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ サイバーパンク テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%82%B5%E3%82%A4%E3%83%90%E3%83%BC%E3%83%91%E3%83%B3%E3%82%AF",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%82%B5%E3%82%A4%E3%83%90%E3%83%BC%E3%83%91%E3%83%B3%E3%82%AF.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 冒険": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 冒険 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E5%86%92%E9%99%BA",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E5%86%92%E9%99%BA.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ ダンジョンクライム": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ ダンジョンクライム テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%80%E3%83%B3%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%A0",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%80%E3%83%B3%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%A0.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ ミステリー": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ ミステリー テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%83%BC",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%83%BC.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 歴史": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 歴史 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%AD%B4%E5%8F%B2",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%AD%B4%E5%8F%B2.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ バディ": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ バディ テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%90%E3%83%87%E3%82%A3",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%90%E3%83%87%E3%82%A3.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ BL": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ BL テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20BL",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20BL.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 百合": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 百合 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E7%99%BE%E5%90%88",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E7%99%BE%E5%90%88.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ 恋愛": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ 恋愛 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%81%8B%E6%84%9B",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%81%8B%E6%84%9B.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "ケモノ": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "ケモノ テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E3%82%B1%E3%83%A2%E3%83%8E",
+      "imageUrl": "https://example.com/img/%E3%82%B1%E3%83%A2%E3%83%8E.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "獣人": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "獣人 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E7%8D%A3%E4%BA%BA",
+      "imageUrl": "https://example.com/img/%E7%8D%A3%E4%BA%BA.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  },
+  "動物": {
+    "fetched_at": "2026-10-11T00:00:00+00:00",
+    "product": {
+      "itemName": "動物 テスト商品ケモノ",
+      "itemPrice": 1980,
+      "affiliateUrl": "https://example.com/aff/%E5%8B%95%E7%89%A9",
+      "imageUrl": "https://example.com/img/%E5%8B%95%E7%89%A9.png",
+      "reviewCount": 100
+    },
+    "hits": 1
+  }
+}

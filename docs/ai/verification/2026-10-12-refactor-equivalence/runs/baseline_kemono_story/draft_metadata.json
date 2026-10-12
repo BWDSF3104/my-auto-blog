@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-10-12-100000",
+  "prompt_type": "kemono_story",
+  "article_file": "2026-10-12-100000-auto-post.md",
+  "pass1": {
+    "model": "gemini-3.8-flash",
+    "duration_seconds": 0.05,
+    "content_char_count": 1442,
+    "content_line_count": 55,
+    "content": "---\ntitle: \"PythonとAIで開発効率を高める実践ガイド\"\ndescription: \"PythonとAIツールで開発効率を高める実践ガイド。環境構築からAI支援コーディング、自動化スクリプト作成まで、よくある失敗とその解決策を段階的に解説します。\"\nauthor: \"AI Writer\"\ntags: [\"Python\", \"AI\", \"開発ツール\"]\nimage_prompt: \"a wolf anthro programmer at a desk with a laptop, blue eyes, white fur, modern office\"\ncharacter_1: \"ルナ（狼、青い目、白い毛皮）\"\ncharacter_2: \"レックス（狐、琥珀色の目、オレンジの毛皮）\"\nart_style: \"anime style, illustration, cel shading\"\nproduct_recommendations:\n  - name: \"Python 実践プログラミング 5版\"\n    category: \"書籍\"\n    price_range: \"3,000円台\"\n  - name: \"プログラマー 人間工学 座椅子\"\n    category: \"グッズ\"\n    price_range: \"20,000円台\"\n---\n\n## はじめに\n\nソフトウェア開発において、Python と AI ツールの活用はますます重要になっています。[character_1] が、Python と AI を組み合わせて効率を高める実践的な手法を案内します。\n\n<!-- IMAGE_PROMPT: \"a wolf anthro programmer typing code on a laptop, focused expression, modern office background\" -->\n\n## 環境構築\n\nPython 環境の構築は最初のステップです。[character_2] はバーチャル環境の利用を推奨します。\n\n<!-- IMAGE_PROMPT: \"a fox anthro developer setting up a terminal on a large monitor, code on screen, cozy room\" -->\n\n## AI 支援コーディング\n\nAI ツールはコード補完やバグ検出に役立ちます。代表的なツールを比較しましょう。\n\n| ツール | 強み |\n|---|---|\n| コード補完ツール | 高速 |\n| バグ検出ツール | 高精度 |\n| <!-- AFF_PRODUCT: \"AI 開発ツール\" --> | |\n\n## 自動化スクリプト\n\nPython で自動化スクリプトを書くと反復作業が減ります。Python の書籍を探しているなら<!-- AFFILIATE: \"Python 書籍\" | \"定番 Python 書籍\" -->がおすすめです。\n\n## よくある質問\n\nQ: どの Python バージョンを使うべきですか？\nA: 最新の安定版を推奨します。\n\nQ: 初心者向けの AI ツールはどれですか？\nA: コード補完ツールから始めるのがおすすめです。\n\n## まとめ\n\nPython と AI ツールを組み合わせることで、開発効率を大きく高めることができます。"
+  },
+  "pass2": {
+    "model": "gemini-3.8-flash",
+    "duration_seconds": 0.05,
+    "content_char_count": 1467,
+    "content_line_count": 55,
+    "content": "---\ntitle: \"PythonとAIで開発効率を高める実践ガイド\"\ndescription: \"PythonとAIツールで開発効率を高める実践ガイド。環境構築からAI支援コーディング、自動化スクリプト作成まで、よくある失敗とその解決策を段階的に解説します。\"\nauthor: \"AI Writer\"\ntags: [\"Python\", \"AI\", \"開発ツール\"]\nimage_prompt: \"a wolf anthro programmer at a desk with a laptop, blue eyes, white fur, modern office\"\ncharacter_1: \"ルナ（狼、青い目、白い毛皮）\"\ncharacter_2: \"レックス（狐、琥珀色の目、オレンジの毛皮）\"\nart_style: \"anime style, illustration, cel shading\"\nproduct_recommendations:\n  - name: \"Python 実践プログラミング 5版\"\n    category: \"書籍\"\n    price_range: \"3,000円台\"\n  - name: \"プログラマー 人間工学 座椅子\"\n    category: \"グッズ\"\n    price_range: \"20,000円台\"\n---\n\n## はじめに\n\nPython と AI ツールの組み合わせは、現代のソフトウェア開発を大きく変えています。[character_1] が、効率化の実践テクニックを分かりやすく紹介します。\n\n<!-- IMAGE_PROMPT: \"a wolf anthro programmer typing code on a laptop, focused expression, modern office background\" -->\n\n## 環境構築\n\nまず取り組むべきは Python 環境の整備です。[character_2] は、バーチャル環境でプロジェクトを隔離することをすすめています。\n\n<!-- IMAGE_PROMPT: \"a fox anthro developer setting up a terminal on a large monitor, code on screen, cozy room\" -->\n\n## AI 支援コーディング\n\nAI ツールはコードの補完や不具合の発見を助けてくれます。主要なツールを比較してみましょう。\n\n| ツール | 強み |\n|---|---|\n| コード補完ツール | 高速 |\n| バグ検出ツール | 高精度 |\n| <!-- AFF_PRODUCT: \"AI 開発ツール\" --> | |\n\n## 自動化スクリプト\n\n反復する作業を Python スクリプトに任せれば、手作業の負担は大きく減ります。Python の書籍を探しているなら<!-- AFFILIATE: \"Python 書籍\" | \"定番 Python 書籍\" -->がおすすめです。\n\n## よくある質問\n\nQ: どの Python バージョンを使うべきですか？\nA: 最新の安定版を使うのが無難です。\n\nQ: 初心者向けの AI ツールはどれですか？\nA: コード補完ツールで慣れるのがおすすめです。\n\n## まとめ\n\nPython と AI ツールをうまく組み合わせることで、開発効率を大きく向上させることが可能です。"
+  },
+  "diff_stats": {
+    "char_count_change": 25,
+    "line_count_change": 0,
+    "char_count_change_percent": 1.73
+  }
+}
