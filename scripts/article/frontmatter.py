@@ -6,6 +6,7 @@ generate_article.py から分離（Phase 5）。
 - PyYAML 検証失敗時の段階的 Frontmatter 修復
 """
 import re
+import unicodedata
 
 import yaml
 
@@ -338,3 +339,49 @@ def validate_and_fix_frontmatter(content: str) -> str:
 
     print("[ERROR] Frontmatter YAML の修復に失敗しました")
     return content
+
+
+# --------------------------------------------------
+# SEOスラッグの自動生成
+# --------------------------------------------------
+def _generate_ascii_slug(raw_title):
+    """日本語→ローマ字風スラッグの簡易生成（全角→半角＋アルファベット・数字・ハイフンのみ）"""
+    normalized = unicodedata.normalize('NFKC', raw_title)
+    slug_chars = []
+    for ch in normalized:
+        if ch.isascii() and ch.isalnum():
+            slug_chars.append(ch.lower())
+        elif ch.isascii() and ch in ' -':
+            slug_chars.append('-')
+        elif '\u3041' <= ch <= '\u3096':  # ひらがな
+            code = ord(ch) - ord('\u3041')
+            a = code // 26
+            i = code % 26
+            if a < 10:
+                slug_chars.append(chr(ord('a') + a))
+                if i in (8, 10, 12, 14, 16, 18, 20, 22, 24):
+                    slug_chars.append('u')
+            elif a == 10:
+                slug_chars.append('n')
+            elif a == 11:
+                slug_chars.append('y')
+                slug_chars.append(chr(ord('a') + i))
+            else:
+                slug_chars.append(chr(ord('a') + (a - 1)))
+        elif '\u30A1' <= ch <= '\u30F6':  # カタカナ
+            code = ord(ch) - ord('\u30A1')
+            a = code // 26
+            i = code % 26
+            if a < 10:
+                slug_chars.append(chr(ord('a') + a))
+                if i in (8, 10, 12, 14, 16, 18, 20, 22, 24):
+                    slug_chars.append('u')
+            elif a == 10:
+                slug_chars.append('n')
+            elif a == 11:
+                slug_chars.append('y')
+                slug_chars.append(chr(ord('a') + i))
+            else:
+                slug_chars.append(chr(ord('a') + (a - 1)))
+        # 漢字・他の文字はスキップ
+    return re.sub(r'-+', '-', ''.join(slug_chars)).strip('-')[:60]

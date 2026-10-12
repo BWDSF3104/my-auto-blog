@@ -102,6 +102,7 @@ from article.frontmatter import (
     _extract_speakable_text,
     _fix_duplicate_yaml_keys,
     _get_body_after_fm,
+    _generate_ascii_slug,
     _is_character_like_key,
     _validate_description,
     validate_and_fix_frontmatter,
@@ -467,20 +468,7 @@ def _build_generation_info_section(
 # --------------------------------------------------
 # メイン処理
 # --------------------------------------------------
-def generate_post():
-
-    # 日本時間（JST = UTC+9）の定義
-    JST = timezone(timedelta(hours=9))
-    now = datetime.now(JST)
-
-    pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
-    file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
-
-    # 1. プロンプトタイプ決定と同系統の重複防止設定
-    prompt_type = os.environ.get("PROMPT_TYPE", "default")
-    recent_titles = get_recent_titles_by_type(prompt_type)
-    recent_metas = get_recent_meta_by_type(prompt_type)
-
+def build_ng_instruction(prompt_type, recent_titles, recent_metas):
     if recent_titles:
         past_topics_text = "\n".join([f"- {t}" for t in recent_titles])
         if prompt_type in ("kemono_story", "novel", "story"):
@@ -519,16 +507,17 @@ def generate_post():
                 f"同じ組み合わせや非常に類似した設定を使わず、新しいキャラクター・テーマで作成してください:\n"
                 f"{chars_joined}"
             )
+    return ng_instruction
 
+
+def resolve_kemono(prompt_type):
     # 1.5. 世界設定を先に決定（ジャンルベースのトレンド選択に使用）
     kemono_params = _randomize_kemono_params() if prompt_type == "kemono_story" else {}
     target_genres = WORLD_SETTING_GENRE_MAP.get(kemono_params.get("world_setting_key", ""), []) or None
+    return kemono_params, target_genres
 
-    # 1.6. 収集済みトレンドトピックをプロンプトに注入（ジャンル適合度で優先選択）
-    ng_instruction, trend_keywords, trend_source_urls, trend_topic_titles = _append_trending_topics(
-        ng_instruction, prompt_type, target_genres=target_genres
-    )
 
+def build_prompt(prompt_type, ng_instruction, pub_date_str, file_timestamp, kemono_params, target_genres):
     # 2. テキスト記事の生成
     # e621 参考データは1回選出し、プロンプト注入と生成情報表示の両方で同一データを使用
     template = load_prompt_template(prompt_type)
@@ -547,7 +536,10 @@ def generate_post():
     with open(prompt_path, "w", encoding="utf-8") as f:
         f.write(prompt)
     print(f"📝 プロンプト保存: {prompt_path}")
+    return prompt, e621_info
 
+
+def generate_content(prompt, prompt_type, file_timestamp, pub_date_str):
     pass1_start = time.time()
     response, pass1_model = generate_content_with_retry(prompt)
     pass1_duration = time.time() - pass1_start
@@ -585,7 +577,10 @@ def generate_post():
         pass2_model=pass2_model,
         pass2_duration=pass2_duration,
     )
+    return content
 
+
+def build_header_image(content, file_timestamp, article_seed):
     # 3. 記事本文からキャラクター設定と画像用シチュエーションプロンプトを抽出して画像生成
     characters = extract_character_prompts(content)
     if characters:
@@ -596,9 +591,6 @@ def generate_post():
         print("👤 キャラクター設定は検出されませんでした（単発シチュエーションで生成します）")
 
     image_filename = f"{file_timestamp}-header.png"
-    # 記事レベルのbase seedを生成（同じ記事内の画像でスタイルを一貫させる）
-    article_seed = random.randint(0, 2**31 - 1)
-    print(f"🎲 記事のbase seed: {article_seed}")
     dynamic_situation = extract_image_prompt(content)
     if dynamic_situation == DEFAULT_SITUATION:
         smart_situation = _compose_smart_situation(content)
@@ -613,80 +605,46 @@ def generate_post():
     full_image_prompt = compose_image_prompt(dynamic_situation, characters, article_art_style)
     print(f"🎨 ヘッダー画像合成プロンプト: {full_image_prompt}")
     image_url = generate_and_save_image(full_image_prompt, image_filename, article_seed)
+    return image_url, characters, article_art_style
 
-    # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入、prompt_typeの記録)
-    if image_url:
-        if re.search(r'^image_prompt:.*$', content, re.MULTILINE):
-            content = re.sub(
-                r'^image_prompt:.*$', 
-                f'image: "{image_url}"', 
-                content, 
-                flags=re.MULTILINE
-            )
-        elif "---" in content:
-            content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
 
+def _apply_slug_field(content, file_timestamp):
     # SEOスラッグの検証・生成: slug フィールドがない、または無効な場合はタイトルから生成
     slug_match = re.search(r'^slug:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
-    if not slug_match or not slug_match.group(1).strip():
+    final_slug = slug_match.group(1).strip() if slug_match and slug_match.group(1).strip() else ""
+    if not final_slug:
         title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
         raw_title = title_match.group(1).strip() if title_match else file_timestamp
-        # 日本語→ローマ字風スラッグの簡易生成（全角→半角＋アルファベット・数字・ハイフンのみ）
-        import unicodedata
-        normalized = unicodedata.normalize('NFKC', raw_title)
-        slug_chars = []
-        for ch in normalized:
-            if ch.isascii() and ch.isalnum():
-                slug_chars.append(ch.lower())
-            elif ch.isascii() and ch in ' -':
-                slug_chars.append('-')
-            elif '\u3041' <= ch <= '\u3096':  # ひらがな
-                code = ord(ch) - ord('\u3041')
-                a = code // 26
-                i = code % 26
-                if a < 10:
-                    slug_chars.append(chr(ord('a') + a))
-                    if i in (8, 10, 12, 14, 16, 18, 20, 22, 24):
-                        slug_chars.append('u')
-                elif a == 10:
-                    slug_chars.append('n')
-                elif a == 11:
-                    slug_chars.append('y')
-                    slug_chars.append(chr(ord('a') + i))
-                else:
-                    slug_chars.append(chr(ord('a') + (a - 1)))
-            elif '\u30A1' <= ch <= '\u30F6':  # カタカナ
-                code = ord(ch) - ord('\u30A1')
-                a = code // 26
-                i = code % 26
-                if a < 10:
-                    slug_chars.append(chr(ord('a') + a))
-                    if i in (8, 10, 12, 14, 16, 18, 20, 22, 24):
-                        slug_chars.append('u')
-                elif a == 10:
-                    slug_chars.append('n')
-                elif a == 11:
-                    slug_chars.append('y')
-                    slug_chars.append(chr(ord('a') + i))
-                else:
-                    slug_chars.append(chr(ord('a') + (a - 1)))
-            # 漢字・他の文字はスキップ
-        slug = re.sub(r'-+', '-', ''.join(slug_chars)).strip('-')[:60]
-        if slug and "---" in content:
-            content = content.replace("---", f"---\nslug: \"{slug}\"", 1)
-            print(f"🔗 スラッグを自動生成: {slug}")
+        final_slug = _generate_ascii_slug(raw_title)
+        if final_slug and "---" in content:
+            content = content.replace("---", f'---\nslug: "{final_slug}"', 1)
+            print(f"🔗 スラッグを自動生成: {final_slug}")
 
     # slug競合の検出・解決: 既存記事と同じslugがあればユニークに調整してリダイレクトを記録
-    if slug_match and slug_match.group(1).strip():
-        final_slug = slug_match.group(1).strip()
-    else:
-        final_slug = slug
     if final_slug:
         existing = _get_existing_slugs()
         final_slug, _ = _resolve_slug_collision(final_slug, existing)
         if final_slug and "---" in content:
             slug_line = rf'^slug:\s*["\']?(.*?)["\']?$'
             content = re.sub(slug_line, f'slug: "{final_slug}"', content, count=1, flags=re.MULTILINE)
+    return content
+
+
+def apply_frontmatter_fields(content, image_url, prompt_type, kemono_params, trend_source_urls, file_timestamp):
+    # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入、prompt_typeの記録)
+    if image_url:
+        if re.search(r'^image_prompt:.*$', content, re.MULTILINE):
+            content = re.sub(
+                r'^image_prompt:.*$',
+                f'image: "{image_url}"',
+                content,
+                flags=re.MULTILINE
+            )
+        elif "---" in content:
+            content = content.replace("---", f"---\nimage: \"{image_url}\"", 1)
+
+    # SEOスラッグの検証・生成＋競合解決
+    content = _apply_slug_field(content, file_timestamp)
 
     # 系統情報（prompt_type）をFrontmatterに付与（次回以降の同系統判定の精度向上）
     if not re.search(r'^prompt_type:.*$', content, re.MULTILINE) and "---" in content:
@@ -707,7 +665,10 @@ def generate_post():
         sources_block = f"trend_sources:\n{sources_yaml}"
         if not re.search(r'^trend_sources:', content, re.MULTILINE):
             content = content.replace("---", f"---\n{sources_block}", 1)
+    return content
 
+
+def postprocess_content(content, file_timestamp, characters, article_art_style, article_seed, prompt_type, kemono_params, trend_keywords):
     # 5. 本文内画像の抽出・生成とMarkdown置換
     content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style, base_seed=article_seed)
 
@@ -734,12 +695,14 @@ def generate_post():
 
     # 5.55 自動内部リンクの挿入
     content = inject_internal_links(content)
+    return content
 
+
+def apply_seo_schemas(content):
     # 5.58 FAQPage schema: 本文からQ&Aパターンを抽出してfrontmatterに記録
     faq_pairs = _extract_faq_pairs(content)
     if faq_pairs and "---" in content:
         faq_json = json.dumps(faq_pairs, ensure_ascii=False)
-        safe_faq = faq_json.replace("'", "\\'")
         if not re.search(r'^faq:', content, re.MULTILINE):
             content = content.replace("---", f"---\nfaq: '{faq_json}'", 1)
         print(f"📋 FAQPage schema: {len(faq_pairs)}件のQ&Aペアを抽出")
@@ -751,7 +714,10 @@ def generate_post():
         if not re.search(r'^speakable:', content, re.MULTILINE):
             content = content.replace("---", f'---\nspeakable: "{safe_speakable}"', 1)
         print(f"🎤 Speakable schema: 冒頭テキストを抽出 ({len(speakable)}文字)")
+    return content
 
+
+def finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info):
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
 
@@ -781,7 +747,7 @@ def generate_post():
     # 6. 保存
     output_dir = "src/content/posts"
     os.makedirs(output_dir, exist_ok=True)
-    
+
     filename = f"{file_timestamp}-auto-post.md"
     filepath = os.path.join(output_dir, filename)
 
@@ -792,6 +758,58 @@ def generate_post():
 
     # 7. 古いログのクリーンアップ（期間ベースで N 日前のファイルを削除）
     _cleanup_old_logs()
+    return content
+
+
+def generate_post():
+
+    # 日本時間（JST = UTC+9）の定義
+    JST = timezone(timedelta(hours=9))
+    now = datetime.now(JST)
+
+    pub_date_str = now.strftime("%Y-%m-%d %H:%M:%S")
+    file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
+
+    prompt_type = os.environ.get("PROMPT_TYPE", "default")
+    recent_titles = get_recent_titles_by_type(prompt_type)
+    recent_metas = get_recent_meta_by_type(prompt_type)
+    ng_instruction = build_ng_instruction(prompt_type, recent_titles, recent_metas)
+
+    kemono_params, target_genres = resolve_kemono(prompt_type)
+
+    # 1.6. 収集済みトレンドトピックをプロンプトに注入（ジャンル適合度で優先選択）
+    ng_instruction, trend_keywords, trend_source_urls, trend_topic_titles = _append_trending_topics(
+        ng_instruction, prompt_type, target_genres=target_genres
+    )
+
+    prompt, e621_info = build_prompt(
+        prompt_type, ng_instruction, pub_date_str, file_timestamp, kemono_params, target_genres
+    )
+
+    # 2. テキスト記事の生成（2-pass: 下書き → 精製）
+    content = generate_content(prompt, prompt_type, file_timestamp, pub_date_str)
+
+    # 記事レベルのbase seedを生成（同じ記事内の画像でスタイルを一貫させる）
+    article_seed = random.randint(0, 2**31 - 1)
+    print(f"🎲 記事のbase seed: {article_seed}")
+    image_url, characters, article_art_style = build_header_image(content, file_timestamp, article_seed)
+
+    # 4. Frontmatterの調整（image / slug / prompt_type / tags / trend_sources）
+    content = apply_frontmatter_fields(
+        content, image_url, prompt_type, kemono_params, trend_source_urls, file_timestamp
+    )
+
+    # 5. 本文の事後処理（本文内画像・プレースホルダー・アフィリエイト・商品カード・内部リンク）
+    content = postprocess_content(
+        content, file_timestamp, characters, article_art_style, article_seed,
+        prompt_type, kemono_params, trend_keywords,
+    )
+
+    # 5.58-5.59 SEOスキーマ（FAQPage / Speakable）
+    content = apply_seo_schemas(content)
+
+    # 5.6-7. 最終検証・生成情報追記・保存・ログクリーンアップ
+    finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info)
 
 
 if __name__ == "__main__":
