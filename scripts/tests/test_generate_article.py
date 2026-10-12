@@ -559,7 +559,7 @@ class TestProcessInlineAffiliates:
 
 class TestProcessInlineProducts:
     def test_replace_product_placeholder(self):
-        with patch("generate_article._rakuten_search", return_value=None):
+        with patch("article.affiliate._rakuten_search", return_value=None):
             content = 'Product: <!-- AFF_PRODUCT: "Noise Cancelling Headphones" -->'
             result = process_inline_products(content)
         assert "amazon.co.jp" in result
@@ -588,7 +588,7 @@ class TestProcessInlineProducts:
             '|---|---|\n'
             '| テスト商品 | <!-- AFF_PRODUCT: "ノートPC" --> |\n'
         )
-        with patch("generate_article._rakuten_search", return_value=product) as m:
+        with patch("article.affiliate._rakuten_search", return_value=product) as m:
             result = process_inline_products(content)
         assert m.called
         assert "product-card" in result
@@ -612,7 +612,7 @@ class TestProcessInlineProducts:
             '|---|---|\n'
             '| フィルム | <!-- AFF_PRODUCT: "ノートPC" --> |\n'
         )
-        with patch("generate_article._rakuten_search", return_value=product) as m:
+        with patch("article.affiliate._rakuten_search", return_value=product) as m:
             result = process_inline_products(content)
         assert m.called
         # 関連性フィルタでカードは挿入されない
@@ -644,8 +644,8 @@ def _item(name="商品", price=1000, url="https://item.rakuten.co.jp/x/", img="h
 
 class TestRakutenSearch:
     def setUp(self):
-        import generate_article
-        generate_article._rakuten_last_call_time = 0.0
+        import article.affiliate
+        article.affiliate._rakuten_last_call_time = 0.0
 
     def _env(self):
         return patch.dict(os.environ, {
@@ -656,9 +656,9 @@ class TestRakutenSearch:
 
     def test_success_returns_first_image_product(self):
         with self._env(), \
-             patch("generate_article._rakuten_load_cache", return_value={}), \
-             patch("generate_article._rakuten_save_cache") as save, \
-             patch("generate_article.requests.get", return_value=_fake_rakuten_response([
+             patch("article.affiliate._rakuten_load_cache", return_value={}), \
+             patch("article.affiliate._rakuten_save_cache") as save, \
+             patch("article.affiliate.requests.get", return_value=_fake_rakuten_response([
                  _item(img=""),           # 1件目: 画像なし
                  _item(name="画像付き商品"),  # 2件目: 画像あり
              ])) as g:
@@ -671,9 +671,9 @@ class TestRakutenSearch:
 
     def test_zero_results_returns_none(self):
         with self._env(), \
-             patch("generate_article._rakuten_load_cache", return_value={}), \
-             patch("generate_article._rakuten_save_cache"), \
-             patch("generate_article.requests.get", return_value=_fake_rakuten_response([])):
+             patch("article.affiliate._rakuten_load_cache", return_value={}), \
+             patch("article.affiliate._rakuten_save_cache"), \
+             patch("article.affiliate.requests.get", return_value=_fake_rakuten_response([])):
             result = _rakuten_search("存在しない商品")
         assert result is None
 
@@ -682,8 +682,8 @@ class TestRakutenSearch:
             "RAKUTEN_APPLICATION_ID": "",
             "RAKUTEN_ACCESS_KEY": "",
         }), \
-             patch("generate_article._rakuten_load_cache", return_value={}), \
-             patch("generate_article.requests.get") as g:
+             patch("article.affiliate._rakuten_load_cache", return_value={}), \
+             patch("article.affiliate.requests.get") as g:
             result = _rakuten_search("ノートPC")
         assert result is None
         assert not g.called
@@ -693,8 +693,8 @@ class TestRakutenSearch:
         cached_at = datetime.now(timezone.utc).isoformat()
         cache = {"ノートPC": {"fetched_at": cached_at, "product": _item(name="キャッシュ商品"), "hits": 3}}
         with self._env(), \
-             patch("generate_article._rakuten_load_cache", return_value=cache), \
-             patch("generate_article.requests.get") as g:
+             patch("article.affiliate._rakuten_load_cache", return_value=cache), \
+             patch("article.affiliate.requests.get") as g:
             result = _rakuten_search("ノートPC")
         assert not g.called
         assert result["itemName"] == "キャッシュ商品"
@@ -703,10 +703,10 @@ class TestRakutenSearch:
         resp_429 = MagicMock()
         resp_429.status_code = 429
         with self._env(), \
-             patch("generate_article._rakuten_load_cache", return_value={}), \
-             patch("generate_article._rakuten_save_cache"), \
-             patch("generate_article.time.sleep"), \
-             patch("generate_article.requests.get", side_effect=[resp_429, _fake_rakuten_response([_item()])]) as g:
+             patch("article.affiliate._rakuten_load_cache", return_value={}), \
+             patch("article.affiliate._rakuten_save_cache"), \
+             patch("article.affiliate.time.sleep"), \
+             patch("article.affiliate.requests.get", side_effect=[resp_429, _fake_rakuten_response([_item()])]) as g:
             result = _rakuten_search("ノートPC")
         assert g.call_count == 2
         assert result["itemName"] == "商品"
@@ -714,9 +714,9 @@ class TestRakutenSearch:
     def test_api_error_returns_none(self):
         import requests as _rq
         with self._env(), \
-             patch("generate_article._rakuten_load_cache", return_value={}), \
-             patch("generate_article.time.sleep"), \
-             patch("generate_article.requests.get", side_effect=_rq.exceptions.ConnectionError("boom")):
+             patch("article.affiliate._rakuten_load_cache", return_value={}), \
+             patch("article.affiliate.time.sleep"), \
+             patch("article.affiliate.requests.get", side_effect=_rq.exceptions.ConnectionError("boom")):
             result = _rakuten_search("ノートPC")
         assert result is None
 
@@ -830,7 +830,7 @@ class TestRakutenCollect:
             "獣人": _item(name="獣人 フィギュア", url="https://item.rakuten.co.jp/y/"),
             "動物": _item(name="動物 置物", url="https://item.rakuten.co.jp/z/"),
         }
-        with patch("generate_article._rakuten_search", side_effect=lambda kw: products.get(kw)) as m:
+        with patch("article.affiliate._rakuten_search", side_effect=lambda kw: products.get(kw)) as m:
             collected = _rakuten_collect(["ケモノ", "獣人", "動物"], "kemono_story", max_products=2)
         assert len(collected) == 2
         assert m.call_count == 2
@@ -841,19 +841,19 @@ class TestRakutenCollect:
             "ケモノ": _item(name="靴下 3足セット", url="https://item.rakuten.co.jp/a/"),
             "獣人": _item(name="獣人 ぬいぐるみ", url="https://item.rakuten.co.jp/b/"),
         }
-        with patch("generate_article._rakuten_search", side_effect=lambda kw: products.get(kw)):
+        with patch("article.affiliate._rakuten_search", side_effect=lambda kw: products.get(kw)):
             collected = _rakuten_collect(["ケモノ", "獣人"], "kemono_story", max_products=3)
         assert len(collected) == 1
         assert collected[0][0] == "獣人"
 
     def test_dedup_by_affiliate_url(self):
         same = _item(name="ケモノ ぬいぐるみ", url="https://item.rakuten.co.jp/dup/")
-        with patch("generate_article._rakuten_search", return_value=same):
+        with patch("article.affiliate._rakuten_search", return_value=same):
             collected = _rakuten_collect(["ケモノ", "獣人", "動物"], "kemono_story", max_products=3)
         assert len(collected) == 1
 
     def test_empty_results(self):
-        with patch("generate_article._rakuten_search", return_value=None):
+        with patch("article.affiliate._rakuten_search", return_value=None):
             collected = _rakuten_collect(["ケモノ"], "kemono_story", max_products=3)
         assert collected == []
 
