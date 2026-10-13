@@ -1,6 +1,6 @@
 # リファクタリング等価性検証（テスト計画 + ログ選定）
 
-**Status**: **完了（L0/L1/L3 PASS）**（2026-10-12 完了。L2 = 2026-10-13 本番 CI 確認のみ残）
+**Status**: **全完了（L0/L1/L2/L3 PASS）**（2026-10-12 L0/L1/L3 完了、2026-10-13 L2 本番 CI カナリア PASS）
 **日付**: 2026-10-12
 **ユーザー指示**: リファクタリング前と同じ機能を達成していることを確認するためのテスト計画の作成、および必要なログ等の選定
 
@@ -222,8 +222,9 @@ python scripts/tests/equivalence_check.py --golden data/equivalence_golden   # A
 | L0 | `pytest scripts/tests/ -v` → **365 passed** (7.23s) |
 | L1 | 全 3 バリアント（default / kemono_story / ai_deep）で **自己整合（2 回実行バイト一致）+ A/B 全成果物一致** → **PASS** |
 | L3 | 実 Gemini 1 回（`gemini-3.8-flash`、初試行成功）で記事生成 → 構造健全性チェック **PASS**（`--l3-recheck` で API なし再検証可能） |
+| L2 | 本番 CI カナリア（run `38341808315`、2026-10-13 03:27 UTC 開始・success・4m7s、headSha `c683247` = リファクタ後初回実行）→ 生成記事 `2026-10-13-122848-auto-post.md`（kemono_story）で frontmatter 13 キー / セクション順序 / `🤖 生成情報` HTML / ヘッダー+インライン画像 5 枚 / アフィリエイト節（tracking 付き）/ デプロイ済み search-index 先頭エントリ の全マーカー一致 → **PASS**（`l2_report.txt`） |
 
-証跡: `docs/ai/verification/2026-10-12-refactor-equivalence/`（README + L1/L3 レポート + pytest 全ログ + scope diff + 13 run ディレクトリの全成果物）
+証跡: `docs/ai/verification/2026-10-12-refactor-equivalence/`（README + L1/L2/L3 レポート + pytest 全ログ + scope diff + 13 run ディレクトリの全成果物）
 
 ### 設計と実装の差分（実施中に確定・修正したもの）
 

@@ -13,11 +13,12 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
   - **Verification**: `validate_kilo_config.py`（`Temp\kilo\`）で JSON 妥当性 + allow=82/ask=16 確認、config_validation 通過。コード変更なし（`kilo.jsonc` + `AGENTS.md` + `docs/ai/` のみ）→ pytest/build 不要。
   - **Next Action**: git commit（`AGENTS.md` + `docs/ai/` のみ。`kilo.jsonc` はグローバル設定でリポジトリ対象外）
 
-- `docs/ai/tasks/2026-10-12-refactor-equivalence-verification.md` - リファクタリング等価性検証（テスト計画 + ハーネス実装 + L0/L1/L3 実施）。**完了（L0/L1/L3 PASS）** (2026-10-12)
+- `docs/ai/tasks/2026-10-12-refactor-equivalence-verification.md` - リファクタリング等価性検証（テスト計画 + ハーネス実装 + L0/L1/L3 実施 + L2 本番 CI カナリア確認）。**全完了（L0/L1/L2/L3 PASS）** (2026-10-12 開始 / 2026-10-13 完了)
   - **実装物**: `scripts/tests/equivalence_check.py`（L1 決定論的リプレイ A/B ハーネス・`git archive` サンドボックス + 固定時刻 `_FakeDateTime` + fake Gemini client（呼び出し順分岐）+ 画像モック + `requests` 遮断 + `subprocess` capture。`--selftest` / `--l3` / `--l3-recheck` モード）+ `data/equivalence_golden/`（ゴールデン fixtures: posts 53 / prompts 5 / latest.json 76 topics / rakuten cache 23 件 / 固定草案・推敲文・seed・時刻）
   - **Verification** (2026-10-12): L0 `pytest scripts/tests/ -v` → **365 passed** (7.23s)。L1 全 3 バリアント（default / kemono_story / ai_deep）で自己整合（2 回実行バイト一致）+ A/B 全成果物一致 → **RESULT: PASS**（唯一の差異は `stdout.log` の `🎲 記事のbase seed` 出力位置のみ＝装飾・成果物に無影響）。L3 実 Gemini 1 回（`gemini-3.8-flash` 初試行成功・初回 503 高需要で一時的失敗→再実行成功）で記事生成 + 構造健全性チェック **PASS**（frontmatter / セクション / `🤖 生成情報` HTML / ヘッダー画像。`--l3-recheck` で API なし再検証）
   - **証跡**: `docs/ai/verification/2026-10-12-refactor-equivalence/`（README + l1/l3 レポート + pytest_full.log + scope_diff.txt + 13 run ディレクトリ全成果物 858KB）
-  - **Next Action**: L2 のみ残 = 2026-10-13 の本番 CI（`deploy.yml` 毎日実行）で生成記事の構造マーカー照合 + 結果記録（push 後 `gh run list --workflow=deploy-only.yml --limit 5` で確認）
+  - **L2 結果** (2026-10-13): 本番 CI run `38341808315`（10-13 03:27 UTC 開始・success・4m7s・headSha `c683247` = リファクタ後初回実行）で生成記事 `2026-10-13-122848-auto-post.md`（kemono_story「水沫の誓約と白き変容」）を構造マーカー照合 → 全 PASS（frontmatter 13 キー / セクション順序 / `🤖 生成情報` HTML / 画像 5 枚 / アフィリエイト節 / デプロイ済み search-index 先頭エントリ）
+  - **Next Action**: なし（L0/L1/L2/L3 全完了・証跡コミット済み）
 
 - `docs/ai/tasks/2026-10-11-python-refactor-package-split.md` - Pythonスクリプトのリファクタリング（`generate_article.py` → `article/` パッケージ分割 + 大関数ステージ分解、`fetch_topics.py::main()` 関数抽出）。**完了** (2026-10-11 開始 / 2026-10-12 完了)
   - **設計**: `scripts/generate_article.py` は入口+パイプラインに縮約、責務群8種を `scripts/article/`（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta）へ分離。`generate_post()`（CC81/325行）を8ステージ関数に分解。`fetch_topics.py` は `main()` から `collect_all_topics`/`build_output`/`save_output`/`cleanup_old_topic_files` を抽出（パッケージ化不要）。入口ファイル名（`deploy.yml` 参照）は不変。関数移設とテストの `patch("generate_article.X")` 経路更新はセットで実施

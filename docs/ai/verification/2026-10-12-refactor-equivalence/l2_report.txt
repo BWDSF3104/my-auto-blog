@@ -1,0 +1,49 @@
+L2: 本番 CI デプロイ カナリア検証レポート
+==========================================
+検証日: 2026-10-13（確認実行: 04:01 UTC / JST 13:01）
+対象: リファクタリング（69bb5e8 → 9ac496e）+ 検証コミット（7e082ae / ecd2362）後の初回本番実行
+
+■ 対象 run
+- run: 38341808315（deploy.yml / schedule / main）
+- 開始: 2026-10-13T03:27:40Z（JST 12:27。cron 23:00 UTC の実測遅延パターンに一致）
+- 結果: success（4m7s）
+- headSha: c6832478d86693421ddb857f0fb64f2e0346afb7
+  - 9ac496e（リファクタ）+ 7e082ae（検証ハーネス）+ ecd2362（README修正）+
+    c683247（コマンド承認方式の最適化＝AGENTS.md / docs/ai のみ・パイプラインコード変更なし）
+  - ∴ 本 run はリファクタ後コードでの初回本番実行（カナリアとして有効）
+- 生成コミット: be926fc（記事+画像+データ）/ 95008aa（ログ・トピック クリーンアップ）
+
+■ 生成記事: src/content/posts/2026-10-13-122848-auto-post.md（273 行）
+- タイトル: 水沫の誓約と白き変容 / slug: minamo-no-seiyaku-to-shiroki-henyou
+- prompt_type: kemono_story
+
+■ 構造マーカー照合（全 PASS）
+  [PASS] frontmatter キー: speakable / trend_sources / title / slug / pubDate /
+         description / author / prompt_type / tags / art_style /
+         character_1 / character_2 / image（13 キー・YAML 妥当）
+  [PASS] セクション順序: 第1章(L19) → 第2章(L45) → 第3章(L83) → 最終章(L121)
+         → アフィリエイト節(L174-238) → 生成情報(L240-273)
+  [PASS] 🤖 生成情報 HTML セクション:
+         <details class="gen-info"> + <summary class="gen-info-summary">🤖 生成情報</summary>
+         （トレンド情報 2 件 / キャラクターデータ / 参考キャラクターデータ(e621)
+         ・人気版権・artist・データ時点 2026-10-13 03:28 UTC（25投稿を分析））
+  [PASS] ヘッダー画像: public/images/2026-10-13-122848-header.avif（52,148 bytes）
+         + インライン画像 4 枚（inline-1..4.avif）
+  [PASS] アフィリエイト節: Amazon（tag=bwdsf3104-22）/ 楽天（scid=...）の
+         tracking 付きリンク + 商品カード 3 件 + PR 注記（L238）
+  [PASS] search-index: デプロイ済みサイト
+         https://BWDSF3104.github.io/my-auto-blog/search-index.json の先頭エントリが
+         本記事（title/slug/pubDate/tags/excerpt/body 完備）
+         ※ リポジトリ内 public/search-index.json は build 時生成物の最終コミットが
+           9ac496e（CI は build 出力を再コミットしない設計）で stale なのは設計通り
+
+■ 判定
+RESULT: PASS
+リファクタ後コードでの本番生成は正常に動作し、生成記事は全構造マーカーに一致。
+
+■ 備考
+- 生成コミット（be926fc）は 16 ファイル: 記事 1 + 画像 5 + data 9
+  （drafts / trend_usage_logs / affiliate_logs / prompt_logs / genre_scores /
+   rakuten_cache / topics rename+latest / character_features）。
+- 実行時間 4m7s は過去 run（6m9s / 8m4s / 8m29s）より短いが、
+  genre_scores/cache.json 再利用（+6072 行更新）による差と推定。異常なし。
