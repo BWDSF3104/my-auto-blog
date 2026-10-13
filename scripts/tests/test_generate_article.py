@@ -2150,6 +2150,24 @@ class TestBuildKemonoTags:
         tags = _build_kemono_tags(self._params(char_types=["獣人"], world_tags=["ファンタジー"]))
         assert tags[:3] == ["ケモノ", "獣人", "ファンタジー"]
 
+    def test_transform_tf_tag(self):
+        tags = _build_kemono_tags(self._params(transform_key="tf"))
+        assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF", "TF", "BL", "ライバル関係"]
+
+    def test_transform_tsf_tag(self):
+        tags = _build_kemono_tags(self._params(transform_key="tsf"))
+        assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF", "TSF", "BL", "ライバル関係"]
+
+    def test_transform_tf_tsf_two_tags(self):
+        tags = _build_kemono_tags(self._params(transform_key="tf+tsf"))
+        assert "TF" in tags
+        assert "TSF" in tags
+        assert "TF・TSF" not in tags
+
+    def test_transform_none_omitted(self):
+        tags = _build_kemono_tags(self._params(transform_key="none"))
+        assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF", "BL", "ライバル関係"]
+
 
 class TestKemonoAffiliateKeywords:
     """kemono_params → アフィリエイト検索キーワード（world_tags 直接使用）。"""

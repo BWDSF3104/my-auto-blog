@@ -197,6 +197,14 @@ _KEMONO_TRANSFORM_LABEL = {
     "tf+tsf": "TF・TSF",
 }
 
+# 変身タグ（frontmatter tags に付与。tf+tsf は2タグに分割）
+_KEMONO_TRANSFORM_TAGS = {
+    "none": [],
+    "tf": ["TF"],
+    "tsf": ["TSF"],
+    "tf+tsf": ["TF", "TSF"],
+}
+
 _KEMONO_RELATIONSHIP_TEXT = {
     "partnership": "相棒関係",
     "yaoi": "同性愛（男性同士の恋愛）",
@@ -320,7 +328,8 @@ __all__ = [
     "RELATIONSHIP_WEIGHTS", "EXTRA_SETTING_WEIGHTS",
     "WORLD_SETTING_GENRE_MAP",
     "_KEMONO_WORLD_TAGS", "_KEMONO_WORLD_TEXT", "_KEMONO_TRANSFORM_TEXT",
-    "_KEMONO_TRANSFORM_LABEL", "_KEMONO_RELATIONSHIP_TEXT", "_KEMONO_EXTRA_TAGS",
+    "_KEMONO_TRANSFORM_LABEL", "_KEMONO_TRANSFORM_TAGS",
+    "_KEMONO_RELATIONSHIP_TEXT", "_KEMONO_EXTRA_TAGS",
     "_KEMONO_EXTRA_TEXT", "_KEMONO_CHAR_COUNT_DESC_2", "_KEMONO_CHARACTER2_RULES",
     "_KEMONO_CORE_TOKENS", "_KEMONO_ANCHOR_KEYWORDS", "_KEMONO_RELATIONSHIP_AFFILIATE",
     # アフィリエイト

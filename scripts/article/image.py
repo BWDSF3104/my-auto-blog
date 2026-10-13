@@ -538,12 +538,14 @@ def _build_kemono_tags(kemono_params: dict) -> list[str]:
     1. ケモノ（固定）
     2. キャラ体型タグ（char_types の各要素を個別タグに）
     3. 世界設定タグ（world_tags の各要素を個別タグに）
-    4. キャラ関係性タグ（_KEMONO_RELATIONSHIP_AFFILIATE）
-    5. 追加設定タグ（extra_tag、空なら省略）
+    4. 変身タグ（transform_key: TF/TSF。tf+tsf は2タグ）
+    5. キャラ関係性タグ（_KEMONO_RELATIONSHIP_AFFILIATE）
+    6. 追加設定タグ（extra_tag、空なら省略）
     """
     tags = ["ケモノ"]
     tags.extend(kemono_params["char_types"])
     tags.extend(kemono_params["world_tags"])
+    tags.extend(_KEMONO_TRANSFORM_TAGS.get(kemono_params.get("transform_key", "none"), []))
     rel = _KEMONO_RELATIONSHIP_AFFILIATE.get(kemono_params.get("relationship_key", ""), "")
     if rel:
         tags.append(rel)
