@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-10-12T02:14:25.155459+00:00",
+  "scored_at": "2026-10-13T03:28:47.632882+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -17,453 +17,438 @@
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/i-gave-up-my-the-witcher-3-run-to-play-dressmaker-and-my-life-is-better-for-it/",
-      "title": "I Gave Up My The Witcher 3 Run To Play Dressmaker, And My Life Is Better For It",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 33,
-        "fantasy": 31,
-        "cyberpunk": 39,
-        "action": 37,
-        "slice_of_life": 42,
-        "mystery": 21,
-        "historical": 22
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/videos/theres-never-been-a-better-time-to-play-fire-emblem-awakening/",
-      "title": "There’s Never Been a Better Time To Play Fire Emblem: Awakening",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 14,
-        "fantasy": 74,
-        "cyberpunk": 5,
-        "action": 43,
-        "slice_of_life": 21,
-        "mystery": 16,
-        "historical": 50
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/marvel-darkhold-destiny-is-magic-the-gatherings-first-universes-beyond-set-of-2027/",
-      "title": "Marvel Darkhold Destiny Is Magic: The Gathering’s First Universes Beyond Set Of 2027",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 24,
-        "fantasy": 45,
-        "cyberpunk": 4,
-        "action": 43,
-        "slice_of_life": 10,
-        "mystery": 18,
-        "historical": 7
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/lets-all-be-happy-this-aaa-minesweeper-game-isnt-real/",
-      "title": "Let’s All Be Happy This AAA Minesweeper Game Isn’t Real",
+      "key": "https://www.gamespot.com/articles/tim-burton-horror-lives-in-weird-steam-adventure-that-reminds-me-of-the-creepiest-2010s-games/",
+      "title": "Tim Burton Horror Lives In Weird Steam Adventure That Reminds Me Of The Creepiest 2010s Games",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
         "sf": 13,
-        "fantasy": 6,
-        "cyberpunk": 14,
-        "action": 10,
-        "slice_of_life": 17,
-        "mystery": 13,
-        "historical": 5
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/these-are-easily-the-most-unique-fortnite-skins/",
-      "title": "These Are Easily The Most Unique Fortnite Skins",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 9,
-        "fantasy": 11,
-        "cyberpunk": 15,
-        "action": 23,
-        "slice_of_life": 13,
-        "mystery": 8,
+        "fantasy": 15,
+        "cyberpunk": 16,
+        "action": 12,
+        "slice_of_life": 12,
+        "mystery": 33,
         "historical": 7
       }
     },
     {
-      "key": "https://www.gamespot.com/reviews/dragons-dogma-2-dark-arisen-is-great-but-at-a-cost/",
-      "title": "Dragon’s Dogma 2: Dark Arisen Is Great, But At a Cost",
+      "key": "https://www.gamespot.com/articles/haunted-chocolatier-is-still-missing-but-this-freaky-tea-party-sim-could-scratch-your-itch/",
+      "title": "Haunted Chocolatier Is Still Missing, But This Freaky Tea Party Sim Could Scratch Your Itch",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 6,
-        "fantasy": 87,
-        "cyberpunk": 3,
-        "action": 71,
-        "slice_of_life": 5,
-        "mystery": 13,
-        "historical": 26
+        "sf": 18,
+        "fantasy": 44,
+        "cyberpunk": 10,
+        "action": 14,
+        "slice_of_life": 30,
+        "mystery": 32,
+        "historical": 9
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/call-of-duty-mw4-early-access-also-includes-dmz-heres-how-to-get-in/",
-      "title": "Call Of Duty: MW4 Early Access Also Includes DMZ, Here’s How To Get In",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 14,
-        "fantasy": 4,
-        "cyberpunk": 24,
-        "action": 83,
-        "slice_of_life": 5,
-        "mystery": 11,
-        "historical": 18
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
-      "title": "2026 Upcoming Games Release Schedule",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 19,
-        "cyberpunk": 25,
-        "action": 40,
-        "slice_of_life": 19,
-        "mystery": 19,
-        "historical": 13
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/gears-of-war-e-day-hows-it-selling-lets-unpack-things/",
-      "title": "Gears Of War: E-Day–How’s It Selling? Let’s Unpack Things",
+      "key": "https://www.gamespot.com/articles/dragon-quest-creator-lauds-ai-after-prompting-new-game-in-30-minutes/",
+      "title": "Dragon Quest Creator Lauds AI After Prompting New Game In 30 Minutes",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
         "sf": 17,
-        "fantasy": 5,
-        "cyberpunk": 26,
-        "action": 82,
-        "slice_of_life": 5,
-        "mystery": 9,
-        "historical": 11
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/videos/world-of-warcraft-forever-your-adventure-begins-trailer/",
-      "title": "World of Warcraft: Forever – “Your Adventure Begins” Trailer",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 20,
-        "fantasy": 68,
-        "cyberpunk": 5,
-        "action": 36,
-        "slice_of_life": 10,
+        "fantasy": 32,
+        "cyberpunk": 18,
+        "action": 22,
+        "slice_of_life": 18,
         "mystery": 12,
-        "historical": 22
+        "historical": 21
       }
     },
     {
-      "key": "https://www.ign.com/articles/artemis-fowl-animated-tv-show-greenlit-with-eoin-colfer-as-executive-producer",
-      "title": "Artemis Fowl Animated TV Show Greenlit With Eoin Colfer as Executive Producer",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/gallery/the-best-games-of-2026/2900-7436/",
+      "title": "The Best Games Of 2026 (So Far)",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 44,
-        "fantasy": 53,
-        "cyberpunk": 23,
-        "action": 34,
-        "slice_of_life": 19,
-        "mystery": 38,
-        "historical": 8
+        "sf": 21,
+        "fantasy": 33,
+        "cyberpunk": 35,
+        "action": 57,
+        "slice_of_life": 34,
+        "mystery": 35,
+        "historical": 21
       }
     },
     {
-      "key": "https://www.ign.com/articles/resident-evil-overtakes-weapons-as-zach-creggers-highest-grossing-film-the-social-reckoning-bombs",
-      "title": "Resident Evil Overtakes Weapons as Zach Cregger's Highest-Grossing Film, The Social Reckoning Bombs",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/sorry-street-fighter-movie-but-mondo-just-won-the-poster-fight/",
+      "title": "Sorry, Street Fighter Movie, But Mondo Just Won The Poster Fight",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 17,
-        "fantasy": 4,
-        "cyberpunk": 26,
-        "action": 50,
-        "slice_of_life": 10,
-        "mystery": 27,
-        "historical": 4
+        "sf": 27,
+        "fantasy": 9,
+        "cyberpunk": 32,
+        "action": 72,
+        "slice_of_life": 7,
+        "mystery": 9,
+        "historical": 6
       }
     },
     {
-      "key": "https://www.ign.com/articles/best-deals-for-october-11-2026",
-      "title": "The Best Deals Today: Doom: The Dark Ages, Star Wars Zero Company, 007 4K Blu-ray, and More",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/i-ranked-video-game-houses-by-how-much-id-actually-want-to-live-in-them/",
+      "title": "I Ranked Video Game Houses By How Much I’d Actually Want To Live In Them",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 36,
-        "fantasy": 39,
-        "cyberpunk": 26,
-        "action": 51,
-        "slice_of_life": 15,
-        "mystery": 18,
-        "historical": 26
+        "sf": 34,
+        "fantasy": 21,
+        "cyberpunk": 19,
+        "action": 19,
+        "slice_of_life": 45,
+        "mystery": 12,
+        "historical": 10
       }
     },
     {
-      "key": "https://www.ign.com/articles/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it",
-      "title": "New NetEase FPS Sparks Warzone 'Rip-Off' Claims, But Some Call of Duty Fans Are Happy to See It",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/nintendo-says-it-has-no-plans-to-ditch-physical-games-yet/",
+      "title": "Nintendo Says It Has No Plans To Ditch Physical Games Yet",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 13,
-        "fantasy": 4,
-        "cyberpunk": 27,
-        "action": 58,
-        "slice_of_life": 5,
+        "sf": 10,
+        "fantasy": 6,
+        "cyberpunk": 8,
+        "action": 11,
+        "slice_of_life": 13,
         "mystery": 7,
         "historical": 6
       }
     },
     {
-      "key": "https://www.ign.com/articles/tekken-8-yujiro-teaser-reveals-baki-reps-in-game-render-is-just-as-uncanny-as-fans-expected",
-      "title": "Tekken 8 Yujiro Teaser Reveals Baki Rep's In-Game Render Is Just as Uncanny as Fans Expected",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/no-mans-sky-is-coming-to-iphone-and-ipad/",
+      "title": "No Man’s Sky Is Coming To iPhone And iPad",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 7,
-        "fantasy": 8,
-        "cyberpunk": 16,
-        "action": 71,
-        "slice_of_life": 7,
-        "mystery": 9,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/im-shocked-that-people-are-still-playing-how-gta-5-took-over-the-world",
-      "title": "‘I’m Shocked That People Are Still Playing’ – How GTA 5 Took Over the World",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 14,
-        "fantasy": 7,
+        "sf": 75,
+        "fantasy": 13,
         "cyberpunk": 32,
-        "action": 71,
-        "slice_of_life": 21,
-        "mystery": 13,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/marvel-tokon-dlc-roadmap-reveals-first-look-at-jane-foster-thor-venom-and-jubilee-coming-in-2027",
-      "title": "Marvel Tokon DLC Roadmap Reveals First Look at Jane Foster Thor, Venom and Jubilee Coming in 2027",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 22,
-        "fantasy": 14,
-        "cyberpunk": 18,
-        "action": 71,
-        "slice_of_life": 11,
+        "action": 39,
+        "slice_of_life": 13,
         "mystery": 13,
         "historical": 7
       }
     },
     {
-      "key": "https://www.ign.com/articles/wildwood-review",
-      "title": "Wildwood Review",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/baki-yujiro-hanma-is-about-to-turn-tekken-8-into-a-full-blown-muscle-appreciation-simulator/",
+      "title": "Baki’s Yujiro Hanma Is About To Turn Tekken 8 Into A Full-Blown Muscle Appreciation Simulator",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 17,
-        "fantasy": 57,
-        "cyberpunk": 4,
-        "action": 12,
-        "slice_of_life": 34,
-        "mystery": 16,
-        "historical": 19
+        "sf": 7,
+        "fantasy": 7,
+        "cyberpunk": 19,
+        "action": 82,
+        "slice_of_life": 6,
+        "mystery": 7,
+        "historical": 5
       }
     },
     {
-      "key": "https://www.ign.com/articles/godzilla-minus-zero-trailer-reveals-sneak-peek-at-king-ghidorahs-gravity-beams",
-      "title": "Godzilla Minus Zero Trailer Reveals Sneak Peek at King Ghidorah's Gravity Beams",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/videos/valor-mortis-tries-too-much-with-its-attempt-at-a-first-person-soulslike-review/",
+      "title": "Valor Mortis Tries Too Much With Its Attempt At A First-Person Soulslike – Review",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 34,
-        "fantasy": 18,
-        "cyberpunk": 8,
-        "action": 59,
+        "sf": 13,
+        "fantasy": 32,
+        "cyberpunk": 21,
+        "action": 45,
         "slice_of_life": 9,
-        "mystery": 10,
+        "mystery": 16,
         "historical": 13
       }
     },
     {
-      "key": "https://www.ign.com/articles/naruto-teasers-reveal-new-shadow-rising-manga-and-anime-crossover-series",
-      "title": "Naruto Teasers Reveal New Shadow Rising Manga and Anime Crossover Series",
+      "key": "https://www.ign.com/articles/best-right-angle-usb-cable-deals-october-2026",
+      "title": "Get a 2-Pack of 6.6ft Right Angle USB-C Cables for $5 (Just $2.50 Per Cable)",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 13,
-        "fantasy": 56,
-        "cyberpunk": 4,
-        "action": 64,
+        "sf": 4,
+        "fantasy": 2,
+        "cyberpunk": 10,
+        "action": 4,
+        "slice_of_life": 22,
+        "mystery": 3,
+        "historical": 3
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/satisfactory-the-board-game-preview",
+      "title": "Satisfactory: The Board Game Preview",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 22,
+        "fantasy": 4,
+        "cyberpunk": 27,
+        "action": 10,
         "slice_of_life": 13,
-        "mystery": 14,
+        "mystery": 5,
         "historical": 10
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/kino-journey-light-novel-duo-launch-new-supernatural-novel-series/.242715",
-      "title": "Kino's Journey Light Novel Duo Launch New Supernatural Novel Series",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 36,
-        "fantasy": 59,
-        "cyberpunk": 20,
-        "action": 41,
-        "slice_of_life": 21,
-        "mystery": 27,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/godzilla-minus-zero-film-streams-final-trailer/.242719",
-      "title": "Godzilla Minus Zero Film Streams Final Trailer",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 56,
-        "fantasy": 12,
-        "cyberpunk": 29,
-        "action": 61,
-        "slice_of_life": 16,
-        "mystery": 16,
-        "historical": 28
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/noa-is-my-senior-and-my-friend-tv-anime-unveils-main-cast-2027-debut/.242717",
-      "title": "Noa Is My Senior, and My Friend TV Anime Unveils Main Cast, 2027 Debut",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 31,
-        "fantasy": 26,
-        "cyberpunk": 23,
-        "action": 32,
-        "slice_of_life": 56,
-        "mystery": 23,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/i-ris-voice-actress-idol-unit-to-disband-at-end-of-2027/.242716",
-      "title": "i☆Ris Voice Actress Idol Unit to Disband at End of 2027",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 10,
-        "fantasy": 9,
-        "cyberpunk": 11,
-        "action": 13,
-        "slice_of_life": 41,
-        "mystery": 10,
-        "historical": 5
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/yasuki-tanaka-ghost-fixers-manga-ends-in-next-chapter/.242710",
-      "title": "Yasuki Tanaka's Ghost Fixers Manga Ends in Next Chapter",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/greta-gerwigs-narnia-the-magicians-nephew-wins-over-skeptical-fans-with-first-poster",
+      "title": "Greta Gerwig's Narnia: The Magician's Nephew Wins Over Skeptical Fans With First Poster",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 29,
-        "fantasy": 36,
-        "cyberpunk": 17,
-        "action": 43,
-        "slice_of_life": 33,
-        "mystery": 36,
+        "fantasy": 82,
+        "cyberpunk": 2,
+        "action": 9,
+        "slice_of_life": 14,
+        "mystery": 13,
         "historical": 14
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/boichi-the-marshal-king-manga-ends-on-october-16/.242709",
-      "title": "Boichi's The Marshal King Manga Ends on October 16",
+      "key": "https://www.ign.com/articles/will-you-get-a-paramount-subscription-to-watch-avatar-seven-havens",
+      "title": "Will You Get a Paramount+ Subscription to Watch Avatar: Seven Havens?",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 60,
+        "fantasy": 40,
+        "cyberpunk": 22,
+        "action": 48,
+        "slice_of_life": 16,
+        "mystery": 19,
+        "historical": 27
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/gigabyte-a16-pro-16-rtx-5070-ti-gaming-laptop-deal-october-2026",
+      "title": "For This Week Only, the Gigabyte A16 Pro 16\" RTX 5070 Ti Gaming Laptop With 32GB of RAM Drops to $1,449",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 8,
+        "fantasy": 2,
+        "cyberpunk": 14,
+        "action": 8,
+        "slice_of_life": 12,
+        "mystery": 4,
+        "historical": 2
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/the-best-cases-for-apples-iphone-duo-foldable-right-now",
+      "title": "The Best Cases for Apple’s iPhone Duo Foldable Right Now",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 16,
+        "fantasy": 4,
+        "cyberpunk": 17,
+        "action": 5,
+        "slice_of_life": 20,
+        "mystery": 6,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/nintendo-was-reportedly-unhappy-with-elon-musks-saturday-night-live-wario-sketch",
+      "title": "Nintendo Was Reportedly Unhappy With Elon Musk's Saturday Night Live Wario Sketch",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 11,
+        "fantasy": 7,
+        "cyberpunk": 4,
+        "action": 14,
+        "slice_of_life": 19,
+        "mystery": 7,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/bose-quietcomfort-noise-canceling-headphone-deal-october-2026",
+      "title": "The Bose QuietComfort Noise Canceling Headphones Retail for $359, But You Can Get a Pair for Just $123",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 6,
+        "fantasy": 3,
+        "cyberpunk": 9,
+        "action": 4,
+        "slice_of_life": 19,
+        "mystery": 4,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/breaking-bad-star-rj-mitte-dead-at-34",
+      "title": "Breaking Bad Star RJ Mitte Dead at 34",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 27,
+        "fantasy": 4,
+        "cyberpunk": 10,
+        "action": 19,
+        "slice_of_life": 31,
+        "mystery": 30,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/exclusive-for-the-stars-screenshots-showcase-the-upcoming-space-sandbox-survival-multiplayer-game-ign-fall-fan-fest-2026",
+      "title": "EXCLUSIVE: For the Stars Images Showcase the Upcoming Space Sandbox Survival Multiplayer Game | IGN Fall Fan Fest 2026",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 73,
+        "fantasy": 10,
+        "cyberpunk": 20,
+        "action": 40,
+        "slice_of_life": 11,
+        "mystery": 14,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/the-apothecary-diaries-the-late-lady-treasure-film-new-video-unveils-kajadan-pirates-cast/.242761",
+      "title": "The Apothecary Diaries: The Late Lady's Treasure Film's New Video Unveils Kajadan Pirates' Cast",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 10,
+        "fantasy": 30,
+        "cyberpunk": 3,
+        "action": 24,
+        "slice_of_life": 44,
+        "mystery": 39,
+        "historical": 77
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/killing-bites-manga-publishes-1st-part-of-final-chapter/.242755",
+      "title": "Killing Bites Manga Publishes 1st Part of Final Chapter",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
         "sf": 19,
-        "fantasy": 34,
-        "cyberpunk": 9,
-        "action": 60,
-        "slice_of_life": 17,
-        "mystery": 20,
-        "historical": 65
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-11/marvel-kadokawa-launch-5-new-manga-as-part-of-partnership/.242704",
-      "title": "Marvel, Kadokawa Launch 5 New Manga as Part of Partnership",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 36,
-        "cyberpunk": 17,
-        "action": 41,
-        "slice_of_life": 30,
-        "mystery": 22,
-        "historical": 15
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-10/the-apothecary-diaries-the-late-lady-treasure-film-streams-video-highlighting-jinshi-maomao/.242700",
-      "title": "The Apothecary Diaries: The Late Lady's Treasure Film Streams Video Highlighting Jinshi, Maomao",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 7,
-        "fantasy": 20,
-        "cyberpunk": 2,
-        "action": 11,
-        "slice_of_life": 62,
-        "mystery": 32,
-        "historical": 80
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-10/sss-class-revival-hunter-anime-reveals-8-more-cast-2nd-promo-video-ending-theme-artists/.242701",
-      "title": "SSS-Class Revival Hunter Anime Reveals 8 More Cast, 2nd Promo Video, Ending Theme Artists",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 45,
-        "fantasy": 51,
-        "cyberpunk": 17,
-        "action": 66,
-        "slice_of_life": 16,
-        "mystery": 27,
+        "fantasy": 32,
+        "cyberpunk": 15,
+        "action": 61,
+        "slice_of_life": 14,
+        "mystery": 31,
         "historical": 11
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-10/dragon-ball-super-beerus-also-streams-on-hulu-in-u.s-on-october-11/.242688",
-      "title": "Dragon Ball Super: Beerus Also Streams on Hulu in U.S. on October 11",
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/heavy-metal-band-lovebites-suspend-live-performances-for-2027/.242754",
+      "title": "Heavy Metal Band Lovebites Suspend Live Performances for 2027",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 20,
-        "fantasy": 44,
-        "cyberpunk": 3,
-        "action": 76,
-        "slice_of_life": 9,
-        "mystery": 8,
-        "historical": 5
+        "sf": 10,
+        "fantasy": 5,
+        "cyberpunk": 7,
+        "action": 11,
+        "slice_of_life": 19,
+        "mystery": 9,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/osamu-tezuka-phoenix-manga-future-arc-gets-stage-play-in-february/.242752",
+      "title": "Osamu Tezuka's Phoenix Manga's Future Arc Gets Stage Play in February",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 44,
+        "fantasy": 27,
+        "cyberpunk": 21,
+        "action": 20,
+        "slice_of_life": 37,
+        "mystery": 17,
+        "historical": 25
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/texas-kawacon-anime-gaming-convention-ends-after-5-years/.242746",
+      "title": "Texas' Kawacon Anime, Gaming Convention Ends After 5 Years",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 11,
+        "cyberpunk": 17,
+        "action": 10,
+        "slice_of_life": 24,
+        "mystery": 10,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/killed-again-mr-detective-manga-inaba-launches-new-manga/.242738",
+      "title": "'Killed Again, Mr. Detective?' Manga's Inaba Launches New Manga",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 19,
+        "fantasy": 6,
+        "cyberpunk": 29,
+        "action": 44,
+        "slice_of_life": 22,
+        "mystery": 76,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/erica-sakurazawa-launches-new-manga-on-november-6/.242740",
+      "title": "Erica Sakurazawa Launches New Manga on November 6",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 34,
+        "fantasy": 40,
+        "cyberpunk": 28,
+        "action": 39,
+        "slice_of_life": 50,
+        "mystery": 28,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/blue-thermal-kana-ozawa-announces-new-manga/.242718",
+      "title": "Blue Thermal's Kana Ozawa Announces New Manga",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 31,
+        "fantasy": 33,
+        "cyberpunk": 30,
+        "action": 36,
+        "slice_of_life": 44,
+        "mystery": 28,
+        "historical": 16
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-12/japan-video-game-rankings-september-28-october-4/.242721",
+      "title": "Japan's Video Game Rankings, September 28-October 4",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 35,
+        "fantasy": 52,
+        "cyberpunk": 42,
+        "action": 68,
+        "slice_of_life": 33,
+        "mystery": 29,
+        "historical": 21
       }
     },
     {
@@ -1114,15 +1099,75 @@
   ],
   "copyrights": [
     {
-      "name": "chucklefish",
+      "name": "adult_swim",
       "scores": {
-        "sf": 34,
-        "fantasy": 34,
-        "cyberpunk": 22,
-        "action": 34,
-        "slice_of_life": 39,
-        "mystery": 24,
-        "historical": 10
+        "sf": 25,
+        "fantasy": 17,
+        "cyberpunk": 21,
+        "action": 26,
+        "slice_of_life": 33,
+        "mystery": 23,
+        "historical": 9
+      }
+    },
+    {
+      "name": "aqua_teen_hunger_force",
+      "scores": {
+        "sf": 31,
+        "fantasy": 26,
+        "cyberpunk": 17,
+        "action": 32,
+        "slice_of_life": 38,
+        "mystery": 14,
+        "historical": 7
+      }
+    },
+    {
+      "name": "british_broadcasting_corporation",
+      "scores": {
+        "sf": 19,
+        "fantasy": 10,
+        "cyberpunk": 17,
+        "action": 17,
+        "slice_of_life": 30,
+        "mystery": 25,
+        "historical": 22
+      }
+    },
+    {
+      "name": "cartoon_network",
+      "scores": {
+        "sf": 19,
+        "fantasy": 37,
+        "cyberpunk": 9,
+        "action": 38,
+        "slice_of_life": 37,
+        "mystery": 18,
+        "historical": 8
+      }
+    },
+    {
+      "name": "cyberconnect2",
+      "scores": {
+        "sf": 44,
+        "fantasy": 11,
+        "cyberpunk": 52,
+        "action": 33,
+        "slice_of_life": 24,
+        "mystery": 26,
+        "historical": 7
+      }
+    },
+    {
+      "name": "daniel_mullins_games",
+      "scores": {
+        "sf": 38,
+        "fantasy": 28,
+        "cyberpunk": 31,
+        "action": 42,
+        "slice_of_life": 34,
+        "mystery": 29,
+        "historical": 15
       }
     },
     {
@@ -1138,75 +1183,219 @@
       }
     },
     {
-      "name": "dreamworks",
+      "name": "doctor_who",
       "scores": {
-        "sf": 27,
-        "fantasy": 47,
-        "cyberpunk": 11,
-        "action": 29,
-        "slice_of_life": 24,
+        "sf": 78,
+        "fantasy": 32,
+        "cyberpunk": 19,
+        "action": 33,
+        "slice_of_life": 13,
+        "mystery": 31,
+        "historical": 42
+      }
+    },
+    {
+      "name": "don't_starve",
+      "scores": {
+        "sf": 24,
+        "fantasy": 16,
+        "cyberpunk": 25,
+        "action": 26,
+        "slice_of_life": 38,
+        "mystery": 19,
+        "historical": 14
+      }
+    },
+    {
+      "name": "dragon_ball",
+      "scores": {
+        "sf": 30,
+        "fantasy": 42,
+        "cyberpunk": 8,
+        "action": 79,
+        "slice_of_life": 12,
+        "mystery": 14,
+        "historical": 10
+      }
+    },
+    {
+      "name": "fairy_tales",
+      "scores": {
+        "sf": 38,
+        "fantasy": 80,
+        "cyberpunk": 3,
+        "action": 16,
+        "slice_of_life": 20,
         "mystery": 15,
         "historical": 16
       }
     },
     {
-      "name": "five_nights_at_freddy's",
+      "name": "fullmetal_alchemist",
       "scores": {
-        "sf": 17,
+        "sf": 37,
+        "fantasy": 38,
+        "cyberpunk": 14,
+        "action": 62,
+        "slice_of_life": 22,
+        "mystery": 31,
+        "historical": 30
+      }
+    },
+    {
+      "name": "glitch_productions",
+      "scores": {
+        "sf": 41,
+        "fantasy": 14,
+        "cyberpunk": 45,
+        "action": 33,
+        "slice_of_life": 28,
+        "mystery": 26,
+        "historical": 8
+      }
+    },
+    {
+      "name": "hasbro",
+      "scores": {
+        "sf": 28,
         "fantasy": 8,
-        "cyberpunk": 5,
-        "action": 24,
-        "slice_of_life": 6,
-        "mystery": 41,
-        "historical": 4
-      }
-    },
-    {
-      "name": "five_nights_at_freddy's:_security_breach",
-      "scores": {
-        "sf": 9,
-        "fantasy": 4,
         "cyberpunk": 15,
-        "action": 29,
-        "slice_of_life": 7,
-        "mystery": 39,
-        "historical": 3
-      }
-    },
-    {
-      "name": "inception",
-      "scores": {
-        "sf": 44,
-        "fantasy": 10,
-        "cyberpunk": 28,
         "action": 40,
-        "slice_of_life": 11,
-        "mystery": 34,
+        "slice_of_life": 13,
+        "mystery": 10,
         "historical": 7
       }
     },
     {
-      "name": "inktober",
+      "name": "inscryption",
       "scores": {
-        "sf": 13,
-        "fantasy": 20,
-        "cyberpunk": 10,
-        "action": 12,
-        "slice_of_life": 31,
-        "mystery": 12,
+        "sf": 42,
+        "fantasy": 35,
+        "cyberpunk": 32,
+        "action": 29,
+        "slice_of_life": 28,
+        "mystery": 36,
+        "historical": 17
+      }
+    },
+    {
+      "name": "j._r._r._tolkien",
+      "scores": {
+        "sf": 26,
+        "fantasy": 82,
+        "cyberpunk": 4,
+        "action": 15,
+        "slice_of_life": 19,
+        "mystery": 18,
+        "historical": 42
+      }
+    },
+    {
+      "name": "kirby_(series)",
+      "scores": {
+        "sf": 16,
+        "fantasy": 34,
+        "cyberpunk": 6,
+        "action": 47,
+        "slice_of_life": 14,
+        "mystery": 11,
+        "historical": 7
+      }
+    },
+    {
+      "name": "klei_entertainment",
+      "scores": {
+        "sf": 37,
+        "fantasy": 12,
+        "cyberpunk": 34,
+        "action": 39,
+        "slice_of_life": 14,
+        "mystery": 37,
+        "historical": 11
+      }
+    },
+    {
+      "name": "little_red_riding_hood_(copyright)",
+      "scores": {
+        "sf": 6,
+        "fantasy": 45,
+        "cyberpunk": 4,
+        "action": 13,
+        "slice_of_life": 20,
+        "mystery": 13,
+        "historical": 22
+      }
+    },
+    {
+      "name": "little_tail_bronx",
+      "scores": {
+        "sf": 23,
+        "fantasy": 28,
+        "cyberpunk": 24,
+        "action": 31,
+        "slice_of_life": 49,
+        "mystery": 26,
+        "historical": 11
+      }
+    },
+    {
+      "name": "majora's_mask",
+      "scores": {
+        "sf": 40,
+        "fantasy": 34,
+        "cyberpunk": 47,
+        "action": 38,
+        "slice_of_life": 27,
+        "mystery": 37,
         "historical": 12
       }
     },
     {
-      "name": "isla_aukate",
+      "name": "mamoru-kun_(series)",
       "scores": {
-        "sf": 33,
-        "fantasy": 41,
-        "cyberpunk": 19,
-        "action": 30,
-        "slice_of_life": 37,
-        "mystery": 28,
-        "historical": 27
+        "sf": 23,
+        "fantasy": 28,
+        "cyberpunk": 14,
+        "action": 24,
+        "slice_of_life": 61,
+        "mystery": 26,
+        "historical": 10
+      }
+    },
+    {
+      "name": "mars_incorporated",
+      "scores": {
+        "sf": 59,
+        "fantasy": 12,
+        "cyberpunk": 42,
+        "action": 34,
+        "slice_of_life": 26,
+        "mystery": 24,
+        "historical": 14
+      }
+    },
+    {
+      "name": "middle-earth_(tolkien)",
+      "scores": {
+        "sf": 25,
+        "fantasy": 87,
+        "cyberpunk": 2,
+        "action": 18,
+        "slice_of_life": 11,
+        "mystery": 13,
+        "historical": 26
+      }
+    },
+    {
+      "name": "monsters_inc",
+      "scores": {
+        "sf": 32,
+        "fantasy": 35,
+        "cyberpunk": 9,
+        "action": 35,
+        "slice_of_life": 36,
+        "mystery": 18,
+        "historical": 5
       }
     },
     {
@@ -1222,123 +1411,255 @@
       }
     },
     {
-      "name": "scottgames",
+      "name": "nintendo",
       "scores": {
-        "sf": 39,
-        "fantasy": 49,
-        "cyberpunk": 30,
-        "action": 33,
-        "slice_of_life": 31,
-        "mystery": 34,
-        "historical": 26
+        "sf": 26,
+        "fantasy": 19,
+        "cyberpunk": 27,
+        "action": 39,
+        "slice_of_life": 21,
+        "mystery": 17,
+        "historical": 11
       }
     },
     {
-      "name": "sega",
+      "name": "pixar",
       "scores": {
-        "sf": 31,
-        "fantasy": 17,
-        "cyberpunk": 31,
-        "action": 48,
-        "slice_of_life": 17,
-        "mystery": 18,
+        "sf": 33,
+        "fantasy": 50,
+        "cyberpunk": 11,
+        "action": 23,
+        "slice_of_life": 32,
+        "mystery": 16,
+        "historical": 11
+      }
+    },
+    {
+      "name": "pokemon",
+      "scores": {
+        "sf": 24,
+        "fantasy": 57,
+        "cyberpunk": 10,
+        "action": 39,
+        "slice_of_life": 25,
+        "mystery": 17,
         "historical": 9
       }
     },
     {
-      "name": "shining_(sega)",
+      "name": "pondering_my_orb",
       "scores": {
-        "sf": 36,
-        "fantasy": 36,
-        "cyberpunk": 38,
-        "action": 53,
-        "slice_of_life": 26,
-        "mystery": 26,
-        "historical": 14
+        "sf": 41,
+        "fantasy": 27,
+        "cyberpunk": 32,
+        "action": 18,
+        "slice_of_life": 35,
+        "mystery": 27,
+        "historical": 9
       }
     },
     {
-      "name": "shining_force",
+      "name": "portal_(series)",
       "scores": {
-        "sf": 45,
-        "fantasy": 46,
-        "cyberpunk": 25,
-        "action": 39,
-        "slice_of_life": 21,
-        "mystery": 22,
-        "historical": 16
+        "sf": 51,
+        "fantasy": 44,
+        "cyberpunk": 43,
+        "action": 40,
+        "slice_of_life": 31,
+        "mystery": 38,
+        "historical": 18
       }
     },
     {
-      "name": "starbound",
+      "name": "pringles",
       "scores": {
-        "sf": 56,
+        "sf": 6,
+        "fantasy": 4,
+        "cyberpunk": 6,
+        "action": 9,
+        "slice_of_life": 24,
+        "mystery": 5,
+        "historical": 3
+      }
+    },
+    {
+      "name": "ranma_1/2",
+      "scores": {
+        "sf": 19,
         "fantasy": 36,
         "cyberpunk": 7,
-        "action": 29,
-        "slice_of_life": 27,
-        "mystery": 14,
-        "historical": 12
+        "action": 69,
+        "slice_of_life": 28,
+        "mystery": 13,
+        "historical": 30
       }
     },
     {
-      "name": "starwarriors",
+      "name": "smiling_friends",
       "scores": {
-        "sf": 56,
-        "fantasy": 28,
-        "cyberpunk": 28,
-        "action": 47,
-        "slice_of_life": 17,
+        "sf": 11,
+        "fantasy": 13,
+        "cyberpunk": 14,
+        "action": 22,
+        "slice_of_life": 52,
+        "mystery": 13,
+        "historical": 7
+      }
+    },
+    {
+      "name": "star_wars",
+      "scores": {
+        "sf": 80,
+        "fantasy": 23,
+        "cyberpunk": 13,
+        "action": 57,
+        "slice_of_life": 8,
         "mystery": 17,
         "historical": 14
       }
     },
     {
-      "name": "steel_wool_studios",
+      "name": "tail_concerto",
       "scores": {
-        "sf": 40,
-        "fantasy": 17,
+        "sf": 31,
+        "fantasy": 22,
         "cyberpunk": 36,
-        "action": 34,
-        "slice_of_life": 39,
+        "action": 39,
+        "slice_of_life": 38,
         "mystery": 29,
-        "historical": 10
+        "historical": 17
       }
     },
     {
-      "name": "the_bad_guys",
+      "name": "takara_tomy",
       "scores": {
-        "sf": 18,
-        "fantasy": 6,
-        "cyberpunk": 23,
-        "action": 57,
-        "slice_of_life": 15,
-        "mystery": 25,
+        "sf": 31,
+        "fantasy": 25,
+        "cyberpunk": 29,
+        "action": 37,
+        "slice_of_life": 34,
+        "mystery": 20,
         "historical": 12
       }
     },
     {
-      "name": "undertale",
+      "name": "team_fortress_2",
       "scores": {
-        "sf": 21,
-        "fantasy": 40,
-        "cyberpunk": 12,
-        "action": 32,
-        "slice_of_life": 29,
-        "mystery": 23,
+        "sf": 35,
+        "fantasy": 18,
+        "cyberpunk": 32,
+        "action": 51,
+        "slice_of_life": 27,
+        "mystery": 27,
         "historical": 15
       }
     },
     {
-      "name": "undertale_(series)",
+      "name": "the_amazing_digital_circus",
       "scores": {
-        "sf": 22,
-        "fantasy": 41,
-        "cyberpunk": 14,
-        "action": 32,
-        "slice_of_life": 31,
-        "mystery": 23,
-        "historical": 13
+        "sf": 26,
+        "fantasy": 25,
+        "cyberpunk": 31,
+        "action": 22,
+        "slice_of_life": 24,
+        "mystery": 20,
+        "historical": 9
+      }
+    },
+    {
+      "name": "the_crown_of_leaves",
+      "scores": {
+        "sf": 29,
+        "fantasy": 51,
+        "cyberpunk": 11,
+        "action": 25,
+        "slice_of_life": 36,
+        "mystery": 28,
+        "historical": 32
+      }
+    },
+    {
+      "name": "the_legend_of_zelda",
+      "scores": {
+        "sf": 15,
+        "fantasy": 72,
+        "cyberpunk": 6,
+        "action": 60,
+        "slice_of_life": 11,
+        "mystery": 22,
+        "historical": 23
+      }
+    },
+    {
+      "name": "the_lord_of_the_rings",
+      "scores": {
+        "sf": 20,
+        "fantasy": 84,
+        "cyberpunk": 4,
+        "action": 45,
+        "slice_of_life": 7,
+        "mystery": 15,
+        "historical": 40
+      }
+    },
+    {
+      "name": "tomska",
+      "scores": {
+        "sf": 36,
+        "fantasy": 24,
+        "cyberpunk": 26,
+        "action": 35,
+        "slice_of_life": 36,
+        "mystery": 27,
+        "historical": 20
+      }
+    },
+    {
+      "name": "transformers",
+      "scores": {
+        "sf": 66,
+        "fantasy": 15,
+        "cyberpunk": 32,
+        "action": 65,
+        "slice_of_life": 11,
+        "mystery": 15,
+        "historical": 8
+      }
+    },
+    {
+      "name": "twokinds",
+      "scores": {
+        "sf": 31,
+        "fantasy": 24,
+        "cyberpunk": 25,
+        "action": 34,
+        "slice_of_life": 46,
+        "mystery": 34,
+        "historical": 16
+      }
+    },
+    {
+      "name": "valve",
+      "scores": {
+        "sf": 30,
+        "fantasy": 12,
+        "cyberpunk": 34,
+        "action": 30,
+        "slice_of_life": 28,
+        "mystery": 19,
+        "historical": 12
+      }
+    },
+    {
+      "name": "valve_corporation",
+      "scores": {
+        "sf": 34,
+        "fantasy": 8,
+        "cyberpunk": 44,
+        "action": 25,
+        "slice_of_life": 25,
+        "mystery": 21,
+        "historical": 11
       }
     },
     {
@@ -1354,6 +1675,6 @@
       }
     }
   ],
-  "api_calls": 39,
-  "cache_hits": 55
+  "api_calls": 69,
+  "cache_hits": 52
 }
