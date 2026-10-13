@@ -2,18 +2,6 @@
 
 未実装項目と改善案。優先度でソート。完了した項目は削除する（変更履歴は git commit に委ねる）。
 
-(完了済み項目は削除済み)
-
-## P1 (完了)
-
-| # | 項目 | 完了日 | 備考 |
-|---|------|--------|------|
-| 2 | HF Space デプロイ確認 | 2026-10-10 | 実質完了と確認 |
-| 1 | art_style 短縮 | 2026-10-06 | DEFAULT_ART_STYLEを5→3トークン、テンプレート指示に3-5タグ明記 |
-| 2 | キャラ定義のトークン最適化 | 2026-10-06 | 服装1-2つ制限、5-8タグ推奨、自然言語除去指示 |
-| 3 | フル解像度テスト | 2026-10-06 | 不要と判断 |
-| 1 | HuggingFace API 使用可能状況の確認 | 2026-10-05 | ZeroGPU 無料枠 3.5 分/日、1 日約 2 リクエスト。詳細は api-rate-limits.md |
-
 ## P2
 
 | # | 項目 | 難易度 | 効果 | 備考 |
@@ -21,15 +9,6 @@
 | 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
 | 3 | アフィリエイトCTAカードのスリム化 + テキストリンクの統一・被り排除 | ⭐ | 中 | 現状CTAカード（`generate_article.py:1530-1533`「🔥 …の今すぐチェックできるおすすめアイテム / Amazonで確認する →」）とテキストリンク（`links_html`「Amazonで「kw」を探す」）で同一キーワードが重複表示される。カードの見た目をもっとスリムにし、テーマ関連商品のテキストリンクを全てこのカード形式に統一、キーワードの被りを排除 |
 | 4 | コメント機能（Giscus）実装 | ⭐⭐ | 中 | 設計確定済み（2026-10-11、選定理由: `decisions.md`）。タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md`（手動: Discussions 有効化 + giscus app 導入）、`tasks/2026-10-11-giscus-comments-env-config.md`（手動: 環境変数登録）、`tasks/2026-10-11-giscus-comments-component.md`（AI: コンポーネント + Layout 組み込み）、`tasks/2026-10-11-giscus-comments-workflow-env.md`（AI: deploy.yml / deploy-only.yml への env 配線）、`tasks/2026-10-11-giscus-comments-verification.md`（AI: E2E 検証 + 本番デプロイ）。完了時に本エントリを削除 |
-
-## P2 (完了)
-
-| # | 項目 | 完了日 | 備考 |
-|---|------|--------|------|
-| 4 | 旧記事の UTF-8 BOM 除去（30 件 + `affiliate-link-context.txt`） | 2026-10-11 | BOM 付き 31 ファイルをバイト列除去（CRLF 維持）。`safe-remove.ps1` の BOM は PS 5.1 必須で維持。`npm run build` 135 pages 成功。詳細: `tasks/2026-10-11-utf8-encoding-audit.md` |
-| 1 | trend topics の実質的無効化（#5 と統合実施） | 2026-10-10 | GameSpot/IGN を正規 RSS パースへ（description 取得化）、全エンタメソース失敗時の `STORY_INSPIRATION_THEMES` NameError を内蔵テーマ8件で修正。詳細: `tasks/2026-10-10-trend-rss-enhancement.md` |
-| 5 | RSS取得の強化（description 追加） | 2026-10-10 | `fetch_rss()` が RSS2.0（content:encoded→description）/Atom（content→summary）から HTML除去・300文字切り詰めで抽出し `latest.json` に保存。`score_topics()` は title+description[:200] でスコアリング、`_append_trending_topics()` は description[:100] スニペット注入。pytest 339件通過。詳細: `tasks/2026-10-10-trend-rss-enhancement.md` |
-| 1 | ログ・メタファイルのクリーン処理（リネーム+期間削除） | 2026-10-10 | リネーム `affiliate_links`→`affiliate_logs`・`trend_usage`→`trend_usage_logs`（機能コード1行+`git mv`+`.gitkeep`）。`generate_article.py` に `_cleanup_old_logs()`（ファイル名タイムスタンプで30日前の `drafts/`・`trend_usage_logs/`・`affiliate_logs/`・`prompt_logs/` を削除、`generate_post()` 末尾で呼出）。`deploy.yml` 参照+コミットメッセージ更新。全モックテスト8件、pytest 305件通過。詳細: `tasks/2026-10-10-log-cleanup.md` |
 
 ## P3
 

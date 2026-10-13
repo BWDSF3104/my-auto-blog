@@ -25,7 +25,6 @@ git push 前に以下の確認を行う:
 - [ ] 新規問題が `known-issues.md` に記録されたか
 - [ ] 解決した問題が `known-issues.md` の Archive へ移動されたか
 - [ ] 完了したバックログ項目が `backlog.md` から削除されたか
-- [ ] アーカイブ手順（`memory-bank-guide.md` §アーカイブルール）を実行したか
 
 ## Deploy Verification
 
