@@ -22,8 +22,9 @@ from article.config import *  # noqa: F401,F403
 
 
 def _is_valid_kemono_combination(transform, relationship, extra):
-    """無効な組み合わせをフィルタ"""
-    if extra == "clone" and relationship == "hetero" and "tsf" not in transform:
+    """無効な組み合わせをフィルタ。
+    自分同士の設定（clone / dark_persona）では、性転換なしの異性愛は成立しない。"""
+    if extra in ("clone", "dark_persona") and relationship == "hetero" and "tsf" not in transform:
         return False
     return True
 
@@ -37,30 +38,21 @@ def _weighted_pick(weights: list):
     )[0]
 
 
-def _pick_char_count(extra: str) -> int:
-    """extra=clone の時のみ CHAR_COUNT_WEIGHTS から char_count を抽選、それ以外は 2。"""
-    if extra == "clone":
-        return _weighted_pick(CHAR_COUNT_WEIGHTS)
-    return 2
-
-
 def _randomize_kemono_params():
     """kemono_story プロンプト用のランダムパラメータを重み付き選択で生成する。
     バリデーションに失敗した場合は再試行（最大100回）。
-    char_count=1 は extra=clone の時のみに制限。"""
+    char_count は常に2（clone/dark_persona でも同じ外見の2人が登場するため solo にならない）。"""
     for _ in range(100):
         char_types = _weighted_pick(CHAR_TYPE_WEIGHTS)
         world_setting = _weighted_pick(WORLD_SETTING_WEIGHTS)
         transform = _weighted_pick(TRANSFORM_WEIGHTS)
         relationship = _weighted_pick(RELATIONSHIP_WEIGHTS)
         extra = _weighted_pick(EXTRA_SETTING_WEIGHTS)
-        char_count = _pick_char_count(extra)
         if _is_valid_kemono_combination(transform, relationship, extra):
             break
     else:
         transform = "none"
         extra = "none"
-        char_count = 2
 
     return {
         # 構造化データ（タグ生成・アフィリエイトkwに直接使用）
@@ -77,8 +69,9 @@ def _randomize_kemono_params():
         "relationship_text": _KEMONO_RELATIONSHIP_TEXT[relationship],
         "extra_key": extra,
         "extra_text": _KEMONO_EXTRA_TEXT[extra],
-        "char_count": char_count,
-        "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_1 if char_count == 1 else _KEMONO_CHAR_COUNT_DESC_2),
+        "char_count": 2,
+        "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_2),
+        "character2_rule": _KEMONO_CHARACTER2_RULES[extra],
     }
 
 

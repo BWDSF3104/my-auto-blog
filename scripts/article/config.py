@@ -89,18 +89,27 @@ INLINE_AFF_PRODUCT_PATTERN = re.compile(
 )
 
 # --------------------------------------------------
+# プロンプトのトグル
+# --------------------------------------------------
+# 【キャラクター・テーマ被り防止】セクションの出力トグル（デフォルトOFF）
+# キャラクター・テーマのランダム化がPython側（_randomize_kemono_params）で実装済みのため、
+# 既定では不要。環境変数 ENABLE_CHAR_DEDUP=1 で有効化
+ENABLE_CHAR_DEDUP = os.environ.get("ENABLE_CHAR_DEDUP", "0") == "1"
+
+# --------------------------------------------------
 # kemono_story プロンプトのPython側ランダム化設定
 # --------------------------------------------------
 # 各項目の重み付き選択でテーマの多様性を確保
 # 値は体型タグのリスト（個別タグとしてそのまま使用）。
 # プロンプト表示文字列は " / " 結合（char_type）で生成する
 CHAR_TYPE_WEIGHTS = [
-    (["獣人"], 30),
-    (["動物と獣人のハーフ"], 20),
-    (["動物"], 20),
-    (["獣人", "動物と獣人のハーフ"], 10),
-    (["獣人", "動物"], 10),
-    (["動物と獣人のハーフ", "動物"], 10),
+    (["chibi"], 25),
+    (["動物"], 25),
+    (["動物と獣人のハーフ"], 25),
+    (["獣人"], 10),
+    (["獣人", "動物と獣人のハーフ"], 5),
+    (["獣人", "動物"], 5),
+    (["動物と獣人のハーフ", "動物"], 5),
 ]
 
 WORLD_SETTING_WEIGHTS = [
@@ -119,28 +128,24 @@ WORLD_SETTING_WEIGHTS = [
 ]
 
 TRANSFORM_WEIGHTS = [
-    ("none", 40),
-    ("tf", 25),
-    ("tsf", 25),
-    ("tf+tsf", 10),
+    ("none", 75),
+    ("tf", 12),
+    ("tsf", 10),
+    ("tf+tsf", 3),
 ]
 
 RELATIONSHIP_WEIGHTS = [
-    ("partnership", 30),
-    ("yaoi", 25),
-    ("yuri", 25),
-    ("hetero", 20),
+    ("yaoi", 55),
+    ("yuri", 20),
+    ("partnership", 15),
+    ("hetero", 10),
 ]
 
 EXTRA_SETTING_WEIGHTS = [
-    ("none", 70),
-    ("clone", 20),
+    ("none", 25),
+    ("clone", 35),
+    ("dark_persona", 30),
     ("rival", 10),
-]
-
-CHAR_COUNT_WEIGHTS = [
-    (1, 40),
-    (2, 60),
 ]
 
 
@@ -199,17 +204,32 @@ _KEMONO_RELATIONSHIP_TEXT = {
     "hetero": "異性愛",
 }
 
-# 追加設定のタグ（個別タグとしてそのまま使用）
-# プロンプト表示文字列は "、" 接頭（_KEMONO_EXTRA_TEXT）で生成する
+# 追加設定のタグ（個別タグとしてそのまま使用。frontmatter・生成情報表示用）
 _KEMONO_EXTRA_TAGS = {
     "none": "",
     "clone": "クローンによる自分同士",
+    "dark_persona": "dark persona",
     "rival": "ライバル関係",
 }
-_KEMONO_EXTRA_TEXT = {key: (f"、{text}" if text else "") for key, text in _KEMONO_EXTRA_TAGS.items()}
 
-_KEMONO_CHAR_COUNT_DESC_1 = ["クローン"]
+# プロンプト表示文字列（タグより詳しい設定説明を付与するため明示定義）
+_KEMONO_EXTRA_TEXT = {
+    "none": "",
+    "clone": "、クローンによる自分同士",
+    "dark_persona": "、dark persona（もう一人の自分は自身の闇版。体色は黒っぽい）",
+    "rival": "、ライバル関係",
+}
+
+# 登場キャラ数説明（char_count は常に2。clone/dark_persona は同じ外見の2人が登場する）
 _KEMONO_CHAR_COUNT_DESC_2 = ["バディ", "ライバル", "カップル"]
+
+# character_2 の定義ルール（追加設定ごとに条件分岐。クローンはクローン時のみ記載）
+_KEMONO_CHARACTER2_RULES = {
+    "none": "character_1 と character_2 の両方を必ず定義してください。character_2 の外見は character_1 と明確に区別できるものにしてください。",
+    "clone": "character_1 と character_2 の両方を必ず定義してください。クローンによる自分同士の場合は character_2 の外見は character_1 と同一（区別のため小物・装飾のみ差異可）。",
+    "dark_persona": "character_1 と character_2 の両方を必ず定義してください。もう一人の自分（character_2）の体色は黒っぽく変更してください。",
+    "rival": "character_1 と character_2 の両方を必ず定義してください。character_2 は character_1 のライバルであり、外見は character_1 と明確に区別できるものにしてください。",
+}
 
 # kemono_story 商品名の関連性判定トークン（固定リスト）
 _KEMONO_CORE_TOKENS = ("ケモノ", "バケモノ", "獣人", "獣", "動物", "アニマル", "anthro", "beast")
@@ -294,13 +314,14 @@ __all__ = [
     "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION",
     "MIN_DESC_LEN", "MAX_DESC_LEN",
     "INLINE_IMAGE_PATTERN", "INLINE_AFFILIATE_PATTERN", "INLINE_AFF_PRODUCT_PATTERN",
+    "ENABLE_CHAR_DEDUP",
     # kemono_story ランダム化
     "CHAR_TYPE_WEIGHTS", "WORLD_SETTING_WEIGHTS", "TRANSFORM_WEIGHTS",
-    "RELATIONSHIP_WEIGHTS", "EXTRA_SETTING_WEIGHTS", "CHAR_COUNT_WEIGHTS",
+    "RELATIONSHIP_WEIGHTS", "EXTRA_SETTING_WEIGHTS",
     "WORLD_SETTING_GENRE_MAP",
     "_KEMONO_WORLD_TAGS", "_KEMONO_WORLD_TEXT", "_KEMONO_TRANSFORM_TEXT",
     "_KEMONO_TRANSFORM_LABEL", "_KEMONO_RELATIONSHIP_TEXT", "_KEMONO_EXTRA_TAGS",
-    "_KEMONO_EXTRA_TEXT", "_KEMONO_CHAR_COUNT_DESC_1", "_KEMONO_CHAR_COUNT_DESC_2",
+    "_KEMONO_EXTRA_TEXT", "_KEMONO_CHAR_COUNT_DESC_2", "_KEMONO_CHARACTER2_RULES",
     "_KEMONO_CORE_TOKENS", "_KEMONO_ANCHOR_KEYWORDS", "_KEMONO_RELATIONSHIP_AFFILIATE",
     # アフィリエイト
     "_AF_EXCLUDE_CP_PATTERNS", "_AF_EXCLUDE_CPS",

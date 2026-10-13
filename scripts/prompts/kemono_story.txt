@@ -99,7 +99,7 @@ product_recommendations:
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
 ・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
-・1人のみの物語の場合は character_2 を省略して構いません。
+・{character2_rule}
 {character_features_instruction}
 
 【product_recommendations の指定ルール】

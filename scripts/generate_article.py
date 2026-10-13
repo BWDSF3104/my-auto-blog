@@ -149,8 +149,8 @@ def build_ng_instruction(prompt_type, recent_titles, recent_metas):
     else:
         ng_instruction = ""
 
-    # 1.2. キャラクター・テーマ被り防止の追加指示
-    if recent_metas and prompt_type in ("kemono_story", "novel", "story"):
+    # 1.2. キャラクター・テーマ被り防止の追加指示（トグル: ENABLE_CHAR_DEDUP, デフォルトOFF）
+    if ENABLE_CHAR_DEDUP and recent_metas and prompt_type in ("kemono_story", "novel", "story"):
         char_lines = []
         for meta in recent_metas:
             entries = []
@@ -439,7 +439,8 @@ def generate_post():
 
     prompt_type = os.environ.get("PROMPT_TYPE", "default")
     recent_titles = get_recent_titles_by_type(prompt_type)
-    recent_metas = get_recent_meta_by_type(prompt_type)
+    # キャラ・被り防止セクションが無効（デフォルト）時はメタ抽出をスキップ
+    recent_metas = get_recent_meta_by_type(prompt_type) if ENABLE_CHAR_DEDUP else []
     ng_instruction = build_ng_instruction(prompt_type, recent_titles, recent_metas)
 
     kemono_params, target_genres = resolve_kemono(prompt_type)

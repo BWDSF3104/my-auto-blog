@@ -44,15 +44,17 @@ from generate_article import (
     _randomize_kemono_params,
     _build_kemono_tags,
     _kemono_affiliate_keywords,
+    build_ng_instruction,
     CHAR_TYPE_WEIGHTS,
     WORLD_SETTING_WEIGHTS,
     _KEMONO_WORLD_TAGS,
     _KEMONO_EXTRA_TAGS,
+    _KEMONO_EXTRA_TEXT,
+    _KEMONO_CHARACTER2_RULES,
     _KEMONO_RELATIONSHIP_AFFILIATE,
     TRANSFORM_WEIGHTS,
     RELATIONSHIP_WEIGHTS,
     EXTRA_SETTING_WEIGHTS,
-    CHAR_COUNT_WEIGHTS,
     generate_and_save_image,
     extract_character_prompts,
     extract_image_prompt,
@@ -1914,6 +1916,24 @@ class TestIsValidKemonoCombination:
     def test_tf_yuri_clone_valid(self):
         assert _is_valid_kemono_combination("tf", "yuri", "clone") is True
 
+    def test_dark_persona_hetero_without_tsf_invalid(self):
+        assert _is_valid_kemono_combination("none", "hetero", "dark_persona") is False
+
+    def test_dark_persona_hetero_with_tsf_valid(self):
+        assert _is_valid_kemono_combination("tsf", "hetero", "dark_persona") is True
+
+    def test_dark_persona_hetero_with_tf_only_invalid(self):
+        assert _is_valid_kemono_combination("tf", "hetero", "dark_persona") is False
+
+    def test_dark_persona_yaoi_valid(self):
+        assert _is_valid_kemono_combination("none", "yaoi", "dark_persona") is True
+
+    def test_dark_persona_yuri_valid(self):
+        assert _is_valid_kemono_combination("none", "yuri", "dark_persona") is True
+
+    def test_dark_persona_partnership_valid(self):
+        assert _is_valid_kemono_combination("none", "partnership", "dark_persona") is True
+
 
 class TestRandomizeKemonoParams:
     def test_return_keys(self):
@@ -1925,6 +1945,7 @@ class TestRandomizeKemonoParams:
             "relationship_key", "relationship_text",
             "extra_key", "extra_text",
             "char_count", "char_count_desc",
+            "character2_rule",
         }
         assert set(params.keys()) == expected_keys
 
@@ -1955,7 +1976,7 @@ class TestRandomizeKemonoParams:
         for _ in range(50):
             params = _randomize_kemono_params()
             assert params["extra_tag"] == _KEMONO_EXTRA_TAGS[params["extra_key"]]
-            assert params["extra_text"] == (f"、{params['extra_tag']}" if params["extra_tag"] else "")
+            assert params["extra_text"] == _KEMONO_EXTRA_TEXT[params["extra_key"]]
 
     def test_transform_text_in_options(self):
         for _ in range(50):
@@ -1970,21 +1991,36 @@ class TestRandomizeKemonoParams:
     def test_extra_text_in_options(self):
         for _ in range(50):
             params = _randomize_kemono_params()
-            assert params["extra_text"] in ("", "、クローンによる自分同士", "、ライバル関係")
+            assert params["extra_text"] in (
+                "", "、クローンによる自分同士",
+                "、dark persona（もう一人の自分は自身の闇版。体色は黒っぽい）", "、ライバル関係",
+            )
 
-    def test_char_count_in_options(self):
+    def test_char_count_always_2(self):
         for _ in range(50):
             params = _randomize_kemono_params()
-            assert params["char_count"] in (1, 2)
-            assert params["char_count_desc"] in ("クローン", "バディ", "ライバル", "カップル")
+            assert params["char_count"] == 2
+            assert params["char_count_desc"] in ("バディ", "ライバル", "カップル")
 
-    def test_char_count_desc_matches_count(self):
+    def test_character2_rule_matches_extra(self):
         for _ in range(50):
             params = _randomize_kemono_params()
-            if params["char_count"] == 1:
-                assert params["char_count_desc"] == "クローン"
+            assert params["character2_rule"] == _KEMONO_CHARACTER2_RULES[params["extra_key"]]
+
+    def test_character2_rule_clone_only_mentions_clone(self):
+        for _ in range(100):
+            params = _randomize_kemono_params()
+            rule = params["character2_rule"]
+            assert "character_1 と character_2 の両方を必ず定義" in rule
+            if params["extra_key"] == "clone":
+                assert "クローン" in rule
+                assert "同一" in rule
             else:
-                assert params["char_count_desc"] in ("バディ", "ライバル", "カップル")
+                assert "クローン" not in rule
+            if params["extra_key"] == "dark_persona":
+                assert "体色は黒っぽく" in rule
+            else:
+                assert "体色は黒っぽく" not in rule
 
     def test_combination_always_valid(self):
         for _ in range(200):
@@ -2004,7 +2040,9 @@ class TestRandomizeKemonoParams:
                 if params["relationship_text"] == k:
                     relationship = v
             for k, v in {
-                "": "none", "、クローンによる自分同士": "clone", "、ライバル関係": "rival"
+                "": "none", "、クローンによる自分同士": "clone",
+                "、dark persona（もう一人の自分は自身の闇版。体色は黒っぽい）": "dark_persona",
+                "、ライバル関係": "rival"
             }.items():
                 if params["extra_text"] == k:
                     extra = v
@@ -2017,21 +2055,50 @@ class TestRandomizeKemonoParams:
             counts[params["char_type"]] = counts.get(params["char_type"], 0) + 1
         for val, count in counts.items():
             pct = count / 10
-            assert 5 <= pct <= 40, f"{val}: {pct}%"
+            assert 2 <= pct <= 40, f"{val}: {pct}%"
 
-    def test_char_count_1_only_with_clone(self):
-        for _ in range(200):
-            params = _randomize_kemono_params()
-            if params["char_count"] == 1:
-                assert params["extra_text"] == "、クローンによる自分同士"
+class TestBuildNgInstruction:
+    """build_ng_instruction のキャラクター・テーマ被り防止トグル（ENABLE_CHAR_DEDUP）。"""
 
-    def test_distribution_char_count(self):
-        counts = {1: 0, 2: 0}
-        for _ in range(1000):
-            params = _randomize_kemono_params()
-            counts[params["char_count"]] += 1
-        assert counts[1] + counts[2] == 1000
-        assert 0 < counts[1] < counts[2]
+    RECENT_TITLES = ["テスト作品A", "テスト作品B"]
+    RECENT_METAS = [
+        {
+            "title": "テスト作品A",
+            "character_1": "1boy, wolf anthro, black fur, red scarf",
+            "character_2": "1girl, fox anthro, white fur, blue dress",
+            "art_style": "anime style, cel shading",
+            "tags": ["ケモノ", "恋愛"],
+        }
+    ]
+
+    def test_disabled_excludes_char_section(self):
+        with patch("generate_article.ENABLE_CHAR_DEDUP", False):
+            result = build_ng_instruction("kemono_story", self.RECENT_TITLES, self.RECENT_METAS)
+        assert "【直近の執筆作品（テーマ・展開被り防止）】" in result
+        assert "【キャラクター・テーマ被り防止】" not in result
+        assert "character_1" not in result
+
+    def test_enabled_includes_char_section(self):
+        with patch("generate_article.ENABLE_CHAR_DEDUP", True):
+            result = build_ng_instruction("kemono_story", self.RECENT_TITLES, self.RECENT_METAS)
+        assert "【キャラクター・テーマ被り防止】" in result
+        assert "1boy, wolf anthro, black fur, red scarf" in result
+
+    def test_enabled_non_story_type_excludes_char_section(self):
+        with patch("generate_article.ENABLE_CHAR_DEDUP", True):
+            result = build_ng_instruction("default", self.RECENT_TITLES, self.RECENT_METAS)
+        assert "【重要：重複の禁止】" in result
+        assert "【キャラクター・テーマ被り防止】" not in result
+
+    def test_enabled_empty_metas_excludes_char_section(self):
+        with patch("generate_article.ENABLE_CHAR_DEDUP", True):
+            result = build_ng_instruction("kemono_story", self.RECENT_TITLES, [])
+        assert "【キャラクター・テーマ被り防止】" not in result
+
+    def test_no_recent_data_returns_empty(self):
+        with patch("generate_article.ENABLE_CHAR_DEDUP", True):
+            result = build_ng_instruction("kemono_story", [], [])
+        assert result == ""
 
 
 class TestBuildKemonoTags:
