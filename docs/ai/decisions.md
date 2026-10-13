@@ -2,6 +2,12 @@
 
 古い決定は `decisions-archive.md` に移動する。直近10件のみ保持。アクティブファイルは Decision + Reason のみ（Rejected Alternatives / Impact はアーカイブ時に付与）。
 
+## 2026-10-13: kilo-safe-rmdir アローリスト緩和（プロジェクト内全フォルダ許可・拒否リスト維持）
+
+**Decision**: `safe-rmdir.ps1` の名前ベースアローリスト（`$allowedFolders`: node_modules, dist, .astro, .pytest_cache, tmp）を削除し、プロジェクト内の任意フォルダの削除を許可。拒否リストガード維持: ディレクトリのみ / シンボリックリンク拒否 / プロジェクト外拒否 / プロジェクトルート拒否 / `.git`・`.kilo` 拒否。
+
+**Reason**: git 管理下なら復元可能、未追跡の一時コンテンツは設計上捨ててよい。名前アローリストはリスト外の一時フォルダ（`test-results/` 等）が常に漏れるため不要。「保護すべきものは保護」のユーザー方針で deny list が正しい形状。
+
 ## 2026-10-13: コマンド承認はグローバル `permission.bash`（フォールバック→allow→例外ask）＋ 行動ルールは AGENTS.md
 
 **Decision**: kilo のコマンド承認はグローバル `kilo.jsonc` の `permission.bash` に集約し、「先頭 `"*": "ask"` フォールバック → 中段 allow 群 → 後段 例外 ask」（`last match wins`）で運用（98 エントリ）。行動ルール（一行コマンド / インライン Python 禁止）は `AGENTS.md` の `## Command Execution Rules` に置く。
@@ -55,9 +61,3 @@
 **Decision**: プロンプト3種 + 注入行で「書籍」が先頭・単独例にならないよう例の順序入れ替えと複数例化。削除・禁止指示・否定表現は追加しない。kemono「実在作品」→「実在商品」、category 列挙で書籍を末尾へ。
 
 **Reason**: 直近記事の商品カード約6割が書籍（LLM はプロンプト例を強く模倣）。書籍は正規カテゴリ（削除不可）だが順序でアンカーを分散。禁止指示はプロンプトノイズになる可能性。
-
-## 2026-10-10: 世界設定の2段階拡大（12種・アンカワーク基準）
-
-**Decision**: 世界設定7種→12種（+isekai/modern/space_opera/dungeon_crawl/historical）。`WORLD_SETTING_GENRE_MAP` +5件。`historical` genre 新設（6→7種）。追加基準を「ケモノに独立世界を定義するアンカワーク存在＋明確に異なる物語を生む」に変更。
-
-**Reason**: 現代人獣社会（Zootopia 系）と時代設定が表現不能だった。異世界は読者目線で独立ラベル。アンカワーク基準で細分化しすぎを制御。未デプロイ変更と同バッチ化で再スコアリング1回に集約。

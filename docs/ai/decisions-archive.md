@@ -4,6 +4,22 @@ Older decisions moved from `decisions.md`. Kept 10 most recent in `decisions.md`
 
 ---
 
+## 2026-10-10: 世界設定の2段階拡大（12種・アンカワーク基準）
+
+**Decision**: kemono_story の世界設定を7種→12種（新設 isekai 10 / modern 10 / space_opera 7 / dungeon_crawl 6 / historical 5、重み合計100維持）。`WORLD_SETTING_GENRE_MAP` +5件。`genre_score.py` に `historical` genre 新設（6→7種）。追加基準を「ケモノに独立世界を定義するアンカワーク存在＋明確に異なる物語を生む」に変更。
+
+**Reason**: 現代人獣社会（Zootopia 系）と時代設定が表現不能だった。異世界は読者目線で独立ラベル。アンカワーク基準で細分化しすぎを制御。未デプロイ変更と同バッチ化で再スコアリング1回に集約。
+
+**Rejected Alternatives**:
+- メカ: Star Fox のメカ要素は space_opera に吸収。独立したケモノメカのアンカワークなし
+- ポストアポカリプス: sf + action のバリアントで表現可能
+- スポーツ: slice_of_life + action のバリアントで表現可能
+- いずれも需要が観測されたら後日追加（新 genre 不要のはず）
+
+**Impact**:
+- `scripts/genre_score.py`（`GENRE_INSTRUCTIONS` / `DEFAULT_GENRES`）、`scripts/generate_article.py`（`WORLD_SETTING_WEIGHTS` / `WORLD_SETTING_GENRE_MAP` / `_KEMONO_WORLD_TAGS`）、`.github/workflows/genre-score.yml`
+- pytest 315通過。`dde9c5b`（6種変更と同一コミットに集約）
+
 ## 2026-10-10: ストーリー系ジャンルの一括拡大（世界設定7種・スコアリングgenre6種）
 
 **Decision**: kemono_story の世界設定を4種→7種（+`cyberpunk` 12 / +`adventure` 8 / +`mystery` 5。fantasy 35→30 / slice_of_life 25→22 / sf 20→15 / fantasy+sf 20→8 で合計100維持）、スコアリングgenreを4種→6種（+`slice_of_life` / +`mystery`、専用instruction）へ一括変更。`WORLD_SETTING_GENRE_MAP` に `cyberpunk`→`[cyberpunk]` / `adventure`→`[action, fantasy]` / `mystery`→`[mystery]` を追加し、`slice_of_life` の `[action]`→`[slice_of_life]` に修正。

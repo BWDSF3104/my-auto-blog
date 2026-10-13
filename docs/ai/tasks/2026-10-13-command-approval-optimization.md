@@ -1,6 +1,6 @@
 # 2026-10-13: コマンド承認方式の最適化（permission.bash 再構築 + 2ルール追加）
 
-**Status**: 完了・コミット未実施 (2026-10-13)
+**Status**: 完了（2026-10-13 コミット `c683247`・push 済み）
 
 ## 概要
 
@@ -35,4 +35,4 @@
 
 ## Next Action
 
-- git commit（`AGENTS.md` + `docs/ai/` のみ。`kilo.jsonc` はグローバル設定のためリポジトリ対象外）
+- なし（`c683247` で commit + push 済み）

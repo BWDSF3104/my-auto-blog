@@ -4,7 +4,11 @@ Completed plans moved from `plans.md`. Kept 5 most recent in `plans.md`.
 
 ---
 
-## トレンドソース品質修正（ANN ナвиг junk 除去 + Crunchyroll 一時無効 + per-source TTL 誤判定修正） (2026-10-10)
+## 生成情報セクション (2026-10-10)
+
+記事末尾に「生成情報」セクション（トレンド情報＋キャラクターデータ）追加。`generate_article.py` が `<details class="gen-info">` HTML を生成し本文末尾に直接追記（TOC/JSON-LD 非影響）、`PostLayout.astro` に `.gen-info` CSS。pytest 355通過、build 137ページ。`c90dc83`。詳細: `docs/ai/tasks/2026-10-10-generation-info-section.md`
+
+## トレンドソース品質修正（ANN ナビ junk 除去 + Crunchyroll 一時無効 + per-source TTL 誤判定修正） (2026-10-10)
 
 トレンドトピック有効化後の実検証で、ANN の HTML パースが nav・フッター記事を収集している（Crunchyroll News 全15件が非記事URL・記事本文0件）こと、および `_check_per_source_ttl()` が他カテゴリのみソースの鮮度劣化を誤判定して kemono 実行のたびに自動収集トリガーが発火していたことを発見。`ENTERTAINMENT_ARTICLE_PATTERNS`（ソース別 URL ホワイトリスト、ANN = `^/(?:news|review|guide|interview|profile|gallery)/\d{4}-\d{2}-\d{2}/`）新設 + `_parse_entertainment_page()` を `urljoin` 絶対URL解決・重複排除・15件上限で書き換え。Crunchyroll は `ENTERTAINMENT_HTML_SOURCES` から一時無効（静的 HTML では記事 0 件、JS 描画、RSS は 404）。`_check_per_source_ttl()`: 他カテゴリのみソース（topics あり・要求カテゴリ 0 件）は `expired=False`（トリガーしない）、topics 0 件ソース（完全失敗）は従来どおり `True`（自己修復維持）。`latest.json` から Kemono/Crunchyroll junk 25 件除去（総 124→99）。`by_category`/`all` merge 構造ドリフト（旧 pokemon 7 件）は known-issues.md に記録のみで変更なし。pytest 348 通過（新規9）、実 fetch で ANN 14 件がすべて正規記事 URL、TTL dry check で kemono トリガーなしを確認。詳細: `docs/ai/tasks/2026-10-10-trend-source-quality-fixes.md`
 

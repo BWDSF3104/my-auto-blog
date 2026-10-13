@@ -9,17 +9,10 @@ $ErrorActionPreference = 'Stop'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 # .kilo/scripts/safe-rmdir.ps1
+# Any folder inside the project is deletable (git-tracked content is
+# recoverable via git; untracked temp content is disposable by design).
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $projectRootFull = [System.IO.Path]::GetFullPath($projectRoot)
-
-# Allowed folder names for deletion (case-insensitive)
-$allowedFolders = @(
-    'node_modules',
-    'dist',
-    '.astro',
-    '.pytest_cache',
-    'tmp'
-)
 
 function Get-NormalizedFullPath {
     param(
@@ -97,17 +90,6 @@ foreach ($target in $Path) {
         $relativePath.StartsWith('.kilo\')) {
 
         Write-Error "Deleting protected area is not allowed: $relativePath"
-        exit 1
-    }
-
-    # Allowlist check (folder name only)
-    $folderName = [System.IO.Path]::GetFileName($fullPath)
-    $allowed = $allowedFolders | Where-Object {
-        $_.Equals($folderName, [System.StringComparison]::OrdinalIgnoreCase)
-    }
-
-    if (-not $allowed) {
-        Write-Error "Directory not in allowlist: $relativePath (allowed: $($allowedFolders -join ', '))"
         exit 1
     }
 

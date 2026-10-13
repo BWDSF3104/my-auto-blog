@@ -8,4 +8,4 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
-- `docs/ai/tasks/2026-10-13-command-approval-optimization.md` - コマンド承認方式の最適化（permission.bash 再構築 + AGENTS.md ルール追加）。完了・コミット未実施 (2026-10-13) → Next: git commit
+- `docs/ai/tasks/2026-10-13-safe-rmdir-relaxation.md` - kilo-safe-rmdir アローリスト緩和（プロジェクト内全フォルダ許可、拒否リストガード維持）。完了（2026-10-13 コミット）
