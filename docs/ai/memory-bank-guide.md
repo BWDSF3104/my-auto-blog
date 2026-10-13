@@ -21,19 +21,34 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ## アーカイブルール
 
-ファイルが膨張しないよう、完了したエントリは対応する `-archive.md` ファイルへ移動する。
+新規タスク開始時に実行する。正常運用時のコンテキスト消費を最小化する。
 
-| 本体ファイル | アーカイブファイル | 閾値 | 移動内容 |
-|-------------|-------------------|------|---------|
-| `plans.md` | `plans-archive.md` | Completed Plans が6件以上 | 古い Completed Plans エントリを移動 |
-| `known-issues.md` | `known-issues-archive.md` | 解決済が1件以上 | 解決済エントリを即時移動 |
-| `decisions.md` | `decisions-archive.md` | 15件以上 | 古い決定エントリを移動 |
+### 容量上限（超過時はその場で圧縮）
 
-- `current-task.md` はアクティブなタスクのみ保持。完了したタスクは `tasks/` へ個別ファイルとして移動
-- `tasks/` のファイル名: `YYYY-MM-DD-short-name.md` 形式
-- `Completed Plans` は直近5件まで `plans.md` に保持
-- `Completed Plans` の追加は常に上部（prepend）。並び順=追加順=コミット順となり、git log の確認不要
-- アーカイブのタイミング: 新規タスク開始時、または閾値超過時に実行
+| ファイル | 上限 | 超過時の処理 |
+|---------|------|-------------|
+| `current-task.md` | 3 KB | 完了タスクの参照行を削除（詳細は `tasks/` に既記） |
+| `plans.md` | 5 KB | Completed Plans の古いエントリを `plans-archive.md` へ移動 |
+| `decisions.md` | 15 KB | 古いエントリを `decisions-archive.md` へ移動 |
+| `known-issues.md` | 3 KB | 解決済を `known-issues-archive.md` へ移動 |
+
+### 形式ルール
+
+- `current-task.md`: 1タスク1行（ファイルパス・ステータス・Next Action のみ）。完了タスクは参照行を削除
+- `decisions.md`（アクティブ）: 各エントリは `Decision` + `Reason` の2フィールドのみ。`Rejected Alternatives` / `Impact` はアーカイブ時に付与
+- `plans.md` Completed Plans: 各エントリ150文字以下（意図・背景のみ）
+- `tasks/` ファイル名: `YYYY-MM-DD-short-name.md`
+
+### クリーンアップ（新規タスク開始時に実行）
+
+1. `current-task.md`: 完了・中断済みの参照行を削除
+2. `decisions.md`: 10件超過分を `decisions-archive.md` へ移動（フル4フィールドで）
+3. `plans.md`: Completed Plans 5件超過分を `plans-archive.md` へ移動
+4. `tasks/`: Status `完了` + 日付が14日以上経過したファイルを `tasks/archive/` へ移動
+5. `verification/`: 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除
+6. `tmp/`: 全ファイルを削除
+
+- `Completed Plans` の追加は常に上部（prepend）。並び順=追加順=コミット順
 - アーカイブファイルは git 追跡対象
 
 ## Long-running Agent Tasks

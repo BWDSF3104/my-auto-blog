@@ -1,6 +1,84 @@
 # Design Decisions Archive
 
-Older decisions moved from `decisions.md`. Kept 15 most recent in `decisions.md`.
+Older decisions moved from `decisions.md`. Kept 10 most recent in `decisions.md`.
+
+---
+
+## 2026-10-10: ストーリー系ジャンルの一括拡大（世界設定7種・スコアリングgenre6種）
+
+**Decision**: kemono_story の世界設定を4種→7種（+`cyberpunk` 12 / +`adventure` 8 / +`mystery` 5。fantasy 35→30 / slice_of_life 25→22 / sf 20→15 / fantasy+sf 20→8 で合計100維持）、スコアリングgenreを4種→6種（+`slice_of_life` / +`mystery`、専用instruction）へ一括変更。`WORLD_SETTING_GENRE_MAP` に `cyberpunk`→`[cyberpunk]` / `adventure`→`[action, fantasy]` / `mystery`→`[mystery]` を追加し、`slice_of_life` の `[action]`→`[slice_of_life]` に修正。
+
+**Reason**: (1) 既存の `cyberpunk` genre が全トレンド・版権に毎回スコアリングされるのに世界設定から未使用で、コストのみの無駄だった。(2) `slice_of_life` → `[action]` は意味逆転バグ。(3) キャッシュキーが `SHA256(text|sorted genres)` のため genre 追加は全エントリ失効→次回 deploy で全件再スコアリング（一次性コスト）。ユーザー指示で1回に集約。
+
+**Rejected Alternatives**:
+- comedy / romance / horror 等の追加genre: いずれの世界設定からも未使用のため無駄を再現する
+- `adventure` を独立 genre として採点: 既存 `action` + `fantasy` の複合マッピングで十分
+- Phase 1/2 を分けて2回実施: 全再スコアリングが2回発生する一次性コスト
+
+**Impact**:
+- `scripts/genre_score.py`: `GENRE_INSTRUCTIONS` +2、`DEFAULT_GENRES` 6種化
+- `scripts/generate_article.py`: `WORLD_SETTING_WEIGHTS` / `WORLD_SETTING_GENRE_MAP` / `_KEMONO_WORLD_TAGS` 更新
+- pytest 308通過
+
+## 2026-10-09: kemono_tags の構造化データ化（結合・分割往復の廃止）
+
+**Decision**: kemono パラメータを「構造化データ + プロンプト表示文字列」の2層構成に変更し、タグ生成を `_build_kemono_tags()` に集約。`CHAR_TYPE_WEIGHTS` の値を体型タグのリスト化、`_KEMONO_WORLD_TAGS` / `_KEMONO_EXTRA_TAGS` を一次データとし結合文字列は派生生成。`target_genres` キー不一致バグ修正。
+
+**Reason**: 最新記事の tags が不自然だった。原因は (1) 体型タグは `replace(" / ","・")` のみで分割漏れ、(2) `extra_text` の「、」接頭がタグに混入。根本原因は「結合文字列を一次データとして扱い、用途ごとに分割・結合を往復させる」設計。併発: `WORLD_SETTING_GENRE_MAP` のキー不一致でジャンルベーストレンド選択がサイレント無効化。
+
+**Rejected Alternatives**:
+- タグブロック側の `split(" / ")` 追加のみ: 各所で個別の分割ロジックが残り継続的に壊れる
+- `extra_text` から「、」を除去: プロンプト側の文脈が不自然になる
+- 旧形式タグの遡及修正: 再生成コストとリンク切れリスク
+
+**Impact**:
+- `scripts/generate_article.py`: 複数関数変更
+- pytest 297通過、`npm run build` 131ページ成功
+
+## 2026-10-09: リファインプロンプトに画像プロンプト形式チェックを追加
+
+**Decision**: `refine_story.txt` と `refine_tech.txt` に画像プロンプト形式チェック節を追加。修正権限は形式のみに厳密限定（括弧欠落・無効参照・自然言語句→タグ・品質タグ削除・日本語→英語）。変更不可: シーン選定・配置・枚数・意味。
+
+**Reason**: 実Gemini検証で書式逸脱（自然言語句）を観測し、現状リファイナーでは無修正通過・Python側フォールバックで黙って劣化。リファイナーは抽出・画像生成より前に走るため追加APIなしで修正伝播。
+
+**Rejected Alternatives**:
+- Python構造化検証のみ: 意味的品質を判定不能
+- 全面書き換え: 「キャラ及びシチュエーション再現度を最優先」原則に反
+
+**Impact**:
+- `scripts/prompts/refine_story.txt` / `refine_tech.txt`: 新節追加
+- pytest 200通過
+
+## 2026-10-09: Windowsコンソールエンコーディング対策の統一（stdio reconfigure）
+
+**Decision**: エントリスクリプト冒頭に `sys.stdout.reconfigure(encoding="utf-8")` / `sys.stderr.reconfigure(encoding="utf-8")` を配置し、既存ワークアラウンドを統一。4エントリ（fetch_topics / generate_article / fix_affiliate_links / fix_descriptions）に適用。
+
+**Reason**: Kilo CLI が stdout をパイプ扱いすると cp932 にフォールバックし絵文字で `UnicodeEncodeError`。`reconfigure()` はインプレースで書き換えられ旧方式の分裂・二重ラッパー問題を回避。
+
+**Rejected Alternatives**:
+- `PYTHONIOENCODING` 実行時設定: 現在プロセスに無効
+- `TextIOWrapper` 差し替え: 分裂状態・二重ラッパーの恐れ
+- 共有ヘルパモジュール化: 単体実行前提の独立設計
+
+**Impact**:
+- 4 スクリプトに reconfigure ブロック追加
+- pytest 200通過
+
+## 2026-10-09: 画像プロンプトのキャラ別表情/ポーズ指定
+
+**Decision**: kemono_story の画像プロンプトに場面ごとの表情/ポーズ指定を追加。`[character_1: blushing, smile, character_2: frown] scene` 形式。`compose_image_prompt` が括弧をパースし表情タグを各キャラ外見の直後にインターリーブ。
+
+**Reason**: 既存プロンプトに表情データがなく生成画像の2匹が同じ・無関係な表情になる。Illustrious系ベストプラクティスで表情タグは各キャラ描述の直後が最も有効と判明。
+
+**Rejected Alternatives**:
+- 合成順序の変更: 「キャラ及びシチュエーション再現度を最優先」指示
+- `BREAK` / 重み付け: 素のdiffusersではパースされない
+- 長い表情例リスト: Danbooru互換ルールと冗長
+
+**Impact**:
+- `kemono_story.txt`: ルール2項目追加
+- `generate_article.py`: `_parse_image_prompt_targets()` 新設
+- pytest 200通過
 
 ---
 
