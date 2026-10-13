@@ -409,6 +409,10 @@ _PHYSICAL_EXCLUDE_TAGS = {
     "young", "young_anthro", "young_female", "femboy",
     "interspecies", "male/female", "larger_female", "clothed_male",
     "muscular_anthro", "small_breasts",
+    # 形態・体位（anthro/立ち姿勢）（Python側のランダムパラメータと競合するため除外）
+    "anthro", "semi-anthro", "human_on_anthro",
+    "clothed_anthro", "fully_clothed_anthro",
+    "biped", "quadruped",
     # 特殊
     "toony", "furgonomics", "glowing", "glistening", "plushie",
     # NSFW関連
@@ -416,8 +420,19 @@ _PHYSICAL_EXCLUDE_TAGS = {
 }
 
 
+def _is_humanoid_tag(tag: str) -> bool:
+    """タグが humanoid を含むか判定する。
+
+    humanoid 系タグは人型の体型を示し、Python側のランダム体型パラメータと競合するため
+    species / physical_features 双方から除外する。
+    """
+    return "humanoid" in tag
+
+
 def _is_physical_excluded(tag: str) -> bool:
     """general タグが physical_features から除外されるべきか判定する。"""
+    if _is_humanoid_tag(tag):
+        return True
     if tag in _PHYSICAL_EXCLUDE_TAGS:
         return True
     if any(tag.startswith(pat) for pat in _PHYSICAL_EXCLUDE_PATTERNS):
@@ -454,8 +469,8 @@ def _aggregate_and_save_character_features(raw_tags: list[dict]) -> None:
         post_colors = []
         post_physical = []
 
-        # species タグの集計
-        post_species = tags.get("species", [])
+        # species タグの集計（humanoid 系は体型に影響するため除外）
+        post_species = [s for s in tags.get("species", []) if not _is_humanoid_tag(s)]
         for species in post_species:
             species_counter[species] += 1
 

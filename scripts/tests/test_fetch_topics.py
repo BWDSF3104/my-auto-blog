@@ -11,8 +11,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pytest
 from fetch_topics import (
+    _aggregate_and_save_character_features,
     _clean_rss_description,
+    _is_humanoid_tag,
     _is_nsfw_post,
+    _is_physical_excluded,
     _parse_entertainment_page,
     STORY_INSPIRATION_THEMES,
     TOPICS_DIR,
@@ -125,6 +128,110 @@ class TestIsNSFWPost:
             "tags": {"general": ["safe", "test", "vagina"]}
         }
         assert _is_nsfw_post(post) is True
+
+
+class TestIsPhysicalExcluded:
+    """_is_physical_excluded() のユニットテスト"""
+
+    def test_anthro_form_tags_excluded(self):
+        """anthro 形態系タグは physical_features から除外される"""
+        for tag in ("anthro", "semi-anthro", "human_on_anthro",
+                    "clothed_anthro", "fully_clothed_anthro"):
+            assert _is_physical_excluded(tag) is True, tag
+
+    def test_stance_tags_excluded(self):
+        """体位系タグ（biped/quadruped）は除外される"""
+        assert _is_physical_excluded("biped") is True
+        assert _is_physical_excluded("quadruped") is True
+
+    def test_humanoid_hands_excluded(self):
+        """手の形態タグは除外される"""
+        assert _is_physical_excluded("humanoid_hands") is True
+
+    def test_gender_body_type_still_excluded(self):
+        """既存の性別・体型タグも引き続き除外される（回帰確認）"""
+        for tag in ("male_anthro", "female_anthro", "muscular_anthro",
+                    "young_anthro", "male", "female"):
+            assert _is_physical_excluded(tag) is True, tag
+
+    def test_pattern_exclusions(self):
+        """from_/looking_/_background パターンは引き続き除外される"""
+        assert _is_physical_excluded("from_side") is True
+        assert _is_physical_excluded("looking_at_viewer") is True
+        assert _is_physical_excluded("forest_background") is True
+
+    def test_normal_physical_tags_not_excluded(self):
+        """通常の特徴タグは除外されない"""
+        for tag in ("ears", "tail", "claws", "horn", "fangs", "markings"):
+            assert _is_physical_excluded(tag) is False, tag
+
+
+class TestIsHumanoidTag:
+    """_is_humanoid_tag() のユニットテスト"""
+
+    def test_humanoid_exact(self):
+        """humanoid そのものはTrue"""
+        assert _is_humanoid_tag("humanoid") is True
+
+    def test_suffix_humanoid(self):
+        """後置 humanoid 系（animal_humanoid 等）はTrue"""
+        for tag in ("animal_humanoid", "dragon_humanoid"):
+            assert _is_humanoid_tag(tag) is True, tag
+
+    def test_prefix_humanoid(self):
+        """前置 humanoid 系（humanoid_hands 等）はTrue"""
+        assert _is_humanoid_tag("humanoid_hands") is True
+
+    def test_non_humanoid(self):
+        """humanoid を含まないタグはFalse"""
+        for tag in ("wolf", "fox", "fur", "tail", "anthro", "biped"):
+            assert _is_humanoid_tag(tag) is False, tag
+
+
+class TestAggregateHumanoidFilter:
+    """_aggregate_and_save_character_features() の humanoid 除外テスト"""
+
+    def _run(self, tmp_path, raw_tags):
+        import fetch_topics
+        out = tmp_path / "character_features.json"
+        with patch.object(fetch_topics, "CHARACTER_FEATURES_PATH", str(out)):
+            _aggregate_and_save_character_features(raw_tags)
+        with open(out, encoding="utf-8") as f:
+            return json.load(f)
+
+    def test_species_humanoid_excluded(self, tmp_path):
+        """species の humanoid 系タグは除外され、通常の種族は残る"""
+        raw = [
+            {
+                "post_id": 1,
+                "tags": {
+                    "species": ["wolf", "humanoid", "animal_humanoid", "dragon_humanoid"],
+                    "general": ["fur", "tail"],
+                },
+            },
+        ]
+        data = self._run(tmp_path, raw)
+        assert data["posts"][0]["species"] == ["wolf"]
+        agg_species = data["aggregates"]["species"]
+        assert agg_species["wolf"] == 1
+        assert "humanoid" not in agg_species
+        assert "animal_humanoid" not in agg_species
+        assert "dragon_humanoid" not in agg_species
+
+    def test_general_humanoid_excluded_from_physical(self, tmp_path):
+        """general の humanoid 系タグ（humanoid_hands）は physical から除外される"""
+        raw = [
+            {
+                "post_id": 1,
+                "tags": {
+                    "species": ["wolf"],
+                    "general": ["fur", "tail", "humanoid_hands"],
+                },
+            },
+        ]
+        data = self._run(tmp_path, raw)
+        assert data["posts"][0]["physical"] == ["fur", "tail"]
+        assert "humanoid_hands" not in data["aggregates"]["physical_features"]
 
 
 # --------------------------------------------------
