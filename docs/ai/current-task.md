@@ -8,6 +8,11 @@ Agentの現在進行中タスクの参照を記録する。Context Overflow後�
 
 ## Active Task
 
+- `docs/ai/tasks/2026-10-13-command-approval-optimization.md` - コマンド承認方式の最適化（グローバル `kilo.jsonc` の `permission.bash` 再構築 365→98 エントリ + 2ルール `AGENTS.md` 追加 + 6パターン ask→allow 緩和）。**完了・コミット未実施** (2026-10-13)
+  - **実装**: `permission.bash` を「フォールバック ask 先頭 → allow 中段 → 破壊的操作 ask 後段」（`last match wins`）に再構築。`AGENTS.md` に `## Command Execution Rules`（一行コマンド / インライン Python 禁止→`Temp\kilo\` 書き出し実行）追加。2026-10-13 緩和で `python -c *`/`python - *`/`node -e *`/`Set-Content *`/`Out-File *`/`New-Item *` を allow（`powershell *`/`pwsh *` は ask 維持）。
+  - **Verification**: `validate_kilo_config.py`（`Temp\kilo\`）で JSON 妥当性 + allow=82/ask=16 確認、config_validation 通過。コード変更なし（`kilo.jsonc` + `AGENTS.md` + `docs/ai/` のみ）→ pytest/build 不要。
+  - **Next Action**: git commit（`AGENTS.md` + `docs/ai/` のみ。`kilo.jsonc` はグローバル設定でリポジトリ対象外）
+
 - `docs/ai/tasks/2026-10-12-refactor-equivalence-verification.md` - リファクタリング等価性検証（テスト計画 + ハーネス実装 + L0/L1/L3 実施）。**完了（L0/L1/L3 PASS）** (2026-10-12)
   - **実装物**: `scripts/tests/equivalence_check.py`（L1 決定論的リプレイ A/B ハーネス・`git archive` サンドボックス + 固定時刻 `_FakeDateTime` + fake Gemini client（呼び出し順分岐）+ 画像モック + `requests` 遮断 + `subprocess` capture。`--selftest` / `--l3` / `--l3-recheck` モード）+ `data/equivalence_golden/`（ゴールデン fixtures: posts 53 / prompts 5 / latest.json 76 topics / rakuten cache 23 件 / 固定草案・推敲文・seed・時刻）
   - **Verification** (2026-10-12): L0 `pytest scripts/tests/ -v` → **365 passed** (7.23s)。L1 全 3 バリアント（default / kemono_story / ai_deep）で自己整合（2 回実行バイト一致）+ A/B 全成果物一致 → **RESULT: PASS**（唯一の差異は `stdout.log` の `🎲 記事のbase seed` 出力位置のみ＝装飾・成果物に無影響）。L3 実 Gemini 1 回（`gemini-3.8-flash` 初試行成功・初回 503 高需要で一時的失敗→再実行成功）で記事生成 + 構造健全性チェック **PASS**（frontmatter / セクション / `🤖 生成情報` HTML / ヘッダー画像。`--l3-recheck` で API なし再検証）

@@ -2,6 +2,24 @@
 
 古い決定は `decisions-archive.md` に移動する。直近15件のみ保持。
 
+## 2026-10-13: コマンド承認はグローバル `permission.bash`（フォールバック→allow→例外ask）＋ 行動ルールは AGENTS.md
+
+**Decision**: kilo のコマンド承認（bash permission）はグローバル `C:\Users\fujim\.config\kilo\kilo.jsonc` の `permission.bash` に集約し、`last match wins` を前提に「先頭 `"*": "ask"` フォールバック → 中段 allow 群 → 後段 例外 ask」の構造で運用する（旧 365 エントリの単発コマンドジャンク全削除で 98 エントリ）。一方、コマンド実行の**行動ルール**（一行コマンド / インライン Python 禁止→一時フォルダ `C:\Users\fujim\AppData\Local\Temp\kilo\` へ書き出して実行）は `AGENTS.md` の `## Command Execution Rules` に置く。ユーザー指示（2026-10-13）で `python -c *` / `python - *` / `node -e *` / `Set-Content *` / `Out-File *` / `New-Item *` の 6 パターンは allow（破壊的操作 ask + フォールバック ask は維持、`powershell *` / `pwsh *` も ask 維持、最終 allow=82 / ask=16）。
+
+**Reason**: (1) 承認方式は kilo が読み込む設定ファイル（`permission.bash`）でないと効かないため、行動ルール（`AGENTS.md`）と分けて反映する。(2) `last match wins`（公式ドキュメント確認）により、broad な allow が先頭にあると後続の特定 allow が上書きされないため、フォールバック ask を先頭に置き、特定 allow を中段、破壊的操作等の例外 ask を後段に配置する。(3) 旧設定に単発コマンドの承認が逐次追記されジャンクが溜まっていたため、意図した allow パターン群に再構築して保守性を回復。
+
+**Rejected Alternatives**:
+- 行動ルール（一行コマンド / インライン Python 禁止）も `permission.bash` に追記: 承認ゲートと行動指針は別レイヤ。`permission.bash` は「どのコマンドを自動許可するか」のみであり、プロンプト側の行動指示は `AGENTS.md` に置く方が責務が明確
+- 例外 ask を allow 群より先に配置: `last match wins` で後続の allow が ask を上書きし、破壊的操作が自動許可される危険があるため不採用
+- 6 パターン（`python -c *` 等）を allow にせず ask 維持: ユーザーが 2026-10-13 に「以下も許可で良い」と明示したため allow 化
+
+**Impact**:
+- `C:\Users\fujim\.config\kilo\kilo.jsonc`: `permission.bash` を 98 エントリに再構築（フォールバック/allow/例外ask）、6 パターンを allow（allow=82 / ask=16）
+- `S:\Documents\AutoBlog\my-auto-blog\AGENTS.md`: `## Command Execution Rules` セクション追加
+- バックアップ: `C:\Users\fujim\.config\kilo\kilo.jsonc.bak-20261013`（SHA256 検証済み）
+- 検証: `validate_kilo_config.py`（`C:\Users\fujim\AppData\Local\Temp\kilo\`）で JSON 妥当性 + allow/ask 件数を確認
+- 詳細: `tasks/2026-10-13-command-approval-optimization.md`
+
 ## 2026-10-11: Pythonスクリプトの構造は「入口ファイル固定 + `scripts/article/` パッケージ + フェーズ分割移行」
 
 **Decision**: `scripts/generate_article.py`（3561行・`generate_post()` CC81/325行）は `scripts/article/` パッケージ（`config` / `gemini` / `image` / `affiliate` / `trends` / `frontmatter` / `slug_links` / `meta`）へ責務群を分離し、`generate_article.py` 自体は「入口 + `generate_post()` パイプライン」に縮約する。`generate_post()` は 8 ステージ関数（`build_ng_instruction` / `resolve_kemono` / `generate_content` / `build_header_image` / `apply_frontmatter_fields` / `postprocess_content` / `apply_seo_schemas` / `finalize_and_save`）に分解（本体は約70行・CC約12）。`scripts/fetch_topics.py`（1032行・`main()` CC52）はパッケージ化せず、`main()` 内の関数抽出（`collect_all_topics` / `build_output`（純粋関数）/ `save_output` / `cleanup_old_topic_files`）のみ行う。移行は 8 フェーズ（0=ベースライン → 1=fetch_topics → 2=article/雛形+config/meta → 3=image → 4=affiliate → 5=trends/frontmatter/slug_links → 6=大関数分解 → 7=入口縮約+docs更新）で、各フェーズ末に `pytest scripts/tests/` 緑を確認して進行する。
@@ -265,37 +283,7 @@
 - `scripts/tests/test_generate_article.py`: テスト5件追加（個別/単独/dedupe/共有/legacy）
 - `refine_story.txt`: 当時変更なし（82行目の「タグ内英語は変更しない」が新形式も維持するため）→ 同日の「リファインプロンプトに画像プロンプト形式チェックを追加」で形式修正許可へ取代
 
-## 2026-10-04: 重複YAMLキーの自動修復ロジック
 
-## 2026-10-06: 画像生成上限を3枚→8枚に増加
-
-**Decision**: `MAX_INLINE_IMAGES` のデフォルトを 2 → 7 に増加（ヘッダー含めて合計最大8枚）。ストーリー系（kemono_story）は各章ごとに画像を配置する指示に変更。技術系（default, ai_deep）も挿絵上限を 2 → 7 に増加。
-
-**Reason**: HF ZeroGPU の `duration=20` はタイムアウト予約であり、実稼働時間分のみ消費されることを確認。初回9秒、ウォーム2秒/枚で1日約101枚生成可能。以前の3枚/記事ではクォータの大幅な余剰があった。
-
-**Rejected Alternatives**:
-- 画像数を維持: クォータの余剰を無駄にする
-- Pollinations.ai への完全移行: HF の画質が安定しているためプライマリは維持
-
-**Impact**:
-- `scripts/generate_article.py`: `MAX_INLINE_IMAGES` デフォルト 2 → 7
-- `scripts/prompts/kemono_story.txt`: 画像選出ルールを「合計最大8枚、各章に1つ以上」に変更
-- `scripts/prompts/default.txt`: 挿絵上限 2 → 7
-- `scripts/prompts/ai_deep.txt`: 挿絵上限 2 → 7
-- `docs/ai/api-rate-limits.md`: HF ZeroGPU の実稼働時間消費を反映
-
-**Decision**: `generate_article.py` の `validate_and_fix_frontmatter()` 内で、PyYAML `safe_load` 検証より前に重複キーチェックを无条件で実行。キャラクターキーの命名規則を `character_N` に強制し、AI が出力したキャラクタータイプ名（例: `少年:`）を自動リネーム。
-
-**Reason**: AI がプロンプト指示の `character_1`/`character_2` を無視し、キャラクタータイプ名をキーとして出力するため、2人以上で重複し Astro/Vite が `duplicated mapping key` でビルド中断。PyYAML の `safe_load` は重複キーでエラーを発生させないので、事前チェックが必須。
-
-**Rejected Alternatives**:
-- AI プロンプトの修正のみ: AI が指示を無視する根本問題は解決しない
-- `safe_load` のみの検証: 重複キーを検出できない
-- ビルド失敗後の手動修正のみ: CI/CD パイプラインが毎度ブロックされる
-
-**Impact**:
-- `scripts/generate_article.py`: `_fix_duplicate_yaml_keys()` と `_is_character_like_key()` ヘルパー関数を追加、`validate_and_fix_frontmatter()` に无条件の重複チェックを組み込み
-- `scripts/tests/test_generate_article.py`: 重複キー修復のテストケースを追加
 
 
 

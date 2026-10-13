@@ -249,3 +249,10 @@ e621、Kemono API、RSS フィードを代替ソースとして追加。kemono/p
 ## FAQPage schema + Speakable schema (2026-10-01)
 
 記事本文からQ&Aパターンを抽出してFAQPage JSON-LDを自動生成（行単位ステートマシンパーサー）。記事冒頭段落をSpeakable JSON-LDとして出力。`generate_article.py` に `_extract_faq_pairs()` と `_extract_speakable_text()` を追加し、frontmatter にJSON文字列で記録。`PostLayout.astro` で条件付きJSON-LD出力。テスト134件全件通過、ビルド成功 (90ページ)
+
+---
+*以下は 2026-10-13 に plans.md からアーカイブ*
+
+## e621 データのトレンド配管からの分離（キャラクター特徴集計のみ継続） (2026-10-10)
+
+e621 はキャラクター特徴集計（`data/character_features.json`）専用データであり、トレンドトピックとして記事生成に注入すべきでないこと、かつ KI-20261010-01（`by_category`/`all` merge 構造ドリフト）の e621 項目残存が問題化していたため分離。`fetch_topics.py` に `NON_TREND_SOURCES = {"e621"}` 新設し、`collect_e621()` は収集・集計のみ継続（戻り値 `list[dict]`→`int`）、`main()` は `all_topics.extend` を廃止し出力構築前に `sources`/`merged_by_category`/`all_topics_merged` をフィルタ（直前データからの merge 継承経路もカバーするため出力直前ガードが必須）。`data/topics/*.json` 12 ファイルから e621 一次性除去（旧10件 total 99→94 / 最新2件 98→73、-7728行）。`generate_article.py` の e621 参照は防御的残存、`genre_score.py` の `PROTECTED_SOURCES` は維持、`data/genre_scores/topics.json` は派生キャッシュのため放置。pytest 349通過（回帰テスト `test_e621_from_previous_never_inherited` 新規）。詳細: `docs/ai/tasks/2026-10-10-e621-trend-separation.md`
