@@ -297,6 +297,33 @@ def _apply_slug_field(content, file_timestamp):
     return content
 
 
+def _apply_pubdate_field(content, pub_date_str):
+    # pubDate を生成時刻（pub_date_str）で強制置換。
+    # LLM が frontmatter の日付をハルシネーション（丸い時刻の捏造など）した際も
+    # スクリプト側が正しい日付を保証する。slug 同様の後処理として保存直前に実行。
+    if "---" not in content:
+        return content
+    if re.search(r'^pubDate:.*$', content, re.MULTILINE):
+        content = re.sub(
+            r'^pubDate:.*$',
+            f'pubDate: "{pub_date_str}"',
+            content,
+            count=1,
+            flags=re.MULTILINE,
+        )
+    elif re.search(r'^title:.*$', content, re.MULTILINE):
+        content = re.sub(
+            r'^(title:.*$)',
+            rf'\1\npubDate: "{pub_date_str}"',
+            content,
+            count=1,
+            flags=re.MULTILINE,
+        )
+    else:
+        content = content.replace("---", f'---\npubDate: "{pub_date_str}"', 1)
+    return content
+
+
 def apply_frontmatter_fields(content, image_url, prompt_type, kemono_params, trend_source_urls, file_timestamp):
     # 4. Frontmatterの調整 (image_prompt行を実際の画像URL image: "..." に置換または挿入、prompt_typeの記録)
     if image_url:
@@ -384,9 +411,12 @@ def apply_seo_schemas(content):
     return content
 
 
-def finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info):
+def finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info, pub_date_str):
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
+
+    # 5.6.1 pubDate を生成時刻で強制（LLMの日付ハルシネーション防止）
+    content = _apply_pubdate_field(content, pub_date_str)
 
     # 5.7 SEOメタ記述の文字数検証・補正
     desc = _extract_fm_field(content, "description")
@@ -477,7 +507,7 @@ def generate_post():
     content = apply_seo_schemas(content)
 
     # 5.6-7. 最終検証・生成情報追記・保存・ログクリーンアップ
-    finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info)
+    finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info, pub_date_str)
 
 
 if __name__ == "__main__":

@@ -65,6 +65,7 @@ from generate_article import (
     process_inline_affiliates,
     process_inline_products,
     validate_and_fix_frontmatter,
+    _apply_pubdate_field,
     _save_draft_metadata,
     DRAFTS_DIR,
     _cleanup_old_logs,
@@ -227,6 +228,49 @@ class TestExtractFmField:
         content = "---\ntitle: 'Single Quoted Title'\n---"
         result = _extract_fm_field(content, "title")
         assert result == "Single Quoted Title"
+
+
+# --------------------------------------------------
+# _apply_pubdate_field tests
+# --------------------------------------------------
+
+class TestApplyPubdateField:
+    def test_replaces_hallucinated_date(self):
+        content = '---\ntitle: "T"\npubDate: "2026-03-30 21:15:00"\n---\nbody'
+        result = _apply_pubdate_field(content, "2026-10-14 10:46:53")
+        assert 'pubDate: "2026-10-14 10:46:53"' in result
+        assert "2026-03-30" not in result
+
+    def test_replaces_unquoted_date(self):
+        content = '---\ntitle: "T"\npubDate: 2026-03-30 21:15:00\n---\nbody'
+        result = _apply_pubdate_field(content, "2026-10-14 10:46:53")
+        assert 'pubDate: "2026-10-14 10:46:53"' in result
+        assert "2026-03-30" not in result
+
+    def test_inserts_when_missing_after_title(self):
+        content = '---\ntitle: "T"\ndescription: "d"\n---\nbody'
+        result = _apply_pubdate_field(content, "2026-10-14 10:46:53")
+        assert 'pubDate: "2026-10-14 10:46:53"' in result
+        lines = result.split("\n")
+        title_idx = lines.index('title: "T"')
+        assert lines[title_idx + 1] == 'pubDate: "2026-10-14 10:46:53"'
+
+    def test_inserts_when_no_title(self):
+        content = '---\ndescription: "d"\n---\nbody'
+        result = _apply_pubdate_field(content, "2026-10-14 10:46:53")
+        assert 'pubDate: "2026-10-14 10:46:53"' in result
+
+    def test_no_frontmatter_returns_unchanged(self):
+        content = "no frontmatter here"
+        result = _apply_pubdate_field(content, "2026-10-14 10:46:53")
+        assert result == content
+
+    def test_only_first_pubdate_replaced(self):
+        content = '---\ntitle: "T"\npubDate: "2026-03-30 21:15:00"\n---\npubDate: "2020-01-01 00:00:00" in body'
+        result = _apply_pubdate_field(content, "2026-10-14 10:46:53")
+        assert 'pubDate: "2026-10-14 10:46:53"' in result
+        assert result.count('pubDate:') == 2
+        assert 'pubDate: "2020-01-01 00:00:00" in body' in result
 
 
 # --------------------------------------------------
