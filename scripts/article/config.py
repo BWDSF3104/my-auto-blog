@@ -33,8 +33,8 @@ _LOG_TS_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}-\d{6})\.")
 SLUG_REDIRECTS_FILE = "data/slug-redirects.json"
 
 RAKUTEN_API_URL = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
-RAKUTEN_ORIGIN = "https://bwdsf3104.github.io"
-RAKUTEN_REFERER = "https://bwdsf3104.github.io/my-auto-blog/"
+RAKUTEN_ORIGIN = os.environ.get("RAKUTEN_ORIGIN") or "https://bwdsf3104.github.io"
+RAKUTEN_REFERER = os.environ.get("RAKUTEN_REFERER") or "https://bwdsf3104.github.io/my-auto-blog/"
 RAKUTEN_CACHE_FILE = "data/rakuten_cache.json"
 RAKUTEN_CACHE_TTL_DAYS = 30
 _RAKUTEN_PHRASE_DELIMITERS = r'(?:用的|向け|用|的)'
@@ -53,7 +53,7 @@ MODELS_TO_TRY = [
 ]
 
 HF_SPACE_ID = "blume/kemono-image-api"
-BASE_URL = "/my-auto-blog"  # GitHub Pagesのベースパス
+BASE_URL = os.environ.get("SITE_BASE_PATH") or "/my-auto-blog"  # GitHub Pagesのベースパス
 MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
 MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 GENRE_SCORES_PATH = os.path.join("data", "genre_scores", "topics.json")

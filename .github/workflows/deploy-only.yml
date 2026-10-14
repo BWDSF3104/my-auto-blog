@@ -42,6 +42,9 @@ jobs:
         run: npm ci
 
       - name: Build Astro site
+        env:
+          SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+          SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH }}
         run: npm run build
 
       - name: Setup Pages

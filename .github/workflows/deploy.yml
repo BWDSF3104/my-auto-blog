@@ -84,6 +84,9 @@ jobs:
           RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
           RAKUTEN_APPLICATION_ID: ${{ secrets.RAKUTEN_APPLICATION_ID }}
           RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_ORIGIN: ${{ vars.RAKUTEN_ORIGIN }}
+          RAKUTEN_REFERER: ${{ vars.RAKUTEN_REFERER }}
+          SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH }}
           PROMPT_TYPE: "kemono_story"
         run: |
           python scripts/generate_article.py
@@ -138,6 +141,9 @@ jobs:
         run: npm ci
 
       - name: Build Astro site
+        env:
+          SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+          SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH }}
         run: npm run build
 
       - name: Setup Pages

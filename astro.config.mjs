@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://BWDSF3104.github.io',
-  base: '/my-auto-blog',
+  site: process.env.SITE_ORIGIN || 'https://BWDSF3104.github.io',
+  base: process.env.SITE_BASE_PATH || '/my-auto-blog',
   image: {
     domains: ['cdn.buymeacoffee.com'],
   },
