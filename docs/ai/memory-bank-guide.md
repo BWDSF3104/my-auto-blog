@@ -10,12 +10,12 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 |----------|------|---------------|------|
 | `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | タスク開始時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
 | `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず） | タスク開始時に `docs/ai/tasks/YYYY-MM-DD-short-name.md` として作成。完了時は Status を更新 | ✅ |
-| `plans/` | 計画書（1エントリ1ファイル方式） | タスク開始前に `plans/YYYY-MM-DD-short-name.md` を作成。完了時はファイル内に `**Status**: 完了` を追加 | ✅ |
-| `plans/archive/` | 古い完了計画のアーカイブ | クリーンアップ時に `plans/` から `mv` | — |
+| `plans/` | 計画書（1エントリ1ファイル方式）。トップ=進行中、`archive/`=完了 | タスク開始前に `plans/YYYY-MM-DD-short-name.md` を作成。完了時に `plans/archive/` へ `mv` | ✅ |
+| `plans/archive/` | 完了計画のアーカイブ | 完了時に `plans/` から `mv` | — |
 | `decisions/` | 設計判断ログ（1エントリ1ファイル方式） | 構造・データフロー・新しい統合の設計判断時に `decisions/YYYY-MM-DD-short-name.md` を作成 | ✅ |
-| `decisions/archive/` | 古い設計判断のアーカイブ | クリーンアップ時に `decisions/` から `mv` | — |
-| `known-issues/` | 既知問題（1エントリ1ファイル方式） | 新規問題発見時に `known-issues/KI-YYYYMMDD-NN-short-name.md` を作成。解決時はファイル内に `**Status**: 解決済` を追加 | ✅ |
-| `known-issues/archive/` | 解決済み問題のアーカイブ | クリーンアップ時に `known-issues/` から `mv` | — |
+| `decisions/archive/` | 過去の設計判断のアーカイブ | `decisions/` は不変・バッチクリーンアップ対象外（本 archive は履歴） | — |
+| `known-issues/` | 既知問題（1エントリ1ファイル方式）。トップ=未解決、`archive/`=解決済 | 新規問題発見時に `known-issues/KI-YYYYMMDD-NN-short-name.md` を作成。解決時に `known-issues/archive/` へ `mv` | ✅ |
+| `known-issues/archive/` | 解決済み問題のアーカイブ | 解決時に `known-issues/` から `mv` | — |
 | `backlog.md` | バックログ | 未実装項目の追加・完了時の削除（変更履歴は git commit に委ねる） | ✅ |
 | `architecture.md` | アーキテクチャ図 | decisions に記録した変更がシステム構成に反映されたときのみ更新 | ✅ |
 
@@ -43,7 +43,6 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 # <計画名>
 
 **Date**: YYYY-MM-DD
-**Status**: 進行中 / 完了
 **Backlog**: P<N> #<N>（該当する場合）
 
 <意図・背景を1〜3行>
@@ -71,7 +70,6 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 # <問題名>
 
 **Date**: YYYY-MM-DD
-**Status**: 進行中 / 解決済
 
 **症状**: <症状>
 
@@ -84,41 +82,46 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ## アーカイブルール
 
-アーカイブは**新規タスク開始時のみ**実行する。コミット前・チェックリストに含めない。正常運用時のコンテキスト消費を最小化する。
+ステータスは**フォルダの場所**で判定する（folder = status）。アーカイブ操作は 2 種類:
+
+- **ワークフロー駆動**: `plans/`・`known-issues/` は完了・解決時に `archive/` へ `mv`（1回のみ）
+- **バッチ**: `tasks/`・`verification/`・`tmp/` は新規タスク開始時にクリーンアップ。正常運用時のコンテキスト消費を最小化する
+
+`decisions/` は不変でアーカイブ操作なし。
 
 ### 形式ルール
 
 - `current-task.tsv`: TSV（ヘッダ `task_file\tstatus\tnext_action` + データ行）。tab 区切り・コメント行なし・UTF-8（BOM なし）。status = `進行中`/`保留`/`完了`/`中断`。完了・中断タスクは参照行を削除
-- `plans/`: 完了した計画はファイル内の `Status` を `完了` に更新（1行編集）。ファイル自体は `plans/` に残置
+- `plans/`: 完了時にファイルを `plans/archive/` へ `mv`（1回のみ・ワークフロー手順）。ファイル内容は編集しない
 - `decisions/`: 作成後は不変。修正が必要な場合は新ファイルとして追加し旧ファイルの冒頭に `**Superseded by**: <新ファイル名>` を追加
-- `known-issues/`: 解決した問題はファイル内の `Status` を `解決済` に更新（1行編集）。ファイル自体は `known-issues/` に残置
+- `known-issues/`: 解決時にファイルを `known-issues/archive/` へ `mv`（1回のみ・ワークフロー手順）。ファイル内容は編集しない
 
-### 容量上限とクリーンアップ（新規タスク開始時に実行）
+### フォルダ = status
 
-| ディレクトリ・ファイル | 上限 | 超過時の処理 |
-|---------|------|-------------|
-| `current-task.tsv` | 500 B | 完了・中断タスクの参照行を削除（詳細は `tasks/` に既記） |
-| `plans/`（archive 除外） | 10 ファイル | 古い完了ファイルを `plans/archive/` へ `mv` |
-| `decisions/`（archive 除外） | 10 ファイル | 古いファイルを `decisions/archive/` へ `mv` |
-| `known-issues/`（archive 除外） | 5 ファイル | 解決済ファイルを `known-issues/archive/` へ `mv` |
-| `tasks/` | — | `current-task.tsv` 未参照 AND ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv` |
-| `verification/` | — | 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除 |
-| `tmp/` | — | 全ファイルを削除 |
+`plans/`・`known-issues/` はフォルダの場所でステータスを判定する:
 
-**アーカイブ操作は `plans/`・`decisions/`・`known-issues/`・`tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除。ファイル内容の編集・書き換えは行わない。**
+| 場所 | ステータス |
+|------|-----------|
+| `plans/`（トップ） | 進行中 |
+| `plans/archive/` | 完了 |
+| `known-issues/`（トップ） | 未解決 |
+| `known-issues/archive/` | 解決済 |
 
-### クリーンアップ手順（新規タスク開始時に実行）
+- 完了・解決時に `archive/` へ `mv`（1回のみ・ワークフロー手順）。上限なし・バッチなし
+- 専用「未完了フォルダ」は設けない（未完了はトップに留置）。他のステータスフォルダも不要（2 態のみ: トップ=active、`archive/`=done）
+- 保留・blocked はファイル本文 or `current-task.tsv` に注記
+- 既存ファイルは `**Status**` フィールドを有する場合がある（補完情報・権威ではない）。ステータスはフォルダの場所で判定
 
-1. `current-task.tsv`: 完了・中断済みの参照行を削除（1行削除）
-2. `plans/`: 完了ファイルが10件を超える場合、最も古い完了ファイルを `plans/archive/` へ `mv`（10件まで維持）
-3. `decisions/`: ファイルが10件を超える場合、最も古いファイルを `decisions/archive/` へ `mv`（10件まで維持）
-4. `known-issues/`: 解決済ファイルが5件を超える場合、最も古い解決済ファイルを `known-issues/archive/` へ `mv`（5件まで維持）
-5. `tasks/`: `current-task.tsv` 未参照 AND ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv`
-6. `verification/`: 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除
-7. `tmp/`: 全ファイルを削除
+### バッチクリーンアップ（新規タスク開始時に実行）
 
-- `plans/` の完了ファイルは常に日付が新しい順に並ぶ（ファイル名の日付でソート）
-- アーカイブディレクトリは git 追跡対象
+| ディレクトリ・ファイル | 処理 |
+|---------|------|
+| `current-task.tsv` | 完了・中断タスクの参照行を削除（詳細は `tasks/` に既記） |
+| `tasks/` | `current-task.tsv` 未参照 AND ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv` |
+| `verification/` | 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除 |
+| `tmp/` | 全ファイルを削除 |
+
+**アーカイブ操作は `tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除。`plans/`・`known-issues/` はワークフロー駆動の `mv`（完了・解決時・バッチではない）。ファイル内容の編集・書き換えは行わない。アーカイブディレクトリは git 追跡対象。**
 
 ## 長時間の Agent タスク
 
@@ -131,7 +134,8 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - 重要な決定は `decisions/` に新ファイルとして記録すること。
 - 重要な未解決の問題は `known-issues/` に新ファイルとして記録すること。
 - 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
-- **タスク完了時（git commit 前）**: `docs/ai/current-task.tsv` の該当参照行を削除し、`plans/` の該当ファイルの `Status` を `完了` に更新（1行編集）。Memory Bank の変更はコード変更と同じ commit に含めること。
+- **タスク完了時（git commit 前）**: `docs/ai/current-task.tsv` の該当参照行を削除し、`plans/` の該当ファイルを `plans/archive/` へ `mv`（1回のみ）。Memory Bank の変更はコード変更と同じ commit に含めること。
+- **問題解決時（git commit 前）**: `known-issues/` の該当ファイルを `known-issues/archive/` へ `mv`（1回のみ）。Memory Bank の変更はコード変更と同じ commit に含めること。
 
 ## 中断からの復帰
 

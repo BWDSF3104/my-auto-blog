@@ -1,7 +1,7 @@
 # 2026-10-14: Memory Bank アーカイブ処理のスクリプト化（scripts/archive_memory_bank.py）
 
 **Status**: 進行中
-**Next Action**: Phase 5（スクリプト実装）をユーザー指示待ち
+**Next Action**: folder = status 設計のドキュメント更新完了。Phase 5（スクリプト実装）をユーザー指示待ち
 
 ## 概要
 
@@ -98,6 +98,24 @@
 - **バッチ適性**: 全 6 dir が決定論的に評価可能。Status 形式問題（正規/変形/なし 51 件）は tasks/ では消滅（Status を読まないため）。
 - **current-task.md → current-task.tsv**: Markdown を TSV（3 列）へ転換。バッチ処理適性 + 記載誤りリスク低減のため。
 
+## folder = status 設計（2026-10-14 ユーザー確認済・ドキュメント更新済）
+
+`plans/`・`known-issues/` のステータスをフォルダの場所で判定（トップ=active、`archive/`=done）。
+
+| 変更 | 内容 |
+|------|------|
+| folder = status | `plans/`（トップ=進行中 / `archive/`=完了）、`known-issues/`（トップ=未解決 / `archive/`=解決済） |
+| mv タイミング | 完了・解決時に `archive/` へ `mv`（1 回のみ・ワークフロー手順・バッチではない） |
+| 上限 | 件数・容量の上限を全廃 |
+| リネーム | `resolved-` 等の接頭辞リネーム廃止 |
+| 未完了フォルダ | 専用フォルダを設けない（未完了はトップに留置）。他のステータスフォルダも不要（2 態のみ） |
+| decisions/ | 不変・アーカイブ操作なし（蓄積のみ） |
+| 既存 Status 行 | 編集しない（補完情報・権威ではない） |
+| バッチ対象 | `tasks/`・`verification/`・`tmp/` に限定（`plans/`・`known-issues/`・`decisions/` は対象外） |
+
+判断の記録: `docs/ai/decisions/2026-10-14-folder-status-archiving.md`
+ドキュメント更新済み: `memory-bank-guide.md`・`workflows.md`
+
 ## TSV 形式仕様（2026-10-14 ユーザー確認済）
 
 **ファイル**: `docs/ai/current-task.tsv`
@@ -165,9 +183,11 @@
 
 ### Phase 5: スクリプト実装（別指示・未着手）
 
+対象は folder = status 設計により `tasks/`・`verification/`・`tmp/` に限定（`plans/`・`known-issues/`・`decisions/` はバッチ対象外）。
+
 | Step | 操作 |
 |------|------|
-| 5.1 | `scripts/archive_memory_bank.py` 新規作成（`current-task.tsv` を読む） |
+| 5.1 | `scripts/archive_memory_bank.py` 新規作成（`current-task.tsv` を読む。tasks/ 14 日 + 未参照 → mv、verification/ 機能毎直近 2 ラン保持、tmp/ 全削除） |
 | 5.2 | `scripts/tests/test_archive_memory_bank.py` 新規作成（TSV fixture） |
 | 5.3 | `pytest scripts/tests/ -v` |
 | 5.4 | `--dry-run` → 結果提示 → ユーザー確認 → `--apply` |

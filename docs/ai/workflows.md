@@ -21,9 +21,9 @@ git push 前に以下の確認を行う:
 - [ ] 編集したファイルの内容を `git diff` で確認（hex 解析・codepoint 検証は不要）
 - [ ] Pythonファイルを変更した場合はテストが全件通過したか (`pytest scripts/tests/ -v`)
 - [ ] Astroファイルを変更した場合はビルドが成功したか (`npm run build`)
-- [ ] 完了した計画の `plans/` ファイルの `Status` が `完了` に更新されたか
+- [ ] 完了した計画の `plans/` ファイルが `plans/archive/` へ `mv` されたか
 - [ ] 新規問題が `known-issues/` に新ファイルとして記録されたか
-- [ ] 解決した問題の `known-issues/` ファイルの `Status` が `解決済` に更新されたか
+- [ ] 解決した問題の `known-issues/` ファイルが `known-issues/archive/` へ `mv` されたか
 - [ ] 完了したバックログ項目が `backlog.md` から削除されたか
 
 ## Deploy Verification
