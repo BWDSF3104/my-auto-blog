@@ -1,7 +1,7 @@
 # 2026-10-14: Cloudflare Pages 移行準備: ドメイン/base パスの env 単一ソース化
 
-**Status**: 進行中（コード完了・GitHub Actions variables 登録待ち）
-**Next Action**: Web UI（Settings → Secrets and variables → Actions → Variables）で 4 変数を登録
+**Status**: 完了（2026-10-14）
+**Next Action**: なし
 
 ## 概要
 
@@ -29,9 +29,9 @@ GitHub Pages のドメイン/base パスをハードコードから「env 変数
 - `about.astro:46,61`: 説明文
 - `docs/ai/manual-article-workflow.md:29,36`: 画像パスのドキュメント（CF Pages 移行時に文言更新）
 
-## GitHub Actions variables（要登録・CLI 不可）
+## GitHub Actions variables（登録済み）
 
-`gh variable set` は fine-grained PAT の Variables 権限不足で `HTTP 403`。Web UI か権限付与トークンで登録。未登録でもコードデフォルト（空文字列→falsy→フォールバック）でフローは壊れない。
+初回 `gh variable set` は fine-grained PAT の Variables 権限不足で `HTTP 403`。2026-10-14 に PAT へ Actions: Read and write variables 権限を付与し、`gh variable set` で 4 件登録済み（`gh variable list` で確認）。未登録でもコードデフォルト（空文字列→falsy→フォールバック）でフローは壊れない。
 
 - `SITE_ORIGIN` = `https://BWDSF3104.github.io`
 - `SITE_BASE_PATH` = `/my-auto-blog`
