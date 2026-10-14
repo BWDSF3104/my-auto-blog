@@ -8,7 +8,7 @@
 |---|------|--------|------|------|
 | 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
 | 3 | アフィリエイトCTAカードのスリム化 + テキストリンクの統一・被り排除 | ⭐ | 中 | 現状CTAカード（`generate_article.py:1530-1533`「🔥 …の今すぐチェックできるおすすめアイテム / Amazonで確認する →」）とテキストリンク（`links_html`「Amazonで「kw」を探す」）で同一キーワードが重複表示される。カードの見た目をもっとスリムにし、テーマ関連商品のテキストリンクを全てこのカード形式に統一、キーワードの被りを排除 |
-| 4 | コメント機能（Giscus）実装 | ⭐⭐ | 中 | 設計確定済み（2026-10-11、選定理由: `decisions.md`）。タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md`（手動: Discussions 有効化 + giscus app 導入）、`tasks/2026-10-11-giscus-comments-env-config.md`（手動: 環境変数登録）、`tasks/2026-10-11-giscus-comments-component.md`（AI: コンポーネント + Layout 組み込み）、`tasks/2026-10-11-giscus-comments-workflow-env.md`（AI: deploy.yml / deploy-only.yml への env 配線）、`tasks/2026-10-11-giscus-comments-verification.md`（AI: E2E 検証 + 本番デプロイ）。完了時に本エントリを削除 |
+| 4 | コメント機能（Giscus）実装 | ⭐⭐ | 中 | 設計確定済み（2026-10-11、選定理由: `decisions/2026-10-11-giscus-comments.md`）。タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md`（手動: Discussions 有効化 + giscus app 導入）、`tasks/2026-10-11-giscus-comments-env-config.md`（手動: 環境変数登録）、`tasks/2026-10-11-giscus-comments-component.md`（AI: コンポーネント + Layout 組み込み）、`tasks/2026-10-11-giscus-comments-workflow-env.md`（AI: deploy.yml / deploy-only.yml への env 配線）、`tasks/2026-10-11-giscus-comments-verification.md`（AI: E2E 検証 + 本番デプロイ）。完了時に本エントリを削除 |
 
 ## P3
 
@@ -21,7 +21,7 @@
 | 4 | ソーシャルメディア自動投稿 | ⭐⭐⭐ | 中 | X/Twitter API, Bluesky API 連携 |
 | 5 | ページ間トランジション | ⭐⭐ | 低 | 実験的API。ブラウザサポート確認必要 |
 | 6 | Crunchyroll ニュース再収集 | ⭐⭐ | 低 | 静的HTMLは記事0件（JS描画）・RSS 404のため2026-10-10に一時無効化。代替RSSフィードの探索 or JS描画手段の検討。詳細: `tasks/2026-10-10-trend-source-quality-fixes.md` |
-| 7 | トレンドデータ `by_category`/`all` の merge 構造ドリフト修正 | ⭐⭐ | 低 | e621 5 件は 2026-10-10 のトレンド分離（`NON_TREND_SOURCES` ガード + データ一次性除去）で解消済み。GitHub 2 件と一般構造ドリフト（カテゴリ単位継承 vs source 単位継承の再設計）は残存。詳細: `known-issues.md` |
+| 7 | トレンドデータ `by_category`/`all` の merge 構造ドリフト修正 | ⭐⭐ | 低 | e621 5 件は 2026-10-10 のトレンド分離（`NON_TREND_SOURCES` ガード + データ一次性除去）で解消済み。GitHub 2 件と一般構造ドリフト（カテゴリ単位継承 vs source 単位継承の再設計）は残存。詳細: `known-issues/KI-20261010-01-merge-drift.md` |
 | 9 | e621 参考キャラクター名のストーリー本文への「寄せる」指示検討 | ⭐ | 低 | 2026-10-13 調査: e621 キャラ名は本文に未使用（38 件中 0 件。参考データ・生成情報・アフィリエイトのみ）。名前での寄せは版権 IP リスク（Zootopia/Pokemon 等）のため現状はデザイン面のみで寄せる設計。直近改修（anthro/physical フィルタ）で改善の可能性 → 様子見・低優先度 |
 | 10 | ストーリーのランダム種族を Danbooru/e621 主要種族タグに絞る（主要種族タグリスト化） | ⭐⭐ | 低 | 2026-10-13 調査: 種族は Gemini 自由選択（直近21記事で21種、alligator/raven 等の exotic 混在）。画像モデル（Nova-Furry-XL）は主要種族ほど安定。タスク: Danbooru/e621 主要種族タグをリスト化し、プロンプト推奨リスト or Python 側ランダム注入を検討。**採用見送り（不採用見込み）・低優先度** |
 
