@@ -152,7 +152,7 @@ def generate_and_save_image(prompt: str, output_filename: str, seed: int = -1) -
 
             temp_image_path = hf_client.predict(
                 prompt,
-                "nsfw, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username",
+                "nsfw, human, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username",
                 18,
                 5.0,
                 896,

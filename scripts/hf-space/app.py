@@ -20,7 +20,7 @@ pipe = StableDiffusionXLPipeline.from_single_file(
 pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
 
 # negative prompt は全リクエストで同一のため、embeddingをキャッシュ
-_cached_neg_prompt = "nsfw, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username"
+_cached_neg_prompt = "nsfw, human, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username"
 _cached_neg_embeds = None
 
 print("Pipeline loaded successfully!")
@@ -228,7 +228,7 @@ demo = gr.Interface(
         ),
         gr.Textbox(
             label="Negative Prompt",
-            value="worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed"
+            value="human, worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers, extra digits, cropped, deformed"
         ),
         gr.Slider(label="Steps", minimum=1, maximum=50, value=25, step=1),
         gr.Slider(label="Guidance Scale", minimum=1, maximum=15, value=5.0, step=0.5),
