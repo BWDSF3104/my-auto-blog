@@ -8,7 +8,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ファイル・ディレクトリ | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | タスク開始時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
+| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | タスク開始時に参照行を追加（`tasks/` ファイル作成時は必ず同時に行追加）。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
 | `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず） | タスク開始時に `docs/ai/tasks/YYYY-MM-DD-short-name.md` として作成。完了時は Status を更新 | ✅ |
 | `plans/` | 計画書（1エントリ1ファイル方式）。トップ=進行中、`archive/`=完了 | タスク開始前に `plans/YYYY-MM-DD-short-name.md` を作成。完了時に `plans/archive/` へ `mv` | ✅ |
 | `plans/archive/` | 完了計画のアーカイブ | 完了時に `plans/` から `mv` | — |
@@ -80,6 +80,33 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 **修正方針**: <方針（特定後）>
 ```
 
+**tasks/**:
+```markdown
+# <タスク名>
+
+**Status**: 進行中 / 完了 / 中断
+**Date**: YYYY-MM-DD
+
+## 背景
+
+<背景>
+
+## 調査結果 / 変更内容
+
+<内容>
+
+## Verification
+
+<検証結果>
+
+## 完了時 Memory Bank 操作
+
+- [ ] `current-task.tsv` の参照行を削除
+- [ ] `plans/` の該当ファイルを `plans/archive/` へ `mv`（該当する場合）
+- [ ] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（該当する場合）
+- [ ] `backlog.md` の完了項目を削除（該当する場合）
+```
+
 ## アーカイブルール
 
 ステータスは**フォルダの場所**で判定する（folder = status）。アーカイブ操作は 2 種類:
@@ -94,7 +121,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - `current-task.tsv`: TSV（ヘッダ `task_file\tstatus\tnext_action` + データ行）。tab 区切り・コメント行なし・UTF-8（BOM なし）。status = `進行中`/`保留`/`完了`/`中断`。完了・中断タスクは参照行を削除
 - `plans/`: 完了時にファイルを `plans/archive/` へ `mv`（1回のみ・ワークフロー手順）。ファイル内容は編集しない
 - `decisions/`: 作成後は不変。修正が必要な場合は新ファイルとして追加し旧ファイルの冒頭に `**Superseded by**: <新ファイル名>` を追加
-- `known-issues/`: 解決時にファイルを `known-issues/archive/` へ `mv`（1回のみ・ワークフロー手順）。ファイル内容は編集しない
+- `known-issues/`: 解決時にファイルを `known-issues/archive/` へ `mv`（1回のみ・ワークフロー手順）
 
 ### フォルダ = status
 
