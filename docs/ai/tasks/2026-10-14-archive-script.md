@@ -218,3 +218,4 @@
 - `python -m pytest scripts/tests/ maintenance/tests/ -q`: 409 passed in 7.17s（既存 + 新規 12）
 - `python maintenance/archive_memory_bank.py`（dry-run・実データ 2026-10-14）: 11 action(s)（rm_dir）・0 error(s)。保持 2 ラン = `selftest_2_default` / `selftest_2_kemono_story`（mtime 最新 2 件、サブ秒精度で確認）
 - ルール変更（ユーザー判断 2026-10-14）: `maintenance/` は開発ツールのため毎回テスト不要。AGENTS.md / workflows.md の標準コマンドを `pytest scripts/tests/ -v` に修正（`maintenance/` 変更時のみ加えて `pytest maintenance/tests/ -v`）
+- コミット: `db05b66`（push 済み 2026-10-14、10 files / +578 -18）。残: `--apply` 実行（11 ディレクトリ削除）はユーザー確認後に別途実行・コミット
