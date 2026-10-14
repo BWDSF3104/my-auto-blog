@@ -8,7 +8,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ファイル・ディレクトリ | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `current-task.md` | アクティブタスクへの参照（ファイルパス、ステータス、Next Action のみ） | タスク開始時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
+| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | タスク開始時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
 | `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず） | タスク開始時に `docs/ai/tasks/YYYY-MM-DD-short-name.md` として作成。完了時は Status を更新 | ✅ |
 | `plans/` | 計画書（1エントリ1ファイル方式） | タスク開始前に `plans/YYYY-MM-DD-short-name.md` を作成。完了時はファイル内に `**Status**: 完了` を追加 | ✅ |
 | `plans/archive/` | 古い完了計画のアーカイブ | クリーンアップ時に `plans/` から `mv` | — |
@@ -88,7 +88,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ### 形式ルール
 
-- `current-task.md`: 1タスク1行（ファイルパス・ステータス・Next Action のみ）。完了・中断タスクは参照行を削除
+- `current-task.tsv`: TSV（ヘッダ `task_file\tstatus\tnext_action` + データ行）。tab 区切り・コメント行なし・UTF-8（BOM なし）。status = `進行中`/`保留`/`完了`/`中断`。完了・中断タスクは参照行を削除
 - `plans/`: 完了した計画はファイル内の `Status` を `完了` に更新（1行編集）。ファイル自体は `plans/` に残置
 - `decisions/`: 作成後は不変。修正が必要な場合は新ファイルとして追加し旧ファイルの冒頭に `**Superseded by**: <新ファイル名>` を追加
 - `known-issues/`: 解決した問題はファイル内の `Status` を `解決済` に更新（1行編集）。ファイル自体は `known-issues/` に残置
@@ -97,23 +97,23 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ディレクトリ・ファイル | 上限 | 超過時の処理 |
 |---------|------|-------------|
-| `current-task.md` | 3 KB | 完了・中断タスクの参照行を削除（詳細は `tasks/` に既記） |
+| `current-task.tsv` | 500 B | 完了・中断タスクの参照行を削除（詳細は `tasks/` に既記） |
 | `plans/`（archive 除外） | 10 ファイル | 古い完了ファイルを `plans/archive/` へ `mv` |
 | `decisions/`（archive 除外） | 10 ファイル | 古いファイルを `decisions/archive/` へ `mv` |
 | `known-issues/`（archive 除外） | 5 ファイル | 解決済ファイルを `known-issues/archive/` へ `mv` |
-| `tasks/` | — | Status `完了` + ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv` |
+| `tasks/` | — | `current-task.tsv` 未参照 AND ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv` |
 | `verification/` | — | 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除 |
 | `tmp/` | — | 全ファイルを削除 |
 
-**アーカイブ操作はすべて `mv`（ファイル移動）のみ。ファイル内容の編集・書き換えは行わない。**
+**アーカイブ操作は `plans/`・`decisions/`・`known-issues/`・`tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除。ファイル内容の編集・書き換えは行わない。**
 
 ### クリーンアップ手順（新規タスク開始時に実行）
 
-1. `current-task.md`: 完了・中断済みの参照行を削除（1行削除）
+1. `current-task.tsv`: 完了・中断済みの参照行を削除（1行削除）
 2. `plans/`: 完了ファイルが10件を超える場合、最も古い完了ファイルを `plans/archive/` へ `mv`（10件まで維持）
 3. `decisions/`: ファイルが10件を超える場合、最も古いファイルを `decisions/archive/` へ `mv`（10件まで維持）
 4. `known-issues/`: 解決済ファイルが5件を超える場合、最も古い解決済ファイルを `known-issues/archive/` へ `mv`（5件まで維持）
-5. `tasks/`: Status `完了` + ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv`
+5. `tasks/`: `current-task.tsv` 未参照 AND ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv`
 6. `verification/`: 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除
 7. `tmp/`: 全ファイルを削除
 
@@ -122,24 +122,24 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ## 長時間の Agent タスク
 
-- タスク開始前に `docs/ai/current-task.md` が存在する場合は読むこと。
+- タスク開始前に `docs/ai/current-task.tsv` が存在する場合は読むこと。
 - 計画済みの変更を開始前に、該当する `plans/` と `backlog.md` エントリを読むこと。
-- 意味のあるステップの完了後に `docs/ai/current-task.md` を更新すること。
-- ビルド/テストのチェックポイントが成功したら、結果はタスクファイルに記録し、`current-task.md` はステータス/Next Action の更新のみを行うこと。
-- タスクが中断された場合は、`docs/ai/current-task.md` を再開可能な状態に残しておくこと。
+- 意味のあるステップの完了後に `docs/ai/current-task.tsv` を更新すること。
+- ビルド/テストのチェックポイントが成功したら、結果はタスクファイルに記録し、`current-task.tsv` はステータス/Next Action の更新のみを行うこと。
+- タスクが中断された場合は、`docs/ai/current-task.tsv` を再開可能な状態に残しておくこと。
 - compaction 以降、以前の会話コンテキストがまだ使えると仮定しないこと。
 - 重要な決定は `decisions/` に新ファイルとして記録すること。
 - 重要な未解決の問題は `known-issues/` に新ファイルとして記録すること。
 - 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
-- **タスク完了時（git commit 前）**: `docs/ai/current-task.md` の該当参照行を削除し、`plans/` の該当ファイルの `Status` を `完了` に更新（1行編集）。Memory Bank の変更はコード変更と同じ commit に含めること。
+- **タスク完了時（git commit 前）**: `docs/ai/current-task.tsv` の該当参照行を削除し、`plans/` の該当ファイルの `Status` を `完了` に更新（1行編集）。Memory Bank の変更はコード変更と同じ commit に含めること。
 
 ## 中断からの復帰
 
 中断したタスクを再開する際は:
 
-1. `docs/ai/current-task.md` を読む。
+1. `docs/ai/current-task.tsv` を読む。
 2. `git status` を確認する。
 3. `git diff` を確認する。
 4. 最後に記録されたビルド/テストの状態を検証する。
-5. `current-task.md` の `Next Action` から作業を続ける。
+5. `current-task.tsv` の `next_action` から作業を続ける。
 6. 明確に指示されない限り、既存の変更を破棄しない。

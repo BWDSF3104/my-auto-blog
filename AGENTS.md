@@ -37,7 +37,7 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 - **Astro変更後・記事生成後**: `npm run build` でビルド成功を確認。
 - **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時にユーザーにスクリーンショットを送信。
 - **git commit 前**: 変更内容に応じて再実行（Python→pytest, Astro→build、両方→両方）。
-- 成功時は `docs/ai/current-task.md` の Verification セクションにコマンド・結果・経過時間を記録。
+- 成功時は `docs/ai/tasks/` の該当タスクファイルの Verification セクションにコマンド・結果・経過時間を記録。
 - **例外**: `docs/ai/`、`AGENTS.md`、`.kilo/` のみの変更は pytest / build 不要。
 - **fetch_topics.py 更新後**: `python scripts/tests/test_real_apis.py --save` で各データソースの応答を確認（結果は `scripts/data/api_test_results/` に保存）。
 
