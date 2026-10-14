@@ -124,6 +124,16 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 - Scheduler: `EulerAncestralDiscreteScheduler` (Euler a)
 - GPU予約: `@spaces.GPU(duration=20)` (実推論約5秒、マージン含め20秒)
 
+## Development Tools (`maintenance/`)
+
+本番パイプライン外の開発用ツール置き場:
+
+| Tool | Purpose |
+|------|---------|
+| `maintenance/archive_memory_bank.py` | Memory Bank バッチクリーンアップ。dry-run 既定・`--apply` で反映。tasks/ は mtime 14 日基準でアーカイブ、verification/ は mtime 順直近 2 ラン保持、tmp/ は全削除。削除は `kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` へ委譲 |
+
+テスト: `maintenance/tests/`（`maintenance/` 変更時のみ実行。標準コマンドは `pytest scripts/tests/ -v`）
+
 ## Configuration
 
 - Node.js >= 22.12.0 required

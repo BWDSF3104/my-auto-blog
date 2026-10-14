@@ -1,7 +1,7 @@
-# 2026-10-14: Memory Bank アーカイブ処理のスクリプト化（scripts/archive_memory_bank.py）
+# 2026-10-14: Memory Bank アーカイブ処理のスクリプト化（maintenance/archive_memory_bank.py）
 
 **Status**: 進行中
-**Next Action**: folder = status 設計のドキュメント更新完了。Phase 5（スクリプト実装）をユーザー指示待ち
+**Next Action**: Phase 5 実装・pytest・dry-run 完了。`--apply` をユーザー確認待ち
 
 ## 概要
 
@@ -14,9 +14,12 @@
 
 ## 変更内容
 
-- `docs/ai/memory-bank-guide.md`: 曖昧点 3 件の定義追加 + `mv` のみ規定（`:108`）の恒久修正 + スクリプト相互参照（未着手）
-- `scripts/archive_memory_bank.py`: 新規（dry-run 既定、`--apply` で実行、削除は `kilo-safe-*.cmd` 委譲、`shutil.move` は上書き禁止）（未着手）
-- `scripts/tests/test_archive_memory_bank.py`: 新規（pytest + unittest.mock）（未着手）
+- `docs/ai/memory-bank-guide.md`: 曖昧点 3 件の定義追加 + `mv` のみ規定（`:108`）の恒久修正 + バッチ表をスクリプト参照へ更新
+- `maintenance/archive_memory_bank.py`: 新規（dry-run 既定、`--apply` で実行、削除は `kilo-safe-*.cmd` 委譲、`shutil.move` は上書き禁止）
+- `maintenance/tests/test_archive_memory_bank.py`: 新規（pytest、fake stat / fake runner 注入）
+- `AGENTS.md`: Project Structure に `maintenance/` 追加 + Code Verification のテストコマンド更新
+- `docs/ai/architecture.md`: Development Tools セクション追加（`maintenance/` の位置づけ）
+- `README.md`: 構造ツリーに `maintenance/` 追加
 
 ## 調査結果（2026-10-14 確認済み）
 
@@ -181,17 +184,37 @@
 | 4.2 | 設計決定 + TSV 仕様 + 変更計画を記録（本セクション） |
 | 4.3 | Next Action 更新 |
 
-### Phase 5: スクリプト実装（別指示・未着手）
+### Phase 5: スクリプト実装（2026-10-14 設計確定・ユーザー確認済）
 
-対象は folder = status 設計により `tasks/`・`verification/`・`tmp/` に限定（`plans/`・`known-issues/`・`decisions/` はバッチ対象外）。
+対象は folder = status 設計により `tasks/`・`verification/`・`tmp/` + `current-task.tsv` に限定（`plans/`・`known-issues/`・`decisions/` はバッチ対象外）。
+置き場・形式の判断: `docs/ai/decisions/2026-10-14-memory-bank-cleanup-script.md`
+
+| 項目 | 内容 |
+|------|------|
+| 置き場 | `maintenance/`（新規トップレベル = 開発用ツール置き場）。`scripts/` は本番パイプライン（`npm run build` が `generate-search-index.js` を参照、HF Space ソース含む）のため不可（ユーザー判断） |
+| 形式 | Python 3.10・標準ライブラリのみ（新依存なし） |
+| CLI | dry-run 既定 / `--apply` / `--date YYYY-MM-DD` / `--root PATH` |
+| 構造 | `build_plan(root, today, stat_fn)`（純関数・副作用ゼロ）→ `execute_plan(plan, apply, runner)`（副作用・runner 注入可） |
+| tsv | status ∈ {完了, 中断} の参照行を削除。残存行の `task_file` = 参照集合（アクティブ保護） |
+| tasks/ | **mtime（最終更新）から14日経過** AND tsv 未参照 → `tasks/archive/` へ mv。旧設計（ファイル名日付）は不採用（ユーザー指示: 更新から14日） |
+| verification/ | 機能ディレクトリ毎に `runs/` 配下の run ディレクトリを **mtime 順**（同値は名順）に直近 2 件保持、他を削除。`runs/` なし・トップのファイルは対象外（保持） |
+| tmp/ | 全ファイル・全サブディレクトリを削除。シンボリックリンクはスキップ + note |
+| 削除 | `kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` へ委譲（1 項目 1 呼び出し）。実効的安全レイヤーは ps1 の検証（in-project・シンボリックリンク禁止・`.git`/`.kilo` 保護）。`Remove-Item`・`shutil.rmtree` 不使用 |
+| mv | `shutil.move` + 事前存在チェック（上書き禁止）。衝突 = エラー項目 |
+| 決定論 | `--date` / `stat_fn` / `runner` 注入可。列挙はソート順固定。mtime 境界: `mtime <= today 00:00 − 14日` が候補 |
+| エラー | 項目ごとに継続 + 集約。終了コード 0 = 全成功 / 1 = エラーあり |
+| ドキュメント | `AGENTS.md`（構造 + テストコマンド）、`architecture.md`（Development Tools）、`README.md`（ツリー）、`memory-bank-guide.md`（バッチ表 = スクリプト参照 + mtime 化） |
+| 分離 | `scripts/` のワンオフ 8 ファイル移動は別タスク: `docs/ai/tasks/2026-10-14-move-oneoff-scripts.md`（pending） |
 
 | Step | 操作 |
 |------|------|
-| 5.1 | `scripts/archive_memory_bank.py` 新規作成（`current-task.tsv` を読む。tasks/ 14 日 + 未参照 → mv、verification/ 機能毎直近 2 ラン保持、tmp/ 全削除） |
-| 5.2 | `scripts/tests/test_archive_memory_bank.py` 新規作成（TSV fixture） |
-| 5.3 | `pytest scripts/tests/ -v` |
-| 5.4 | `--dry-run` → 結果提示 → ユーザー確認 → `--apply` |
+| 5.1 | `maintenance/archive_memory_bank.py` 新規作成 |
+| 5.2 | `maintenance/tests/test_archive_memory_bank.py` 新規作成（tmp_path サンドボックス + fake stat / fake runner） |
+| 5.3 | `pytest scripts/tests/ maintenance/tests/ -v` |
+| 5.4 | dry-run → 結果提示 → ユーザー確認 → `--apply` → ドキュメント更新 → commit |
 
 ## Verification
 
-- TBD
+- `python -m pytest scripts/tests/ maintenance/tests/ -q`: 409 passed in 7.17s（既存 + 新規 12）
+- `python maintenance/archive_memory_bank.py`（dry-run・実データ 2026-10-14）: 11 action(s)（rm_dir）・0 error(s)。保持 2 ラン = `selftest_2_default` / `selftest_2_kemono_story`（mtime 最新 2 件、サブ秒精度で確認）
+- ルール変更（ユーザー判断 2026-10-14）: `maintenance/` は開発ツールのため毎回テスト不要。AGENTS.md / workflows.md の標準コマンドを `pytest scripts/tests/ -v` に修正（`maintenance/` 変更時のみ加えて `pytest maintenance/tests/ -v`）

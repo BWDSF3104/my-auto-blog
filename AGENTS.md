@@ -33,7 +33,7 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 
 ## Code Verification
 
-- **Python変更後**: `pytest scripts/tests/ -v` で全テスト通過を確認。
+- **Python変更後**: `pytest scripts/tests/ -v` で全テスト通過を確認。`maintenance/`（開発ツール）を変更した場合は加えて `pytest maintenance/tests/ -v` も実行する。
 - **Astro変更後・記事生成後**: `npm run build` でビルド成功を確認。
 - **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時にユーザーにスクリーンショットを送信。
 - **git commit 前**: 変更内容に応じて再実行（Python→pytest, Astro→build、両方→両方）。
@@ -99,6 +99,8 @@ my-auto-blog/
 │   ├── generate_article.py # Article generation (entry + pipeline)
 │   ├── article/            # article/ package (config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo)
 │   └── prompts/           # Prompt templates
+├── maintenance/           # Development tools (outside the production pipeline)
+│   └── archive_memory_bank.py # Memory Bank batch cleanup (dry-run is the default)
 ├── src/                   # Astro source
 │   └── content/posts/     # Generated markdown posts
 ├── public/                # Static assets

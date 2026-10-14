@@ -141,14 +141,16 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ### バッチクリーンアップ（新規タスク開始時に実行）
 
+`python maintenance/archive_memory_bank.py` で実行（dry-run が既定・`--apply` で反映）。
+
 | ディレクトリ・ファイル | 処理 |
 |---------|------|
 | `current-task.tsv` | 完了・中断タスクの参照行を削除（詳細は `tasks/` に既記） |
-| `tasks/` | `current-task.tsv` 未参照 AND ファイル名の日付が14日以上経過したファイルを `tasks/archive/` へ `mv` |
-| `verification/` | 機能ディレクトリ毎に直近2ランのみ保持、それ以前を削除 |
-| `tmp/` | 全ファイルを削除 |
+| `tasks/` | `current-task.tsv` 未参照 AND mtime（最終更新）から14日以上経過したファイルを `tasks/archive/` へ `mv` |
+| `verification/` | 機能ディレクトリ毎に `runs/` 配下の run ディレクトリを mtime 順に直近2保持（同値は名順）、それ以前を削除 |
+| `tmp/` | 全ファイル・サブディレクトリを削除（シンボリックリンクはスキップ） |
 
-**アーカイブ操作は `tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除。`plans/`・`known-issues/` はワークフロー駆動の `mv`（完了・解決時・バッチではない）。ファイル内容の編集・書き換えは行わない。アーカイブディレクトリは git 追跡対象。**
+**アーカイブ操作は `tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除（`kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` 経由）。`plans/`・`known-issues/` はワークフロー駆動の `mv`（完了・解決時・バッチではない）。ファイル内容の編集・書き換えは行わない（`current-task.tsv` の行削除のみ例外）。アーカイブディレクトリは git 追跡対象。**
 
 ## 長時間の Agent タスク
 

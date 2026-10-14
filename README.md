@@ -145,6 +145,8 @@ my-auto-blog/
 │   ├── rakuten_cache.json        # 楽天 API 商品キャッシュ（30日TTL）
 │   └── slug-redirects.json       # slug 衝突時のリダイレクト
 ├── docs/ai/                  # AI Memory Bank（アーキテクチャ・計画・既知の問題など）
+├── maintenance/
+│   └── archive_memory_bank.py # Memory Bank バッチクリーンアップ（開発ツール・dry-run 既定）
 ├── public/
 │   └── images/               # 生成画像（AVIF）
 ├── scripts/
