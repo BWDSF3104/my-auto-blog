@@ -120,26 +120,26 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - `plans/` の完了ファイルは常に日付が新しい順に並ぶ（ファイル名の日付でソート）
 - アーカイブディレクトリは git 追跡対象
 
-## Long-running Agent Tasks
+## 長時間の Agent タスク
 
-- Before starting any task, read `docs/ai/current-task.md` if it exists.
-- Before starting a planned change, read the relevant `plans/` and `backlog.md` entries.
-- After completing a meaningful step, update `docs/ai/current-task.md`.
-- After a successful build/test checkpoint, record the result in `current-task.md`.
-- If the task is interrupted, leave `current-task.md` in a resumable state.
-- Never assume previous conversation context is still available after compaction.
-- Important decisions must be recorded as a new file in `decisions/`.
-- Important unresolved problems must be recorded as a new file in `known-issues/`.
-- Do not start the next planned item until the current item's build/test completion criteria are satisfied.
-- **タスク完了時（git commit 前）**: `docs/ai/current-task.md` の該当参照行を削除し、`plans/` の該当ファイルの `Status` を `完了` に更新（1行編集）。Memory Bank の変更はコード変更と同じ commit に含める。
+- タスク開始前に `docs/ai/current-task.md` が存在する場合は読むこと。
+- 計画済みの変更を開始前に、該当する `plans/` と `backlog.md` エントリを読むこと。
+- 意味のあるステップの完了後に `docs/ai/current-task.md` を更新すること。
+- ビルド/テストのチェックポイントが成功したら、結果はタスクファイルに記録し、`current-task.md` はステータス/Next Action の更新のみを行うこと。
+- タスクが中断された場合は、`docs/ai/current-task.md` を再開可能な状態に残しておくこと。
+- compaction 以降、以前の会話コンテキストがまだ使えると仮定しないこと。
+- 重要な決定は `decisions/` に新ファイルとして記録すること。
+- 重要な未解決の問題は `known-issues/` に新ファイルとして記録すること。
+- 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
+- **タスク完了時（git commit 前）**: `docs/ai/current-task.md` の該当参照行を削除し、`plans/` の該当ファイルの `Status` を `完了` に更新（1行編集）。Memory Bank の変更はコード変更と同じ commit に含めること。
 
-## Recovery After Interruption
+## 中断からの復帰
 
-When resuming an interrupted task:
+中断したタスクを再開する際は:
 
-1. Read `docs/ai/current-task.md`.
-2. Check `git status`.
-3. Check `git diff`.
-4. Verify the last recorded build/test status.
-5. Continue from the `Next Action` in `current-task.md`.
-6. Do not discard existing changes unless explicitly instructed.
+1. `docs/ai/current-task.md` を読む。
+2. `git status` を確認する。
+3. `git diff` を確認する。
+4. 最後に記録されたビルド/テストの状態を検証する。
+5. `current-task.md` の `Next Action` から作業を続ける。
+6. 明確に指示されない限り、既存の変更を破棄しない。
