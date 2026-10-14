@@ -1,7 +1,7 @@
 # 2026-10-14: Memory Bank アーカイブ処理のスクリプト化（maintenance/archive_memory_bank.py）
 
-**Status**: 進行中
-**Next Action**: Phase 5 実装・pytest・dry-run 完了。`--apply` をユーザー確認待ち
+**Status**: 完了
+**Next Action**: 完了（2026-10-14）。後続タスク `2026-10-14-move-oneoff-scripts.md`（pending）
 
 ## 概要
 
@@ -218,4 +218,6 @@
 - `python -m pytest scripts/tests/ maintenance/tests/ -q`: 409 passed in 7.17s（既存 + 新規 12）
 - `python maintenance/archive_memory_bank.py`（dry-run・実データ 2026-10-14）: 11 action(s)（rm_dir）・0 error(s)。保持 2 ラン = `selftest_2_default` / `selftest_2_kemono_story`（mtime 最新 2 件、サブ秒精度で確認）
 - ルール変更（ユーザー判断 2026-10-14）: `maintenance/` は開発ツールのため毎回テスト不要。AGENTS.md / workflows.md の標準コマンドを `pytest scripts/tests/ -v` に修正（`maintenance/` 変更時のみ加えて `pytest maintenance/tests/ -v`）
-- コミット: `db05b66`（push 済み 2026-10-14、10 files / +578 -18）。残: `--apply` 実行（11 ディレクトリ削除）はユーザー確認後に別途実行・コミット
+- `--apply` 実行（2026-10-14・リモート同期済み clean な状態で実行）: `11 action(s)（rm_dir）, 0 error(s)`。git 変更 = 153 件すべて ` D`（`runs/` 配下のみ・他ファイルなし）。保持 2 ラン無傷。再 dry-run = `no-op: nothing to do`（べき等性確認）
+- 削除内訳: baseline_*/current_*/selftest_1_* 各 14（生成キャプチャ: article.md / prompt_pass{1,2}.txt / images/*.avif × 3 / ログ・メタ JSON 6）、realrun_default 13（`prompt_pass2.txt` なし）、selftest_2_ai_deep 14
+- コミット: `db05b66`（スクリプト+テスト+docs、push 済み）、`d3c562b`（Verification 記録、push 済み）、`--apply` 削除分（153 files）は本タスク完了 commit で push
