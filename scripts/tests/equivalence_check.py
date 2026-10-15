@@ -10,7 +10,7 @@
     python scripts/tests/equivalence_check.py --l3 --variants default
 
 動作:
-  1. git archive で baseline + current を Temp 配下へ展開（pristine テンプレート）
+  1. git archive で baseline + current を scratch（docs/ai/tmp/eq）へ展開（pristine テンプレート）
   2. 各実行ごとに pristine をコピー → golden 入力デプロイ → eq_runner.py 書込
   3. サンドボックス cwd + 固定 env で `python eq_runner.py` を実行（全モック・ネットワークゼロ）
   4. 成果物を out/<label>/ に収集（絶対パスを <ROOT> に正規化）
@@ -32,7 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 GOLDEN = ROOT / "data" / "equivalence_golden"
-EQ_DIR = Path(os.environ.get("EQ_TMP_DIR", r"C:\Users\fujim\AppData\Local\Temp\kilo\eq"))
+EQ_DIR = Path(os.environ.get("EQ_TMP_DIR", str(ROOT / "docs" / "ai" / "tmp" / "eq")))
 OUT_DIR = EQ_DIR / "out"
 FIXED_EPOCH = 1791766800
 TS = "2026-10-12-100000"  # FIXED_EPOCH の JST 表記（ファイル名・ログ名に使用）

@@ -24,10 +24,10 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
 
 - **One line per command**: Run shell commands on a single line. Do not split a command across multiple lines (kilo parses multi-line input line by line and records one approval pattern per line, polluting the allow list). If multiple statements are needed, join them on one line with `;`.
 - **No inline Python**: Do not pass Python code directly on the command line (`python -c "..."`, `python -`, or piping code into `python`) — inline `python -c` mostly fails under PowerShell 5.1 due to quoting/encoding. Instead:
-  1. Write the script to the temp folder `C:\Users\fujim\AppData\Local\Temp\kilo\` (e.g. `...\Temp\kilo\fetch_check.py`).
+  1. Write the script to the scratch folder `docs\ai\tmp\` (e.g. `docs\ai\tmp\fetch_check.py`).
   2. Execute it with `python <file>`.
-  3. Keep any output files in the same temp folder.
-  - Do not place throwaway scripts inside the repository (e.g. `scripts/`).
+  3. Keep any output files in the same scratch folder.
+  - Do not place throwaway scripts in production code directories (e.g. `scripts/`). `docs/ai/tmp/` is gitignored and fully cleared at task start by `maintenance/archive_memory_bank.py`.
 - **Enforcement**: Global config `~/.config/kilo/kilo.jsonc` → `permission.bash` gates destructive commands (`Remove-Item *` / `rm *` / `del *` / `rd *` / `rmdir *` / `pip uninstall *` / `npm uninstall *` / `git push --force *` / `git reset --hard *` / `git clean *` / `gh repo delete *`) to `ask`; `python -c *` / `python - *` / `node -e *` / `Set-Content *` / `Out-File *` / `New-Item *` are `allow`. Unknown commands default to `ask`.
 
 ## Code Verification

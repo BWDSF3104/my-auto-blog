@@ -47,7 +47,7 @@ image: "/my-auto-blog/images/YYYY-MM-DD-HHMMSS-header.avif"
 
 **ダウンロード:**
 ```powershell
-Invoke-WebRequest -Uri "<url>" -OutFile "C:\Users\fujim\AppData\Local\Temp\kilo\{name}.png"
+Invoke-WebRequest -Uri "<url>" -OutFile "docs/ai/tmp/{name}.png"
 ```
 
 ### 4. 画像のavif変換

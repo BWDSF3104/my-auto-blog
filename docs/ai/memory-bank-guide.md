@@ -19,6 +19,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 | `backlog.md` | バックログ | 未実装項目の追加・完了時の削除・不採用時は `backlog-archive.md` へ移動（変更履歴は git commit に委ねる） | ✅ |
 | `backlog-archive.md` | 不採用バックログ項目のアーカイブ（履歴参照のみ） | 不採用判定時に `backlog.md` から移動。その後の更新は行わない | — |
 | `architecture.md` | アーキテクチャ図 | decisions に記録した変更がシステム構成に反映されたときのみ更新 | ✅ |
+| `tmp/` | スクラッチ置き場（使い捨てスクリプト・一時成果物。gitignore 対象） | 使用時に作成。タスク開始時のバッチクリーンアップ（`archive_memory_bank.py`）で全削除 | — |
 
 ## 1エントリ1ファイル方式
 
@@ -116,7 +117,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ### 形式ルール
 
-- `current-task.tsv`: TSV（ヘッダ `task_file\tstatus\tnext_action` + データ行）。tab 区切り・コメント行なし・UTF-8（BOM なし）。status = `進行中`/`保留`/`完了`/`中断`。完了・中断タスクは参照行を削除
+- `current-task.tsv`: TSV（ヘッダ `task_file\tstatus\tnext_action` + データ行）。tab 区切り・コメント行なし・UTF-8（BOM なし）。`task_file` = プロジェクトルート相対の posix パス（例 `docs/ai/tasks/2026-10-15-kilo-temp-cleanup.md`。`archive_memory_bank.py` は `f.relative_to(root).as_posix()` と照合するため、絶対パス・バックスラッシュパスは未参照扱いになる）。status = `進行中`/`保留`/`完了`/`中断`。完了・中断タスクは参照行を削除
 - `plans/`: 完了時にファイルを `plans/archive/` へ `mv`（1回のみ・ワークフロー手順）。ファイル内容は編集しない
 - `decisions/`: 作成後は不変。修正が必要な場合は新ファイルとして追加し旧ファイルの冒頭に `**Superseded by**: <新ファイル名>` を追加
 - `known-issues/`: 解決時にファイルを `known-issues/archive/` へ `mv`（1回のみ・ワークフロー手順）
