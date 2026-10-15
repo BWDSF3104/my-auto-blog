@@ -918,24 +918,7 @@ def load_previous_output() -> dict:
 
 def build_output(all_topics: list[dict], now: datetime, prev: dict) -> dict:
     """収集トピックと前回データから出力 JSON を構築（純粋関数）"""
-    # カテゴリ別に整理（score降順でソート）
-    by_category = {
-        "tech": [],
-        "kemono": [],
-        "pokemon": [],
-        "other": [],
-    }
-    for topic in all_topics:
-        cat = topic.get("category", "other")
-        if cat in by_category:
-            by_category[cat].append(topic)
-        else:
-            by_category["other"].append(topic)
-    for cat in by_category:
-        by_category[cat].sort(key=lambda t: t.get("score", 0), reverse=True)
-
     prev_sources = prev.get("sources", {})
-    prev_by_category = prev.get("by_category", {})
 
     # source ごとにグループ化して per-source TTL 構造を構築
     sources = {}
@@ -954,16 +937,6 @@ def build_output(all_topics: list[dict], now: datetime, prev: dict) -> dict:
         if src not in sources:
             sources[src] = src_data
 
-    # by_category: 収集したカテゴリは上書き、未収集は前のデータを継承
-    merged_by_category = {}
-    for cat in by_category:
-        if by_category[cat]:
-            merged_by_category[cat] = by_category[cat]
-        elif cat in prev_by_category:
-            merged_by_category[cat] = prev_by_category[cat]
-        else:
-            merged_by_category[cat] = []
-
     # all: 全 sources のトピックを結合
     all_topics_merged = list(all_topics)
     for src, src_data in sources.items():
@@ -972,15 +945,29 @@ def build_output(all_topics: list[dict], now: datetime, prev: dict) -> dict:
 
     # 非トレンド source（e621 等）: 前回データに混入していても出力から除外（merge 継承ドリフト防止）
     sources = {src: src_data for src, src_data in sources.items() if src not in NON_TREND_SOURCES}
-    for cat in merged_by_category:
-        merged_by_category[cat] = [t for t in merged_by_category[cat] if t.get("source") not in NON_TREND_SOURCES]
     all_topics_merged = [t for t in all_topics_merged if t.get("source") not in NON_TREND_SOURCES]
+
+    # by_category: all（canonical）から再構築し、all との構造ドリフトを構造的に防止（KI-20261010-01）
+    by_category = {
+        "tech": [],
+        "kemono": [],
+        "pokemon": [],
+        "other": [],
+    }
+    for topic in all_topics_merged:
+        cat = topic.get("category", "other")
+        if cat in by_category:
+            by_category[cat].append(topic)
+        else:
+            by_category["other"].append(topic)
+    for cat in by_category:
+        by_category[cat].sort(key=lambda t: t.get("score", 0), reverse=True)
 
     return {
         "fetched_at": now.isoformat(),
         "ttl_hours": TTL_HOURS,
         "total": len(all_topics_merged),
-        "by_category": merged_by_category,
+        "by_category": by_category,
         "sources": sources,
         "all": sorted(all_topics_merged, key=lambda t: t.get("score", 0), reverse=True),
     }

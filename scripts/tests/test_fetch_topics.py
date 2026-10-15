@@ -367,15 +367,21 @@ class TestPartialFetchMerge:
         assert result["sources"]["reddit"]["fetched_at"] == "2026-01-01T00:00:00+09:00"
 
     def test_by_category_uncollected_inherited(self, tmp_path):
-        """未収集カテゴリの by_category は前のデータを継承"""
+        """未収集 source のトピックは sources 継承を経て by_category（all 再構築）へ反映"""
         prev = {
             "fetched_at": "2026-01-01T00:00:00+09:00",
             "ttl_hours": 24,
-            "sources": {},
+            "sources": {
+                "reddit": {"fetched_at": "2026-01-01T00:00:00+09:00", "topics": [
+                    {"title": "Prev kemono", "source": "reddit", "category": "kemono", "score": 5, "url": "https://reddit.com/1"}
+                ]},
+            },
             "by_category": {
                 "kemono": [{"title": "Prev kemono", "source": "reddit", "category": "kemono", "score": 5, "url": "https://reddit.com/1"}],
             },
-            "all": [],
+            "all": [
+                {"title": "Prev kemono", "source": "reddit", "category": "kemono", "score": 5, "url": "https://reddit.com/1"}
+            ],
         }
         current_topics = {
             "hackernews": [{"title": "New tech", "source": "hackernews", "category": "tech", "score": 10, "url": "https://hn.com/1"}],
@@ -442,6 +448,31 @@ class TestPartialFetchMerge:
         assert result["by_category"]["kemono"] == [
             {"title": "Old reddit", "source": "reddit", "category": "kemono", "score": 2, "url": "https://reddit.com/1"},
         ]
+
+    def test_by_category_drift_not_inherited(self, tmp_path):
+        """prev の by_category にのみ存在するトピック（all/sources にないドリフト）は出力へ継承されない（KI-20261010-01）"""
+        prev = {
+            "fetched_at": "2026-01-01T00:00:00+09:00",
+            "ttl_hours": 24,
+            "sources": {},
+            "by_category": {
+                "pokemon": [
+                    {"title": "Drifted topic", "source": "GitHub", "category": "pokemon", "score": 2, "url": "https://github.com/1"}
+                ],
+            },
+            "all": [],
+        }
+        current_topics = {
+            "hackernews": [{"title": "New tech", "source": "hackernews", "category": "tech", "score": 10, "url": "https://hn.com/1"}],
+        }
+        result = _run_main(tmp_path, current_topics, prev_data=prev)
+        assert result["by_category"]["pokemon"] == []
+        assert all(t["title"] != "Drifted topic" for t in result["all"])
+        # 構造不変条件: by_category は all のカテゴリ分割（集合が一致）
+        bycat_flat = [t for topics in result["by_category"].values() for t in topics]
+        assert len(bycat_flat) == len(result["all"])
+        assert {(t.get("source"), t.get("title")) for t in bycat_flat} == \
+            {(t.get("source"), t.get("title")) for t in result["all"]}
 
 
 class TestOldFileCleanup:
