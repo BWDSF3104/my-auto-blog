@@ -249,5 +249,38 @@
     "fetched_at": "2026-10-14T01:50:04.498243+00:00",
     "product": null,
     "hits": 0
+  },
+  "ダンジョンズ&ドラゴンズ プレイヤーズ・ハンドブック第5版": {
+    "fetched_at": "2026-10-15T01:24:38.160444+00:00",
+    "product": {
+      "itemName": "【中古】 ホビージャパン ダンジョンズ&ドラゴンズ プレイヤーズ・ハンドブック第5版 TRPG",
+      "itemPrice": 11472,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00txgvo.eo1qw807.g00txgvo.eo1qx4da/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbearhomes%2F2025-11-30-199%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbearhomes%2Fi%2F10615086%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/bearhomes/cabinet/11669395/a0692baf7fd4c55.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 3
+  },
+  "ダンジョンズ&ドラゴンズ": {
+    "fetched_at": "2026-10-15T01:24:39.192941+00:00",
+    "product": {
+      "itemName": "ダンジョンズ &ドラゴンズ ドリッズトの伝説 ヴィジュアル大百科 [ マイケル・ウィットワー ]",
+      "itemPrice": 3960,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17984012%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21368026%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8641/9784766138641_1_4.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "ケモノ 歴史": {
+    "fetched_at": "2026-10-15T01:24:40.698619+00:00",
+    "product": {
+      "itemName": "ケモノの城[本/雑誌] (双葉文庫) / 誉田哲也/著",
+      "itemPrice": 835,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q63ao.eo1qwfbf.g00q63ao.eo1qxd87/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fneowing-r%2Fneobk-2092424%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fneowing-r%2Fi%2F13166020%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/neowing-r/cabinet/item_img_1117/neobk-2092424.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 2
   }
 }

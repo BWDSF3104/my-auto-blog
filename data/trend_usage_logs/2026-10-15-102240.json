@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-15T10:22:40.522593+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-15T10:22:01.531766+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 35,
+    "after_score_filter": 35,
+    "after_rating_filter": 35,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Seven Seas Licenses Ushiyama-san, Mouse Royale, This World Is Worth Fighting For, More Manga/Novels",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-14/seven-seas-licenses-ushiyama-san-mouse-royale-this-world-is-worth-fighting-for-more-manga-novels/.242817",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "WoW: Forever Has A Streamer Problem",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/wow-forever-has-a-streamer-problem/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "World of Warcraft: Forever isn't out yet, but it's already clear it has a major problem. It isn't anything in the game itself. It's not the addition of Skyborne elves that require players to pay $30, "
+    }
+  ],
+  "affiliate_keywords": [
+    "Seven Seas Licenses",
+    "Forever Has A Streamer Problem"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-10-14/seven-seas-licenses-ushiyama-san-mouse-royale-this-world-is-worth-fighting-for-more-manga-novels/.242817",
+    "https://www.gamespot.com/articles/wow-forever-has-a-streamer-problem/"
+  ]
+}
