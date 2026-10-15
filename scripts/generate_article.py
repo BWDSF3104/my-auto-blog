@@ -411,7 +411,7 @@ def apply_seo_schemas(content):
     return content
 
 
-def finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info, pub_date_str):
+def finalize_and_save(content, file_timestamp, trend_topic_links, prompt_type, kemono_params, e621_info, pub_date_str):
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
 
@@ -435,11 +435,11 @@ def finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, 
 
     # 5.8 本文末尾に生成情報セクションを追記（トレンド情報＋キャラクターデータ＋e621参考データ）
     gen_section = _build_generation_info_section(
-        trend_topic_titles, prompt_type, kemono_params, content, e621_info
+        trend_topic_links, prompt_type, kemono_params, content, e621_info
     )
     if gen_section:
         content = content.rstrip() + "\n\n" + gen_section + "\n"
-        print(f"🤖 生成情報セクションを追記: {len(trend_topic_titles)}件のトレンド情報")
+        print(f"🤖 生成情報セクションを追記: {len(trend_topic_links)}件のトレンド情報")
 
     # 6. 保存
     output_dir = "src/content/posts"
@@ -476,7 +476,7 @@ def generate_post():
     kemono_params, target_genres = resolve_kemono(prompt_type)
 
     # 1.6. 収集済みトレンドトピックをプロンプトに注入（ジャンル適合度で優先選択）
-    ng_instruction, trend_keywords, trend_source_urls, trend_topic_titles = _append_trending_topics(
+    ng_instruction, trend_keywords, trend_source_urls, trend_topic_links = _append_trending_topics(
         ng_instruction, prompt_type, target_genres=target_genres
     )
 
@@ -507,7 +507,7 @@ def generate_post():
     content = apply_seo_schemas(content)
 
     # 5.6-7. 最終検証・生成情報追記・保存・ログクリーンアップ
-    finalize_and_save(content, file_timestamp, trend_topic_titles, prompt_type, kemono_params, e621_info, pub_date_str)
+    finalize_and_save(content, file_timestamp, trend_topic_links, prompt_type, kemono_params, e621_info, pub_date_str)
 
 
 if __name__ == "__main__":

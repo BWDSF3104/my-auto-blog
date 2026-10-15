@@ -2761,12 +2761,15 @@ class TestAppendTrendingTopicsGenre:
              patch("article.trends._save_trend_usage_log"), \
              patch("article.trends._check_topics_ttl", return_value=False), \
              patch("article.trends._check_per_source_ttl", return_value={}):
-            result, keywords, urls, titles = generate_article._append_trending_topics(
+            result, keywords, urls, links = generate_article._append_trending_topics(
                 "", "kemono_story", target_genres=["sf"]
             )
         assert "sf topic" in result
         assert "https://sf.com" in urls
-        assert titles == ["sf topic（rss）", "fantasy topic（rss）"]
+        assert links == [
+            {"title": "sf topic", "source": "rss", "url": "https://sf.com"},
+            {"title": "fantasy topic", "source": "rss", "url": "https://fan.com"},
+        ]
 
     def test_no_genre_scores_falls_back_to_random(self, tmp_path):
         import generate_article
@@ -2788,11 +2791,13 @@ class TestAppendTrendingTopicsGenre:
              patch("article.trends._save_trend_usage_log"), \
              patch("article.trends._check_topics_ttl", return_value=False), \
              patch("article.trends._check_per_source_ttl", return_value={}):
-            result, keywords, urls, titles = generate_article._append_trending_topics(
+            result, keywords, urls, links = generate_article._append_trending_topics(
                 "", "kemono_story", target_genres=["sf"]
             )
         assert "any topic" in result
-        assert titles == ["any topic（rss）"]
+        assert links == [
+            {"title": "any topic", "source": "rss", "url": "https://any.com"},
+        ]
 
 
 class TestAppendTrendingTopicsDescription:
@@ -2896,11 +2901,15 @@ class TestBuildGenerationInfoSection:
         import generate_article
         content = '---\ntitle: "x"\ncharacter_1: "cat_ears"\ncharacter_2: "dog_ears"\n---\n\nbody'
         section = generate_article._build_generation_info_section(
-            ["Game news（GameSpot RSS）"], "kemono_story", self.KEMONO_PARAMS, content
+            [{"title": "Game news", "source": "GameSpot RSS", "url": "https://example.com/game"}],
+            "kemono_story", self.KEMONO_PARAMS, content
         )
         assert '<details class="gen-info">' in section
         assert "🤖 生成情報" in section
         assert "Game news（GameSpot RSS）" in section
+        assert 'href="https://example.com/game"' in section
+        assert 'rel="noopener nofollow"' in section
+        assert "target=\"_blank\"" in section
         assert "猫耳獣人 / 犬耳獣人" in section
         assert "ファンタジー" in section
         assert "TF（変身・変形）" in section
@@ -2931,9 +2940,12 @@ class TestBuildGenerationInfoSection:
         import generate_article
         content = '---\ntitle: "x"\n---\n\nbody'
         section = generate_article._build_generation_info_section(
-            ["AI news（GitHub）"], "default", {}, content
+            [{"title": "AI news", "source": "GitHub", "url": ""}], "default", {}, content
         )
         assert "使用したトレンド情報" in section
+        assert "AI news（GitHub）" in section
+        # URL なし → リンク化しない
+        assert '<a class="gen-info-link"' not in section
         assert "キャラクターデータ" not in section
 
     def test_empty_returns_empty_string(self):
@@ -2945,7 +2957,8 @@ class TestBuildGenerationInfoSection:
         import generate_article
         content = '---\ntitle: "x"\ncharacter_1: "cat & <dog>"\ncharacter_2: ""\n---\n\nbody'
         section = generate_article._build_generation_info_section(
-            ['<script>alert("x")</script>（rss）'], "kemono_story", self.KEMONO_PARAMS, content
+            [{"title": '<script>alert("x")</script>', "source": "rss", "url": ""}],
+            "kemono_story", self.KEMONO_PARAMS, content
         )
         assert "<script>" not in section
         assert "&lt;script&gt;" in section
@@ -2957,6 +2970,7 @@ class TestBuildGenerationInfoSection:
         "raw_posts": 18,
         "posts": [
             {
+                "id": 123456,
                 "species": ["wolf"],
                 "colors": ["blue"],
                 "physical": ["ears", "tail"],
@@ -2964,6 +2978,7 @@ class TestBuildGenerationInfoSection:
                 "copyrights": ["nintendo"],
             },
             {
+                "id": 789012,
                 "species": ["fox"],
                 "colors": ["red"],
                 "physical": [],
@@ -2979,7 +2994,8 @@ class TestBuildGenerationInfoSection:
         import generate_article
         content = '---\ntitle: "x"\ncharacter_1: "cat_ears"\ncharacter_2: "dog_ears"\n---\n\nbody'
         section = generate_article._build_generation_info_section(
-            ["Game news（GameSpot RSS）"], "kemono_story", self.KEMONO_PARAMS, content, self.E621_INFO
+            [{"title": "Game news", "source": "GameSpot RSS", "url": "https://example.com/game"}],
+            "kemono_story", self.KEMONO_PARAMS, content, self.E621_INFO
         )
         assert "参考キャラクターデータ（e621）" in section
         assert "参考キャラクター1" in section
@@ -2989,13 +3005,20 @@ class TestBuildGenerationInfoSection:
         assert "身体的特徴: ears, tail" in section
         assert "参照: char_a" in section
         assert "作品: nintendo" in section
+        # 元投稿リンク（post.id から構築）
+        assert "元投稿:" in section
+        assert "e621.net/posts/123456" in section
+        assert 'href="https://e621.net/posts/123456"' in section
+        assert "e621.net/posts/789012" in section
+        assert 'href="https://e621.net/posts/789012"' in section
         # 2投稿目は空フィールドで「-」表示
         assert "種族: fox" in section
         assert "身体的特徴: -" in section
         assert "作品: -" in section
-        assert "人気版権" in section
+        # 人気版権 / 人気artist は「プロンプトに使用」ラベル付き
+        assert "人気版権（プロンプトに使用）" in section
         assert "nintendo, pokemon" in section
-        assert "人気artist" in section
+        assert "人気artist（プロンプトに使用）" in section
         assert "artist_a, artist_b" in section
         assert "2026-10-11 01:46 UTC" in section
         assert "18投稿を分析" in section
@@ -3004,7 +3027,7 @@ class TestBuildGenerationInfoSection:
         import generate_article
         content = '---\ntitle: "x"\n---\n\nbody'
         section = generate_article._build_generation_info_section(
-            ["AI news（GitHub）"], "default", {}, content, self.E621_INFO
+            [{"title": "AI news", "source": "GitHub", "url": ""}], "default", {}, content, self.E621_INFO
         )
         assert "e621" not in section
         assert "参考キャラクター" not in section

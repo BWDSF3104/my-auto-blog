@@ -266,6 +266,7 @@ def _build_selection_lists(candidates: list[dict]) -> dict:
     affiliate_keywords: list[str] = []
     trend_source_urls: list[str] = []
     trend_topic_titles: list[str] = []
+    trend_topic_links: list[dict] = []
     selected_items: list[dict] = []
     for item in candidates:
         title = item.get("title", "").strip()
@@ -278,6 +279,7 @@ def _build_selection_lists(candidates: list[dict]) -> dict:
                 line += f" — {desc[:100]}"
             selected_titles.append(line)
             trend_topic_titles.append(f"{title}（{source}）" if source else title)
+            trend_topic_links.append({"title": title, "source": source, "url": url})
             if url:
                 trend_source_urls.append(url)
             selected_items.append({
@@ -298,6 +300,7 @@ def _build_selection_lists(candidates: list[dict]) -> dict:
         "affiliate_keywords": affiliate_keywords,
         "trend_source_urls": trend_source_urls,
         "trend_topic_titles": trend_topic_titles,
+        "trend_topic_links": trend_topic_links,
         "selected_items": selected_items,
     }
 
@@ -366,7 +369,7 @@ def _append_trending_topics(
     ng_instruction: str,
     prompt_type: str,
     target_genres: list[str] | None = None,
-) -> tuple[str, list[str], list[str], list[str]]:
+) -> tuple[str, list[str], list[str], list[dict]]:
     """
     data/topics/latest.json が存在する場合、prompt_type に応じたカテゴリの
     トレンドタイトルを選択して ng_instruction の末尾へ付加する。
@@ -375,8 +378,8 @@ def _append_trending_topics(
     Per-source TTL で期限切れのカテゴリがある場合は自動再取得を試みる。
     第2要素としてアフィリエイト用のトレンドキーワードリストを返す。
     第3要素として frontmatter 用のソースURLリストを返す。
-    第4要素として生成情報セクション用のクリーンなトレンドタイトルリスト
-    （"{title}（{source}）" 形式）を返す。
+    第4要素として生成情報セクション用のトレンドリンクリスト
+    （{"title", "source", "url"} の dict リスト。url は取得できたソースURL）を返す。
     ファイルが存在しない場合は元の ng_instruction と空リストを返す。
     """
     data, skip_reason = _load_topics_data()
@@ -407,10 +410,10 @@ def _append_trending_topics(
     selected_titles = selections["selected_titles"]
     affiliate_keywords = selections["affiliate_keywords"]
     trend_source_urls = selections["trend_source_urls"]
-    trend_topic_titles = selections["trend_topic_titles"]
+    trend_topic_links = selections["trend_topic_links"]
 
     if not selected_titles:
-        return ng_instruction, affiliate_keywords, trend_source_urls, trend_topic_titles
+        return ng_instruction, affiliate_keywords, trend_source_urls, trend_topic_links
 
     trend_block = (
         "\n\n【参考：今日のトレンドトピック（インスピレーション源として活用してください）】\n"
@@ -419,4 +422,4 @@ def _append_trending_topics(
     print(f"[topics] {len(selected_titles)} 件のトレンドをプロンプトに注入しました")
     if affiliate_keywords:
         print(f"[affiliate] {len(affiliate_keywords)} 件のトレンドキーワードを抽出しました")
-    return ng_instruction + trend_block, affiliate_keywords, trend_source_urls, trend_topic_titles
+    return ng_instruction + trend_block, affiliate_keywords, trend_source_urls, trend_topic_links

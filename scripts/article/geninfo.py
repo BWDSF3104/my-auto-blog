@@ -31,9 +31,23 @@ def _gen_info_setting_rows(prompt_type: str, kemono_params: dict) -> list[tuple[
     return setting_rows
 
 
-def _gen_info_trend_block(trend_topic_titles: list[str]) -> list[str]:
-    """「使用したトレンド情報」ブロックの HTML 行を組立する。"""
-    items = "\n".join(f"      <li>{html.escape(t)}</li>" for t in trend_topic_titles)
+def _gen_info_trend_block(trend_topics: list[dict]) -> list[str]:
+    """「使用したトレンド情報」ブロックの HTML 行を組立する。
+    url が取得できた項目はタイトルをソース先へのリンク（別タブ・nofollow）にする。"""
+    lines = []
+    for t in trend_topics:
+        title = html.escape(t.get("title", ""))
+        source = html.escape(t.get("source", ""))
+        label = f"{title}（{source}）" if source else title
+        url = t.get("url", "")
+        if url:
+            lines.append(
+                f'      <li><a class="gen-info-link" href="{html.escape(url)}" '
+                f'target="_blank" rel="noopener nofollow">{label} ↗</a></li>'
+            )
+        else:
+            lines.append(f"      <li>{label}</li>")
+    items = "\n".join(lines)
     return [
         '    <div class="gen-info-block">',
         '      <p class="gen-info-block-title">使用したトレンド情報</p>',
@@ -89,19 +103,27 @@ def _gen_info_e621_block(e621_info: dict) -> list[str]:
         physical = ", ".join(post.get("physical", [])[:8]) or "-"
         characters = ", ".join(post.get("characters", [])) or "-"
         post_copyrights = ", ".join(cp for cp in post.get("copyrights", []) if not _is_affiliate_excluded(cp)) or "-"
-        detail = "<br>".join([
+        detail_lines = [
             f"種族: {html.escape(species)}",
             f"色: {html.escape(colors)}",
             f"身体的特徴: {html.escape(physical)}",
             f"参照: {html.escape(characters)}",
             f"作品: {html.escape(post_copyrights)}",
-        ])
+        ]
+        post_id = post.get("id")
+        if post_id:
+            pid = str(post_id)
+            detail_lines.append(
+                f'元投稿: <a class="gen-info-link" href="https://e621.net/posts/{html.escape(pid)}" '
+                f'target="_blank" rel="noopener nofollow">e621.net/posts/{html.escape(pid)} ↗</a>'
+            )
+        detail = "<br>".join(detail_lines)
         e621_rows.append(f'      <div><dt>参考キャラクター{i}</dt><dd>{detail}</dd></div>')
     e621_rows.append(
-        f'      <div><dt>人気版権</dt><dd>{html.escape(e621_info.get("copyrights", "-"))}</dd></div>'
+        f'      <div><dt>人気版権（プロンプトに使用）</dt><dd>{html.escape(e621_info.get("copyrights", "-"))}</dd></div>'
     )
     e621_rows.append(
-        f'      <div><dt>人気artist</dt><dd>{html.escape(e621_info.get("artists", "-"))}</dd></div>'
+        f'      <div><dt>人気artist（プロンプトに使用）</dt><dd>{html.escape(e621_info.get("artists", "-"))}</dd></div>'
     )
     updated_label = _gen_info_e621_updated_label(e621_info)
     e621_rows.append(
@@ -119,7 +141,7 @@ def _gen_info_e621_block(e621_info: dict) -> list[str]:
 
 
 def _build_generation_info_section(
-    trend_topic_titles: list[str],
+    trend_topics: list[dict],
     prompt_type: str,
     kemono_params: dict,
     content: str,
@@ -127,10 +149,10 @@ def _build_generation_info_section(
 ) -> str:
     """
     記事本文末尾に追記する「生成情報」セクションの HTML を組立する。
-    使用したトレンド情報（タイトル＋ソース）とキャラクターデータ
+    使用したトレンド情報（タイトル＋ソース、ソースURL取得時はリンク）とキャラクターデータ
     （体型 / 世界設定 / 変身 / 関係性 / 追加設定 + キャラクタータグ）、
     さらに e621 から使用した参考キャラクターデータ
-    （参考キャラクター / 人気版権 / 人気artist / データ時点）を表示する。
+    （参考キャラクター＋元投稿 / 人気版権 / 人気artist / データ時点）を表示する。
     e621 データは kemono_story プロンプトのみで実際に使われるため、kemono_story 記事のみ表示。
     h2〜h4 を使わない `<details>` 折りたたみ構造のため TOC には載らない。
     表示すべき内容が一切ない場合は空文字列を返す（セクション非表示）。
@@ -141,7 +163,7 @@ def _build_generation_info_section(
     setting_rows = _gen_info_setting_rows(prompt_type, kemono_params)
     show_e621 = bool(e621_info) and prompt_type == "kemono_story"
 
-    if not trend_topic_titles and not setting_rows and not char1 and not char2 and not show_e621:
+    if not trend_topics and not setting_rows and not char1 and not char2 and not show_e621:
         return ""
 
     parts: list[str] = [
@@ -151,8 +173,8 @@ def _build_generation_info_section(
         '    <p class="gen-info-note">この記事はAIパイプラインによる自動生成記事です。</p>',
     ]
 
-    if trend_topic_titles:
-        parts += _gen_info_trend_block(trend_topic_titles)
+    if trend_topics:
+        parts += _gen_info_trend_block(trend_topics)
 
     char_data_block = _gen_info_char_data_block(setting_rows, char1, char2)
     if char_data_block:
