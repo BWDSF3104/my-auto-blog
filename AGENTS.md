@@ -78,16 +78,20 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - **タスク完了時（git commit 前）**
 - **中断からの再開時**
 
+### タスク開始時（初回コード変更の前）
+
+初回コード変更の前に以下の 2 ステップを実行すること:
+
+1. `docs/ai/tasks/YYYY-MM-DD-short-name.md` にタスクファイルを作成する（意図・背景を含む）
+2. `docs/ai/current-task.tsv` に参照行を追加する
+
+2 ステップ完了前に実装着手しないこと。
+
 ## ワークフロー
 
-`docs/ai/workflows.md` を以下のタイミングで参照すること:
-
-- **ファイル変更の完了後、コミット前に**
-- **git commit 実行前**
-- **git commit 実行後（pushを実行するため）**
-- **git push 完了後**
-- **ユーザーが手動記事作成を依頼した際: `docs/ai/manual-article-workflow.md`**
-- **デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md`**
+- git commit / push / deploy: `docs/ai/workflows.md` を参照する。
+- ユーザーが手動記事作成を依頼した際: `docs/ai/manual-article-workflow.md` を参照する。
+- デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md` を参照する。
 
 ## プロジェクト構成
 

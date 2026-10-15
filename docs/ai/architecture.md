@@ -138,4 +138,4 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 - Node.js >= 22.12.0 required
 - Python 3.10+ for scripts
 - Output format: Markdown with AVIF images
-- AI Memory Bank: `docs/ai/` (tracked in git, contains plans, backlog, known-issues, decisions, architecture)
+- AI Memory Bank: `docs/ai/` (tracked in git, contains tasks, backlog, known-issues, decisions, architecture)
