@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-10-15T10:24:40.701278+09:00",
+  "file_timestamp": "2026-10-15-102240",
+  "prompt_type": "kemono_story",
+  "article_title": "白銀の残響と漆黒の咆哮",
+  "keywords": [
+    {
+      "keyword": "ケモノ",
+      "source": "script",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B1%E3%83%A2%E3%83%8E&tag=bwdsf3104-22&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE",
+      "rakuten_url": "https://search.rakuten.co.jp/search/mall/%E3%82%B1%E3%83%A2%E3%83%8E/?scid=57f74cd8.500bcdd9.57f74cd9.8c8b76a0&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE"
+    },
+    {
+      "keyword": "歴史",
+      "source": "script",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E6%AD%B4%E5%8F%B2&tag=bwdsf3104-22&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE",
+      "rakuten_url": "https://search.rakuten.co.jp/search/mall/%E6%AD%B4%E5%8F%B2/?scid=57f74cd8.500bcdd9.57f74cd9.8c8b76a0&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE"
+    },
+    {
+      "keyword": "バディ",
+      "source": "script",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%83%90%E3%83%87%E3%82%A3&tag=bwdsf3104-22&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE",
+      "rakuten_url": "https://search.rakuten.co.jp/search/mall/%E3%83%90%E3%83%87%E3%82%A3/?scid=57f74cd8.500bcdd9.57f74cd9.8c8b76a0&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE"
+    },
+    {
+      "keyword": "ケモノ 歴史",
+      "source": "script",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%AD%B4%E5%8F%B2&tag=bwdsf3104-22&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE",
+      "rakuten_url": "https://search.rakuten.co.jp/search/mall/%E3%82%B1%E3%83%A2%E3%83%8E%20%E6%AD%B4%E5%8F%B2/?scid=57f74cd8.500bcdd9.57f74cd9.8c8b76a0&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE"
+    },
+    {
+      "keyword": "ケモノ バディ",
+      "source": "script",
+      "amazon_url": "https://www.amazon.co.jp/s?k=%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%90%E3%83%87%E3%82%A3&tag=bwdsf3104-22&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE",
+      "rakuten_url": "https://search.rakuten.co.jp/search/mall/%E3%82%B1%E3%83%A2%E3%83%8E%20%E3%83%90%E3%83%87%E3%82%A3/?scid=57f74cd8.500bcdd9.57f74cd9.8c8b76a0&utm_source=autoblog&utm_medium=affiliate&utm_content=%E7%99%BD%E9%8A%80%E3%81%AE%E6%AE%8B%E9%9F%BF%E3%81%A8%E6%BC%86%E9%BB%92%E3%81%AE%E5%92%86%E5%93%AE"
+    }
+  ]
+}
