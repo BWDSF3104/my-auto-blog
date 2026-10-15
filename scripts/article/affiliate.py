@@ -677,15 +677,17 @@ def _resolve_affiliate_keywords(
     return keywords_to_use, keyword_sources
 
 
-def _build_affiliate_links_html(
+def _build_search_link_rows(
     keywords_to_use: list[str],
     keyword_sources: list[str],
     amazon_tag: str,
     rakuten_id: str,
     utm_content: str,
 ) -> tuple[str, list[dict]]:
-    """キーワードごとの Amazon / 楽天検索リンク HTML とリンクログエントリを組立する。"""
-    links_html = ""
+    """キーワードごとの Amazon / 楽天検索リンクを product-card 系行 HTML とリンクログエントリで組立する。
+    キーワードごとに 1 行（商品名欄にキーワード + 検索ボタン 2 つ）とし、
+    先頭キーワードは 🔥 で強調する（旧メイン CTA カード廃止・キーワード重複排除）。"""
+    rows_html = ""
     link_log_entries: list[dict] = []
     for i, kw in enumerate(keywords_to_use):
         encoded_kw = urllib.parse.quote(kw)
@@ -702,15 +704,25 @@ def _build_affiliate_links_html(
             f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
         )
 
-        links_html += f'\n- 📦 <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow sponsored">Amazonで「{kw}」を探す</a>'
-        links_html += f'\n- 🛍️ <a href="{rakuten_url}" target="_blank" rel="noopener noreferrer nofollow sponsored">楽天市場で「{kw}」を探す</a>'
+        mark = "🔥 " if i == 0 else ""
+        rows_html += f"""
+<div class="product-card">
+  <div class="pc-info">
+    <div class="pc-name">{mark}「{kw}」</div>
+    <div class="pc-category">Amazon / 楽天市場で検索</div>
+  </div>
+  <div class="pc-links">
+    <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow sponsored" class="pc-btn pc-btn-amazon">Amazon</a>
+    <a href="{rakuten_url}" target="_blank" rel="noopener noreferrer nofollow sponsored" class="pc-btn pc-btn-rakuten">楽天</a>
+  </div>
+</div>"""
         link_log_entries.append({
             "keyword": kw,
             "source": keyword_sources[i] if i < len(keyword_sources) else "unknown",
             "amazon_url": amazon_url,
             "rakuten_url": rakuten_url,
         })
-    return links_html, link_log_entries
+    return rows_html, link_log_entries
 
 
 def _build_rakuten_cards_section(
@@ -720,8 +732,9 @@ def _build_rakuten_cards_section(
     kemono_params: dict | None,
     title_for_card: str,
 ) -> str:
-    """楽天API商品カードセクションを組立する（末尾セクション一番上に追加）。
-    カスケード検索: キーワードを優先順位順に辿り、関連性フィルタ通過した最大3商品を収集。"""
+    """楽天API商品カードを組立する（末尾セクションの検索リンク行の上に追加）。
+    カスケード検索: キーワードを優先順位順に辿り、関連性フィルタ通過した最大3商品を収集。
+    ラッパー（.product-cards）なしの生カード HTML を返す（組立は呼び出し側）。"""
     api_keywords = _rakuten_api_keywords(gemini_products, keywords_to_use, prompt_type, kemono_params)
     collected = _rakuten_collect(api_keywords, prompt_type, max_products=3)
     rakuten_cards_html = "".join(
@@ -730,30 +743,8 @@ def _build_rakuten_cards_section(
     if rakuten_cards_html:
         card_div_open = '<div class="product-card">'
         card_count = rakuten_cards_html.count(card_div_open)
-        rakuten_cards_html = f'\n<div class="product-cards">{rakuten_cards_html}\n</div>'
         print(f"   🖼️ 楽天API商品カードを末尾セクションに {card_count} 枚追加")
     return rakuten_cards_html
-
-
-def _build_main_cta_section(
-    keywords_to_use: list[str],
-    amazon_tag: str,
-    utm_content: str,
-) -> str:
-    """複数キーワード時、1つ目のキーワードをメインCTAとして強調するセクションを組立する。"""
-    if len(keywords_to_use) <= 1:
-        return ""
-    kw0 = keywords_to_use[0]
-    encoded_kw0 = urllib.parse.quote(kw0)
-    main_amazon = (
-        f"https://www.amazon.co.jp/s?k={encoded_kw0}&tag={amazon_tag}"
-        f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
-    )
-    return f"""
-<div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; padding: 16px 20px; margin: 16px 0; text-align: center;">
-<p style="font-size: 1.1em; font-weight: bold; margin: 0 0 12px 0;">🔥 「{kw0}」の今すぐチェックできるおすすめアイテム</p>
-<a href="{main_amazon}" style="display: inline-block; background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1em;">Amazonで確認する →</a>
-</div>"""
 
 
 def inject_affiliate_links(content: str, trend_keywords: list[str] = None, script_keywords: list[str] = None, file_timestamp: str = None, gemini_products: list[str] = None, kemono_params: dict = None) -> str:
@@ -769,7 +760,8 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
     - スクリプト決定パラメータからキーワード生成（ストーリー系）
     - UTM パラメータによるトラッキング
     - 複数のプラットフォーム対応
-    - 購買意欲を促すCTA文言
+    - 楽天商品カード + キーワード検索リンクを product-card 系に統一
+      （旧インラインスタイルのメイン CTA カードは廃止、キーワード重複排除）
     """
     if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
         return content
@@ -789,21 +781,22 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
     title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
     utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
 
-    links_html, link_log_entries = _build_affiliate_links_html(
+    search_rows_html, link_log_entries = _build_search_link_rows(
         keywords_to_use, keyword_sources, amazon_tag, rakuten_id, utm_content
     )
     rakuten_cards_html = _build_rakuten_cards_section(
         gemini_products, keywords_to_use, prompt_type, kemono_params,
         title_match.group(1).strip() if title_match else "post",
     )
-    sections = _build_main_cta_section(keywords_to_use, amazon_tag, utm_content)
+    cards_inner = (rakuten_cards_html + search_rows_html).strip()
+    cards_html = f"\n<div class=\"product-cards\">{cards_inner}\n</div>" if cards_inner else ""
 
     affiliate_section = f"""
 
 ---
 
 ### 📚 テーマ関連のおすすめアイテム・書籍
-この記事のテーマに関連する作品や人気アイテムをチェック！{rakuten_cards_html}{sections}{links_html}
+この記事のテーマに関連する作品や人気アイテムをチェック！{cards_html}
 
 <small style="color: #64748b;">※ 当サイトはアフィリエイト広告（Amazonアソシエイト・楽天アフィリエイト等）を利用して収益を得ています。</small>
 """

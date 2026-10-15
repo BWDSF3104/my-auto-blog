@@ -7,7 +7,6 @@
 | # | 項目 | 難易度 | 効果 | 備考 |
 |---|------|--------|------|------|
 | 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
-| 3 | アフィリエイトCTAカードのスリム化 + テキストリンクの統一・被り排除 | ⭐ | 中 | 現状CTAカード（`generate_article.py:1530-1533`「🔥 …の今すぐチェックできるおすすめアイテム / Amazonで確認する →」）とテキストリンク（`links_html`「Amazonで「kw」を探す」）で同一キーワードが重複表示される。カードの見た目をもっとスリムにし、テーマ関連商品のテキストリンクを全てこのカード形式に統一、キーワードの被りを排除 |
 | 4 | コメント機能（Giscus）実装 | ⭐⭐ | 中 | 設計確定済み（2026-10-11、選定理由: `decisions/2026-10-11-giscus-comments.md`）。タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md`（手動: Discussions 有効化 + giscus app 導入）、`tasks/2026-10-11-giscus-comments-env-config.md`（手動: 環境変数登録）、`tasks/2026-10-11-giscus-comments-component.md`（AI: コンポーネント + Layout 組み込み）、`tasks/2026-10-11-giscus-comments-workflow-env.md`（AI: deploy.yml / deploy-only.yml への env 配線）、`tasks/2026-10-11-giscus-comments-verification.md`（AI: E2E 検証 + 本番デプロイ）。完了時に本エントリを削除 |
 
 ## P3

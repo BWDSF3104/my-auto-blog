@@ -62,6 +62,7 @@ from generate_article import (
     compose_image_prompt,
     get_existing_posts,
     inject_internal_links,
+    inject_affiliate_links,
     process_inline_affiliates,
     process_inline_products,
     validate_and_fix_frontmatter,
@@ -929,6 +930,90 @@ class TestGenerateRakutenCard:
         # marker行以降がテーブル行でなければその行を返す
         assert _find_table_end_line("a\n| x | y |", "| x | y |") == 1
         assert _find_table_end_line(content, "nonexistent") is None
+
+
+# --------------------------------------------------
+# inject_affiliate_links tests（楽天APIはモック、実呼び出し禁止）
+# --------------------------------------------------
+
+def _affiliate_sample_content():
+    return (
+        '---\n'
+        'title: "テスト記事タイトル"\n'
+        'tags: [テスト]\n'
+        'prompt_type: "default"\n'
+        '---\n'
+        '# テスト記事\n'
+        '\n'
+        '本文テキストです。\n'
+    )
+
+
+class TestInjectAffiliateLinks:
+    def _run(self, script_keywords, rakuten_products=None):
+        with patch.dict(os.environ, {
+            "AMAZON_TRACKING_ID": "test-tag",
+            "RAKUTEN_AFFILIATE_ID": "test-rakuten-id",
+        }), patch("article.affiliate._rakuten_search",
+                 side_effect=lambda kw: (rakuten_products or {}).get(kw)):
+            return inject_affiliate_links(_affiliate_sample_content(), script_keywords=script_keywords)
+
+    def test_cta_box_and_markdown_links_removed(self):
+        result = self._run(["ケモノ", "ケモノ BL"])
+        # 旧メイン CTA カード（インラインスタイル box）は廃止
+        assert "今すぐチェック" not in result
+        assert "linear-gradient" not in result
+        assert "Amazonで確認する" not in result
+        # 旧形式の markdown リストリンクは廃止
+        assert "📦" not in result
+        assert "🛍️" not in result
+        assert "Amazonで「" not in result
+
+    def test_search_links_unified_into_product_card_rows(self):
+        result = self._run(["ケモノ", "ケモノ BL"])
+        assert 'class="product-card"' in result
+        assert '「ケモノ」</div>' in result
+        assert '「ケモノ BL」</div>' in result
+        # 検索リンク行のラベル
+        assert "Amazon / 楽天市場で検索" in result
+        # 先頭キーワードのみ 🔥 強調
+        assert "🔥 「ケモノ」" in result
+        assert "🔥 「ケモノ BL」" not in result
+        assert result.count("🔥") == 1
+        # 同一キーワードの重複表示排除（name欄は 1 回のみ）
+        assert result.count('「ケモノ」</div>') == 1
+
+    def test_search_urls_keep_tracking_params(self):
+        result = self._run(["ケモノ"])
+        assert "amazon.co.jp/s?k=%E3%82%B1%E3%83%A2%E3%83%8E&tag=test-tag" in result
+        assert "utm_source=autoblog&utm_medium=affiliate" in result
+        assert "search.rakuten.co.jp/search/mall/%E3%82%B1%E3%83%A2%E3%83%8E/?scid=test-rakuten-id" in result
+
+    def test_single_keyword_still_highlighted(self):
+        result = self._run(["ノートPC"])
+        assert "🔥 「ノートPC」" in result
+
+    def test_rakuten_cards_and_rows_share_one_wrapper(self):
+        products = {
+            "ノートPC 高性能": {
+                "itemName": "ノートPC 軽量 高性能",
+                "itemPrice": 99800,
+                "affiliateUrl": "https://hb.afl.rakuten.co.jp/pc=abc",
+                "imageUrl": "https://img.example.com/pc.jpg",
+                "reviewCount": 500,
+            }
+        }
+        result = self._run(["ノートPC 高性能", "ケモノ"], rakuten_products=products)
+        # ラッパーは 1 つのみ（楽天カード + 検索リンク行が同一 product-cards 内に統合）
+        assert result.count('<div class="product-cards">') == 1
+        # 楽天商品カードが検索リンク行より先に来る
+        assert result.index("pc-img") < result.index("Amazon / 楽天市場で検索")
+
+    def test_bad_script_keywords_fall_back_to_tags(self):
+        # 悪質キーワード（1文字）は除外され、tags フォールバック + default 系サフィックスが適用される
+        result = self._run(["あ"])
+        assert "テーマ関連のおすすめアイテム・書籍" in result
+        assert '「テスト 関連グッズ」</div>' in result
 
 
 # --------------------------------------------------
