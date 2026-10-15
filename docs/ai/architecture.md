@@ -30,14 +30,13 @@ Collects trending topics from multiple sources:
 | RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters) | xml.etree.ElementTree | pokemon | ✅ Active | |
 | GitHub | Search API | kemono/pokemon | ✅ Active | 未認証 60req/h |
 | Bluesky | AT Protocol search API | tech/kemono/pokemon | ⏸️ Disabled | 501 Not Implemented (2026-10-06 コメントアウト) |
-| GameSpot RSS | HTMLパース | kemono | ✅ Active | ゲームニュース → ストーリーインスピレーション |
-| IGN RSS | HTMLパース | kemono | ✅ Active | ゲーム・エンタメニュース |
+| GameSpot RSS | RSS 2.0 解析 | kemono | ✅ Active | ゲームニュース → ストーリーインスピレーション |
+| IGN RSS | RSS 2.0 解析 | kemono | ✅ Active | ゲーム・エンタメニュース |
 | Anime News Network | HTMLパース | kemono | ✅ Active | アニメニュース |
-| Crunchyroll News | HTMLパース | kemono | ✅ Active | アニメ・エンタメニュース |
 
 **カテゴリ別ソース構成:**
 - **tech**: HackerNews, RSS (Zenn/Qiita)
-- **kemono**: GitHub, GameSpot, IGN, Anime News Network, Crunchyroll
+- **kemono**: GitHub, GameSpot, IGN, Anime News Network
 - **pokemon**: GitHub, RSS (PokéCommunity/PokeBeach/PokemonBlog/PocketMonsters)
 
 Output: `data/topics/{YYYY-MM-DD}_{HHMMSS}.json` with structure:
@@ -106,7 +105,7 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 | Service | Env Var | Name |
 |---------|---------|------|
 | Gemini | `GEMINI_API_KEY` | - |
-| HuggingFace | `HF_TOKEN` | read/write ロール必要（细粒度トークンは ZeroGPU quota API 不可） |
+| HuggingFace | `HF_TOKEN` | read/write ロール必要（細粒度トークンは ZeroGPU quota API 不可） |
 | Amazon | `AMAZON_TRACKING_ID` | - |
 | Rakuten | `RAKUTEN_AFFILIATE_ID` | - |
 

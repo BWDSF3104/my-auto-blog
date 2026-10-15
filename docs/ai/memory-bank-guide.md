@@ -16,11 +16,9 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 | `decisions/archive/` | 過去の設計判断のアーカイブ | `decisions/` は不変・バッチクリーンアップ対象外（本 archive は履歴） | — |
 | `known-issues/` | 既知問題（1エントリ1ファイル方式）。トップ=未解決、`archive/`=解決済 | 新規問題発見時に `known-issues/KI-YYYYMMDD-NN-short-name.md` を作成。解決時に `known-issues/archive/` へ `mv` | ✅ |
 | `known-issues/archive/` | 解決済み問題のアーカイブ | 解決時に `known-issues/` から `mv` | — |
-| `backlog.md` | バックログ | 未実装項目の追加・完了時の削除（変更履歴は git commit に委ねる） | ✅ |
+| `backlog.md` | バックログ | 未実装項目の追加・完了時の削除・不採用時は `backlog-archive.md` へ移動（変更履歴は git commit に委ねる） | ✅ |
+| `backlog-archive.md` | 不採用バックログ項目のアーカイブ（履歴参照のみ） | 不採用判定時に `backlog.md` から移動。その後の更新は行わない | — |
 | `architecture.md` | アーキテクチャ図 | decisions に記録した変更がシステム構成に反映されたときのみ更新 | ✅ |
-
-- `development-notes.md` は削除済み。詳細な実装履歴は git log で確認可能
-- `issue-inventory-archive.md` は廃止済み（2026-10-04）。残存イシューは `backlog.md` に統合済み
 
 ## 1エントリ1ファイル方式
 
