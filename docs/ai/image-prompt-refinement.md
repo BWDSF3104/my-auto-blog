@@ -13,7 +13,7 @@
 
 ## Nova-Furry-XL (Illustrious系) / HuggingFace
 
-### ポジティブ - 最終案（8タグ）
+### ポジティブ - 最終案（7タグ・2026-10-15時点）
 
 | タグ | 変更 | 理由 |
 |---|---|---|
@@ -22,16 +22,17 @@
 | `amazing quality` | **削除** | `best quality` と重複 |
 | `very aesthetic` | **追加** | Illustrious公式推奨 |
 | `ultra-detailed` | 維持 | Illustrious必須 |
-| `absurdres` | **追加** | Illustrious公式推奨 |
-| `newest` | **追加** | Illustrious公式推奨（年代制御） |
+| `absurdres` | **削除**（2026-10-06） | 947009c「順序変更+品質タグ削減」で削除 |
+| `newest` | **削除**（2026-10-06） | 947009c「順序変更+品質タグ削減」で削除（年代制御不要と判断） |
 | `furry` | 維持 | 必須 |
+| `no human` | **追加**（2026-10-15） | human被写体防止のダブルガード（ネガティブ `human` と併用）。Illustrious公式ガイドの Subject Details タグ。Fluxフォールバック（ネガティブ非サポート）でも有効。Danbooru標準タグではないため IL v18.0A での実効は次回生成で検証（詳細: `tasks/2026-10-15-positive-prompt-no-human.md`） |
 | `anthro` | **削除** | キャラプロンプトで重複 |
 | `safe for work` | 維持 | SFW必須 |
 | `wholesome` | **削除** | 非標準Danbooruタグ |
 | `family-friendly` | **削除** | Danbooruタグではない（無効） |
 
 ```
-masterpiece, best quality, very aesthetic, ultra-detailed, absurdres, newest, furry, safe for work
+masterpiece, best quality, very aesthetic, ultra-detailed, furry, no human, safe for work
 ```
 
 ### ネガティブ - 最終案（16タグ）
@@ -115,11 +116,11 @@ SDXLのCLIPエンコーダーでは先頭トークンほど重みが大きい:
 
 ## 実装対象（Nova-Furry-XLのみ）
 
-## 削減まとめ
+## 削減まとめ（2026-10-15時点の実値）
 
-| 項目 | 現在 | 最終案 | 変更 |
+| 項目 | 精査対象（2026-10-05） | 現在 | 変更 |
 |---|---|---|---|
-| Nova-Furry-XL ポジティブ | 9タグ | **8タグ** | -1 |
-| Nova-Furry-XL ネガティブ | 20タグ | **16タグ** | -4 |
+| Nova-Furry-XL ポジティブ | 9タグ | **7タグ**（2026-10-06: 8→6 品質タグ削減、2026-10-15: `no human` 追加で 7） | -2 |
+| Nova-Furry-XL ネガティブ | 20タグ | **16タグ**（2026-10-14: `human` 追加で 16） | -4 |
 | Flux.1 | 未対応 | 未対応 | 超低優先度 |
-| **全体** | **29タグ** | **24タグ** | **-5（-17%）** |
+| **全体** | **29タグ** | **23タグ** | **-6（-21%）** |

@@ -62,7 +62,7 @@ GENRE_FILTER_MIN_SCORE = int(os.environ.get("GENRE_FILTER_MIN_SCORE", "30"))
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 # SFWタグを常に付与して安全な画像生成を強制
 # アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
-BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, furry, safe for work"
+BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, furry, no human, safe for work"
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 
