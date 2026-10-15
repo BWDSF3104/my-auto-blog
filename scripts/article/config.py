@@ -239,6 +239,20 @@ _KEMONO_CHARACTER2_RULES = {
     "rival": "character_1 と character_2 の両方を必ず定義してください。character_2 は character_1 のライバルであり、外見は character_1 と明確に区別できるものにしてください。",
 }
 
+# クローン画像プロンプトルール（特約: extra_key == "clone" の時のみ注入）
+_KEMONO_CLONE_RULE_TEXT = (
+    "・【クローン画像プロンプトルール】\n"
+    "  - character_1 と character_2 が一緒に登場する画像では、キャラクターIDの後のシーンキーワード部分に `clone` を含めてください（ヘッダーの image_prompt と本文の IMAGE_PROMPT の両方に適用）。\n"
+    "  - 1人のキャラクターのみが登場する画像では `clone` を含めないでください（模型が2人生成するのを防ぐため）。"
+)
+
+# dark persona画像プロンプトルール（特約: extra_key == "dark_persona" の時のみ注入）
+_KEMONO_DARK_PERSONA_RULE_TEXT = (
+    "・【dark persona画像プロンプトルール】\n"
+    "  - character_1 と character_2 が一緒に登場する画像では、キャラクターIDの後のシーンキーワード部分に `dark persona` と `clone` の両方を含めてください（ヘッダーの image_prompt と本文の IMAGE_PROMPT の両方に適用）。\n"
+    "  - 1人のキャラクターのみが登場する画像では `dark persona` / `clone` を含めないでください（模型が2人生成するのを防ぐため）。"
+)
+
 # kemono_story 商品名の関連性判定トークン（固定リスト）
 _KEMONO_CORE_TOKENS = ("ケモノ", "バケモノ", "獣人", "獣", "動物", "アニマル", "anthro", "beast")
 _KEMONO_ANCHOR_KEYWORDS = ("ケモノ", "獣人", "動物")
@@ -331,6 +345,8 @@ __all__ = [
     "_KEMONO_TRANSFORM_LABEL", "_KEMONO_TRANSFORM_TAGS",
     "_KEMONO_RELATIONSHIP_TEXT", "_KEMONO_EXTRA_TAGS",
     "_KEMONO_EXTRA_TEXT", "_KEMONO_CHAR_COUNT_DESC_2", "_KEMONO_CHARACTER2_RULES",
+    "_KEMONO_CLONE_RULE_TEXT",
+    "_KEMONO_DARK_PERSONA_RULE_TEXT",
     "_KEMONO_CORE_TOKENS", "_KEMONO_ANCHOR_KEYWORDS", "_KEMONO_RELATIONSHIP_AFFILIATE",
     # アフィリエイト
     "_AF_EXCLUDE_CP_PATTERNS", "_AF_EXCLUDE_CPS",

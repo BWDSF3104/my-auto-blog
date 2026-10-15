@@ -189,10 +189,19 @@ def build_prompt(prompt_type, ng_instruction, pub_date_str, file_timestamp, kemo
     # e621 参考データは1回選出し、プロンプト注入と生成情報表示の両方で同一データを使用
     template = load_prompt_template(prompt_type)
     e621_info = _select_character_features(target_genres=target_genres)
+    # 追加設定画像プロンプトルール: clone / dark_persona は各自の特約を持ち、そのタイプが選ばれた時のみ注入（none / rival は一切指示を渡さない）
+    extra_key = kemono_params.get("extra_key", "none")
+    if extra_key == "clone":
+        extra_rule_text = _KEMONO_CLONE_RULE_TEXT
+    elif extra_key == "dark_persona":
+        extra_rule_text = _KEMONO_DARK_PERSONA_RULE_TEXT
+    else:
+        extra_rule_text = ""
     prompt = template.format(
         ng_instruction=ng_instruction,
         pub_date_str=pub_date_str,
         character_features_instruction=_format_character_features_instruction(e621_info),
+        extra_rule_text=extra_rule_text,
         **kemono_params
     )
 
