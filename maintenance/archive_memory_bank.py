@@ -4,12 +4,15 @@ Usage:
     python maintenance/archive_memory_bank.py            # dry run (default)
     python maintenance/archive_memory_bank.py --apply    # apply
     python maintenance/archive_memory_bank.py --date 2026-10-14 --root .
+    python maintenance/archive_memory_bank.py --tmp-retention-days 14
 
 Rules: docs/ai/memory-bank-guide.md "バッチクリーンアップ"
 - current-task.tsv: drop reference lines whose status is in {完了, 中断}
 - tasks/: mtime older than 14 days AND not referenced by the tsv -> mv to tasks/archive/
 - verification/: per feature dir keep the newest 2 runs (mtime order), delete the rest
-- tmp/: delete all files and subdirectories (deletion delegated to kilo-safe-*.cmd)
+- tmp/: delete entries whose newest mtime is older than TMP_RETENTION_DAYS
+  (default 7, --tmp-retention-days); directories are judged by the newest
+  mtime inside them (deletion delegated to kilo-safe-*.cmd)
 """
 
 from __future__ import annotations
@@ -25,6 +28,7 @@ from pathlib import Path
 
 AGE_DAYS = 14
 KEEP_RUNS = 2
+TMP_RETENTION_DAYS = 7
 DROP_STATUSES = ("完了", "中断")
 
 
@@ -53,7 +57,12 @@ class Plan:
     notes: list[str] = field(default_factory=list)
 
 
-def build_plan(root: Path, today: date, stat_fn=os.stat) -> Plan:
+def build_plan(
+    root: Path,
+    today: date,
+    stat_fn=os.stat,
+    tmp_retention_days: int = TMP_RETENTION_DAYS,
+) -> Plan:
     plan = Plan(root=root, today=today)
     ai = root / "docs" / "ai"
 
@@ -113,10 +122,26 @@ def build_plan(root: Path, today: date, stat_fn=os.stat) -> Plan:
 
     tmp_dir = ai / "tmp"
     if tmp_dir.is_dir():
+        tmp_cutoff_ts = (
+            datetime.combine(today, time.min) - timedelta(days=tmp_retention_days)
+        ).timestamp()
         for e in sorted(tmp_dir.iterdir()):
             if e.is_symlink():
                 plan.notes.append(f"tmp: skip symlink (safe-* refuses): {e.name}")
-            elif e.is_dir():
+                continue
+            newest = stat_fn(e).st_mtime
+            if e.is_dir():
+                for p in e.rglob("*"):
+                    try:
+                        newest = max(newest, stat_fn(p).st_mtime)
+                    except OSError:
+                        continue
+            if newest > tmp_cutoff_ts:
+                plan.notes.append(
+                    f"tmp: keep (updated within {tmp_retention_days}d): {e.name}"
+                )
+                continue
+            if e.is_dir():
                 plan.rm_dirs.append(e)
             else:
                 plan.rm_files.append(e)
@@ -204,12 +229,18 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apply", action="store_true", help="apply the plan (default: dry-run)")
     parser.add_argument("--date", default=None, help="reference date YYYY-MM-DD (default: today)")
     parser.add_argument("--root", default=None, help="project root (default: repository root)")
+    parser.add_argument(
+        "--tmp-retention-days",
+        type=int,
+        default=TMP_RETENTION_DAYS,
+        help=f"tmp/ retention period in days (default: {TMP_RETENTION_DAYS})",
+    )
     args = parser.parse_args(argv)
 
     today = date.fromisoformat(args.date) if args.date else date.today()
     root = Path(args.root).resolve() if args.root else Path(__file__).resolve().parent.parent
 
-    plan = build_plan(root, today)
+    plan = build_plan(root, today, tmp_retention_days=args.tmp_retention_days)
     results = execute_plan(plan, apply=args.apply)
     print(format_report(plan, results))
     return 1 if any(r.status == "error" for r in results) else 0

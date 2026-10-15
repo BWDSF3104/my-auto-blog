@@ -19,7 +19,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 | `backlog.md` | バックログ | 未実装項目の追加・完了時の削除・不採用時は `backlog-archive.md` へ移動（変更履歴は git commit に委ねる） | ✅ |
 | `backlog-archive.md` | 不採用バックログ項目のアーカイブ（履歴参照のみ） | 不採用判定時に `backlog.md` から移動。その後の更新は行わない | — |
 | `architecture.md` | アーキテクチャ図 | decisions に記録した変更がシステム構成に反映されたときのみ更新 | ✅ |
-| `tmp/` | スクラッチ置き場（使い捨てスクリプト・一時成果物。gitignore 対象） | 使用時に作成。タスク開始時のバッチクリーンアップ（`archive_memory_bank.py`）で全削除 | — |
+| `tmp/` | スクラッチ置き場（使い捨てスクリプト・一時成果物。gitignore 対象） | 使用時に作成。タスク開始時のバッチクリーンアップ（`archive_memory_bank.py`）で 7 日以上更新のないエントリを削除（`--tmp-retention-days` で保持期間変更） | — |
 
 ## 1エントリ1ファイル方式
 
@@ -147,7 +147,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 | `current-task.tsv` | 完了・中断タスクの参照行を削除（詳細は `tasks/` に既記） |
 | `tasks/` | `current-task.tsv` 未参照 AND mtime（最終更新）から14日以上経過したファイルを `tasks/archive/` へ `mv` |
 | `verification/` | 機能ディレクトリ毎に `runs/` 配下の run ディレクトリを mtime 順に直近2保持（同値は名順）、それ以前を削除 |
-| `tmp/` | 全ファイル・サブディレクトリを削除（シンボリックリンクはスキップ） |
+| `tmp/` | 最更新 mtime が 7 日以上経過したエントリを削除（ファイル + サブディレクトリ。サブディレクトリは内部の最更新 mtime で判定。シンボリックリンクはスキップ。`--tmp-retention-days` で保持期間変更） |
 
 **アーカイブ操作は `tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除（`kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` 経由）。`plans/`・`known-issues/` はワークフロー駆動の `mv`（完了・解決時・バッチではない）。ファイル内容の編集・書き換えは行わない（`current-task.tsv` の行削除のみ例外）。アーカイブディレクトリは git 追跡対象。**
 

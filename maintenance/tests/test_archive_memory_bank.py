@@ -77,6 +77,7 @@ def make_tree(tmp_path: Path) -> dict:
     touch(tmp_path, "docs/ai/tmp/f1.txt")
     touch(tmp_path, "docs/ai/tmp/.hidden")
     touch(tmp_path, "docs/ai/tmp/sub/inner.txt")
+    touch(tmp_path, "docs/ai/tmp/old-sub/inner-old.txt")
 
     mtimes = {
         tmp_path / "docs/ai/tasks/2026-09-01-old.md": OLD,
@@ -88,6 +89,12 @@ def make_tree(tmp_path: Path) -> dict:
         feat / "runs/run-mid": datetime(2026, 10, 5, 0, 0),
         feat / "runs/run-new1": datetime(2026, 10, 10, 0, 0),
         feat / "runs/run-new2": datetime(2026, 10, 10, 0, 0),
+        tmp_path / "docs/ai/tmp/f1.txt": RECENT,
+        tmp_path / "docs/ai/tmp/.hidden": OLD,
+        tmp_path / "docs/ai/tmp/sub": OLD,
+        tmp_path / "docs/ai/tmp/sub/inner.txt": RECENT,
+        tmp_path / "docs/ai/tmp/old-sub": OLD,
+        tmp_path / "docs/ai/tmp/old-sub/inner-old.txt": OLD,
     }
     return {"tmp": tmp_path, "mtimes": mtimes}
 
@@ -128,8 +135,26 @@ def test_plan_verification_noop_when_two_or_fewer_runs(tmp_path):
 def test_plan_tmp_files_and_dirs(tmp_path):
     ctx = make_tree(tmp_path)
     plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
-    assert [p.name for p in plan.rm_files] == [".hidden", "f1.txt"]
-    assert any(p.name == "sub" for p in plan.rm_dirs)
+    assert [p.name for p in plan.rm_files] == [".hidden"]
+    assert [p.name for p in plan.rm_dirs if "tmp" in p.parts] == ["old-sub"]
+    assert not any(p.name == "sub" for p in plan.rm_dirs)
+    assert any("tmp: keep (updated within 7d): f1.txt" in n for n in plan.notes)
+    assert any("tmp: keep (updated within 7d): sub" in n for n in plan.notes)
+
+
+def test_plan_tmp_dir_retained_when_nested_file_recent(tmp_path):
+    ctx = make_tree(tmp_path)
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    assert tmp_path / "docs/ai/tmp/sub" not in plan.rm_dirs
+
+
+def test_plan_tmp_retention_days_boundary(tmp_path):
+    ctx = make_tree(tmp_path)
+    f1 = tmp_path / "docs/ai/tmp/f1.txt"
+    kept = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]), tmp_retention_days=4)
+    assert f1 not in kept.rm_files
+    removed = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]), tmp_retention_days=3)
+    assert f1 in removed.rm_files
 
 
 def test_tasks_boundary_mtmp(tmp_path):
@@ -155,6 +180,8 @@ def test_dry_run_no_side_effects(tmp_path):
     assert (tmp_path / "docs/ai/tasks/2026-09-01-old.md").exists()
     assert (tmp_path / "docs/ai/verification/feat-a/runs/run-old").exists()
     assert (tmp_path / "docs/ai/tmp/f1.txt").exists()
+    assert (tmp_path / "docs/ai/tmp/.hidden").exists()
+    assert (tmp_path / "docs/ai/tmp/old-sub").exists()
     assert "完了" in (tmp_path / "docs/ai/current-task.tsv").read_text(encoding="utf-8")
 
 
@@ -175,8 +202,10 @@ def test_apply_moves_deletes_and_rewrites_tsv(tmp_path):
     assert not (tmp_path / "docs/ai/verification/feat-a/runs/run-old").exists()
     assert not (tmp_path / "docs/ai/verification/feat-a/runs/run-mid").exists()
     assert (tmp_path / "docs/ai/verification/feat-a/runs/run-new1").exists()
-    assert not (tmp_path / "docs/ai/tmp/f1.txt").exists()
-    assert not (tmp_path / "docs/ai/tmp/sub").exists()
+    assert (tmp_path / "docs/ai/tmp/f1.txt").exists()
+    assert (tmp_path / "docs/ai/tmp/sub").exists()
+    assert not (tmp_path / "docs/ai/tmp/.hidden").exists()
+    assert not (tmp_path / "docs/ai/tmp/old-sub").exists()
 
     tsv_bytes = (tmp_path / "docs/ai/current-task.tsv").read_bytes()
     assert not tsv_bytes.startswith(b"\xef\xbb\xbf")
@@ -189,13 +218,12 @@ def test_apply_moves_deletes_and_rewrites_tsv(tmp_path):
 
     assert [c[-1] for c in runner.calls] == [
         "docs/ai/tmp/.hidden",
-        "docs/ai/tmp/f1.txt",
         "docs/ai/verification/feat-a/runs/run-mid",
         "docs/ai/verification/feat-a/runs/run-old",
-        "docs/ai/tmp/sub",
+        "docs/ai/tmp/old-sub",
     ]
     cmd_paths = [c[2] for c in runner.calls]
-    assert cmd_paths.count(str(tmp_path / "kilo-safe-remove.cmd")) == 2
+    assert cmd_paths.count(str(tmp_path / "kilo-safe-remove.cmd")) == 1
     assert cmd_paths.count(str(tmp_path / "kilo-safe-rmdir.cmd")) == 3
     assert all(c[0] == "cmd.exe" and c[1] == "/c" for c in runner.calls)
 
@@ -235,6 +263,16 @@ def test_cli_dry_run_no_side_effects(tmp_path, capsys):
     assert "完了" in tsv
     assert (tmp_path / "docs/ai/tmp/f1.txt").exists()
     assert (tmp_path / "docs/ai/tasks/2026-09-01-old.md").exists()
+
+
+def test_cli_tmp_retention_days_flag(tmp_path, capsys):
+    make_tree(tmp_path)
+    rc = amb.main(
+        ["--root", str(tmp_path), "--date", "2026-10-14", "--tmp-retention-days", "3"]
+    )
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "total: " in out
 
 
 def test_cli_apply_exit_code_on_error(tmp_path, capsys, monkeypatch):

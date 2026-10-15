@@ -27,7 +27,7 @@ Static site generator blog. No authentication, no database, no SSR. Deployed to 
   1. Write the script to the scratch folder `docs\ai\tmp\` (e.g. `docs\ai\tmp\fetch_check.py`).
   2. Execute it with `python <file>`.
   3. Keep any output files in the same scratch folder.
-  - Do not place throwaway scripts in production code directories (e.g. `scripts/`). `docs/ai/tmp/` is gitignored and fully cleared at task start by `maintenance/archive_memory_bank.py`.
+  - Do not place throwaway scripts in production code directories (e.g. `scripts/`). `docs/ai/tmp/` is gitignored; entries not updated for 7+ days (mtime) are cleared by the batch at task start (`maintenance/archive_memory_bank.py`, retention configurable via `--tmp-retention-days`).
 - **Enforcement**: Global config `~/.config/kilo/kilo.jsonc` → `permission.bash` gates destructive commands (`Remove-Item *` / `rm *` / `del *` / `rd *` / `rmdir *` / `pip uninstall *` / `npm uninstall *` / `git push --force *` / `git reset --hard *` / `git clean *` / `gh repo delete *`) to `ask`; `python -c *` / `python - *` / `node -e *` / `Set-Content *` / `Out-File *` / `New-Item *` are `allow`. Unknown commands default to `ask`.
 
 ## Code Verification
