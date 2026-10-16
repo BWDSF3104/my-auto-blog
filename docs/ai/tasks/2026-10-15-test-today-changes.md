@@ -1,6 +1,6 @@
 # 本日（2026-10-15）変更分の E2E テスト（実ワークフロー実行）
 
-**Status**: 進行中（実行保留 — ユーザーのトリガー開始指示待ち）
+**Status**: 完了
 **Date**: 2026-10-15
 
 ## 意図・背景
@@ -48,7 +48,7 @@
 
 | Step | 内容 | 方法 |
 |---|---|---|
-| 3 | ワークフロー手動トリガー | `gh workflow run "Auto Generate Content and Deploy to GitHub Pages"`（返却 run ID を記録） |
+| 3 | ワークフロー手動トリガー | **スキップ** — 定刻 run `38833424145`（event=schedule, headSha `2a44c92`）を使用。5 テスト対象コミット全て headSha の祖先（確認済み） |
 | 4 | 実行中監視 | `schedule_wakeup`/`cron_create` で約 3 分ごとに `gh run view <RUN_ID> --json status,conclusion,jobs`（完了目安 5〜10 分） |
 | 5 | 完了/失敗確認 | 成功: `git stash; git pull --rebase; git stash pop` / 失敗: `gh run view <RUN_ID> --log --job <JOB_ID>` |
 | 6 | 検証項目実施 | 下表（pull 後ローカルで実施） |
@@ -59,14 +59,15 @@
 | # | 検証項目 | 対象変更 | 確認方法 | 成功基準 |
 |---|---|---|---|---|
 | V1 | ワークフロー全体成功 | 全体 | `gh run view <RUN_ID> --json status,conclusion` | conclusion=success |
-| V2 | ポジティブ `no human` 反映 | `a67a3c0` | pull 後、最新 `data/prompt_logs/*.txt` で BASE_QUALITY_PROMPT 固定部に `no human` 確認 | 存在 |
-| V3 | ネガティブ `human` 反映 | `22ba34a` | 同上 prompt_logs でネガティブに `human` 確認 | 存在 |
+| V2 | ポジティブ `no human` 反映 | `a67a3c0` | `scripts/article/config.py:65` の `BASE_QUALITY_PROMPT` に `no human` 存在＋run headSha の祖先確認（prompt_log には固定部が出力されない） | 存在 |
+| V3 | ネガティブ `human` 反映 | `22ba34a` | `scripts/article/image.py:155` の NEGATIVE_PROMPT に `human` 存在＋run headSha の祖先確認 | 存在 |
 | V4 | クローン系ルール条件注入 | `1b292e4` | prompt_logs で extra_key=clone/dark_persona の時のみルール注入、none/rival は注入なし | 条件分岐どおり |
 | V5 | 元投稿リンク表示 | `7efa100` | `npm run build` 後、生成記事の dist HTML で `.gen-info-link` / 元投稿 URL 確認 | 存在 |
 | V6 | CTA スリム化 | `0f00705` | dist HTML で product-card / 新 CTA 存在・旧 CTA box 不在 | 新 CTA のみ |
 | V7 | レイアウトスクリーンショット | `7efa100` | 生成記事ページ（本番 URL かローカルビルド）をスクリーンショットしユーザーへ送信（AGENTS.md 必須） | 送信済み |
 | V8 | ビルド・デプロイ成功 | 全体 | build-and-deploy job success + Pages deploy 完了 | 成功 |
 | V9 | 生成画像 `no human` 視覚検証 | `a67a3c0` | `analyze_image_with_groq`（画像はクラウド送信 → ユーザー確認必須） | 人物が被写体でない |
+| V10 | 人気版権/artist「プロンプトに使用」実在性 | `7efa100` | 生成記事の生成情報値と prompt log が完全一致（単一 `e621_info` 構造 `generate_article.py:191` で乖離不可能）。版権: 製品推薦が実使用証拠 / artist: art_style に "by X" 未使用（任意） | 一致＋実使用確認 |
 
 ### 検証対象外（理由）
 
@@ -85,9 +86,22 @@
 
 ## Verification
 
-（実行後に記録。Step 7 の `test-results/2026-10-15-github-workflow-test.md` へも記録）
+| # | 結果 | 根拠 |
+|---|---|---|
+| V1 | ✅ | 定刻 run `38833424145`（event=schedule）conclusion=success |
+| V2 | ✅ | `config.py:65` `BASE_QUALITY_PROMPT` に `no human` 存在。run headSha `2a44c92` の祖先確認済み |
+| V3 | ✅ | `image.py:155` NEGATIVE_PROMPT に `human` 存在。run headSha の祖先確認済み |
+| V4 | ✅ | prompt log（`2026-10-16-100918.txt`）でクローン系ルール注入確認（extra_key=clone） |
+| V5 | ✅ | `dist\posts\zankyou-no-duplica\index.html` で `gen-info-link` 6 件、`e621.net/posts/1624482` 1 件、`e621.net/posts/2925603` 1 件 |
+| V6 | ✅ | 同上 dist HTML で `pc-btn-amazon` 11 / `pc-btn-rakuten` 11 / `pc-name` 11 / 🔥 1（先頭強調）。旧 CTA box（gradient）0 件 |
+| V7 | ✅ | 本番 URL full-page スクリーンショット `docs\ai\tmp\v7-article-full.png` をユーザーへ添付送信 |
+| V8 | ✅ | build-and-deploy job success、GitHub Pages デプロイ完了 |
+| V9 | ✅ | ユーザーが本番ウェブで視覚確認済み（人物被写体なし） |
+| V10 | ✅ | 生成情報値と prompt log 133–134 行完全一致（単一 `e621_info` 構造）。版権: 製品推薦実使用証拠あり / artist: art_style に "by X" 未使用（任意） |
+
+詳細: `test-results/2026-10-15-github-workflow-test.md`
 
 ## 完了時 Memory Bank 操作
 
-- [ ] `current-task.tsv` の参照行を削除
-- [ ] 本ファイルの Status を「完了」に更新
+- [x] `current-task.tsv` の参照行を削除
+- [x] 本ファイルの Status を「完了」に更新
