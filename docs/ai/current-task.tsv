@@ -1,2 +1,2 @@
 task_file	status	next_action
-docs/ai/tasks/2026-10-15-test-today-changes.md	進行中	T1-T8 を実行（テスト実施）
+docs/ai/tasks/2026-10-15-test-today-changes.md	進行中	実ワークフロー E2E をトリガー（gh workflow run）＋ V1-V9 検証（ユーザー待ち）
