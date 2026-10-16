@@ -97,6 +97,14 @@ INLINE_AFF_PRODUCT_PATTERN = re.compile(
 ENABLE_CHAR_DEDUP = os.environ.get("ENABLE_CHAR_DEDUP", "0") == "1"
 
 # --------------------------------------------------
+# アフィリエイトのトグル
+# --------------------------------------------------
+# 末尾セクションのタグ由来検索リンク行（「Amazon / 楽天市場で検索」）の生成トグル（デフォルトOFF）
+# OFF時は楽天API商品カードのみ維持（カードも無ければ末尾セクション全体をスキップ）。
+# 環境変数 ENABLE_TAG_AFFILIATE=1 で有効化（比較表・product_recommendations カードは対象外・常時ON）
+ENABLE_TAG_AFFILIATE = os.environ.get("ENABLE_TAG_AFFILIATE", "0") == "1"
+
+# --------------------------------------------------
 # kemono_story プロンプトのPython側ランダム化設定
 # --------------------------------------------------
 # 各項目の重み付き選択でテーマの多様性を確保
@@ -339,7 +347,7 @@ __all__ = [
     "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION",
     "MIN_DESC_LEN", "MAX_DESC_LEN",
     "INLINE_IMAGE_PATTERN", "INLINE_AFFILIATE_PATTERN", "INLINE_AFF_PRODUCT_PATTERN",
-    "ENABLE_CHAR_DEDUP",
+    "ENABLE_CHAR_DEDUP", "ENABLE_TAG_AFFILIATE",
     # kemono_story ランダム化
     "CHAR_TYPE_WEIGHTS", "WORLD_SETTING_WEIGHTS", "TRANSFORM_WEIGHTS",
     "RELATIONSHIP_WEIGHTS", "EXTRA_SETTING_WEIGHTS",

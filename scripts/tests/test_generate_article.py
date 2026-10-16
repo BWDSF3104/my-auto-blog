@@ -955,7 +955,8 @@ class TestInjectAffiliateLinks:
             "AMAZON_TRACKING_ID": "test-tag",
             "RAKUTEN_AFFILIATE_ID": "test-rakuten-id",
         }), patch("article.affiliate._rakuten_search",
-                 side_effect=lambda kw: (rakuten_products or {}).get(kw)):
+                 side_effect=lambda kw: (rakuten_products or {}).get(kw)), \
+             patch("article.affiliate.ENABLE_TAG_AFFILIATE", True):
             return inject_affiliate_links(_affiliate_sample_content(), script_keywords=script_keywords)
 
     def test_cta_box_and_markdown_links_removed(self):
@@ -1014,6 +1015,59 @@ class TestInjectAffiliateLinks:
         result = self._run(["あ"])
         assert "テーマ関連のおすすめアイテム・書籍" in result
         assert '「テスト 関連グッズ」</div>' in result
+
+
+class TestTagAffiliateToggle:
+    """タグ由来検索リンクのトグル（ENABLE_TAG_AFFILIATE、デフォルトOFF）。
+
+    OFF: 「Amazon / 楽天市場で検索」行を生成しない（楽天APIカードは不変）。
+    OFF かつ楽天APIカードも無い場合は末尾セクション全体をスキップする。
+    ON: 検索リンク行が従来どおり生成される。
+    """
+
+    def _run(self, toggle, rakuten_products=None):
+        with patch.dict(os.environ, {
+            "AMAZON_TRACKING_ID": "test-tag",
+            "RAKUTEN_AFFILIATE_ID": "test-rakuten-id",
+        }), patch("article.affiliate._rakuten_search",
+                 side_effect=lambda kw: (rakuten_products or {}).get(kw)), \
+             patch("article.affiliate.ENABLE_TAG_AFFILIATE", toggle):
+            return inject_affiliate_links(_affiliate_sample_content(), script_keywords=["ケモノ", "ケモノ BL"])
+
+    def test_off_skips_section_without_rakuten_cards(self):
+        # 既定OFF: 検索リンク行なし + 楽天APIカードもなし → セクション全体がスキップ
+        result = self._run(False)
+        assert "Amazon / 楽天市場で検索" not in result
+        assert "amazon.co.jp/s?k=" not in result
+        assert "📚 テーマ関連のおすすめアイテム・書籍" not in result
+        assert "アフィリエイト広告" not in result
+
+    def test_off_keeps_rakuten_cards_only(self):
+        products = {
+            "ケモノ": {
+                "itemName": "ケモノ図鑑",
+                "itemPrice": 2980,
+                "affiliateUrl": "https://hb.afl.rakuten.co.jp/pc=abc",
+                "imageUrl": "https://img.example.com/book.jpg",
+                "reviewCount": 100,
+            }
+        }
+        result = self._run(False, rakuten_products=products)
+        # セクションは楽天APIカードのみで維持される
+        assert "📚 テーマ関連のおすすめアイテム・書籍" in result
+        assert "pc-img" in result
+        assert "ケモノ図鑑" in result
+        # タグ由来の検索リンク行は無い（カード自带のAmazonボタンは pc-name「ケモノ図鑑」側）
+        assert "Amazon / 楽天市場で検索" not in result
+        # 開示文言は残る
+        assert "アフィリエイト広告" in result
+
+    def test_on_generates_search_rows(self):
+        result = self._run(True)
+        assert "Amazon / 楽天市場で検索" in result
+        assert '「ケモノ」</div>' in result
+        assert '「ケモノ BL」</div>' in result
+        assert "📚 テーマ関連のおすすめアイテム・書籍" in result
 
 
 # --------------------------------------------------

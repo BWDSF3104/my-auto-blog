@@ -86,6 +86,11 @@ Trend topics are used to generate targeted affiliate search links and product ca
 4. Links are generated for Amazon and Rakuten with UTM tracking and click analytics
 5. `product_recommendations` frontmatter field generates visual product cards with name, category, price range, and affiliate links
 
+末尾セクション（「### 📚 テーマ関連のおすすめアイテム・書籍」）の構成:
+- 楽天API商品カード（最大3枚、カスケード検索: Gemini商品名 → 先頭句 → タグ由来キーワード。画像・価格付き）— 常時ON
+- タグ由来の検索リンク行（キーワードごとの「Amazon / 楽天市場で検索」行）— `ENABLE_TAG_AFFILIATE` でトグル（デフォルトOFF、`ENABLE_TAG_AFFILIATE=1` でON。OFFかつ楽天APIカードも無い場合はセクション全体をスキップ）
+- アフィリエイト開示文言 — セクション出力時に常時ON
+
 Phase 2 (AI-inferred keywords via Frontmatter) is deferred pending Phase 1 results.
 
 ### Static Site (`astro.config.mjs`)

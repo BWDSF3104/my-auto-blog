@@ -762,6 +762,8 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
     - 複数のプラットフォーム対応
     - 楽天商品カード + キーワード検索リンクを product-card 系に統一
       （旧インラインスタイルのメイン CTA カードは廃止、キーワード重複排除）
+    - タグ由来の検索リンク行は ENABLE_TAG_AFFILIATE でトグル（デフォルトOFF。
+      OFF時は楽天APIカードのみ維持、カードも無ければセクション全体をスキップ）
     """
     if "関連のおすすめアイテム" in content or "スポンサーリンク" in content:
         return content
@@ -781,15 +783,23 @@ def inject_affiliate_links(content: str, trend_keywords: list[str] = None, scrip
     title_match = re.search(r'^title:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
     utm_content = urllib.parse.quote((title_match.group(1).strip() if title_match else "post")[:50])
 
-    search_rows_html, link_log_entries = _build_search_link_rows(
-        keywords_to_use, keyword_sources, amazon_tag, rakuten_id, utm_content
-    )
+    # トグル: ENABLE_TAG_AFFILIATE（デフォルトOFF）。OFF時はタグ由来の検索リンク行を生成しない
+    if ENABLE_TAG_AFFILIATE:
+        search_rows_html, link_log_entries = _build_search_link_rows(
+            keywords_to_use, keyword_sources, amazon_tag, rakuten_id, utm_content
+        )
+    else:
+        search_rows_html, link_log_entries = "", []
     rakuten_cards_html = _build_rakuten_cards_section(
         gemini_products, keywords_to_use, prompt_type, kemono_params,
         title_match.group(1).strip() if title_match else "post",
     )
     cards_inner = (rakuten_cards_html + search_rows_html).strip()
-    cards_html = f"\n<div class=\"product-cards\">{cards_inner}\n</div>" if cards_inner else ""
+    if not cards_inner:
+        # 楽天APIカードも無い場合は末尾セクション全体をスキップ（空見出しの回避）
+        print("   🔗 タグ由来検索リンク無効かつ楽天APIカードなし → 末尾アフィリエイトセクションをスキップ")
+        return content
+    cards_html = f"\n<div class=\"product-cards\">{cards_inner}\n</div>"
 
     affiliate_section = f"""
 
