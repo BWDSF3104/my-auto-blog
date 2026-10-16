@@ -113,11 +113,12 @@ CHAR_TYPE_WEIGHTS = [
 ]
 
 WORLD_SETTING_WEIGHTS = [
-    ("fantasy", 21),
+    ("fantasy", 13),
     ("isekai", 10),
     ("modern", 10),
     ("slice_of_life", 10),
     ("sf", 8),
+    ("pokemon", 8),
     ("space_opera", 7),
     ("adventure", 7),
     ("cyberpunk", 7),
@@ -154,6 +155,7 @@ WORLD_SETTING_GENRE_MAP = {
     "isekai": ["fantasy", "action"],
     "modern": ["slice_of_life", "action", "mystery"],
     "sf": ["sf"],
+    "pokemon": ["action"],
     "space_opera": ["sf", "action"],
     "slice_of_life": ["slice_of_life"],
     "cyberpunk": ["cyberpunk"],
@@ -171,6 +173,7 @@ _KEMONO_WORLD_TAGS = {
     "isekai": ["異世界"],
     "modern": ["現代"],
     "sf": ["SF"],
+    "pokemon": ["ポケモン"],
     "space_opera": ["スペースオペラ"],
     "slice_of_life": ["日常"],
     "cyberpunk": ["サイバーパンク"],

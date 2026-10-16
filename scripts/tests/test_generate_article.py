@@ -2090,7 +2090,7 @@ class TestRandomizeKemonoParams:
         for _ in range(50):
             params = _randomize_kemono_params()
             assert params["world_setting"] in (
-                "ファンタジー", "異世界", "現代", "SF", "スペースオペラ", "日常",
+                "ファンタジー", "異世界", "現代", "SF", "ポケモン", "スペースオペラ", "日常",
                 "サイバーパンク", "冒険", "ダンジョンクライム", "ファンタジーとSF",
                 "ミステリー", "歴史",
             )
