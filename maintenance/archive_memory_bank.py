@@ -2,7 +2,8 @@
 
 Usage:
     python maintenance/archive_memory_bank.py            # dry run (default)
-    python maintenance/archive_memory_bank.py --apply    # apply
+    python maintenance/archive_memory_bank.py --apply    # apply + git add touched paths
+    python maintenance/archive_memory_bank.py --apply --no-git-add  # apply, skip staging
     python maintenance/archive_memory_bank.py --date 2026-10-14 --root .
     python maintenance/archive_memory_bank.py --tmp-retention-days 14
 
@@ -13,6 +14,8 @@ Rules: docs/ai/memory-bank-guide.md "バッチクリーンアップ"
 - tmp/: delete entries whose newest mtime is older than TMP_RETENTION_DAYS
   (default 7, --tmp-retention-days); directories are judged by the newest
   mtime inside them (deletion delegated to kilo-safe-*.cmd)
+- git: on --apply, stage the touched paths (git add) so the agent only needs
+  to commit; --no-git-add skips staging. The script never commits/pushes.
 """
 
 from __future__ import annotations
@@ -157,12 +160,32 @@ def _default_runner(cmd: list[str]) -> tuple[int, str]:
     return proc.returncode, out
 
 
-def execute_plan(plan: Plan, apply: bool, runner=None) -> list[Result]:
+def intended_staged_paths(plan: Plan) -> list[Path]:
+    """Paths that --apply would touch and therefore stage (dry-run preview)."""
+    paths: list[Path] = []
+    if plan.tsv_drops:
+        paths.append(plan.root / "docs" / "ai" / "current-task.tsv")
+    archive_dir = plan.root / "docs" / "ai" / "tasks" / "archive"
+    for src in plan.mvs:
+        paths.append(src)
+        paths.append(archive_dir / src.name)
+    paths.extend(plan.rm_files)
+    paths.extend(plan.rm_dirs)
+    return sorted(set(paths), key=lambda p: p.as_posix())
+
+
+def _default_git_add(root: Path, paths: list[Path]) -> tuple[int, str]:
+    rels = [p.relative_to(root).as_posix() for p in paths]
+    return _default_runner(["git", "-C", str(root), "add", "--", *rels])
+
+
+def execute_plan(plan: Plan, apply: bool, runner=None, git_add=None) -> list[Result]:
     if runner is None:
         runner = _default_runner
     results: list[Result] = []
     root = plan.root
     planned = "planned" if not apply else "applied"
+    staged: list[Path] = []
 
     if plan.tsv_drops:
         tsv_path = root / "docs" / "ai" / "current-task.tsv"
@@ -172,6 +195,7 @@ def execute_plan(plan: Plan, apply: bool, runner=None) -> list[Result]:
             kept = [lines[0]] if lines else []
             kept += [l for l in lines[1:] if l not in plan.tsv_drops]
             tsv_path.write_text("\n".join(kept) + "\n", encoding="utf-8", newline="\n")
+            staged.append(tsv_path)
         results.append(Result(action, "ok", planned))
 
     archive_dir = root / "docs" / "ai" / "tasks" / "archive"
@@ -186,6 +210,8 @@ def execute_plan(plan: Plan, apply: bool, runner=None) -> list[Result]:
             continue
         archive_dir.mkdir(parents=True, exist_ok=True)
         shutil.move(str(src), str(target))
+        staged.append(src)
+        staged.append(target)
         results.append(Result(action, "ok", "moved"))
 
     for kind, paths in (("rm_file", plan.rm_files), ("rm_dir", plan.rm_dirs)):
@@ -198,17 +224,33 @@ def execute_plan(plan: Plan, apply: bool, runner=None) -> list[Result]:
             cmd = ["cmd.exe", "/c", str(root / cmd_name), p.relative_to(root).as_posix()]
             code, out = runner(cmd)
             if code == 0:
+                staged.append(p)
                 results.append(Result(action, "ok", "deleted"))
             else:
                 results.append(Result(action, "error", f"exit {code}: {out}"))
 
+    if apply and staged and git_add is not None:
+        staged_paths = sorted(set(staged), key=lambda p: p.as_posix())
+        code, out = git_add(root, staged_paths)
+        results.append(
+            Result(
+                Action("git_add", root, f"{len(staged_paths)} path(s)"),
+                "ok" if code == 0 else "error",
+                "staged" if code == 0 else f"exit {code}: {out}",
+            )
+        )
+
     return results
 
 
-def format_report(plan: Plan, results: list[Result]) -> str:
+def format_report(plan: Plan, results: list[Result], applied: bool = False) -> str:
     lines = [f"root: {plan.root}", f"date: {plan.today}", ""]
     for n in plan.notes:
         lines.append(f"note: {n}")
+    if not applied:
+        intended = intended_staged_paths(plan)
+        if intended:
+            lines.append(f"note: git_add: would stage {len(intended)} path(s) on --apply")
     for r in results:
         try:
             rel = r.action.path.relative_to(plan.root).as_posix()
@@ -227,6 +269,11 @@ def main(argv: list[str] | None = None) -> int:
         description="Memory Bank batch cleanup (dry-run by default, --apply to run)."
     )
     parser.add_argument("--apply", action="store_true", help="apply the plan (default: dry-run)")
+    parser.add_argument(
+        "--no-git-add",
+        action="store_true",
+        help="with --apply: skip staging the touched paths (git add)",
+    )
     parser.add_argument("--date", default=None, help="reference date YYYY-MM-DD (default: today)")
     parser.add_argument("--root", default=None, help="project root (default: repository root)")
     parser.add_argument(
@@ -241,8 +288,9 @@ def main(argv: list[str] | None = None) -> int:
     root = Path(args.root).resolve() if args.root else Path(__file__).resolve().parent.parent
 
     plan = build_plan(root, today, tmp_retention_days=args.tmp_retention_days)
-    results = execute_plan(plan, apply=args.apply)
-    print(format_report(plan, results))
+    git_add = _default_git_add if (args.apply and not args.no_git_add) else None
+    results = execute_plan(plan, apply=args.apply, git_add=git_add)
+    print(format_report(plan, results, applied=args.apply))
     return 1 if any(r.status == "error" for r in results) else 0
 
 

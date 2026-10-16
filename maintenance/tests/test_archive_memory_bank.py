@@ -51,6 +51,18 @@ class FakeRunner:
         return 0, "Deleted: " + target
 
 
+class FakeGitAdd:
+    def __init__(self, fail=False):
+        self.calls = []
+        self.fail = fail
+
+    def __call__(self, root, paths):
+        self.calls.append((Path(root), [Path(p) for p in paths]))
+        if self.fail:
+            return 1, "simulated git add failure"
+        return 0, "staged"
+
+
 def make_tree(tmp_path: Path) -> dict:
     ai = tmp_path / "docs" / "ai"
     ai.mkdir(parents=True)
@@ -286,3 +298,110 @@ def test_cli_apply_exit_code_on_error(tmp_path, capsys, monkeypatch):
     out = capsys.readouterr().out
     assert rc == 1
     assert "error" in out
+
+
+def test_apply_stages_touched_paths(tmp_path):
+    ctx = make_tree(tmp_path)
+    runner = FakeRunner(tmp_path)
+    git_add = FakeGitAdd()
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    results = amb.execute_plan(plan, apply=True, runner=runner, git_add=git_add)
+    assert all(r.status == "ok" for r in results)
+    assert len(git_add.calls) == 1
+    root, paths = git_add.calls[0]
+    assert root == tmp_path
+    expected = [p.relative_to(tmp_path).as_posix() for p in amb.intended_staged_paths(plan)]
+    assert [p.relative_to(tmp_path).as_posix() for p in paths] == expected
+    git_add_results = [r for r in results if r.action.kind == "git_add"]
+    assert len(git_add_results) == 1
+    assert git_add_results[0].status == "ok"
+
+
+def test_apply_no_git_add_when_not_passed(tmp_path):
+    ctx = make_tree(tmp_path)
+    runner = FakeRunner(tmp_path)
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    results = amb.execute_plan(plan, apply=True, runner=runner)
+    assert not [r for r in results if r.action.kind == "git_add"]
+
+
+def test_apply_mv_failure_not_staged(tmp_path):
+    ctx = make_tree(tmp_path)
+    touch(tmp_path, "docs/ai/tasks/archive/2026-09-01-old.md", "existing")
+    runner = FakeRunner(tmp_path)
+    git_add = FakeGitAdd()
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    results = amb.execute_plan(plan, apply=True, runner=runner, git_add=git_add)
+    _root, paths = git_add.calls[0]
+    staged = {p.relative_to(tmp_path).as_posix() for p in paths}
+    assert "docs/ai/tasks/2026-09-01-old.md" not in staged
+    assert "docs/ai/tasks/archive/2026-09-01-old.md" not in staged
+    assert "docs/ai/tasks/2026-09-01-old2.md" in staged
+    assert "docs/ai/tasks/archive/2026-09-01-old2.md" in staged
+
+
+def test_apply_rm_failure_not_staged(tmp_path):
+    ctx = make_tree(tmp_path)
+    runner = FakeRunner(tmp_path, fail_paths={"runs/run-old"})
+    git_add = FakeGitAdd()
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    results = amb.execute_plan(plan, apply=True, runner=runner, git_add=git_add)
+    _root, paths = git_add.calls[0]
+    staged = {p.relative_to(tmp_path).as_posix() for p in paths}
+    assert "docs/ai/verification/feat-a/runs/run-old" not in staged
+    assert "docs/ai/verification/feat-a/runs/run-mid" in staged
+
+
+def test_git_add_failure_reported(tmp_path):
+    ctx = make_tree(tmp_path)
+    runner = FakeRunner(tmp_path)
+    git_add = FakeGitAdd(fail=True)
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    results = amb.execute_plan(plan, apply=True, runner=runner, git_add=git_add)
+    git_add_results = [r for r in results if r.action.kind == "git_add"]
+    assert len(git_add_results) == 1
+    assert git_add_results[0].status == "error"
+
+
+def test_cli_dry_run_reports_would_stage(tmp_path, capsys):
+    make_tree(tmp_path)
+    rc = amb.main(["--root", str(tmp_path), "--date", "2026-10-14"])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "git_add: would stage" in out
+
+
+def test_cli_apply_stages_by_default(tmp_path, capsys, monkeypatch):
+    make_tree(tmp_path)
+    recorded = []
+
+    def fake_git_add(root, paths):
+        recorded.append((root, paths))
+        return 0, "staged"
+
+    monkeypatch.setattr(amb, "_default_git_add", fake_git_add)
+    monkeypatch.setattr(amb, "_default_runner", FakeRunner(tmp_path))
+    rc = amb.main(["--root", str(tmp_path), "--date", "2026-10-14", "--apply"])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert len(recorded) == 1
+    assert "git_add" in out
+
+
+def test_cli_apply_no_git_add_flag(tmp_path, capsys, monkeypatch):
+    make_tree(tmp_path)
+    recorded = []
+
+    def fake_git_add(root, paths):
+        recorded.append(paths)
+        return 0, "staged"
+
+    monkeypatch.setattr(amb, "_default_git_add", fake_git_add)
+    monkeypatch.setattr(amb, "_default_runner", FakeRunner(tmp_path))
+    rc = amb.main(
+        ["--root", str(tmp_path), "--date", "2026-10-14", "--apply", "--no-git-add"]
+    )
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert recorded == []
+    assert "[git_add]" not in out

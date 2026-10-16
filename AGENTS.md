@@ -84,15 +84,17 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ### タスク開始時（初回コード変更の前）
 
-初回コード変更の前に以下の 2 ステップを実行すること:
+初回コード変更の前に `/task-add` コマンドで以下の 2 ステップを実行すること（ロジック: `maintenance/task_manager.py`）:
 
 1. `docs/ai/tasks/YYYY-MM-DD-short-name.md` にタスクファイルを作成する（意図・背景を含む）
 2. `docs/ai/current-task.tsv` に参照行を追加する
 
+タスク作成後は `python maintenance/archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
 2 ステップ完了前に実装着手しないこと。
 
 ## ワークフロー
 
+- タスク開始/終了: `/task-add` / `/task-end` コマンドを使う（ロジック: `maintenance/task_manager.py`。dry-run 既定・`--apply` で反映、`--no-git-add` で staging スキップ）。
 - git commit / push / deploy: `docs/ai/workflows.md` を参照する。
 - ユーザーが手動記事作成を依頼した際: `docs/ai/manual-article-workflow.md` を参照する。
 - デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md` を参照する。
@@ -107,7 +109,8 @@ my-auto-blog/
 │   ├── article/               # article/ パッケージ（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo）
 │   └── prompts/               # プロンプトテンプレート
 ├── maintenance/               # 開発ツール（本番パイプライン外）
-│   └── archive_memory_bank.py # Memory Bank バッチクリーンアップ（デフォルトは dry-run）
+│   ├── archive_memory_bank.py # Memory Bank バッチクリーンアップ（デフォルトは dry-run）
+│   └── task_manager.py        # タスク開始/終了ヘルパー（/task-add /task-end）
 ├── src/                       # Astro ソース
 │   └── content/posts/         # 生成された Markdown 記事
 ├── public/                    # 静的アセット

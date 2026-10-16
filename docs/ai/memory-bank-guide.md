@@ -122,7 +122,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ### バッチクリーンアップ（新規タスク開始時に実行）
 
-`python maintenance/archive_memory_bank.py` で実行（dry-run が既定・`--apply` で反映）。
+`python maintenance/archive_memory_bank.py` で実行（dry-run が既定・`--apply` で反映）。`--apply` 時にスクリプト自身が touch したパスは `git add` される（staging のみ・`--no-git-add` でスキップ。commit/push はエージェントが担当）。
 
 | ディレクトリ・ファイル | 処理 |
 |---------|------|
@@ -144,7 +144,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - 重要な決定は `decisions/` に新ファイルとして記録すること。
 - 重要な未解決の問題は `known-issues/` に新ファイルとして記録すること。
 - 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
-- **タスク完了時（git commit 前）**: `docs/ai/current-task.tsv` の該当参照行を削除し、タスクファイルの `Status` を『完了』へ更新する。Memory Bank の変更はコード変更と同じ commit に含めること。
+- **タスク完了時（git commit 前）**: `/task-end` コマンド（ロジック: `maintenance/task_manager.py`）で `docs/ai/current-task.tsv` の該当参照行を削除し、タスクファイルの `Status` を『完了』へ更新する（スクリプトは touch した 2 ファイルを `git add`）。Memory Bank の変更はコード変更と同じ commit に含めること。
 - **問題解決時（git commit 前）**: `known-issues/` の該当ファイルを `known-issues/archive/` へ `mv`（1回のみ）。Memory Bank の変更はコード変更と同じ commit に含めること。
 
 ## 中断からの復帰
