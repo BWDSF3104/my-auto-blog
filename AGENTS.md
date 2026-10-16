@@ -22,13 +22,12 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ## コマンド実行ルール
 
-- **1 コマンド 1 行**: シェルコマンドは 1 行で実行する。コマンドを複数行に分割しないこと（kilo は複数行入力を行ごとに解析し、行ごとに 1 つの承認パターンを記録するため、allow リストを汚染する）。複数の文が必要な場合は `;` で 1 行に結合する。
+- **1 コマンド 1 行**: シェルコマンドは 1 行で実行する。コマンドを複数行に分割しないこと。複数の文が必要な場合は `;` で 1 行に結合する。
 - **インライン Python 禁止**: コマンドラインに Python コードを直接渡さないこと（`python -c "..."`、`python -`、コードを `python` にパイプする等）— インライン `python -c` は PowerShell 5.1 でクォーティング・エンコーディングの問題によりほとんど失敗する。代わりに:
   1. スクリプトをスクラッチフォルダ `docs\ai\tmp\` に書き出す（例: `docs\ai\tmp\fetch_check.py`）。
   2. `python <file>` で実行する。
   3. 出力ファイルも同じスクラッチフォルダに保持する。
-  - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリ（mtime）はタスク開始時のバッチ（`maintenance/archive_memory_bank.py`、`--tmp-retention-days` で保持期間を設定可能）で削除される。
-- **強制**: グローバル設定 `~/.config/kilo/kilo.jsonc` → `permission.bash` が破壊的コマンド（`Remove-Item *` / `rm *` / `del *` / `rd *` / `rmdir *` / `pip uninstall *` / `npm uninstall *` / `git push --force *` / `git reset --hard *` / `git clean *` / `gh repo delete *`）を `ask` に制御する。`python -c *` / `python - *` / `node -e *` / `Set-Content *` / `Out-File *` / `New-Item *` は `allow`。不明なコマンドはデフォルトで `ask`。
+  - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリは削除される。
 
 ## コード検証
 
@@ -50,6 +49,11 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 - Dev サーバー: `astro dev --background`
 - バックグラウンドサーバー: `astro dev stop`、`astro dev status`、`astro dev logs`
+
+## ユーザーやり取りフォルダ
+
+- ユーザーとのファイル交換用: `I:\マイドライブ\kilo`
+- `I:` は Google Drive for Desktop の仮想ドライブ（VDF）。
 
 ## 画像解析
 
