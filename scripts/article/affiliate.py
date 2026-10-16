@@ -910,7 +910,7 @@ def extract_product_recommendations(content: str) -> list[dict]:
 def generate_product_cards(products: list[dict], title: str) -> str:
     """
     商品リストから商品カード風のHTMLブロックを生成。
-    各カードは商品名・カテゴリ・価格帯・Amazon/楽天検索リンクを含む。
+    各カードは商品名・価格帯・Amazon/楽天検索リンクを含む（スリム: 絵文字・カテゴリ行なし）。
     """
     if not products:
         return ""
@@ -925,7 +925,6 @@ def generate_product_cards(products: list[dict], title: str) -> str:
         if not name:
             continue
 
-        category = prod.get("category", "商品")
         price = prod.get("price_range", "")
         encoded_kw = urllib.parse.quote(name)
 
@@ -938,27 +937,14 @@ def generate_product_cards(products: list[dict], title: str) -> str:
             f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
         )
 
-        # カテゴリに応じたアイコン
-        cat_icons = {
-            "書籍": "📚",
-            "フィギュア": "🎎",
-            "ゲーム": "🎮",
-            "ソフトウェア": "💻",
-            "ガジェット": "🔧",
-            "グッズ": "🎁",
-        }
-        icon = cat_icons.get(category, "📦")
-
         price_html = ""
         if price:
             price_html = f'<div class="pc-price">{price}</div>'
 
         cards_html += f"""
 <div class="product-card">
-  <div class="pc-icon">{icon}</div>
   <div class="pc-info">
     <div class="pc-name">{name}</div>
-    <div class="pc-category">{category}</div>
     {price_html}
   </div>
   <div class="pc-links">

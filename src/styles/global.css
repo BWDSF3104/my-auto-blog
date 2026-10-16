@@ -197,6 +197,17 @@
   color: #fff;
 }
 
+/* 記事内商品カード（画像・アイコンなしのテキスト系）スリム化 */
+.product-card:not(:has(.pc-img)):not(:has(.pc-icon)) {
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+.product-card:not(:has(.pc-img)):not(:has(.pc-icon)) .pc-btn {
+  padding: 4px 10px;
+  font-size: 0.75em;
+}
+
 @media (max-width: 640px) {
   .product-card {
     flex-direction: column;
