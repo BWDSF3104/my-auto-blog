@@ -8,8 +8,8 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ファイル・ディレクトリ | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | タスクファイル作成（タスク開始前）と同時に参照行を追加。各チェックポイントでステータス・Next Action を更新。タスク完了時または中断時に参照行を削除 | ✅ |
-| `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず）。意図・背景・Backlog 参照を含む | **タスク開始前に**（初回コード変更の前に）`docs/ai/tasks/YYYY-MM-DD-short-name.md` として作成。完了時は Status を更新 | ✅ |
+| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | `/task-add` で参照行追加・`/task-end` で削除。各チェックポイントでステータス・Next Action を更新 | ✅ |
+| `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず）。意図・背景・Backlog 参照を含む | **タスク開始前に**（初回コード変更の前に）`/task-add` で `docs/ai/tasks/YYYY-MM-DD-short-name.md` 作成。完了時は `/task-end` で Status 更新 | ✅ |
 | `decisions/` | 設計判断ログ（1エントリ1ファイル方式） | 構造・データフロー・新しい統合の設計判断時に `decisions/YYYY-MM-DD-short-name.md` を作成 | ✅ |
 | `decisions/archive/` | 過去の設計判断のアーカイブ | `decisions/` は不変・バッチクリーンアップ対象外（本 archive は履歴） | — |
 | `known-issues/` | 既知問題（1エントリ1ファイル方式）。トップ=未解決、`archive/`=解決済 | 新規問題発見時に `known-issues/KI-YYYYMMDD-NN-short-name.md` を作成。解決時に `known-issues/archive/` へ `mv` | ✅ |
@@ -144,7 +144,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 - 重要な決定は `decisions/` に新ファイルとして記録すること。
 - 重要な未解決の問題は `known-issues/` に新ファイルとして記録すること。
 - 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
-- **タスク完了時（git commit 前）**: `/task-end` コマンド（ロジック: `maintenance/task_manager.py`）で `docs/ai/current-task.tsv` の該当参照行を削除し、タスクファイルの `Status` を『完了』へ更新する（スクリプトは touch した 2 ファイルを `git add`）。Memory Bank の変更はコード変更と同じ commit に含めること。
+- **タスク完了時（git commit 前）**: `/task-end` コマンドを実行する（ロジック: `maintenance/task_manager.py`。tsv 参照行削除・タスクファイルの Status 完了更新・git add を自動で行う）。Memory Bank の変更はコード変更と同じ commit に含めること。
 - **問題解決時（git commit 前）**: `known-issues/` の該当ファイルを `known-issues/archive/` へ `mv`（1回のみ）。Memory Bank の変更はコード変更と同じ commit に含めること。
 
 ## 中断からの復帰

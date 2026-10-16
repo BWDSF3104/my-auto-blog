@@ -84,13 +84,9 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ### タスク開始時（初回コード変更の前）
 
-初回コード変更の前に `/task-add` コマンドで以下の 2 ステップを実行すること（ロジック: `maintenance/task_manager.py`）:
-
-1. `docs/ai/tasks/YYYY-MM-DD-short-name.md` にタスクファイルを作成する（意図・背景を含む）
-2. `docs/ai/current-task.tsv` に参照行を追加する
-
+初回コード変更の前に `/task-add` コマンドを実行すること（ロジック: `maintenance/task_manager.py`。タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成と `docs/ai/current-task.tsv` 参照行追加を自動で行う）。
 タスク作成後は `python maintenance/archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
-2 ステップ完了前に実装着手しないこと。
+タスク開始の完了前に実装着手しないこと。
 
 ## ワークフロー
 

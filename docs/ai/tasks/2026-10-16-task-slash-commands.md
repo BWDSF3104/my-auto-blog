@@ -1,6 +1,6 @@
 # `/task-add` / `/task-end` スラッシュコマンドと task_manager.py
 
-**Status**: 進行中
+**Status**: 完了
 **Date**: 2026-10-16
 
 ## 意図 / 背景
@@ -69,6 +69,6 @@ AI Memory Bank のタスク開始/終了の機械的作業を減らすため、K
 
 ## 完了時 Memory Bank 操作
 
-- [ ] `current-task.tsv` の参照行を削除
-- [ ] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（該当する場合）
-- [ ] `backlog.md` の完了項目を削除（該当する場合）
+- [x] `current-task.tsv` の参照行を削除（`/task-end` が実施）
+- [x] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（該当なし）
+- [x] `backlog.md` の完了項目を削除（該当なし）
