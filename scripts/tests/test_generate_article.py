@@ -2187,7 +2187,11 @@ class TestRandomizeKemonoParams:
             assert 2 <= pct <= 40, f"{val}: {pct}%"
 
 class TestBuildNgInstruction:
-    """build_ng_instruction のキャラクター・テーマ被り防止トグル（ENABLE_CHAR_DEDUP）。"""
+    """build_ng_instruction の被り防止トグル（ENABLE_CHAR_DEDUP）。
+
+    物語系は【直近の執筆作品（テーマ・展開被り防止）】+【キャラクター・テーマ被り防止】の
+    両セクションが同トグルでゲートされる（デフォルトOFFで両方非出力）。
+    """
 
     RECENT_TITLES = ["テスト作品A", "テスト作品B"]
     RECENT_METAS = [
@@ -2200,16 +2204,19 @@ class TestBuildNgInstruction:
         }
     ]
 
-    def test_disabled_excludes_char_section(self):
+    def test_disabled_excludes_recent_and_char_sections(self):
         with patch("generate_article.ENABLE_CHAR_DEDUP", False):
             result = build_ng_instruction("kemono_story", self.RECENT_TITLES, self.RECENT_METAS)
-        assert "【直近の執筆作品（テーマ・展開被り防止）】" in result
+        assert "【直近の執筆作品（テーマ・展開被り防止）】" not in result
+        assert "テスト作品A" not in result
         assert "【キャラクター・テーマ被り防止】" not in result
         assert "character_1" not in result
 
-    def test_enabled_includes_char_section(self):
+    def test_enabled_includes_recent_and_char_sections(self):
         with patch("generate_article.ENABLE_CHAR_DEDUP", True):
             result = build_ng_instruction("kemono_story", self.RECENT_TITLES, self.RECENT_METAS)
+        assert "【直近の執筆作品（テーマ・展開被り防止）】" in result
+        assert "テスト作品A" in result
         assert "【キャラクター・テーマ被り防止】" in result
         assert "1boy, wolf anthro, black fur, red scarf" in result
 

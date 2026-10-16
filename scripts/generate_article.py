@@ -139,11 +139,15 @@ def build_ng_instruction(prompt_type, recent_titles, recent_metas):
     if recent_titles:
         past_topics_text = "\n".join([f"- {t}" for t in recent_titles])
         if prompt_type in ("kemono_story", "novel", "story"):
-            ng_instruction = (
-                f"【直近の執筆作品（テーマ・展開被り防止）】\n"
-                f"直近で以下の物語を作成済みです。これらとシチュエーションや展開が極力被らないよう、新しいテーマで作成してください:\n"
-                f"{past_topics_text}"
-            )
+            # トグル: ENABLE_CHAR_DEDUP（デフォルトOFF）。OFF時はタイトルリストも注入しない
+            if ENABLE_CHAR_DEDUP:
+                ng_instruction = (
+                    f"【直近の執筆作品（テーマ・展開被り防止）】\n"
+                    f"直近で以下の物語を作成済みです。これらとシチュエーションや展開が極力被らないよう、新しいテーマで作成してください:\n"
+                    f"{past_topics_text}"
+                )
+            else:
+                ng_instruction = ""
         else:
             ng_instruction = f"【重要：重複の禁止】\n以下のタイトル・テーマは作成済みです:\n{past_topics_text}"
     else:
@@ -477,8 +481,11 @@ def generate_post():
     file_timestamp = now.strftime("%Y-%m-%d-%H%M%S")
 
     prompt_type = os.environ.get("PROMPT_TYPE", "default")
-    recent_titles = get_recent_titles_by_type(prompt_type)
-    # キャラ・被り防止セクションが無効（デフォルト）時はメタ抽出をスキップ
+    # 被り防止セクションが無効（デフォルト）時は物語系のタイトル抽出・メタ抽出をスキップ
+    if ENABLE_CHAR_DEDUP or prompt_type not in ("kemono_story", "novel", "story"):
+        recent_titles = get_recent_titles_by_type(prompt_type)
+    else:
+        recent_titles = []
     recent_metas = get_recent_meta_by_type(prompt_type) if ENABLE_CHAR_DEDUP else []
     ng_instruction = build_ng_instruction(prompt_type, recent_titles, recent_metas)
 
