@@ -282,5 +282,27 @@
       "reviewCount": 0
     },
     "hits": 2
+  },
+  "機動戦士ガンダム 閃光のハサウェイ": {
+    "fetched_at": "2026-10-16T01:11:03.217908+00:00",
+    "product": {
+      "itemName": "機動戦士ガンダム 閃光のハサウェイ [ 小野賢章 ]",
+      "itemPrice": 3039,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16878501%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F20466839%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1075/4934569651075_1_2.jpg?_ex=128x128",
+      "reviewCount": 24
+    },
+    "hits": 3
+  },
+  "機動戦士ガンダム": {
+    "fetched_at": "2026-10-16T01:11:04.329417+00:00",
+    "product": {
+      "itemName": "機動戦士ガンダム　THE　ORIGIN　（20） ソロモン編・後 （角川コミックス・エース） [ 安彦　良和 ]",
+      "itemPrice": 792,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F6272502%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F13456982%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2854/9784047152854_1_4.jpg?_ex=128x128",
+      "reviewCount": 252
+    },
+    "hits": 3
   }
 }

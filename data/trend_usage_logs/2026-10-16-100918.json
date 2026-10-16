@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-16T10:09:18.227910+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-16T10:07:59.600942+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.02,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 35,
+    "after_score_filter": 35,
+    "after_rating_filter": 35,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Gundam Blitz Order Mobile Game Announced",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-15/gundam-blitz-order-mobile-game-announced/.242852",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Enshrouded 1.0 – Launch Trailer",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/videos/enshrouded-1-0-launch-trailer/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "After a long and exciting early access journey, it's finally time for you to take back Embervale, Flameborn… Enshrouded 1.0 is coming October 15th to PC and Playstation 5! You are Flameborn, last embe"
+    }
+  ],
+  "affiliate_keywords": [
+    "Gundam Blitz Order Mobile Game",
+    "Enshrouded 1 0   Launch Traile"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-10-15/gundam-blitz-order-mobile-game-announced/.242852",
+    "https://www.gamespot.com/videos/enshrouded-1-0-launch-trailer/"
+  ]
+}
