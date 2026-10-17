@@ -59,6 +59,17 @@ def _mock_post(payload: dict, status_code: int = 200) -> MagicMock:
     return mock_resp
 
 
+@pytest.fixture(autouse=True)
+def _isolated_default_cache(tmp_path):
+    """DEFAULT_CACHE_PATH をテスト用一時ファイルへ差し替える。
+
+    pytest 実行中に本物の data/genre_scores/cache.json を読み書きしない
+    （TTL パージ・テストエントリ混入の防止）。
+    """
+    with patch.object(genre_score, "DEFAULT_CACHE_PATH", str(tmp_path / "cache.json")):
+        yield
+
+
 class TestBuildQuestions:
     def test_default_genres(self):
         questions = build_questions(genre_score.DEFAULT_GENRES)
