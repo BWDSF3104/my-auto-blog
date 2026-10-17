@@ -304,5 +304,32 @@
       "reviewCount": 252
     },
     "hits": 3
+  },
+  "ロードス島戦記": {
+    "fetched_at": "2026-10-17T01:15:19.241515+00:00",
+    "product": {
+      "itemName": "ロードス島戦記　誓約の宝冠1 （角川スニーカー文庫） [ 水野　良 ]",
+      "itemPrice": 748,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15836931%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19534239%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2417/9784041072417_1_10.jpg?_ex=128x128",
+      "reviewCount": 7
+    },
+    "hits": 3
+  },
+  "ケモノ ダンジョンクライム": {
+    "fetched_at": "2026-10-17T01:15:20.696679+00:00",
+    "product": null,
+    "hits": 0
+  },
+  "獣人": {
+    "fetched_at": "2026-10-17T01:15:22.337224+00:00",
+    "product": {
+      "itemName": "ダブル ガーゼ 手ぬぐい 通年用 日本製 彩 鳥獣人物戯画 手拭い 粗品 プチギフト お年賀 年始挨拶 内祝い お祝い 暑さ 熱中症 対策 おしゃれ 女性 男性",
+      "itemPrice": 980,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00qhplo.eo1qw39e.g00qhplo.eo1qx95a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2F753ya%2F10019884%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F753ya%2Fi%2F10015528%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/753ya/cabinet/wakmn46/10019884_01.jpg?_ex=128x128",
+      "reviewCount": 29
+    },
+    "hits": 3
   }
 }
