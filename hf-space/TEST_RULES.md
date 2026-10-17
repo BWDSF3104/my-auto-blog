@@ -8,7 +8,7 @@
 from huggingface_hub import HfApi
 api = HfApi(token='HF_TOKEN')  # .env から取得
 api.upload_file(
-    path_or_fileobj=open('scripts/hf-space/app.py', 'rb'),
+    path_or_fileobj=open('hf-space/app.py', 'rb'),
     path_in_repo='app.py',
     repo_id='blume/kemono-image-api',
     repo_type='space'
@@ -85,16 +85,16 @@ worst quality, low quality, bad quality, bad anatomy, bad hands, missing fingers
 - 画像が真っ黒でない（平均輝度が 0 に近い場合は失敗）
 - 画像にキャラクターが描画されている
 - コンソールログにエラーがない
-- 生成時間が 90 秒以内（`@spaces.GPU(duration=90)` の制限）
+- 生成時間が 20 秒以内（`@spaces.GPU(duration=20)` の制限）
 
 ### 4. テスト結果の記録
 
-テスト結果を `docs/ai/tasks/2026-10-05-long-prompt-v2.md` に追記。
+テスト結果を `docs/ai/tasks/` の現行タスクファイルに追記。
 
 ## 注意事項
 
 - ZeroGPU は無料枠 3.5 分/日の制限がある
-- `@spaces.GPU(duration=90)` で 1 リクエストあたり 90 秒予約
-- 1 日約 2 リクエストのみ可能（クォータ超過でインスタンスが停止する）
+- `@spaces.GPU(duration=20)` で 1 リクエストあたり 20 秒予約
+- 予約ベースで 1 日約 10 リクエスト（3.5 分 ÷ 20 秒）。実推論時間（初回 9 秒・ウォーム 2 秒）消費ベースでは約 101 リクエスト。詳細: `docs/ai/api-rate-limits.md`
 - テスト後は不要な画像を削除する
 - HF Space の API エンドポイントはスリープ時に 404 を返すことがある（Web UI 経由が安定）

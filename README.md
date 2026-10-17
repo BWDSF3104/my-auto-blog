@@ -145,6 +145,7 @@ my-auto-blog/
 │   ├── rakuten_cache.json        # 楽天 API 商品キャッシュ（30日TTL）
 │   └── slug-redirects.json       # slug 衝突時のリダイレクト
 ├── docs/ai/                  # AI Memory Bank（アーキテクチャ・計画・既知の問題など）
+├── hf-space/                 # 自社ホスト HuggingFace Space のソース（SDXL パイプライン / blume/kemono-image-api）
 ├── maintenance/
 │   └── archive_memory_bank.py # Memory Bank バッチクリーンアップ（開発ツール・dry-run 既定）
 ├── public/
@@ -156,7 +157,6 @@ my-auto-blog/
 │   ├── article/              # article/ パッケージ（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo）
 │   ├── generate-search-index.js  # サイト内検索インデックス生成
 │   ├── prompts/              # プロンプトテンプレート
-│   ├── hf-space/             # 自社ホスト HuggingFace Space のソース（SDXL パイプライン）
 │   ├── tests/                # pytest テストスイート
 │   └── requirements.txt      # Python 依存関係
 ├── src/

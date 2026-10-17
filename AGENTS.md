@@ -104,6 +104,7 @@ my-auto-blog/
 │   ├── generate_article.py    # 記事生成（エントリ + パイプライン）
 │   ├── article/               # article/ パッケージ（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo）
 │   └── prompts/               # プロンプトテンプレート
+├── hf-space/                  # 自社 HuggingFace Space のデプロイ元ソース（blume/kemono-image-api / SDXL パイプライン）
 ├── maintenance/               # 開発ツール（本番パイプライン外）
 │   ├── archive_memory_bank.py # Memory Bank バッチクリーンアップ（デフォルトは dry-run）
 │   └── task_manager.py        # タスク開始/終了ヘルパー（/task-add /task-end）

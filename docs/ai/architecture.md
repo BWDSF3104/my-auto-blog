@@ -76,6 +76,24 @@ Image generation:
 
 Output: Markdown files in `src/content/posts/` with AVIF images in `public/images/`
 
+### Image Generation Space (`hf-space/` → `blume/kemono-image-api`)
+
+自社ホスト HuggingFace Space（ZeroGPU）のデプロイ元ソース。`generate_article.py` の画像生成パイプラインはこれをプライマリとして呼び出す。
+
+| Item | Detail |
+|------|--------|
+| モデル | `IbarakiDouji/Nova-Furry-XL`（SDXL / Illustrious 系、`novaFurryXL_ilV180A.safetensors`） |
+| ランタイム | ZeroGPU、`@spaces.GPU(duration=20)`（実推論約 5 秒） |
+| Scheduler | `EulerAncestralDiscreteScheduler` (Euler a) |
+| API | Gradio `predict`: `prompt, negative_prompt, steps, guidance_scale, width, height, seed`（`seed >= 0` で再現可能） |
+
+実装メモ（`hf-space/app.py`）:
+- 長プロンプト対応: 75 トークン単位チャンク分割（BOS/EOS 付き）+ デュアルテキストエンコーダ（OpenCLIP ViT-H / CLIP ViT-L）。SDXL の conditioning 形式（pooled は最初のチャンクのみ）を再現
+- negative prompt の embedding キャッシュ: チャンク構成が同一なら 1 回のみ計算
+- **強調構文なし**: プロンプトは CLIP トークナイザでそのままトークン化されるため、A1111 系 `(word:1.1)` / `[word]`（0.83x）の強調構文は解析されない（リテラルトークンとして扱われる）
+- `app.py` の Gradio UI 既定値は例示のみ。本番の positive / negative prompt は完全クライアント駆動（`scripts/article/image.py`）
+- テストルール: `hf-space/TEST_RULES.md`（ZeroGPU クォータ 3.5 分/日・steps 18 以下・512x512）
+
 ### Affiliate Integration (Implemented)
 
 Trend topics are used to generate targeted affiliate search links and product cards:
@@ -120,8 +138,8 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 - Space 停止時は再開に数分要する。起動待ち中にリクエストすると失敗する
 - `gradio-client` は 2.7.2+ を使用（`huggingface_hub` 2.x 互換）
 
-**HF Space デプロイ** (`scripts/hf-space/app.py` 変更後):
-- アップロード: `hf upload --repo-type space blume/kemono-image-api scripts\hf-space\app.py`
+**HF Space デプロイ** (`hf-space/app.py` 変更後):
+- アップロード: `hf upload --repo-type space blume/kemono-image-api hf-space\app.py`
 - 起動確認: `python -c "from huggingface_hub import HfApi; api = HfApi(); info = api.get_space_runtime('blume/kemono-image-api'); print(info.stage)"` → `RUNNING` になるまで待機
 - 生成テスト: `python scripts/_test_hf_space.py` （Space が `RUNNING` 後に実行）
 - Space URL: `https://huggingface.co/spaces/blume/kemono-image-api`

@@ -17,7 +17,7 @@
 
 ## 対象外（`scripts/` 留置）
 
-- `scripts/hf-space/`（`app.py` / `requirements.txt` / `TEST_RULES.md`）: HF Space のソース。architecture.md・README.md が参照する本番コンポーネント。削除しない（2026-10-14 に「空ディレクトリ」と誤報告したが誤り）
+- `scripts/hf-space/`（`app.py` / `requirements.txt` / `TEST_RULES.md`）: HF Space のソース。architecture.md・README.md が参照する本番コンポーネント。削除しない（2026-10-14 に「空ディレクトリ」と誤報告したが誤り）。**注: 2026-10-17 にトップレベル `hf-space/` へ移動済み**（`docs/ai/tasks/2026-10-17-move-hf-space-root.md`）— 本タスクの対象は 8 ワンオフスクリプトのみ
 - `fetch_topics.py` / `generate_article.py` / `genre_score.py` / `generate-search-index.js` / `article/` / `prompts/` / `tests/` / `data/` / `requirements.txt`: パイプライン本体
 
 ## 手順
