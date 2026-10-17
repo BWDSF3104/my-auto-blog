@@ -61,15 +61,15 @@ def add_ns(root: Path, **kw):
         "title": "デモタスク",
         "backlog": None,
         "next_action": None,
-        "apply": False,
+        "dry_run": False,
         "no_git_add": False,
     }
     base.update(kw)
     return SimpleNamespace(**base)
 
 
-def end_ns(root: Path, task: str, apply: bool = False, no_git_add: bool = False):
-    return SimpleNamespace(root=root, task=task, apply=apply, no_git_add=no_git_add)
+def end_ns(root: Path, task: str, dry_run: bool = False, no_git_add: bool = False):
+    return SimpleNamespace(root=root, task=task, dry_run=dry_run, no_git_add=no_git_add)
 
 
 def ok_git(root, *args):
@@ -87,7 +87,7 @@ def fake_git(root, *args):
 def test_add_apply_creates_file_and_tsv_row(tmp_path, monkeypatch):
     root = make_root(tmp_path)
     monkeypatch.setattr(tm, "_git", ok_git)
-    rc = tm.cmd_add(add_ns(root, apply=True))
+    rc = tm.cmd_add(add_ns(root))
     assert rc == 0
     task_file = root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md"
     assert task_file.is_file()
@@ -102,7 +102,7 @@ def test_add_apply_creates_file_and_tsv_row(tmp_path, monkeypatch):
 
 def test_add_dry_run_writes_nothing(tmp_path):
     root = make_root(tmp_path)
-    rc = tm.cmd_add(add_ns(root, apply=False))
+    rc = tm.cmd_add(add_ns(root, dry_run=True))
     assert rc == 0
     assert not (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").exists()
     lines = (root / "docs" / "ai" / "current-task.tsv").read_text(encoding="utf-8").splitlines()
@@ -112,28 +112,28 @@ def test_add_dry_run_writes_nothing(tmp_path):
 def test_add_existing_file_errors(tmp_path):
     root = make_root(tmp_path)
     make_task_file(root, "demo-task")
-    rc = tm.cmd_add(add_ns(root, apply=True))
+    rc = tm.cmd_add(add_ns(root))
     assert rc == 1
 
 
 def test_add_duplicate_tsv_row_errors(tmp_path):
     root = make_root(tmp_path)
     add_tsv_row(root, f"docs/ai/tasks/{TODAY}-demo-task.md")
-    rc = tm.cmd_add(add_ns(root, apply=True))
+    rc = tm.cmd_add(add_ns(root))
     assert rc == 1
 
 
 def test_add_invalid_slug_errors(tmp_path):
     root = make_root(tmp_path)
-    assert tm.cmd_add(add_ns(root, slug="Bad Slug!", apply=True)) == 1
-    assert tm.cmd_add(add_ns(root, slug="trailing-", apply=True)) == 1
-    assert tm.cmd_add(add_ns(root, slug="9-ok", apply=False)) == 0
+    assert tm.cmd_add(add_ns(root, slug="Bad Slug!")) == 1
+    assert tm.cmd_add(add_ns(root, slug="trailing-")) == 1
+    assert tm.cmd_add(add_ns(root, slug="9-ok", dry_run=True)) == 0
 
 
 def test_add_backlog_and_next_action(tmp_path, monkeypatch):
     root = make_root(tmp_path)
     monkeypatch.setattr(tm, "_git", ok_git)
-    rc = tm.cmd_add(add_ns(root, backlog="P2 #17", next_action="設計確認", apply=True))
+    rc = tm.cmd_add(add_ns(root, backlog="P2 #17", next_action="設計確認"))
     assert rc == 0
     text = (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").read_text(encoding="utf-8")
     assert "**Backlog**: P2 #17" in text
@@ -151,7 +151,7 @@ def test_add_apply_stages_task_file_and_tsv(tmp_path, capsys, monkeypatch):
         return 0, ""
 
     monkeypatch.setattr(tm, "_git", rec_git)
-    rc = tm.cmd_add(add_ns(root, apply=True))
+    rc = tm.cmd_add(add_ns(root))
     assert rc == 0
     assert calls == [
         ("add", "--", f"docs/ai/tasks/{TODAY}-demo-task.md", "docs/ai/current-task.tsv")
@@ -168,7 +168,7 @@ def test_add_no_git_add_skips_staging(tmp_path, capsys, monkeypatch):
         return 0, ""
 
     monkeypatch.setattr(tm, "_git", rec_git)
-    rc = tm.cmd_add(add_ns(root, apply=True, no_git_add=True))
+    rc = tm.cmd_add(add_ns(root, no_git_add=True))
     assert rc == 0
     assert calls == []
     assert "git add: skipped (--no-git-add)" in capsys.readouterr().out
@@ -184,7 +184,7 @@ def test_add_stage_failure_is_warning_not_fatal(tmp_path, capsys, monkeypatch):
         return 0, ""
 
     monkeypatch.setattr(tm, "_git", boom_git)
-    rc = tm.cmd_add(add_ns(root, apply=True))
+    rc = tm.cmd_add(add_ns(root))
     assert rc == 0
     assert (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").is_file()
     assert "git add: WARNING failed (exit 1): boom" in capsys.readouterr().out
@@ -196,7 +196,7 @@ def test_end_apply_updates_status_and_drops_row(tmp_path, monkeypatch, capsys):
     add_tsv_row(root, f"docs/ai/tasks/{TODAY}-demo-task.md")
     monkeypatch.setattr(tm, "_git", fake_git)
 
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=True))
+    rc = tm.cmd_end(end_ns(root, "demo-task"))
     assert rc == 0
 
     text = task_file.read_text(encoding="utf-8")
@@ -221,7 +221,7 @@ def test_end_dry_run_writes_nothing(tmp_path, monkeypatch, capsys):
     add_tsv_row(root, f"docs/ai/tasks/{TODAY}-demo-task.md")
     monkeypatch.setattr(tm, "_git", fake_git)
 
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=False))
+    rc = tm.cmd_end(end_ns(root, "demo-task", dry_run=True))
     assert rc == 0
 
     assert "**Status**: 進行中" in task_file.read_text(encoding="utf-8")
@@ -261,7 +261,7 @@ def test_end_missing_status_line_errors(tmp_path, monkeypatch):
     p = root / "docs" / "ai" / "tasks" / f"{TODAY}-plain.md"
     p.write_text("# 見出しのみ\n\n本文\n", encoding="utf-8")
     monkeypatch.setattr(tm, "_git", fake_git)
-    assert tm.cmd_end(end_ns(root, "plain", apply=True)) == 1
+    assert tm.cmd_end(end_ns(root, "plain")) == 1
 
 
 def test_end_no_tsv_row_is_note_only(tmp_path, monkeypatch, capsys):
@@ -269,7 +269,7 @@ def test_end_no_tsv_row_is_note_only(tmp_path, monkeypatch, capsys):
     make_task_file(root, "demo-task")
     monkeypatch.setattr(tm, "_git", fake_git)
 
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=True))
+    rc = tm.cmd_end(end_ns(root, "demo-task"))
     assert rc == 0
     out = capsys.readouterr().out
     assert "no row for this task in current-task.tsv" in out
@@ -280,7 +280,7 @@ def test_end_already_done_is_idempotent(tmp_path, monkeypatch):
     root = make_root(tmp_path)
     make_task_file(root, "demo-task", status="完了")
     monkeypatch.setattr(tm, "_git", fake_git)
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=True))
+    rc = tm.cmd_end(end_ns(root, "demo-task"))
     assert rc == 0
     text = (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").read_text(encoding="utf-8")
     assert text.count("**Status**: 完了") == 1
@@ -297,7 +297,7 @@ def test_end_apply_stages_task_file_and_tsv(tmp_path, capsys, monkeypatch):
         return 0, ""
 
     monkeypatch.setattr(tm, "_git", rec_git)
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=True))
+    rc = tm.cmd_end(end_ns(root, "demo-task"))
     assert rc == 0
     add_calls = [c for c in calls if c[:1] == ("add",)]
     assert add_calls == [
@@ -317,7 +317,7 @@ def test_end_no_git_add_skips_staging(tmp_path, capsys, monkeypatch):
         return 0, ""
 
     monkeypatch.setattr(tm, "_git", rec_git)
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=True, no_git_add=True))
+    rc = tm.cmd_end(end_ns(root, "demo-task", no_git_add=True))
     assert rc == 0
     assert [c for c in calls if c[:1] == ("add",)] == []
     assert "git add: skipped (--no-git-add)" in capsys.readouterr().out
@@ -334,7 +334,7 @@ def test_end_stage_failure_is_warning_not_fatal(tmp_path, capsys, monkeypatch):
         return 0, ""
 
     monkeypatch.setattr(tm, "_git", boom_git)
-    rc = tm.cmd_end(end_ns(root, "demo-task", apply=True))
+    rc = tm.cmd_end(end_ns(root, "demo-task"))
     assert rc == 0
     assert "**Status**: 完了" in task_file.read_text(encoding="utf-8")
     assert "git add: WARNING failed (exit 1): boom" in capsys.readouterr().out

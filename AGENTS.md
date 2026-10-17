@@ -81,15 +81,20 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - **タスク完了時（git commit 前）**
 - **中断からの再開時**
 
-### タスク開始時（初回コード変更の前）
+### タスク開始時（調査開始段階）
 
-初回コード変更の前に `/task-add` コマンドを実行すること（ロジック: `maintenance/task_manager.py`。タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成と `docs/ai/current-task.tsv` 参照行追加を自動で行う）。
+調査開始段階（タスク受理直後・調査着手時）に `/task-add` コマンドを実行すること（初回コード変更前では遅い。ロジック: `maintenance/task_manager.py`。タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成と `docs/ai/current-task.tsv` 参照行追加を自動で行う）。
 タスク作成後は `python maintenance/archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
 タスク開始の完了前に実装着手しないこと。
 
+### タスク実行中に発見した非必須問題
+
+タスク実行中に、そのタスクの完了に必須でない問題（主進行を阻害しない）を見つけた場合は、その場で修復に枝打つことなく `known-issues/` に新ファイルとして記録し、タスクを先に進めること。
+タスク完了を阻害する問題（blocker）は本ルールの対象外であり、先に修復するかユーザーに報告すること。
+
 ## ワークフロー
 
-- タスク開始/終了: `/task-add` / `/task-end` コマンドを使う（ロジック: `maintenance/task_manager.py`。dry-run 既定・`--apply` で反映、`--no-git-add` で staging スキップ）。
+- タスク開始/終了: `/task-add` / `/task-end` コマンドを使う（ロジック: `maintenance/task_manager.py`。既定で反映、プレビューのみなら `--dry-run`、`--no-git-add` で staging スキップ）。
 - git commit / push / deploy: `docs/ai/workflows.md` を参照する。
 - ユーザーが手動記事作成を依頼した際: `docs/ai/manual-article-workflow.md` を参照する。
 - デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md` を参照する。

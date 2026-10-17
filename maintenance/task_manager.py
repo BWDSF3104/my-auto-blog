@@ -1,16 +1,16 @@
 """AI Memory Bank タスク開始/終了ヘルパー (docs/ai/tasks + current-task.tsv).
 
 Usage:
-    python maintenance/task_manager.py add --slug short-name --title "タスク名" [--apply]
-    python maintenance/task_manager.py end --task 2026-10-16-short-name [--apply]
+    python maintenance/task_manager.py add --slug short-name --title "タスク名" [--dry-run]
+    python maintenance/task_manager.py end --task 2026-10-16-short-name [--dry-run]
 
 Rules: docs/ai/memory-bank-guide.md
 - add: タスクファイル骨架を作成 + current-task.tsv に参照行を追加
-  (dry-run が既定、--apply で実行。ファイル既存 / 重複行なら exit 1)
+  (反映が既定、--dry-run でプレビューのみ。ファイル既存 / 重複行なら exit 1)
 - end: タスクファイルの Status 行を「完了」へ更新 + tsv 参照行を削除
   + レポート (git status/diff --stat、未チェックの完了チェックリスト項目)。
 - add/end とも、スクリプト自身が作成・変更したファイル (タスクファイル +
-  current-task.tsv) は --apply 時に git add する (staging のみ)。--no-git-add で
+  current-task.tsv) は反映時に git add する (staging のみ)。--no-git-add で
   スキップ可能。staging 失敗は警告のみ (exit code はファイル操作の結果に依存)。
   git commit/push と、スクリプトが判断できない他ファイルの git add は
   workflows.md 手順でエージェントが担当。
@@ -128,6 +128,7 @@ def build_skeleton(
 
 def cmd_add(args: argparse.Namespace) -> int:
     root: Path = args.root
+    apply = not args.dry_run
     if not SLUG_RE.match(args.slug):
         return fail(
             f"invalid slug: {args.slug!r} "
@@ -143,7 +144,7 @@ def cmd_add(args: argparse.Namespace) -> int:
         return fail(f"current-task.tsv already has a row for this task: {task_posix}")
 
     touched = [task_path, _tsv_path(root)]
-    if args.apply:
+    if apply:
         task_path.parent.mkdir(parents=True, exist_ok=True)
         task_path.write_text(
             build_skeleton(args.title, today, args.backlog, args.next_action),
@@ -154,14 +155,14 @@ def cmd_add(args: argparse.Namespace) -> int:
         tsv_lines.append(f"{task_posix}\t{STATUS_IN_PROGRESS}\t{args.next_action or ''}")
         _write_tsv(root, tsv_lines)
 
-    note = _stage_note(root, touched, args.apply, args.no_git_add)
+    note = _stage_note(root, touched, apply, args.no_git_add)
     print(
         "\n".join(
             [
                 f"root: {root}",
                 f"task file: {task_posix}",
                 f"title: {args.title}",
-                "applied" if args.apply else "planned (dry-run: pass --apply to run)",
+                "applied" if apply else "planned (dry-run: no changes written)",
                 note,
             ]
         )
@@ -305,7 +306,7 @@ def _stage_note(root: Path, touched: list[Path], apply: bool, no_git_add: bool) 
     if no_git_add:
         return "git add: skipped (--no-git-add)"
     if not apply:
-        return f"git add: would stage {len(touched)} path(s) on --apply"
+        return f"git add: would stage {len(touched)} path(s) (dry-run)"
     rels = [p.relative_to(root).as_posix() for p in touched]
     code, out = _git(root, "add", "--", *rels)
     if code == 0:
@@ -315,6 +316,7 @@ def _stage_note(root: Path, touched: list[Path], apply: bool, no_git_add: bool) 
 
 def cmd_end(args: argparse.Namespace) -> int:
     root: Path = args.root
+    apply = not args.dry_run
     try:
         task_path = resolve_task_file(root, args.task)
     except AmbiguousTaskError as exc:
@@ -350,19 +352,19 @@ def cmd_end(args: argparse.Namespace) -> int:
     touched = [task_path]
     if tsv_idx is not None:
         touched.append(_tsv_path(root))
-    if args.apply:
+    if apply:
         lines[status_idx] = STATUS_DONE_LINE
         task_path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         if tsv_idx is not None:
             del tsv_lines[tsv_idx]
             _write_tsv(root, tsv_lines)
 
-    note = _stage_note(root, touched, args.apply, args.no_git_add)
+    note = _stage_note(root, touched, apply, args.no_git_add)
     report = [
         f"root: {root}",
         f"task file: {task_posix}",
         f"Status: {old_status} -> {STATUS_DONE_LINE}",
-        "applied" if args.apply else "planned (dry-run: pass --apply to run)",
+        "applied" if apply else "planned (dry-run: no changes written)",
         note,
     ]
     if tsv_idx is None:
@@ -381,7 +383,7 @@ def cmd_end(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="AI Memory Bank task start/end helper (dry-run by default, --apply to run)."
+        description="AI Memory Bank task start/end helper (apply by default, --dry-run to preview)."
     )
     parser.add_argument("--root", default=None, help="project root (default: repository root)")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -391,21 +393,21 @@ def main(argv: list[str] | None = None) -> int:
     p_add.add_argument("--title", required=True, help="task name (task file heading)")
     p_add.add_argument("--backlog", default=None, help='backlog reference (e.g. "P2 #17")')
     p_add.add_argument("--next-action", default=None, help="next action (tsv column + skeleton line)")
-    p_add.add_argument("--apply", action="store_true", help="write changes (default: dry-run)")
+    p_add.add_argument("--dry-run", action="store_true", help="preview only, no changes written (default: apply)")
     p_add.add_argument(
         "--no-git-add",
         action="store_true",
-        help="with --apply: skip staging the touched files (git add)",
+        help="skip staging the touched files (git add)",
     )
     p_add.set_defaults(func=cmd_add)
 
     p_end = sub.add_parser("end", help="mark task done + drop tsv row + report")
     p_end.add_argument("--task", required=True, help="task file (path / date-slug / slug)")
-    p_end.add_argument("--apply", action="store_true", help="write changes (default: dry-run)")
+    p_end.add_argument("--dry-run", action="store_true", help="preview only, no changes written (default: apply)")
     p_end.add_argument(
         "--no-git-add",
         action="store_true",
-        help="with --apply: skip staging the touched files (git add)",
+        help="skip staging the touched files (git add)",
     )
     p_end.set_defaults(func=cmd_end)
 
