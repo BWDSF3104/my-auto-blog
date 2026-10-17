@@ -7,6 +7,9 @@ Usage:
 Rules: docs/ai/memory-bank-guide.md
 - add: タスクファイル骨架を作成 + current-task.tsv に参照行を追加
   (反映が既定、--dry-run でプレビューのみ。ファイル既存 / 重複行なら exit 1)
+  + 開始前コンテキスト (working tree 状態 / 他タスクの進行中行 / backlog エントリ)
+    と Agent 指示 (ガイド参照 / 他タスク確認 / 開始完了まで実着手しない) を出力する
+    (読み取りのみ・非ブロッキング)
 - end: タスクファイルの Status 行を「完了」へ更新 + tsv 参照行を削除
   + レポート (git status/diff --stat、未チェックの完了チェックリスト項目)。
 - add/end とも、スクリプト自身が作成・変更したファイル (タスクファイル +
@@ -126,6 +129,89 @@ def build_skeleton(
     return "\n".join(lines)
 
 
+BACKLOG_REF_RE = re.compile(r"^P(\d+)\s*#(\d+)$")
+
+
+def _backlog_entry(root: Path, ref: str) -> str | None:
+    """'P<N> #<N>' に対応する backlog.md のテーブル行を返す (未発見は None)。"""
+    m = BACKLOG_REF_RE.match(ref.strip())
+    if not m:
+        return None
+    prio, num = m.group(1), m.group(2)
+    p = root / "docs" / "ai" / "backlog.md"
+    if not p.is_file():
+        return None
+    in_section = False
+    for line in p.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            in_section = re.match(rf"^##\s+P{prio}\b", line) is not None
+            continue
+        if in_section:
+            stripped = line.strip()
+            if stripped.startswith(f"| {num} |"):
+                return stripped
+    return None
+
+
+def _pre_start_context(root: Path, task_posix: str, args) -> tuple[list[str], int]:
+    """開始前コンテキスト (working tree / 他タスクの進行中行 / backlog エントリ) を収集する。
+
+    返り値は (出力行, 他タスクの進行中件数)。全て読み取りのみ・非ブロッキング。
+    """
+    lines: list[str] = []
+    code, out = _git(root, "status", "--porcelain")
+    if code != 0:
+        lines.append(f"working tree: unknown (git status failed: {out})")
+    elif not out:
+        lines.append("working tree: clean")
+    else:
+        count = len(_porcelain_paths(out))
+        lines.append(f"working tree: dirty ({count} path(s)):")
+        lines.extend(f"  {line}" for line in out.splitlines())
+        lines.append("note: confirm these are not leftovers from a previous task before starting")
+    active_rows: list[str] = []
+    for line in _read_tsv(root)[1:]:
+        if not line:
+            continue
+        parts = line.split("\t")
+        tf = parts[0]
+        status = parts[1] if len(parts) > 1 else ""
+        if tf == task_posix or status != STATUS_IN_PROGRESS:
+            continue
+        next_action = parts[2].strip() if len(parts) > 2 else ""
+        active_rows.append(f"  {tf}" + (f" | {next_action}" if next_action else ""))
+    if active_rows:
+        lines.append(f"in-progress tasks: {len(active_rows)}")
+        lines.extend(active_rows)
+    else:
+        lines.append("in-progress tasks: 0")
+    if args.backlog:
+        entry = _backlog_entry(root, args.backlog)
+        if entry is None:
+            lines.append(f"backlog: {args.backlog} (entry not found in backlog.md)")
+        else:
+            lines.append(f"backlog: {args.backlog}")
+            lines.append(f"  {entry}")
+    return lines, len(active_rows)
+
+
+def _agent_instructions(active_count: int) -> list[str]:
+    """タスク開始時の Agent 指示 (非ブロッキング・Agent が各項目を処理する)。"""
+    lines = ["--- Agent 指示 ---"]
+    n = 1
+    lines.append(f"{n}. docs/ai/memory-bank-guide.md を参照（タスク開始ルール）")
+    n += 1
+    if active_count:
+        lines.append(f"{n}. 他タスクが進行中 → ユーザーに並行継続 or 完了・保留を先に確認する")
+        n += 1
+    lines.append(f"{n}. タスクファイルの「意図 / 背景」を edit ツールで記入")
+    n += 1
+    lines.append(f"{n}. `python maintenance/archive_memory_bank.py` を実行（dry-run 確認後 `--apply`）")
+    n += 1
+    lines.append(f"{n}. タスク開始完了まで実装に着手しない")
+    return lines
+
+
 def cmd_add(args: argparse.Namespace) -> int:
     root: Path = args.root
     apply = not args.dry_run
@@ -142,6 +228,8 @@ def cmd_add(args: argparse.Namespace) -> int:
         return fail(f"task file already exists: {task_posix}")
     if task_posix in _tsv_task_files(root):
         return fail(f"current-task.tsv already has a row for this task: {task_posix}")
+
+    ctx_lines, active_count = _pre_start_context(root, task_posix, args)
 
     touched = [task_path, _tsv_path(root)]
     if apply:
@@ -164,6 +252,11 @@ def cmd_add(args: argparse.Namespace) -> int:
                 f"title: {args.title}",
                 "applied" if apply else "planned (dry-run: no changes written)",
                 note,
+                "",
+                "--- 開始前コンテキスト ---",
+                *ctx_lines,
+                "",
+                *_agent_instructions(active_count),
             ]
         )
     )

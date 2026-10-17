@@ -100,8 +100,9 @@ def test_add_apply_creates_file_and_tsv_row(tmp_path, monkeypatch):
     assert lines[-1] == f"docs/ai/tasks/{TODAY}-demo-task.md\t進行中\t"
 
 
-def test_add_dry_run_writes_nothing(tmp_path):
+def test_add_dry_run_writes_nothing(tmp_path, monkeypatch):
     root = make_root(tmp_path)
+    monkeypatch.setattr(tm, "_git", ok_git)
     rc = tm.cmd_add(add_ns(root, dry_run=True))
     assert rc == 0
     assert not (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").exists()
@@ -123,8 +124,9 @@ def test_add_duplicate_tsv_row_errors(tmp_path):
     assert rc == 1
 
 
-def test_add_invalid_slug_errors(tmp_path):
+def test_add_invalid_slug_errors(tmp_path, monkeypatch):
     root = make_root(tmp_path)
+    monkeypatch.setattr(tm, "_git", ok_git)
     assert tm.cmd_add(add_ns(root, slug="Bad Slug!")) == 1
     assert tm.cmd_add(add_ns(root, slug="trailing-")) == 1
     assert tm.cmd_add(add_ns(root, slug="9-ok", dry_run=True)) == 0
@@ -154,7 +156,8 @@ def test_add_apply_stages_task_file_and_tsv(tmp_path, capsys, monkeypatch):
     rc = tm.cmd_add(add_ns(root))
     assert rc == 0
     assert calls == [
-        ("add", "--", f"docs/ai/tasks/{TODAY}-demo-task.md", "docs/ai/current-task.tsv")
+        ("status", "--porcelain"),
+        ("add", "--", f"docs/ai/tasks/{TODAY}-demo-task.md", "docs/ai/current-task.tsv"),
     ]
     assert "git add: staged 2 path(s)" in capsys.readouterr().out
 
@@ -170,7 +173,7 @@ def test_add_no_git_add_skips_staging(tmp_path, capsys, monkeypatch):
     monkeypatch.setattr(tm, "_git", rec_git)
     rc = tm.cmd_add(add_ns(root, no_git_add=True))
     assert rc == 0
-    assert calls == []
+    assert calls == [("status", "--porcelain")]
     assert "git add: skipped (--no-git-add)" in capsys.readouterr().out
     assert (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").is_file()
 
@@ -188,6 +191,94 @@ def test_add_stage_failure_is_warning_not_fatal(tmp_path, capsys, monkeypatch):
     assert rc == 0
     assert (root / "docs" / "ai" / "tasks" / f"{TODAY}-demo-task.md").is_file()
     assert "git add: WARNING failed (exit 1): boom" in capsys.readouterr().out
+
+
+def test_add_pre_context_clean_tree_and_no_active_tasks(tmp_path, capsys, monkeypatch):
+    root = make_root(tmp_path)
+    monkeypatch.setattr(tm, "_git", ok_git)
+    rc = tm.cmd_add(add_ns(root))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "--- 開始前コンテキスト ---" in out
+    assert "working tree: clean" in out
+    assert "in-progress tasks: 0" in out
+    assert "--- Agent 指示 ---" in out
+    assert "docs/ai/memory-bank-guide.md" in out
+    assert "タスク開始完了まで実装に着手しない" in out
+
+
+def test_add_pre_context_lists_other_in_progress_tasks(tmp_path, capsys, monkeypatch):
+    root = make_root(tmp_path)
+    add_tsv_row(root, f"docs/ai/tasks/{TODAY}-other-task.md")
+    monkeypatch.setattr(tm, "_git", ok_git)
+    rc = tm.cmd_add(add_ns(root))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "in-progress tasks: 1" in out
+    assert f"  docs/ai/tasks/{TODAY}-other-task.md | next" in out
+    assert "ユーザーに並行継続 or 完了・保留を先に確認する" in out
+
+
+def test_add_pre_context_dirty_tree_warns(tmp_path, capsys, monkeypatch):
+    root = make_root(tmp_path)
+    monkeypatch.setattr(tm, "_git", fake_git)
+    rc = tm.cmd_add(add_ns(root))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "working tree: dirty (2 path(s)):" in out
+    assert "  M docs/ai/backlog.md" in out
+    assert "  ?? docs/ai/stray-file.md" in out
+    assert "confirm these are not leftovers from a previous task before starting" in out
+
+
+def test_add_pre_context_git_unavailable_is_unknown(tmp_path, capsys, monkeypatch):
+    root = make_root(tmp_path)
+    monkeypatch.setattr(tm, "_git", lambda r, *a: (128, "not a git repository"))
+    rc = tm.cmd_add(add_ns(root))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "working tree: unknown (git status failed: not a git repository)" in out
+
+
+def test_add_pre_context_prints_backlog_entry(tmp_path, capsys, monkeypatch):
+    root = make_root(tmp_path)
+    (root / "docs" / "ai" / "backlog.md").write_text(
+        "\n".join(
+            [
+                "# Backlog",
+                "",
+                "## P2",
+                "",
+                "| # | 項目 |",
+                "|---|------|",
+                "| 17 | 新プロンプトタイプ「ポケモン」追加 |",
+                "",
+                "## P3",
+                "",
+                "| # | 項目 |",
+                "|---|------|",
+                "| 17 | 同号の別項目 |",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(tm, "_git", ok_git)
+    rc = tm.cmd_add(add_ns(root, backlog="P2 #17"))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "backlog: P2 #17" in out
+    assert "| 17 | 新プロンプトタイプ「ポケモン」追加 |" in out
+    assert "同号の別項目" not in out
+
+
+def test_add_pre_context_backlog_entry_missing_warns(tmp_path, capsys, monkeypatch):
+    root = make_root(tmp_path)
+    monkeypatch.setattr(tm, "_git", ok_git)
+    rc = tm.cmd_add(add_ns(root, backlog="P9 #99"))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "backlog: P9 #99 (entry not found in backlog.md)" in out
 
 
 def test_end_apply_updates_status_and_drops_row(tmp_path, monkeypatch, capsys):
