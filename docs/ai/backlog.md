@@ -8,7 +8,7 @@
 |---|------|--------|------|------|
 | 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
 | 4 | コメント機能（Giscus）実装 | ⭐⭐ | 中 | 設計確定済み（2026-10-11、選定理由: `decisions/2026-10-11-giscus-comments.md`）。タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md`（手動: Discussions 有効化 + giscus app 導入）、`tasks/2026-10-11-giscus-comments-env-config.md`（手動: 環境変数登録）、`tasks/2026-10-11-giscus-comments-component.md`（AI: コンポーネント + Layout 組み込み）、`tasks/2026-10-11-giscus-comments-workflow-env.md`（AI: deploy.yml / deploy-only.yml への env 配線）、`tasks/2026-10-11-giscus-comments-verification.md`（AI: E2E 検証 + 本番デプロイ）。完了時に本エントリを削除 |
-| 17 | 新プロンプトタイプ「ポケモン」追加: テンプレート + プロンプトタイプランダム選定 + RSS/e621 ポケモン取得 | ⭐⭐ | 新コンテンツタイプ・データソース多様化 | 2026-10-16 ユーザー判断: #16(ポケモンテーマ)とは**独立**。詳細設計は**要検討**（保留）。ポケモンRSS(4フィード)・e621 pokemon タグは **fetch_topics.py に既存**（配線のみで可）。ランダム選定は deploy.yml 変更を伴う。詳細: `tasks/2026-10-16-pokemon-story-backlog-consideration.md` |
+| 17 | 新プロンプトタイプ「ポケモン」追加: テンプレート + プロンプトタイプランダム選定 + RSS/e621 ポケモン取得 | ⭐⭐ | 新コンテンツタイプ・データソース多様化 | 2026-10-16 ユーザー判断: #16(ポケモンテーマ)とは**独立**。詳細設計**済み**（保留・J1〜J5 判断待ち）。ポケモンRSS(4フィード)・e621 pokemon タグは **fetch_topics.py に既存**（配線のみで可）。ランダム選定は deploy.yml 変更を伴う。初期検討: `tasks/2026-10-16-pokemon-story-backlog-consideration.md` ／ 詳細設計: `tasks/2026-10-16-pokemon-prompt-type-design.md` |
 
 ## P3
 
