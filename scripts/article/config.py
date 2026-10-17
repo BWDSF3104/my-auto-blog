@@ -54,6 +54,7 @@ MODELS_TO_TRY = [
 
 HF_SPACE_ID = "blume/kemono-image-api"
 BASE_URL = os.environ.get("SITE_BASE_PATH") or "/my-auto-blog"  # GitHub Pagesのベースパス
+SITE_ORIGIN = os.environ.get("SITE_ORIGIN") or "https://BWDSF3104.github.io"
 MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
 MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 GENRE_SCORES_PATH = os.path.join("data", "genre_scores", "topics.json")

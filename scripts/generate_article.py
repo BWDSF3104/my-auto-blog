@@ -417,6 +417,23 @@ def apply_seo_schemas(content):
     return content
 
 
+def _write_new_article_url(content, file_timestamp):
+    """GSC 向けの新規記事URLを data/new_urls/{date}.txt に1行書き出し。"""
+    slug_match = re.search(r'^slug:\s*["\']?(.*?)["\']?$', content, re.MULTILINE)
+    slug = slug_match.group(1).strip() if slug_match else ""
+    if not slug:
+        print("⚠️  slug未検出のためGSC用URL出力をスキップ")
+        return
+    url = f"{SITE_ORIGIN}{BASE_URL}/posts/{slug}"
+    out_dir = os.path.join("data", "new_urls")
+    os.makedirs(out_dir, exist_ok=True)
+    date_str = file_timestamp[:10]
+    out_path = os.path.join(out_dir, f"{date_str}.txt")
+    with open(out_path, "a", encoding="utf-8") as f:
+        f.write(url + "\n")
+    print(f"📮 GSC用URL出力: {url}")
+
+
 def finalize_and_save(content, file_timestamp, trend_topic_links, prompt_type, kemono_params, e621_info, pub_date_str):
     # 5.6 Frontmatter YAML の最終検証・修復
     content = validate_and_fix_frontmatter(content)
@@ -461,6 +478,9 @@ def finalize_and_save(content, file_timestamp, trend_topic_links, prompt_type, k
 
     # 7. 古いログのクリーンアップ（期間ベースで N 日前のファイルを削除）
     _cleanup_old_logs()
+
+    # 8. GSC 向け新規記事URLを書き出し（サイトマップ非対応ワークアラウンド）
+    _write_new_article_url(content, file_timestamp)
     return content
 
 
