@@ -396,12 +396,25 @@ def _finalize_prompt_parts(parts: list[str], clean_situation: str, artist_name: 
     return ", ".join(parts)
 
 
-def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE) -> str:
+def scene_keyword_injection(extra_key: str) -> str:
+    """extra_key に応じたシーンキーワードへの強制注入文字列を返す。
+    クローン系は2人以上登場時にシーンキーワード先頭に注入する（compose_image_prompt がソロは対象外にする）。
+    clone → "clone"、dark_persona → "dark persona, clone"、その他(none / rival) → 空文字列。"""
+    if extra_key == "clone":
+        return "clone"
+    if extra_key == "dark_persona":
+        return "dark persona, clone"
+    return ""
+
+
+def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style: str = DEFAULT_ART_STYLE, scene_injection: str = "") -> str:
     """
     指定された画像プロンプト（シチュエーション文）から登場キャラクター [character_1, ...] を解析し、
     被写体数 + キャラクター外見 + 表情/ポーズ + シチュエーション + artist名 + 品質タグ + アートスタイル を合成する。
     表情/ポーズは各キャラクター外見の直後に配置（全キャラ同一の場合は1回だけ出力）。
     Illustrious系の公式トレーニング順序に準拠（person count → character → situation → artist → quality → style）。
+    scene_injection（クローン系）は2人以上登場時のみシーンキーワード先頭に注入する。
+    カウントタグは COUNT_TAG_WEIGHT で減衰して強調構文で囲む（space側で人間寄りへの引きを抑制）。
     """
     raw_prompt = raw_prompt.strip().strip('"\'"\"')
     artist_name, style_without_artist = _extract_artist_name(art_style)
@@ -418,7 +431,15 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
     # 1人の場合
     if len(selected_char_prompts) == 1:
         char_desc = selected_char_prompts[0]
-        parts = [char_desc]
+        # 先頭カウントタグを減衰して人間寄りへの引きを抑制（ソロは scene_injection 対象外）
+        m = re.match(r'^\s*(1boy|1girl|1other|male|female)\s*,\s*', char_desc, flags=re.IGNORECASE)
+        if m:
+            parts = [f"({m.group(1)}:{COUNT_TAG_WEIGHT})"]
+            rest = char_desc[m.end():].strip()
+            if rest:
+                parts.append(rest)
+        else:
+            parts = [char_desc]
         char_tags = per_char_tags.get(target_chars[0], "") if target_chars else ""
         if not char_tags:
             char_tags = shared_tags
@@ -426,11 +447,14 @@ def compose_image_prompt(raw_prompt: str, characters: dict[str, str], art_style:
             parts.append(char_tags)
         return _finalize_prompt_parts(parts, clean_situation, artist_name, style_without_artist)
 
-    # 2人以上: 全体カウントタグ + キャラブロック
+    # 2人以上: 全体カウントタグ（減衰）+ キャラブロック
     count_tag = _compute_count_tag(selected_char_prompts)
     cleaned_char_descs = _strip_single_count_tags(selected_char_prompts)
     char_block = _build_char_block(target_chars, per_char_tags, shared_tags, cleaned_char_descs)
-    parts = [count_tag, char_block]
+    parts = [f"({count_tag}:{COUNT_TAG_WEIGHT})", char_block]
+    # クローン系: シーンキーワード先頭に注入（2人以上登場時のみ適用）
+    if scene_injection:
+        clean_situation = f"{scene_injection}, {clean_situation}" if clean_situation else scene_injection
     return _finalize_prompt_parts(parts, clean_situation, artist_name, style_without_artist)
 
 
@@ -448,7 +472,7 @@ def extract_image_prompt(markdown_content: str) -> str:
 # --------------------------------------------------
 # 本文内画像の抽出・生成・置換処理
 # --------------------------------------------------
-def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES, art_style: str = DEFAULT_ART_STYLE, base_seed: int = -1) -> str:
+def process_inline_images(content: str, file_timestamp: str, characters: dict[str, str], max_images: int = MAX_INLINE_IMAGES, art_style: str = DEFAULT_ART_STYLE, base_seed: int = -1, scene_injection: str = "") -> str:
     """本文内の <!-- IMAGE_PROMPT: "..." --> を検出し、画像生成してMarkdown画像記法に置換する。
     base_seed が指定された場合、ヘッダーは base_seed、本文挿絵は base_seed+1, +2... を使用して
     記事内の画像スタイルを一貫させる。"""
@@ -468,7 +492,7 @@ def process_inline_images(content: str, file_timestamp: str, characters: dict[st
             continue
 
         filename = f"{file_timestamp}-inline-{idx}.png"
-        full_prompt = compose_image_prompt(raw_prompt, characters, art_style)
+        full_prompt = compose_image_prompt(raw_prompt, characters, art_style, scene_injection=scene_injection)
         inline_seed = base_seed if base_seed >= 0 else -1
 
         print(f"🎨 本文挿絵 {idx}/{min(len(matches), max_images)} 合成プロンプト: {full_prompt}")

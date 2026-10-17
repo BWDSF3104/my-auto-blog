@@ -58,6 +58,7 @@ from article.image import (
     generate_and_save_image,
     process_inline_images,
     replace_character_placeholders,
+    scene_keyword_injection,
 )
 from article.affiliate import (
     _extract_affiliate_keyword,
@@ -193,19 +194,11 @@ def build_prompt(prompt_type, ng_instruction, pub_date_str, file_timestamp, kemo
     # e621 参考データは1回選出し、プロンプト注入と生成情報表示の両方で同一データを使用
     template = load_prompt_template(prompt_type)
     e621_info = _select_character_features(target_genres=target_genres)
-    # 追加設定画像プロンプトルール: clone / dark_persona は各自の特約を持ち、そのタイプが選ばれた時のみ注入（none / rival は一切指示を渡さない）
-    extra_key = kemono_params.get("extra_key", "none")
-    if extra_key == "clone":
-        extra_rule_text = _KEMONO_CLONE_RULE_TEXT
-    elif extra_key == "dark_persona":
-        extra_rule_text = _KEMONO_DARK_PERSONA_RULE_TEXT
-    else:
-        extra_rule_text = ""
+    # クローン系画像プロンプトルールはスクリプト側の強制注入（scene_keyword_injection）で対応するため、Gemini には指示を渡さない
     prompt = template.format(
         ng_instruction=ng_instruction,
         pub_date_str=pub_date_str,
         character_features_instruction=_format_character_features_instruction(e621_info),
-        extra_rule_text=extra_rule_text,
         **kemono_params
     )
 
@@ -260,7 +253,7 @@ def generate_content(prompt, prompt_type, file_timestamp, pub_date_str):
     return content
 
 
-def build_header_image(content, file_timestamp, article_seed):
+def build_header_image(content, file_timestamp, article_seed, scene_injection=""):
     # 3. 記事本文からキャラクター設定と画像用シチュエーションプロンプトを抽出して画像生成
     characters = extract_character_prompts(content)
     if characters:
@@ -282,7 +275,7 @@ def build_header_image(content, file_timestamp, article_seed):
     article_art_style = extract_art_style(content)
     print(f"🎨 記事のアートスタイル: {article_art_style}")
 
-    full_image_prompt = compose_image_prompt(dynamic_situation, characters, article_art_style)
+    full_image_prompt = compose_image_prompt(dynamic_situation, characters, article_art_style, scene_injection=scene_injection)
     print(f"🎨 ヘッダー画像合成プロンプト: {full_image_prompt}")
     image_url = generate_and_save_image(full_image_prompt, image_filename, article_seed)
     return image_url, characters, article_art_style
@@ -375,9 +368,9 @@ def apply_frontmatter_fields(content, image_url, prompt_type, kemono_params, tre
     return content
 
 
-def postprocess_content(content, file_timestamp, characters, article_art_style, article_seed, prompt_type, kemono_params, trend_keywords):
+def postprocess_content(content, file_timestamp, characters, article_art_style, article_seed, prompt_type, kemono_params, trend_keywords, scene_injection=""):
     # 5. 本文内画像の抽出・生成とMarkdown置換
-    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style, base_seed=article_seed)
+    content = process_inline_images(content, file_timestamp, characters, max_images=MAX_INLINE_IMAGES, art_style=article_art_style, base_seed=article_seed, scene_injection=scene_injection)
 
     # 5.3 本文内の [character_N] プレースホルダーを置換
     content = replace_character_placeholders(content, characters)
@@ -506,7 +499,9 @@ def generate_post():
     # 記事レベルのbase seedを生成（同じ記事内の画像でスタイルを一貫させる）
     article_seed = random.randint(0, 2**31 - 1)
     print(f"🎲 記事のbase seed: {article_seed}")
-    image_url, characters, article_art_style = build_header_image(content, file_timestamp, article_seed)
+    # クローン系（clone / dark_persona）のシーンキーワード強制注入
+    scene_injection = scene_keyword_injection(kemono_params.get("extra_key", "none"))
+    image_url, characters, article_art_style = build_header_image(content, file_timestamp, article_seed, scene_injection=scene_injection)
 
     # 4. Frontmatterの調整（image / slug / prompt_type / tags / trend_sources）
     content = apply_frontmatter_fields(
@@ -516,7 +511,7 @@ def generate_post():
     # 5. 本文の事後処理（本文内画像・プレースホルダー・アフィリエイト・商品カード・内部リンク）
     content = postprocess_content(
         content, file_timestamp, characters, article_art_style, article_seed,
-        prompt_type, kemono_params, trend_keywords,
+        prompt_type, kemono_params, trend_keywords, scene_injection=scene_injection,
     )
 
     # 5.58-5.59 SEOスキーマ（FAQPage / Speakable）

@@ -22,6 +22,7 @@ from generate_article import (
     BASE_URL,
     DEFAULT_ART_STYLE,
     DEFAULT_SITUATION,
+    COUNT_TAG_WEIGHT,
     MIN_DESC_LEN,
     MAX_DESC_LEN,
     _extract_fm_field,
@@ -60,6 +61,7 @@ from generate_article import (
     extract_image_prompt,
     extract_art_style,
     compose_image_prompt,
+    scene_keyword_injection,
     get_existing_posts,
     inject_internal_links,
     inject_affiliate_links,
@@ -490,8 +492,8 @@ class TestComposeImagePrompt:
             "[character_1: blushing, smile, character_2: frown, narrowed eyes] face-to-face confrontation, dramatic lighting",
             characters, DEFAULT_ART_STYLE
         )
-        # 表情/ポーズタグは各キャラ外見の直後にインターリーブ
-        assert "2boys, blue wolf, golden eyes, white chest fur, blushing, smile, black panther, emerald eyes, leather vest, frown, narrowed eyes, face-to-face confrontation" in result
+        # カウントタグは COUNT_TAG_WEIGHT で減衰され、表情/ポーズタグは各キャラ外見の直後にインターリーブ
+        assert f"(2boys:{COUNT_TAG_WEIGHT}), blue wolf, golden eyes, white chest fur, blushing, smile, black panther, emerald eyes, leather vest, frown, narrowed eyes, face-to-face confrontation" in result
 
     def test_compose_single_character_expression(self):
         characters = {"character_1": "1boy, blue wolf, golden eyes"}
@@ -524,8 +526,52 @@ class TestComposeImagePrompt:
             "character_2": "1boy, black panther, emerald eyes",
         }
         result = compose_image_prompt("[character_1, character_2] sitting together", characters, DEFAULT_ART_STYLE)
-        # 旧フォーマット（表情なし）は後方互換
-        assert "2boys, blue wolf, golden eyes, black panther, emerald eyes, sitting together" in result
+        # 旧フォーマット（表情なし）は後方互換（カウントタグは減衰）
+        assert f"(2boys:{COUNT_TAG_WEIGHT}), blue wolf, golden eyes, black panther, emerald eyes, sitting together" in result
+
+    def test_compose_count_tag_attenuation_multi(self):
+        characters = {
+            "character_1": "1girl, white wolf anthro, blue eyes",
+            "character_2": "1girl, black panther anthro, emerald eyes",
+        }
+        result = compose_image_prompt("[character_1, character_2] standing together", characters, DEFAULT_ART_STYLE)
+        assert f"(2girls:{COUNT_TAG_WEIGHT})" in result
+        # 減衰なしの生カウントタグ（"2girls, "）は含まれない
+        assert "2girls, " not in result
+
+    def test_compose_count_tag_attenuation_solo(self):
+        characters = {"character_1": "1girl, white wolf anthro, blue eyes"}
+        result = compose_image_prompt("[character_1] alone", characters, DEFAULT_ART_STYLE)
+        assert f"(1girl:{COUNT_TAG_WEIGHT})" in result
+        assert "white wolf anthro, blue eyes" in result
+
+    def test_compose_scene_injection_clone(self):
+        characters = {
+            "character_1": "1girl, white wolf anthro, blue eyes",
+            "character_2": "1girl, white wolf anthro, blue eyes",
+        }
+        result = compose_image_prompt("[character_1, character_2] walking together", characters, DEFAULT_ART_STYLE, scene_injection="clone")
+        assert "clone, walking together" in result
+
+    def test_compose_scene_injection_dark_persona(self):
+        characters = {
+            "character_1": "1girl, white wolf anthro, blue eyes",
+            "character_2": "1girl, black wolf anthro, blue eyes",
+        }
+        result = compose_image_prompt("[character_1, character_2] facing off", characters, DEFAULT_ART_STYLE, scene_injection="dark persona, clone")
+        assert "dark persona, clone, facing off" in result
+
+    def test_compose_scene_injection_solo_ignored(self):
+        characters = {"character_1": "1girl, white wolf anthro, blue eyes"}
+        result = compose_image_prompt("[character_1] alone", characters, DEFAULT_ART_STYLE, scene_injection="clone")
+        # ソロ画像では clone を注入しない（2人生成を防止）
+        assert "clone" not in result
+
+    def test_scene_keyword_injection(self):
+        assert scene_keyword_injection("clone") == "clone"
+        assert scene_keyword_injection("dark_persona") == "dark persona, clone"
+        assert scene_keyword_injection("none") == ""
+        assert scene_keyword_injection("rival") == ""
 
 
 # --------------------------------------------------

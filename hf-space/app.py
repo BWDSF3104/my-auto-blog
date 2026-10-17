@@ -1,3 +1,4 @@
+import re
 import torch
 import gradio as gr
 import spaces
@@ -90,6 +91,113 @@ def _encode_chunks(pipe, chunks, device):
     return torch.cat(embeds, dim=1), pooled
 
 
+def parse_emphasis(prompt):
+    """プロンプトを (text, weight) セグメント列に分割する。
+    強調構文: (word:1.2)→1.2, (word)→1.1, [word]→0.5, [[word]]→0.25, それ以外→1.0。"""
+    segments = []
+    i, n = 0, len(prompt)
+    while i < n:
+        ch = prompt[i]
+        if ch == '(':
+            m = re.match(r'\(([^()]*)\)', prompt[i:])
+            if m:
+                inner = m.group(1)
+                if ':' in inner:
+                    text, _, w = inner.rpartition(':')
+                    try:
+                        weight = float(w.strip())
+                    except ValueError:
+                        weight = 1.1
+                else:
+                    text, weight = inner, 1.1
+                text = text.strip()
+                if text:
+                    segments.append((text, weight))
+                i += m.end()
+                continue
+            segments.append((ch, 1.0))
+            i += 1
+            continue
+        if ch == '[':
+            depth = 0
+            while i + depth < n and prompt[i + depth] == '[':
+                depth += 1
+            j = i + depth
+            while j < n and prompt[j] != ']':
+                j += 1
+            if j < n:
+                close = 0
+                while j + close < n and prompt[j + close] == ']':
+                    close += 1
+                text = prompt[i + depth:j].strip()
+                if text:
+                    segments.append((text, 0.5 ** min(depth, close)))
+                i = j + close
+                continue
+            segments.append((ch, 1.0))
+            i += 1
+            continue
+        j = i + 1
+        while j < n and prompt[j] not in '([':
+            j += 1
+        segments.append((prompt[i:j], 1.0))
+        i = j
+    merged = []
+    for text, weight in segments:
+        if not text:
+            continue
+        if merged and abs(merged[-1][1] - weight) < 1e-9:
+            merged[-1] = (merged[-1][0] + text, weight)
+        else:
+            merged.append((text, weight))
+    return merged
+
+
+def build_weighted_tokens(tokenizer, prompt):
+    """強調構文付きでトークナイズし、(tokens, weights) の同長リストを返す。
+    強調がない場合は tokenize_long_prompt と同一のトークン列になる。"""
+    if not prompt:
+        prompt = "empty"
+    tokens = []
+    weights = []
+    for text, weight in parse_emphasis(prompt):
+        ids = tokenizer(text, truncation=False).input_ids
+        if len(ids) >= 2:
+            ids = ids[1:-1]
+        for tid in ids:
+            tokens.append(tid)
+            weights.append(weight)
+    return tokens, weights
+
+
+def _tokenize_and_chunk_weighted(tokens, weights, eos_token_id, bos_token_id=49406):
+    """トークン列と重み列を75トークン単位でチャンク分割する（_tokenize_and_chunk の重み付き版）。
+    重みチャンクは BOS/EOS パディングに 1.0 を入れる。Returns: (token_chunks, weight_chunks)"""
+    token_chunks = []
+    weight_chunks = []
+    while len(tokens) >= 75:
+        head_75 = [tokens.pop(0) for _ in range(75)]
+        head_w = [weights.pop(0) for _ in range(75)]
+        token_chunks.append([bos_token_id] + head_75 + [eos_token_id])
+        weight_chunks.append([1.0] + head_w + [1.0])
+    if tokens:
+        token_chunks.append([bos_token_id] + tokens + [eos_token_id] * (75 - len(tokens)) + [eos_token_id])
+        weight_chunks.append([1.0] + weights + [1.0] * (75 - len(weights)) + [1.0])
+    if not token_chunks:
+        token_chunks.append([bos_token_id] + [eos_token_id] * 75 + [eos_token_id])
+        weight_chunks.append([1.0] * 77)
+    return token_chunks, weight_chunks
+
+
+def _apply_weights(hidden, weights):
+    """各トークン位置のhidden stateを対応する重みでスケーリングする。
+    hidden: (1, seq, dim)。weights: seq長の重みリスト（BOS/EOS は1.0）。"""
+    if not weights:
+        return hidden
+    w = torch.tensor([weights], dtype=hidden.dtype, device=hidden.device)
+    return hidden * w[:, :, None]
+
+
 def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     """
     Generate long prompt embeddings for SDXL based on sd_embed implementation.
@@ -99,9 +207,9 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     global _cached_neg_embeds
     device = pipe.device
 
-    # Tokenize (BOS/EOS除去)
-    prompt_tokens_1 = tokenize_long_prompt(pipe.tokenizer, prompt)
-    prompt_tokens_2 = tokenize_long_prompt(pipe.tokenizer_2, prompt)
+    # Tokenize: positive は強調構文対応（count タグ減衰）、negative は従来どおり
+    prompt_tokens_1, prompt_weights_1 = build_weighted_tokens(pipe.tokenizer, prompt)
+    prompt_tokens_2, prompt_weights_2 = build_weighted_tokens(pipe.tokenizer_2, prompt)
 
     # Pad tokenizer 1
     eos_1 = pipe.tokenizer.eos_token_id
@@ -109,7 +217,9 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     if len(prompt_tokens_1) > len(neg_tokens_1):
         neg_tokens_1 += [eos_1] * (len(prompt_tokens_1) - len(neg_tokens_1))
     else:
-        prompt_tokens_1 += [eos_1] * (len(neg_tokens_1) - len(prompt_tokens_1))
+        pad = len(neg_tokens_1) - len(prompt_tokens_1)
+        prompt_tokens_1 += [eos_1] * pad
+        prompt_weights_1 += [1.0] * pad
 
     # Pad tokenizer 2
     eos_2 = pipe.tokenizer_2.eos_token_id
@@ -117,11 +227,13 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     if len(prompt_tokens_2) > len(neg_tokens_2):
         neg_tokens_2 += [eos_2] * (len(prompt_tokens_2) - len(neg_tokens_2))
     else:
-        prompt_tokens_2 += [eos_2] * (len(neg_tokens_2) - len(prompt_tokens_2))
+        pad = len(neg_tokens_2) - len(prompt_tokens_2)
+        prompt_tokens_2 += [eos_2] * pad
+        prompt_weights_2 += [1.0] * pad
 
     # Chunk分割
-    prompt_chunks_1 = _tokenize_and_chunk(prompt_tokens_1.copy(), eos_1)
-    prompt_chunks_2 = _tokenize_and_chunk(prompt_tokens_2.copy(), eos_2)
+    prompt_chunks_1, prompt_wchunks_1 = _tokenize_and_chunk_weighted(prompt_tokens_1.copy(), prompt_weights_1.copy(), eos_1)
+    prompt_chunks_2, prompt_wchunks_2 = _tokenize_and_chunk_weighted(prompt_tokens_2.copy(), prompt_weights_2.copy(), eos_2)
     neg_chunks_1 = _tokenize_and_chunk(neg_tokens_1.copy(), eos_1)
     neg_chunks_2 = _tokenize_and_chunk(neg_tokens_2.copy(), eos_2)
 
@@ -129,14 +241,17 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
     max_chunks = max(len(prompt_chunks_1), len(prompt_chunks_2), len(neg_chunks_1), len(neg_chunks_2))
     empty_1 = [49406] + [eos_1] * 75 + [eos_1]
     empty_2 = [49406] + [eos_2] * 75 + [eos_2]
+    empty_w = [1.0] * 77
     while len(prompt_chunks_1) < max_chunks:
         prompt_chunks_1.append(empty_1[:])
         prompt_chunks_2.append(empty_2[:])
+        prompt_wchunks_1.append(empty_w[:])
+        prompt_wchunks_2.append(empty_w[:])
     while len(neg_chunks_1) < max_chunks:
         neg_chunks_1.append(empty_1[:])
         neg_chunks_2.append(empty_2[:])
 
-    # Positive prompt のembedding (常に再計算)
+    # Positive prompt のembedding (常に再計算、トークンごとの重みを適用)
     pos_embeds_1 = []
     pos_embeds_2 = []
     pooled_prompt_embeds = None
@@ -146,8 +261,10 @@ def get_long_prompt_embeddings_sdxl(pipe, prompt, neg_prompt):
             t2 = torch.tensor([prompt_chunks_2[i]], dtype=torch.long, device=device)
             o1 = pipe.text_encoder(t1, output_hidden_states=True)
             o2 = pipe.text_encoder_2(t2, output_hidden_states=True)
-            pos_embeds_1.append(get_prompt_hidden_states_sdxl(o1))
-            pos_embeds_2.append(get_prompt_hidden_states_sdxl(o2))
+            h1 = _apply_weights(get_prompt_hidden_states_sdxl(o1), prompt_wchunks_1[i])
+            h2 = _apply_weights(get_prompt_hidden_states_sdxl(o2), prompt_wchunks_2[i])
+            pos_embeds_1.append(h1)
+            pos_embeds_2.append(h2)
             if pooled_prompt_embeds is None:
                 pooled_prompt_embeds = o2[0]
 

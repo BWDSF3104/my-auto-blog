@@ -65,6 +65,8 @@ GENRE_FILTER_MIN_SCORE = int(os.environ.get("GENRE_FILTER_MIN_SCORE", "30"))
 BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, furry, no human, safe for work"
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
+# カウントタグ（1girl, 2girls等）の強調重み。space側の強調構文で人間寄りへの引きを減衰（1.0=減衰なし）
+COUNT_TAG_WEIGHT = 0.6
 
 # SEOメタ記述の文字数制約
 MIN_DESC_LEN = 80
@@ -250,19 +252,8 @@ _KEMONO_CHARACTER2_RULES = {
     "rival": "character_1 と character_2 の両方を必ず定義してください。character_2 は character_1 のライバルであり、外見は character_1 と明確に区別できるものにしてください。",
 }
 
-# クローン画像プロンプトルール（特約: extra_key == "clone" の時のみ注入）
-_KEMONO_CLONE_RULE_TEXT = (
-    "・【クローン画像プロンプトルール】\n"
-    "  - character_1 と character_2 が一緒に登場する画像では、キャラクターIDの後のシーンキーワード部分に `clone` を含めてください（ヘッダーの image_prompt と本文の IMAGE_PROMPT の両方に適用）。\n"
-    "  - 1人のキャラクターのみが登場する画像では `clone` を含めないでください（模型が2人生成するのを防ぐため）。"
-)
-
-# dark persona画像プロンプトルール（特約: extra_key == "dark_persona" の時のみ注入）
-_KEMONO_DARK_PERSONA_RULE_TEXT = (
-    "・【dark persona画像プロンプトルール】\n"
-    "  - character_1 と character_2 が一緒に登場する画像では、キャラクターIDの後のシーンキーワード部分に `dark persona` と `clone` の両方を含めてください（ヘッダーの image_prompt と本文の IMAGE_PROMPT の両方に適用）。\n"
-    "  - 1人のキャラクターのみが登場する画像では `dark persona` / `clone` を含めないでください（模型が2人生成するのを防ぐため）。"
-)
+# クローン系（clone / dark_persona）の画像プロンプトルールはスクリプト側の強制注入で対応する
+# （compose_image_prompt の scene_injection 参照）。Gemini への指示は廃止した。
 
 # kemono_story 商品名の関連性判定トークン（固定リスト）
 _KEMONO_CORE_TOKENS = ("ケモノ", "バケモノ", "獣人", "獣", "動物", "アニマル", "anthro", "beast")
@@ -344,7 +335,7 @@ __all__ = [
     "HF_TOKEN", "IMAGE_PROVIDER", "MODELS_TO_TRY", "HF_SPACE_ID",
     "BASE_URL", "MAX_INLINE_IMAGES", "MIN_SCORE_THRESHOLD",
     "GENRE_SCORES_PATH", "GENRE_FILTER_MIN_SCORE",
-    "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION",
+    "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION", "COUNT_TAG_WEIGHT",
     "MIN_DESC_LEN", "MAX_DESC_LEN",
     "INLINE_IMAGE_PATTERN", "INLINE_AFFILIATE_PATTERN", "INLINE_AFF_PRODUCT_PATTERN",
     "ENABLE_CHAR_DEDUP", "ENABLE_TAG_AFFILIATE",
@@ -356,8 +347,6 @@ __all__ = [
     "_KEMONO_TRANSFORM_LABEL", "_KEMONO_TRANSFORM_TAGS",
     "_KEMONO_RELATIONSHIP_TEXT", "_KEMONO_EXTRA_TAGS",
     "_KEMONO_EXTRA_TEXT", "_KEMONO_CHAR_COUNT_DESC_2", "_KEMONO_CHARACTER2_RULES",
-    "_KEMONO_CLONE_RULE_TEXT",
-    "_KEMONO_DARK_PERSONA_RULE_TEXT",
     "_KEMONO_CORE_TOKENS", "_KEMONO_ANCHOR_KEYWORDS", "_KEMONO_RELATIONSHIP_AFFILIATE",
     # アフィリエイト
     "_AF_EXCLUDE_CP_PATTERNS", "_AF_EXCLUDE_CPS",
