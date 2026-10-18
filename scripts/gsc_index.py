@@ -8,8 +8,7 @@ import os
 import sys
 from pathlib import Path
 
-import requests
-from google.auth import credentials
+from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 
 
@@ -36,16 +35,17 @@ def get_latest_urls(date_str: str) -> list[str]:
     return [line.strip() for line in lines if line.strip()]
 
 
-def request_indexing(access_token: str, url: str) -> bool:
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        "Content-Type": "application/json",
-    }
+def request_indexing(session: AuthorizedSession, url: str) -> bool:
+    """AuthorizedSession で index.update を要求する。
+
+    トークンは AuthorizedSession が自動でリフレッシュ・付与するため、
+    手動 refresh や Authorization ヘッダーは不要。
+    """
     body = {
         "inspectionUrl": url,
         "property": {"siteUrl": SITE_URL},
     }
-    resp = requests.post(API_URL, headers=headers, json=body, timeout=30)
+    resp = session.post(API_URL, json=body, timeout=30)
     if resp.status_code == 200:
         return True
     print(f"  [FAIL] {resp.status_code}: {resp.text[:200]}")
@@ -65,14 +65,11 @@ def main():
 
     print(f"🔍 GSC インデックス要求: {len(urls)}件")
     creds = load_credentials()
-    token = creds.token
-    if token is None:
-        creds.refresh(requests.Session())
-        token = creds.token
+    session = AuthorizedSession(creds)
 
     success = 0
     for url in urls:
-        ok = request_indexing(token, url)
+        ok = request_indexing(session, url)
         if ok:
             success += 1
             print(f"  [OK] {url}")
