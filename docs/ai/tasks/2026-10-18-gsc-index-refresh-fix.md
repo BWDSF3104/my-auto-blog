@@ -1,8 +1,8 @@
 # GSC index.update の refresh 呼び出し修正（TypeError: 'Session' object is not callable）
 
-**Status**: 完了（TypeError 修正 + RefreshError の真因（コード起因）特定・修正 ともに検証済み。`gsc-verify.yml` による CI 再検証待ち）
+**Status**: 完了（TypeError 修正 + RefreshError の真因（コード起因）特定・修正 ともに検証済み。`gsc-verify.yml` CI 再検証 green: run 39102042828）
 **Date**: 2026-10-18
-**Next Action**: `gh workflow run gsc-verify.yml` が green（step 1: REFRESH OK + index:inspect 200 / step 2: gsc_index.py 成功）を確認後、KI-20261018-03 を archive へ移動して完了。
+**Next Action**: なし（完了）。
 
 ## 意図 / 背景
 
@@ -47,15 +47,18 @@
   - `gsc_endpoint_probe_result.txt`: `[index.update] HTTP 404` / `[index:inspect] HTTP 200`（`resource_id` = URL-prefix property 確認）/ `[sites.list] HTTP 404`。
   - `gsc_inspect_full_result.txt`: 200 完全レスポンス（`verdict: NEUTRAL` / `coverageState: "URL is unknown to Google"`）→ property アクセス正常。
 - **CI 検証（TypeError 解消）**: run 39092902792（`deploy.yml`、commit `b8ea37f`）: 「Request GSC indexing」ステップで `TypeError: 'Session' object is not callable` が **解消**。コードは正しくトークン取得段階まで到達（run 全体は success だが、本ステップは `continue-on-error: true` により成功に偽装されるため conclusion だけで判断しない）。
-- **CI 再検証（第2ラウンド修正）**: `gsc-verify.yml`（`workflow_dispatch`）実行・green 確認待ち。
+- **CI 再検証（第2ラウンド修正）**: `gsc-verify.yml`（`workflow_dispatch`）run **39102042828** → **green（33s）**:
+  - step 1（隔離診断）: `REFRESH OK`（`webmasters` scope、token len 1024）+ `index:inspect: 200`（`verdict: PASS`）。
+  - step 2（実 `gsc_index.py`）: `🔍 GSC インデックス要求: 2件` → 成功（`data/new_urls/2026-10-18.txt` の 2 URL を `index:inspect` で処理）。
+  - 旧コード（`searchconsole` scope + `index.update`）の RefreshError / 404 は解消。end-to-end 検証完了。
 
 ## Follow-up / Blocker（RefreshError blocker はクローズ）
 
 - ~~`GSC_SA_JSON` のサービスアカウントがトークン取得（JWT grant）側で失敗している~~ → **クローズ**: 原因は旧コードが使用した `searchconsole` scope が GSC API に受け入れられないこと（**コードのバグ**）。SA キーは有効であり、`webmasters` scope + `index:inspect` で実 API 200 を確認済み（上記参照）。**GCP 側での操作は不要**。
-- `docs/ai/known-issues/KI-20261018-03-gsc-sa-refresh-error.md` を「解決済み（コード起因）」に修正済み。CI 再検証 green 後に `known-issues/archive/` へ移動予定。
+- `docs/ai/known-issues/KI-20261018-03-gsc-sa-refresh-error.md` を「解決済み（コード起因）」に修正済み。CI 再検証 green（run 39102042828）確認後、`known-issues/archive/` へ移動済み。
 
 ## 完了時 Memory Bank 操作
 
 - [x] `current-task.tsv` の参照行を削除（header のみで削除すべき行が存在しなかった）
-- [ ] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（KI-20261018-03、`gsc-verify.yml` green 後）
+- [x] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（KI-20261018-03、`gsc-verify.yml` green 後）
 - [x] `backlog.md` の完了項目を削除（GSC 関連項目が存在しなかったため N/A）

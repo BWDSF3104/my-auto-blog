@@ -72,4 +72,7 @@
 
 - 2026-10-18: コード修正（KI-20261018-02）が完了したことで本件が表面化。専用検証ワークフロー `gsc-verify.yml` を作成・実行。
 - 2026-10-18: ローカル probe（scope マトリクス / エンドポイント probe / inspect 完全レスポンス）で真因がコード起因と確定。`gsc_index.py` / テスト / `gsc-verify.yml` を修正、pytest 423 passed。
-- 2026-10-18: `gsc-verify.yml`（`workflow_dispatch`）での CI 再検証 green 確認待ち。確認後に本ファイルを `known-issues/archive/` へ移動。
+- 2026-10-18: `gsc-verify.yml`（`workflow_dispatch`）CI 再検証 **green**（run 39102042828、33s）:
+  - step 1: `REFRESH OK`（`webmasters` scope、token len 1024）+ `index:inspect: 200`（`verdict: PASS`）。
+  - step 2: 実 `gsc_index.py` が 2 URL を処理し成功。
+  - 本ファイルを `known-issues/archive/` へ移動しクローズ。
