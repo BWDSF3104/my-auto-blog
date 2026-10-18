@@ -131,7 +131,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 | `verification/` | 機能ディレクトリ毎に `runs/` 配下の run ディレクトリを mtime 順に直近2保持（同値は名順）、それ以前を削除 |
 | `tmp/` | 最更新 mtime が 7 日以上経過したエントリを削除（ファイル + サブディレクトリ。サブディレクトリは内部の最更新 mtime で判定。シンボリックリンクはスキップ。`--tmp-retention-days` で保持期間変更） |
 
-**アーカイブ操作は `tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除（`kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` 経由）。`known-issues/` はワークフロー駆動の `mv`（解決時・バッチではない）。ファイル内容の編集・書き換えは行わない（`current-task.tsv` の行削除のみ例外）。アーカイブディレクトリは git 追跡対象。**
+**アーカイブ操作は `tasks/` が `mv`（ファイル移動）、`verification/`・`tmp/` が削除（`kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` 経由・**Windows ゴミ箱へ**・復元可能）。`known-issues/` はワークフロー駆動の `mv`（解決時・バッチではない）。ファイル内容の編集・書き換えは行わない（`current-task.tsv` の行削除のみ例外）。アーカイブディレクトリは git 追跡対象。**
 
 ## 中断からの復帰
 

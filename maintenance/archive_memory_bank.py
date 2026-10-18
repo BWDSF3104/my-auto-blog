@@ -13,7 +13,9 @@ Rules: docs/ai/memory-bank-guide.md "バッチクリーンアップ"
 - verification/: per feature dir keep the newest 2 runs (mtime order), delete the rest
 - tmp/: delete entries whose newest mtime is older than TMP_RETENTION_DAYS
   (default 7, --tmp-retention-days); directories are judged by the newest
-  mtime inside them (deletion delegated to kilo-safe-*.cmd)
+   mtime inside them (deletion delegated to kilo-safe-*.cmd, which moves the
+   item to the Windows Recycle Bin instead of permanently deleting it; see
+   docs/ai/decisions/2026-10-18-recycle-bin-deletion.md)
 - git: on --apply, stage the touched paths (git add) so the agent only needs
   to commit; --no-git-add skips staging. The script never commits/pushes.
 """

@@ -14,6 +14,67 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $projectRootFull = [System.IO.Path]::GetFullPath($projectRoot)
 
+# Recycle Bin deletion via the VB wrapper (managed .NET):
+#   [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile / DeleteDirectory
+#   + RecycleOption.SendToRecycleBin
+# SHFileOperation (P/Invoke) was found to fail nondeterministically for
+# directory deletion from a console PowerShell context without a message
+# loop (ret=2/87/124 mixed), so the managed wrapper is used instead
+# (verified 10/10 success).
+# Note: the wrapper does not expose FOF_NOAUTORECYCLE, so it may fall back
+# to a silent permanent delete when the Recycle Bin cannot hold the item
+# (pre-existing Windows behavior).
+Add-Type -AssemblyName Microsoft.VisualBasic
+
+function Send-ToRecycleBin {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$TargetPath
+    )
+
+    # Recycle Bin moves can transiently fail while real-time antivirus
+    # scanning or indexing holds the item. Retry while the target
+    # still exists.
+    $script:RecycleLastError = ''
+    $maxAttempts = 3
+    $attempt = 0
+
+    $isDir = $false
+    if (Test-Path -LiteralPath $TargetPath -PathType Container) {
+        $isDir = $true
+    }
+
+    while ($true) {
+        $attempt++
+        try {
+            if ($isDir) {
+                [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory(
+                    $TargetPath,
+                    [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
+                    [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin)
+            }
+            else {
+                [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile(
+                    $TargetPath,
+                    [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
+                    [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin)
+            }
+            return $true
+        }
+        catch {
+            $script:RecycleLastError = $_.Exception.Message
+            # Target is gone: another process removed it, treat as success.
+            if (-not (Test-Path -LiteralPath $TargetPath)) {
+                return $true
+            }
+            if ($attempt -ge $maxAttempts) {
+                return $false
+            }
+            Start-Sleep -Seconds $attempt
+        }
+    }
+}
+
 function Get-NormalizedFullPath {
     param(
         [Parameter(Mandatory = $true)]
@@ -93,8 +154,11 @@ foreach ($target in $Path) {
         exit 1
     }
 
-    Write-Host "Deleted: $relativePath"
-    Remove-Item -LiteralPath $fullPath -Recurse -Force
+    Write-Host "Sent to Recycle Bin: $relativePath"
+    if (-not (Send-ToRecycleBin $fullPath)) {
+        Write-Error "Failed to send to Recycle Bin ($script:RecycleLastError): $relativePath"
+        exit 1
+    }
 }
 
 exit 0

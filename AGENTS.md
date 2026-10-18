@@ -17,6 +17,7 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - 禁止: `rm -rf`、`git push --force`、`sudo`、ワークスペースルート外のファイル変更。
 - **ファイル削除**: `./kilo-safe-remove.cmd <file>` を使う（`Remove-Item` / `del` は不可）。
 - **フォルダ削除**: `./kilo-safe-rmdir.cmd <folder>` を使う（`Remove-Item -Recurse` / `rmdir /s` は不可）。
+- この2コマンドは **Windows ゴミ箱** へ削除する（復元可能・恒久削除ではない）。実装（VB ラッパー）と根拠は `docs/ai/decisions/2026-10-18-recycle-bin-deletion.md` を参照。
 - **決して** PowerShell の `Get-Content` / `Set-Content` パイプラインでファイル内容を操作しないこと。UTF-8 エンコーディングを破損させる（BOM 付与、日本語文字化け）。
 - **editツール以外でファイルを改写する場合**: 必ず事前に `git diff` でリモートとの差異がないことを確認し、改写後はファイルが破損していないことを確認すること。
 
