@@ -56,7 +56,7 @@ class TestLoadCredentials:
             gsc_index.load_credentials()
 
     @patch.object(gsc_index.service_account.Credentials, "from_service_account_info")
-    def test_loads_with_searchconsole_scope(self, mock_from_info, monkeypatch):
+    def test_loads_with_webmasters_scope(self, mock_from_info, monkeypatch):
         fake_creds = MagicMock(name="creds")
         mock_from_info.return_value = fake_creds
         monkeypatch.setenv("GSC_SA_JSON", json.dumps(SAMPLE_SA_INFO))
@@ -66,7 +66,7 @@ class TestLoadCredentials:
         assert creds is fake_creds
         mock_from_info.assert_called_once_with(
             SAMPLE_SA_INFO,
-            scopes=["https://www.googleapis.com/auth/searchconsole"],
+            scopes=["https://www.googleapis.com/auth/webmasters"],
         )
 
 
@@ -75,14 +75,14 @@ class TestRequestIndexing:
         session = _mock_session(200)
         assert gsc_index.request_indexing(session, "https://example.com/a") is True
 
-    def test_posts_index_update_payload(self):
+    def test_posts_inspect_payload(self):
         session = _mock_session(200)
         gsc_index.request_indexing(session, "https://example.com/a")
         session.post.assert_called_once_with(
             gsc_index.API_URL,
             json={
                 "inspectionUrl": "https://example.com/a",
-                "property": {"siteUrl": gsc_index.SITE_URL},
+                "siteUrl": gsc_index.SITE_URL,
             },
             timeout=30,
         )
