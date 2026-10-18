@@ -16,8 +16,10 @@ Rules: docs/ai/memory-bank-guide.md "バッチクリーンアップ"
    mtime inside them (deletion delegated to kilo-safe-*.cmd, which moves the
    item to the Windows Recycle Bin instead of permanently deleting it; see
    docs/ai/decisions/2026-10-18-recycle-bin-deletion.md)
-- git: on --apply, stage the touched paths (git add) so the agent only needs
-  to commit; --no-git-add skips staging. The script never commits/pushes.
+    - git: on --apply, stage the touched paths (git add) so the agent only needs
+      to commit; --no-git-add skips staging. Untracked paths that git ignores
+      (e.g. docs/ai/tmp/*) are excluded from staging because `git add` would
+      fail on them. The script never commits/pushes.
 """
 
 from __future__ import annotations
@@ -181,6 +183,26 @@ def _default_git_add(root: Path, paths: list[Path]) -> tuple[int, str]:
     return _default_runner(["git", "-C", str(root), "add", "--", *rels])
 
 
+def _git_ignored_paths(root: Path, paths: list[Path]) -> set[str]:
+    """Rel paths in `paths` that git ignores (untracked + gitignored).
+
+    These are the paths that would make `git add --` fail. Check failures
+    (e.g. root is not a git repo, exit != 0) are treated as "not ignored",
+    preserving the previous behavior.
+    """
+    ignored: set[str] = set()
+    for p in paths:
+        rel = p.relative_to(root).as_posix()
+        proc = subprocess.run(
+            ["git", "-C", str(root), "check-ignore", "-q", "--", rel],
+            capture_output=True,
+            timeout=60,
+        )
+        if proc.returncode == 0:
+            ignored.add(rel)
+    return ignored
+
+
 def execute_plan(plan: Plan, apply: bool, runner=None, git_add=None) -> list[Result]:
     if runner is None:
         runner = _default_runner
@@ -233,14 +255,32 @@ def execute_plan(plan: Plan, apply: bool, runner=None, git_add=None) -> list[Res
 
     if apply and staged and git_add is not None:
         staged_paths = sorted(set(staged), key=lambda p: p.as_posix())
-        code, out = git_add(root, staged_paths)
-        results.append(
-            Result(
-                Action("git_add", root, f"{len(staged_paths)} path(s)"),
-                "ok" if code == 0 else "error",
-                "staged" if code == 0 else f"exit {code}: {out}",
+        ignored = _git_ignored_paths(root, staged_paths)
+        to_stage = [p for p in staged_paths if p.relative_to(root).as_posix() not in ignored]
+        if not to_stage:
+            results.append(
+                Result(
+                    Action("git_add", root, f"{len(staged_paths)} path(s) all gitignored"),
+                    "ok",
+                    "skipped",
+                )
             )
-        )
+        else:
+            code, out = git_add(root, to_stage)
+            if code == 0:
+                msg = "staged"
+                if ignored:
+                    excluded = ", ".join(sorted(ignored))
+                    msg = f"staged (excluded gitignored: {excluded})"
+            else:
+                msg = f"exit {code}: {out}"
+            results.append(
+                Result(
+                    Action("git_add", root, f"{len(to_stage)} path(s)"),
+                    "ok" if code == 0 else "error",
+                    msg,
+                )
+            )
 
     return results
 

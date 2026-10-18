@@ -1,4 +1,5 @@
 import shutil
+import subprocess
 import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -405,3 +406,55 @@ def test_cli_apply_no_git_add_flag(tmp_path, capsys, monkeypatch):
     assert rc == 0
     assert recorded == []
     assert "[git_add]" not in out
+
+
+def test_apply_excludes_gitignored_paths_from_staging(tmp_path):
+    ctx = make_tree(tmp_path)
+    # git repo with tmp/ gitignored (mirrors the real repo's .gitignore)
+    subprocess.run(["git", "-C", str(tmp_path), "init"], check=True, capture_output=True)
+    (tmp_path / ".gitignore").write_text("tmp/\n", encoding="utf-8")
+    runner = FakeRunner(tmp_path)
+    git_add = FakeGitAdd()
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat(ctx["mtimes"]))
+    results = amb.execute_plan(plan, apply=True, runner=runner, git_add=git_add)
+    assert all(r.status == "ok" for r in results)
+    assert len(git_add.calls) == 1
+    _root, paths = git_add.calls[0]
+    staged = {p.relative_to(tmp_path).as_posix() for p in paths}
+    # gitignored (untracked) tmp/ entries must not be staged
+    assert "docs/ai/tmp/.hidden" not in staged
+    assert "docs/ai/tmp/old-sub" not in staged
+    # tracked / non-ignored paths are still staged
+    assert "docs/ai/current-task.tsv" in staged
+    assert "docs/ai/tasks/2026-09-01-done.md" in staged
+    assert "docs/ai/tasks/archive/2026-09-01-done.md" in staged
+    assert "docs/ai/verification/feat-a/runs/run-old" in staged
+    git_add_results = [r for r in results if r.action.kind == "git_add"]
+    assert len(git_add_results) == 1
+    assert "excluded gitignored: docs/ai/tmp/.hidden, docs/ai/tmp/old-sub" in git_add_results[0].message
+
+
+def test_apply_all_gitignored_paths_skips_git_add(tmp_path):
+    ai = tmp_path / "docs" / "ai"
+    a = ai / "tmp" / "a.txt"
+    a.parent.mkdir(parents=True)
+    a.write_text("x", encoding="utf-8")
+    tsv = ai / "current-task.tsv"
+    tsv.write_text(
+        "task_file\tstatus\tnext_action\ndocs/ai/tasks/x.md\t完了\tx\n",
+        encoding="utf-8",
+    )
+    # git repo where tmp/ and current-task.tsv are gitignored
+    subprocess.run(["git", "-C", str(tmp_path), "init"], check=True, capture_output=True)
+    (tmp_path / ".gitignore").write_text("tmp/\ncurrent-task.tsv\n", encoding="utf-8")
+    runner = FakeRunner(tmp_path)
+    git_add = FakeGitAdd()
+    plan = amb.build_plan(tmp_path, TODAY, fake_stat({a: OLD}), tmp_retention_days=30)
+    results = amb.execute_plan(plan, apply=True, runner=runner, git_add=git_add)
+    assert all(r.status == "ok" for r in results)
+    assert git_add.calls == []
+    git_add_results = [r for r in results if r.action.kind == "git_add"]
+    assert len(git_add_results) == 1
+    assert git_add_results[0].status == "ok"
+    assert git_add_results[0].action.detail == "2 path(s) all gitignored"
+    assert git_add_results[0].message == "skipped"
