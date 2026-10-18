@@ -1,11 +1,12 @@
-# 使い切り: GSC インデックス登録の「障害箇所」（トークン取得 / index.update）だけを
+# 使い切り: GSC インデックス登録の「障害箇所」（トークン取得 / API 呼び出し）を
 # 切り出して検証するための専用ワークフロー。
 #
 # - workflow_dispatch のみ。schedule / push / pull_request には反応しない。
 # - 本番の deploy.yml とは別物。記事生成・デプロイは行わない。
-# - 目的: run 39092902792 で出た
-#     google.auth.exceptions.RefreshError: ('No access token in response.', ...)
-#   を隔離再現し、GSC_SA_JSON（サービスアカウント）側の問題か確認する。
+# - 目的: 修正後の gsc_index.py（webmasters scope + urlInspection/index:inspect）が
+#   トークン取得と API 呼び出しを成功させることを確認する。
+#   （旧実装は非標準 scope `searchconsole` と非存在エンドポイント `index.update`
+#   を使い RefreshError / 404 だった。根本原因はコード側。）
 name: GSC verify (manual only)
 
 on:
@@ -42,20 +43,26 @@ jobs:
           print("has private_key:", bool(sa.get("private_key")))
 
           creds = service_account.Credentials.from_service_account_info(
-              sa, scopes=["https://www.googleapis.com/auth/searchconsole"])
+              sa, scopes=["https://www.googleapis.com/auth/webmasters"])
           print("creds class    :", type(creds).__name__)
 
           try:
               creds.refresh(Request())
               tok = creds.token or ""
               print("REFRESH OK     : token len", len(tok), "prefix", tok[:15])
-              # トークンが実 GSC API で通るか（読み取り専用の sites.get）
+              # トークンが実 GSC API で通るか（index:inspect で検証）
               sess = AuthorizedSession(creds)
-              r = sess.get(
-                  "https://searchconsole.googleapis.com/v1/sites/"
-                  "https%3A%2F%2Fbwdsf3104.github.io%2Fmy-auto-blog%2F",
+              r = sess.post(
+                  "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect",
+                  json={
+                      "inspectionUrl": "https://bwdsf3104.github.io/my-auto-blog/",
+                      "siteUrl": "https://bwdsf3104.github.io/my-auto-blog/",
+                  },
                   timeout=30)
-              print("sites.get      :", r.status_code, r.text[:300])
+              print("index:inspect  :", r.status_code, r.text[:300])
+              if r.status_code != 200:
+                  print("API CALL FAILED: non-200")
+                  sys.exit(1)
           except Exception as e:
               print("REFRESH FAILED :", type(e).__module__ + "." + type(e).__name__)
               print("detail         :", repr(e))
