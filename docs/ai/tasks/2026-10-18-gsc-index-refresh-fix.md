@@ -1,8 +1,8 @@
 # GSC index.update の refresh 呼び出し修正（TypeError: 'Session' object is not callable）
 
-**Status**: 完了
+**Status**: 完了（コード修正は完了・検証済み。ただし別件の認証情報 blocker が残 → Follow-up / KI-20261018-03）
 **Date**: 2026-10-18
-**Next Action**: gsc_index.py:70 を callable な transport.Request に修正し、mock ベース単体テストを追加
+**Next Action**: コード側は完了。GSC end-to-end は GCP 側の SA/secret 修正待ち（`docs/ai/known-issues/KI-20261018-03-gsc-sa-refresh-error.md` の手順）。修正後 `gsc-verify.yml` を再実行して検証。
 
 ## 意図 / 背景
 
@@ -21,7 +21,16 @@
 
 - `python -m pytest scripts/tests/ -v` → **423 passed in 7.92s**（2026-10-18、修正前 413 → +10 新テスト）。
 - 新テスト `scripts/tests/test_gsc_index.py`（10件・全 PASS）: `get_latest_urls`（ファイル不在/strip・空行除去）・`load_credentials`（env 不在で RuntimeError / searchconsole scope）・`request_indexing`（200→True / payload・timeout 検証 / 404→False）・`main`（URL なしで skip / 全成功で exit なし / 部分失敗で exit 1）。Google API は全件 `unittest.mock`（実呼出しなし）。
-- CI 検証: push 後 `gh workflow run deploy.yml` で発火し「Request GSC indexing」ステップの成功を確認（run 結果は後記追記）。
+- **CI 検証（TypeError 解消を確認）**:
+  - run 39092902792（`deploy.yml`、commit `b8ea37f`）: 「Request GSC indexing」ステップで `TypeError: 'Session' object is not callable` が **解消**。コードは正しくトークン取得段階まで到達。（run 全体は success だが、本ステップは `continue-on-error: true` により成功に偽装されるため conclusion だけで判断しない。）
+  - run 39094334108（専用検証 `gsc-verify.yml`）: 障害箇所を隔離再現。SA JSON は構造的に妥当（`type=service_account` / `token_uri` / `private_key` あり）だが、JWT grant が `google.auth.exceptions.RefreshError: ('No access token in response.', ...)` で失敗。実 `scripts/gsc_index.py` も同一エラーで失敗（コード経路の再現確認）。
+- **結論**: コード起因のバグ（TypeError）は修正・検証済み。ただし **別の既存の認証情報問題** が GSC インデックス登録の end-to-end をブロックしている（下記 Follow-up・新 known-issue）。
+
+## Follow-up / Blocker（コード修正とは別件）
+
+- `GSC_SA_JSON` のサービスアカウント（`gcs-indexer@cloud-vision-api-test-157707.iam.gserviceaccount.com`）が **トークン取得（JWT grant）側で失敗** している。これは **コードのバグではない**（GCP / GitHub secret 側の確認が必要: キーローテーション後の古い key / SA 削除 / secret 破損 / スコープ不足）。
+- 詳細・確認済み事実・修正手順は `docs/ai/known-issues/KI-20261018-03-gsc-sa-refresh-error.md`。
+- 検証用: 使い切りワークフロー `.github/workflows/gsc-verify.yml`（`workflow_dispatch` のみ・自動発火なし）を作成済み。GCP 側修正後の再検証に使用。
 
 ## 完了時 Memory Bank 操作
 
