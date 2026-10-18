@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-18T11:27:37.032728+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-18T11:26:26.804423+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.02,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Captain Price Actor Sends Message to Fans as Call of Duty: Modern Warfare 4 Campaign Praise Rolls in",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/captain-price-actor-sends-message-to-fans-as-call-of-duty-modern-warfare-4-campaign-praise-rolls-in",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Barry Sloane, the actor behind Call of Duty's Captain Price, has shared a message with fans as praise for Modern Warfare 4's campaign rolls in. Early reactions to Call of Duty: Modern Warfare 4's stor"
+    },
+    {
+      "title": "Bleach: Thousand-Year Blood War - The Calamity Anime Streams 'Last' Promo Video",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-17/bleach-thousand-year-blood-war-the-calamity-anime-streams-last-promo-video/.242935",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Modern Warfare 4 Campaign Prai",
+    "Thousand Year Blood War"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/captain-price-actor-sends-message-to-fans-as-call-of-duty-modern-warfare-4-campaign-praise-rolls-in",
+    "https://www.animenewsnetwork.com/news/2026-10-17/bleach-thousand-year-blood-war-the-calamity-anime-streams-last-promo-video/.242935"
+  ]
+}
