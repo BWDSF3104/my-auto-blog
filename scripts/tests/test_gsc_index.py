@@ -70,14 +70,14 @@ class TestLoadCredentials:
         )
 
 
-class TestRequestIndexing:
+class TestInspectUrlIndexing:
     def test_success_returns_true(self):
         session = _mock_session(200)
-        assert gsc_index.request_indexing(session, "https://example.com/a") is True
+        assert gsc_index.inspect_url_indexing(session, "https://example.com/a") is True
 
     def test_posts_inspect_payload(self):
         session = _mock_session(200)
-        gsc_index.request_indexing(session, "https://example.com/a")
+        gsc_index.inspect_url_indexing(session, "https://example.com/a")
         session.post.assert_called_once_with(
             gsc_index.API_URL,
             json={
@@ -89,7 +89,7 @@ class TestRequestIndexing:
 
     def test_failure_returns_false(self):
         session = _mock_session(404)
-        assert gsc_index.request_indexing(session, "https://example.com/a") is False
+        assert gsc_index.inspect_url_indexing(session, "https://example.com/a") is False
 
 
 class TestMain:

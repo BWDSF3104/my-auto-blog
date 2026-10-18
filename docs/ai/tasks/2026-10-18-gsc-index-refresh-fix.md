@@ -1,6 +1,6 @@
 # GSC index.update の refresh 呼び出し修正（TypeError: 'Session' object is not callable）
 
-**Status**: 完了（TypeError 修正 + RefreshError の真因（コード起因）特定・修正 ともに検証済み。`gsc-verify.yml` CI 再検証 green: run 39102042828）
+**Status**: 完了（TypeError 修正 + RefreshError の真因（コード起因）特定・修正 ともに検証済み。`gsc-verify.yml` CI 再検証 green: run 39102042828。第3ラウンド: 命名/コメントを実態に統一し、意図制約を KI-20261018-04 に記録）
 **Date**: 2026-10-18
 **Next Action**: なし（完了）。
 
@@ -38,6 +38,16 @@
 - テスト: `scripts/tests/test_gsc_index.py` を更新（`test_loads_with_searchconsole_scope` → `test_loads_with_webmasters_scope`、`test_posts_index_update_payload` → `test_posts_inspect_payload`、アサーションを新 scope / 新 body に変更）。
 - `.github/workflows/gsc-verify.yml`: step 1（隔離診断）を `webmasters` scope + `index:inspect` 呼び出し（non-200 で `sys.exit(1)`）に変更、ヘッダコメントを更新。
 
+### 第3ラウンド: 命名・コメントの実態合わせ + 意図制約の記録
+
+- 背景: 第2ラウンドで `index:inspect` に差し替えたが、関数名 `request_indexing`・`deploy.yml` step 名「Request GSC indexing」・docstring が旧来の「インデックス登録要求（write）」を名乗ったまま → 命名/コメントと実態（再チェック nudge）の乖離。ユーザー確認のもと、命名/コメントを実態に統一し、本来の意図が API 非対応である点を記録。
+- **変更（命名/コメントを実態に統一）**:
+  - `gsc_index.py`: 関数 `request_indexing` → `inspect_url_indexing`、モジュール docstring と関数 docstring を「インデックス再チェックを促す（ネイティブな Request Indexing は公開 API に存在しない）」に修正、`main` の出力「インデックス要求」→「インデックス再チェック」。
+  - `scripts/tests/test_gsc_index.py`: `TestRequestIndexing` → `TestInspectUrlIndexing`、参照を新関数名へ。
+  - `deploy.yml`: step 名「Request GSC indexing」→「Nudge GSC index re-check (inspect)」、コメントに「ネイティブな Request Indexing (write) は公開 GSC API に存在せず inspect が最も近い代替」を明記。`data/new_urls` コメントも「index re-check (supplementary to sitemap)」へ。
+  - `gsc-verify.yml`: 既に `index:inspect` を正しく参照していたため変更不要。
+- **意図制約の記録**: 本来の意図（ネイティブな Request Indexing / write）が公開 GSC API に存在しないことを `docs/ai/known-issues/KI-20261018-04-gsc-request-indexing-not-available.md` として記録（既知の制約・API 非対応のため open 継続）。
+
 ## Verification
 
 - `python -m pytest scripts/tests/ -q` → **423 passed in 7.46s**（2026-10-18、第2ラウンド修正後に再実行）。
@@ -56,9 +66,11 @@
 
 - ~~`GSC_SA_JSON` のサービスアカウントがトークン取得（JWT grant）側で失敗している~~ → **クローズ**: 原因は旧コードが使用した `searchconsole` scope が GSC API に受け入れられないこと（**コードのバグ**）。SA キーは有効であり、`webmasters` scope + `index:inspect` で実 API 200 を確認済み（上記参照）。**GCP 側での操作は不要**。
 - `docs/ai/known-issues/KI-20261018-03-gsc-sa-refresh-error.md` を「解決済み（コード起因）」に修正済み。CI 再検証 green（run 39102042828）確認後、`known-issues/archive/` へ移動済み。
+- 本来の意図（ネイティブな Request Indexing / write）は公開 GSC API に存在しないため未達成 → 既知の制約として `docs/ai/known-issues/KI-20261018-04-gsc-request-indexing-not-available.md` に記録（open 継続・コードで解決不可）。
 
 ## 完了時 Memory Bank 操作
 
 - [x] `current-task.tsv` の参照行を削除（header のみで削除すべき行が存在しなかった）
 - [x] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（KI-20261018-03、`gsc-verify.yml` green 後）
 - [x] `backlog.md` の完了項目を削除（GSC 関連項目が存在しなかったため N/A）
+- [x] 新規 KI-20261018-04（既知の制約・Request Indexing が API 非対応）を `known-issues/` に記録

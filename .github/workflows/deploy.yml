@@ -111,8 +111,8 @@ jobs:
            [ -d "data/prompt_logs" ] && git add data/prompt_logs/
             # Genre score cache + results (CI reuse + traceability)
             [ -d "data/genre_scores" ] && git add data/genre_scores/
-            # New article URLs for GSC submission (sitemap workaround)
-            [ -d "data/new_urls" ] && git add data/new_urls/
+           # New article URLs for GSC index re-check (supplementary to sitemap)
+           [ -d "data/new_urls" ] && git add data/new_urls/
 
           git diff --quiet && git diff --staged --quiet || {
             git commit -m "docs: auto-generated daily post with image and draft metadata [skip ci]"
@@ -124,10 +124,12 @@ jobs:
           }          
 
       # -------------------------------------------------------
-      # 1-D. Request Google to index the new article URL
-      #      Non-fatal: failure does not block the pipeline.
+      # 1-D. Prompt Google to re-check the new article URL's indexing
+      #      (urlInspection/index:inspect). A native "Request Indexing"
+      #      (write) is NOT available in the public GSC API; inspect is
+      #      the closest substitute. Non-fatal: does not block the pipeline.
       # -------------------------------------------------------
-      - name: Request GSC indexing
+      - name: Nudge GSC index re-check (inspect)
         if: always()
         continue-on-error: true
         env:

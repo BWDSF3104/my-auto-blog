@@ -1,7 +1,10 @@
-"""GSC API（URL Inspection）で新規記事URLのインデックス登録を要求する。
+"""GSC API（URL Inspection）で新規記事URLのインデックス再チェックを促す。
 
 Search Console API v1 の `urlInspection/index:inspect` を呼び出し、
-Google に URL のインデックス状態を確認（再チェックを促す）させる。
+Google に URL のインデックス状態の再確認（再チェック）を促す。
+ネイティブな「インデックス登録要求」（Request Indexing / write）は
+公開 GSC API に存在しないため、最も近い代替として inspect を使う
+（制約: docs/ai/known-issues/KI-20261018-04-gsc-request-indexing-not-available.md）。
 scope は `webmasters`（API が正式に受け付ける read/write scope）。
 
 CI 内で generate_article.py の後に実行される。
@@ -39,10 +42,12 @@ def get_latest_urls(date_str: str) -> list[str]:
     return [line.strip() for line in lines if line.strip()]
 
 
-def request_indexing(session: AuthorizedSession, url: str) -> bool:
-    """AuthorizedSession で `index:inspect` を呼び出して URL のインデックス
-    状態を確認（再チェックを促す）させる。
+def inspect_url_indexing(session: AuthorizedSession, url: str) -> bool:
+    """AuthorizedSession で `index:inspect` を呼び出し、URL のインデックス
+    状態の再確認（再チェック）を Google に促す。
 
+    ネイティブな「インデックス登録要求」（Request Indexing / write）は
+    公開 GSC API に存在しないため、最も近い代替として inspect を使う。
     トークンは AuthorizedSession が自動でリフレッシュ・付与するため、
     手動 refresh や Authorization ヘッダーは不要。
     """
@@ -68,13 +73,13 @@ def main():
         print("ℹ️  本日URLファイルなし（記事未生成？）→ スキップ")
         return
 
-    print(f"🔍 GSC インデックス要求: {len(urls)}件")
+    print(f"🔍 GSC インデックス再チェック: {len(urls)}件")
     creds = load_credentials()
     session = AuthorizedSession(creds)
 
     success = 0
     for url in urls:
-        ok = request_indexing(session, url)
+        ok = inspect_url_indexing(session, url)
         if ok:
             success += 1
             print(f"  [OK] {url}")
