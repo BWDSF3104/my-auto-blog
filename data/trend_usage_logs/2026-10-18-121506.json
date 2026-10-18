@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-18T12:15:06.121466+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-18T12:14:34.870470+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "We Sat Down with D&D Game Designer James Wyatt to Talk Dungeons & Dragons: World of Warcraft",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/we-sat-down-with-dd-game-designer-james-wyatt-to-talk-dungeons-and-dragons-world-of-warcraft",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Dungeons & Dragons: World of Warcraft is less than a month away, and it already looks like it's going to be a massive expansion to the tabletop game. But there are still a lot of questions about wheth"
+    },
+    {
+      "title": "James Cameron Congratulates Marvel After Avengers: Endgame Beats Avatar at the Box Office Yet Again",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/james-cameron-congratulates-marvel-after-avengers-endgame-beats-avatar-at-the-box-office-yet-again",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "James Cameron celebrated Avengers: Endgame beating Avatar at the box office with another social media post after the two movies traded places yet again. The director behind the smash-hit sci-fi franch"
+    }
+  ],
+  "affiliate_keywords": [
+    "World of Warcraft",
+    "Endgame Beats Avatar at the Bo"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/we-sat-down-with-dd-game-designer-james-wyatt-to-talk-dungeons-and-dragons-world-of-warcraft",
+    "https://www.ign.com/articles/james-cameron-congratulates-marvel-after-avengers-endgame-beats-avatar-at-the-box-office-yet-again"
+  ]
+}

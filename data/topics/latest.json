@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-18T11:26:26.804423+09:00",
+  "fetched_at": "2026-10-18T12:14:34.870470+09:00",
   "ttl_hours": 24,
   "total": 74,
   "by_category": {
@@ -93,6 +93,14 @@
         "category": "kemono"
       },
       {
+        "title": "Dev Behind Russian Roulette Drinking Game Cancels Steam Demo Plans Following AI Copycat Concerns",
+        "url": "https://www.ign.com/articles/dev-behind-russian-roulette-drinking-game-cancels-steam-demo-plans-following-ai-copycat-concerns",
+        "description": "The developer behind Russian roulette anime game Drunken Goddess Reflux has canceled its plans for a public Steam demo, citing concerns over potential AI copycats. Alliance Arts and Who You's path to launch has seemingly been mostly bump-free since it was announced back in April. Featuring ghostly p",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
         "title": "Battlefield 6 Devs Respond After Players Take Aim at 'Secuty' Typo and Cosmetic With 5 Pistols",
         "url": "https://www.ign.com/articles/battlefield-6-devs-respond-after-players-take-aim-at-secuty-typo-and-cosmetic-with-5-pistols",
         "description": "The Battlefield 6 team has responded after players took aim at a few controversial cosmetics added in Season 5. Battlefield Studios took to its official Discord server to offer background information on two skins that caused a stir with the launch of Battlefield 6 Season 5 this past week (via MP1st ",
@@ -160,14 +168,6 @@
         "title": "Red Rising Greenlit for Movie Adaptation With Author Pierce Brown to Produce",
         "url": "https://www.ign.com/articles/red-rising-greenlit-for-movie-adaptation-with-author-pierce-brown-to-produce",
         "description": "The Red Rising book series by author Pierce Brown has officially been greenlit for a movie adaptation from Paramount Pictures, with Hunger Games alum Francis Lawrence to direct. Red Rising is getting the Hollywood treatment more than a decade after it was first published in 2014. As confirmed by The",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "James Gunn Shoots Down Milly Alcock Supergirl Rumors, Shares Man of Tomorrow Update",
-        "url": "https://www.ign.com/articles/james-gunn-shoots-down-milly-alcock-supergirl-rumors-shares-man-of-tomorrow-update",
-        "description": "James Gunn has shot down rumors that Milly Alcock was fired as Supergirl and confirmed that he'll show Peter Safran an early cut of Man of Tomorrow later today. The DC Studios co-chairman took to Threads on October 16 to dispel rumors surrounding his comic book movie projects. Although he's found pu",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
@@ -574,7 +574,7 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-18T11:26:26.804423+09:00"
+      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
     },
     "GameSpot RSS": {
       "topics": [
@@ -659,10 +659,18 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-18T11:26:26.804423+09:00"
+      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
     },
     "IGN RSS": {
       "topics": [
+        {
+          "title": "Dev Behind Russian Roulette Drinking Game Cancels Steam Demo Plans Following AI Copycat Concerns",
+          "url": "https://www.ign.com/articles/dev-behind-russian-roulette-drinking-game-cancels-steam-demo-plans-following-ai-copycat-concerns",
+          "description": "The developer behind Russian roulette anime game Drunken Goddess Reflux has canceled its plans for a public Steam demo, citing concerns over potential AI copycats. Alliance Arts and Who You's path to launch has seemingly been mostly bump-free since it was announced back in April. Featuring ghostly p",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
         {
           "title": "Battlefield 6 Devs Respond After Players Take Aim at 'Secuty' Typo and Cosmetic With 5 Pistols",
           "url": "https://www.ign.com/articles/battlefield-6-devs-respond-after-players-take-aim-at-secuty-typo-and-cosmetic-with-5-pistols",
@@ -734,17 +742,9 @@
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
-        },
-        {
-          "title": "James Gunn Shoots Down Milly Alcock Supergirl Rumors, Shares Man of Tomorrow Update",
-          "url": "https://www.ign.com/articles/james-gunn-shoots-down-milly-alcock-supergirl-rumors-shares-man-of-tomorrow-update",
-          "description": "James Gunn has shot down rumors that Milly Alcock was fired as Supergirl and confirmed that he'll show Peter Safran an early cut of Man of Tomorrow later today. The DC Studios co-chairman took to Threads on October 16 to dispel rumors surrounding his comic book movie projects. Although he's found pu",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-18T11:26:26.804423+09:00"
+      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
     },
     "Anime News Network": {
       "topics": [
@@ -869,7 +869,7 @@
           "description": ""
         }
       ],
-      "fetched_at": "2026-10-18T11:26:26.804423+09:00"
+      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
     },
     "PokéCommunity Art Studio": {
       "topics": [
@@ -1247,6 +1247,14 @@
       "category": "kemono"
     },
     {
+      "title": "Dev Behind Russian Roulette Drinking Game Cancels Steam Demo Plans Following AI Copycat Concerns",
+      "url": "https://www.ign.com/articles/dev-behind-russian-roulette-drinking-game-cancels-steam-demo-plans-following-ai-copycat-concerns",
+      "description": "The developer behind Russian roulette anime game Drunken Goddess Reflux has canceled its plans for a public Steam demo, citing concerns over potential AI copycats. Alliance Arts and Who You's path to launch has seemingly been mostly bump-free since it was announced back in April. Featuring ghostly p",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
       "title": "Battlefield 6 Devs Respond After Players Take Aim at 'Secuty' Typo and Cosmetic With 5 Pistols",
       "url": "https://www.ign.com/articles/battlefield-6-devs-respond-after-players-take-aim-at-secuty-typo-and-cosmetic-with-5-pistols",
       "description": "The Battlefield 6 team has responded after players took aim at a few controversial cosmetics added in Season 5. Battlefield Studios took to its official Discord server to offer background information on two skins that caused a stir with the launch of Battlefield 6 Season 5 this past week (via MP1st ",
@@ -1314,14 +1322,6 @@
       "title": "Red Rising Greenlit for Movie Adaptation With Author Pierce Brown to Produce",
       "url": "https://www.ign.com/articles/red-rising-greenlit-for-movie-adaptation-with-author-pierce-brown-to-produce",
       "description": "The Red Rising book series by author Pierce Brown has officially been greenlit for a movie adaptation from Paramount Pictures, with Hunger Games alum Francis Lawrence to direct. Red Rising is getting the Hollywood treatment more than a decade after it was first published in 2014. As confirmed by The",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "James Gunn Shoots Down Milly Alcock Supergirl Rumors, Shares Man of Tomorrow Update",
-      "url": "https://www.ign.com/articles/james-gunn-shoots-down-milly-alcock-supergirl-rumors-shares-man-of-tomorrow-update",
-      "description": "James Gunn has shot down rumors that Milly Alcock was fired as Supergirl and confirmed that he'll show Peter Safran an early cut of Man of Tomorrow later today. The DC Studios co-chairman took to Threads on October 16 to dispel rumors surrounding his comic book movie projects. Although he's found pu",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"

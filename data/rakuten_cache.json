@@ -336,5 +336,16 @@
     "fetched_at": "2026-10-18T02:30:02.228035+00:00",
     "product": null,
     "hits": 0
+  },
+  "狼と香辛料": {
+    "fetched_at": "2026-10-18T03:17:20.279501+00:00",
+    "product": {
+      "itemName": "狼と香辛料XIIISide　ColorsIII （電撃文庫） [ 支倉　凍砂 ]",
+      "itemPrice": 880,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F6234599%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F13317416%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1407/9784048681407_1_5.jpg?_ex=128x128",
+      "reviewCount": 21
+    },
+    "hits": 3
   }
 }

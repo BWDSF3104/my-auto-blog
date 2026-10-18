@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-10-18T02:27:36.056723+00:00",
+  "scored_at": "2026-10-18T03:15:05.350492+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -167,6 +167,21 @@
       }
     },
     {
+      "key": "https://www.ign.com/articles/dev-behind-russian-roulette-drinking-game-cancels-steam-demo-plans-following-ai-copycat-concerns",
+      "title": "Dev Behind Russian Roulette Drinking Game Cancels Steam Demo Plans Following AI Copycat Concerns",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 20,
+        "fantasy": 21,
+        "cyberpunk": 24,
+        "action": 27,
+        "slice_of_life": 27,
+        "mystery": 26,
+        "historical": 8
+      }
+    },
+    {
       "key": "https://www.ign.com/articles/battlefield-6-devs-respond-after-players-take-aim-at-secuty-typo-and-cosmetic-with-5-pistols",
       "title": "Battlefield 6 Devs Respond After Players Take Aim at 'Secuty' Typo and Cosmetic With 5 Pistols",
       "source": "IGN RSS",
@@ -299,21 +314,6 @@
         "slice_of_life": 9,
         "mystery": 16,
         "historical": 13
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/james-gunn-shoots-down-milly-alcock-supergirl-rumors-shares-man-of-tomorrow-update",
-      "title": "James Gunn Shoots Down Milly Alcock Supergirl Rumors, Shares Man of Tomorrow Update",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 34,
-        "fantasy": 12,
-        "cyberpunk": 6,
-        "action": 32,
-        "slice_of_life": 12,
-        "mystery": 10,
-        "historical": 5
       }
     },
     {
@@ -1114,15 +1114,27 @@
   ],
   "copyrights": [
     {
-      "name": "archie_comics",
+      "name": "acme",
       "scores": {
-        "sf": 27,
-        "fantasy": 29,
-        "cyberpunk": 14,
-        "action": 42,
-        "slice_of_life": 34,
-        "mystery": 27,
-        "historical": 17
+        "sf": 36,
+        "fantasy": 14,
+        "cyberpunk": 31,
+        "action": 31,
+        "slice_of_life": 24,
+        "mystery": 23,
+        "historical": 12
+      }
+    },
+    {
+      "name": "acme_products",
+      "scores": {
+        "sf": 33,
+        "fantasy": 18,
+        "cyberpunk": 31,
+        "action": 31,
+        "slice_of_life": 33,
+        "mystery": 23,
+        "historical": 12
       }
     },
     {
@@ -1138,15 +1150,15 @@
       }
     },
     {
-      "name": "chunichi_dragons",
+      "name": "card_crusher",
       "scores": {
-        "sf": 23,
-        "fantasy": 21,
-        "cyberpunk": 21,
-        "action": 52,
-        "slice_of_life": 28,
-        "mystery": 19,
-        "historical": 23
+        "sf": 38,
+        "fantasy": 19,
+        "cyberpunk": 41,
+        "action": 49,
+        "slice_of_life": 18,
+        "mystery": 20,
+        "historical": 8
       }
     },
     {
@@ -1162,30 +1174,6 @@
       }
     },
     {
-      "name": "concon-collector",
-      "scores": {
-        "sf": 39,
-        "fantasy": 13,
-        "cyberpunk": 36,
-        "action": 30,
-        "slice_of_life": 22,
-        "mystery": 25,
-        "historical": 9
-      }
-    },
-    {
-      "name": "crystal_dynamics",
-      "scores": {
-        "sf": 47,
-        "fantasy": 17,
-        "cyberpunk": 35,
-        "action": 30,
-        "slice_of_life": 28,
-        "mystery": 26,
-        "historical": 12
-      }
-    },
-    {
       "name": "european_mythology",
       "scores": {
         "sf": 20,
@@ -1198,87 +1186,87 @@
       }
     },
     {
-      "name": "google",
+      "name": "friendship_is_magic",
       "scores": {
-        "sf": 27,
-        "fantasy": 9,
-        "cyberpunk": 31,
+        "sf": 15,
+        "fantasy": 37,
+        "cyberpunk": 7,
+        "action": 19,
+        "slice_of_life": 49,
+        "mystery": 13,
+        "historical": 8
+      }
+    },
+    {
+      "name": "hasbro",
+      "scores": {
+        "sf": 28,
+        "fantasy": 8,
+        "cyberpunk": 15,
+        "action": 40,
+        "slice_of_life": 13,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "name": "lady_gaga",
+      "scores": {
+        "sf": 16,
+        "fantasy": 12,
+        "cyberpunk": 18,
         "action": 20,
-        "slice_of_life": 24,
-        "mystery": 20,
-        "historical": 9
+        "slice_of_life": 28,
+        "mystery": 16,
+        "historical": 8
       }
     },
     {
-      "name": "google_search",
+      "name": "looney_tunes",
       "scores": {
-        "sf": 31,
-        "fantasy": 13,
-        "cyberpunk": 32,
-        "action": 26,
-        "slice_of_life": 26,
-        "mystery": 28,
-        "historical": 13
-      }
-    },
-    {
-      "name": "if_it_fits_i_sits_(meme)",
-      "scores": {
-        "sf": 11,
-        "fantasy": 6,
-        "cyberpunk": 13,
-        "action": 16,
-        "slice_of_life": 27,
-        "mystery": 9,
-        "historical": 6
-      }
-    },
-    {
-      "name": "ikea",
-      "scores": {
-        "sf": 11,
-        "fantasy": 6,
-        "cyberpunk": 13,
-        "action": 10,
-        "slice_of_life": 37,
+        "sf": 10,
+        "fantasy": 19,
+        "cyberpunk": 4,
+        "action": 35,
+        "slice_of_life": 19,
         "mystery": 10,
         "historical": 6
       }
     },
     {
-      "name": "legacy_of_kain",
+      "name": "mario_bros",
       "scores": {
-        "sf": 33,
-        "fantasy": 37,
-        "cyberpunk": 38,
-        "action": 50,
+        "sf": 12,
+        "fantasy": 18,
+        "cyberpunk": 6,
+        "action": 60,
         "slice_of_life": 10,
-        "mystery": 22,
-        "historical": 25
+        "mystery": 8,
+        "historical": 6
       }
     },
     {
-      "name": "microsoft",
+      "name": "monster_hunter",
       "scores": {
-        "sf": 21,
-        "fantasy": 8,
-        "cyberpunk": 37,
-        "action": 18,
-        "slice_of_life": 20,
+        "sf": 25,
+        "fantasy": 46,
+        "cyberpunk": 17,
+        "action": 69,
+        "slice_of_life": 10,
         "mystery": 14,
-        "historical": 9
+        "historical": 13
       }
     },
     {
-      "name": "moulin_rouge",
+      "name": "my_little_pony",
       "scores": {
-        "sf": 7,
-        "fantasy": 8,
-        "cyberpunk": 7,
-        "action": 32,
-        "slice_of_life": 32,
-        "mystery": 12,
-        "historical": 56
+        "sf": 14,
+        "fantasy": 65,
+        "cyberpunk": 3,
+        "action": 16,
+        "slice_of_life": 37,
+        "mystery": 10,
+        "historical": 8
       }
     },
     {
@@ -1306,18 +1294,6 @@
       }
     },
     {
-      "name": "nippon_professional_baseball",
-      "scores": {
-        "sf": 12,
-        "fantasy": 6,
-        "cyberpunk": 9,
-        "action": 27,
-        "slice_of_life": 35,
-        "mystery": 13,
-        "historical": 22
-      }
-    },
-    {
       "name": "okami_(capcom)",
       "scores": {
         "sf": 21,
@@ -1330,126 +1306,54 @@
       }
     },
     {
-      "name": "sega",
+      "name": "pokemon",
       "scores": {
-        "sf": 31,
-        "fantasy": 17,
-        "cyberpunk": 31,
-        "action": 48,
-        "slice_of_life": 17,
-        "mystery": 18,
+        "sf": 24,
+        "fantasy": 57,
+        "cyberpunk": 10,
+        "action": 39,
+        "slice_of_life": 25,
+        "mystery": 17,
         "historical": 9
       }
     },
     {
-      "name": "soma",
+      "name": "the_looney_tunes_show",
       "scores": {
-        "sf": 43,
-        "fantasy": 17,
-        "cyberpunk": 35,
-        "action": 31,
-        "slice_of_life": 34,
-        "mystery": 23,
-        "historical": 10
-      }
-    },
-    {
-      "name": "sonic_the_hedgehog_(archie)",
-      "scores": {
-        "sf": 31,
-        "fantasy": 31,
-        "cyberpunk": 20,
-        "action": 49,
+        "sf": 9,
+        "fantasy": 25,
+        "cyberpunk": 3,
+        "action": 30,
         "slice_of_life": 18,
-        "mystery": 19,
-        "historical": 6
+        "mystery": 8,
+        "historical": 5
       }
     },
     {
-      "name": "sonic_the_hedgehog_(comics)",
+      "name": "violet_memoir",
       "scores": {
-        "sf": 35,
-        "fantasy": 16,
-        "cyberpunk": 28,
-        "action": 58,
-        "slice_of_life": 13,
-        "mystery": 18,
-        "historical": 8
+        "sf": 24,
+        "fantasy": 25,
+        "cyberpunk": 24,
+        "action": 20,
+        "slice_of_life": 49,
+        "mystery": 27,
+        "historical": 23
       }
     },
     {
-      "name": "sonic_the_hedgehog_(series)",
-      "scores": {
-        "sf": 33,
-        "fantasy": 18,
-        "cyberpunk": 22,
-        "action": 65,
-        "slice_of_life": 12,
-        "mystery": 13,
-        "historical": 6
-      }
-    },
-    {
-      "name": "soul_reaver",
-      "scores": {
-        "sf": 37,
-        "fantasy": 45,
-        "cyberpunk": 39,
-        "action": 52,
-        "slice_of_life": 13,
-        "mystery": 26,
-        "historical": 19
-      }
-    },
-    {
-      "name": "star_fox",
-      "scores": {
-        "sf": 50,
-        "fantasy": 21,
-        "cyberpunk": 42,
-        "action": 40,
-        "slice_of_life": 31,
-        "mystery": 31,
-        "historical": 16
-      }
-    },
-    {
-      "name": "xbox",
-      "scores": {
-        "sf": 30,
-        "fantasy": 11,
-        "cyberpunk": 26,
-        "action": 42,
-        "slice_of_life": 21,
-        "mystery": 14,
-        "historical": 10
-      }
-    },
-    {
-      "name": "xbox_game_studios",
+      "name": "warner_brothers",
       "scores": {
         "sf": 29,
-        "fantasy": 17,
-        "cyberpunk": 31,
-        "action": 39,
-        "slice_of_life": 29,
-        "mystery": 19,
-        "historical": 11
-      }
-    },
-    {
-      "name": "zandar's_saga",
-      "scores": {
-        "sf": 45,
-        "fantasy": 51,
-        "cyberpunk": 30,
+        "fantasy": 21,
+        "cyberpunk": 18,
         "action": 38,
-        "slice_of_life": 36,
-        "mystery": 32,
-        "historical": 27
+        "slice_of_life": 24,
+        "mystery": 28,
+        "historical": 20
       }
     }
   ],
-  "api_calls": 85,
-  "cache_hits": 17
+  "api_calls": 11,
+  "cache_hits": 83
 }
