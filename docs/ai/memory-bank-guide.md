@@ -8,8 +8,8 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 | ファイル・ディレクトリ | 役割 | 更新タイミング | 必須 |
 |----------|------|---------------|------|
-| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | `/task-add` で参照行追加・`/task-end` で削除。各チェックポイントでステータス・Next Action を更新 | ✅ |
-| `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず）。意図・背景・Backlog 参照を含む | **タスク開始時に**（調査開始段階で）`/task-add` で `docs/ai/tasks/YYYY-MM-DD-short-name.md` 作成。**設計・方針を選定・確定したタイミングで**「調査結果 / 変更内容」セクションを更新。完了時は `/task-end` で Status 更新 | ✅ |
+| `current-task.tsv` | アクティブタスクへの参照（TSV 3 列: task_file / status / next_action） | `task_manager.py add` で参照行追加・`task_manager.py end` で削除。各チェックポイントでステータス・Next Action を更新 | ✅ |
+| `tasks/*.md` | タスクの個別ファイル（1タスク1ファイル方式、アクティブ・完了問わず）。意図・背景・Backlog 参照を含む | **タスク開始時に**（調査開始段階で）`task_manager.py add` で `docs/ai/tasks/YYYY-MM-DD-short-name.md` 作成。**設計・方針を選定・確定したタイミングで**「調査結果 / 変更内容」セクションを更新。完了時は `task_manager.py end` で Status 更新 | ✅ |
 | `decisions/` | 設計判断ログ（1エントリ1ファイル方式） | 構造・データフロー・新しい統合の設計判断時に `decisions/YYYY-MM-DD-short-name.md` を作成 | ✅ |
 | `decisions/archive/` | 過去の設計判断のアーカイブ | `decisions/` は不変・バッチクリーンアップ対象外（本 archive は履歴） | — |
 | `known-issues/` | 既知問題（1エントリ1ファイル方式）。トップ=未解決、`archive/`=解決済 | 新規問題発見時に `known-issues/KI-YYYYMMDD-NN-short-name.md` を作成。解決時に `known-issues/archive/` へ `mv` | ✅ |

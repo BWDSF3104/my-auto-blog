@@ -86,7 +86,13 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ### タスク開始時（調査開始段階）
 
-調査開始段階（タスク受理直後・調査着手時）に `/task-add` コマンドを実行すること（初回コード変更前では遅い。ロジック: `maintenance/task_manager.py`。タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成と `docs/ai/current-task.tsv` 参照行追加を自動で行う）。
+調査開始段階（タスク受理直後・調査着手時）に次のスクリプトを実行すること（初回コード変更前では遅い）。タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成と `docs/ai/current-task.tsv` 参照行追加を自動で行う:
+`python maintenance/task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`
+- `--slug`: タスク短名（小文字英数字とハイフンのみ。例 `task-slash-commands`）
+- `--title`: タスク名（タスクファイルの `#` 見出し）
+- `--backlog`: バックログ参照 `P<N> #<N>`（該当する場合）
+- `--next-action`: 次のアクション（`current-task.tsv` の 3 列目に記録）
+- 既定で反映、プレビューのみなら `--dry-run`、staging スキップなら `--no-git-add`。
 タスク作成後は `python maintenance/archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
 タスク開始の完了前に実装着手しないこと。
 
@@ -106,7 +112,9 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ## ワークフロー
 
-- タスク開始/終了: `/task-add` / `/task-end` コマンドを使う（ロジック: `maintenance/task_manager.py`。既定で反映、プレビューのみなら `--dry-run`、`--no-git-add` で staging スキップ）。
+- タスク開始: `python maintenance/task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`（タスクファイル作成 + `current-task.tsv` 参照行追加）
+- タスク終了: `python maintenance/task_manager.py end --task <パス / date-slug / slug>`（Status を `完了` へ + `current-task.tsv` 参照行削除 + レポート出力）
+- 両とも既定で反映、プレビューのみなら `--dry-run`、staging スキップなら `--no-git-add`。
 - git commit / push / deploy: `docs/ai/workflows.md` を参照する。
 - ユーザーが手動記事作成を依頼した際: `docs/ai/manual-article-workflow.md` を参照する。
 - デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md` を参照する。
@@ -123,7 +131,7 @@ my-auto-blog/
 ├── hf-space/                  # 自社 HuggingFace Space のデプロイ元ソース（blume/kemono-image-api / SDXL パイプライン）
 ├── maintenance/               # 開発ツール（本番パイプライン外）
 │   ├── archive_memory_bank.py # Memory Bank バッチクリーンアップ（デフォルトは dry-run）
-│   └── task_manager.py        # タスク開始/終了ヘルパー（/task-add /task-end）
+│   └── task_manager.py        # タスク開始/終了ヘルパー（add / end）
 ├── src/                       # Astro ソース
 │   └── content/posts/         # 生成された Markdown 記事
 ├── public/                    # 静的アセット
