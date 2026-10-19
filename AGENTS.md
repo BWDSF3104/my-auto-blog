@@ -14,7 +14,8 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 ## ターミナル安全
 
 - 明示的なユーザー確認なしに、破壊的なターミナルコマンドを実行してはならない。
-- 禁止: `rm -rf`、`git push --force`、`sudo`、ワークスペースルート外のファイル変更。
+- 禁止: `rm -rf`、`git push --force`、`sudo`。
+- ワークスペースルート外のファイル変更は禁止。**例外**: docs 内で参照されている外部フォルダでのユーザーとのファイル交換のみ。
 - **ファイル削除**: `./kilo-safe-remove.cmd <file>` を使う（`Remove-Item` / `del` は不可）。
 - **フォルダ削除**: `./kilo-safe-rmdir.cmd <folder>` を使う（`Remove-Item -Recurse` / `rmdir /s` は不可）。
 - この2コマンドは **Windows ゴミ箱** へ削除する（復元可能・恒久削除ではない）。実装（VB ラッパー）と根拠は `docs/ai/decisions/2026-10-18-recycle-bin-deletion.md` を参照。
@@ -28,13 +29,14 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
   1. スクリプトをスクラッチフォルダ `docs\ai\tmp\` に書き出す（例: `docs\ai\tmp\fetch_check.py`）。
   2. `python <file>` で実行する。
   3. 出力ファイルも同じスクラッチフォルダに保持する。
-  - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリは削除される。
+  - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリは `maintenance/archive_memory_bank.py` で削除される。
 
 ## コード検証
 
 - **Python変更後**: `pytest scripts/tests/ -v` で全テスト通過を確認。`maintenance/`（開発ツール）を変更した場合は加えて `pytest maintenance/tests/ -v` も実行する。
 - **Astro変更後・記事生成後**: `npm run build` でビルド成功を確認。
-- **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時にユーザーにスクリーンショットを送信。
+- **`scripts/prompts/` のみ変更**: 検証不要。
+- **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時に、ユーザーに `I:\マイドライブ\kilo` 下のスクリーンショットを送付する（サブフォルダで日付・タスク名を区切可）。
 - **git commit 前**: 変更内容に応じて再実行（Python→pytest, Astro→build、両方→両方）。
 - 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
 - 成功時は `docs/ai/tasks/` の該当タスクファイルの Verification セクションにコマンド・結果・経過時間を記録。
@@ -59,8 +61,8 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ## 画像解析
 
-- 画像の視覚解析（スクリーンショットの文字/UI 読み取り、レイアウト検証、生成画像の確認）は MCP ツール `analyze_image_with_groq` を使用。
-- 使い方・焦点化分析の例・メンテナンス手順は `docs/ai/image-analysis.md` を参照。
+- 画像の視覚解析: `analyze_image_with_groq`。クラウド送信しない画像（認証情報・APIキー・個人情報等を含む）はローカルモデルで解析。
+- 使い方・例・メンテナンス: `docs/ai/image-analysis.md`。
 
 ## コード規約
 
@@ -117,7 +119,8 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - タスク開始: `python maintenance/task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`（タスクファイル作成 + `current-task.tsv` 参照行追加）
 - タスク終了: `python maintenance/task_manager.py end --task <パス / date-slug / slug>`（Status を `完了` へ + `current-task.tsv` 参照行削除 + レポート出力）
 - 両とも既定で反映、プレビューのみなら `--dry-run`、staging スキップなら `--no-git-add`。
-- git commit / push / deploy: `docs/ai/workflows.md` を参照する。
+- git commit / push / deploy: `docs/ai/workflows.md` を参照する。commit・push は検証完了時点で判断可。**前提**: 変更の詳細について事前にユーザーから承認を受けていること。
+- タスク切り替え: 現行タスクが「進行中」なら、先にそのタスクの end を実行。「保留」のタスクは除外。
 - ユーザーが手動記事作成を依頼した際: `docs/ai/manual-article-workflow.md` を参照する。
 - デバッグが必要な際（Python スクリプトのバグ調査・変数確認・ステップ実行）: `docs/ai/debugging.md` を参照する。
 
