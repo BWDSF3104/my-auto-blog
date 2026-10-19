@@ -59,6 +59,10 @@ MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
 MIN_SCORE_THRESHOLD = int(os.environ.get("MIN_SCORE_THRESHOLD", "0"))
 GENRE_SCORES_PATH = os.path.join("data", "genre_scores", "topics.json")
 GENRE_FILTER_MIN_SCORE = int(os.environ.get("GENRE_FILTER_MIN_SCORE", "30"))
+# 人気作品の注注入件数上限（参考投稿の作品、またはフォールバック時の集計上位）
+POPULAR_CPS_LIMIT = int(os.environ.get("POPULAR_CPS_LIMIT", "2"))
+# 人気artist の注注入件数上限（投稿数上位）
+POPULAR_ARTIST_LIMIT = int(os.environ.get("POPULAR_ARTIST_LIMIT", "1"))
 
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 # SFWタグを常に付与して安全な画像生成を強制
@@ -348,6 +352,7 @@ __all__ = [
     "HF_TOKEN", "IMAGE_PROVIDER", "MODELS_TO_TRY", "HF_SPACE_ID",
     "BASE_URL", "SITE_ORIGIN", "MAX_INLINE_IMAGES", "MIN_SCORE_THRESHOLD",
     "GENRE_SCORES_PATH", "GENRE_FILTER_MIN_SCORE",
+    "POPULAR_CPS_LIMIT", "POPULAR_ARTIST_LIMIT",
     "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION", "COUNT_TAG_WEIGHT",
     "ZERO_GPU_QUOTA_URL", "ZERO_GPU_QUOTA_THRESHOLD_SECONDS",
     "ZERO_GPU_QUOTA_CHECK_ATTEMPTS", "ZERO_GPU_QUOTA_CHECK_TIMEOUT_SECONDS", "ZERO_GPU_QUOTA_CHECK_DELAY_SECONDS",

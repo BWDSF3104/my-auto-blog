@@ -2,7 +2,7 @@
 
 generate_article.py から分離（Phase 7）。
 - character_features.json からの参考投稿選出（_select_character_features / _select_two_posts）
-- 版権 / artist の抽出と結合（_filter_valid_copyrights / _extract_post_copyrights / _merge_copyrights / _extract_top_artists）
+- 版権 / artist の抽出（_filter_valid_copyrights / _extract_post_copyrights / _extract_top_artists）
 - プロンプト注入指示文の生成（_format_character_features_instruction / _load_character_features）
 """
 
@@ -53,48 +53,36 @@ def _extract_post_copyrights(selected: list[dict]) -> list[str]:
     return post_copyrights
 
 
-def _merge_copyrights(post_copyrights: list[str], base_copyrights: list[str]) -> str:
-    """選出投稿の版権を先頭に、不足分を集計ベースで補完し上位8件のカンマ結合文字列を返す。"""
-    all_copyrights = list(post_copyrights)
-    for cp in base_copyrights:
-        if cp not in all_copyrights:
-            all_copyrights.append(cp)
-    return ", ".join(c for c in all_copyrights[:8]) if all_copyrights else "-"
-
-
 def _extract_top_artists(aggregates: dict) -> str:
-    """人気artistを抽出し（unknown_artistは既に除外済み）上位8件のカンマ結合文字列を返す。"""
-    aggregate_artists = sorted(aggregates.get("artists", {}).items(), key=lambda x: -x[1])
-    return ", ".join(a for a, _ in aggregate_artists[:8]) if aggregate_artists else "-"
+    """人気artistを抽出し（unknown_artistは既に除外済み）上位1件のカンマ結合文字列を返す。
+    同件数時は投稿数降順・次いで名前順。"""
+    aggregate_artists = sorted(
+        aggregates.get("artists", {}).items(), key=lambda x: (-x[1], x[0])
+    )
+    return (
+        ", ".join(a for a, _ in aggregate_artists[:POPULAR_ARTIST_LIMIT])
+        if aggregate_artists
+        else "-"
+    )
 
 
-def _select_two_posts(posts: list[dict], max_retries: int = 10) -> list[dict]:
-    """投稿リストからランダムに2つ選出。版権が重複する場合は再抽選。"""
+def _select_two_posts(posts: list[dict]) -> list[dict]:
+    """投稿リストから異なる投稿を乱数で2つ抽選する。
+    同一投稿の重複は構造的に不可能（random.sample）。
+    作品（コピーライト）の重複時の再抽選はしない。"""
     import random
 
     if len(posts) < 2:
         return list(posts)
 
-    # 最初の投稿をランダム選択
-    first = random.choice(posts)
-    first_copyrights = set(first.get("copyrights", []))
-
-    # 2つ目の投稿を版権重複なしで選択
-    for _ in range(max_retries):
-        second = random.choice(posts)
-        second_copyrights = set(second.get("copyrights", []))
-        if not (first_copyrights & second_copyrights):
-            return [first, second]
-
-    # 再試行しても重複回避できない場合は最初の2投稿を返す
-    return posts[:2]
+    return random.sample(posts, 2)
 
 
 def _select_character_features(target_genres: list[str] | None = None) -> dict | None:
     """e621 から集計したキャラクター特徴を読み込み、プロンプト注入・生成情報表示に使用する参考データを選出する。
-    投稿データからランダムに2投稿選出（版権重複時は再抽選）してキャラクタープロファイルを生成。
-    版権は選出投稿から抽出し、不足分を集計結果から補完（アフィリエイト不適格は除外）。
-    target_genres 指定時は、事前スコアリング結果でジャンル適合度の高い版権を優先する。
+    投稿データから異なる2投稿を乱数抽選してキャラクタープロファイルを生成。
+    人気作品：選出投稿の作品を上位1-2件。両投稿とも作品がない場合は、
+    集計ベースの上位1-2件（target_genres 指定時は事前スコアリングで高スコア優先）にフォールバック。
     character_features.json が無い・読み取り不能・投稿データが空の場合は None を返す。
     """
     features_path = os.path.join("data", "character_features.json")
@@ -116,17 +104,22 @@ def _select_character_features(target_genres: list[str] | None = None) -> dict |
         print("  [char-features] 投稿データが空です（注入スキップ）")
         return None
 
-    # 投稿からランダムに2つ選出（版権重複時は再抽選）
-    selected = _select_two_posts(posts, max_retries=10)
+    # 投稿から異なる2投稿を乱数抽選（作品重複時の再抽選なし）
+    selected = _select_two_posts(posts)
 
-    # 集計結果からベース版権を確保（アフィリエイト不適格は除外）
-    base_copyrights = _filter_valid_copyrights(aggregates, target_genres)
-
-    # 選出投稿から版権を抽出（アフィリエイト不適格は除外）
+    # 選出投稿から版権を抽出（アフィリエイト不適格は除外・重複排除）
     post_copyrights = _extract_post_copyrights(selected)
 
-    # 選出投稿の版権を先頭に、不足分を集計ベースで補完
-    copyright_names = _merge_copyrights(post_copyrights, base_copyrights)
+    # 人気作品：選出投稿に作品があればその上位N、なければ集計上位N（スコア順）にフォールバック
+    if post_copyrights:
+        copyright_names = ", ".join(post_copyrights[:POPULAR_CPS_LIMIT])
+    else:
+        base_copyrights = _filter_valid_copyrights(aggregates, target_genres)
+        copyright_names = (
+            ", ".join(base_copyrights[:POPULAR_CPS_LIMIT])
+            if base_copyrights
+            else "-"
+        )
 
     # 人気artistを抽出（unknown_artistは既に除外済み）
     artist_names = _extract_top_artists(aggregates)

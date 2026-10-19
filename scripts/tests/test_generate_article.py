@@ -3411,7 +3411,7 @@ class TestBuildGenerationInfoSection:
             },
         ],
         "copyrights": "nintendo, pokemon",
-        "artists": "artist_a, artist_b",
+        "artists": "artist_a",
     }
 
     def test_e621_block_rendered(self):
@@ -3443,7 +3443,7 @@ class TestBuildGenerationInfoSection:
         assert "人気版権（プロンプトに使用）" in section
         assert "nintendo, pokemon" in section
         assert "人気artist（プロンプトに使用）" in section
-        assert "artist_a, artist_b" in section
+        assert "artist_a" in section
         assert "2026-10-11 01:46 UTC" in section
         assert "18投稿を分析" in section
 
@@ -3584,11 +3584,117 @@ class TestSelectCharacterFeatures:
         assert info["raw_posts"] == 2
         assert len(info["posts"]) == 2
         assert {tuple(p["copyrights"]) for p in info["posts"]} == {("nintendo",), ("harry_potter",)}
-        # 版権: 選出投稿の版権を先頭に、集計ベースで補完
+        # 人気作品: 参考投稿の版権を上位1-2件（選出投稿に作品あり）
         cps = [c.strip() for c in info["copyrights"].split(",")]
-        assert set(cps) == {"nintendo", "harry_potter", "pokemon"}
-        assert len(cps) == 3
-        assert info["artists"] == "artist_a, artist_b"
+        assert set(cps) == {"nintendo", "harry_potter"}
+        assert len(cps) == 2
+        # 人気artist: 投稿数上位1件
+        assert info["artists"] == "artist_a"
+
+    def test_fallback_to_aggregate_when_posts_have_no_copyrights(self, tmp_path):
+        """参考投稿に作品がない場合は、集計上位1-2件（事前スコアで高スコア優先）にフォールバックすること"""
+        import generate_article
+        cf_dir = tmp_path / "data"
+        cf_dir.mkdir()
+        cf_path = cf_dir / "character_features.json"
+        cf_data = {
+            "posts": [
+                {"species": ["wolf"], "colors": ["blue"], "physical": ["ears"], "characters": ["A"], "copyrights": []},
+                {"species": ["fox"], "colors": ["red"], "physical": ["tail"], "characters": ["B"], "copyrights": []},
+            ],
+            "aggregates": {
+                "copyrights": {"nintendo": 10, "harry_potter": 5, "pokemon": 3},
+                "artists": {"artist_a": 5, "artist_b": 3},
+            },
+            "updated_at": "2026-10-09",
+            "total_posts_analyzed": 25,
+        }
+        cf_path.write_text(json.dumps(cf_data, ensure_ascii=False), encoding="utf-8")
+        scores_path = tmp_path / "scores.json"
+        scores_data = {
+            "copyrights": [
+                {"name": "harry_potter", "scores": {"fantasy": 95}},
+                {"name": "pokemon", "scores": {"fantasy": 80}},
+                {"name": "nintendo", "scores": {"fantasy": 50}},
+            ]
+        }
+        scores_path.write_text(json.dumps(scores_data), encoding="utf-8")
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("article.trends.GENRE_SCORES_PATH", str(scores_path)):
+                info = generate_article._select_character_features(target_genres=["fantasy"])
+        finally:
+            os.chdir(orig_cwd)
+
+        assert info is not None
+        # フォールバック: 集計上位1-2件、スコア順 (harry_potter > pokemon > nintendo)
+        cps = [c.strip() for c in info["copyrights"].split(",")]
+        assert cps == ["harry_potter", "pokemon"]
+
+    def test_fallback_without_target_genres_uses_count_order(self, tmp_path):
+        """target_genres なし（スコア未指定）の場合、集計は投稿数順でフォールバックすること"""
+        import generate_article
+        cf_dir = tmp_path / "data"
+        cf_dir.mkdir()
+        cf_path = cf_dir / "character_features.json"
+        cf_data = {
+            "posts": [
+                {"species": ["wolf"], "colors": ["blue"], "physical": ["ears"], "characters": ["A"], "copyrights": []},
+                {"species": ["fox"], "colors": ["red"], "physical": ["tail"], "characters": ["B"], "copyrights": []},
+            ],
+            "aggregates": {
+                "copyrights": {"nintendo": 10, "harry_potter": 5, "pokemon": 3},
+                "artists": {"artist_a": 5, "artist_b": 3},
+            },
+            "updated_at": "2026-10-09",
+            "total_posts_analyzed": 25,
+        }
+        cf_path.write_text(json.dumps(cf_data, ensure_ascii=False), encoding="utf-8")
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            info = generate_article._select_character_features()
+        finally:
+            os.chdir(orig_cwd)
+
+        assert info is not None
+        # フォールバック: 投稿数順上位1-2件 (nintendo > harry_potter > pokemon)
+        cps = [c.strip() for c in info["copyrights"].split(",")]
+        assert cps == ["nintendo", "harry_potter"]
+
+    def test_fallback_single_post_copyright(self, tmp_path):
+        """1投稿のみ作品を持つ場合、人気作品は1件であること"""
+        import generate_article
+        cf_dir = tmp_path / "data"
+        cf_dir.mkdir()
+        cf_path = cf_dir / "character_features.json"
+        cf_data = {
+            "posts": [
+                {"species": ["wolf"], "colors": ["blue"], "physical": ["ears"], "characters": ["A"], "copyrights": ["nintendo"]},
+                {"species": ["fox"], "colors": ["red"], "physical": ["tail"], "characters": ["B"], "copyrights": []},
+            ],
+            "aggregates": {
+                "copyrights": {"nintendo": 10, "harry_potter": 5, "pokemon": 3},
+                "artists": {"artist_a": 5, "artist_b": 3},
+            },
+            "updated_at": "2026-10-09",
+            "total_posts_analyzed": 25,
+        }
+        cf_path.write_text(json.dumps(cf_data, ensure_ascii=False), encoding="utf-8")
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            info = generate_article._select_character_features()
+        finally:
+            os.chdir(orig_cwd)
+
+        assert info is not None
+        # 参考投稿の作品（1件）のみを使用（フォールバックでない）
+        assert info["copyrights"] == "nintendo"
 
     def test_format_instruction_none(self):
         import generate_article
@@ -3598,8 +3704,8 @@ class TestSelectCharacterFeatures:
         import generate_article
         info = dict(self.CF_DATA)
         info["raw_posts"] = 2
-        info["copyrights"] = "nintendo, harry_potter, pokemon"
-        info["artists"] = "artist_a, artist_b"
+        info["copyrights"] = "nintendo, harry_potter"
+        info["artists"] = "artist_a"
         info["total_posts"] = 25
         info["updated_at"] = "2026-10-09"
         text = generate_article._format_character_features_instruction(info)
@@ -3608,8 +3714,8 @@ class TestSelectCharacterFeatures:
         assert "・参考キャラクター2:" in text
         assert "種族: wolf" in text
         assert "色: red" in text
-        assert "・人気版権: nintendo, harry_potter, pokemon" in text
-        assert "・人気artist: artist_a, artist_b" in text
+        assert "・人気版権: nintendo, harry_potter" in text
+        assert "・人気artist: artist_a" in text
         assert "アフィリエイト" in text
 
     def test_load_character_features_wrapper_uses_selection(self, tmp_path):

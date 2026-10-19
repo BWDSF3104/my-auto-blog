@@ -119,7 +119,6 @@ from article.characters import (
     _format_character_features_instruction,
     _is_affiliate_excluded,
     _load_character_features,
-    _merge_copyrights,
     _select_character_features,
     _select_two_posts,
 )
