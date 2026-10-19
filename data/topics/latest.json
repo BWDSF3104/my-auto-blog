@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-18T12:14:34.870470+09:00",
+  "fetched_at": "2026-10-19T10:01:45.573961+09:00",
   "ttl_hours": 24,
   "total": 74,
   "by_category": {
@@ -10,6 +10,22 @@
         "url": "https://github.com/LinKennt/LoFS-VN",
         "score": 1,
         "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "Fire Emblem’s Remarkable Comeback",
+        "url": "https://www.gamespot.com/articles/fire-emblems-remarkable-comeback/",
+        "description": "Though it may not be a sales juggernaut on the scale of Mario or The Legend of Zelda, Fire Emblem is one of Nintendo's preeminent franchises. Like so many of its vaunted stablemates, the series is almost as old as Nintendo's gaming ambitions, debuting on the Famicom and appearing on nearly every hom",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Tenebris Somnia Blends 2D Visuals With Live-Action Horror Scenes, And It’s Already On Sale At Launch",
+        "url": "https://www.gamespot.com/articles/tenebris-somnia-blends-2d-visuals-with-live-action-horror-scenes-and-its-already-on-sale-at-launch/",
+        "description": "Horror games live or die by their scares and tension. If the player isn’t uncomfortable guiding a character through dreadful situations, well, you may as well be playing an action-adventure game (don’t mention the first Uncharted’s final act, please). Tenebris Somnia blends the discomfort of retro h",
+        "score": 0,
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
@@ -77,19 +93,43 @@
         "category": "kemono"
       },
       {
-        "title": "2026 Upcoming Games Release Schedule",
-        "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
-        "description": "2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move further into the year--2026 will also see the release of Grand Theft Auto 6, which is widely anticipat",
+        "title": "Taika Waititi Says His Star Wars Movie Is 'on Ice'",
+        "url": "https://www.ign.com/articles/taika-waititi-says-his-star-wars-movie-is-on-ice",
+        "description": "Director Taika Waititi has confirmed his long-in-development Star Wars movie is officially \"on ice.\" The Thor: Ragnarok and Jojo Rabbit filmmaker provided Inverse with the update when speaking to the outlet during a press junket for his new film, Klara and the Sun . When asked directly for the state",
         "score": 0,
-        "source": "GameSpot RSS",
+        "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "This Espresso Machine Can Run Doom",
-        "url": "https://www.gamespot.com/articles/this-espresso-machine-can-run-doom/",
-        "description": "Before caffeinating yourself in the morning, the Fellow Espresso Series 1 machine can actually run 1993's Doom on its small, circular screen. Reddit user FullExtraction showed off the classic FPS, utilizing the brew button to run and steam button to shoot. The scroll wheel on the device turns Doomgu",
+        "title": "Silent Hill Remake Studio Wants to Make Physical Games 'for as Long as Possible'",
+        "url": "https://www.ign.com/articles/silent-hill-remake-studio-wants-to-make-physical-games-for-as-long-as-possible",
+        "description": "Silent Hill developer Bloober Team wants to make physical versions of its games \"for as long as possible.\" Studio CEO Piotr Babieno opened up about the company's appreciation for physical media and collectibles during an interview with GamesRadar . He started his thoughts by touching on how the gami",
         "score": 0,
-        "source": "GameSpot RSS",
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Street Fighter Tops the Box Office With $51 Million Opening Weekend Amid Lackluster Reviews",
+        "url": "https://www.ign.com/articles/street-fighter-tops-the-box-office-with-51-million-opening-weekend-amid-lackluster-reviews",
+        "description": "Capcom's Street Fighter movie spun up $51.1 million in its opening weekend, securing its place atop the global box office despite some not-so-great reviews. Ryu (Andrew Koji), Ken (Noah Centineo), and the rest of the film's massive cast grappled with an estimated $31 million domestically and $20.1 m",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "The Best Deals Today: The Adventures of Elliot, Pikmin 4, Mouse: P.I. For Hire, and More",
+        "url": "https://www.ign.com/articles/best-deals-for-october-18-2026",
+        "description": "A new weekend has arrived, and today, you can save big on Pikmin 4, The Adventures of Elliot, Doom: The Dark Ages, Final Fantasy VII Rebirth, Star Wars Zero Company, and more. Check out our top picks for Sunday, October 18, below. The Adventures of Elliot: The Millennium Tales On Sale for the First ",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Quentin Tarantino Says He's 'Written a Script' for 10th and Final Film, But He Wants to 'Live' Before Making It",
+        "url": "https://www.ign.com/articles/quentin-tarantino-says-hes-written-a-script-for-10th-and-final-film-but-he-wants-to-live-before-making-it",
+        "description": "Quentin Tarantino has confirmed he's \"written a script\" for his 10th and final film, but he's going to \"live\" a little before making it. The Once Upon a Time… in Hollywood and Kill Bill filmmaker teased his plans for his long-in-development finale movie during an appearance on The Graham Norton Show",
+        "score": 0,
+        "source": "IGN RSS",
         "category": "kemono"
       },
       {
@@ -133,44 +173,36 @@
         "category": "kemono"
       },
       {
-        "title": "Captain Price Actor Sends Message to Fans as Call of Duty: Modern Warfare 4 Campaign Praise Rolls in",
-        "url": "https://www.ign.com/articles/captain-price-actor-sends-message-to-fans-as-call-of-duty-modern-warfare-4-campaign-praise-rolls-in",
-        "description": "Barry Sloane, the actor behind Call of Duty's Captain Price, has shared a message with fans as praise for Modern Warfare 4's campaign rolls in. Early reactions to Call of Duty: Modern Warfare 4's story mode have filled social media feeds in the first 24 hours since early access players dived in – an",
+        "title": "Kokamumo's Null-Meta Manga Gets TV Anime in 2027",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-18/kokamumo-null-meta-manga-gets-tv-anime-in-2027/.242952",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "7 Crazy Movie Premises That Actually Worked",
-        "url": "https://www.ign.com/articles/crazy-movie-premises-that-actually-worked",
-        "description": "“A young man is swallowed by a whale while searching for his father’s remains deep in the ocean.” That is the elevator pitch for Whalefall , starring Austin Abrams (Resident Evil) and co-written by Daniel Kraus and director Brian Duffield (No One Will Save You). Set for release on October 16, the fi",
+        "title": "Arc System Works Opens New Studio Takumi on November 2",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-18/arc-system-works-opens-new-studio-takumi-on-november-2/.242951",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "We Sat Down with D&D Game Designer James Wyatt to Talk Dungeons & Dragons: World of Warcraft",
-        "url": "https://www.ign.com/articles/we-sat-down-with-dd-game-designer-james-wyatt-to-talk-dungeons-and-dragons-world-of-warcraft",
-        "description": "Dungeons & Dragons: World of Warcraft is less than a month away, and it already looks like it's going to be a massive expansion to the tabletop game. But there are still a lot of questions about whether this new expansion is going to lean more towards the combat-oriented approach of the MMO or just ",
+        "title": "Kaiju Decode: The Ring of Aidara Anime Reveals Teaser Trailer, 2027 Debut",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-18/kaiju-decode-the-ring-of-aidara-anime-reveals-teaser-trailer-2027-debut/.242953",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "The Street Fighter Movie Makes a Mistake Mortal Kombat Already Learned From",
-        "url": "https://www.ign.com/articles/the-street-fighter-movie-makes-a-mistake-mortal-kombat-already-learned-from",
-        "description": "Spoilers follow for Street Fighter. Put on your gis and gloves, fighting fans, because Street Fighter is now in theaters. The latest attempt to adapt the venerated fighting game franchise for the big screen may not be getting off to the best start with critics, but fans of the series will likely go ",
+        "title": "Crunchyroll Reveals English Dub Cast, Staff for 2nd Seasons of Black Clover, Aoashi Anime",
+        "url": "https://www.animenewsnetwork.com/news/2026-10-18/crunchyroll-reveals-english-dub-cast-staff-for-2nd-seasons-of-black-clover-aoashi-anime/.242948",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "Red Rising Greenlit for Movie Adaptation With Author Pierce Brown to Produce",
-        "url": "https://www.ign.com/articles/red-rising-greenlit-for-movie-adaptation-with-author-pierce-brown-to-produce",
-        "description": "The Red Rising book series by author Pierce Brown has officially been greenlit for a movie adaptation from Paramount Pictures, with Hunger Games alum Francis Lawrence to direct. Red Rising is getting the Hollywood treatment more than a decade after it was first published in 2014. As confirmed by The",
-        "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
         "title": "Japan's Video Game Rankings, October 5-11",
@@ -215,38 +247,6 @@
       {
         "title": "Bleach: Thousand-Year Blood War - The Calamity Anime Streams 'Last' Promo Video",
         "url": "https://www.animenewsnetwork.com/news/2026-10-17/bleach-thousand-year-blood-war-the-calamity-anime-streams-last-promo-video/.242935",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "OceanVeil to Add 19 Anime Titles from Media Blasters",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-17/oceanveil-to-add-19-anime-titles-from-media-blasters/.242934",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Comikey Adds Mato Kauta's The Wolf King's Bride Manga",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-17/comikey-adds-mato-kauta-the-wolf-king-bride-manga/.242933",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Peow2 Licenses Jyoshikohei, Alien 9, Phantom Core Manga",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-17/peow2-licenses-jyoshikohei-alien-9-phantom-core-manga/.242932",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Viz Media Licenses Jojolion, His Sweet Solace, Under Doctor, More Manga for Summer 2027",
-        "url": "https://www.animenewsnetwork.com/news/2026-10-16/viz-media-licenses-jojolion-his-sweet-solace-under-doctor-more-manga-for-summer-2027/.242929",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
@@ -574,10 +574,26 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
+      "fetched_at": "2026-10-19T10:01:45.573961+09:00"
     },
     "GameSpot RSS": {
       "topics": [
+        {
+          "title": "Fire Emblem’s Remarkable Comeback",
+          "url": "https://www.gamespot.com/articles/fire-emblems-remarkable-comeback/",
+          "description": "Though it may not be a sales juggernaut on the scale of Mario or The Legend of Zelda, Fire Emblem is one of Nintendo's preeminent franchises. Like so many of its vaunted stablemates, the series is almost as old as Nintendo's gaming ambitions, debuting on the Famicom and appearing on nearly every hom",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Tenebris Somnia Blends 2D Visuals With Live-Action Horror Scenes, And It’s Already On Sale At Launch",
+          "url": "https://www.gamespot.com/articles/tenebris-somnia-blends-2d-visuals-with-live-action-horror-scenes-and-its-already-on-sale-at-launch/",
+          "description": "Horror games live or die by their scares and tension. If the player isn’t uncomfortable guiding a character through dreadful situations, well, you may as well be playing an action-adventure game (don’t mention the first Uncharted’s final act, please). Tenebris Somnia blends the discomfort of retro h",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
         {
           "title": "No Publisher Wanted Outlast. 60 Million Players Later, The Horror Juggernaut Is Doing Just Fine.",
           "url": "https://www.gamespot.com/articles/no-publisher-wanted-outlast-60-million-players-later-the-horror-juggernaut-is-doing-just-fine/",
@@ -641,28 +657,52 @@
           "score": 0,
           "source": "GameSpot RSS",
           "category": "kemono"
-        },
-        {
-          "title": "2026 Upcoming Games Release Schedule",
-          "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
-          "description": "2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move further into the year--2026 will also see the release of Grand Theft Auto 6, which is widely anticipat",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "This Espresso Machine Can Run Doom",
-          "url": "https://www.gamespot.com/articles/this-espresso-machine-can-run-doom/",
-          "description": "Before caffeinating yourself in the morning, the Fellow Espresso Series 1 machine can actually run 1993's Doom on its small, circular screen. Reddit user FullExtraction showed off the classic FPS, utilizing the brew button to run and steam button to shoot. The scroll wheel on the device turns Doomgu",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
+      "fetched_at": "2026-10-19T10:01:45.573961+09:00"
     },
     "IGN RSS": {
       "topics": [
+        {
+          "title": "Taika Waititi Says His Star Wars Movie Is 'on Ice'",
+          "url": "https://www.ign.com/articles/taika-waititi-says-his-star-wars-movie-is-on-ice",
+          "description": "Director Taika Waititi has confirmed his long-in-development Star Wars movie is officially \"on ice.\" The Thor: Ragnarok and Jojo Rabbit filmmaker provided Inverse with the update when speaking to the outlet during a press junket for his new film, Klara and the Sun . When asked directly for the state",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Silent Hill Remake Studio Wants to Make Physical Games 'for as Long as Possible'",
+          "url": "https://www.ign.com/articles/silent-hill-remake-studio-wants-to-make-physical-games-for-as-long-as-possible",
+          "description": "Silent Hill developer Bloober Team wants to make physical versions of its games \"for as long as possible.\" Studio CEO Piotr Babieno opened up about the company's appreciation for physical media and collectibles during an interview with GamesRadar . He started his thoughts by touching on how the gami",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Street Fighter Tops the Box Office With $51 Million Opening Weekend Amid Lackluster Reviews",
+          "url": "https://www.ign.com/articles/street-fighter-tops-the-box-office-with-51-million-opening-weekend-amid-lackluster-reviews",
+          "description": "Capcom's Street Fighter movie spun up $51.1 million in its opening weekend, securing its place atop the global box office despite some not-so-great reviews. Ryu (Andrew Koji), Ken (Noah Centineo), and the rest of the film's massive cast grappled with an estimated $31 million domestically and $20.1 m",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "The Best Deals Today: The Adventures of Elliot, Pikmin 4, Mouse: P.I. For Hire, and More",
+          "url": "https://www.ign.com/articles/best-deals-for-october-18-2026",
+          "description": "A new weekend has arrived, and today, you can save big on Pikmin 4, The Adventures of Elliot, Doom: The Dark Ages, Final Fantasy VII Rebirth, Star Wars Zero Company, and more. Check out our top picks for Sunday, October 18, below. The Adventures of Elliot: The Millennium Tales On Sale for the First ",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Quentin Tarantino Says He's 'Written a Script' for 10th and Final Film, But He Wants to 'Live' Before Making It",
+          "url": "https://www.ign.com/articles/quentin-tarantino-says-hes-written-a-script-for-10th-and-final-film-but-he-wants-to-live-before-making-it",
+          "description": "Quentin Tarantino has confirmed he's \"written a script\" for his 10th and final film, but he's going to \"live\" a little before making it. The Once Upon a Time… in Hollywood and Kill Bill filmmaker teased his plans for his long-in-development finale movie during an appearance on The Graham Norton Show",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
         {
           "title": "Dev Behind Russian Roulette Drinking Game Cancels Steam Demo Plans Following AI Copycat Concerns",
           "url": "https://www.ign.com/articles/dev-behind-russian-roulette-drinking-game-cancels-steam-demo-plans-following-ai-copycat-concerns",
@@ -702,52 +742,44 @@
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
-        },
-        {
-          "title": "Captain Price Actor Sends Message to Fans as Call of Duty: Modern Warfare 4 Campaign Praise Rolls in",
-          "url": "https://www.ign.com/articles/captain-price-actor-sends-message-to-fans-as-call-of-duty-modern-warfare-4-campaign-praise-rolls-in",
-          "description": "Barry Sloane, the actor behind Call of Duty's Captain Price, has shared a message with fans as praise for Modern Warfare 4's campaign rolls in. Early reactions to Call of Duty: Modern Warfare 4's story mode have filled social media feeds in the first 24 hours since early access players dived in – an",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "7 Crazy Movie Premises That Actually Worked",
-          "url": "https://www.ign.com/articles/crazy-movie-premises-that-actually-worked",
-          "description": "“A young man is swallowed by a whale while searching for his father’s remains deep in the ocean.” That is the elevator pitch for Whalefall , starring Austin Abrams (Resident Evil) and co-written by Daniel Kraus and director Brian Duffield (No One Will Save You). Set for release on October 16, the fi",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "We Sat Down with D&D Game Designer James Wyatt to Talk Dungeons & Dragons: World of Warcraft",
-          "url": "https://www.ign.com/articles/we-sat-down-with-dd-game-designer-james-wyatt-to-talk-dungeons-and-dragons-world-of-warcraft",
-          "description": "Dungeons & Dragons: World of Warcraft is less than a month away, and it already looks like it's going to be a massive expansion to the tabletop game. But there are still a lot of questions about whether this new expansion is going to lean more towards the combat-oriented approach of the MMO or just ",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "The Street Fighter Movie Makes a Mistake Mortal Kombat Already Learned From",
-          "url": "https://www.ign.com/articles/the-street-fighter-movie-makes-a-mistake-mortal-kombat-already-learned-from",
-          "description": "Spoilers follow for Street Fighter. Put on your gis and gloves, fighting fans, because Street Fighter is now in theaters. The latest attempt to adapt the venerated fighting game franchise for the big screen may not be getting off to the best start with critics, but fans of the series will likely go ",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Red Rising Greenlit for Movie Adaptation With Author Pierce Brown to Produce",
-          "url": "https://www.ign.com/articles/red-rising-greenlit-for-movie-adaptation-with-author-pierce-brown-to-produce",
-          "description": "The Red Rising book series by author Pierce Brown has officially been greenlit for a movie adaptation from Paramount Pictures, with Hunger Games alum Francis Lawrence to direct. Red Rising is getting the Hollywood treatment more than a decade after it was first published in 2014. As confirmed by The",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
+      "fetched_at": "2026-10-19T10:01:45.573961+09:00"
     },
     "Anime News Network": {
       "topics": [
+        {
+          "title": "Kokamumo's Null-Meta Manga Gets TV Anime in 2027",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-18/kokamumo-null-meta-manga-gets-tv-anime-in-2027/.242952",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Arc System Works Opens New Studio Takumi on November 2",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-18/arc-system-works-opens-new-studio-takumi-on-november-2/.242951",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Kaiju Decode: The Ring of Aidara Anime Reveals Teaser Trailer, 2027 Debut",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-18/kaiju-decode-the-ring-of-aidara-anime-reveals-teaser-trailer-2027-debut/.242953",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Crunchyroll Reveals English Dub Cast, Staff for 2nd Seasons of Black Clover, Aoashi Anime",
+          "url": "https://www.animenewsnetwork.com/news/2026-10-18/crunchyroll-reveals-english-dub-cast-staff-for-2nd-seasons-of-black-clover-aoashi-anime/.242948",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
         {
           "title": "Japan's Video Game Rankings, October 5-11",
           "url": "https://www.animenewsnetwork.com/news/2026-10-17/japan-video-game-rankings-october-5-11/.242888",
@@ -797,38 +829,6 @@
           "description": ""
         },
         {
-          "title": "OceanVeil to Add 19 Anime Titles from Media Blasters",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-17/oceanveil-to-add-19-anime-titles-from-media-blasters/.242934",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Comikey Adds Mato Kauta's The Wolf King's Bride Manga",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-17/comikey-adds-mato-kauta-the-wolf-king-bride-manga/.242933",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Peow2 Licenses Jyoshikohei, Alien 9, Phantom Core Manga",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-17/peow2-licenses-jyoshikohei-alien-9-phantom-core-manga/.242932",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Viz Media Licenses Jojolion, His Sweet Solace, Under Doctor, More Manga for Summer 2027",
-          "url": "https://www.animenewsnetwork.com/news/2026-10-16/viz-media-licenses-jojolion-his-sweet-solace-under-doctor-more-manga-for-summer-2027/.242929",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
           "title": "Interview: A Deep Dive into the Creation and Philosophy of The Ninth Jedi",
           "url": "https://www.animenewsnetwork.com/interview/2026-10-16/a-deep-dive-into-the-creation-and-philosophy-of-the-ninth-jedi/.241654",
           "score": 0,
@@ -869,7 +869,7 @@
           "description": ""
         }
       ],
-      "fetched_at": "2026-10-18T12:14:34.870470+09:00"
+      "fetched_at": "2026-10-19T10:01:45.573961+09:00"
     },
     "PokéCommunity Art Studio": {
       "topics": [
@@ -1167,6 +1167,22 @@
       "category": "kemono"
     },
     {
+      "title": "Fire Emblem’s Remarkable Comeback",
+      "url": "https://www.gamespot.com/articles/fire-emblems-remarkable-comeback/",
+      "description": "Though it may not be a sales juggernaut on the scale of Mario or The Legend of Zelda, Fire Emblem is one of Nintendo's preeminent franchises. Like so many of its vaunted stablemates, the series is almost as old as Nintendo's gaming ambitions, debuting on the Famicom and appearing on nearly every hom",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Tenebris Somnia Blends 2D Visuals With Live-Action Horror Scenes, And It’s Already On Sale At Launch",
+      "url": "https://www.gamespot.com/articles/tenebris-somnia-blends-2d-visuals-with-live-action-horror-scenes-and-its-already-on-sale-at-launch/",
+      "description": "Horror games live or die by their scares and tension. If the player isn’t uncomfortable guiding a character through dreadful situations, well, you may as well be playing an action-adventure game (don’t mention the first Uncharted’s final act, please). Tenebris Somnia blends the discomfort of retro h",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
       "title": "No Publisher Wanted Outlast. 60 Million Players Later, The Horror Juggernaut Is Doing Just Fine.",
       "url": "https://www.gamespot.com/articles/no-publisher-wanted-outlast-60-million-players-later-the-horror-juggernaut-is-doing-just-fine/",
       "description": "Let's play Family Feud. Poll 100 people on the scariest game they've ever played. What's on the board? Surely a Silent Hill, and a Resident Evil, too. Alien Isolation seems likely. One of the Fatal Frames has a good shot. Those who know ball may call out a deeper cut like Siren, Sylvio, or Visage. O",
@@ -1231,19 +1247,43 @@
       "category": "kemono"
     },
     {
-      "title": "2026 Upcoming Games Release Schedule",
-      "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
-      "description": "2026 has begun, and it looks to be a very exciting year for video games. In addition to being the first full year for the Switch 2--we'll surely hear about even more games for the system as we move further into the year--2026 will also see the release of Grand Theft Auto 6, which is widely anticipat",
+      "title": "Taika Waititi Says His Star Wars Movie Is 'on Ice'",
+      "url": "https://www.ign.com/articles/taika-waititi-says-his-star-wars-movie-is-on-ice",
+      "description": "Director Taika Waititi has confirmed his long-in-development Star Wars movie is officially \"on ice.\" The Thor: Ragnarok and Jojo Rabbit filmmaker provided Inverse with the update when speaking to the outlet during a press junket for his new film, Klara and the Sun . When asked directly for the state",
       "score": 0,
-      "source": "GameSpot RSS",
+      "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "This Espresso Machine Can Run Doom",
-      "url": "https://www.gamespot.com/articles/this-espresso-machine-can-run-doom/",
-      "description": "Before caffeinating yourself in the morning, the Fellow Espresso Series 1 machine can actually run 1993's Doom on its small, circular screen. Reddit user FullExtraction showed off the classic FPS, utilizing the brew button to run and steam button to shoot. The scroll wheel on the device turns Doomgu",
+      "title": "Silent Hill Remake Studio Wants to Make Physical Games 'for as Long as Possible'",
+      "url": "https://www.ign.com/articles/silent-hill-remake-studio-wants-to-make-physical-games-for-as-long-as-possible",
+      "description": "Silent Hill developer Bloober Team wants to make physical versions of its games \"for as long as possible.\" Studio CEO Piotr Babieno opened up about the company's appreciation for physical media and collectibles during an interview with GamesRadar . He started his thoughts by touching on how the gami",
       "score": 0,
-      "source": "GameSpot RSS",
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Street Fighter Tops the Box Office With $51 Million Opening Weekend Amid Lackluster Reviews",
+      "url": "https://www.ign.com/articles/street-fighter-tops-the-box-office-with-51-million-opening-weekend-amid-lackluster-reviews",
+      "description": "Capcom's Street Fighter movie spun up $51.1 million in its opening weekend, securing its place atop the global box office despite some not-so-great reviews. Ryu (Andrew Koji), Ken (Noah Centineo), and the rest of the film's massive cast grappled with an estimated $31 million domestically and $20.1 m",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "The Best Deals Today: The Adventures of Elliot, Pikmin 4, Mouse: P.I. For Hire, and More",
+      "url": "https://www.ign.com/articles/best-deals-for-october-18-2026",
+      "description": "A new weekend has arrived, and today, you can save big on Pikmin 4, The Adventures of Elliot, Doom: The Dark Ages, Final Fantasy VII Rebirth, Star Wars Zero Company, and more. Check out our top picks for Sunday, October 18, below. The Adventures of Elliot: The Millennium Tales On Sale for the First ",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Quentin Tarantino Says He's 'Written a Script' for 10th and Final Film, But He Wants to 'Live' Before Making It",
+      "url": "https://www.ign.com/articles/quentin-tarantino-says-hes-written-a-script-for-10th-and-final-film-but-he-wants-to-live-before-making-it",
+      "description": "Quentin Tarantino has confirmed he's \"written a script\" for his 10th and final film, but he's going to \"live\" a little before making it. The Once Upon a Time… in Hollywood and Kill Bill filmmaker teased his plans for his long-in-development finale movie during an appearance on The Graham Norton Show",
+      "score": 0,
+      "source": "IGN RSS",
       "category": "kemono"
     },
     {
@@ -1287,44 +1327,36 @@
       "category": "kemono"
     },
     {
-      "title": "Captain Price Actor Sends Message to Fans as Call of Duty: Modern Warfare 4 Campaign Praise Rolls in",
-      "url": "https://www.ign.com/articles/captain-price-actor-sends-message-to-fans-as-call-of-duty-modern-warfare-4-campaign-praise-rolls-in",
-      "description": "Barry Sloane, the actor behind Call of Duty's Captain Price, has shared a message with fans as praise for Modern Warfare 4's campaign rolls in. Early reactions to Call of Duty: Modern Warfare 4's story mode have filled social media feeds in the first 24 hours since early access players dived in – an",
+      "title": "Kokamumo's Null-Meta Manga Gets TV Anime in 2027",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-18/kokamumo-null-meta-manga-gets-tv-anime-in-2027/.242952",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "7 Crazy Movie Premises That Actually Worked",
-      "url": "https://www.ign.com/articles/crazy-movie-premises-that-actually-worked",
-      "description": "“A young man is swallowed by a whale while searching for his father’s remains deep in the ocean.” That is the elevator pitch for Whalefall , starring Austin Abrams (Resident Evil) and co-written by Daniel Kraus and director Brian Duffield (No One Will Save You). Set for release on October 16, the fi",
+      "title": "Arc System Works Opens New Studio Takumi on November 2",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-18/arc-system-works-opens-new-studio-takumi-on-november-2/.242951",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "We Sat Down with D&D Game Designer James Wyatt to Talk Dungeons & Dragons: World of Warcraft",
-      "url": "https://www.ign.com/articles/we-sat-down-with-dd-game-designer-james-wyatt-to-talk-dungeons-and-dragons-world-of-warcraft",
-      "description": "Dungeons & Dragons: World of Warcraft is less than a month away, and it already looks like it's going to be a massive expansion to the tabletop game. But there are still a lot of questions about whether this new expansion is going to lean more towards the combat-oriented approach of the MMO or just ",
+      "title": "Kaiju Decode: The Ring of Aidara Anime Reveals Teaser Trailer, 2027 Debut",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-18/kaiju-decode-the-ring-of-aidara-anime-reveals-teaser-trailer-2027-debut/.242953",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "The Street Fighter Movie Makes a Mistake Mortal Kombat Already Learned From",
-      "url": "https://www.ign.com/articles/the-street-fighter-movie-makes-a-mistake-mortal-kombat-already-learned-from",
-      "description": "Spoilers follow for Street Fighter. Put on your gis and gloves, fighting fans, because Street Fighter is now in theaters. The latest attempt to adapt the venerated fighting game franchise for the big screen may not be getting off to the best start with critics, but fans of the series will likely go ",
+      "title": "Crunchyroll Reveals English Dub Cast, Staff for 2nd Seasons of Black Clover, Aoashi Anime",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-18/crunchyroll-reveals-english-dub-cast-staff-for-2nd-seasons-of-black-clover-aoashi-anime/.242948",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "Red Rising Greenlit for Movie Adaptation With Author Pierce Brown to Produce",
-      "url": "https://www.ign.com/articles/red-rising-greenlit-for-movie-adaptation-with-author-pierce-brown-to-produce",
-      "description": "The Red Rising book series by author Pierce Brown has officially been greenlit for a movie adaptation from Paramount Pictures, with Hunger Games alum Francis Lawrence to direct. Red Rising is getting the Hollywood treatment more than a decade after it was first published in 2014. As confirmed by The",
-      "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
       "title": "Japan's Video Game Rankings, October 5-11",
@@ -1369,38 +1401,6 @@
     {
       "title": "Bleach: Thousand-Year Blood War - The Calamity Anime Streams 'Last' Promo Video",
       "url": "https://www.animenewsnetwork.com/news/2026-10-17/bleach-thousand-year-blood-war-the-calamity-anime-streams-last-promo-video/.242935",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "OceanVeil to Add 19 Anime Titles from Media Blasters",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-17/oceanveil-to-add-19-anime-titles-from-media-blasters/.242934",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Comikey Adds Mato Kauta's The Wolf King's Bride Manga",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-17/comikey-adds-mato-kauta-the-wolf-king-bride-manga/.242933",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Peow2 Licenses Jyoshikohei, Alien 9, Phantom Core Manga",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-17/peow2-licenses-jyoshikohei-alien-9-phantom-core-manga/.242932",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Viz Media Licenses Jojolion, His Sweet Solace, Under Doctor, More Manga for Summer 2027",
-      "url": "https://www.animenewsnetwork.com/news/2026-10-16/viz-media-licenses-jojolion-his-sweet-solace-under-doctor-more-manga-for-summer-2027/.242929",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",

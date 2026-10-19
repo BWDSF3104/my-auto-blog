@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-19T10:02:12.920337+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-19T10:01:45.573961+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Silver Pines Is A 2D Silent Hill Meets Alan Wake, And It Even Scares Me At Its Lowest Price",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/silver-pines-is-a-2d-silent-hill-meets-alan-wake-and-it-even-scares-me-at-its-lowest-price/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Starting in an empty diner, with no other people in sight, Silver Pines immediately grips you with an atmosphere reminiscent of Silent Hill and a sense of dread that Alan Wake would write about in one"
+    },
+    {
+      "title": "Tenebris Somnia Blends 2D Visuals With Live-Action Horror Scenes, And It’s Already On Sale At Launch",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/tenebris-somnia-blends-2d-visuals-with-live-action-horror-scenes-and-its-already-on-sale-at-launch/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Horror games live or die by their scares and tension. If the player isn’t uncomfortable guiding a character through dreadful situations, well, you may as well be playing an action-adventure game (don’"
+    }
+  ],
+  "affiliate_keywords": [
+    "Silver Pines Is",
+    "Tenebris Somnia Blends"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/silver-pines-is-a-2d-silent-hill-meets-alan-wake-and-it-even-scares-me-at-its-lowest-price/",
+    "https://www.gamespot.com/articles/tenebris-somnia-blends-2d-visuals-with-live-action-horror-scenes-and-its-already-on-sale-at-launch/"
+  ]
+}
