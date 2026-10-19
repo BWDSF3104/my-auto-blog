@@ -4,18 +4,10 @@
 
 `git commit`と`git push`は不可分な一連の作業。commit完了直後は**必ず**`git push`を実行すること。pushを中断してはならない。
 
-- **commit/push は1コマンド**: コミット前に `git status --short` を単独実行して対象ファイルを特定する。その後、必要な fetch / commit 数確認 / stash・pull・pop と `git add` → `git commit` → `git push` → `git status --short` は `;` で1コマンドに結合して実行する。push 後の追加確認コマンドは実行しない。
-- **同一コマンド再実行禁止（完了時処理限定）**: コマンドが成功後に、確認対象の状態が未変更のうちに同一コマンドを再実行して確認しない（前回の結果が有効）。一時的な失敗、中断、状態変更（ファイル編集・push・時間経過）後の再確認は対象外。
-
-**コミット実行前に必ず以下の手順を完了すること:**
-
-1. `git fetch origin` — remote refsを取得
-2. `git rev-list HEAD..origin/main --count` — remoteの新しいコミット数をカウント
-3. カウント > 0 の場合: `git stash` → `git pull` → `git stash pop` → 競合解決
-4. `git add` → `git commit` → `git push`を続けて実行
-
-Commit message format: `feat: <日本語説明>` for features, `fix: <日本語説明>` for bug fixes.
-Never use `git push --force` or modify remote history.
+- **commit/push は1コマンド**: `git add -A; git commit -m "<メッセージ>"; git push` を `;` で1コマンドに結合して実行する。
+- **commit前**: `git status --short` を単独実行して対象ファイルを特定する。
+- **commitメッセージ**: `feat: <日本語説明>` / `fix: <日本語説明>`。指定なしの場合は変更ファイルから推論・作成。
+- **remote 競合**: push が失敗した場合のみ `git pull --rebase` → 再実行。`git push --force` とリモート履歴の変更は禁止。
 
 ## Commit Checklist
 
