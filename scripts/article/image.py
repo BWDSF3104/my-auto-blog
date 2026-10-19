@@ -2,8 +2,8 @@
 
 generate_article.py の画像関連関数を移設したモジュール。
 kemono パラメータ生成（_randomize_kemono_params / _build_kemono_tags）、
-HuggingFace / Pollinations による画像生成、画像プロンプト合成、
-本文内画像の抽出・置換を担当する。
+HuggingFace / Pollinations による画像生成（ZeroGPU quota 残量でルーティング）、
+画像プロンプト合成、本文内画像の抽出・置換を担当する。
 """
 
 import os
@@ -11,7 +11,6 @@ import random
 import re
 import time
 import urllib.parse
-
 import requests
 from PIL import Image
 import pillow_avif
@@ -19,6 +18,10 @@ from gradio_client import Client
 
 from article.config import *  # noqa: F401,F403
 
+
+# ZeroGPU quota 確認の状態（プロセス単位：1回だけ確認し、結果はフラグでキャッシュ）
+_ZERO_GPU_CHECKED = False
+_ZERO_GPU_USE_HF = True
 
 
 def _is_valid_kemono_combination(transform, relationship, extra):
@@ -120,9 +123,63 @@ def _generate_image_pollinations(prompt: str, output_filename: str, seed: int = 
     return _save_as_avif(temp_path, output_filename)
 
 
+def _fetch_zero_gpu_quota_remaining_once() -> float:
+    """ZeroGPU quota 残量（GPU 秒）を1回取得する。
+    失敗（非200/タイムアウト/JSON不備/current が数値でない/HF_TOKEN 未設定）時は例外を投げる。"""
+    if not HF_TOKEN:
+        raise ValueError("HF_TOKEN が未設定")
+    resp = requests.get(
+        ZERO_GPU_QUOTA_URL,
+        headers={"Authorization": f"Bearer {HF_TOKEN}"},
+        timeout=ZERO_GPU_QUOTA_CHECK_TIMEOUT_SECONDS,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    return float(data["current"])
+
+
+def _zero_gpu_quota_remaining() -> float | None:
+    """quota 取得（最大 ZERO_GPU_QUOTA_CHECK_ATTEMPTS 回リトライ）。
+    成功時は残秒を float で返す、最終失敗時は None。"""
+    for attempt in range(1, ZERO_GPU_QUOTA_CHECK_ATTEMPTS + 1):
+        try:
+            return _fetch_zero_gpu_quota_remaining_once()
+        except Exception as e:
+            print(f"⚠️ ZeroGPU quota 確認 試行 {attempt}/{ZERO_GPU_QUOTA_CHECK_ATTEMPTS} 失敗: {e}")
+            if attempt < ZERO_GPU_QUOTA_CHECK_ATTEMPTS:
+                time.sleep(ZERO_GPU_QUOTA_CHECK_DELAY_SECONDS)
+    return None
+
+
+def _determine_zero_gpu_provider() -> bool:
+    """HF Space を使うかどうかの判定。プロセス内で1回のみ実行、結果はフラグでキャッシュ。
+    - quota 確認成功・残量が閾値以上 → True（HF）
+    - quota 確認成功・残量が閾値以下 → False（Pollinations）
+    - quota 確認失敗（リトライ含む）→ True（fail-open: 現行挙動を維持）"""
+    global _ZERO_GPU_CHECKED, _ZERO_GPU_USE_HF
+    if _ZERO_GPU_CHECKED:
+        return _ZERO_GPU_USE_HF
+    _ZERO_GPU_CHECKED = True
+    remaining = _zero_gpu_quota_remaining()
+    if remaining is None:
+        print(f"⚠️ ZeroGPU quota 確認失敗（{ZERO_GPU_QUOTA_CHECK_ATTEMPTS}回）→ HF を試行（fail-open）")
+        _ZERO_GPU_USE_HF = True
+        return True
+    if remaining < ZERO_GPU_QUOTA_THRESHOLD_SECONDS:
+        print(f"⚠️ ZeroGPU quota 残量 {remaining:.0f}秒 が閾値 {ZERO_GPU_QUOTA_THRESHOLD_SECONDS}秒 以下 → 画像生成は Pollinations.ai（HF 未接続）")
+        _ZERO_GPU_USE_HF = False
+    else:
+        print(f"📊 ZeroGPU quota: 残量 {remaining:.0f}秒（閾値 {ZERO_GPU_QUOTA_THRESHOLD_SECONDS}秒以上）→ HF")
+        _ZERO_GPU_USE_HF = True
+    return _ZERO_GPU_USE_HF
+
+
 def generate_and_save_image(prompt: str, output_filename: str, seed: int = -1) -> str:
     """HF Space APIを呼び出して画像を生成し、public/images/ にAVIF形式で保存してURLパスを返す。
     HF 失敗時は Pollinations.ai にフォールバック。
+    ZeroGPU quota 確認: 残量（GPU 秒）が ZERO_GPU_QUOTA_THRESHOLD_SECONDS 未満の時は
+    HF をスキップして直接 Pollinations.ai（プロセス内で1回だけ確認、結果はフラグでキャッシュ）。
+    quota 確認失敗時は現行挙動を維持（fail-open）。
     IMAGE_PROVIDER=pollinations の場合は HF をスキップして直接 Pollinations を使用。
     seed が指定された場合、同じ記事内の画像で一貫したスタイルを維持する。"""
     save_dir = os.path.join("public", "images")
@@ -144,6 +201,10 @@ def generate_and_save_image(prompt: str, output_filename: str, seed: int = -1) -
             print(f"⚠️ Pollinations.ai 画像生成失敗: {e}")
             print("⚠️ 画像生成を断念し、画像なしで記事のみ出力します。")
             return ""
+
+    # ZeroGPU quota 確認（プロセス内で1回のみ。閾値以下は HF をスキップ）
+    if not _determine_zero_gpu_provider():
+        return _generate_image_pollinations(prompt, output_filename, seed)
 
     max_retries = 2
     for attempt in range(1, max_retries + 1):

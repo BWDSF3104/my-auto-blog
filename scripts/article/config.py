@@ -69,6 +69,18 @@ DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop,
 # カウントタグ（1girl, 2girls等）の強調重み。space側の強調構文で人間寄りへの引きを減衰（1.0=減衰なし）
 COUNT_TAG_WEIGHT = 0.6
 
+# ZeroGPU quota 確認（HF Space → Pollinations.ai へのフォールバック判定）
+ZERO_GPU_QUOTA_URL = "https://huggingface.co/api/spaces/zero-gpu/quota"
+# 残量（GPU 秒）がこの閾値未満の時は画像生成を Pollinations.ai に切り替え（HF 未接続）。
+# 1呼び出し=最大20秒 × 2 枚分の余裕。
+ZERO_GPU_QUOTA_THRESHOLD_SECONDS = int(os.environ.get("ZERO_GPU_QUOTA_THRESHOLD_SECONDS", "40"))
+# quota 取得の試行回数
+ZERO_GPU_QUOTA_CHECK_ATTEMPTS = int(os.environ.get("ZERO_GPU_QUOTA_CHECK_ATTEMPTS", "3"))
+# 1試行のタイムアウト（秒）
+ZERO_GPU_QUOTA_CHECK_TIMEOUT_SECONDS = int(os.environ.get("ZERO_GPU_QUOTA_CHECK_TIMEOUT_SECONDS", "5"))
+# リトライ間隔（秒）
+ZERO_GPU_QUOTA_CHECK_DELAY_SECONDS = int(os.environ.get("ZERO_GPU_QUOTA_CHECK_DELAY_SECONDS", "5"))
+
 # SEOメタ記述の文字数制約
 MIN_DESC_LEN = 80
 MAX_DESC_LEN = 120
@@ -337,6 +349,8 @@ __all__ = [
     "BASE_URL", "SITE_ORIGIN", "MAX_INLINE_IMAGES", "MIN_SCORE_THRESHOLD",
     "GENRE_SCORES_PATH", "GENRE_FILTER_MIN_SCORE",
     "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION", "COUNT_TAG_WEIGHT",
+    "ZERO_GPU_QUOTA_URL", "ZERO_GPU_QUOTA_THRESHOLD_SECONDS",
+    "ZERO_GPU_QUOTA_CHECK_ATTEMPTS", "ZERO_GPU_QUOTA_CHECK_TIMEOUT_SECONDS", "ZERO_GPU_QUOTA_CHECK_DELAY_SECONDS",
     "MIN_DESC_LEN", "MAX_DESC_LEN",
     "INLINE_IMAGE_PATTERN", "INLINE_AFFILIATE_PATTERN", "INLINE_AFF_PRODUCT_PATTERN",
     "ENABLE_CHAR_DEDUP", "ENABLE_TAG_AFFILIATE",

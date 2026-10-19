@@ -1778,6 +1778,14 @@ class TestGenerateImagePollinations:
 class TestGenerateAndSaveImage:
     """画像生成ルーティングとフォールバックのテスト"""
 
+    @pytest.fixture(autouse=True)
+    def _reset_quota_state(self):
+        # quota 判定はフラグでキャッシュするため、テストごとに初値に戻す
+        import article.image
+        article.image._ZERO_GPU_CHECKED = False
+        article.image._ZERO_GPU_USE_HF = True
+        yield
+
     def _fake_jpeg_bytes(self):
         img = Image.new("RGB", (100, 100), color=(0, 0, 255))
         buf = io.BytesIO()
@@ -1788,6 +1796,7 @@ class TestGenerateAndSaveImage:
         """HFプロバイダーで正常に画像が生成される"""
         monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
         monkeypatch.setenv("HF_TOKEN", "test-token")
+        monkeypatch.setattr("article.image._zero_gpu_quota_remaining", lambda: 300.0)
 
         temp_img = tmp_path / "hf_temp.png"
         temp_img.write_bytes(self._fake_jpeg_bytes())
@@ -1812,6 +1821,7 @@ class TestGenerateAndSaveImage:
         """HF失敗後にPollinationsにフォールバックする"""
         monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
         monkeypatch.setenv("HF_TOKEN", "test-token")
+        monkeypatch.setattr("article.image._zero_gpu_quota_remaining", lambda: 300.0)
 
         fake_bytes = self._fake_jpeg_bytes()
         mock_poll_resp = MagicMock()
@@ -1840,6 +1850,7 @@ class TestGenerateAndSaveImage:
         """HFとPollinationsの両方が失敗すると空文字列を返す"""
         monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
         monkeypatch.setenv("HF_TOKEN", "test-token")
+        monkeypatch.setattr("article.image._zero_gpu_quota_remaining", lambda: 300.0)
 
         mock_poll_resp = MagicMock()
         mock_poll_resp.raise_for_status.side_effect = Exception("Pollinations error")
@@ -1900,6 +1911,100 @@ class TestGenerateAndSaveImage:
             os.chdir(orig_cwd)
 
         assert result == ""
+
+    def test_quota_below_threshold_uses_pollinations(self, tmp_path, monkeypatch):
+        """quota 残量が閾値以下なら HF は未接続で Pollinations に切り替え"""
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
+        monkeypatch.setenv("HF_TOKEN", "test-token")
+        monkeypatch.setattr("article.image._zero_gpu_quota_remaining", lambda: 10.0)
+
+        fake_bytes = self._fake_jpeg_bytes()
+        mock_poll_resp = MagicMock()
+        mock_poll_resp.content = fake_bytes
+        mock_poll_resp.raise_for_status = MagicMock()
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("article.image.Client") as mock_client_cls, \
+                 patch("requests.get", return_value=mock_poll_resp), \
+                 patch("article.image.BASE_URL", "/test"):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/out.avif"
+        mock_client_cls.assert_not_called()
+
+    def test_quota_checked_once_per_process(self, tmp_path, monkeypatch):
+        """quota 取得はフラグでキャッシュするため2回の画像生成で1回のみ"""
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
+        monkeypatch.setenv("HF_TOKEN", "test-token")
+
+        quota_calls = {"n": 0}
+
+        def fake_quota():
+            quota_calls["n"] += 1
+            return 10.0  # 閾値以下 → 両方とも Pollinations
+
+        monkeypatch.setattr("article.image._zero_gpu_quota_remaining", fake_quota)
+
+        fake_bytes = self._fake_jpeg_bytes()
+        mock_poll_resp = MagicMock()
+        mock_poll_resp.content = fake_bytes
+        mock_poll_resp.raise_for_status = MagicMock()
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("article.image.Client") as mock_client_cls, \
+                 patch("requests.get", return_value=mock_poll_resp), \
+                 patch("article.image.BASE_URL", "/test"):
+                result1 = generate_and_save_image("prompt 1", "out1.png")
+                result2 = generate_and_save_image("prompt 2", "out2.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result1 == "/test/images/out1.avif"
+        assert result2 == "/test/images/out2.avif"
+        assert quota_calls["n"] == 1
+        mock_client_cls.assert_not_called()
+
+    def test_quota_check_failure_fall_open_to_hf(self, tmp_path, monkeypatch):
+        """quota 確認失敗（リトライ3回）後は HF を試行（fail-open）"""
+        monkeypatch.setattr("article.image.IMAGE_PROVIDER", "hf")
+        monkeypatch.setenv("HF_TOKEN", "test-token")
+
+        fetch_calls = {"n": 0}
+
+        def failing_fetch():
+            fetch_calls["n"] += 1
+            raise Exception("403 forbidden")
+
+        monkeypatch.setattr("article.image._fetch_zero_gpu_quota_remaining_once", failing_fetch)
+
+        temp_img = tmp_path / "hf_temp.png"
+        temp_img.write_bytes(self._fake_jpeg_bytes())
+        (tmp_path / "public" / "images").mkdir(parents=True)
+
+        mock_client = MagicMock()
+        mock_client.predict.return_value = str(temp_img)
+
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(str(tmp_path))
+            with patch("article.image.Client", return_value=mock_client), \
+                 patch("time.sleep", return_value=None), \
+                 patch("article.image.BASE_URL", "/test"):
+                result = generate_and_save_image("test prompt", "out.png")
+        finally:
+            os.chdir(orig_cwd)
+
+        assert result == "/test/images/out.avif"
+        assert fetch_calls["n"] == 3
+        mock_client.predict.assert_called_once()
 
 
 # --------------------------------------------------
