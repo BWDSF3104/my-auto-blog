@@ -1,0 +1,25 @@
+name: ZeroGPU Quota Check
+
+on:
+  workflow_dispatch: # manual trigger
+
+jobs:
+  quota-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch ZeroGPU quota
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          response=$(curl -fsS -H "Authorization: Bearer $HF_TOKEN" https://huggingface.co/api/spaces/zero-gpu/quota)
+          echo "ZeroGPU quota (raw):"
+          echo "$response"
+          echo ""
+          echo "ZeroGPU quota (parsed):"
+          echo "$response" | jq '{
+            total_gpu_seconds: .base,
+            remaining_gpu_seconds: .current,
+            remaining_minutes: (.current / 60),
+            resets_at: .resetsAt,
+            overquota_used_seconds: (.overquotaUsed // null)
+          }'
