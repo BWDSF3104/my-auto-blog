@@ -862,6 +862,33 @@ def _extract_affiliate_keyword(title: str) -> str | None:
 # --------------------------------------------------
 # product_recommendations パーサー
 # --------------------------------------------------
+def _product_rec_block_span(content: str) -> tuple[int, int] | None:
+    """
+    product_recommendations ブロックの文字 offset 範囲 (start, end) を返す。
+
+    start = キー行の先頭。end = ブロックの直後の行の先頭（次の frontmatter トップレベル
+    キー行または閉じ ---、または EOF）。キー行がなければ None。
+    ブロック内部の空行もブロックに含める。項目数は関係なく（次のトップレベル
+    キー行/--- までを範囲とする）。
+    改行は LF 前提（既存正規表現の \n 前提と同じ制約）。
+    """
+    key_match = re.search(r"^product_recommendations:\n", content, re.MULTILINE)
+    if key_match is None:
+        return None
+    lines = content.splitlines()
+    offsets = [0]
+    for i, line in enumerate(lines):
+        offsets.append(offsets[-1] + len(line) + (0 if i == len(lines) - 1 else 1))
+    key_idx = offsets.index(key_match.start())
+    end_idx = len(offsets) - 1
+    for i in range(key_idx + 1, len(offsets) - 1):
+        line = lines[i]
+        if line.strip() and not line[:1].isspace():
+            end_idx = i
+            break
+    return key_match.start(), offsets[end_idx]
+
+
 def extract_product_recommendations(content: str) -> list[dict]:
     """
     Frontmatter から product_recommendations YAML ブロックを抽出・パースする。
@@ -870,16 +897,15 @@ def extract_product_recommendations(content: str) -> list[dict]:
         - name: "商品名"
           category: "書籍"
           price_range: "1000円台"
+
+    ブロック範囲は _product_rec_block_span で取得（キー行〜次のトップレベルキー/---。
+    項目数・項目間空行に依存しない）。
     """
-    block_match = re.search(
-        r'^product_recommendations:\s*\n((?:\s*-\s+.*\n?)+)',
-        content,
-        re.MULTILINE,
-    )
-    if not block_match:
+    span = _product_rec_block_span(content)
+    if span is None:
         return []
 
-    block = block_match.group(1)
+    block = content[span[0]:span[1]]
     products = []
     current = {}
     for line in block.splitlines():
@@ -975,14 +1001,11 @@ def process_product_cards(content: str) -> str:
     print(f"🛍️ 商品カードを {len(products)} 件生成")
 
     # product_recommendations ブロックを Frontmatter から完全に削除
-    # 改訂: インデントされた継続行をすべてキャッチ（[-:] 制限を撤廃）
-    content = re.sub(
-        r'^product_recommendations:\s*\n(?:[ \t].*\n?)*',
-        '',
-        content,
-        count=1,
-        flags=re.MULTILINE,
-    )
+    # 改訂: パーサーと同じ span（_product_rec_block_span）で削除。
+    # インデント継続行・項目間空行・項目数に依存しない。
+    span = _product_rec_block_span(content)
+    if span:
+        content = content[:span[0]] + content[span[1]:]
 
     # アフィリエイトセクションの手前に挿入
     aff_marker = "### 📚 テーマ関連のおすすめアイテム"

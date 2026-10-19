@@ -68,6 +68,9 @@ from generate_article import (
     process_inline_affiliates,
     process_inline_products,
     validate_and_fix_frontmatter,
+    extract_product_recommendations,
+    generate_product_cards,
+    process_product_cards,
     _apply_pubdate_field,
     _save_draft_metadata,
     DRAFTS_DIR,
@@ -1114,6 +1117,215 @@ class TestTagAffiliateToggle:
         assert '「ケモノ」</div>' in result
         assert '「ケモノ BL」</div>' in result
         assert "📚 テーマ関連のおすすめアイテム・書籍" in result
+
+
+# --------------------------------------------------
+# product_recommendations パーサー tests (KI-20261016-01)
+# --------------------------------------------------
+
+class TestProductRecommendationsParser:
+    """extract_product_recommendations / process_product_cards:
+    ブロック抽出・削除を span 取得に置き換えたことによる挙動。
+    Gemini プロンプト（1件以上、2スペースインデント、項目間空行の可能性）と整合。
+    """
+
+    @staticmethod
+    def _content(items, blank_between=False, after_keys=None):
+        """product_recommendations ブロックを含むサンプル content。
+        items: (name, category, price_range) タプルリスト。None 字段は省略。
+        after_keys: ブロック後の frontmatter トップレベルキー。
+        """
+        lines = [
+            "---",
+            'title: "テスト記事"',
+            'prompt_type: "default"',
+            "product_recommendations:",
+        ]
+        for i, (name, cat, price) in enumerate(items or ()):
+            if blank_between and i > 0:
+                lines.append("")
+            lines.append(f'  - name: "{name}"')
+            if cat is not None:
+                lines.append(f'    category: "{cat}"')
+            if price is not None:
+                lines.append(f'    price_range: "{price}"')
+        for key in after_keys or ():
+            lines.append(key)
+        lines += ["---", "", "# テスト本文"]
+        return "\n".join(lines)
+
+    @staticmethod
+    def _no_block_content():
+        return '---\ntitle: "テスト記事"\nprompt_type: "default"\ntags: [Tech]\n---\n\n# テスト本文\n'
+
+    @staticmethod
+    def _assert_items(products, expected):
+        assert len(products) == len(expected), products
+        for prod, (name, cat, price) in zip(products, expected):
+            assert prod.get("name") == name
+            if cat is not None:
+                assert prod.get("category") == cat
+            else:
+                assert "category" not in prod
+            if price is not None:
+                assert prod.get("price_range") == price
+            else:
+                assert "price_range" not in prod
+
+    def test_two_items_roundtrip(self, sample_product_cards_markdown):
+        products = extract_product_recommendations(sample_product_cards_markdown)
+        self._assert_items(products, [
+            ("テスト商品1", "electronics", "low"),
+            ("テスト商品2", "books", "medium"),
+        ])
+
+    def test_three_items_all_parsed(self):
+        content = self._content([
+            ("商品A", "グッズ", "3000円台"),
+            ("商品B", "書籍", "1000円台"),
+            ("商品C", "ゲーム", "5000円台"),
+        ])
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("商品A", "グッズ", "3000円台"),
+             ("商品B", "書籍", "1000円台"),
+             ("商品C", "ゲーム", "5000円台")])
+
+    def test_five_items_no_count_limit(self):
+        content = self._content([
+            ("商品A", "グッズ", "3000円台"),
+            ("商品B", "書籍", "1000円台"),
+            ("商品C", "ゲーム", "5000円台"),
+            ("商品D", "フィギュア", "8000円台"),
+            ("商品E", "グッズ", "500円台"),
+        ])
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("商品A", "グッズ", "3000円台"),
+             ("商品B", "書籍", "1000円台"),
+             ("商品C", "ゲーム", "5000円台"),
+             ("商品D", "フィギュア", "8000円台"),
+             ("商品E", "グッズ", "500円台")])
+
+    def test_blank_between_items(self):
+        content = self._content([
+            ("商品A", "グッズ", "3000円台"),
+            ("商品B", "書籍", "1000円台"),
+        ], blank_between=True)
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("商品A", "グッズ", "3000円台"),
+             ("商品B", "書籍", "1000円台")])
+
+    def test_one_item(self):
+        content = self._content([("ケモノ 図鑑", "グッズ", "3000円台")])
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("ケモノ 図鑑", "グッズ", "3000円台")])
+
+    def test_missing_category_price(self):
+        content = self._content([("商品A", None, None), ("商品B", "書籍", None)])
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("商品A", None, None), ("商品B", "書籍", None)])
+
+    def test_block_followed_by_next_key(self):
+        content = self._content(
+            [("商品A", "グッズ", "3000円台"), ("商品B", "書籍", "1000円台")],
+            after_keys=["tags: [Tech]"],
+        )
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("商品A", "グッズ", "3000円台"),
+             ("商品B", "書籍", "1000円台")])
+
+    def test_empty_block(self):
+        content = self._content([])
+        assert extract_product_recommendations(content) == []
+
+    def test_no_block(self):
+        content = self._no_block_content()
+        assert extract_product_recommendations(content) == []
+
+    def test_unquoted_values(self):
+        content = (
+            '---\n'
+            'title: "テスト記事"\n'
+            'prompt_type: "default"\n'
+            'product_recommendations:\n'
+            '  - name: 商品A\n'
+            '    category: 書籍\n'
+            '    price_range: 1000円台\n'
+            '---\n\n# テスト本文\n'
+        )
+        self._assert_items(
+            extract_product_recommendations(content),
+            [("商品A", "書籍", "1000円台")])
+
+    def test_block_deletion_complete(self, sample_product_cards_markdown):
+        result = process_product_cards(sample_product_cards_markdown)
+        assert "product_recommendations" not in result
+        fm = result[:result.find("\n---\n")]
+        assert "テスト商品1" not in fm
+        assert "テスト商品2" not in fm
+
+    def test_deletion_with_blank_between(self):
+        content = self._content([
+            ("商品A", "グッズ", "3000円台"),
+            ("商品B", "書籍", "1000円台"),
+        ], blank_between=True)
+        result = process_product_cards(content)
+        assert "product_recommendations" not in result
+        fm = result[:result.find("\n---\n")]
+        assert "商品A" not in fm
+        assert "商品B" not in fm
+
+    def test_frontmatter_valid_after_deletion(self, capsys, sample_product_cards_markdown):
+        result = process_product_cards(sample_product_cards_markdown)
+        assert validate_and_fix_frontmatter(result) == result
+        out = capsys.readouterr().out
+        assert "修復" not in out
+        assert "WARN" not in out
+
+    def test_no_block_content_unchanged(self):
+        content = self._no_block_content()
+        assert process_product_cards(content) == content
+
+    def test_insert_before_affiliate_marker(self):
+        content = self._content([("商品A", "グッズ", "3000円台")])
+        content += "\n\n---\n\n### 📚 テーマ関連のおすすめアイテム・書籍\n\nセクション本文\n"
+        result = process_product_cards(content)
+        idx_card = result.find('<div class="product-cards">')
+        idx_marker = result.find("### 📚 テーマ関連のおすすめアイテム")
+        assert idx_card >= 0
+        assert 0 <= idx_marker
+        assert idx_card < idx_marker
+
+    def test_insert_at_end_without_marker(self):
+        content = self._content([("商品A", "グッズ", "3000円台")])
+        result = process_product_cards(content)
+        assert result.rfind('<div class="product-cards">') > result.rfind("# テスト本文")
+
+    def test_card_count_and_price(self):
+        content = self._content([
+            ("商品A", "グッズ", "3000円台"),
+            ("商品B", "書籍", "1000円台"),
+            ("商品C", "ゲーム", "5000円台"),
+        ])
+        result = process_product_cards(content)
+        assert result.count('<div class="product-card">') == 3
+        assert '<div class="pc-name">商品A</div>' in result
+        assert '<div class="pc-price">3000円台</div>' in result
+
+    def test_gemini_product_names_matches_items(self):
+        """generate_article.py の Gemini 商品名抽出（楽天APIカスケード入力の経路）。"""
+        content = self._content([
+            ("ケモノ 図鑑", "グッズ", "3000円台"),
+            ("ライトノベル 書籍", "書籍", "1000円台"),
+            ("ケモノ ゲーム", "ゲーム", "5000円台"),
+        ])
+        names = [p.get("name", "") for p in extract_product_recommendations(content) if p.get("name")]
+        assert names == ["ケモノ 図鑑", "ライトノベル 書籍", "ケモノ ゲーム"]
 
 
 # --------------------------------------------------
