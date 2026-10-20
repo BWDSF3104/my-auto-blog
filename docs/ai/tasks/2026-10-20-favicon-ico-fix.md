@@ -23,7 +23,8 @@
 - `npm run build`: 成功（154ページ、2.44s）
 - `dist/favicon.ico` = 36637 bytes、SHA256 `04C5591F…6185`。`dist/index.html` に favicon.svg・favicon.ico リンク両方確認
 - 表示検証（Playwright/Chromium）: 実験ページで `.ico` が SVG より選択されることを再現（blue.ico のみ取得）。生成 ICO は白/黒背景で 16/24/32/48/96px 表示し形状確認 OK
-- push 後: `gh run list --workflow=deploy-only.yml` の success 確認 + 部署先 favicon.ico のハッシュ差分確認
+- push 後: deploy-only workflow 実行 39366686024 **success**（23s、commit 0c2cbc3）
+- 部署先 favicon.ico: SHA256 `04C5591F…6185` / 36637 bytes — ローカル `dist/`・`public/` と完全一致。Chromium で部署先 favicon.ico を直接表示し新アイコン（白背景・渦巻ロゴ）のレンダリング確認
 
 - [ ] `current-task.tsv` の参照行を削除
 - [ ] 解決した `known-issues/` ファイルを `known-issues/archive/` へ `mv`（該当する場合）
