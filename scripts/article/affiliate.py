@@ -896,7 +896,6 @@ def extract_product_recommendations(content: str) -> list[dict]:
       product_recommendations:
         - name: "商品名"
           category: "書籍"
-          price_range: "1000円台"
 
     ブロック範囲は _product_rec_block_span で取得（キー行〜次のトップレベルキー/---。
     項目数・項目間空行に依存しない）。
@@ -919,10 +918,6 @@ def extract_product_recommendations(content: str) -> list[dict]:
         if cat_match and current:
             current["category"] = cat_match.group(1).strip()
             continue
-        price_match = re.match(r'^\s+price_range:\s*["\']?(.*?)["\']?\s*$', line)
-        if price_match and current:
-            current["price_range"] = price_match.group(1).strip()
-            continue
 
     if current and "name" in current:
         products.append(current)
@@ -936,7 +931,7 @@ def extract_product_recommendations(content: str) -> list[dict]:
 def generate_product_cards(products: list[dict], title: str) -> str:
     """
     商品リストから商品カード風のHTMLブロックを生成。
-    各カードは商品名・価格帯・Amazon/楽天検索リンクを含む（スリム: 絵文字・カテゴリ行なし）。
+    各カードは商品名・Amazon/楽天検索リンクを含む（スリム: 絵文字・カテゴリ行・価格なし）。
     """
     if not products:
         return ""
@@ -951,7 +946,6 @@ def generate_product_cards(products: list[dict], title: str) -> str:
         if not name:
             continue
 
-        price = prod.get("price_range", "")
         encoded_kw = urllib.parse.quote(name)
 
         amazon_url = (
@@ -963,15 +957,10 @@ def generate_product_cards(products: list[dict], title: str) -> str:
             f"&utm_source=autoblog&utm_medium=affiliate&utm_content={utm_content}"
         )
 
-        price_html = ""
-        if price:
-            price_html = f'<div class="pc-price">{price}</div>'
-
         cards_html += f"""
 <div class="product-card">
   <div class="pc-info">
     <div class="pc-name">{name}</div>
-    {price_html}
   </div>
   <div class="pc-links">
     <a href="{amazon_url}" target="_blank" rel="noopener noreferrer nofollow" class="pc-btn pc-btn-amazon">Amazon</a>

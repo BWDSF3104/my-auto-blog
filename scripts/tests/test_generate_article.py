@@ -69,7 +69,6 @@ from generate_article import (
     process_inline_products,
     validate_and_fix_frontmatter,
     extract_product_recommendations,
-    generate_product_cards,
     process_product_cards,
     _apply_pubdate_field,
     _save_draft_metadata,
@@ -1132,7 +1131,7 @@ class TestProductRecommendationsParser:
     @staticmethod
     def _content(items, blank_between=False, after_keys=None):
         """product_recommendations ブロックを含むサンプル content。
-        items: (name, category, price_range) タプルリスト。None 字段は省略。
+        items: (name, category, price) タップル。price は無視（価格表示廃止）。
         after_keys: ブロック後の frontmatter トップレベルキー。
         """
         lines = [
@@ -1141,14 +1140,12 @@ class TestProductRecommendationsParser:
             'prompt_type: "default"',
             "product_recommendations:",
         ]
-        for i, (name, cat, price) in enumerate(items or ()):
+        for i, (name, cat, _price) in enumerate(items or ()):
             if blank_between and i > 0:
                 lines.append("")
             lines.append(f'  - name: "{name}"')
             if cat is not None:
                 lines.append(f'    category: "{cat}"')
-            if price is not None:
-                lines.append(f'    price_range: "{price}"')
         for key in after_keys or ():
             lines.append(key)
         lines += ["---", "", "# テスト本文"]
@@ -1161,16 +1158,12 @@ class TestProductRecommendationsParser:
     @staticmethod
     def _assert_items(products, expected):
         assert len(products) == len(expected), products
-        for prod, (name, cat, price) in zip(products, expected):
+        for prod, (name, cat, _price) in zip(products, expected):
             assert prod.get("name") == name
             if cat is not None:
                 assert prod.get("category") == cat
             else:
                 assert "category" not in prod
-            if price is not None:
-                assert prod.get("price_range") == price
-            else:
-                assert "price_range" not in prod
 
     def test_two_items_roundtrip(self, sample_product_cards_markdown):
         products = extract_product_recommendations(sample_product_cards_markdown)
@@ -1223,7 +1216,7 @@ class TestProductRecommendationsParser:
             extract_product_recommendations(content),
             [("ケモノ 図鑑", "グッズ", "3000円台")])
 
-    def test_missing_category_price(self):
+    def test_missing_category(self):
         content = self._content([("商品A", None, None), ("商品B", "書籍", None)])
         self._assert_items(
             extract_product_recommendations(content),
@@ -1248,6 +1241,7 @@ class TestProductRecommendationsParser:
         assert extract_product_recommendations(content) == []
 
     def test_unquoted_values(self):
+        """未引用値でも解析され、price_range は無視（非表示）されること。"""
         content = (
             '---\n'
             'title: "テスト記事"\n'
@@ -1258,9 +1252,9 @@ class TestProductRecommendationsParser:
             '    price_range: 1000円台\n'
             '---\n\n# テスト本文\n'
         )
-        self._assert_items(
-            extract_product_recommendations(content),
-            [("商品A", "書籍", "1000円台")])
+        products = extract_product_recommendations(content)
+        assert products == [{"name": "商品A", "category": "書籍"}]
+        assert "price_range" not in products[0]
 
     def test_block_deletion_complete(self, sample_product_cards_markdown):
         result = process_product_cards(sample_product_cards_markdown)
@@ -1306,7 +1300,7 @@ class TestProductRecommendationsParser:
         result = process_product_cards(content)
         assert result.rfind('<div class="product-cards">') > result.rfind("# テスト本文")
 
-    def test_card_count_and_price(self):
+    def test_card_count_no_price(self):
         content = self._content([
             ("商品A", "グッズ", "3000円台"),
             ("商品B", "書籍", "1000円台"),
@@ -1315,7 +1309,7 @@ class TestProductRecommendationsParser:
         result = process_product_cards(content)
         assert result.count('<div class="product-card">') == 3
         assert '<div class="pc-name">商品A</div>' in result
-        assert '<div class="pc-price">3000円台</div>' in result
+        assert '<div class="pc-price">' not in result
 
     def test_gemini_product_names_matches_items(self):
         """generate_article.py の Gemini 商品名抽出（楽天APIカスケード入力の経路）。"""

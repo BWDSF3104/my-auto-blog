@@ -34,10 +34,8 @@ image_prompt: "dragon,blueeyes,white scale, laptop, holograms, coding, dark room
 product_recommendations:
   - name: "関連ツールの名前"
     category: "ソフトウェア"
-    price_range: "無料"
   - name: "関連書籍のタイトル"
     category: "書籍"
-    price_range: "1000円台"
 ---
 
 【Frontmatterおよび本文内 IMAGE_PROMPT の指定ルール】
@@ -49,7 +47,7 @@ product_recommendations:
 
 【product_recommendations の指定ルール】
 ・記事のテーマに関連する「実在する」ツール・グッズ・書籍を2〜3つ選定してください。
-・各商品には `name`（具体名）, `category`（ソフトウェア, ツール, ガジェット, 書籍, フィギュア, ゲーム等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・各商品には `name`（具体名）, `category`（ソフトウェア, ツール, ガジェット, 書籍, フィギュア, ゲーム等）を指定してください。
 ・架空の商品名は使用しないでください。有名なタイトルや実際に販売されている商品を選んでください。
 
 ## 概要と背景

@@ -111,13 +111,11 @@ def sample_product_recommendations():
         {
             "name": "テスト商品1",
             "category": "electronics",
-            "price_range": "low",
             "description": "テスト商品1の説明"
         },
         {
             "name": "テスト商品2",
             "category": "books",
-            "price_range": "medium",
             "description": "テスト商品2の説明"
         }
     ]
@@ -225,10 +223,8 @@ prompt_type: "default"
 product_recommendations:
   - name: "テスト商品1"
     category: "electronics"
-    price_range: "low"
   - name: "テスト商品2"
     category: "books"
-    price_range: "medium"
 ---
 
 # テスト記事
