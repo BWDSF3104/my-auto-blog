@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-20T10:41:28.707184+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-20T10:40:44.651217+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Stupid Never Dies – 26 Minute Full Dungeon Run Gameplay",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/videos/stupid-never-dies-26-minute-full-dungeon-run-gameplay/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Watch us fight though 27 layers of a later game dungeon in Stupid Never Dies with Go Nuts Mode turned on. You play as a Zombie who can \"Style Eat\" enemies and gain their abilities after turning into t"
+    },
+    {
+      "title": "WoW: Forever Is Soaring, But Midnight Is Struggling",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/wow-forever-is-soaring-but-midnight-is-struggling/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "World of Warcraft : Forever is riding high thanks to its popular beta and upcoming launch, but retail WoW's Midnight expansion feels like it's in a state of crisis by comparison. The two different ver"
+    }
+  ],
+  "affiliate_keywords": [
+    "Stupid Never Dies",
+    "Forever Is Soaring  But Midnig"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/videos/stupid-never-dies-26-minute-full-dungeon-run-gameplay/",
+    "https://www.gamespot.com/articles/wow-forever-is-soaring-but-midnight-is-struggling/"
+  ]
+}
