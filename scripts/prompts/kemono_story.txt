@@ -94,7 +94,12 @@ product_recommendations:
 ・2-5語程度に簡潔にしてください。
 
 【character_1 / character_2 の指定ルール】
-・性別（1boy, 1girl等）＋種族（例: wolf, fox）＋anthro/feral/semi-anthroの種族タイプタグ＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリ（0-2つ）のみを英語で簡潔に記述してください。
+・英語のDanbooruタグ形式で、性別（1boy, 1girl等）＋種族（例: wolf, fox）＋体型タグ＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリ（0-2つ）のみを簡潔に記述してください。
+  - 動物: feral
+  - 二足歩行の動物: semi-anthro, [feral]
+  - 獣人: anthro
+  - chibi: chibi
+・anthro/feral/semi-anthro の英語タグは character_1/character_2 のfrontmatterに限定。本文のキャラクター体型表現は英語でなく日本語（例: 二足歩行の動物）を使う。
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
 ・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。

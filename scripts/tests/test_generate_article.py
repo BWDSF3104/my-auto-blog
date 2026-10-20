@@ -2666,12 +2666,12 @@ class TestBuildKemonoTags:
         assert tags == ["ケモノ", "獣人", "動物", "ファンタジー", "SF", "BL", "ライバル関係"]
 
     def test_char_types_split_into_individual_tags(self):
-        tags = _build_kemono_tags(self._params(char_types=["動物と獣人のハーフ", "動物"]))
-        assert "動物と獣人のハーフ" in tags
+        tags = _build_kemono_tags(self._params(char_types=["二足歩行の動物", "動物"]))
+        assert "二足歩行の動物" in tags
         assert "動物" in tags
         # 結合済みタグ（旧バグ）が混入しない
-        assert "動物と獣人のハーフ / 動物" not in tags
-        assert "動物と獣人のハーフ・動物" not in tags
+        assert "二足歩行の動物 / 動物" not in tags
+        assert "二足歩行の動物・動物" not in tags
 
     def test_world_tags_split_into_individual_tags(self):
         tags = _build_kemono_tags(self._params(world_tags=["ファンタジー", "SF"]))

@@ -319,7 +319,7 @@ def _check_draft(name: str, text: str):
 def verify():
     d = json.loads((GOLDEN / "inputs" / "data" / "topics" / "latest.json").read_text(encoding="utf-8"))
     bc = {k: len(v) for k, v in d["by_category"].items()}
-    assert bc["tech"] == 2 and bc["kemono"] == 36 and bc["pokemon"] == 40, bc
+    assert bc["tech"] == 2 and bc["kemono"] == 36 and bc["pokemon"] == 38, bc
     assert d["total"] == len(d["all"]) == 76, d["total"]
     assert len(d["sources"]) == 9, len(d["sources"])
     for name, s in d["sources"].items():
