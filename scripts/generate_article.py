@@ -211,7 +211,7 @@ def build_prompt(prompt_type, ng_instruction, pub_date_str, file_timestamp, kemo
     return prompt, e621_info
 
 
-def generate_content(prompt, prompt_type, file_timestamp, pub_date_str):
+def generate_content(prompt, prompt_type, file_timestamp, pub_date_str, narration_instruction=""):
     pass1_start = time.time()
     response, pass1_model = generate_content_with_retry(prompt)
     pass1_duration = time.time() - pass1_start
@@ -234,7 +234,7 @@ def generate_content(prompt, prompt_type, file_timestamp, pub_date_str):
     # 2.5 2-pass 精製: 下書きを精製して質を高める
     draft_content = content
     pass2_start = time.time()
-    content, pass2_model = refine_content(content, prompt_type)
+    content, pass2_model = refine_content(content, prompt_type, narration_instruction)
     pass2_duration = time.time() - pass2_start
 
     # 2-pass 生成のメタデータを保存（効果測定用）
@@ -513,7 +513,10 @@ def generate_post():
     )
 
     # 2. テキスト記事の生成（2-pass: 下書き → 精製）
-    content = generate_content(prompt, prompt_type, file_timestamp, pub_date_str)
+    content = generate_content(
+        prompt, prompt_type, file_timestamp, pub_date_str,
+        narration_instruction=kemono_params.get("narration_instruction", ""),
+    )
 
     # 記事レベルのbase seedを生成（同じ記事内の画像でスタイルを一貫させる）
     article_seed = random.randint(0, 2**31 - 1)

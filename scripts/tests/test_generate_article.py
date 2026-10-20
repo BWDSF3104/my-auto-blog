@@ -51,6 +51,8 @@ from generate_article import (
     _KEMONO_WORLD_TAGS,
     _KEMONO_EXTRA_TAGS,
     _KEMONO_EXTRA_TEXT,
+    _KEMONO_NARRATION_OPTIONS,
+    _KEMONO_NARRATION_LABEL,
     _KEMONO_CHARACTER2_RULES,
     _KEMONO_RELATIONSHIP_AFFILIATE,
     TRANSFORM_WEIGHTS,
@@ -2486,8 +2488,16 @@ class TestRandomizeKemonoParams:
             "extra_key", "extra_text",
             "char_count", "char_count_desc",
             "character2_rule",
+            "narration_key", "narration_instruction", "narration_label",
         }
         assert set(params.keys()) == expected_keys
+
+    def test_narration_in_options(self):
+        for _ in range(50):
+            params = _randomize_kemono_params()
+            assert params["narration_key"] in _KEMONO_NARRATION_OPTIONS
+            assert params["narration_instruction"] == _KEMONO_NARRATION_OPTIONS[params["narration_key"]]
+            assert params["narration_label"] == _KEMONO_NARRATION_LABEL[params["narration_key"]]
 
     def test_char_types_in_options(self):
         for _ in range(50):

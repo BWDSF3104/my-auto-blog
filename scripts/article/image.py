@@ -57,6 +57,8 @@ def _randomize_kemono_params():
         transform = "none"
         extra = "none"
 
+    narration_key = random.choice(list(_KEMONO_NARRATION_OPTIONS))
+
     return {
         # 構造化データ（タグ生成・アフィリエイトkwに直接使用）
         "char_types": list(char_types),
@@ -75,6 +77,10 @@ def _randomize_kemono_params():
         "char_count": 2,
         "char_count_desc": random.choice(_KEMONO_CHAR_COUNT_DESC_2),
         "character2_rule": _KEMONO_CHARACTER2_RULES[extra],
+        # 叙述視点（毎回均一ランダム。テンプレート {narration_instruction} と精製プロンプトに使用）
+        "narration_key": narration_key,
+        "narration_instruction": _KEMONO_NARRATION_OPTIONS[narration_key],
+        "narration_label": _KEMONO_NARRATION_LABEL[narration_key],
     }
 
 

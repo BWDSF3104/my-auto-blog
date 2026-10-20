@@ -36,10 +36,11 @@ def load_prompt_template(prompt_type="default"):
 # プロンプトは scripts/prompts/refine_tech.txt, refine_story.txt に分離
 
 
-def refine_content(draft: str, prompt_type: str):
+def refine_content(draft: str, prompt_type: str, narration_instruction: str = ""):
     """
     下書き記事を2回目のGemini API呼び出しで精製する。
     技術記事と物語で異なる精製プロンプトを使用する。
+    物語系では【視点】指示（narration_instruction）を追加して注入する。
     返り値: (refined_content, model_name) のタプル。
     失敗時は (draft, None) を返す。
     """
@@ -47,7 +48,10 @@ def refine_content(draft: str, prompt_type: str):
         refine_template = load_prompt_template("refine_story")
     else:
         refine_template = load_prompt_template("refine_tech")
-    refine_prompt = refine_template + f"\n\n【下書き】\n{draft}"
+    refine_prompt = refine_template
+    if narration_instruction:
+        refine_prompt += f"\n\n【視点】{narration_instruction}"
+    refine_prompt += f"\n\n【下書き】\n{draft}"
 
     try:
         print("✨ 2-pass 精製中...")

@@ -15,7 +15,7 @@ from article.meta import _extract_fm_field
 
 
 def _gen_info_setting_rows(prompt_type: str, kemono_params: dict) -> list[tuple[str, str]]:
-    """kemono_story のキャラクター設定行（体型 / 世界設定 / 変身 / 関係性 / 追加設定）を組立する。"""
+    """kemono_story のキャラクター設定行（体型 / 世界設定 / 変身 / 関係性 / 追加設定 / 視点）を組立する。"""
     if prompt_type != "kemono_story" or not kemono_params:
         return []
     setting_rows: list[tuple[str, str]] = []
@@ -28,6 +28,7 @@ def _gen_info_setting_rows(prompt_type: str, kemono_params: dict) -> list[tuple[
     setting_rows.append(("関係性", kemono_params.get("relationship_text", "")))
     if kemono_params.get("extra_key", "none") != "none":
         setting_rows.append(("追加設定", kemono_params.get("extra_tag", "")))
+    setting_rows.append(("視点", kemono_params.get("narration_label", "")))
     return setting_rows
 
 

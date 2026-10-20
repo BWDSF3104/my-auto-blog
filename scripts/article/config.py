@@ -258,6 +258,31 @@ _KEMONO_EXTRA_TEXT = {
     "rival": "、ライバル関係",
 }
 
+# 叙述視点の選択肢（毎回均一ランダム選択。表の上3種のみ）
+# key → プロンプト注入用の指示文（kemono_story.txt / refine_story.txt で【視点】に使用）
+_KEMONO_NARRATION_OPTIONS = {
+    "first_person": (
+        "一人称で執筆せよ。全描写は主人公の視点・感覚に基づく。"
+        "他のキャラクターの思考・感情・意図を直接記述しないこと"
+        "（対話・表情・行動・反応から伝わせて示せ）。"
+    ),
+    "third_person_limited": (
+        "第3人称限定的で執筆せよ。全文を通じて主人公を視点の中心にし、"
+        "他のキャラクターの思考・感情・意図を直接記述しないこと"
+        "（対話・表情・行動・反応から伝わせて示せ）。"
+    ),
+    "third_person_omniscient": (
+        "第3人称全知的で執筆せよ。全キャラクターの思考・感情を知る視点から記述し、"
+        "場面に応じて各キャラクターの視点に切り替えられる。"
+    ),
+}
+# 生成情報セクション表示用の視点ラベル
+_KEMONO_NARRATION_LABEL = {
+    "first_person": "一人称",
+    "third_person_limited": "第3人称限定的（主人公視点）",
+    "third_person_omniscient": "第3人称全知（俯瞰）",
+}
+
 # 登場キャラ数説明（char_count は常に2。clone/dark_persona は同じ外見の2人が登場する）
 _KEMONO_CHAR_COUNT_DESC_2 = ["バディ", "ライバル", "カップル"]
 
@@ -366,7 +391,9 @@ __all__ = [
     "_KEMONO_WORLD_TAGS", "_KEMONO_WORLD_TEXT", "_KEMONO_TRANSFORM_TEXT",
     "_KEMONO_TRANSFORM_LABEL", "_KEMONO_TRANSFORM_TAGS",
     "_KEMONO_RELATIONSHIP_TEXT", "_KEMONO_EXTRA_TAGS",
-    "_KEMONO_EXTRA_TEXT", "_KEMONO_CHAR_COUNT_DESC_2", "_KEMONO_CHARACTER2_RULES",
+    "_KEMONO_EXTRA_TEXT",
+    "_KEMONO_NARRATION_OPTIONS", "_KEMONO_NARRATION_LABEL",
+    "_KEMONO_CHAR_COUNT_DESC_2", "_KEMONO_CHARACTER2_RULES",
     "_KEMONO_CORE_TOKENS", "_KEMONO_ANCHOR_KEYWORDS", "_KEMONO_RELATIONSHIP_AFFILIATE",
     # アフィリエイト
     "_AF_EXCLUDE_CP_PATTERNS", "_AF_EXCLUDE_CPS",
