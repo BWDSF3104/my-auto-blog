@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-21T10:27:03.020422+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-21T10:26:25.701152+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Interview: A Deep Dive into the Creation and Philosophy of The Ninth Jedi",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-16/a-deep-dive-into-the-creation-and-philosophy-of-the-ninth-jedi/.241654",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Greta Gerwig Reportedly Clashed With Netflix Film Boss Over Narnia: The Magician’s Nephew",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/greta-gerwig-netflix-narnia-clash",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Barbie writer-director Greta Gerwig reportedly had a bitter falling out with Netflix’s then-head of film over her upcoming movie, Narnia: The Magician’s Nephew . In their rundown of why Netflix fired "
+    }
+  ],
+  "affiliate_keywords": [
+    "Deep Dive Creation",
+    "The Magician s Nephew"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/interview/2026-10-16/a-deep-dive-into-the-creation-and-philosophy-of-the-ninth-jedi/.241654",
+    "https://www.ign.com/articles/greta-gerwig-netflix-narnia-clash"
+  ]
+}

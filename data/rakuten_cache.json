@@ -380,5 +380,16 @@
       "reviewCount": 0
     },
     "hits": 3
+  },
+  "五等分の花嫁": {
+    "fetched_at": "2026-10-21T01:29:36.248267+00:00",
+    "product": {
+      "itemName": "[新品]五等分の花嫁(1-14巻 全巻) 全巻セット",
+      "itemPrice": 8349,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00qci0o.eo1qw544.g00qci0o.eo1qx21a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmangazenkan%2Fm1560479420%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmangazenkan%2Fi%2F10233930%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/mangazenkan/cabinet/syncip_0021/m1560479420.jpg?_ex=128x128",
+      "reviewCount": 40
+    },
+    "hits": 3
   }
 }
