@@ -278,7 +278,14 @@ if (frontmatter.speakable) {
           class="post-image"
         />
       )}
-      </header>
+       </header>
+
+      {frontmatter.description && (
+        <div class="tldr-box">
+          <span class="tldr-box-label">要旨</span>
+          <p class="tldr-box-text">{frontmatter.description}</p>
+        </div>
+      )}
 
       <article class="prose prose-slate max-w-none text-left prose-headings:font-bold prose-a:text-blue-600 prose-pre:bg-slate-900 dark:prose-invert dark:prose-headings:text-slate-100 dark:prose-p:text-slate-300 dark:prose-li:text-slate-300 dark:prose-strong:text-slate-200 dark:prose-em:text-slate-200 dark:prose-a:text-blue-400 dark:prose-code:text-amber-300 dark:prose-code:bg-slate-700 dark:prose-pre:bg-slate-950 dark:prose-blockquote:text-slate-300 dark:prose-figcaption:text-slate-400" id="article-content">
         <slot />
@@ -603,8 +610,30 @@ if (frontmatter.speakable) {
       .gen-info-link:hover {
         color: var(--color-link);
         border-bottom-color: currentColor;
-      }
-    </style>
+       }
+
+       /* TL;DR ボックス（記事ページ header 直下・description 源） */
+       .tldr-box {
+         padding: 0.875rem 1rem;
+         border-radius: 0.5rem;
+         border: 1px solid var(--color-border);
+         background-color: var(--color-bg-alt);
+       }
+       .tldr-box-label {
+         display: block;
+         font-size: 0.7rem;
+         font-weight: 700;
+         letter-spacing: 0.1em;
+         color: var(--color-text-muted);
+         margin-bottom: 0.375rem;
+       }
+       .tldr-box-text {
+         margin: 0;
+         font-size: 0.95rem;
+         line-height: 1.65;
+         color: var(--color-text);
+       }
+     </style>
 
     <script is:inline>
       // Back to Top button

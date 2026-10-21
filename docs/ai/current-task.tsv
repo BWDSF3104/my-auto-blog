@@ -1,2 +1,1 @@
 task_file	status	next_action
-docs/ai/tasks/2026-10-21-gitattributes-binary-only.md	進行中	.gitattributes 作成 → git ls-files --eol で画像 binary 化検証 → git diff --stat で画像差分なし確認

@@ -1,48 +1,212 @@
 # Backlog
 
-未実装項目と改善案。優先度でソート。完了した項目は削除し、不採用項目は `backlog-archive.md` へ移す（変更履歴は git commit に委ねる）。
+未実装項目と改善案。優先度（P2 高 → P5 実験的）で分類。
+完了した項目は削除し、不採用項目は `backlog-archive.md` へ移す（変更履歴は git commit に委ねる）。
+各項目は **難易度・効果・具体的な作業内容・備考** で記述する。
+
+## 推奨実行順序（2026-10-21 見直しの結果）
+
+| 順 | タスク群（内容） | 対象項目 | 難易度 |
+|---:|---|---|---|
+| 1（進行中） | 改行正規化 第2ステップ（全ファイル LF 化 + mixed 8 件修正） | P3 #8 | ⭐ |
+| 2 | 記事品質・SEO 強化（AI生成明示 + 情報源明示）※ TL;DR は完了 | P5 #7, #8 | ⭐ |
+| 3 | Reading Mode トグル | P5 #3 | ⭐⭐ |
+| 4 | Giscus コメント機能（手動 2 件：Discussions 有効化 + env 登録） | P2 #4 | ⭐⭐ |
+| 5 | PWA 対応（manifest + Service Worker を**1 タスクに統合**） | P3 #2, #3 | ⭐⭐⭐ |
+| 6 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
+| 7 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
+
+**非実装予定**（詳細は各項目）: P2 #17, P3 #4, #9, #10, #12, #15, P4 #1, P5 #9, #11, #14
+
+---
 
 ## P2
 
-| # | 項目 | 難易度 | 効果 | 備考 |
-|---|------|--------|------|------|
-| 2 | Featured/Pinned 記事 | ⭐⭐ | 中 | 保留（重要記事未準備） |
-| 4 | コメント機能（Giscus）実装 | ⭐⭐ | 中 | 設計確定済み（2026-10-11、選定理由: `decisions/2026-10-11-giscus-comments.md`）。タスクファイル: `tasks/2026-10-11-giscus-comments-github-setup.md`（手動: Discussions 有効化 + giscus app 導入）、`tasks/2026-10-11-giscus-comments-env-config.md`（手動: 環境変数登録）、`tasks/2026-10-11-giscus-comments-component.md`（AI: コンポーネント + Layout 組み込み）、`tasks/2026-10-11-giscus-comments-workflow-env.md`（AI: deploy.yml / deploy-only.yml への env 配線）、`tasks/2026-10-11-giscus-comments-verification.md`（AI: E2E 検証 + 本番デプロイ）。完了時に本エントリを削除 |
-| 17 | 新プロンプトタイプ「ポケモン」追加: テンプレート + プロンプトタイプランダム選定 + RSS/e621 ポケモン取得 | ⭐⭐ | 新コンテンツタイプ・データソース多様化 | 2026-10-16 ユーザー判断: #16(ポケモンテーマ)とは**独立**。詳細設計**済み**（保留・J1〜J5 判断待ち）。ポケモンRSS(4フィード)・e621 pokemon タグは **fetch_topics.py に既存**（配線のみで可）。ランダム選定は deploy.yml 変更を伴う。初期検討: `tasks/2026-10-16-pokemon-story-backlog-consideration.md` ／ 詳細設計: `tasks/2026-10-16-pokemon-prompt-type-design.md` |
+### #2 Featured/Pinned 記事
+- **難易度 / 効果**: ⭐⭐ / 中
+- **作業内容**: frontmatter に `pinned: true` を追加し、記事一覧（index.astro）に先頭へ固定表示
+- **備考**: 保留（重要記事未準備）。重要記事が揃ったら再検討。
+
+### #4 コメント機能（Giscus）実装
+- **難易度 / 効果**: ⭐⭐ / 中
+- **作業内容**: 設計確定済み（2026-10-11。選定理由は `decisions/2026-10-11-giscus-comments.md`）。
+  | 内容 | 実施 | ファイル |
+  |---|---|---|
+  | GitHub 側設定（Discussions 有効化 + giscus app 導入） | **手動（ユーザー）** | `tasks/2026-10-11-giscus-comments-github-setup.md` |
+  | 環境変数登録 | **手動（ユーザー）** | `tasks/2026-10-11-giscus-comments-env-config.md` |
+  | コンポーネント + Layout 組み込み | AI | `tasks/2026-10-11-giscus-comments-component.md` |
+  | deploy.yml / deploy-only.yml への env 配線 | AI | `tasks/2026-10-11-giscus-comments-workflow-env.md` |
+  | E2E 検証 + 本番デプロイ | AI | `tasks/2026-10-11-giscus-comments-verification.md` |
+- **備考**: 手動 2 件が先に必要。**完了時に本エントリを削除**。
+
+### #17 新プロンプトタイプ「ポケモン」追加
+- **難易度 / 効果**: ⭐⭐ / 中（新コンテンツタイプ・データソース多様化）
+- **作業内容**: ポケモンプロンプトテンプレート + プロンプトタイプランダム選定 + RSS/e621 ポケモン取得
+- **備考**:
+  - 2026-10-16 ユーザー判断: #16（ポケモンテーマ）とは**独立**
+  - 詳細設計**済み**（保留・**J1〜J5 判断待ち**）
+  - ポケモン RSS（4 フィード）・e621 pokemon タグは **fetch_topics.py に既存**（配線のみで可）。ランダム選定は deploy.yml 変更を伴う
+  - 初期検討: `tasks/2026-10-16-pokemon-story-backlog-consideration.md` ／ 詳細設計: `tasks/2026-10-16-pokemon-prompt-type-design.md`
+
+---
 
 ## P3
 
-| # | 項目 | 難易度 | 効果 | 備考 |
-|---|------|--------|------|------|
-| 8 | 改行コードの `.gitattributes` による正規化（別タスク化 2026-10-11） | ⭐ | 低 | CRLF/LF 混在（例: `deploy.yml` CRLF+LF, `test_fetch_topics.py` CRLF+LF, `PostLayout.astro` CRLF+LF）。エンコード監査（`tasks/2026-10-11-utf8-encoding-audit.md`）で発覚。**第1ステップ（画像/バイナリ定義のみ）完了**（`tasks/2026-10-21-gitattributes-binary-only.md`・差分ゼロ・commit 待ち）。**第2ステップ**（`* text=auto eol=lf` 導入で全ファイル LF 正規化 + mixed 8件修正）は全ファイルに改行変更diffを生むため単独タスクで実施 |
-| 2 | PWA 対応 | ⭐⭐⭐ | 中 | Service Worker + manifest.json |
-| 3 | Service Worker | ⭐⭐⭐ | 中 | オフライン対応、キャッシュ戦略 |
-| 4 | ソーシャルメディア自動投稿 | ⭐⭐⭐ | 中 | X/Twitter API, Bluesky API 連携 |
-| 9 | e621 参考キャラクター名のストーリー本文への「寄せる」指示検討 | ⭐ | 低 | 2026-10-13 調査: e621 キャラ名は本文に未使用（38 件中 0 件。参考データ・生成情報・アフィリエイトのみ）。名前での寄せは版権 IP リスク（Zootopia/Pokemon 等）のため現状はデザイン面のみで寄せる設計。直近改修（anthro/physical フィルタ）で改善の可能性 → 様子見・低優先度 |
-| 10 | ストーリーのランダム種族を Danbooru/e621 主要種族タグに絞る（主要種族タグリスト化） | ⭐⭐ | 低 | 2026-10-13 調査: 種族は Gemini 自由選択（直近21記事で21種、alligator/raven 等の exotic 混在）。画像モデル（Nova-Furry-XL）は主要種族ほど安定。タスク: Danbooru/e621 主要種族タグをリスト化し、プロンプト推奨リスト or Python 側ランダム注入を検討 |
-| 12 | `docs/ai/tmp/` スクラッチの日付管理（タスク別日付サブフォルダ） | ⭐ | 低 | 2026-10-15: N 日保持は実装済み（mtime 基準・既定 7 日・`--tmp-retention-days` 指定可。AGENTS.md / memory-bank-guide.md と挙動一致済み）。残り: タスク別日付サブフォルダ（任意） |
-| 15 | 直前ジャンルとの被りを防ぐ措置（ストーリー系のみ）: 直前ストーリーの world_setting を今回の抽選から除外 | ⭐ | 多様性向上・連続同種別ストーリーの防止 | 2026-10-16 ユーザー判断: **低優先度**（保留・未実装）。kemono_story のみ対象。取得方法（tags 逆引き vs 新 frontmatter フィールド `world_setting`）と防止手法（硬排除推奨・既存リトライループに `exclude` 追加）は未定。詳細: `tasks/2026-10-16-pokemon-story-backlog-consideration.md` |
+### #8 改行コードの `.gitattributes` による正規化（第2ステップ）
+- **難易度 / 効果**: ⭐ / 低
+- **作業内容**: `* text=auto eol=lf` を導入し、全ファイルを LF 正規化 + mixed 8 件を修正（全ファイルに改行 diff を生むため単独タスク）
+- **備考**: CRLF/LF 混在（例: `deploy.yml`、`test_fetch_topics.py`、`PostLayout.astro`）をエンコード監査で発見（`tasks/2026-10-11-utf8-encoding-audit.md`）。
+  - 第1ステップ（画像/バイナリ定義のみ）**完了**（`tasks/2026-10-21-gitattributes-binary-only.md`・差分ゼロ・**commit 待ち（現在進行中）**）
+
+### #2 PWA 対応
+- **難易度 / 効果**: ⭐⭐⭐ / 中
+- **作業内容**: Service Worker + manifest.json + アイコン
+- **備考**: **#3（Service Worker）と 1 タスクに統合**（「PWA 対応」）。
+  - キャッシュ戦略: 記事ページ network-first（記事は毎日新規生成）、静的アセット cache-first、画像はキャッシュ容量（約 50MB 上限）を管理
+  - GitHub Pages のサブパス: manifest の scope は `/my-auto-blog`
+  - Astro 7 内建 PWA 統合（`astro add pwa`）を活用可能
+  - 検証: Chrome DevTools → Application → Service Worker → 「Offline」チェック
+
+### #3 Service Worker
+- **難易度 / 効果**: ⭐⭐⭐ / 中
+- **作業内容**: オフライン対応、キャッシュ戦略
+- **備考**: **#2（PWA 対応）に含まれるため、単独で実施しない**（重複作業・SW 戦略の二重設計を避けるため）。
+
+### #4 ソーシャルメディア自動投稿
+- **難易度 / 効果**: ⭐⭐⭐ / 中
+- **作業内容**: X/Twitter API、Bluesky API 連携で自動投稿
+- **備考**: 非実装予定。API キー管理 + レート制限の運用コストと効果のバランスが未検討。
+
+### #9 e621 参考キャラクター名のストーリー本文への「寄せる」指示検討
+- **難易度 / 効果**: ⭐ / 低
+- **作業内容**: e621 キャラ名を本文に挿入する指示を追加
+- **備考**: 2026-10-13 調査: e621 キャラ名は本文に未使用（38 件中 0 件、参考データ・生成情報・アフィリエイトのみ）。
+  - 名前での寄せは版権 IP リスク（Zootopia/Pokemon 等）のため、現状はデザイン面のみで寄せる設計
+  - 直近改修（anthro/physical フィルタ）で改善の可能性 → 様子見・低優先度
+
+### #10 ストーリーのランダム種族を Danbooru/e621 主要種族タグに絞る
+- **難易度 / 効果**: ⭐⭐ / 低
+- **作業内容**: 主要種族タグをリスト化 → プロンプト推奨リスト or Python 側ランダム注入を検討
+- **備考**: 2026-10-13 調査: 種族は Gemini 自由選択（直近 21 記事で 21 種、alligator/raven 等の exotic 混在）。画像モデル（Nova-Furry-XL）は主要種族ほど安定。
+
+### #12 `docs/ai/tmp/` スクラッチの日付管理（タスク別日付サブフォルダ）
+- **難易度 / 効果**: ⭐ / 低
+- **作業内容**: タスク別日付サブフォルダ（任意）
+- **備考**: 2026-10-15: N 日保持は**実装済み**（mtime 基準・既定 7 日・`--tmp-retention-days` 指定可。AGENTS.md / memory-bank-guide.md と挙動一致済み）。残り: 日付サブフォルダのみ。
+
+### #15 直前ジャンルとの被りを防ぐ措置（ストーリー系のみ）
+- **難易度 / 効果**: ⭐ / 中（多様性向上・連続同種別ストーリーの防止）
+- **作業内容**: 直前ストーリーの `world_setting` を今回の抽選から除外（kemono_story のみ）
+- **備考**: 2026-10-16 ユーザー判断: **低優先度（保留・未実装）**。
+  - 未定: 取得方法（tags 逆引き vs 新 frontmatter フィールド `world_setting`）、防止手法（硬排除推奨・既存リトライループに `exclude` 追加）
+  - 詳細: `tasks/2026-10-16-pokemon-story-backlog-consideration.md`
+
+---
 
 ## P4 (超低優先度)
 
-| # | 項目 | 難易度 | 効果 | 備考 |
-|---|------|--------|------|------|
-| 1 | Flux.1 向け自然言語プロンプト + モデル別切り替え | ⭐⭐ | 低 | PollinationsはHFフォールバック。詳細は image-prompt-refinement.md |
+### #1 Flux.1 向け自然言語プロンプト + モデル別切り替え
+- **難易度 / 効果**: ⭐⭐ / 低
+- **作業内容**: ポリニシェン（Pollinations）は HF フォールバック。Flux.1 向けに自然言語プロンプトへ変換 + モデル別切り替え
+- **備考**: 非実装予定。詳細: `docs/ai/image-prompt-refinement.md`
+
+---
 
 ## P5 (実験的・追加検討)
 
-| # | 項目 | 難易度 | 効果 | 備考 |
-|---|------|--------|------|------|
-| 1 | TL;DR セクション | ⭐ | 高 | 記事テンプレートに追加するのみ |
-| 2 | Callout Boxes (Note/Tip/Warning) | ⭐⭐ | 中 | MDXカスタムコンポーネントで実装 |
-| 3 | Reading Mode Toggle | ⭐⭐ | 中 | 没入型読書モード |
-| 4 | Series 機能 | ⭐⭐ | 中 | ストーリー記事に有効 |
-| 5 | Chapter Navigation | ⭐⭐ | 中 | 前後章のナビゲーション |
-| 6 | Spoiler Warnings | ⭐ | 低 | ストーリー記事に有効 |
-| 7 | AI生成の明示 | ⭐ | 高 | 透明性向上。SEOにも影響 |
-| 8 | 情報源の明示 | ⭐ | 中 | 信頼性向上 |
-| 9 | MDX Support | ⭐⭐ | 高 | インタラクティブコンポーネントを記事に埋め込み可能 |
-| 10 | Multiple Collections | ⭐⭐ | 中 | posts, authors, series, faq を分離 |
-| 11 | Image Optimization | ⭐ | 中 | 組み込みの image() ヘルパー |
-| 12 | Zod Schema Validation | ⭐ | 中 | フロントマターの型安全 |
-| 14 | Reddit API の収集機能 | ⭐⭐ | 低 | `collect_reddit()` 実装済みだが403規制中。優先度最低 |
+### #2 Callout Boxes (Note/Tip/Warning)
+- **難易度 / 効果**: ⭐⭐ / 中
+- **推奨実行順序: 7**（#6 と 1 タスク「ストーリー UI 追加」）
+- **作業内容**（案 A: 推奨）:
+  - Markdown 慣用 `> **Note:**` / `> **Tip:**` / `> **Warning:**` + CSS で強調ボックス化（CSS 追加のみで完結）
+  - 案 B: `@astrojs/mdx` 導入 + `<Note>` 等のコンポーネント（依存増加）
+- **効果**: ストーリー系・アフィリエイト記事の信頼性向上
+- **備考**: 案 A の Markdown 慣用は Gemini が自然に生成しやすい。既存パイプライン（Markdown 生成）と整合。
+
+### #3 Reading Mode Toggle
+- **難易度 / 効果**: ⭐⭐ / 中
+- **推奨実行順序: 3**
+- **作業内容**:
+  - Header に「読書モード」トグル（`<button id="reading-mode">`)
+  - `document.body.classList.toggle('reading-mode')` → CSS で TOC・アフィリエイト・共有・BMA を非表示
+  - `localStorage` に設定を保存（次回訪問でも保持）
+- **効果**: 長い記事（ストーリー系）の分散注意減少、読みやすさ大幅向上
+
+### #4 Series 機能
+- **難易度 / 効果**: ⭐⭐ / 中
+- **推奨実行順序: 6**（#5, #10, #12 と 1 タスク）
+- **作業内容**:
+  - frontmatter 新增 `series: string`
+  - 新規ページ `src/pages/series/[series].astro`（シリーズ記事一覧）
+  - `PostLayout.astro` の header に「シリーズ: [リンク]」表示
+- **備考**: ストーリー系のみ対象。**前提: #10（Multiple Collections）で `series` collection を定義**
+
+### #5 Chapter Navigation
+- **難易度 / 効果**: ⭐⭐ / 中
+- **推奨実行順序: 6**（#4, #10, #12 と 1 タスク）
+- **作業内容**:
+  - frontmatter 新增 `order: number`（または `prevUrl` / `nextUrl`)
+  - `PostLayout.astro` の関連記事セクション前に「← 前章 / 次章 →」リンク
+- **備考**: #4（Series）とセットが自然。単独でも frontmatter に `prevUrl`/`nextUrl` を指定できれば可能
+
+### #6 Spoiler Warnings
+- **難易度 / 効果**: ⭐ / 低
+- **推奨実行順序: 7**（#2 と 1 タスク「ストーリー UI 追加」）
+- **作業内容**:
+  - frontmatter 新增 `spoiler: boolean`（または `spoilerText: string`)
+  - true なら header 直後に `<details><summary>⚠️ スパイラー警告</summary>...</details>` 表示
+- **備考**: e621 由来ストーリーのネタバレ防止に有用（ユーザーのネタバレ判断支援）
+
+### #7 AI生成の明示
+- **難易度 / 効果**: ⭐ / **高**
+- **推奨実行順序: 2**（#1, #8 と 1 タスク「記事品質・SEO 強化」）
+- **作業内容**:
+  - 既存の「生成情報」セクション（`.gen-info`）冒頭に「🤖 本記事は AI（Gemini）で生成されました」を always 表示
+  - JSON-LD の `author` を「AI Writer」から「BWD × AI（Gemini）」へ更新、`contentCredential` を追加
+- **効果**: E-E-A-T（SEO 信頼性）・ユーザー信頼性・法的リスク（AI 生成の透明性）に直接影響。コストがほぼゼロ
+- **備考**: 既存 `.gen-info` との重複表示を避ける整合性確認が必要
+
+### #8 情報源の明示
+- **難易度 / 効果**: ⭐ / 中
+- **推奨実行順序: 2**（#1, #7 と 1 タスク「記事品質・SEO 強化」）
+- **作業内容**: 既存「生成情報」セクションの `source` ブロックを強化（データソース: e621 / RSS / 等を always 表示）
+- **効果**: 信頼性向上・「なぜこの内容？」への回答
+- **備考**: 既存 frontmatter の `source` 系フィールド（`prompt_type` の延長）を強化する程度
+
+### #9 MDX Support
+- **難易度 / 効果**: ⭐⭐ / 高（理論上）
+- **非実装予定**
+- **作業内容**: `@astrojs/mdx` 導入 → 記事内にインタラクティブコンポーネント（チャート、クイズ等）
+- **備考**: 本プロジェクトの記事は Gemini が生成する Markdown のため、MDX のメリットが**ほぼ使えない**（手動記事のみ対象）。依存増加（`@astrojs/mdx`、`mdx`、`react`）+ ビルド速度低下。需要が明確になるまで保留。
+
+### #10 Multiple Collections
+- **難易度 / 効果**: ⭐⭐ / 中
+- **推奨実行順序: 6**（#4, #5, #12 と 1 タスク「シリーズ機能」）
+- **作業内容**:
+  - 新規 `src/content/config.ts`（collections + schema: `posts` / `series` 等）
+  - 各 layout の `import.meta.glob`（eager load）を `astro.content.load('posts')` 等に置き換え
+- **効果**: 型安全化、Series 機能（#4）の前提
+- **備考**: #12（Zod Validation）を**内包**する。現状の `import.meta.glob` 方式の interface は静的型のみ（runtime 検証なし）
+
+### #11 Image Optimization
+- **難易度 / 効果**: ⭐ / 中
+- **非実装予定**
+- **作業内容**:
+  - `@astrojs/image` 統合（`astro add image`）導入
+  - `PostLayout.astro` の `<img>` を `<Image src={...} alt={...} />` に置き換え → WebP/AVIF 変換、`srcset` 生成、lazy loading 最適化
+- **備考**: 画像が固定サイズ（896x512 等）のため効果はやや小さい。ただし形式変換でサイズ 30〜50% 削減・ロード速度向上は期待できる。既存 `article img` CSS との整合性確認必要。
+
+### #12 Zod Schema Validation
+- **難易度 / 効果**: ⭐ / 中
+- **推奨実行順序: 6**（#4, #5, #10 と 1 タスク「シリーズ機能」）
+- **作業内容**: `src/content/config.ts` に `schema: z.object({...})` を定義 → `astro build` 時に各 post の frontmatter を自動検証（不適合ならエラー表示）
+- **備考**: #10（Multiple Collections）の**一部**（schema 定義のみ）。現状 `title` / `pubDate` / `description` の必須性や `tags` の array 型は runtime で検証されていない。
+
+### #14 Reddit API の収集機能
+- **難易度 / 効果**: ⭐⭐ / 低
+- **非実装予定**
+- **作業内容**: `collect_reddit()` を実装済みだが **403 規制中**
+- **備考**:
+  - 403 解除には Reddit API の OAuth 認証 + App credentials 登録が必要（コスト vs 利益で不成立）
+  - 代替: Reddit の public RSS（`/r/<subreddit>/hot.rss`）を `fetch`（非公式）
+  - 現状 e621 + RSS で十分 → **未実装のまま。Reddit トレンドが重要になった時のみ再検討**

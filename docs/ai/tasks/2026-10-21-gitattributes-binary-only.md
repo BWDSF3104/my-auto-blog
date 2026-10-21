@@ -1,6 +1,6 @@
 # .gitattributes バイナリ定義追加（改行正規化第1ステップ）
 
-**Status**: 進行中
+**Status**: 完了
 **Date**: 2026-10-21
 **Backlog**: P3 #8
 **Next Action**: .gitattributes 作成 → git ls-files --eol で画像 binary 化検証 → git diff --stat で画像差分なし確認
