@@ -14,7 +14,7 @@
 
 | # | 項目 | 難易度 | 効果 | 備考 |
 |---|------|--------|------|------|
-| 8 | 改行コードの `.gitattributes` による正規化（別タスク化 2026-10-11） | ⭐ | 低 | CRLF/LF 混在（例: `deploy.yml` CRLF+LF, `test_fetch_topics.py` CRLF+LF, `PostLayout.astro` CRLF+LF）。エンコード監査（`tasks/2026-10-11-utf8-encoding-audit.md`）で発覚。`* text=auto eol=lf` 等の導入は全ファイルに改行変更diffを生むため単独タスクで実施 |
+| 8 | 改行コードの `.gitattributes` による正規化（別タスク化 2026-10-11） | ⭐ | 低 | CRLF/LF 混在（例: `deploy.yml` CRLF+LF, `test_fetch_topics.py` CRLF+LF, `PostLayout.astro` CRLF+LF）。エンコード監査（`tasks/2026-10-11-utf8-encoding-audit.md`）で発覚。**第1ステップ（画像/バイナリ定義のみ）完了**（`tasks/2026-10-21-gitattributes-binary-only.md`・差分ゼロ・commit 待ち）。**第2ステップ**（`* text=auto eol=lf` 導入で全ファイル LF 正規化 + mixed 8件修正）は全ファイルに改行変更diffを生むため単独タスクで実施 |
 | 1 | ジャンル候補を LLM で自動生成 → Clef-flash でスコアリング（2段構成） | ⭐⭐ | 中 | 固定リストでは未知ジャンルを発見できない問題を解消。`@cf/meta/llama-3.1-8b-instruct`（JSON schema 出力）で候補生成→Clef-flash で採点。`genre_score.py` に `--auto-genre` フラグ追加。API 2回/作品 |
 | 2 | PWA 対応 | ⭐⭐⭐ | 中 | Service Worker + manifest.json |
 | 3 | Service Worker | ⭐⭐⭐ | 中 | オフライン対応、キャッシュ戦略 |
