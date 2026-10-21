@@ -15,15 +15,11 @@
 | # | 項目 | 難易度 | 効果 | 備考 |
 |---|------|--------|------|------|
 | 8 | 改行コードの `.gitattributes` による正規化（別タスク化 2026-10-11） | ⭐ | 低 | CRLF/LF 混在（例: `deploy.yml` CRLF+LF, `test_fetch_topics.py` CRLF+LF, `PostLayout.astro` CRLF+LF）。エンコード監査（`tasks/2026-10-11-utf8-encoding-audit.md`）で発覚。**第1ステップ（画像/バイナリ定義のみ）完了**（`tasks/2026-10-21-gitattributes-binary-only.md`・差分ゼロ・commit 待ち）。**第2ステップ**（`* text=auto eol=lf` 導入で全ファイル LF 正規化 + mixed 8件修正）は全ファイルに改行変更diffを生むため単独タスクで実施 |
-| 1 | ジャンル候補を LLM で自動生成 → Clef-flash でスコアリング（2段構成） | ⭐⭐ | 中 | 固定リストでは未知ジャンルを発見できない問題を解消。`@cf/meta/llama-3.1-8b-instruct`（JSON schema 出力）で候補生成→Clef-flash で採点。`genre_score.py` に `--auto-genre` フラグ追加。API 2回/作品 |
 | 2 | PWA 対応 | ⭐⭐⭐ | 中 | Service Worker + manifest.json |
 | 3 | Service Worker | ⭐⭐⭐ | 中 | オフライン対応、キャッシュ戦略 |
 | 4 | ソーシャルメディア自動投稿 | ⭐⭐⭐ | 中 | X/Twitter API, Bluesky API 連携 |
-| 5 | ページ間トランジション | ⭐⭐ | 低 | 実験的API。ブラウザサポート確認必要 |
-| 6 | Crunchyroll ニュース再収集 | ⭐⭐ | 低 | 静的HTMLは記事0件（JS描画）・RSS 404のため2026-10-10に一時無効化。代替RSSフィードの探索 or JS描画手段の検討。詳細: `tasks/2026-10-10-trend-source-quality-fixes.md` |
 | 9 | e621 参考キャラクター名のストーリー本文への「寄せる」指示検討 | ⭐ | 低 | 2026-10-13 調査: e621 キャラ名は本文に未使用（38 件中 0 件。参考データ・生成情報・アフィリエイトのみ）。名前での寄せは版権 IP リスク（Zootopia/Pokemon 等）のため現状はデザイン面のみで寄せる設計。直近改修（anthro/physical フィルタ）で改善の可能性 → 様子見・低優先度 |
 | 10 | ストーリーのランダム種族を Danbooru/e621 主要種族タグに絞る（主要種族タグリスト化） | ⭐⭐ | 低 | 2026-10-13 調査: 種族は Gemini 自由選択（直近21記事で21種、alligator/raven 等の exotic 混在）。画像モデル（Nova-Furry-XL）は主要種族ほど安定。タスク: Danbooru/e621 主要種族タグをリスト化し、プロンプト推奨リスト or Python 側ランダム注入を検討 |
-| 11 | Python 3.15.0 へ `python` の切替（PEP 686 UTF-8 既定有効化） | ⭐ | 中 | 2026-10-14 導入済み（per-user `Python315\`、`py -3.15` 利用可・待機）。`python` は 3.10.8 のまま。ブロック: `pillow-avif-plugin` の cp315 wheel が PyPI に不存在（全バージョン確認済み）。cp315 wheel 公開後: `python` を 3.15 に再切替 → `py -3.15 -m pip install pillow-avif-plugin` → `pytest scripts/tests -v` 全テスト確認 → PEP 686 有効化確認（`PYTHONUTF8=1` 回避策の簡素化）。詳細: `tasks/2026-10-14-python315-upgrade.md` |
 | 12 | `docs/ai/tmp/` スクラッチの日付管理（タスク別日付サブフォルダ） | ⭐ | 低 | 2026-10-15: N 日保持は実装済み（mtime 基準・既定 7 日・`--tmp-retention-days` 指定可。AGENTS.md / memory-bank-guide.md と挙動一致済み）。残り: タスク別日付サブフォルダ（任意） |
 | 15 | 直前ジャンルとの被りを防ぐ措置（ストーリー系のみ）: 直前ストーリーの world_setting を今回の抽選から除外 | ⭐ | 多様性向上・連続同種別ストーリーの防止 | 2026-10-16 ユーザー判断: **低優先度**（保留・未実装）。kemono_story のみ対象。取得方法（tags 逆引き vs 新 frontmatter フィールド `world_setting`）と防止手法（硬排除推奨・既存リトライループに `exclude` 追加）は未定。詳細: `tasks/2026-10-16-pokemon-story-backlog-consideration.md` |
 
