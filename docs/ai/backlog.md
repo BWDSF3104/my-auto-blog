@@ -9,12 +9,10 @@
 | 順 | タスク群（内容） | 対象項目 | 難易度 |
 |---:|---|---|---|
 | 1（進行中） | 改行正規化 第2ステップ（全ファイル LF 化 + mixed 8 件修正） | P3 #8 | ⭐ |
-| 2 | 記事品質・SEO 強化（AI生成明示 + 情報源明示）※ TL;DR は完了 | P5 #7, #8 | ⭐ |
-| 3 | Reading Mode トグル | P5 #3 | ⭐⭐ |
-| 4 | Giscus コメント機能（手動 2 件：Discussions 有効化 + env 登録） | P2 #4 | ⭐⭐ |
-| 5 | PWA 対応（manifest + Service Worker を**1 タスクに統合**） | P3 #2, #3 | ⭐⭐⭐ |
-| 6 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
-| 7 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
+| 2 | Reading Mode トグル | P5 #3 | ⭐⭐ |
+| 3 | Giscus コメント機能（手動 2 件：Discussions 有効化 + env 登録） | P2 #4 | ⭐⭐ |
+| 4 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
+| 5 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
 
 **非実装予定**（詳細は各項目）: P2 #17, P3 #4, #9, #10, #12, #15, P4 #1, P5 #9, #11, #14
 
@@ -57,20 +55,6 @@
 - **作業内容**: `* text=auto eol=lf` を導入し、全ファイルを LF 正規化 + mixed 8 件を修正（全ファイルに改行 diff を生むため単独タスク）
 - **備考**: CRLF/LF 混在（例: `deploy.yml`、`test_fetch_topics.py`、`PostLayout.astro`）をエンコード監査で発見（`tasks/2026-10-11-utf8-encoding-audit.md`）。
   - 第1ステップ（画像/バイナリ定義のみ）**完了**（`tasks/2026-10-21-gitattributes-binary-only.md`・差分ゼロ・**commit 待ち（現在進行中）**）
-
-### #2 PWA 対応
-- **難易度 / 効果**: ⭐⭐⭐ / 中
-- **作業内容**: Service Worker + manifest.json + アイコン
-- **備考**: **#3（Service Worker）と 1 タスクに統合**（「PWA 対応」）。
-  - キャッシュ戦略: 記事ページ network-first（記事は毎日新規生成）、静的アセット cache-first、画像はキャッシュ容量（約 50MB 上限）を管理
-  - GitHub Pages のサブパス: manifest の scope は `/my-auto-blog`
-  - Astro 7 内建 PWA 統合（`astro add pwa`）を活用可能
-  - 検証: Chrome DevTools → Application → Service Worker → 「Offline」チェック
-
-### #3 Service Worker
-- **難易度 / 効果**: ⭐⭐⭐ / 中
-- **作業内容**: オフライン対応、キャッシュ戦略
-- **備考**: **#2（PWA 対応）に含まれるため、単独で実施しない**（重複作業・SW 戦略の二重設計を避けるため）。
 
 ### #4 ソーシャルメディア自動投稿
 - **難易度 / 効果**: ⭐⭐⭐ / 中
@@ -116,7 +100,7 @@
 
 ### #2 Callout Boxes (Note/Tip/Warning)
 - **難易度 / 効果**: ⭐⭐ / 中
-- **推奨実行順序: 7**（#6 と 1 タスク「ストーリー UI 追加」）
+- **推奨実行順序: 6**（#6 と 1 タスク「ストーリー UI 追加」）
 - **作業内容**（案 A: 推奨）:
   - Markdown 慣用 `> **Note:**` / `> **Tip:**` / `> **Warning:**` + CSS で強調ボックス化（CSS 追加のみで完結）
   - 案 B: `@astrojs/mdx` 導入 + `<Note>` 等のコンポーネント（依存増加）
@@ -125,7 +109,7 @@
 
 ### #3 Reading Mode Toggle
 - **難易度 / 効果**: ⭐⭐ / 中
-- **推奨実行順序: 3**
+- **推奨実行順序: 2**
 - **作業内容**:
   - Header に「読書モード」トグル（`<button id="reading-mode">`)
   - `document.body.classList.toggle('reading-mode')` → CSS で TOC・アフィリエイト・共有・BMA を非表示
@@ -134,7 +118,7 @@
 
 ### #4 Series 機能
 - **難易度 / 効果**: ⭐⭐ / 中
-- **推奨実行順序: 6**（#5, #10, #12 と 1 タスク）
+- **推奨実行順序: 5**（#5, #10, #12 と 1 タスク）
 - **作業内容**:
   - frontmatter 新增 `series: string`
   - 新規ページ `src/pages/series/[series].astro`（シリーズ記事一覧）
@@ -143,7 +127,7 @@
 
 ### #5 Chapter Navigation
 - **難易度 / 効果**: ⭐⭐ / 中
-- **推奨実行順序: 6**（#4, #10, #12 と 1 タスク）
+- **推奨実行順序: 5**（#4, #10, #12 と 1 タスク）
 - **作業内容**:
   - frontmatter 新增 `order: number`（または `prevUrl` / `nextUrl`)
   - `PostLayout.astro` の関連記事セクション前に「← 前章 / 次章 →」リンク
@@ -151,27 +135,11 @@
 
 ### #6 Spoiler Warnings
 - **難易度 / 効果**: ⭐ / 低
-- **推奨実行順序: 7**（#2 と 1 タスク「ストーリー UI 追加」）
+- **推奨実行順序: 6**（#2 と 1 タスク「ストーリー UI 追加」）
 - **作業内容**:
   - frontmatter 新增 `spoiler: boolean`（または `spoilerText: string`)
   - true なら header 直後に `<details><summary>⚠️ スパイラー警告</summary>...</details>` 表示
 - **備考**: e621 由来ストーリーのネタバレ防止に有用（ユーザーのネタバレ判断支援）
-
-### #7 AI生成の明示
-- **難易度 / 効果**: ⭐ / **高**
-- **推奨実行順序: 2**（#1, #8 と 1 タスク「記事品質・SEO 強化」）
-- **作業内容**:
-  - 既存の「生成情報」セクション（`.gen-info`）冒頭に「🤖 本記事は AI（Gemini）で生成されました」を always 表示
-  - JSON-LD の `author` を「AI Writer」から「BWD × AI（Gemini）」へ更新、`contentCredential` を追加
-- **効果**: E-E-A-T（SEO 信頼性）・ユーザー信頼性・法的リスク（AI 生成の透明性）に直接影響。コストがほぼゼロ
-- **備考**: 既存 `.gen-info` との重複表示を避ける整合性確認が必要
-
-### #8 情報源の明示
-- **難易度 / 効果**: ⭐ / 中
-- **推奨実行順序: 2**（#1, #7 と 1 タスク「記事品質・SEO 強化」）
-- **作業内容**: 既存「生成情報」セクションの `source` ブロックを強化（データソース: e621 / RSS / 等を always 表示）
-- **効果**: 信頼性向上・「なぜこの内容？」への回答
-- **備考**: 既存 frontmatter の `source` 系フィールド（`prompt_type` の延長）を強化する程度
 
 ### #9 MDX Support
 - **難易度 / 効果**: ⭐⭐ / 高（理論上）
@@ -181,7 +149,7 @@
 
 ### #10 Multiple Collections
 - **難易度 / 効果**: ⭐⭐ / 中
-- **推奨実行順序: 6**（#4, #5, #12 と 1 タスク「シリーズ機能」）
+- **推奨実行順序: 5**（#4, #5, #12 と 1 タスク「シリーズ機能」）
 - **作業内容**:
   - 新規 `src/content/config.ts`（collections + schema: `posts` / `series` 等）
   - 各 layout の `import.meta.glob`（eager load）を `astro.content.load('posts')` 等に置き換え
@@ -198,7 +166,7 @@
 
 ### #12 Zod Schema Validation
 - **難易度 / 効果**: ⭐ / 中
-- **推奨実行順序: 6**（#4, #5, #10 と 1 タスク「シリーズ機能」）
+- **推奨実行順序: 5**（#4, #5, #10 と 1 タスク「シリーズ機能」）
 - **作業内容**: `src/content/config.ts` に `schema: z.object({...})` を定義 → `astro build` 時に各 post の frontmatter を自動検証（不適合ならエラー表示）
 - **備考**: #10（Multiple Collections）の**一部**（schema 定義のみ）。現状 `title` / `pubDate` / `description` の必須性や `tags` の array 型は runtime で検証されていない。
 

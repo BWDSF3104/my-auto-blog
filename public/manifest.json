@@ -1,0 +1,27 @@
+{
+  "name": "BWD's AI Auto Blog",
+  "short_name": "BWD Blog",
+  "description": "Gemini API × GitHub Actions による自動生成技術＆ストーリーブログ",
+  "start_url": "/my-auto-blog",
+  "scope": "/my-auto-blog",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#f1f5f9",
+  "icons": [
+    {
+      "src": "/my-auto-blog/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/my-auto-blog/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/my-auto-blog/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

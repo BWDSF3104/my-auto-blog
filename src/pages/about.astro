@@ -14,6 +14,8 @@ const pageTitle = "About | BWD's AI Auto Blog";
     <meta charset="utf-8" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <link rel="manifest" href={`${baseUrl}/manifest.json`} />
+    <meta name="theme-color" content="#f1f5f9" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content="このブログについて" />
@@ -67,5 +69,11 @@ const pageTitle = "About | BWD's AI Auto Blog";
 
       <Footer />
     </div>
+
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/my-auto-blog/sw.js').catch(() => {});
+      }
+    </script>
   </body>
 </html>

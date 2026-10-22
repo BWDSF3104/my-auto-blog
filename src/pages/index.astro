@@ -60,6 +60,8 @@ const ogImageUrl = posts[0]?.frontmatter.image
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
     <link rel="icon" href={`${baseUrl}/favicon.ico`} />
+    <link rel="manifest" href={`${baseUrl}/manifest.json`} />
+    <meta name="theme-color" content="#f1f5f9" />
     <link rel="alternate" type="application/rss+xml" title={`${pageTitle} RSS Feed`} href={`${baseUrl}/rss.xml`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
@@ -193,5 +195,11 @@ const ogImageUrl = posts[0]?.frontmatter.image
 
       <Footer />
     </div>
+
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/my-auto-blog/sw.js').catch(() => {});
+      }
+    </script>
   </body>
 </html>

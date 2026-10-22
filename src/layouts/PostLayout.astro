@@ -160,6 +160,8 @@ if (frontmatter.speakable) {
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${basePrefix}/favicon.svg`} />
     <link rel="icon" href={`${basePrefix}/favicon.ico`} />
+    <link rel="manifest" href={`${basePrefix}/manifest.json`} />
+    <meta name="theme-color" content="#f1f5f9" />
     <link rel="preconnect" href="https://cdn.buymeacoffee.com" />
     {frontmatter.image && (
       <link rel="preload" as="image" href={frontmatter.image} fetchpriority="high" />
@@ -392,6 +394,12 @@ if (frontmatter.speakable) {
       </svg>
     </button>
   </div>
+
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/my-auto-blog/sw.js').catch(() => {});
+      }
+    </script>
 
     <style is:global>
       /* 記事内画像の統一スタイル（アイキャッチ・本文内画像共通） */
