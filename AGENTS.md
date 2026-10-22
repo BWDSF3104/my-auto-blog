@@ -42,7 +42,7 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - **git commit 前**: 変更内容に応じて再実行（Python→pytest, Astro→build、両方→両方）。
 - 現行項目のビルド/テスト完了基準を満たすまで、次の計画項目を開始しないこと。
 - 成功時は `docs/ai/tasks/` の該当タスクファイルの Verification セクションにコマンド・結果・経過時間を記録。
-- **例外**: `docs/ai/`、`AGENTS.md`、`.kilo/` のみの変更は pytest / build 不要。
+- **例外**: `docs/ai/` と `AGENTS.md` のみの変更は pytest / build 不要。
 - **fetch_topics.py 更新後**: `python scripts/tests/test_real_apis.py --save` で各データソースの応答を確認（結果は `scripts/data/api_test_results/` に保存）。
 
 ### テストスクリプトルール

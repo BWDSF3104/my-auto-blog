@@ -8,11 +8,10 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-# .kilo/scripts/safe-rmdir.ps1
+# maintenance/safe-rmdir.ps1
 # Any folder inside the project is deletable (git-tracked content is
 # recoverable via git; untracked temp content is disposable by design).
-$projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
-$projectRootFull = [System.IO.Path]::GetFullPath($projectRoot)
+$projectRootFull = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 
 # Recycle Bin deletion via the VB wrapper (managed .NET):
 #   [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile / DeleteDirectory

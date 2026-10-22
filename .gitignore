@@ -27,9 +27,6 @@ pnpm-debug.log*
 __pycache__/
 *.pyc
 
-# Kilo working files
-.kilo/screenshots/
-
 # Temporary work files
 tmp/
 

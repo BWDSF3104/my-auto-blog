@@ -8,9 +8,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-# .kilo/scripts/safe-remove.ps1
-$projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
-$projectRootFull = [System.IO.Path]::GetFullPath($projectRoot)
+# maintenance/safe-remove.ps1
+$projectRootFull = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 
 # ゴミ箱削除は VB ラッパー (managed .NET) で実施。
 #   [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile / DeleteDirectory
