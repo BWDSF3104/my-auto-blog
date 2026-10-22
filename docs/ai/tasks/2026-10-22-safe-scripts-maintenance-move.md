@@ -1,6 +1,6 @@
 # safe系を maintenance へ移動 / .kilo/ 検証免除除外 / ルール衛生
 
-**Status**: 進行中
+**Status**: 完了
 **Date**: 2026-10-22
 **Next Action**: commit + push（git add -A; git commit; git push）
 
