@@ -391,5 +391,32 @@
       "reviewCount": 40
     },
     "hits": 3
+  },
+  "ねんどろいど ズートピア ニック・ワイルド": {
+    "fetched_at": "2026-10-22T01:27:57.421898+00:00",
+    "product": null,
+    "hits": 0
+  },
+  "ズートピア MovieNEX [Blu-ray]": {
+    "fetched_at": "2026-10-22T01:27:58.639199+00:00",
+    "product": {
+      "itemName": "【中古】(未使用・未開封品)ズートピア MovieNEX Disney100 エディション [ブルーレイ+DVD+デジタルコピー+MovieNEXワールド] [Blu-ray] ディズニー",
+      "itemPrice": 12604,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tjy8o.eo1qw8c1.g00tjy8o.eo1qx53d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkobaco-003%2Fsb0bwhw2mtr%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkobaco-003%2Fi%2F11001830%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/kobaco-003/cabinet/20240919-1/b0bwhw2mtr.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 3
+  },
+  "ズートピア": {
+    "fetched_at": "2026-10-22T01:28:00.183768+00:00",
+    "product": {
+      "itemName": "ディズニープリンセス　アリス　アナ雪　ズートピア　ソフィア　ミッキーマウス　スター・ウォーズ　両面筆箱　ディズニー新入学・限定シリーズ　sd-rh　※名入れ不可　メール便送料無料 [M便 1/2]　[disneyzone]",
+      "itemPrice": 2699,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q656o.eo1qw162.g00q656o.eo1qx6cc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbunbougu-shibuya%2F4560182210049-ssb%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbunbougu-shibuya%2Fi%2F10064908%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/bunbougu-shibuya/cabinet/69/sd-rh_a.jpg?_ex=128x128",
+      "reviewCount": 249
+    },
+    "hits": 3
   }
 }

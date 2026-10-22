@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-22T10:25:16.188107+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-22T10:24:38.798196+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "A-DO Manga to End on November 18",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-21/a-do-manga-to-end-on-november-18/.243043",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Rayman Legends Retold’s New Baguette Costumes Are A Tip Of The Beret To Expedition 33",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/rayman-legends-retold-new-baguette-costumes-are-a-tip-of-the-beret-to-expedition-33/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Rayman Legends Retold is almost here, and as you'd expect from this remake, it's a pretty noticeable graphical glow-up of Rayman Legends and it includes a very French outfit for you to dress the phant"
+    }
+  ],
+  "affiliate_keywords": [
+    "A DO Manga to End on November ",
+    "Rayman Legends Retold s"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-10-21/a-do-manga-to-end-on-november-18/.243043",
+    "https://www.gamespot.com/articles/rayman-legends-retold-new-baguette-costumes-are-a-tip-of-the-beret-to-expedition-33/"
+  ]
+}
