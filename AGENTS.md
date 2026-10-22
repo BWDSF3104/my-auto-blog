@@ -25,9 +25,11 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 ## コマンド実行ルール
 
 - **1 コマンド 1 行**: シェルコマンドは 1 行で実行する。コマンドを複数行に分割しないこと。複数の文が必要な場合は `;` で 1 行に結合する。
-- **インライン Python 禁止**: コマンドラインに Python コードを直接渡さないこと（`python -c "..."`、`python -`、コードを `python` にパイプする等）— インライン `python -c` は PowerShell 5.1 でクォーティング・エンコーディングの問題によりほとんど失敗する。代わりに:
-  1. スクリプトをスクラッチフォルダ `docs\ai\tmp\` に書き出す（例: `docs\ai\tmp\fetch_check.py`）。
-  2. `python <file>` で実行する。
+- **インラインコード実行禁止（言語無関係）**: コマンドラインに実行コードを埋め込む形のコマンドは、言語を問わず禁止（`python -c "..."`、`python -`、`powershell -c` / `powershell -Command "..."`、`node -e`、コードを `python` / `powershell` / `node` にパイプする等）。境界は「言語」ではなく「コードが埋まっているか」: フラグ・パスのみ（`git log`、`pytest`、`python -m pytest` 等）のコマンドは除外される。
+  禁止の意図: 使い捨てのインライン文字列は許可コマンドリストと一致しないため、リストが再利用不可能なコマンドで汚染される。加えて PowerShell 5.1 ではクォーティング・エンコーディングが壊れやすい。
+  代わりに（全言語共通）:
+  1. コードをスクラッチフォルダ `docs\ai\tmp\` にファイルとして書き出す（例: `docs\ai\tmp\fetch_check.py` / `.ps1`）。
+  2. `python <file>` / `powershell docs\ai\tmp\<file>.ps1` で実行する。
   3. 出力ファイルも同じスクラッチフォルダに保持する。
   - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリは `maintenance/archive_memory_bank.py` で削除される。
 
