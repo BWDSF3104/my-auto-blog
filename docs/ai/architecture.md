@@ -156,6 +156,10 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 | Tool | Purpose |
 |------|---------|
 | `maintenance/archive_memory_bank.py` | Memory Bank バッチクリーンアップ。dry-run 既定・`--apply` で反映。tasks/ は mtime 14 日基準でアーカイブ、verification/ は mtime 順直近 2 ラン保持、tmp/ は最更新 mtime が 7 日以上経過したエントリを削除（保持期間は `--tmp-retention-days` で変更）。削除は `kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` へ委譲 |
+| `maintenance/task_manager.py` | タスク開始/終了。tasks/ と current-task.tsv の更新、完了時の「対応項目チェック」 |
+| `maintenance/restart-vscode.bat` | VS Code 正規クローズ（WM_CLOSE）＋再起動。強制終了なし、タスクスケジューラへ委譲 |
+
+> 各バッチの実行方法・呼び出しタイミング・副作用・関連テスト/設計の詳細: [`docs/ai/maintenance-batches.md`](ai/maintenance-batches.md)
 
 テスト: `maintenance/tests/`（`maintenance/` 変更時のみ実行。標準コマンドは `pytest scripts/tests/ -v`）
 
