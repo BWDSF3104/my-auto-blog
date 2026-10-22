@@ -64,8 +64,11 @@ def _randomize_kemono_params():
         "char_types": list(char_types),
         "world_tags": list(_KEMONO_WORLD_TAGS[world_setting]),
         "extra_tag": _KEMONO_EXTRA_TAGS[extra],
-        # プロンプト表示用（結合済み文字列）
-        "char_type": " / ".join(char_types),
+        # プロンプト表示用（結合済み文字列）。各 char_type 要素に画像プロンプト用の
+        # 体型タグ（CHAR_TYPE_BODY_TAG）を括弧で付与して提示（例: 動物(feral)）。
+        "char_type": " / ".join(
+            f"{ct}({CHAR_TYPE_BODY_TAG[ct]})" for ct in char_types
+        ),
         "world_setting_key": world_setting,
         "world_setting": _KEMONO_WORLD_TEXT[world_setting],
         "transform_key": transform,

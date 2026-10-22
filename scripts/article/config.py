@@ -139,6 +139,15 @@ CHAR_TYPE_WEIGHTS = [
     (["二足歩行の動物", "動物"], 5),
 ]
 
+# char_type (日本語) 各要素 → 画像プロンプト用の体型タグ（Danbooru 英語タグ）。
+# 冒頭注入時の提示に使用（例: 動物(feral)）。CHAR_TYPE_WEIGHTS の各要素と対応。
+CHAR_TYPE_BODY_TAG = {
+    "chibi": "chibi",
+    "動物": "feral",
+    "二足歩行の動物": "semi-anthro, [feral]",
+    "獣人": "anthro",
+}
+
 WORLD_SETTING_WEIGHTS = [
     ("fantasy", 13),
     ("isekai", 10),
@@ -387,6 +396,7 @@ __all__ = [
     # kemono_story ランダム化
     "CHAR_TYPE_WEIGHTS", "WORLD_SETTING_WEIGHTS", "TRANSFORM_WEIGHTS",
     "RELATIONSHIP_WEIGHTS", "EXTRA_SETTING_WEIGHTS",
+    "CHAR_TYPE_BODY_TAG",
     "WORLD_SETTING_GENRE_MAP",
     "_KEMONO_WORLD_TAGS", "_KEMONO_WORLD_TEXT", "_KEMONO_TRANSFORM_TEXT",
     "_KEMONO_TRANSFORM_LABEL", "_KEMONO_TRANSFORM_TAGS",

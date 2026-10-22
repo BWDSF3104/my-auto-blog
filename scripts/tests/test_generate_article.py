@@ -47,6 +47,7 @@ from generate_article import (
     _kemono_affiliate_keywords,
     build_ng_instruction,
     CHAR_TYPE_WEIGHTS,
+    CHAR_TYPE_BODY_TAG,
     WORLD_SETTING_WEIGHTS,
     _KEMONO_WORLD_TAGS,
     _KEMONO_EXTRA_TAGS,
@@ -2504,8 +2505,11 @@ class TestRandomizeKemonoParams:
             params = _randomize_kemono_params()
             raw_types = [v[0] for v in CHAR_TYPE_WEIGHTS]
             assert params["char_types"] in raw_types
-            # 表示文字列はリストの " / " 結合と一致
-            assert params["char_type"] == " / ".join(params["char_types"])
+            # 表示文字列は各要素に画像プロンプト用タグを括弧で付与し " / " 結合
+            expected = " / ".join(
+                f"{ct}({CHAR_TYPE_BODY_TAG[ct]})" for ct in params["char_types"]
+            )
+            assert params["char_type"] == expected
 
     def test_world_setting_in_options(self):
         for _ in range(50):
