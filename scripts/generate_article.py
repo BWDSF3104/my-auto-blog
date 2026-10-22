@@ -424,13 +424,50 @@ def _write_new_article_url(content, file_timestamp):
         print("⚠️  slug未検出のためGSC用URL出力をスキップ")
         return
     url = f"{SITE_ORIGIN}{BASE_URL}/posts/{slug}"
-    out_dir = os.path.join("data", "new_urls")
+    out_dir = NEW_URLS_DIR
     os.makedirs(out_dir, exist_ok=True)
     date_str = file_timestamp[:10]
     out_path = os.path.join(out_dir, f"{date_str}.txt")
     with open(out_path, "a", encoding="utf-8") as f:
         f.write(url + "\n")
     print(f"📮 GSC用URL出力: {url}")
+
+
+def cleanup_old_new_urls(days: int = LOG_CLEANUP_DAYS) -> int:
+    """
+    data/new_urls/{date}.txt から days 日分より古いファイルを削除する。
+    ファイル名の日付（%Y-%m-%d、JST）を基準とする。
+    `.gitkeep` と日付形式に合わないファイルは削除対象外（安全側）。
+    削除したファイル数を返す。
+    """
+    if not os.path.isdir(NEW_URLS_DIR):
+        return 0
+    cutoff = datetime.now(timezone(timedelta(hours=9))) - timedelta(days=days)
+    removed = 0
+    for name in os.listdir(NEW_URLS_DIR):
+        full = os.path.join(NEW_URLS_DIR, name)
+        if not os.path.isfile(full):
+            continue
+        if name == ".gitkeep":
+            continue
+        m = re.match(r"^(\d{4}-\d{2}-\d{2})\.txt$", name)
+        if not m:
+            continue
+        try:
+            file_date = datetime.strptime(m.group(1), "%Y-%m-%d").replace(
+                tzinfo=timezone(timedelta(hours=9))
+            )
+        except ValueError:
+            continue
+        if file_date < cutoff:
+            try:
+                os.remove(full)
+                removed += 1
+            except OSError as e:
+                print(f"[cleanup] 削除に失敗: {full}: {e}")
+    if removed:
+        print(f"[cleanup] 古い new_urls ファイル {removed} 件を削除（{days}日前）")
+    return removed
 
 
 def finalize_and_save(content, file_timestamp, trend_topic_links, prompt_type, kemono_params, e621_info, pub_date_str):
@@ -480,6 +517,8 @@ def finalize_and_save(content, file_timestamp, trend_topic_links, prompt_type, k
 
     # 8. GSC 向け新規記事URLを書き出し（サイトマップ非対応ワークアラウンド）
     _write_new_article_url(content, file_timestamp)
+    # 9. new_urls の日付ベースクリーンアップ
+    cleanup_old_new_urls()
     return content
 
 

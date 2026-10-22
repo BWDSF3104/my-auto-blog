@@ -31,7 +31,7 @@ import tarfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-GOLDEN = ROOT / "data" / "equivalence_golden"
+GOLDEN = ROOT / "scripts" / "tests" / "equivalence_golden"
 EQ_DIR = Path(os.environ.get("EQ_TMP_DIR", str(ROOT / "docs" / "ai" / "tmp" / "eq")))
 OUT_DIR = EQ_DIR / "out"
 FIXED_EPOCH = 1791766800

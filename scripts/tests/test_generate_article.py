@@ -78,6 +78,8 @@ from generate_article import (
     DRAFTS_DIR,
     _cleanup_old_logs,
     LOG_CLEANUP_DIRS,
+    NEW_URLS_DIR,
+    cleanup_old_new_urls,
     _rakuten_search,
     _generate_rakuten_card,
     _rakuten_is_relevant,
@@ -3028,6 +3030,107 @@ class TestCleanupOldLogs:
         assert any(p.endswith("trend_usage_logs") for p in dirs)
         assert any(p.endswith("affiliate_logs") for p in dirs)
         assert any(p.endswith("prompt_logs") for p in dirs)
+
+
+class TestCleanupOldNewUrls:
+    """Test date-based cleanup of new_urls directory."""
+
+    @staticmethod
+    def _now_jst():
+        from datetime import datetime, timedelta, timezone
+        return datetime.now(timezone(timedelta(hours=9)))
+
+    @staticmethod
+    def _make_date_file(dir_path, date_str):
+        f = dir_path / f"{date_str}.txt"
+        f.write_text("https://example.com/posts/test", encoding="utf-8")
+        return f
+
+    def test_deletes_old_keeps_recent(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        old_date = (now - timedelta(days=60)).strftime("%Y-%m-%d")
+        recent_date = now.strftime("%Y-%m-%d")
+
+        d = tmp_path / "new_urls"
+        d.mkdir()
+        old_file = self._make_date_file(d, old_date)
+        recent_file = self._make_date_file(d, recent_date)
+
+        with patch("generate_article.NEW_URLS_DIR", str(d)):
+            removed = cleanup_old_new_urls(days=30)
+
+        assert removed == 1
+        assert not old_file.exists()
+        assert recent_file.exists()
+
+    def test_keeps_all_recent(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        date1 = now.strftime("%Y-%m-%d")
+        date2 = (now - timedelta(days=5)).strftime("%Y-%m-%d")
+
+        d = tmp_path / "new_urls"
+        d.mkdir()
+        f1 = self._make_date_file(d, date1)
+        f2 = self._make_date_file(d, date2)
+
+        with patch("generate_article.NEW_URLS_DIR", str(d)):
+            removed = cleanup_old_new_urls(days=30)
+
+        assert removed == 0
+        assert f1.exists()
+        assert f2.exists()
+
+    def test_never_deletes_gitkeep(self, tmp_path):
+        d = tmp_path / "new_urls"
+        d.mkdir()
+        (d / ".gitkeep").write_text("", encoding="utf-8")
+
+        with patch("generate_article.NEW_URLS_DIR", str(d)):
+            removed = cleanup_old_new_urls(days=30)
+
+        assert removed == 0
+        assert (d / ".gitkeep").exists()
+
+    def test_skips_non_date_files(self, tmp_path):
+        d = tmp_path / "new_urls"
+        d.mkdir()
+        weird = d / "not-a-date.txt"
+        weird.write_text("x", encoding="utf-8")
+        weird2 = d / "2020-01-01"
+        weird2.write_text("x", encoding="utf-8")
+
+        with patch("generate_article.NEW_URLS_DIR", str(d)):
+            removed = cleanup_old_new_urls(days=30)
+
+        assert removed == 0
+        assert weird.exists()
+        assert weird2.exists()
+
+    def test_missing_dir_no_error(self, tmp_path):
+        with patch("generate_article.NEW_URLS_DIR", str(tmp_path / "does-not-exist")):
+            removed = cleanup_old_new_urls(days=30)
+        assert removed == 0
+
+    def test_custom_days_threshold(self, tmp_path):
+        from datetime import timedelta
+        now = self._now_jst()
+        date_45 = (now - timedelta(days=45)).strftime("%Y-%m-%d")
+
+        d = tmp_path / "new_urls"
+        d.mkdir()
+        f = self._make_date_file(d, date_45)
+
+        # 30日基準なら削除対象、60日基準なら保持
+        with patch("generate_article.NEW_URLS_DIR", str(d)):
+            assert cleanup_old_new_urls(days=30) == 1
+            assert not f.exists()
+
+        f2 = self._make_date_file(d, date_45)
+        with patch("generate_article.NEW_URLS_DIR", str(d)):
+            assert cleanup_old_new_urls(days=60) == 0
+            assert f2.exists()
 
 
 # --------------------------------------------------

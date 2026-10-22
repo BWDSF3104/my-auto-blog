@@ -8,12 +8,15 @@ Automated blog generation system with three main components: trend collection, a
 
 ```
 Trend Sources → fetch_topics.py → data/topics/{timestamp}.json → generate_article.py → src/content/posts/
-                                              ↕ latest.json (symlink)
-                                                     ↓
+                                               ↕ latest.json (コピー)
+                                                      ↓
                                            Affiliate Keywords → inject_affiliate_links() → Amazon/Rakuten links
                                                      ↓
-                                           Product Recommendations → generate_product_cards() → Product cards HTML
+                                            Product Recommendations → generate_product_cards() → Product cards HTML
 ```
+
+> ログ・メタログ・CI log の**全出力先**は [`docs/ai/log-locations.md`](log-locations.md) で網羅的に記録している。
+> 上記は「データ」の流れであり、ログ（監査・検証・コンソール・サイト表示）は上記ドキュメント参照。
 
 ## Components
 

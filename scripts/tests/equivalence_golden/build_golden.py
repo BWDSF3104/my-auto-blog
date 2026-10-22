@@ -1,7 +1,7 @@
 """リファクタリング等価性検証（L1 決定論的リプレイ A/B）のゴールデングルフィクスチャ生成スクリプト。
 
-ライブ作業ツリーから `data/equivalence_golden/` を再構築する（冪等・再実行可）。
-
+ ライブ作業ツリーから `scripts/tests/equivalence_golden/` を再構築する（冪等・再実行可）。
+ 
 生成物:
 - inputs/data/topics/latest.json        TTL改写 + tech 2 件 + TechCrunch RSS source 追加
 - inputs/data/genre_scores/topics.json  実コピー
@@ -16,14 +16,14 @@
 - fixtures/seed.txt                     固定乱数 seed
 
 使い方:
-    python data/equivalence_golden/build_golden.py
+     python scripts/tests/equivalence_golden/build_golden.py
 """
 import json
 import shutil
 import urllib.parse
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 GOLDEN = Path(__file__).resolve().parent
 
 # 固定時刻: 2026-10-12T01:00:00Z = JST 2026-10-12T10:00:00
