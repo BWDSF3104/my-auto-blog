@@ -9,10 +9,9 @@
 | 順 | タスク群（内容） | 対象項目 | 難易度 |
 |---:|---|---|---|
 | 1（進行中） | 改行正規化 第2ステップ（全ファイル LF 化 + mixed 8 件修正） | P3 #8 | ⭐ |
-| 2 | Reading Mode トグル | P5 #3 | ⭐⭐ |
-| 3 | Giscus コメント機能（手動 2 件：Discussions 有効化 + env 登録） | P2 #4 | ⭐⭐ |
-| 4 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
-| 5 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
+| 2 | Giscus コメント機能（手動 2 件：Discussions 有効化 + env 登録） | P2 #4 | ⭐⭐ |
+| 3 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
+| 4 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
 
 **非実装予定**（詳細は各項目）: P2 #17, P3 #4, #9, #10, #12, #15, P4 #1, P5 #9, #11, #14
 
@@ -106,15 +105,6 @@
   - 案 B: `@astrojs/mdx` 導入 + `<Note>` 等のコンポーネント（依存増加）
 - **効果**: ストーリー系・アフィリエイト記事の信頼性向上
 - **備考**: 案 A の Markdown 慣用は Gemini が自然に生成しやすい。既存パイプライン（Markdown 生成）と整合。
-
-### #3 Reading Mode Toggle
-- **難易度 / 効果**: ⭐⭐ / 中
-- **推奨実行順序: 2**
-- **作業内容**:
-  - Header に「読書モード」トグル（`<button id="reading-mode">`)
-  - `document.body.classList.toggle('reading-mode')` → CSS で TOC・アフィリエイト・共有・BMA を非表示
-  - `localStorage` に設定を保存（次回訪問でも保持）
-- **効果**: 長い記事（ストーリー系）の分散注意減少、読みやすさ大幅向上
 
 ### #4 Series 機能
 - **難易度 / 効果**: ⭐⭐ / 中
