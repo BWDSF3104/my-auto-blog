@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-23T10:23:34.627724+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-23T10:22:51.823835+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "BioWare Did Something Very Rare For The Time: It Took Star Wars Seriously",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/bioware-did-something-very-rare-for-the-time-it-took-star-wars-seriously/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "In what seemed to be an inevitability, Electronic Arts announced the closure of BioWare this week, including the cancellation of its current project, a future iteration in the Mass Effect series. The "
+    },
+    {
+      "title": "New Look at Avengers: Doomsday to Premiere During MLB World Series",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/new-look-at-avengers-doomsday-to-premiere-during-mlb-world-series",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "A brand new preview for Avengers: Doomsday will debut during the MLB World Series. The news was confirmed by the MLB itself, which noted that the exclusive sneak peek will drop during game one of the "
+    }
+  ],
+  "affiliate_keywords": [
+    "It Took Star Wars Seriously",
+    "Doomsday to Premiere During ML"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/bioware-did-something-very-rare-for-the-time-it-took-star-wars-seriously/",
+    "https://www.ign.com/articles/new-look-at-avengers-doomsday-to-premiere-during-mlb-world-series"
+  ]
+}
