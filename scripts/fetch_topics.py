@@ -72,6 +72,23 @@ E621_TAGS = [
     {"tags": "rabbit rating:safe order:score", "category": "kemono"},
     {"tags": "pokemon rating:safe order:date", "category": "pokemon"},
 ]
+# e621 rating 制御 (フォークで NSFW 収集/除外を切り替え)
+E621_ALLOWED_RATINGS = os.environ.get("E621_ALLOWED_RATINGS", "s,q")
+E621_NSFW_RATINGS = os.environ.get("E621_NSFW_RATINGS", "e,q")
+_E621_ALLOWED = {r for r in E621_ALLOWED_RATINGS.split(",") if r}
+_E621_NSFW = {r for r in E621_NSFW_RATINGS.split(",") if r}
+
+def _e621_rating_query(base_query: str) -> str:
+    """e621 クエリの rating に ,explicit を付加するか判定。
+    既定 (e 未許可) ではバイト同一。E621_ALLOWED_RATINGS に e が含まれる
+    場合のみ、rating:safe / rating:questionable に ,explicit を付加。"""
+    if "e" not in _E621_ALLOWED:
+        return base_query
+    return (
+        base_query
+        .replace("rating:safe", "rating:safe,explicit")
+        .replace("rating:questionable", "rating:questionable,explicit")
+    )
 
 # キャラクター特徴集計用ファイル
 CHARACTER_FEATURES_PATH = os.path.join(PROJECT_DIR, "data", "character_features.json")
@@ -323,7 +340,7 @@ def collect_reddit(limit_per_sub: int = 5, categories: list[str] = None) -> list
 def _is_nsfw_post(post: dict) -> bool:
     """e621 投稿が NSFW（rating: explicit/questionable）または既知の NSFW タグを含む場合 True"""
     rating = post.get("rating", "")
-    if rating in ("e", "q"):
+    if rating in _E621_NSFW:
         return True
     nsfw_tags = {
         "sexual", "sex", "bare_legs", "bare_thighs", "bare_hips", "bare_butt",
@@ -545,7 +562,7 @@ def collect_e621(limit_per_tag: int = 5, categories: list[str] = None) -> int:
     collected = 0
 
     for tag_config in E621_TAGS:
-        tag_query = tag_config["tags"]
+        tag_query = _e621_rating_query(tag_config["tags"])
         cat = tag_config.get("category", "kemono")
         if categories and cat not in categories:
             continue

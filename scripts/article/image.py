@@ -118,7 +118,7 @@ def _generate_image_pollinations(prompt: str, output_filename: str, seed: int = 
 
     actual_seed = seed if seed >= 0 else int(time.time())
     safe_prompt = urllib.parse.quote(prompt)
-    url = f"https://image.pollinations.ai/prompt/{safe_prompt}?model=flux&width=896&height=512&seed={actual_seed}"
+    url = IMAGE_FALLBACK_URL_TEMPLATE.format(safe_prompt=safe_prompt, seed=actual_seed)
 
     print(f"🌐 Pollinations.ai 画像生成中: {url[:120]}...")
     resp = requests.get(url, timeout=120)
@@ -222,7 +222,7 @@ def generate_and_save_image(prompt: str, output_filename: str, seed: int = -1) -
 
             temp_image_path = hf_client.predict(
                 prompt,
-                "nsfw, human, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username",
+                NEGATIVE_PROMPT,
                 18,
                 5.0,
                 896,

@@ -53,7 +53,7 @@ MODELS_TO_TRY = [
     "gemini-3.1-flash-lite"
 ]
 
-HF_SPACE_ID = "blume/kemono-image-api"
+HF_SPACE_ID = os.environ.get("HF_SPACE_ID") or "blume/kemono-image-api"
 BASE_URL = os.environ.get("SITE_BASE_PATH") or "/my-auto-blog"  # GitHub Pagesのベースパス
 SITE_ORIGIN = os.environ.get("SITE_ORIGIN") or "https://BWDSF3104.github.io"
 MAX_INLINE_IMAGES = int(os.environ.get("MAX_INLINE_IMAGES", "7"))
@@ -68,11 +68,15 @@ POPULAR_ARTIST_LIMIT = int(os.environ.get("POPULAR_ARTIST_LIMIT", "1"))
 # 画像プロンプトの固定ベース・フォールバック指定 (Nova-Furry-XL向け)
 # SFWタグを常に付与して安全な画像生成を強制
 # アートスタイルは記事ごとにFrontmatterのart_styleで決定（BASE_QUALITY_PROMPTには含めない）
-BASE_QUALITY_PROMPT = "masterpiece, best quality, very aesthetic, ultra-detailed, furry, no human, safe for work"
+BASE_QUALITY_PROMPT = os.environ.get("BASE_QUALITY_PROMPT") or "masterpiece, best quality, very aesthetic, ultra-detailed, furry, no human, safe for work"
+NEGATIVE_PROMPT = os.environ.get("NEGATIVE_PROMPT") or "nsfw, human, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username"
 DEFAULT_ART_STYLE = "anime style, illustration, cel shading"
 DEFAULT_SITUATION = "dragon, blueeyes, white scale, sitting at desk with laptop, tech room"
 # カウントタグ（1girl, 2girls等）の強調重み。space側の強調構文で人間寄りへの引きを減衰（1.0=減衰なし）
 COUNT_TAG_WEIGHT = 0.6
+
+# Pollinations.ai フォールバック URL テンプレート（seed は実行時補間）
+IMAGE_FALLBACK_URL_TEMPLATE = os.environ.get("IMAGE_FALLBACK_URL_TEMPLATE") or "https://image.pollinations.ai/prompt/{safe_prompt}?model=flux&width=896&height=512&seed={seed}"
 
 # ZeroGPU quota 確認（HF Space → Pollinations.ai へのフォールバック判定）
 ZERO_GPU_QUOTA_URL = "https://huggingface.co/api/spaces/zero-gpu/quota"
@@ -388,7 +392,8 @@ __all__ = [
     "BASE_URL", "SITE_ORIGIN", "MAX_INLINE_IMAGES", "MIN_SCORE_THRESHOLD",
     "GENRE_SCORES_PATH", "GENRE_FILTER_MIN_SCORE",
     "POPULAR_CPS_LIMIT", "POPULAR_ARTIST_LIMIT",
-    "BASE_QUALITY_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION", "COUNT_TAG_WEIGHT",
+    "BASE_QUALITY_PROMPT", "NEGATIVE_PROMPT", "DEFAULT_ART_STYLE", "DEFAULT_SITUATION", "COUNT_TAG_WEIGHT",
+    "IMAGE_FALLBACK_URL_TEMPLATE",
     "ZERO_GPU_QUOTA_URL", "ZERO_GPU_QUOTA_THRESHOLD_SECONDS",
     "ZERO_GPU_QUOTA_CHECK_ATTEMPTS", "ZERO_GPU_QUOTA_CHECK_TIMEOUT_SECONDS", "ZERO_GPU_QUOTA_CHECK_DELAY_SECONDS",
     "MIN_DESC_LEN", "MAX_DESC_LEN",

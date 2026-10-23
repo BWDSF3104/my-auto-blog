@@ -1,4 +1,5 @@
 import re
+import os
 import torch
 import gradio as gr
 import spaces
@@ -6,11 +7,11 @@ from diffusers import StableDiffusionXLPipeline, EulerAncestralDiscreteScheduler
 from huggingface_hub import hf_hub_download
 
 # 1. モデルの初期化
-REPO_ID = "IbarakiDouji/Nova-Furry-XL"
-FILENAME = "novaFurryXL_ilV180A.safetensors"
+MODEL_REPO_ID = os.environ.get("MODEL_REPO_ID") or "IbarakiDouji/Nova-Furry-XL"
+MODEL_FILENAME = os.environ.get("MODEL_FILENAME") or "novaFurryXL_ilV180A.safetensors"
 
-print(f"Downloading checkpoint: {FILENAME} ...")
-ckpt_path = hf_hub_download(repo_id=REPO_ID, filename=FILENAME)
+print(f"Downloading checkpoint: {MODEL_FILENAME} ...")
+ckpt_path = hf_hub_download(repo_id=MODEL_REPO_ID, filename=MODEL_FILENAME)
 
 print("Loading pipeline to CPU via from_single_file...")
 pipe = StableDiffusionXLPipeline.from_single_file(
@@ -21,7 +22,7 @@ pipe = StableDiffusionXLPipeline.from_single_file(
 pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
 
 # negative prompt は全リクエストで同一のため、embeddingをキャッシュ
-_cached_neg_prompt = "nsfw, human, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username"
+_cached_neg_prompt = os.environ.get("NEGATIVE_PROMPT") or "nsfw, human, worst quality, bad anatomy, deformed, bad hands, missing fingers, extra digits, fewer digits, cropped, very displeasing, ugly, jpeg artifacts, signature, watermark, username"
 _cached_neg_embeds = None
 
 print("Pipeline loaded successfully!")

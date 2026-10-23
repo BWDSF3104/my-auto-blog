@@ -19,7 +19,7 @@ from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 
 
-SITE_URL = "https://bwdsf3104.github.io/my-auto-blog/"
+SITE_URL = os.environ.get("SITE_URL") or "https://bwdsf3104.github.io/my-auto-blog/"
 API_URL = "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect"
 
 
