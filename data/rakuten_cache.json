@@ -429,5 +429,27 @@
       "reviewCount": 1
     },
     "hits": 3
+  },
+  "ねんどろいど しずえ": {
+    "fetched_at": "2026-10-24T01:36:30.115406+00:00",
+    "product": {
+      "itemName": "【中古】（非常に良い）とびだせ どうぶつの森 ねんどろいど しずえ (ノンスケール ABS&PVC塗装済み可動フィギュア)",
+      "itemPrice": 9890,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tp86o.eo1qwbf3.g00tp86o.eo1qx94c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoodlifestore%2Fhb00crsf4ng%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgoodlifestore%2Fi%2F10423047%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/goodlifestore/cabinet/20200603-4/b00crsf4ng.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 3
+  },
+  "あつまれ どうぶつの森 完全攻略本+超カタログ": {
+    "fetched_at": "2026-10-24T01:36:31.324415+00:00",
+    "product": {
+      "itemName": "【中古】あつまれどうぶつの森完全攻略本＋超カタログ / アンビット (単行本)",
+      "itemPrice": 625,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tjvso.eo1qwe0a.g00tjvso.eo1qxbce/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frenet20%2Fr0013113332%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frenet20%2Fi%2F11060219%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/renet20/cabinet/zisya34/0013113332.jpg?_ex=128x128",
+      "reviewCount": 12
+    },
+    "hits": 3
   }
 }

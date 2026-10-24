@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-24T10:28:52.790449+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-24T10:28:16.677069+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Horror Collector Anime Reveals English Dub Cast, October 24 Debut",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-23/horror-collector-anime-reveals-english-dub-cast-october-24-debut/.243149",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Alien: Covenant Follow-Up Adds Prisoners Writer Aaron Guzikowski",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/alien-covenant-follow-up-adds-prisoners-writer-aaron-guzikowski",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "A follow-up to Ridley Scott's Alien: Covenant is reportedly in the works with Prisoners writer Aaron Guzikowski. A continuation of the sci-fi horror franchise has started to pick up steam, according t"
+    }
+  ],
+  "affiliate_keywords": [
+    "Horror Collector Anime",
+    "Covenant Follow Up Adds"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-10-23/horror-collector-anime-reveals-english-dub-cast-october-24-debut/.243149",
+    "https://www.ign.com/articles/alien-covenant-follow-up-adds-prisoners-writer-aaron-guzikowski"
+  ]
+}
