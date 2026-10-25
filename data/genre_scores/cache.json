@@ -42174,5 +42174,1941 @@
     "model": "@cf/cloudflare/clef-flash",
     "source": "e621",
     "timestamp": "2026-10-24T01:28:51.997381+00:00"
+  },
+  "a8ed6117ab955c3d6c8d96899dce065b03243fcb5cda1171be0f5dc476cb44e1": {
+    "input": "James Gunn Defends the DCU's Approach to Interconnected Stories, Doesn't Want Movies Like Clayface to Exist Just to 'Set Up' Crossovers\nDC Studios co-chairman James Gunn has defended the DCU's approach to interconnected stories, saying he doesn't want movies like Clayface to exist just to \"set up\" crossovers. Clayface poured into the ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 31,
+      "fantasy": 12,
+      "cyberpunk": 10,
+      "action": 52,
+      "slice_of_life": 11,
+      "mystery": 18,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 1.2493,
+      "fantasy": 0.4971,
+      "cyberpunk": 0.383,
+      "action": 2.0838,
+      "slice_of_life": 0.444,
+      "mystery": 0.7098,
+      "historical": 0.266
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3195,
+        "1": 0.291,
+        "2": 0.2756,
+        "3": 0.0485,
+        "4": 0.0654
+      },
+      "fantasy": {
+        "0": 0.6775,
+        "1": 0.1932,
+        "2": 0.0997,
+        "3": 0.0138,
+        "4": 0.0158
+      },
+      "cyberpunk": {
+        "0": 0.739,
+        "1": 0.1678,
+        "2": 0.074,
+        "3": 0.0097,
+        "4": 0.0095
+      },
+      "action": {
+        "0": 0.1602,
+        "1": 0.187,
+        "2": 0.2505,
+        "3": 0.2134,
+        "4": 0.1889
+      },
+      "slice_of_life": {
+        "0": 0.6595,
+        "1": 0.2553,
+        "2": 0.073,
+        "3": 0.006,
+        "4": 0.0062
+      },
+      "mystery": {
+        "0": 0.5031,
+        "1": 0.3233,
+        "2": 0.1457,
+        "3": 0.0164,
+        "4": 0.0115
+      },
+      "historical": {
+        "0": 0.7987,
+        "1": 0.1512,
+        "2": 0.0407,
+        "3": 0.0043,
+        "4": 0.0051
+      }
+    },
+    "usage": {
+      "input_tokens": 1262,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:04.392755+00:00"
+  },
+  "3de331e8de9463624bb7450b015e615e34d50215e7a5a9262cd374fb9ba15d28": {
+    "input": "The Best Deals Today: Persona 3 Reload, Pikmin 4, The Adventures of Elliot, and More\nA new weekend has arrived, and today, you can save big on Persona 3 Reload, Pikmin 4, The Adventures of Elliot, Final Fantasy VII Rebirth, Star Wars Zero Company, and more. Check out our top picks for",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 31,
+      "fantasy": 36,
+      "cyberpunk": 25,
+      "action": 48,
+      "slice_of_life": 43,
+      "mystery": 37,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 1.2342,
+      "fantasy": 1.4472,
+      "cyberpunk": 1.0086,
+      "action": 1.9058,
+      "slice_of_life": 1.7114,
+      "mystery": 1.4783,
+      "historical": 0.4371
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3319,
+        "1": 0.2909,
+        "2": 0.2508,
+        "3": 0.0638,
+        "4": 0.0626
+      },
+      "fantasy": {
+        "0": 0.2321,
+        "1": 0.3266,
+        "2": 0.2831,
+        "3": 0.0782,
+        "4": 0.08
+      },
+      "cyberpunk": {
+        "0": 0.4043,
+        "1": 0.311,
+        "2": 0.2035,
+        "3": 0.0342,
+        "4": 0.047
+      },
+      "action": {
+        "0": 0.1614,
+        "1": 0.2272,
+        "2": 0.301,
+        "3": 0.1648,
+        "4": 0.1456
+      },
+      "slice_of_life": {
+        "0": 0.2006,
+        "1": 0.2665,
+        "2": 0.2915,
+        "3": 0.1037,
+        "4": 0.1377
+      },
+      "mystery": {
+        "0": 0.2262,
+        "1": 0.3223,
+        "2": 0.2884,
+        "3": 0.0732,
+        "4": 0.0899
+      },
+      "historical": {
+        "0": 0.6677,
+        "1": 0.2541,
+        "2": 0.0613,
+        "3": 0.007,
+        "4": 0.0099
+      }
+    },
+    "usage": {
+      "input_tokens": 1256,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:04.769151+00:00"
+  },
+  "fa71954837b8f54750e939cf53b3404b499115efe370fa91dc499d16445eb7e2": {
+    "input": "Call of Duty Movie Director Teases Story That Explores 'the Cost of War,' Praises Modern Warfare Characters\nCall of Duty movie director Peter Berg has teased more details from his live-action film, promising an adaptation with \"a very strong soul\" that explores \"the cost of war.\" The filmmaker behind Skydan",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 4,
+      "cyberpunk": 10,
+      "action": 65,
+      "slice_of_life": 18,
+      "mystery": 14,
+      "historical": 27
+    },
+    "raw_scores": {
+      "sf": 0.6842,
+      "fantasy": 0.1563,
+      "cyberpunk": 0.3967,
+      "action": 2.6186,
+      "slice_of_life": 0.7111,
+      "mystery": 0.5435,
+      "historical": 1.093
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5943,
+        "1": 0.2162,
+        "2": 0.1313,
+        "3": 0.0275,
+        "4": 0.0307
+      },
+      "fantasy": {
+        "0": 0.8975,
+        "1": 0.0693,
+        "2": 0.0208,
+        "3": 0.0043,
+        "4": 0.0081
+      },
+      "cyberpunk": {
+        "0": 0.7161,
+        "1": 0.1993,
+        "2": 0.066,
+        "3": 0.0091,
+        "4": 0.0095
+      },
+      "action": {
+        "0": 0.0933,
+        "1": 0.1004,
+        "2": 0.1955,
+        "3": 0.3161,
+        "4": 0.2947
+      },
+      "slice_of_life": {
+        "0": 0.4863,
+        "1": 0.3504,
+        "2": 0.1399,
+        "3": 0.0128,
+        "4": 0.0106
+      },
+      "mystery": {
+        "0": 0.571,
+        "1": 0.331,
+        "2": 0.0871,
+        "3": 0.0052,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.3679,
+        "1": 0.3166,
+        "2": 0.2196,
+        "3": 0.0464,
+        "4": 0.0495
+      }
+    },
+    "usage": {
+      "input_tokens": 1248,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:05.120982+00:00"
+  },
+  "9a7d76f87d0ea2fa8077bcf4830ed18f43784e1dae6168b497474c78880707e3": {
+    "input": "Elden Ring Movie's Budget Reportedly $200 Million, Almost 3x More Expensive Than A24's Marty Supreme\nAlex Garland's Elden Ring movie reportedly carries a hefty budget of almost $200 million, making it A24's most expensive movie ever – and it's not close. Background information on the live-action adap",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 28,
+      "fantasy": 52,
+      "cyberpunk": 9,
+      "action": 37,
+      "slice_of_life": 11,
+      "mystery": 20,
+      "historical": 21
+    },
+    "raw_scores": {
+      "sf": 1.1055,
+      "fantasy": 2.0724,
+      "cyberpunk": 0.3495,
+      "action": 1.4839,
+      "slice_of_life": 0.4478,
+      "mystery": 0.8045,
+      "historical": 0.8383
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3888,
+        "1": 0.2926,
+        "2": 0.204,
+        "3": 0.0534,
+        "4": 0.0612
+      },
+      "fantasy": {
+        "0": 0.2046,
+        "1": 0.1751,
+        "2": 0.1874,
+        "3": 0.2091,
+        "4": 0.2238
+      },
+      "cyberpunk": {
+        "0": 0.7564,
+        "1": 0.1659,
+        "2": 0.0594,
+        "3": 0.0083,
+        "4": 0.01
+      },
+      "action": {
+        "0": 0.2418,
+        "1": 0.2886,
+        "2": 0.2962,
+        "3": 0.0909,
+        "4": 0.0825
+      },
+      "slice_of_life": {
+        "0": 0.6299,
+        "1": 0.3067,
+        "2": 0.0538,
+        "3": 0.005,
+        "4": 0.0046
+      },
+      "mystery": {
+        "0": 0.4592,
+        "1": 0.3385,
+        "2": 0.1604,
+        "3": 0.0224,
+        "4": 0.0195
+      },
+      "historical": {
+        "0": 0.4867,
+        "1": 0.2908,
+        "2": 0.1539,
+        "3": 0.0347,
+        "4": 0.0339
+      }
+    },
+    "usage": {
+      "input_tokens": 1257,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:05.480159+00:00"
+  },
+  "426463b6decb91ed12c074ea9eedaa485ed3e4e48067bf2078708d7c1183bcd2": {
+    "input": "Avengers: Doomsday Teaser Reveals Who Was Edited Out of the First Trailer, Fans Say\nMarvel fans say the new Avengers: Doomsday teaser might have revealed who was edited out of its first trailer. Marvel Studios didn't not reveal more from its December team-up movie when the Doomsday b",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 45,
+      "fantasy": 11,
+      "cyberpunk": 8,
+      "action": 68,
+      "slice_of_life": 6,
+      "mystery": 12,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 1.7886,
+      "fantasy": 0.4237,
+      "cyberpunk": 0.337,
+      "action": 2.7178,
+      "slice_of_life": 0.232,
+      "mystery": 0.4912,
+      "historical": 0.2841
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1826,
+        "1": 0.2314,
+        "2": 0.3366,
+        "3": 0.1136,
+        "4": 0.1358
+      },
+      "fantasy": {
+        "0": 0.7113,
+        "1": 0.1823,
+        "2": 0.0881,
+        "3": 0.008,
+        "4": 0.0103
+      },
+      "cyberpunk": {
+        "0": 0.7618,
+        "1": 0.1604,
+        "2": 0.0642,
+        "3": 0.0062,
+        "4": 0.0074
+      },
+      "action": {
+        "0": 0.0792,
+        "1": 0.0907,
+        "2": 0.1791,
+        "3": 0.3351,
+        "4": 0.3159
+      },
+      "slice_of_life": {
+        "0": 0.8143,
+        "1": 0.1513,
+        "2": 0.0268,
+        "3": 0.0034,
+        "4": 0.0042
+      },
+      "mystery": {
+        "0": 0.6329,
+        "1": 0.2609,
+        "2": 0.0946,
+        "3": 0.0052,
+        "4": 0.0064
+      },
+      "historical": {
+        "0": 0.778,
+        "1": 0.1732,
+        "2": 0.0403,
+        "3": 0.0037,
+        "4": 0.0048
+      }
+    },
+    "usage": {
+      "input_tokens": 1248,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:05.846617+00:00"
+  },
+  "cd4b5ad071df04c580084a3bbc457f40a49a31373e8da895e70e86d27823dcce": {
+    "input": "12 Anime Worth Watching This Fall\nA return to Night City, a legendary blacksmith, and a bizarre race are what you can expect this fall anime season. There's a new season full of anime to check out this Fall like the return of the awar",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 46,
+      "fantasy": 42,
+      "cyberpunk": 49,
+      "action": 54,
+      "slice_of_life": 25,
+      "mystery": 30,
+      "historical": 15
+    },
+    "raw_scores": {
+      "sf": 1.8347,
+      "fantasy": 1.6722,
+      "cyberpunk": 1.9729,
+      "action": 2.1541,
+      "slice_of_life": 1.0019,
+      "mystery": 1.193,
+      "historical": 0.5913
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1591,
+        "1": 0.2609,
+        "2": 0.3156,
+        "3": 0.1152,
+        "4": 0.1492
+      },
+      "fantasy": {
+        "0": 0.1786,
+        "1": 0.2975,
+        "2": 0.3065,
+        "3": 0.1077,
+        "4": 0.1097
+      },
+      "cyberpunk": {
+        "0": 0.1617,
+        "1": 0.2163,
+        "2": 0.2912,
+        "3": 0.149,
+        "4": 0.1818
+      },
+      "action": {
+        "0": 0.1376,
+        "1": 0.167,
+        "2": 0.297,
+        "3": 0.2003,
+        "4": 0.1981
+      },
+      "slice_of_life": {
+        "0": 0.335,
+        "1": 0.4065,
+        "2": 0.2067,
+        "3": 0.025,
+        "4": 0.0268
+      },
+      "mystery": {
+        "0": 0.2821,
+        "1": 0.3818,
+        "2": 0.245,
+        "3": 0.0433,
+        "4": 0.0478
+      },
+      "historical": {
+        "0": 0.6132,
+        "1": 0.2476,
+        "2": 0.097,
+        "3": 0.0191,
+        "4": 0.0231
+      }
+    },
+    "usage": {
+      "input_tokens": 1237,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:06.209591+00:00"
+  },
+  "39823f89bfb7d9781a00254236a10e6eb03d1c9fe6592880f8f0145cfcbc7afb": {
+    "input": "Avengers: Doomsday Promoted With Baseball-Themed Crossover Featuring MLB Players During World Series\nMarvel Studios debuted a unique promo for Avengers: Doomsday during Game 1 of the 2026 World Series on Fox tonight between the Milwaukee Brewers and Tampa Bay Rays. The ad is an Avengers-MLB crossover",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 53,
+      "fantasy": 19,
+      "cyberpunk": 9,
+      "action": 67,
+      "slice_of_life": 9,
+      "mystery": 10,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 2.1142,
+      "fantasy": 0.7492,
+      "cyberpunk": 0.3528,
+      "action": 2.6799,
+      "slice_of_life": 0.3677,
+      "mystery": 0.3869,
+      "historical": 0.2625
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1546,
+        "1": 0.1949,
+        "2": 0.2553,
+        "3": 0.172,
+        "4": 0.2232
+      },
+      "fantasy": {
+        "0": 0.5553,
+        "1": 0.2444,
+        "2": 0.1286,
+        "3": 0.0394,
+        "4": 0.0323
+      },
+      "cyberpunk": {
+        "0": 0.7621,
+        "1": 0.1587,
+        "2": 0.0551,
+        "3": 0.0125,
+        "4": 0.0116
+      },
+      "action": {
+        "0": 0.1073,
+        "1": 0.1044,
+        "2": 0.1314,
+        "3": 0.3149,
+        "4": 0.342
+      },
+      "slice_of_life": {
+        "0": 0.7194,
+        "1": 0.215,
+        "2": 0.0516,
+        "3": 0.0063,
+        "4": 0.0077
+      },
+      "mystery": {
+        "0": 0.7086,
+        "1": 0.2139,
+        "2": 0.0658,
+        "3": 0.0054,
+        "4": 0.0063
+      },
+      "historical": {
+        "0": 0.7955,
+        "1": 0.1602,
+        "2": 0.0354,
+        "3": 0.0042,
+        "4": 0.0047
+      }
+    },
+    "usage": {
+      "input_tokens": 1251,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:06.584567+00:00"
+  },
+  "cde85129de72c9953fb4bc9e082078c12c417f46608b17417fd9ede2a0e1cff6": {
+    "input": "Aaron Paul Makes Surprise Cameo in DC’s Clayface\nSpoilers follow for Clayface, which is now playing in theaters. Three-time Emmy winner Aaron Paul has a blink and you’ll miss it cameo in the new DC movie Clayface . Now, the film’s director, James Wa",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 36,
+      "fantasy": 15,
+      "cyberpunk": 11,
+      "action": 47,
+      "slice_of_life": 8,
+      "mystery": 19,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 1.4251,
+      "fantasy": 0.5982,
+      "cyberpunk": 0.4278,
+      "action": 1.8744,
+      "slice_of_life": 0.3108,
+      "mystery": 0.7643,
+      "historical": 0.2506
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2758,
+        "1": 0.2719,
+        "2": 0.2898,
+        "3": 0.0764,
+        "4": 0.0861
+      },
+      "fantasy": {
+        "0": 0.6222,
+        "1": 0.2145,
+        "2": 0.1249,
+        "3": 0.0198,
+        "4": 0.0186
+      },
+      "cyberpunk": {
+        "0": 0.713,
+        "1": 0.176,
+        "2": 0.0919,
+        "3": 0.0085,
+        "4": 0.0106
+      },
+      "action": {
+        "0": 0.1668,
+        "1": 0.2358,
+        "2": 0.2933,
+        "3": 0.1643,
+        "4": 0.1398
+      },
+      "slice_of_life": {
+        "0": 0.7592,
+        "1": 0.1881,
+        "2": 0.0414,
+        "3": 0.0053,
+        "4": 0.006
+      },
+      "mystery": {
+        "0": 0.4674,
+        "1": 0.3493,
+        "2": 0.1495,
+        "3": 0.0192,
+        "4": 0.0146
+      },
+      "historical": {
+        "0": 0.8124,
+        "1": 0.1413,
+        "2": 0.0357,
+        "3": 0.0044,
+        "4": 0.0062
+      }
+    },
+    "usage": {
+      "input_tokens": 1242,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-10-25T00:59:06.958045+00:00"
+  },
+  "478817bebfc3abeda68a4b9c291421499e4259c9825cf33ef61691cfc9a23c69": {
+    "input": "Kaiju No. 8 Anime's 'Conclusion Arc' Revealed as Film Opening in 2027",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 53,
+      "fantasy": 23,
+      "cyberpunk": 20,
+      "action": 72,
+      "slice_of_life": 15,
+      "mystery": 18,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 2.131,
+      "fantasy": 0.9146,
+      "cyberpunk": 0.815,
+      "action": 2.8994,
+      "slice_of_life": 0.5865,
+      "mystery": 0.7162,
+      "historical": 0.2433
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1409,
+        "1": 0.1839,
+        "2": 0.2772,
+        "3": 0.1994,
+        "4": 0.1986
+      },
+      "fantasy": {
+        "0": 0.4149,
+        "1": 0.3298,
+        "2": 0.2052,
+        "3": 0.0261,
+        "4": 0.024
+      },
+      "cyberpunk": {
+        "0": 0.4541,
+        "1": 0.3276,
+        "2": 0.1847,
+        "3": 0.0164,
+        "4": 0.0172
+      },
+      "action": {
+        "0": 0.0603,
+        "1": 0.0635,
+        "2": 0.148,
+        "3": 0.3728,
+        "4": 0.3554
+      },
+      "slice_of_life": {
+        "0": 0.5671,
+        "1": 0.2974,
+        "2": 0.1231,
+        "3": 0.0065,
+        "4": 0.0059
+      },
+      "mystery": {
+        "0": 0.4769,
+        "1": 0.3533,
+        "2": 0.1541,
+        "3": 0.0082,
+        "4": 0.0075
+      },
+      "historical": {
+        "0": 0.8061,
+        "1": 0.1582,
+        "2": 0.0269,
+        "3": 0.0038,
+        "4": 0.005
+      }
+    },
+    "usage": {
+      "input_tokens": 1208,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-25T00:59:07.330607+00:00"
+  },
+  "08dc707dbbbc01ccc48f8467c6aa483238b069ac327c1e78da2a74cde2e953f9": {
+    "input": "Shigeru Miyamoto Becomes 1st Game Creator to be Honored With Japan's Order of Culture Award (Updated)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 8,
+      "fantasy": 9,
+      "cyberpunk": 9,
+      "action": 15,
+      "slice_of_life": 16,
+      "mystery": 8,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.3008,
+      "fantasy": 0.3599,
+      "cyberpunk": 0.3544,
+      "action": 0.6121,
+      "slice_of_life": 0.6441,
+      "mystery": 0.3229,
+      "historical": 0.2872
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8309,
+        "1": 0.0935,
+        "2": 0.0382,
+        "3": 0.0189,
+        "4": 0.0185
+      },
+      "fantasy": {
+        "0": 0.7707,
+        "1": 0.1439,
+        "2": 0.0555,
+        "3": 0.0146,
+        "4": 0.0153
+      },
+      "cyberpunk": {
+        "0": 0.7602,
+        "1": 0.1612,
+        "2": 0.0549,
+        "3": 0.0114,
+        "4": 0.0123
+      },
+      "action": {
+        "0": 0.59,
+        "1": 0.2763,
+        "2": 0.0891,
+        "3": 0.0206,
+        "4": 0.024
+      },
+      "slice_of_life": {
+        "0": 0.5676,
+        "1": 0.2931,
+        "2": 0.0929,
+        "3": 0.0204,
+        "4": 0.026
+      },
+      "mystery": {
+        "0": 0.7372,
+        "1": 0.2172,
+        "2": 0.036,
+        "3": 0.0047,
+        "4": 0.0049
+      },
+      "historical": {
+        "0": 0.7794,
+        "1": 0.1721,
+        "2": 0.0368,
+        "3": 0.0054,
+        "4": 0.0063
+      }
+    },
+    "usage": {
+      "input_tokens": 1210,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-10-25T00:59:07.750375+00:00"
+  },
+  "b02477d711404766bec2ab5aa17fa6ffdaea97aee5dcd994cc43e4caa0b24c62": {
+    "input": "adastra",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 51,
+      "fantasy": 19,
+      "cyberpunk": 27,
+      "action": 29,
+      "slice_of_life": 26,
+      "mystery": 24,
+      "historical": 13
+    },
+    "raw_scores": {
+      "sf": 2.0229,
+      "fantasy": 0.7621,
+      "cyberpunk": 1.0715,
+      "action": 1.1502,
+      "slice_of_life": 1.0547,
+      "mystery": 0.9791,
+      "historical": 0.5185
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.195,
+        "1": 0.1974,
+        "2": 0.2157,
+        "3": 0.1735,
+        "4": 0.2184
+      },
+      "fantasy": {
+        "0": 0.5867,
+        "1": 0.2009,
+        "2": 0.1241,
+        "3": 0.0403,
+        "4": 0.048
+      },
+      "cyberpunk": {
+        "0": 0.4395,
+        "1": 0.2509,
+        "2": 0.1809,
+        "3": 0.056,
+        "4": 0.0727
+      },
+      "action": {
+        "0": 0.3418,
+        "1": 0.339,
+        "2": 0.2038,
+        "3": 0.058,
+        "4": 0.0574
+      },
+      "slice_of_life": {
+        "0": 0.3782,
+        "1": 0.3456,
+        "2": 0.1749,
+        "3": 0.0459,
+        "4": 0.0554
+      },
+      "mystery": {
+        "0": 0.4086,
+        "1": 0.3353,
+        "2": 0.1689,
+        "3": 0.0429,
+        "4": 0.0443
+      },
+      "historical": {
+        "0": 0.6552,
+        "1": 0.224,
+        "2": 0.0867,
+        "3": 0.0152,
+        "4": 0.0189
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:08.433696+00:00"
+  },
+  "3b9fdc2e7530a515940c0419d76e7b921840efd4e55965bdee642f049d28a462": {
+    "input": "adastra_(series)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 58,
+      "fantasy": 17,
+      "cyberpunk": 30,
+      "action": 28,
+      "slice_of_life": 25,
+      "mystery": 29,
+      "historical": 13
+    },
+    "raw_scores": {
+      "sf": 2.3082,
+      "fantasy": 0.6727,
+      "cyberpunk": 1.1925,
+      "action": 1.1313,
+      "slice_of_life": 1.0169,
+      "mystery": 1.146,
+      "historical": 0.53
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1514,
+        "1": 0.1519,
+        "2": 0.2006,
+        "3": 0.2293,
+        "4": 0.2668
+      },
+      "fantasy": {
+        "0": 0.582,
+        "1": 0.2367,
+        "2": 0.1314,
+        "3": 0.0264,
+        "4": 0.0235
+      },
+      "cyberpunk": {
+        "0": 0.3482,
+        "1": 0.3067,
+        "2": 0.2184,
+        "3": 0.0578,
+        "4": 0.0689
+      },
+      "action": {
+        "0": 0.3096,
+        "1": 0.359,
+        "2": 0.255,
+        "3": 0.0435,
+        "4": 0.0329
+      },
+      "slice_of_life": {
+        "0": 0.3796,
+        "1": 0.3455,
+        "2": 0.1939,
+        "3": 0.0404,
+        "4": 0.0406
+      },
+      "mystery": {
+        "0": 0.3205,
+        "1": 0.3477,
+        "2": 0.242,
+        "3": 0.0448,
+        "4": 0.045
+      },
+      "historical": {
+        "0": 0.6369,
+        "1": 0.2399,
+        "2": 0.0933,
+        "3": 0.016,
+        "4": 0.0139
+      }
+    },
+    "usage": {
+      "input_tokens": 1189,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:08.789903+00:00"
+  },
+  "a22ede978cc9a7477c23c6310390d1e943c6734b7e44db051bb79ae937171e44": {
+    "input": "echo_project",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 41,
+      "fantasy": 22,
+      "cyberpunk": 35,
+      "action": 34,
+      "slice_of_life": 32,
+      "mystery": 28,
+      "historical": 14
+    },
+    "raw_scores": {
+      "sf": 1.6558,
+      "fantasy": 0.8742,
+      "cyberpunk": 1.3828,
+      "action": 1.3441,
+      "slice_of_life": 1.2924,
+      "mystery": 1.1074,
+      "historical": 0.5557
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2356,
+        "1": 0.2781,
+        "2": 0.2315,
+        "3": 0.1043,
+        "4": 0.1505
+      },
+      "fantasy": {
+        "0": 0.5133,
+        "1": 0.2391,
+        "2": 0.1526,
+        "3": 0.05,
+        "4": 0.045
+      },
+      "cyberpunk": {
+        "0": 0.3188,
+        "1": 0.2755,
+        "2": 0.2136,
+        "3": 0.0882,
+        "4": 0.1039
+      },
+      "action": {
+        "0": 0.2921,
+        "1": 0.3238,
+        "2": 0.2166,
+        "3": 0.0827,
+        "4": 0.0848
+      },
+      "slice_of_life": {
+        "0": 0.2982,
+        "1": 0.341,
+        "2": 0.2117,
+        "3": 0.0684,
+        "4": 0.0807
+      },
+      "mystery": {
+        "0": 0.3563,
+        "1": 0.3428,
+        "2": 0.1911,
+        "3": 0.0568,
+        "4": 0.053
+      },
+      "historical": {
+        "0": 0.6242,
+        "1": 0.2555,
+        "2": 0.0809,
+        "3": 0.0192,
+        "4": 0.0202
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:09.196134+00:00"
+  },
+  "f6d788da41a07812e266adcfc5f4740a97b17b205793096a7db6e76631e8f0d6": {
+    "input": "forklift_certified",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 19,
+      "fantasy": 7,
+      "cyberpunk": 19,
+      "action": 27,
+      "slice_of_life": 31,
+      "mystery": 12,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 0.7792,
+      "fantasy": 0.2753,
+      "cyberpunk": 0.7619,
+      "action": 1.0939,
+      "slice_of_life": 1.2562,
+      "mystery": 0.4883,
+      "historical": 0.3728
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5868,
+        "1": 0.1937,
+        "2": 0.1234,
+        "3": 0.0457,
+        "4": 0.0504
+      },
+      "fantasy": {
+        "0": 0.8289,
+        "1": 0.101,
+        "2": 0.0474,
+        "3": 0.0114,
+        "4": 0.0113
+      },
+      "cyberpunk": {
+        "0": 0.5884,
+        "1": 0.191,
+        "2": 0.1343,
+        "3": 0.0429,
+        "4": 0.0434
+      },
+      "action": {
+        "0": 0.398,
+        "1": 0.2903,
+        "2": 0.1907,
+        "3": 0.0619,
+        "4": 0.0591
+      },
+      "slice_of_life": {
+        "0": 0.3626,
+        "1": 0.2741,
+        "2": 0.1919,
+        "3": 0.0874,
+        "4": 0.084
+      },
+      "mystery": {
+        "0": 0.651,
+        "1": 0.248,
+        "2": 0.0759,
+        "3": 0.012,
+        "4": 0.0131
+      },
+      "historical": {
+        "0": 0.7485,
+        "1": 0.1695,
+        "2": 0.056,
+        "3": 0.0126,
+        "4": 0.0134
+      }
+    },
+    "usage": {
+      "input_tokens": 1188,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:10.660809+00:00"
+  },
+  "757d08de2209e6c8881c1482c10013bebfc25bc59b9b34d617cfc43a0fcf43f5": {
+    "input": "furid_(e621)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 40,
+      "fantasy": 35,
+      "cyberpunk": 35,
+      "action": 36,
+      "slice_of_life": 33,
+      "mystery": 29,
+      "historical": 16
+    },
+    "raw_scores": {
+      "sf": 1.5811,
+      "fantasy": 1.3858,
+      "cyberpunk": 1.3935,
+      "action": 1.456,
+      "slice_of_life": 1.3009,
+      "mystery": 1.1606,
+      "historical": 0.6557
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2737,
+        "1": 0.2635,
+        "2": 0.2119,
+        "3": 0.1098,
+        "4": 0.1411
+      },
+      "fantasy": {
+        "0": 0.3367,
+        "1": 0.2757,
+        "2": 0.1695,
+        "3": 0.1012,
+        "4": 0.1169
+      },
+      "cyberpunk": {
+        "0": 0.3512,
+        "1": 0.2436,
+        "2": 0.1884,
+        "3": 0.0941,
+        "4": 0.1227
+      },
+      "action": {
+        "0": 0.2904,
+        "1": 0.2854,
+        "2": 0.2087,
+        "3": 0.1089,
+        "4": 0.1066
+      },
+      "slice_of_life": {
+        "0": 0.3369,
+        "1": 0.295,
+        "2": 0.191,
+        "3": 0.0846,
+        "4": 0.0925
+      },
+      "mystery": {
+        "0": 0.3708,
+        "1": 0.3128,
+        "2": 0.1755,
+        "3": 0.0667,
+        "4": 0.0742
+      },
+      "historical": {
+        "0": 0.5958,
+        "1": 0.2494,
+        "2": 0.0917,
+        "3": 0.0295,
+        "4": 0.0336
+      }
+    },
+    "usage": {
+      "input_tokens": 1192,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:11.053387+00:00"
+  },
+  "25ce4cc5cf2c31de18194da07f16d8e765a5b65de95954f4997867ba33c418d0": {
+    "input": "i_think_i_like_you",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 8,
+      "cyberpunk": 11,
+      "action": 11,
+      "slice_of_life": 36,
+      "mystery": 10,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.504,
+      "fantasy": 0.3314,
+      "cyberpunk": 0.4476,
+      "action": 0.4377,
+      "slice_of_life": 1.4538,
+      "mystery": 0.3829,
+      "historical": 0.2185
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6957,
+        "1": 0.1692,
+        "2": 0.0918,
+        "3": 0.0218,
+        "4": 0.0215
+      },
+      "fantasy": {
+        "0": 0.7889,
+        "1": 0.137,
+        "2": 0.043,
+        "3": 0.016,
+        "4": 0.0151
+      },
+      "cyberpunk": {
+        "0": 0.7376,
+        "1": 0.1501,
+        "2": 0.0659,
+        "3": 0.0197,
+        "4": 0.0267
+      },
+      "action": {
+        "0": 0.6709,
+        "1": 0.2504,
+        "2": 0.0583,
+        "3": 0.0108,
+        "4": 0.0096
+      },
+      "slice_of_life": {
+        "0": 0.286,
+        "1": 0.3106,
+        "2": 0.1882,
+        "3": 0.0939,
+        "4": 0.1213
+      },
+      "mystery": {
+        "0": 0.6985,
+        "1": 0.2412,
+        "2": 0.0463,
+        "3": 0.0069,
+        "4": 0.0071
+      },
+      "historical": {
+        "0": 0.838,
+        "1": 0.124,
+        "2": 0.0257,
+        "3": 0.006,
+        "4": 0.0063
+      }
+    },
+    "usage": {
+      "input_tokens": 1190,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:11.407910+00:00"
+  },
+  "338678e5544f4e5d8f9109059218b6bd70ef56bc5793a79be6b92d360d80aaf2": {
+    "input": "mao_mao:_heroes_of_pure_heart",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 31,
+      "fantasy": 55,
+      "cyberpunk": 16,
+      "action": 51,
+      "slice_of_life": 25,
+      "mystery": 17,
+      "historical": 25
+    },
+    "raw_scores": {
+      "sf": 1.2559,
+      "fantasy": 2.1943,
+      "cyberpunk": 0.6449,
+      "action": 2.0308,
+      "slice_of_life": 0.9816,
+      "mystery": 0.6644,
+      "historical": 0.9911
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3169,
+        "1": 0.3026,
+        "2": 0.2489,
+        "3": 0.071,
+        "4": 0.0606
+      },
+      "fantasy": {
+        "0": 0.1687,
+        "1": 0.1567,
+        "2": 0.2099,
+        "3": 0.2411,
+        "4": 0.2236
+      },
+      "cyberpunk": {
+        "0": 0.6193,
+        "1": 0.1997,
+        "2": 0.1264,
+        "3": 0.0262,
+        "4": 0.0284
+      },
+      "action": {
+        "0": 0.1641,
+        "1": 0.2032,
+        "2": 0.2559,
+        "3": 0.1912,
+        "4": 0.1856
+      },
+      "slice_of_life": {
+        "0": 0.3952,
+        "1": 0.3391,
+        "2": 0.1917,
+        "3": 0.0371,
+        "4": 0.0369
+      },
+      "mystery": {
+        "0": 0.5351,
+        "1": 0.3005,
+        "2": 0.1409,
+        "3": 0.0117,
+        "4": 0.0118
+      },
+      "historical": {
+        "0": 0.4251,
+        "1": 0.3132,
+        "2": 0.159,
+        "3": 0.0509,
+        "4": 0.0518
+      }
+    },
+    "usage": {
+      "input_tokens": 1195,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:11.761148+00:00"
+  },
+  "4fcd0e2ecb0e0dd48b5294250e9c85ee7f0c3f49aeb93ddb4ce5bad3d1770e68": {
+    "input": "repeat_(visual_novel)",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 35,
+      "fantasy": 27,
+      "cyberpunk": 32,
+      "action": 22,
+      "slice_of_life": 47,
+      "mystery": 31,
+      "historical": 15
+    },
+    "raw_scores": {
+      "sf": 1.3817,
+      "fantasy": 1.062,
+      "cyberpunk": 1.2782,
+      "action": 0.8817,
+      "slice_of_life": 1.871,
+      "mystery": 1.2394,
+      "historical": 0.5846
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2953,
+        "1": 0.2752,
+        "2": 0.2651,
+        "3": 0.0812,
+        "4": 0.0832
+      },
+      "fantasy": {
+        "0": 0.4585,
+        "1": 0.2398,
+        "2": 0.1558,
+        "3": 0.0729,
+        "4": 0.073
+      },
+      "cyberpunk": {
+        "0": 0.3771,
+        "1": 0.2486,
+        "2": 0.1953,
+        "3": 0.0769,
+        "4": 0.1021
+      },
+      "action": {
+        "0": 0.4511,
+        "1": 0.3185,
+        "2": 0.1627,
+        "3": 0.033,
+        "4": 0.0347
+      },
+      "slice_of_life": {
+        "0": 0.2206,
+        "1": 0.2194,
+        "2": 0.2192,
+        "3": 0.15,
+        "4": 0.1908
+      },
+      "mystery": {
+        "0": 0.3324,
+        "1": 0.3058,
+        "2": 0.2234,
+        "3": 0.0668,
+        "4": 0.0716
+      },
+      "historical": {
+        "0": 0.6381,
+        "1": 0.2196,
+        "2": 0.09,
+        "3": 0.0242,
+        "4": 0.0281
+      }
+    },
+    "usage": {
+      "input_tokens": 1190,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:12.146672+00:00"
+  },
+  "052f589cd032a2cfb6666c385ce27654a48510a0ddd0bb4bba0d653d733aa98c": {
+    "input": "sonic_phantom_forces",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 31,
+      "fantasy": 18,
+      "cyberpunk": 22,
+      "action": 65,
+      "slice_of_life": 9,
+      "mystery": 14,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 1.2366,
+      "fantasy": 0.7089,
+      "cyberpunk": 0.8781,
+      "action": 2.6027,
+      "slice_of_life": 0.3615,
+      "mystery": 0.5587,
+      "historical": 0.246
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3272,
+        "1": 0.2799,
+        "2": 0.2782,
+        "3": 0.0586,
+        "4": 0.0561
+      },
+      "fantasy": {
+        "0": 0.5525,
+        "1": 0.2643,
+        "2": 0.1309,
+        "3": 0.0263,
+        "4": 0.026
+      },
+      "cyberpunk": {
+        "0": 0.4693,
+        "1": 0.2713,
+        "2": 0.1999,
+        "3": 0.031,
+        "4": 0.0285
+      },
+      "action": {
+        "0": 0.1094,
+        "1": 0.0895,
+        "2": 0.1898,
+        "3": 0.3114,
+        "4": 0.2999
+      },
+      "slice_of_life": {
+        "0": 0.6979,
+        "1": 0.2559,
+        "2": 0.0377,
+        "3": 0.0038,
+        "4": 0.0047
+      },
+      "mystery": {
+        "0": 0.5792,
+        "1": 0.3009,
+        "2": 0.1081,
+        "3": 0.0055,
+        "4": 0.0063
+      },
+      "historical": {
+        "0": 0.8141,
+        "1": 0.1385,
+        "2": 0.0392,
+        "3": 0.0037,
+        "4": 0.0045
+      }
+    },
+    "usage": {
+      "input_tokens": 1190,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:12.529243+00:00"
+  },
+  "90a646520eebcb70494a2dfbb392f17fe3970882a4a96b51c745f6f9dfbe38d6": {
+    "input": "super_mario_odyssey",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 39,
+      "cyberpunk": 4,
+      "action": 58,
+      "slice_of_life": 15,
+      "mystery": 15,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 0.469,
+      "fantasy": 1.5671,
+      "cyberpunk": 0.1563,
+      "action": 2.3072,
+      "slice_of_life": 0.619,
+      "mystery": 0.5806,
+      "historical": 0.4427
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7291,
+        "1": 0.1442,
+        "2": 0.0788,
+        "3": 0.0244,
+        "4": 0.0235
+      },
+      "fantasy": {
+        "0": 0.2035,
+        "1": 0.3026,
+        "2": 0.3053,
+        "3": 0.1004,
+        "4": 0.0882
+      },
+      "cyberpunk": {
+        "0": 0.8944,
+        "1": 0.0681,
+        "2": 0.0287,
+        "3": 0.0044,
+        "4": 0.0044
+      },
+      "action": {
+        "0": 0.1213,
+        "1": 0.1369,
+        "2": 0.2848,
+        "3": 0.2275,
+        "4": 0.2295
+      },
+      "slice_of_life": {
+        "0": 0.5522,
+        "1": 0.3018,
+        "2": 0.1275,
+        "3": 0.0119,
+        "4": 0.0066
+      },
+      "mystery": {
+        "0": 0.5754,
+        "1": 0.2875,
+        "2": 0.1239,
+        "3": 0.0076,
+        "4": 0.0056
+      },
+      "historical": {
+        "0": 0.6878,
+        "1": 0.2086,
+        "2": 0.0857,
+        "3": 0.009,
+        "4": 0.0089
+      }
+    },
+    "usage": {
+      "input_tokens": 1189,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:12.896904+00:00"
+  },
+  "b0b80f3d000cce3f607285886dce386d15cb94f0815b179f3df6d87a1bba6a74": {
+    "input": "teryx",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 41,
+      "fantasy": 19,
+      "cyberpunk": 33,
+      "action": 37,
+      "slice_of_life": 23,
+      "mystery": 21,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 1.6576,
+      "fantasy": 0.7737,
+      "cyberpunk": 1.3107,
+      "action": 1.4898,
+      "slice_of_life": 0.9117,
+      "mystery": 0.8577,
+      "historical": 0.4389
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.2609,
+        "1": 0.2459,
+        "2": 0.2247,
+        "3": 0.1118,
+        "4": 0.1567
+      },
+      "fantasy": {
+        "0": 0.5893,
+        "1": 0.2003,
+        "2": 0.1081,
+        "3": 0.0522,
+        "4": 0.0501
+      },
+      "cyberpunk": {
+        "0": 0.3744,
+        "1": 0.2414,
+        "2": 0.1861,
+        "3": 0.0951,
+        "4": 0.103
+      },
+      "action": {
+        "0": 0.2916,
+        "1": 0.2709,
+        "2": 0.2091,
+        "3": 0.1129,
+        "4": 0.1155
+      },
+      "slice_of_life": {
+        "0": 0.4519,
+        "1": 0.3176,
+        "2": 0.1427,
+        "3": 0.0425,
+        "4": 0.0453
+      },
+      "mystery": {
+        "0": 0.4897,
+        "1": 0.2917,
+        "2": 0.1333,
+        "3": 0.0417,
+        "4": 0.0436
+      },
+      "historical": {
+        "0": 0.7241,
+        "1": 0.1664,
+        "2": 0.0742,
+        "3": 0.0171,
+        "4": 0.0182
+      }
+    },
+    "usage": {
+      "input_tokens": 1186,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:13.637691+00:00"
+  },
+  "3bf5417262ad7c663fd83600139be2d6a972e240322a9bc42e28f4e63e3929ca": {
+    "input": "wazawai_kitsune_no_kuzure-chan",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 23,
+      "fantasy": 41,
+      "cyberpunk": 14,
+      "action": 24,
+      "slice_of_life": 49,
+      "mystery": 25,
+      "historical": 13
+    },
+    "raw_scores": {
+      "sf": 0.9358,
+      "fantasy": 1.6243,
+      "cyberpunk": 0.5738,
+      "action": 0.9709,
+      "slice_of_life": 1.9558,
+      "mystery": 0.9947,
+      "historical": 0.5091
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4631,
+        "1": 0.2758,
+        "2": 0.1702,
+        "3": 0.0438,
+        "4": 0.0471
+      },
+      "fantasy": {
+        "0": 0.2458,
+        "1": 0.2766,
+        "2": 0.2225,
+        "3": 0.1179,
+        "4": 0.1372
+      },
+      "cyberpunk": {
+        "0": 0.6515,
+        "1": 0.2022,
+        "2": 0.0954,
+        "3": 0.0228,
+        "4": 0.0281
+      },
+      "action": {
+        "0": 0.3966,
+        "1": 0.3545,
+        "2": 0.1681,
+        "3": 0.043,
+        "4": 0.0378
+      },
+      "slice_of_life": {
+        "0": 0.1924,
+        "1": 0.2213,
+        "2": 0.2129,
+        "3": 0.1848,
+        "4": 0.1886
+      },
+      "mystery": {
+        "0": 0.3848,
+        "1": 0.3664,
+        "2": 0.162,
+        "3": 0.043,
+        "4": 0.0438
+      },
+      "historical": {
+        "0": 0.6863,
+        "1": 0.1859,
+        "2": 0.0851,
+        "3": 0.0178,
+        "4": 0.0249
+      }
+    },
+    "usage": {
+      "input_tokens": 1195,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "e621",
+    "timestamp": "2026-10-25T00:59:14.002536+00:00"
   }
 }

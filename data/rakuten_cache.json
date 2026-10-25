@@ -451,5 +451,38 @@
       "reviewCount": 12
     },
     "hits": 3
+  },
+  "シドニアの騎士 新装版 1巻": {
+    "fetched_at": "2026-10-25T01:05:07.934813+00:00",
+    "product": {
+      "itemName": "【中古】新装版 シドニアの騎士 コミック 全7巻セット z2zed1b",
+      "itemPrice": 52273,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00ufvto.eo1qw8b5.g00ufvto.eo1qx89d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fiinex%2Fdb0791h7qng%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fiinex%2Fi%2F11753712%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/iinex/cabinet/sm106/sm106-b0791h7qng.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 3
+  },
+  "シドニアの騎士": {
+    "fetched_at": "2026-10-25T01:05:09.255034+00:00",
+    "product": {
+      "itemName": "シドニアの騎士（3） 【電子書籍】[ 弐瓶勉 ]",
+      "itemPrice": 792,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00reb4o.eo1qw8b7.g00reb4o.eo1qx933/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F91c966257f273786aaf8b00d9a8d5b89%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F11549541%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakutenkobo-ebooks/cabinet/8239/2000000118239.jpg?_ex=128x128",
+      "reviewCount": 4
+    },
+    "hits": 3
+  },
+  "プラネテス 1巻": {
+    "fetched_at": "2026-10-25T01:05:10.698760+00:00",
+    "product": {
+      "itemName": "【中古】プラネテス　第1巻幸村誠",
+      "itemPrice": 220,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00u0dno.eo1qw5e4.g00u0dno.eo1qx0aa/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fazuma-hon%2F2001010021052%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fazuma-hon%2Fi%2F10013665%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/azuma-hon/cabinet/compass1640680946.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 1
   }
 }

@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-10-24T01:28:52.060727+00:00",
+  "scored_at": "2026-10-25T00:59:14.058181+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -167,6 +167,126 @@
       }
     },
     {
+      "key": "https://www.ign.com/articles/james-gunn-defends-the-dcus-approach-to-interconnected-stories-doesnt-want-movies-like-clayface-to-exist-just-to-set-up-crossovers",
+      "title": "James Gunn Defends the DCU's Approach to Interconnected Stories, Doesn't Want Movies Like Clayface to Exist Just to 'Set Up' Crossovers",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 31,
+        "fantasy": 12,
+        "cyberpunk": 10,
+        "action": 52,
+        "slice_of_life": 11,
+        "mystery": 18,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/best-deals-for-october-24-2026",
+      "title": "The Best Deals Today: Persona 3 Reload, Pikmin 4, The Adventures of Elliot, and More",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 31,
+        "fantasy": 36,
+        "cyberpunk": 25,
+        "action": 48,
+        "slice_of_life": 43,
+        "mystery": 37,
+        "historical": 11
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/call-of-duty-movie-director-teases-story-that-explores-the-cost-of-war-praises-modern-warfare-characters",
+      "title": "Call of Duty Movie Director Teases Story That Explores 'the Cost of War,' Praises Modern Warfare Characters",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 4,
+        "cyberpunk": 10,
+        "action": 65,
+        "slice_of_life": 18,
+        "mystery": 14,
+        "historical": 27
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/elden-ring-movies-budget-reportedly-200-million-almost-3x-more-expensive-than-a24s-marty-supreme",
+      "title": "Elden Ring Movie's Budget Reportedly $200 Million, Almost 3x More Expensive Than A24's Marty Supreme",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 28,
+        "fantasy": 52,
+        "cyberpunk": 9,
+        "action": 37,
+        "slice_of_life": 11,
+        "mystery": 20,
+        "historical": 21
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/avengers-doomsday-teaser-reveals-who-was-edited-out-of-the-first-trailer-fans-say",
+      "title": "Avengers: Doomsday Teaser Reveals Who Was Edited Out of the First Trailer, Fans Say",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 45,
+        "fantasy": 11,
+        "cyberpunk": 8,
+        "action": 68,
+        "slice_of_life": 6,
+        "mystery": 12,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/new-anime-to-watch-in-fall-2006",
+      "title": "12 Anime Worth Watching This Fall",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 46,
+        "fantasy": 42,
+        "cyberpunk": 49,
+        "action": 54,
+        "slice_of_life": 25,
+        "mystery": 30,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/avengers-doomsday-promoted-with-baseball-themed-crossover-featuring-mlb-players-during-world-series",
+      "title": "Avengers: Doomsday Promoted With Baseball-Themed Crossover Featuring MLB Players During World Series",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 53,
+        "fantasy": 19,
+        "cyberpunk": 9,
+        "action": 67,
+        "slice_of_life": 9,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/aaron-paul-clayface-cameo-dc",
+      "title": "Aaron Paul Makes Surprise Cameo in DC’s Clayface",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 36,
+        "fantasy": 15,
+        "cyberpunk": 11,
+        "action": 47,
+        "slice_of_life": 8,
+        "mystery": 19,
+        "historical": 6
+      }
+    },
+    {
       "key": "https://www.ign.com/articles/dead-by-daylight-to-remove-chucky-content-just-months-after-losing-michael-myers",
       "title": "Dead by Daylight to Remove Chucky Content Just Months After Losing Michael Myers",
       "source": "IGN RSS",
@@ -197,123 +317,18 @@
       }
     },
     {
-      "key": "https://www.ign.com/articles/avengers-doomsday-casts-sandra-huller-in-cameo-role",
-      "title": "Avengers: Doomsday Casts Sandra Hüller in Cameo Role",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-10-24/kaiju-no-8-anime-conclusion-arc-revealed-as-film-opening-in-2027/.243156",
+      "title": "Kaiju No. 8 Anime's 'Conclusion Arc' Revealed as Film Opening in 2027",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 42,
-        "fantasy": 11,
-        "cyberpunk": 18,
+        "sf": 53,
+        "fantasy": 23,
+        "cyberpunk": 20,
         "action": 72,
-        "slice_of_life": 8,
-        "mystery": 13,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/xboxs-first-ever-chief-operating-officer-leaves-role-just-three-months-after-it-was-created",
-      "title": "Xbox's First-Ever Chief Operating Officer Leaves Role Just Three Months After It Was Created",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 17,
-        "fantasy": 6,
-        "cyberpunk": 15,
-        "action": 11,
-        "slice_of_life": 22,
-        "mystery": 9,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/a-court-of-splintered-harmony-where-to-buy-release-date",
-      "title": "The Next A Court of Thorns and Roses Book Releases Next Week, Here's Where to Buy",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 18,
-        "fantasy": 84,
-        "cyberpunk": 2,
-        "action": 10,
-        "slice_of_life": 14,
-        "mystery": 14,
-        "historical": 20
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/indie-game-dev-takes-down-vibe-coded-zombie-shooter-after-san-francisco-officials-condemn-dehumanizing-game",
-      "title": "Indie Game Dev Takes Down Vibe-Coded Zombie Shooter After San Francisco Officials Condemn 'Dehumanizing' Game",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 31,
-        "fantasy": 12,
-        "cyberpunk": 15,
-        "action": 43,
-        "slice_of_life": 12,
-        "mystery": 12,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/zendaya-dune-part-3-best-actress-oscars",
-      "title": "Zendaya Sets Best Actress Oscar Campaign for Dune: Part 3",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 79,
-        "fantasy": 24,
-        "cyberpunk": 23,
-        "action": 29,
-        "slice_of_life": 10,
-        "mystery": 13,
-        "historical": 35
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/alien-covenant-follow-up-adds-prisoners-writer-aaron-guzikowski",
-      "title": "Alien: Covenant Follow-Up Adds Prisoners Writer Aaron Guzikowski",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 71,
-        "fantasy": 6,
-        "cyberpunk": 29,
-        "action": 23,
-        "slice_of_life": 7,
-        "mystery": 33,
-        "historical": 5
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/mass-effect-fans-call-for-ea-boycott-as-petition-to-save-biowares-canceled-game-garners-more-than-75000-signatures",
-      "title": "Mass Effect Fans Call for EA Boycott as Petition to Save BioWare's Canceled Game Garners More than 75,000 Signatures",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 47,
-        "fantasy": 9,
-        "cyberpunk": 39,
-        "action": 22,
-        "slice_of_life": 10,
-        "mystery": 23,
+        "slice_of_life": 15,
+        "mystery": 18,
         "historical": 6
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/damascus-steel-pocket-knife-deal-october-2026",
-      "title": "Amazon Has a Genuine Forged Damascus Steel Pocket Knife for Less Than $27 Ahead of Black Friday",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 6,
-        "fantasy": 4,
-        "cyberpunk": 6,
-        "action": 19,
-        "slice_of_life": 20,
-        "mystery": 4,
-        "historical": 7
       }
     },
     {
@@ -378,17 +393,17 @@
     },
     {
       "key": "https://www.animenewsnetwork.com/news/2026-10-23/shigeru-miyamoto-becomes-1st-game-creator-to-be-honored-with-japan-order-of-culture-award/.243145",
-      "title": "Shigeru Miyamoto Becomes 1st Game Creator to be Honored With Japan's Order of Culture Award",
+      "title": "Shigeru Miyamoto Becomes 1st Game Creator to be Honored With Japan's Order of Culture Award (Updated)",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
         "sf": 8,
         "fantasy": 9,
-        "cyberpunk": 8,
-        "action": 17,
-        "slice_of_life": 18,
+        "cyberpunk": 9,
+        "action": 15,
+        "slice_of_life": 16,
         "mystery": 8,
-        "historical": 8
+        "historical": 7
       }
     },
     {
@@ -449,21 +464,6 @@
         "slice_of_life": 53,
         "mystery": 34,
         "historical": 6
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-23/though-i-am-an-inept-villainess-anime-2nd-part-streams-teaser-video/.243140",
-      "title": "Though I am an Inept Villainess Anime's 2nd Part Streams Teaser Video",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 11,
-        "fantasy": 44,
-        "cyberpunk": 8,
-        "action": 30,
-        "slice_of_life": 43,
-        "mystery": 22,
-        "historical": 13
       }
     },
     {
@@ -1114,15 +1114,27 @@
   ],
   "copyrights": [
     {
-      "name": "activision",
+      "name": "adastra",
       "scores": {
-        "sf": 20,
-        "fantasy": 7,
-        "cyberpunk": 26,
-        "action": 64,
-        "slice_of_life": 11,
-        "mystery": 20,
-        "historical": 10
+        "sf": 51,
+        "fantasy": 19,
+        "cyberpunk": 27,
+        "action": 29,
+        "slice_of_life": 26,
+        "mystery": 24,
+        "historical": 13
+      }
+    },
+    {
+      "name": "adastra_(series)",
+      "scores": {
+        "sf": 58,
+        "fantasy": 17,
+        "cyberpunk": 30,
+        "action": 28,
+        "slice_of_life": 25,
+        "mystery": 29,
+        "historical": 13
       }
     },
     {
@@ -1138,38 +1150,38 @@
       }
     },
     {
-      "name": "asian_mythology",
+      "name": "april_fools'_day",
       "scores": {
-        "sf": 22,
-        "fantasy": 57,
-        "cyberpunk": 7,
-        "action": 30,
-        "slice_of_life": 19,
-        "mystery": 17,
-        "historical": 45
-      }
-    },
-    {
-      "name": "bandai_namco",
-      "scores": {
-        "sf": 37,
-        "fantasy": 13,
-        "cyberpunk": 38,
-        "action": 60,
-        "slice_of_life": 10,
-        "mystery": 13,
+        "sf": 15,
+        "fantasy": 9,
+        "cyberpunk": 9,
+        "action": 14,
+        "slice_of_life": 34,
+        "mystery": 16,
         "historical": 8
       }
     },
     {
-      "name": "digimon",
+      "name": "capcom",
       "scores": {
-        "sf": 28,
-        "fantasy": 36,
-        "cyberpunk": 31,
-        "action": 61,
-        "slice_of_life": 18,
-        "mystery": 17,
+        "sf": 29,
+        "fantasy": 20,
+        "cyberpunk": 36,
+        "action": 76,
+        "slice_of_life": 9,
+        "mystery": 18,
+        "historical": 14
+      }
+    },
+    {
+      "name": "cartoon_network",
+      "scores": {
+        "sf": 19,
+        "fantasy": 37,
+        "cyberpunk": 9,
+        "action": 38,
+        "slice_of_life": 37,
+        "mystery": 18,
         "historical": 8
       }
     },
@@ -1186,87 +1198,87 @@
       }
     },
     {
-      "name": "e621",
+      "name": "echo_project",
       "scores": {
         "sf": 41,
         "fantasy": 22,
-        "cyberpunk": 38,
-        "action": 33,
-        "slice_of_life": 34,
-        "mystery": 26,
-        "historical": 13
+        "cyberpunk": 35,
+        "action": 34,
+        "slice_of_life": 32,
+        "mystery": 28,
+        "historical": 14
       }
     },
     {
-      "name": "east_asian_mythology",
+      "name": "forklift_certified",
       "scores": {
-        "sf": 21,
-        "fantasy": 52,
-        "cyberpunk": 8,
-        "action": 24,
-        "slice_of_life": 23,
-        "mystery": 19,
-        "historical": 43
+        "sf": 19,
+        "fantasy": 7,
+        "cyberpunk": 19,
+        "action": 27,
+        "slice_of_life": 31,
+        "mystery": 12,
+        "historical": 9
       }
     },
     {
-      "name": "european_mythology",
+      "name": "furid_(e621)",
       "scores": {
-        "sf": 20,
-        "fantasy": 68,
-        "cyberpunk": 4,
-        "action": 19,
-        "slice_of_life": 17,
-        "mystery": 20,
-        "historical": 45
+        "sf": 40,
+        "fantasy": 35,
+        "cyberpunk": 35,
+        "action": 36,
+        "slice_of_life": 33,
+        "mystery": 29,
+        "historical": 16
       }
     },
     {
-      "name": "friendship_is_magic",
+      "name": "i_think_i_like_you",
       "scores": {
-        "sf": 15,
-        "fantasy": 37,
-        "cyberpunk": 7,
-        "action": 19,
-        "slice_of_life": 49,
-        "mystery": 13,
-        "historical": 8
+        "sf": 13,
+        "fantasy": 8,
+        "cyberpunk": 11,
+        "action": 11,
+        "slice_of_life": 36,
+        "mystery": 10,
+        "historical": 5
       }
     },
     {
-      "name": "glue_studios",
+      "name": "mao_mao:_heroes_of_pure_heart",
       "scores": {
         "sf": 31,
-        "fantasy": 26,
-        "cyberpunk": 34,
-        "action": 32,
-        "slice_of_life": 45,
-        "mystery": 26,
-        "historical": 11
+        "fantasy": 55,
+        "cyberpunk": 16,
+        "action": 51,
+        "slice_of_life": 25,
+        "mystery": 17,
+        "historical": 25
       }
     },
     {
-      "name": "hasbro",
+      "name": "mario_bros",
       "scores": {
-        "sf": 28,
-        "fantasy": 8,
-        "cyberpunk": 15,
-        "action": 40,
-        "slice_of_life": 13,
-        "mystery": 10,
-        "historical": 7
+        "sf": 12,
+        "fantasy": 18,
+        "cyberpunk": 6,
+        "action": 60,
+        "slice_of_life": 10,
+        "mystery": 8,
+        "historical": 6
       }
     },
     {
-      "name": "my_little_pony",
+      "name": "monster_hunter",
       "scores": {
-        "sf": 14,
-        "fantasy": 65,
-        "cyberpunk": 3,
-        "action": 16,
-        "slice_of_life": 37,
-        "mystery": 10,
-        "historical": 8
+        "sf": 25,
+        "fantasy": 46,
+        "cyberpunk": 17,
+        "action": 69,
+        "slice_of_life": 10,
+        "mystery": 14,
+        "historical": 13
       }
     },
     {
@@ -1294,39 +1306,15 @@
       }
     },
     {
-      "name": "nintendo_switch",
+      "name": "repeat_(visual_novel)",
       "scores": {
-        "sf": 20,
-        "fantasy": 19,
-        "cyberpunk": 18,
-        "action": 41,
-        "slice_of_life": 27,
-        "mystery": 17,
-        "historical": 10
-      }
-    },
-    {
-      "name": "pokemon",
-      "scores": {
-        "sf": 24,
-        "fantasy": 57,
-        "cyberpunk": 10,
-        "action": 39,
-        "slice_of_life": 25,
-        "mystery": 17,
-        "historical": 9
-      }
-    },
-    {
-      "name": "rimba_racer",
-      "scores": {
-        "sf": 38,
-        "fantasy": 30,
-        "cyberpunk": 41,
-        "action": 52,
-        "slice_of_life": 19,
-        "mystery": 17,
-        "historical": 10
+        "sf": 35,
+        "fantasy": 27,
+        "cyberpunk": 32,
+        "action": 22,
+        "slice_of_life": 47,
+        "mystery": 31,
+        "historical": 15
       }
     },
     {
@@ -1342,6 +1330,30 @@
       }
     },
     {
+      "name": "sonic_forces",
+      "scores": {
+        "sf": 48,
+        "fantasy": 17,
+        "cyberpunk": 31,
+        "action": 50,
+        "slice_of_life": 20,
+        "mystery": 22,
+        "historical": 13
+      }
+    },
+    {
+      "name": "sonic_phantom_forces",
+      "scores": {
+        "sf": 31,
+        "fantasy": 18,
+        "cyberpunk": 22,
+        "action": 65,
+        "slice_of_life": 9,
+        "mystery": 14,
+        "historical": 6
+      }
+    },
+    {
       "name": "sonic_the_hedgehog_(series)",
       "scores": {
         "sf": 33,
@@ -1354,15 +1366,39 @@
       }
     },
     {
-      "name": "spyro_the_dragon",
+      "name": "super_mario_odyssey",
       "scores": {
-        "sf": 14,
-        "fantasy": 76,
+        "sf": 12,
+        "fantasy": 39,
         "cyberpunk": 4,
-        "action": 51,
-        "slice_of_life": 11,
-        "mystery": 11,
-        "historical": 14
+        "action": 58,
+        "slice_of_life": 15,
+        "mystery": 15,
+        "historical": 11
+      }
+    },
+    {
+      "name": "teryx",
+      "scores": {
+        "sf": 41,
+        "fantasy": 19,
+        "cyberpunk": 33,
+        "action": 37,
+        "slice_of_life": 23,
+        "mystery": 21,
+        "historical": 11
+      }
+    },
+    {
+      "name": "wazawai_kitsune_no_kuzure-chan",
+      "scores": {
+        "sf": 23,
+        "fantasy": 41,
+        "cyberpunk": 14,
+        "action": 24,
+        "slice_of_life": 49,
+        "mystery": 25,
+        "historical": 13
       }
     },
     {
@@ -1378,6 +1414,6 @@
       }
     }
   ],
-  "api_calls": 40,
-  "cache_hits": 56
+  "api_calls": 22,
+  "cache_hits": 77
 }
