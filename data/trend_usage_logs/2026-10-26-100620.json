@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-26T10:06:20.970186+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-26T10:05:15.654683+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.02,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Interview: What We Know About Mobile Suit Gundam RG XARX-ZERO with Director Kenji Kamiyama",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-23/what-we-know-about-mobile-suit-gundam-rg-xarx-zero-with-director-kenji-kamiyama/.242526",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "New Avengers: Doomsday Trailer Pokes Fun at Multiple 'Captains America'",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/avengers-doomsday-trailer-multiple-captains-america",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Marvel dropped a new trailer for Avengers: Doomsday on Saturday, roughly 24 hours after debuting a Major League Baseball crossover promo during the World Series. This new trailer – which can be seen b"
+    }
+  ],
+  "affiliate_keywords": [
+    "What We Know",
+    "Doomsday Trailer Pokes"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/interview/2026-10-23/what-we-know-about-mobile-suit-gundam-rg-xarx-zero-with-director-kenji-kamiyama/.242526",
+    "https://www.ign.com/articles/avengers-doomsday-trailer-multiple-captains-america"
+  ]
+}
