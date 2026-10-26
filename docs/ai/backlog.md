@@ -26,14 +26,14 @@
 
 ### #4 コメント機能（Giscus）実装
 - **難易度 / 効果**: ⭐⭐ / 中
-- **作業内容**: 設計確定済み（2026-10-11。選定理由は `decisions/2026-10-11-giscus-comments.md`）。
-  | 内容 | 実施 | ファイル |
+- **作業内容**: 設計**更新**済み（2026-10-26。コメントバックエンドは**外部専用リポジトリ**へ分離。詳細: `tasks/2026-10-26-giscus-comments-external-repo.md`・決定: `decisions/2026-10-26-giscus-external-repo.md`）。
+  | 内容 | 実施 | 備考 |
   |---|---|---|
-  | GitHub 側設定（Discussions 有効化 + giscus app 導入） | **手動（ユーザー）** | `tasks/2026-10-11-giscus-comments-github-setup.md` |
-  | 環境変数登録 | **手動（ユーザー）** | `tasks/2026-10-11-giscus-comments-env-config.md` |
-  | コンポーネント + Layout 組み込み | AI | `tasks/2026-10-11-giscus-comments-component.md` |
-  | deploy.yml / deploy-only.yml への env 配線 | AI | `tasks/2026-10-11-giscus-comments-workflow-env.md` |
-  | E2E 検証 + 本番デプロイ | AI | `tasks/2026-10-11-giscus-comments-verification.md` |
+  | コメント用リポジトリ作成 + Discussions 有効化 + giscus app 導入 | **手動（ユーザー）** | **リポジトリ名要確認**（案: `my-auto-blog-comments` / `giscus-comments`） |
+  | 環境変数 4 値登録（ローカル `.env` + ブロックリポ Variables） | **手動（ユーザー）** | |
+  | `GiscusComments.astro` + Layout + `content.config.ts` | AI | |
+  | `deploy.yml` / `deploy-only.yml` への env 配線 | AI | |
+  | E2E 検証 + 本番デプロイ | AI | |
 - **備考**: 手動 2 件が先に必要。**完了時に本エントリを削除**。
 
 ### #17 新プロンプトタイプ「ポケモン」追加

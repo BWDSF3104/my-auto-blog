@@ -10,6 +10,7 @@ const posts = defineCollection({
     author: z.string().optional(),
     tags: z.array(z.string()).optional(),
     image: z.string().optional(),
+    comments: z.boolean().optional(),
   }).passthrough(),
   loader: glob({ pattern: '**/*.md', base: 'src/content/posts' }),
 });

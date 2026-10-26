@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import ThemeInit from '../components/ThemeInit.astro';
+import GiscusComments from '../components/GiscusComments.astro';
 import { getTagColor } from '../lib/tagColors';
 import '../styles/global.css';
 
@@ -15,6 +16,7 @@ interface Props {
     slug?: string;
     modifiedDate?: string;
     prompt_type?: string;
+    comments?: boolean;
     [key: string]: any;
   };
 }
@@ -378,9 +380,11 @@ if (frontmatter.speakable) {
           <a href={`https://getpocket.com/save?url=${encodeURIComponent(canonicalURL.href)}&title=${encodeURIComponent(frontmatter.title)}`} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 rounded-full bg-red-600 hover:bg-red-700 text-white transition-colors" aria-label="Pocketに保存" title="Pocketに保存">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12a4 4 0 014 4v12a4 4 0 01-4 4H6a4 4 0 01-4-4V6a4 4 0 014-4zm1.5 3a2.5 2.5 0 00-2.5 2.5v2a2.5 2.5 0 005 0v-2A2.5 2.5 0 007.5 5zm9 0a2.5 2.5 0 00-2.5 2.5v2a2.5 2.5 0 005 0v-2A2.5 2.5 0 0016.5 5zM7.5 12a1 1 0 011 1v4a1 1 0 01-2 0v-4a1 1 0 011-1zm9 0a1 1 0 011 1v4a1 1 0 01-2 0v-4a1 1 0 011-1z"/></svg>
           </a>
-        </div>
-      </section>
-    </main>
+         </div>
+       </section>
+
+       { frontmatter.comments !== false && <GiscusComments /> }
+     </main>
       </div>
 
     <button
