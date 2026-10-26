@@ -12,8 +12,8 @@ if /i "%~1" equ "--yes" set "MODE=execute"
 if /i "%~1" equ "--dry-run" set "MODE=dry-run"
 if /i "%~1" equ "--self-test" set "MODE=self-test"
 if "%MODE%" equ "" (
-  echo usage: restart-vscode.bat [--yes | --dry-run | --self-test cwd]
-  echo (no arg) interactive Y/N confirm
+  echo usage restart-vscode.bat --yes --dry-run --self-test cwd
+  echo no arg mode requires interactive Y N confirm
   exit /b 2
 )
 if "%MODE%" equ "self-test" (
@@ -29,7 +29,7 @@ if "%MODE%" equ "dry-run" (
   exit /b %errorlevel%
 )
 if "%MODE%" equ "ask" (
-  set /p confirm=Close VS Code normally and relaunch? (Y/N, default N): 
+  set /p confirm=Close VS Code normally and relaunch? Y or N default N: 
   if /i "%confirm%" neq "Y" (
     echo cancel
     exit /b 1

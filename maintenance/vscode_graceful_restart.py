@@ -281,15 +281,20 @@ def main(argv: list[str]) -> int:
         return 0
     if mode == "self-test":
         return self_test(cwd)
+    # The relaunch task MUST be scheduled BEFORE the close. The worker runs
+    # in the task scheduler (independent of VS Code); scheduling it first
+    # guarantees it is already waiting even if this shell is killed when
+    # VS Code closes.
+    schedule_relaunch(cwd)
+    print(f"relaunch task scheduled; worker waiting for VS Code to close")
     if windows:
         sent = all(send_close(w["hwnd"]) for w in windows)
         if not sent:
             print("warning: WM_CLOSE failed for some window, continuing", file=sys.stderr)
         print("close requested")
     else:
-        print("Code.exe not running")
-    schedule_relaunch(cwd)
-    print(f"relaunch delegated to scheduled task {TASK_NAME}; " "VS Code should reopen in about 5-10 seconds")
+        print("Code.exe not running; worker will relaunch")
+    print(f"relaunch delegated to scheduled task {TASK_NAME}; VS Code should reopen in about 5-10 seconds")
     return 0
 
 
