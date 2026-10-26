@@ -41,15 +41,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-       - name: Build Astro site
-         env:
-           SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
-           SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH }}
-           PUBLIC_GISCUS_REPO: ${{ vars.PUBLIC_GISCUS_REPO }}
-           PUBLIC_GISCUS_REPO_ID: ${{ vars.PUBLIC_GISCUS_REPO_ID }}
-           PUBLIC_GISCUS_CATEGORY: ${{ vars.PUBLIC_GISCUS_CATEGORY }}
-           PUBLIC_GISCUS_CATEGORY_ID: ${{ vars.PUBLIC_GISCUS_CATEGORY_ID }}
-         run: npm run build
+      - name: Build Astro site
+        env:
+          SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+          SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH }}
+          PUBLIC_GISCUS_REPO: ${{ vars.PUBLIC_GISCUS_REPO }}
+          PUBLIC_GISCUS_REPO_ID: ${{ vars.PUBLIC_GISCUS_REPO_ID }}
+          PUBLIC_GISCUS_CATEGORY: ${{ vars.PUBLIC_GISCUS_CATEGORY }}
+          PUBLIC_GISCUS_CATEGORY_ID: ${{ vars.PUBLIC_GISCUS_CATEGORY_ID }}
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
