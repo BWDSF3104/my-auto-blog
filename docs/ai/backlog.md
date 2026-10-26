@@ -9,9 +9,8 @@
 | 順 | タスク群（内容） | 対象項目 | 難易度 |
 |---:|---|---|---|
 | 1（進行中） | 改行正規化 第2ステップ（全ファイル LF 化 + mixed 8 件修正） | P3 #8 | ⭐ |
-| 2 | Giscus コメント機能（手動 2 件：Discussions 有効化 + env 登録） | P2 #4 | ⭐⭐ |
-| 3 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
-| 4 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
+| 2 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
+| 3 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
 
 **非実装予定**（詳細は各項目）: P2 #17, P3 #4, #9, #10, #12, #15, P4 #1, P5 #9, #14
 
@@ -24,17 +23,6 @@
 - **作業内容**: frontmatter に `pinned: true` を追加し、記事一覧（index.astro）に先頭へ固定表示
 - **備考**: 保留（重要記事未準備）。重要記事が揃ったら再検討。
 
-### #4 コメント機能（Giscus）実装
-- **難易度 / 効果**: ⭐⭐ / 中
-- **作業内容**: 設計**更新**済み（2026-10-26。コメントバックエンドは**外部専用リポジトリ**へ分離。詳細: `tasks/2026-10-26-giscus-comments-external-repo.md`・決定: `decisions/2026-10-26-giscus-external-repo.md`）。
-  | 内容 | 実施 | 備考 |
-  |---|---|---|
-  | コメント用リポジトリ作成 + Discussions 有効化 + giscus app 導入 | **手動（ユーザー）** | **リポジトリ名要確認**（案: `my-auto-blog-comments` / `giscus-comments`） |
-  | 環境変数 4 値登録（ローカル `.env` + ブロックリポ Variables） | **手動（ユーザー）** | |
-  | `GiscusComments.astro` + Layout + `content.config.ts` | AI | |
-  | `deploy.yml` / `deploy-only.yml` への env 配線 | AI | |
-  | E2E 検証 + 本番デプロイ | AI | |
-- **備考**: 手動 2 件が先に必要。**完了時に本エントリを削除**。
 
 ### #17 新プロンプトタイプ「ポケモン」追加
 - **難易度 / 効果**: ⭐⭐ / 中（新コンテンツタイプ・データソース多様化）
