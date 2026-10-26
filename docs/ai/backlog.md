@@ -13,7 +13,7 @@
 | 3 | ストーリー系シリーズ機能（Series + Chapter Navigation + Multiple Collections + Zod） | P5 #4, #5, #10, #12 | ⭐⭐ |
 | 4 | ストーリー UI 追加（Spoiler 警告 + Callout Boxes） | P5 #6, #2 | ⭐ |
 
-**非実装予定**（詳細は各項目）: P2 #17, P3 #4, #9, #10, #12, #15, P4 #1, P5 #9, #11, #14
+**非実装予定**（詳細は各項目）: P2 #17, P3 #4, #9, #10, #12, #15, P4 #1, P5 #9, #14
 
 ---
 
@@ -146,13 +146,6 @@
 - **効果**: 型安全化、Series 機能（#4）の前提
 - **備考**: #12（Zod Validation）を**内包**する。現状の `import.meta.glob` 方式の interface は静的型のみ（runtime 検証なし）
 
-### #11 Image Optimization
-- **難易度 / 効果**: ⭐ / 中
-- **非実装予定**
-- **作業内容**:
-  - `@astrojs/image` 統合（`astro add image`）導入
-  - `PostLayout.astro` の `<img>` を `<Image src={...} alt={...} />` に置き換え → WebP/AVIF 変換、`srcset` 生成、lazy loading 最適化
-- **備考**: 画像が固定サイズ（896x512 等）のため効果はやや小さい。ただし形式変換でサイズ 30〜50% 削減・ロード速度向上は期待できる。既存 `article img` CSS との整合性確認必要。
 
 ### #12 Zod Schema Validation
 - **難易度 / 効果**: ⭐ / 中

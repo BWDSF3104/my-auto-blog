@@ -27,3 +27,4 @@
 | 19 | Python 3.15.0 へ `python` の切替（PEP 686 UTF-8 既定有効化） | 2026-10-21 ユーザー不採用（ブロック: pillow-avif-plugin の cp315 wheel が PyPI に不存在。python は 3.10.8 を維持） |
 | 20 | PWA 画像キャッシュ 50MB LRU 管理（PWA 対応 Tier 3） | 2026-10-22 ユーザー不採用（画像 1 日 1 枚 ~50KB 程度で通信節約のみ。⭐⭐⭐ 難易度の LRU ロジック・quota 監視・304 罠・ブラウザ差の運用コストに見合わない。PWA 対応は Tier 1+2 のみで実施: manifest + 静的アセット cache-first SW） |
 | 21 | Reading Mode トグル（P5 #3） | 2026-10-23 ユーザー不採用（価値 低〜中: レイアウトに clutter 済み・非表示は TOC/アフィリエイト/共有/BMA の 4 点のみ・発見性低・長文ストーリー読者の minority のみ有効） |
+| 22 | Image Optimization（P5 #11） | 2026-10-26 調査・不採用: 既に AVIF 化（`_save_as_avif()`, quality=80, 220 中 217 が `.avif`）かつ固定 896x512・HTML 最適化（width/height/fetchpriority/lazy/preload/CSS aspect-ratio・object-cover）既実装 → **効果 ≈ 0**（旧記「30〜50% 削減期待」は前提が古い）。`@astrojs/image` 導入は依存・ビルド時間増加 + `frontmatter.image` を参照する OG/JSON-LD/preload/GSC が壊れるリスク大。コスト対効果不良 |
