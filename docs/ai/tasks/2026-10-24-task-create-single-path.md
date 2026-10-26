@@ -1,6 +1,6 @@
 # タスクファイル作成単一経路ルール強化
 
-**Status**: 進行中
+**Status**: 保留
 **Date**: 2026-10-24
 **Next Action**: AGENTS.md / memory-bank-guide.md / .kilo/command/task-add.md へ禁止条項・修正例条項を追加
 
