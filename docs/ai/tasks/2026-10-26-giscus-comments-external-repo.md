@@ -154,8 +154,13 @@
 - [x] `npm run build`（2026-10-26、ローカル、`PUBLIC_GISCUS_*` 設定時）: **成功**（163 pages / 約5s、エラーなし）。
 - [x] 出力 HTML 解析（`dist/posts/zankyou-no-duplica/index.html`）: giscus script タグの `data-*` が正しいことを確認。
   - `data-repo="BWDSF3104/giscus-comments"` / `data-repo-id="R_kgDOVXdXKA"` / `data-category="Comments"` / `data-category-id="DIC_kwDOVXdXKM4DJoNP"` / `data-mapping="pathname"`。
+- [x] コミット + push (828400e)（初回）。
+- [x] バグ発覚: `deploy.yml`/`deploy-only.yml` の `Build Astro site` ステップが **YAML 縮進ミス**（dash 7 spaces vs 姉妹ステップ 6）→ push 時 workflow **0s 失敗**（YAML 解析エラー、jobs 非）。
+- [x] 縮進修正（dash を 6 spaces に統一）→ コミット + push (85c26f7)。
+- [x] CI `deploy-only`（**workflow_dispatch** 手動トリガー, run 40279174540）: **成功**（push は paths フィルタ外・deploy.yml は push トリガー非のため、手動デプロイ要）。
+- [x] 本番ページ検証（2026-10-26、`https://BWDSF3104.github.io/my-auto-blog/posts/niju-rasen-no-kyokaisen/`）: giscus `<script id="giscus-script" src="https://giscus.app/client.js">` + 全 `data-*` 正常 + テーマ同期スクリプト存在を確認。
 - [ ] 一時記事で `comments: false` → セction 非表示を確認（確認後削除し再 build）。
-- [ ] 本番: 記事ページでコメントウィジェット表示 → GitHub ログイン → 投稿 → 表示を確認。
+- [ ] E2E: GitHub ログイン → 実投稿 → 表示を確認。
 
 ## 実施記録（外部セットアップ: 2026-10-26）
 
