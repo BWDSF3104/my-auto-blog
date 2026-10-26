@@ -97,13 +97,13 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ### タスク開始時（調査開始段階）
 
-調査開始段階（タスク受理直後・調査着手時）に次のスクリプトを実行すること（初回コード変更前では遅い）。タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成と `docs/ai/current-task.tsv` 参照行追加を自動で行う:
+調査開始段階（タスク受理直後・調査着手時）で実行（初回コード変更前では遅い）:
 `python maintenance/task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`
+実行効果: タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成 + `current-task.tsv` 参照行追加（自動）
 - `--slug`: タスク短名（小文字英数字とハイフンのみ。例 `task-slash-commands`）
 - `--title`: タスク名（タスクファイルの `#` 見出し）
 - `--backlog`: バックログ参照 `P<N> #<N>`（該当する場合）
 - `--next-action`: 次のアクション（`current-task.tsv` の 3 列目に記録）
-- 既定で反映、プレビューのみなら `--dry-run`、staging スキップなら `--no-git-add`。
 タスク作成後は `python maintenance/archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
 タスク開始の完了前に実装着手しないこと。
 
@@ -118,6 +118,20 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 用語: 「issue」は本プロジェクトのローカル `docs/ai/known-issues/`（解決済みは `archive/` サブフォルダへ移動）を指す。GitHub Issues を指すものではない。
 
+### タスク終了
+
+タスク完了時に実行:
+`python maintenance/task_manager.py end --task <パス / date-slug / slug>`
+実行効果:
+- `Status` を `完了` へ
+- `current-task.tsv` 参照行削除
+- レポート出力（「対応項目チェック」含む）
+
+**対応項目チェック**（`end` の読み取り専用出力 — 判断・実行はエージェント）:
+- `docs/ai/known-issues/`（top・`archive/`）をタスクファイルの KI ID（`KI-\d{8}-\d{1,3}`）/ タスクパス参照で照合
+- `docs/ai/backlog.md` をタスクファイルの `**Backlog**: P<N> #<N>` 欄 / 行内タスク参照で照合
+- 一致候補について: ファイルパス・現在の位置（未解決/解決済）・推奨動作（archive へ mv / 完了時に backlog 削除）を報告
+
 ### 中断と compaction
 
 - タスクが中断された場合は、`docs/ai/current-task.tsv` を再開可能な状態に残しておくこと。
@@ -125,8 +139,8 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ## ワークフロー
 
-- タスク開始: `python maintenance/task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`（タスクファイル作成 + `current-task.tsv` 参照行追加）
-- タスク終了: `python maintenance/task_manager.py end --task <パス / date-slug / slug>`（Status を `完了` へ + `current-task.tsv` 参照行削除 + レポート出力）
+- タスク開始: コマンド・パラメータ・効果は「タスク開始時（調査開始段階）」を参照
+- タスク終了: コマンド・効果・対応項目チェックは「タスク終了」を参照
 - 両とも既定で反映、プレビューのみなら `--dry-run`、staging スキップなら `--no-git-add`。
 - git commit / push / deploy: `docs/ai/workflows.md` を参照する。commit・push は検証完了時点で判断可。**前提**: 変更の詳細について事前にユーザーから承認を受けていること。
 - タスク切り替え: 現行タスクが「進行中」なら、先にそのタスクの end を実行。「保留」のタスクは除外。
