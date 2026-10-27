@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-27T10:46:01.900504+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-27T10:45:22.241371+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "The Best PS5 Games In 2026",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/gallery/best-ps5-games/2900-3832/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "These are the very best PS5 games. The PlayStation 5 library is large and growing, so we've rounded up a selection of our absolute favorites, ranging from new PS5 games to modern classics, big-budget "
+    },
+    {
+      "title": "Total War: Warhammer 3 And DLC Are Cheaper Than Ever, And The Chaos Gods Approve",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/total-war-warhammer-3-and-dlc-are-cheaper-than-ever-and-the-chaos-gods-approve/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "War. War never changes. But what does change is the price of some of the best strategy games . Total War: Warhammer 3 is a total blast, offering brilliant strategy set in the ever-excellent fantasy Wa"
+    }
+  ],
+  "affiliate_keywords": [
+    "The Best PS5 Games In 2026",
+    "Warhammer And DLC"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/gallery/best-ps5-games/2900-3832/",
+    "https://www.gamespot.com/articles/total-war-warhammer-3-and-dlc-are-cheaper-than-ever-and-the-chaos-gods-approve/"
+  ]
+}
