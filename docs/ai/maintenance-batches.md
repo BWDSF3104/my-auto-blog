@@ -77,24 +77,46 @@ maintenance\restart-vscode.bat                  # 無引数: Y/N 確認
 maintenance\restart-vscode.bat --yes            # 非対話 (Agent 用)
 maintenance\restart-vscode.bat --dry-run <cwd>  # 特定のみ
 maintenance\restart-vscode.bat --self-test <cwd>  # 新規ウィンドウ 起動/クローズ 自己テスト
+python maintenance/vscode_graceful_restart.py <cwd> --notify-session <sessionID>  # Agent 経路（推奨）＋完了通知
 ```
 
-**動作**（設計）:
+**完了通知（--notify-session, 2026-10-28）**:
+- 呼出し元セッション ID を渡すと、worker が完了時（成功・失敗双方）に `kilo run --session <id> "<message>"` で follow-up を送る（追加ターン1回）。local DB にあるセッションのみ。`kilo` 不在・失敗は skip/失敗行をレポートへ
+- `subprocess.run(..., capture_output=True, creationflags=CREATE_NO_WINDOW)` で呼ぶ。`kilo` は npm shim（`kilo.cmd`）解決で cmd.exe を経由し、redirected handles だけでは console window を防げない（実測 2026-10-28: `管理者: cmd.exe` ウィンドウ生成）。`CREATE_NO_WINDOW` で生成しない（KI-20261028-01）
+- 呼出し元がクローズで消えたセッションでも `kilo run --session` は resumed して delivery できる（transcript に追加）。バッチ→セッションの通信路はこれが唯一
+- `kilo run --session` は target の応答ターンを待つ（blocking、worker 側 timeout 60s・best-effort）。target が busy だと message は届くが応答生成されず、タイムアウト失敗行になる。通知は target が idle の時に届く前提
+- caller session ID は `/TR`（255 文字上限）に埋めずスクラッチファイル `docs/ai/tmp/vscode_relaunch_notify.txt` で受け渡す（KI-20261028-02。worker が読んだ後削除）
+
+**使い方変更（2026-10-28）**:
+- `--yes`（execute）は `start /b pythonw` 分離起動のため**コンソールに出力が出ない**。bat の終了コードは 0（即時 exit）で、結果はレポートファイル `docs/ai/tmp/vscode_relaunch_report.txt`（`entry:` 行＋worker 行）で読む
+- Agent 経路の推奨: `cmd /c bat` を経由しない（中断時ツールラッパーのコンソールが孤児化し得る）。`pythonw maintenance/vscode_graceful_restart.py <cwd>` をシェル/background_process から直接。console app を経路に入れない（KI-20261028-01）
+- 終了コードは従来どおり 0 成功 / 1 usage・ウィンドウなし / 2 失敗 / 3 非昇格・UIPI（直接呼出時に有効）
+- `--self-test` のスクラッチ後始末は同一実装のまま cmd 経由をやめ `powershell -File maintenance/safe-rmdir.ps1` 直接呼出（`kilo-safe-rmdir.cmd` の実体。ゴミ箱送り）
+
+**動作**（設計・2026-10-28 改訂）:
 - エージェントの shell は Code.exe 子ツリー内 → バッチ内の直接再起動はクローズ時にツリー kill されうる。
-- 回避: **タスクスケジューラの一発タスク `my-auto-blog\vscode-restart`** へ再起動委譲（`/Create` 約5分バックストップ ＋ `/Run` 即時）。
-- 対象は code.exe の Electron メインウィンドウのみ（クラス `Chrome_WidgetWin_0/1`）。IME・crashpad・Electron 補助ウィンドウは除外。
-- `code` は PATH にない → `code.cmd` 全パスで **DETACHED_PROCESS(0x10)** 起動。
+- 回避: **タスクスケジューラの一発タスク `my-auto-blog\vscode-restart`** へ再起動委譲（`/Create` `/RL HIGHEST` ＋ 約5分バックストップ ＋ `/Run` 即時）。`/RL` なし（既定 Limited）では worker が非昇格トークンで Code.exe を起動し、再起動インスタンスが昇格しない。`/RL HIGHEST` の登録には昇格トークンが必要 → 非昇格シェルは exit 3。
+- task action は `cmd /c` を経由せず `pythonw.exe`（GUI subsystem）を直接実行 → console app 経由しないのでコンソールウィンドウが出ない（`KI-20261028-01`）。pythonw がなければ `python.exe` へフォールバック。worker の出力はレポートファイルのみ（stdout なしでも例外を出さない）。
+- bat の execute モード（`--yes`）は `start "" /b pythonw` 起動（cmd 即 exit・コンソールウィンドウ非生成。`KI-20261028-01` 実装・実測済み）。スクリプト側出力は `log()` 統一で、stdout 不可時はレポートファイル `docs/ai/tmp/vscode_relaunch_report.txt` へ追記。
+- `/Run` は ONCE トリガーを消費しないためバックストップで再発動し得る。worker は attempt id（タスク TR に埋める）で `already_ran` を判定し、再実行は静かに exit 0。
+- 対象は code.exe の**可視** Electron メインウィンドウのみ（クラス `Chrome_WidgetWin_1`）。不可視 helper（`Chrome_WidgetWin_0`）は WM_CLOSE で閉じないため除外。IME・crashpad 等は除外。
+- 判定は `SendMessageW` の返り値では行わない（返り値は窓プロックの返り値で正常処理後も 0）。送信後の**ウィンドウ消失**で判定（最大 15 秒。ベストエフォート — 自分のウィンドウが閉じた瞬間に shell も殺される）。実際の再起動確認は worker（180 秒）。
+- インテグリティチェック: ターゲットが実行シェルより高インテグリティなら UIPI が WM_CLOSE をフィルタする → 終了コード 3 で「昇格シェルで実行必須」を通知。
+- `code` は PATH にない → `code.cmd` 全パスで **DETACHED_PROCESS(0x10)** 起動。単一インスタンス環境で新規ウィンドウを作るには `-n` が必要。
 
 **呼び出しタイミング**: 手動（Agent / ユーザー）。
 
 **副作用・注意**:
-- **実行モード（実際のクローズ＋再起動）は未検証**: 本セッションでは自分の VS Code を閉じるため実行不能。委譲 worker の端到端も未検証。
+- 実行モードの端到端（実際のクローズ＋worker による再起動）は未検証。実行すると Agent 自分の VS Code が閉じる。
+- Worker の結果は `docs/ai/tmp/vscode_relaunch_report.txt` へ追記（呼び出し元 shell は kill されるため通知口はここ）。
 - ASCII のみ（cmd コードページ対応）。
 - Worker は ~5 分待機後に再起動を確定し、自削除する。
 
+**終了コード**（`vscode_graceful_restart.py`）: 0 成功 / 1 ウィンドウなし・usage / 2 失敗（ウィンドウが閉じない）/ 3 インテグリティ不一致（UIPI）またはシェル非昇格
+
 **関連**:
-- 設計: `docs/ai/decisions/2026-10-22-vscode-graceful-restart.md`
-- テスト: 専用 pytest なし（`--self-test` モードが内蔵の検証）
+- 設計: `docs/ai/decisions/2026-10-22-vscode-graceful-restart.md`（2026-10-28 改訂追記）
+- テスト: `maintenance/tests/test_vscode_graceful_restart.py`（判定ロジック）。実ウィンドウ検証は `--self-test`（scratch は `kilo-safe-rmdir.cmd` でゴミ箱へ）
 
 ## 新規バッチの追加手順（将来）
 

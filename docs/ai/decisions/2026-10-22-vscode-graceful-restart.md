@@ -28,6 +28,21 @@
 - `taskkill /F /IM Code.exe`: ユーザーが明言して禁止（かつ /T 併用ならバッチ自身が kill される、/T なしでもツリー kill に頼る必要が残る）。
 - "Developer: Reload Window" のキー入力のシミュレーション: ウィンドウフォーカス・コマンドパレットのタイプイン・UI 言語に依存し脆弱。AutoHotkey は未導入。
 
+## 改訂（2026-10-28）
+
+`KI-20261026-02` の再検証を受けて、`maintenance/vscode_graceful_restart.py` を改訂（`maintenance-batches.md` の該当セクションにも反映）:
+
+- **対象**: 可視 `Chrome_WidgetWin_1` のみ。不可視 helper（`Chrome_WidgetWin_0`）は WM_CLOSE で閉じないためクローズ対象から除外。
+- **判定**: `SendMessageW` の返り値を使わない（窓プロックの返り値であり、正常処理後も `DefWindowProc` は 0 を返す → 失敗と区別不能）。送信後のウィンドウ消失で判定（最大 15 秒、ベストエフォート。実再起動確認は worker の 180 秒判定）。
+- **インテグリティ**: ターゲットが実行シェルより高インテグリティなら UIPI が WM_CLOSE をフィルタする（2026-10-26 失敗の最有力原因）。実行シェルとターゲットの一致を `GetTokenInformation`（`TokenIntegrityLevel = 25`）で確認し、不一致なら終了コード 3 で「昇格シェルで実行必須」を通知。
+- **self-test**: 単一インスタンス環境では `code <path>` は可視ウィンドウを作らず既存をフォーカスするだけ（不可視 helper が増えてカウントだけ増える）ため `-n` を使用。
+- **worker**: 結果を `docs/ai/tmp/vscode_relaunch_report.txt` へ追記（呼び出し元 shell はクローズで kill されるため、失敗通知の受け口）。attempt id を TR に埋め、`already_ran(attempt)` で ONCE トリガーの再発動を静かに exit 0。
+- **task action**: `cmd /c` を除去し `pythonw.exe` を直接実行（console app 経由だと交互セッションでコンソールウィンドウが残る。`KI-20261028-01`）。worker の出力は `out()` ガード付き。
+- **bat 入口**: `--yes`（execute）モードは `restart-vscode.bat` 内で `start "" /b pythonw` として起動（cmd は即 exit して自前ウィンドウを閉じ、pythonw はコンソールウィンドウを作らない。`KI-20261028-01`）。`ask` モードは Y/N 表示が必要なため console 実行を維持。スクリプト出力は `log()` 統一（stdout 不可時の通知口はレポートファイル）。
+- **完了通知（`--notify-session`）**: worker は成功・失敗双方で `kilo run --session <caller> "<attempt のある 1 行>"` を best-effort 実行（追加ターン1回。local DB セッションのみ）。呼出し元 ID は TR に埋めずスクラッチファイル `docs/ai/tmp/vscode_relaunch_notify.txt` で受け渡す（`/TR` 255 文字上限の実際失敗 → `KI-20261028-02`。entry 書き込み、worker 読んで notify 後削除）。呼出し元がクローズで消えた場合でも `kilo run --session` は session ID（永続）で delivery 可能。console window 非生成のため `capture_output=True` + `CREATE_NO_WINDOW`（`kilo` は `kilo.cmd` shim 解決で redirected handles だけでは防げなかった — `KI-20261028-01`）。`kilo run --session` は target の応答ターンを待つ blocking（worker 側 timeout 60s）: 通知は target が idle の時に届く前提。`kilo` 不在・失敗はレポート行のみで exit code を変えない。
+
+終了コード: 0 成功 / 1 ウィンドウなし・usage / 2 失敗 / 3 インテグリティ不一致（UIPI）。
+
 **トレードオフ（許容）**:
 - 実行毎にタスク定義が HKCU に残存し得る（次実行時に前回の定義を削除）。/Run は一発トリガーを消費する。万一残存してもワーカーは幂等（Code.exe が起動中なら 180 秒待機して無操作終了）。
 - ワーカー実行中の自己削除でタスク定義が残存し得るが、完了した一発タスクは再発動しないため無害。

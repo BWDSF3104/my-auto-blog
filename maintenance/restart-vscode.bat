@@ -34,7 +34,17 @@ if "%MODE%" equ "ask" (
     echo cancel
     exit /b 1
   )
-  set "MODE=execute"
+)
+if "%MODE%" equ "execute" (
+  rem KI-20261028-01: detached pythonw launch, so no console window is created
+  rem and cmd exits immediately (its window closes). Results go to the report file.
+  where pythonw >nul 2>&1
+  if errorlevel 1 (
+    python "%~dp0vscode_graceful_restart.py" "%cd%"
+    exit /b %errorlevel%
+  )
+  start "" /b pythonw "%~dp0vscode_graceful_restart.py" "%cd%"
+  exit /b 0
 )
 python "%~dp0vscode_graceful_restart.py" "%cd%"
 exit /b %errorlevel%

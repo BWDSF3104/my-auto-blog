@@ -1,2 +1,1 @@
 task_file	status	next_action
-docs/ai/tasks/2026-10-28-vscode-restart-wmclose-verify.md	進行中	実装案の承認待ち（対象を可視ウィンドウ限定・返り値ではなく消失ポーリング判定・self-test に -n）
