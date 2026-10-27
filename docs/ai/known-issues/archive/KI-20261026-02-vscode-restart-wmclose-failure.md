@@ -1,7 +1,7 @@
 # VS Code 再起動バッチの WM_CLOSE 失敗（自動再起動未成功）
 
 **Date**: 2026-10-26
-**状態**: 未解決（未着手）
+**状態**: 解決（2026-10-27 16:21 端到端確認）— 判定ロジック修正＋昇格シェルでの実行で、クローズ→worker 再起動→昇格インスタンスで再起動成功を実証
 
 ## 確認した事実
 
@@ -50,16 +50,32 @@
 2. **対象ウィンドウに不可視 helper が含まれる**: `find_code_windows()` は `Chrome_WidgetWin_0/1` を区別しない。実測で 4 ウィンドウ中可視は 1 のみ（`0x3a0a60`）、残り 3 は `visible=0` の `Chrome_WidgetWin_0`。helper ウィンドウは WM_CLOSE で閉じない → `all(send_close(...))` は常态で False になりうる。
 3. **`--self-test` は単一インスタンス環境で検証できない**: `code <path>` は新規ウィンドウを作らず既存ウィンドウをフォーカスし、不可視 helper が増えてカウントだけ増える。実測: self-test 失敗判定、helper `0x50d7a` が未クローズで残存。新規**可視**ウィンドウには `-n` が必要。
 
-### 改善案（未実装・実装開始指示待ち）
+### 改善案 → 実装済み（2026-10-28）
 
 - 対象を **可視 `Chrome_WidgetWin_1` のみ** に限定（`IsWindowVisible`）。
 - 判定は返り値ではなく、送信後の**ウィンドウ/プロセス消失ポーリング**で行い、残存時のみ失敗として通知（ワーカー側の 180 秒判定と統一）。
 - 実行シェルとターゲットウィンドウのインテグリティ一致を確認。不一致なら「UIPI で送信不可 → 昇格シェルで実行必須」と明示（タスクスケジューラで VS Code を昇格起動する現運用で一致する）。
 - `--self-test` は `code -n <scratch>` を使用し、可視ウィンドウの生成＋クローズを検証。
+- `schtasks /Create` に **`/RL HIGHEST`** 追加（既定 Limited では再起動インスタンスが非昇格）。非昇格シェルでは登録不可のため `needs_elevation()` で exit 3（何も変更しない）。
+- worker の attempt id 冪等化: `already_ran(attempt)` で ONCE トリガーの再発動を静かに exit 0。
+- `--self-test` の scratch フォルダは `kilo-safe-rmdir.cmd`（ゴミ箱）へ。
+
+### 実行モード端到端（2026-10-27 15:31、ユーザー許可）
+
+- WM_CLOSE（可視 main window 1、インテグリティ一致 High/High）→ shell kill → worker 0:33:06 に Code.exe 消滅確認＋起動確認 → **success**（`docs/ai/tmp/vscode_relaunch_report.txt`）。クローズ＋再起動経路は機能。
+- ただし**再起動後のインスタンスは非昇格（Medium）**:
+  - `whoami /groups` → Medium（`S-1-16-8192`）。再起動後インスタンス pid 16744 の integrity も Medium、タイトルから `[管理者]` が消えた
+  - 原因: `schtasks /Create` の run level 既定（Limited）。`schtasks /Query /TN "my-auto-blog\vscode-restart" /XML` に `<RunLevel>` がない（=Limited）。よって worker（Limited トークン）が起動した Code.exe は Medium。最上位権限で起動していた元のインスタンス（タスクスケジューラ設定）とは別
+  - 修正案: `schtasks /Create` に **`/RL HIGHEST`** を追加
+- **`/Run` は ONCE トリガーを消費しない**（設計の「完了した一発タスクは再発動しない」は誤り）: バックストップ（0:37）で worker が再発動し、Code.exe が 180 秒待機後に failure（Last Result 2、report 00:40:31）。タスク定義も残存（実行中の `schtasks /Delete` は失敗）。
+- self-test の後始末: `--self-test` が作った scratch フォルダ（`docs/ai/tmp/vscode_selftest`）と、不可視 helper ウィンドウ（WM_CLOSE では閉じない）が残る。VS Code の `globalStorage/storage.json` の `profileAssociations` に scratch フォルダが記録され、起動時にウィンドウが復元されうる。
 
 ### 残存
 
-- self-test が作成した不可視 helper ウィンドウ（hwnd `0x50d7a`）が未クローズで残存（WM_CLOSE では閉じないため）。ユーザーのウィンドウには影響なし。
+- self-test が作成した不可視 helper ウィンドウ（hwnd `0x50d7a`）が未クローズで残存（WM_CLOSE では閉じないため）。ユーザーのウィンドウには影響なし。改訂後は helper はクローズ対象に含まれない。
+- 失敗通知の受け口: worker が `docs/ai/tmp/vscode_relaunch_report.txt` へ結果を追記（実行シェルは自分のウィンドウクローズで kill されるため、 Agent 側の判定はベストエフォート）。
+- 未確認: 実行モードの端到端（実クローズ＋worker による再起動）。`--yes` 実行は Agent 自分の VS Code を閉じるためユーザー許可が必要。
+- 前回のタスク定義 `my-auto-blog\vscode-restart` が残存（非昇格シェルからは `schtasks /Delete` が Access denied）。次回、昇格シェルからの実行時 `/Delete` で消える。
 
 ## 関連
 
