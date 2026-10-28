@@ -1,1 +1,2 @@
 task_file	status	next_action
+docs/ai/tasks/2026-10-28-gitgud-pat.md	進行中	ユーザーに PAT 値の提供を依頼（作成はユーザー本人のみ）→ .env へキー追加
