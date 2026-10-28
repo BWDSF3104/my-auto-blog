@@ -1,8 +1,9 @@
 # gitgud.io PAT 取得と .env 保存
 
-**Status**: 進行中
+**Status**: 完了
 **Date**: 2026-10-28
-**Next Action**: ユーザーに PAT 値の提供を依頼（作成はユーザー本人のみ）→ .env へキー追加
+**Next Action**: 以降の管理はフォーク版（`S:\Documents\AutoBlog\my-auto-blog-nsfw` / gitgud.io）側へ移行。
+本リポジトリ側での残余作業なし。
 
 ## 意図 / 背景
 
