@@ -41,6 +41,11 @@
 - **bat 入口**: `--yes`（execute）モードは `restart-vscode.bat` 内で `start "" /b pythonw` として起動（cmd は即 exit して自前ウィンドウを閉じ、pythonw はコンソールウィンドウを作らない。`KI-20261028-01`）。`ask` モードは Y/N 表示が必要なため console 実行を維持。スクリプト出力は `log()` 統一（stdout 不可時の通知口はレポートファイル）。
 - **完了通知（`--notify-session`）**: worker は成功・失敗双方で `kilo run --session <caller> "<attempt のある 1 行>"` を best-effort 実行（追加ターン1回。local DB セッションのみ）。呼出し元 ID は TR に埋めずスクラッチファイル `docs/ai/tmp/vscode_relaunch_notify.txt` で受け渡す（`/TR` 255 文字上限の実際失敗 → `KI-20261028-02`。entry 書き込み、worker 読んで notify 後削除）。呼出し元がクローズで消えた場合でも `kilo run --session` は session ID（永続）で delivery 可能。console window 非生成のため `capture_output=True` + `CREATE_NO_WINDOW`（`kilo` は `kilo.cmd` shim 解決で redirected handles だけでは防げなかった — `KI-20261028-01`）。`kilo run --session` は target の応答ターンを待つ blocking（worker 側 timeout 60s）: 通知は target が idle の時に届く前提。`kilo` 不在・失敗はレポート行のみで exit code を変えない。
 
+**受け入れ済み制約（2026-10-28 確定・ユーザー合意）**:
+- mobile 起点セッションは connected instance（`kilo remote` relay）または Cloud Agent でない限り app 上 read-only（composer 入力不可）。delivery（`kilo run --session`）は read-only でも届き、target idle なら応答も生成される。双方向化は interactive client（TUI で `/remote` toggle、extension で開く）のみ
+- `kilo run --fork` は動作する（実測: fork 作成＋応答生成 OK、初回 Aborted あり）がフォールバックとして不採用 — 応答が fork の別カードに出る・fork も app 上 read-only・中断ハンドリングが必要
+- agent 側から「セッションが VS Code 上開いているか」は区別不能（`session` テーブルに platform 列なし、metadata null、接続クライアントを見る CLI コマンドなし）。近似は `kilo session list` の status（busy）のみ
+
 終了コード: 0 成功 / 1 ウィンドウなし・usage / 2 失敗 / 3 インテグリティ不一致（UIPI）。
 
 **トレードオフ（許容）**:
