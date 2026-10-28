@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-28T10:57:11.900332+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-28T10:56:29.532380+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Official WoW: Forever AMV Will Get You Super Hyped",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/official-wow-forever-amv-will-get-you-super-hyped/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "World of Warcraft: Forever is almost here, and in case players weren't already excited to return to classic Azeroth, a new animated music video highlighting the war between the Horde and the Alliance "
+    },
+    {
+      "title": "Bleach Mirrors High Mobile Game's Opening Animation Trailer Reveals Theme Song, October 28 Launch",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-27/bleach-mirrors-high-mobile-game-opening-animation-trailer-reveals-theme-song-october-28-launch/.243252",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Forever AMV Will Get You Super",
+    "Bleach Mirrors High"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/official-wow-forever-amv-will-get-you-super-hyped/",
+    "https://www.animenewsnetwork.com/news/2026-10-27/bleach-mirrors-high-mobile-game-opening-animation-trailer-reveals-theme-song-october-28-launch/.243252"
+  ]
+}
