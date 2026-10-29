@@ -1,6 +1,6 @@
 # メンテナンスバッチ
 
-`maintenance/` には本番パイプライン外の開発用・運用用バッチを置きます。本ファイルは各バッチの**一覧と詳細**です。`docs/ai/architecture.md` の Development Tools 節からこちらへ参照します。
+プロジェクト横断で使う正典ツールは Kilo_Commons `bin/`（単一コピー・PATH 登録）に置き、プロジェクト内コピーは置かない。プロジェクト固有のバッチのみ `maintenance/` に置く。本ファイルは各バッチの**一覧と詳細**です。`docs/ai/architecture.md` の Development Tools 節からこちらへ参照します。
 
 ## 一覧
 

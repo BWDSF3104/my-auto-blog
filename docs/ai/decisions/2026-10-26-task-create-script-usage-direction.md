@@ -13,7 +13,7 @@
 
 AGENTS.md / memory-bank-guide.md への追加条項は、禁止条項（例: 「write/edit による直接作成は禁止」）ではなく、スクリプト使用の簡潔な明示にする。ユーザコマンド（`.kilo/command/`）はユーザー向けであり、docs は参照しない:
 
-- タスクファイル作成・`current-task.tsv` 参照行追加は、`python maintenance/task_manager.py add ...`（および終了時は `end`）の実行を明示
+- タスクファイル作成・`current-task.tsv` 参照行追加は、正典 `python S:\Documents\Kilo_Commons\Common_Operations\bin\task_manager.py add ...`（cwd ルート判定。および終了時は `end`）の実行を明示
 - 文言は簡潔に。詳細な禁止事項・例外の列挙は避ける
 - 具体的な文言は実装時に確定
 

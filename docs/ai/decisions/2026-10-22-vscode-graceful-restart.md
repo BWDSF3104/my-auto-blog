@@ -54,3 +54,14 @@
 - ユーザーが手動で VS Code を閉じた直後にタスクが待機している場合、再起動され得る（稀。許容）。
 - 未保存バッファのプロンプトが現れるとクローズが止まり、ワーカーが 180 秒待機後に失敗終了（手動対応必要）。
 - エージェントセッションはクローズ時に中断され得る（設計上）。Kilo セッションは再開可能。
+
+## 正典化注記（2026-10-29）
+
+実装は Kilo_Commons `bin/` 単一正典へ移動（`vscode_graceful_restart.py` / `vscode_relaunch_worker.py` /
+`vscode_restart_common.py` / `kilo-vscode-restart.cmd`）。プロジェクト内 `maintenance/` コピーはリタイア。
+`restart-vscode.bat`（ASCII・CRLF・Y/N 確認）は `kilo-vscode-restart.cmd` ラッパーへ引き継がれ、mode 判定は
+Python 側。変更点: プロジェクトルートは呼出対象フォルダから判定（`--root` > `.git` 親方向 > 対象自身）、
+task name は単一名 `Kilo_Commons\vscode-restart`、report/notify は `<root>/docs/ai/tmp/`、
+`--target`（既定 cwd）で任意フォルダを開く（`--new-window` = VS Code `-n`）。TR から `code` パスを除去
+（worker が解決。実測 196/191 文字）。
+詳細: Kilo_Commons `docs/ai/decisions/2026-10-29-vscode-restart-canonicalization.md`。

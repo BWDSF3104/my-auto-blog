@@ -149,9 +149,9 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 - Scheduler: `EulerAncestralDiscreteScheduler` (Euler a)
 - GPU予約: `@spaces.GPU(duration=20)` (実推論約5秒、マージン含め20秒)
 
-## Development Tools (`maintenance/`)
+## Development Tools（正典 Kilo_Commons `bin/`・プロジェクト固有のみ `maintenance/`）
 
-本番パイプライン外の開発用ツール置き場:
+本番パイプライン外の開発用ツール。正典は Kilo_Commons `bin/`（単一コピー・PATH）、プロジェクト固有ツールのみ `maintenance/`:
 
 | Tool | Purpose |
 |------|---------|

@@ -162,7 +162,7 @@ Python スクリプトは `print()`（stdout）または `stderr` へ出力。CI
 
 ### 16. `docs/ai/verification/{task}/`
 - 検証実行ログの置き場（例: `2026-10-12-refactor-equivalence/pytest_full.log`, `runs/{name}/stdout.log`, `stderr.log`）
-- **保持**: `maintenance/archive_memory_bank.py` が直近2ランのみ保持（`--tmp-retention-days` は別）
+- **保持**: 正典 `bin/archive_memory_bank.py`（Kilo_Commons・cwd ルート判定）が直近2ランのみ保持（`--tmp-retention-days` は別）
 
 ### 17. `scripts/data/api_test_results/`
 - 実APIテスト結果（`python scripts/tests/test_real_apis.py --save`）
