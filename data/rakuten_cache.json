@@ -484,5 +484,54 @@
       "reviewCount": 0
     },
     "hits": 1
+  },
+  "ポケットモンスター Legends Z-A": {
+    "fetched_at": "2026-10-29T02:09:06.224224+00:00",
+    "product": {
+      "itemName": "Pokemon LEGENDS Z-A",
+      "itemPrice": 6200,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18314207%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21683049%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3550/4902370553550.jpg?_ex=128x128",
+      "reviewCount": 455
+    },
+    "hits": 3
+  },
+  "ポケットモンスター": {
+    "fetched_at": "2026-10-29T02:09:07.545336+00:00",
+    "product": {
+      "itemName": "予約 ポケモンカード くじ シュリンク付 ポケモン 第38弾 ポケモンカード BOXくじ 未開封シュリンク BOX 全500口 バトルパートナーズ アビスアイ ストームエメラルダ PSA",
+      "itemPrice": 15980,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00u5wso.eo1qw3ae.g00u5wso.eo1qxfb7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2Fbox-k-1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftoysprime%2Fi%2F10001996%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysprime/cabinet/imgrc0108313871.jpg?_ex=128x128",
+      "reviewCount": 1630
+    },
+    "hits": 3
+  },
+  "Pokemon Center Original ぬいぐるみ": {
+    "fetched_at": "2026-10-29T02:09:09.044845+00:00",
+    "product": {
+      "itemName": "【中古】(非常に良い)Pokemonポケモン センター オリジナル 8インチ ポケ ぬいぐるみ - アローラン バルピックス",
+      "itemPrice": 42663,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tp86o.eo1qwbf3.g00tp86o.eo1qx94c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoodlifestore%2Fhb0cqf2s3c9%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fgoodlifestore%2Fi%2F10545654%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/goodlifestore/cabinet/25063000-1/b0cqf2s3c9.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 2
+  },
+  "Pokemon": {
+    "fetched_at": "2026-10-29T02:09:10.529858+00:00",
+    "product": {
+      "itemName": "予約 ポケモンカード くじ シュリンク付 ポケモン 第38弾 ポケモンカード BOXくじ 未開封シュリンク BOX 全500口 バトルパートナーズ アビスアイ ストームエメラルダ PSA",
+      "itemPrice": 15980,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00u5wso.eo1qw3ae.g00u5wso.eo1qxfb7/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2Fbox-k-1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Ftoysprime%2Fi%2F10001996%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysprime/cabinet/imgrc0108313871.jpg?_ex=128x128",
+      "reviewCount": 1630
+    },
+    "hits": 3
+  },
+  "ケモノ ポケモン": {
+    "fetched_at": "2026-10-29T02:09:12.026184+00:00",
+    "product": null,
+    "hits": 0
   }
 }

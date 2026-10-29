@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-29T11:02:23.809459+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-29T11:01:42.597987+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Sleeping Dogs Movie Director Explains Why The Adaptation Is Taking So Long",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/sleeping-dogs-movie-director-explains-why-the-adaptation-is-taking-so-long/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Like many video game movies , Sleeping Dogs seems stuck in development hell. Even though it looked like progress on this adaptation of the cult-classic action game was once again picking up when Shang"
+    },
+    {
+      "title": "GTA 6 Online Could Be Released In Early 2027, Bank Says",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/gta-6-online-could-be-released-in-early-2027-bank-says/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Take-Two's biggest release ever, GTA 6 , is coming up in November, but the company's share price continues to drop. It's down 21% this year and has now dipped under $200 this week after reaching a 52-"
+    }
+  ],
+  "affiliate_keywords": [
+    "Sleeping Dogs Movie",
+    "GTA Online Could"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/sleeping-dogs-movie-director-explains-why-the-adaptation-is-taking-so-long/",
+    "https://www.gamespot.com/articles/gta-6-online-could-be-released-in-early-2027-bank-says/"
+  ]
+}
