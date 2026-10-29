@@ -23,9 +23,10 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - 明示的なユーザー確認なしに、破壊的なターミナルコマンドを実行してはならない。
 - 禁止: `rm -rf`、`git push --force`、`sudo`。
 - ワークスペースルート外のファイル変更は禁止。**例外**: docs 内で参照されている外部フォルダでのユーザーとのファイル交換のみ。
-- **ファイル削除**: `./kilo-safe-remove.cmd <file>` を使う（`Remove-Item` / `del` は不可）。
-- **フォルダ削除**: `./kilo-safe-rmdir.cmd <folder>` を使う（`Remove-Item -Recurse` / `rmdir /s` は不可）。
-- この2コマンドは **Windows ゴミ箱** へ削除する（復元可能・恒久削除ではない）。実装（VB ラッパー）と根拠は `docs/ai/decisions/2026-10-18-recycle-bin-deletion.md` を参照。
+- **ファイル削除**: `kilo-safe-remove <file>` を使う（`Remove-Item` / `del` は不可）。
+- **フォルダ削除**: `kilo-safe-rmdir <folder>` を使う（`Remove-Item -Recurse` / `rmdir /s` は不可）。
+- この2コマンドは **Windows ゴミ箱** へ削除する（復元可能・恒削除ではない）。実装（VB ラッパー）と根拠は `docs/ai/decisions/2026-10-18-recycle-bin-deletion.md` を参照。
+- **正典ツール一元化**: `kilo-safe-*` / `task_manager.py` / `archive_memory_bank.py` はプロジェクトごとにコピーを持たず、`S:\Documents\Kilo_Commons\Common_Operations\bin\`（PATH 登録）の単一正典を使用。プロジェクトルート判定チェーン: `--root` 明示 > cwd（または指定パス）から `.git` 親方向探索 > cwd 自体。git は前提ではなく「あれば使う」（git add は repo 存在時のみ、なければ skipped）。詳細は Kilo_Commons `AGENTS.md` / `decisions/2026-10-29-central-tooling-bin.md`。
 - **決して** PowerShell の `Get-Content` / `Set-Content` パイプラインでファイル内容を操作しないこと。UTF-8 エンコーディングを破損させる（BOM 付与、日本語文字化け）。
 - **editツール以外でファイルを改写する場合**: 必ず事前に `git diff` でリモートとの差異がないことを確認し、改写後はファイルが破損していないことを確認すること。
 
@@ -38,11 +39,11 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
   1. コードをスクラッチフォルダ `docs\ai\tmp\` にファイルとして書き出す（例: `docs\ai\tmp\fetch_check.py` / `.ps1`）。
   2. `python <file>` / `powershell docs\ai\tmp\<file>.ps1` で実行する。
   3. 出力ファイルも同じスクラッチフォルダに保持する。
-  - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリは `maintenance/archive_memory_bank.py` で削除される。
+  - 使い捨てスクリプトを本番コードディレクトリ（例: `scripts/`）に置かないこと。`docs/ai/tmp/` は gitignore 対象で、7 日以上更新のないエントリは正典 `S:\Documents\Kilo_Commons\Common_Operations\bin\archive_memory_bank.py`（cwd ルート）で削除される。
 
 ## コード検証
 
-- **Python変更後**: `pytest scripts/tests/ -v` で全テスト通過を確認。`maintenance/`（開発ツール）を変更した場合は加えて `pytest maintenance/tests/ -v` も実行する。
+- **Python変更後**: `pytest scripts/tests/ -v` で全テスト通過を確認。`maintenance/`（開発ツール）を変更した場合は加えて `pytest maintenance/tests/ -v` も実行する。正典ツール（task_manager / archive_memory_bank）のテストは Kilo_Commons `tests/`（`python -m pytest tests/ -v`）に集約済み。
 - **Astro変更後・記事生成後**: `npm run build` でビルド成功を確認。
 - **`scripts/prompts/` のみ変更**: 検証不要。
 - **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時に、ユーザーに `I:\マイドライブ\kilo` 下のスクリーンショットを送付する（サブフォルダで日付・タスク名を区切可）。
@@ -98,13 +99,13 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 ### タスク開始時（調査開始段階）
 
 調査開始段階（タスク受理直後・調査着手時）で実行（初回コード変更前では遅い）:
-`python maintenance/task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`
+`python S:\Documents\Kilo_Commons\Common_Operations\bin\task_manager.py add --slug <short-name> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]`
 実行効果: タスクファイル `docs/ai/tasks/YYYY-MM-DD-short-name.md` の作成 + `current-task.tsv` 参照行追加（自動）
 - `--slug`: タスク短名（小文字英数字とハイフンのみ。例 `task-slash-commands`）
 - `--title`: タスク名（タスクファイルの `#` 見出し）
 - `--backlog`: バックログ参照 `P<N> #<N>`（該当する場合）
 - `--next-action`: 次のアクション（`current-task.tsv` の 3 列目に記録）
-タスク作成後は `python maintenance/archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
+タスク作成後は `python S:\Documents\Kilo_Commons\Common_Operations\bin\archive_memory_bank.py`（dry-run 確認後 `--apply`）を実行する。
 タスク開始の完了前に実装着手しないこと。
 
 ### 設計・方針を選定・確定したタイミング
@@ -121,7 +122,7 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 ### タスク終了
 
 タスク完了時に実行:
-`python maintenance/task_manager.py end --task <パス / date-slug / slug>`
+`python S:\Documents\Kilo_Commons\Common_Operations\bin\task_manager.py end --task <パス / date-slug / slug>`
 実行効果:
 - `Status` を `完了` へ
 - `current-task.tsv` 参照行削除

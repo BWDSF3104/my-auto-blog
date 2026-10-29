@@ -190,8 +190,9 @@ def test_worker_notifies_on_failure(tmp_path, monkeypatch):
     assert "notify sent" in text
 
 
-def test_cleanup_scratch_does_not_go_through_cmd(tmp_path, monkeypatch):
+def test_cleanup_scratch_uses_canonical_bin_directly(tmp_path, monkeypatch):
     calls = []
+    captured_kwargs = {}
 
     class FakeResult:
         returncode = 0
@@ -200,15 +201,21 @@ def test_cleanup_scratch_does_not_go_through_cmd(tmp_path, monkeypatch):
 
     def fake_run(cmd, *args, **kwargs):
         calls.append(cmd)
+        captured_kwargs.update(kwargs)
         return FakeResult()
 
     monkeypatch.setattr(subprocess, "run", fake_run)
+    # Simulate the canonical bin on PATH so the resolver returns this folder.
+    monkeypatch.setattr(shutil, "which", lambda name: str(tmp_path / name))
     monkeypatch.setattr(g, "_repo_root", lambda: str(tmp_path))
     monkeypatch.setattr(g, "report_path", lambda: str(tmp_path / "report.txt"))
     monkeypatch.setattr(sys, "stdout", None)
-    maint = tmp_path / "maintenance"
-    maint.mkdir()
-    (maint / "safe-rmdir.ps1").write_text("x", encoding="utf-8")
+    ps1 = tmp_path / "safe-rmdir.ps1"
+    ps1.write_text("x", encoding="utf-8")
     g.cleanup_scratch(str(tmp_path / "docs" / "ai" / "tmp" / "scratch"))
     assert calls and calls[0][0] == "powershell.exe"
     assert "cmd.exe" not in calls[0]
+    # Direct call to the canonical ps1, cwd = project root (so the canonical
+    # tool's .git walk-up resolves this project).
+    assert calls[0][5] == str(ps1)
+    assert captured_kwargs.get("cwd") == str(tmp_path)

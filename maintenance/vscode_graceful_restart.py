@@ -450,21 +450,34 @@ def _repo_root() -> str:
     return os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 
+CANONICAL_BIN = r"S:\Documents\Kilo_Commons\Common_Operations\bin"
+
+
+def _canonical_rmdir_ps1() -> str:
+    """正典 bin の safe-rmdir.ps1 を解決（PATH > script フォルダ > 既定定数）。"""
+    found = shutil.which("kilo-safe-rmdir.cmd")
+    base = os.path.dirname(found) if found else CANONICAL_BIN
+    return os.path.join(base, "safe-rmdir.ps1")
+
+
 def cleanup_scratch(scratch: str) -> None:
     """scratch フォルダを Windows ゴミ箱へ（恒久削除ではない）。
 
     cmd.exe を経由しない（console app を経路に入れない → ウィンドウを生成しない、
-    KI-20261028-01）。`kilo-safe-rmdir.cmd` と同一実装（`maintenance/safe-rmdir.ps1`）を
-    powershell へ直接呼出。
+    KI-20261028-01）。正典（Kilo_Commons bin）の `safe-rmdir.ps1` を powershell へ直接呼出。
+    cwd をプロジェクトルートにすることで、正典のルート判定チェーンが
+    `.git` からこのプロジェクトを正しく解決する。
     """
-    ps1 = os.path.join(_repo_root(), "maintenance", "safe-rmdir.ps1")
+    root = _repo_root()
+    ps1 = _canonical_rmdir_ps1()
     if not os.path.exists(ps1):
-        log("scratch left in place (maintenance/safe-rmdir.ps1 not found)")
+        log("scratch left in place (canonical safe-rmdir.ps1 not found)")
         return
-    rel = os.path.relpath(scratch, _repo_root()).replace("\\", "/")
+    rel = os.path.relpath(scratch, root).replace("\\", "/")
     result = subprocess.run(
         ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ps1, rel],
         capture_output=True, text=True, encoding="utf-8", errors="replace",
+        cwd=root,
     )
     log(f"scratch cleanup: {result.stdout.strip() or f'exit {result.returncode}'}")
 

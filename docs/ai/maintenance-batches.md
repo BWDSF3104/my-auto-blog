@@ -30,7 +30,7 @@ python maintenance/archive_memory_bank.py --tmp-retention-days 14
 
 **副作用・注意**:
 - dry-run が既定。`--apply` 時に初めて反映。
-- 削除は `kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd`（Windows ゴミ箱へ・復元可能）へ委譲。
+- 削除は正典 `kilo-safe-remove` / `kilo-safe-rmdir`（Kilo_Commons bin・PATH・Windows ゴミ箱へ・復元可能）へ委譲。
 - `--apply` 時にスクリプトが touch したパスは `git add` される（staging のみ）。
 - 判定は mtime 基準（ファイル名日付方式は不採用）。
 
@@ -91,7 +91,7 @@ python maintenance/vscode_graceful_restart.py <cwd> --notify-session <sessionID>
 - `--yes`（execute）は `start /b pythonw` 分離起動のため**コンソールに出力が出ない**。bat の終了コードは 0（即時 exit）で、結果はレポートファイル `docs/ai/tmp/vscode_relaunch_report.txt`（`entry:` 行＋worker 行）で読む
 - Agent 経路の推奨: `cmd /c bat` を経由しない（中断時ツールラッパーのコンソールが孤児化し得る）。`pythonw maintenance/vscode_graceful_restart.py <cwd>` をシェル/background_process から直接。console app を経路に入れない（KI-20261028-01）
 - 終了コードは従来どおり 0 成功 / 1 usage・ウィンドウなし / 2 失敗 / 3 非昇格・UIPI（直接呼出時に有効）
-- `--self-test` のスクラッチ後始末は同一実装のまま cmd 経由をやめ `powershell -File maintenance/safe-rmdir.ps1` 直接呼出（`kilo-safe-rmdir.cmd` の実体。ゴミ箱送り）
+- `--self-test` のスクラッチ後始末は同一実装のまま cmd 経由をやめ、正典 bin の `safe-rmdir.ps1`（`kilo-safe-rmdir.cmd` の実体）を `powershell -File` で直接呼出（ゴミ箱送り）
 
 **動作**（設計・2026-10-28 改訂）:
 - エージェントの shell は Code.exe 子ツリー内 → バッチ内の直接再起動はクローズ時にツリー kill されうる。

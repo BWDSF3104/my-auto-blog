@@ -155,7 +155,7 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 
 | Tool | Purpose |
 |------|---------|
-| `maintenance/archive_memory_bank.py` | Memory Bank バッチクリーンアップ。dry-run 既定・`--apply` で反映。tasks/ は mtime 14 日基準でアーカイブ、verification/ は mtime 順直近 2 ラン保持、tmp/ は最更新 mtime が 7 日以上経過したエントリを削除（保持期間は `--tmp-retention-days` で変更）。削除は `kilo-safe-remove.cmd` / `kilo-safe-rmdir.cmd` へ委譲 |
+| `bin/archive_memory_bank.py`（Kilo_Commons 正典） | Memory Bank バッチクリーンアップ（cwd ルート判定）。dry-run 既定・`--apply` で反映。tasks/ は mtime 14 日基準でアーカイブ、verification/ は mtime 順直近 2 ラン保持、tmp/ は最更新 mtime が 7 日以上経過したエントリを削除（保持期間は `--tmp-retention-days` で変更）。削除は正典 `kilo-safe-remove` / `kilo-safe-rmdir`（Windows ゴミ箱へ・復元可能）へ委譲。git add は repo 存在時のみ（なければ skipped） |
 | `maintenance/task_manager.py` | タスク開始/終了。tasks/ と current-task.tsv の更新、完了時の「対応項目チェック」 |
 | `maintenance/restart-vscode.bat` | VS Code 正規クローズ（WM_CLOSE）＋再起動。強制終了なし、タスクスケジューラへ委譲 |
 
