@@ -82,6 +82,11 @@
 
 ## 関連
 
-- バッチ: `maintenance/vscode_graceful_restart.py`（`schedule_relaunch()`）、`maintenance/vscode_relaunch_worker.py`
+- バッチ: 正典 `Kilo_Commons\Common_Operations\bin\vscode_graceful_restart.py`（`schedule_relaunch()`）、`bin\vscode_relaunch_worker.py`、`bin\kilo-vscode-restart.cmd`（2026-10-29 正典化。プロジェクト内 `maintenance/` コピーはリタイア）
 - 設計: `docs/ai/decisions/2026-10-22-vscode-graceful-restart.md`（2026-10-28 改訂）
 - 解決済み KI: `docs/ai/known-issues/archive/KI-20261026-02-vscode-restart-wmclose-failure.md`
+
+## 移動注記（2026-10-29）
+
+- ラッパーの execute モード（`--yes`）は `start "" /b pythonw "%~dp0vscode_graceful_restart.py" %2..%9`（正典 bin 内の `.cmd`）。`%*` は mode 引数自身を含むため使わない（mode 以降をスライス）。cmd 内は ASCII・CRLF、label/loop なし
+- テストは Kilo_Commons `tests/test_vscode_graceful_restart.py` へ集約（`test_wrapper_execute_mode_uses_detached_pythonw` が `.cmd` の分離起動を照合）

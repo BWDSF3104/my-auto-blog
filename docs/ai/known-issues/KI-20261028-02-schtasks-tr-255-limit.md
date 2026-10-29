@@ -18,9 +18,10 @@
 
 - caller を TR に埋めず、entry がスクラッチファイル `docs/ai/tmp/vscode_relaunch_notify.txt` へ書き、worker が読んで notify 後削除（`write_notify_target()` / `read_notify_target()`）
 - `schedule_relaunch()` に長さガード: TR が 255 を超える場合は `log()` に失敗行を出して exit 2（検知可能）
-- テスト: `test_task_command_line_excludes_caller`, `test_notify_target_handoff`
+- テスト: `test_task_action_stays_under_tr_limit_and_excludes_caller`, `test_notify_target_handoff`（Kilo_Commons `tests/`）
+- 2026-10-29 正典化: `code` 実行ファイルパスを TR から外した（worker が解決）ため実環境の TR は約 190 文字へ短縮。ガードは維持
 
 ## 関連
 
-- `maintenance/vscode_graceful_restart.py`（`task_command_line()` / `schedule_relaunch()`）
+- 正典 `Kilo_Commons\Common_Operations\bin\vscode_graceful_restart.py`（`task_command_line()` / `schedule_relaunch()`）。プロジェクト内コピーはリタイア済み
 - 設計: `docs/ai/decisions/2026-10-22-vscode-graceful-restart.md`（`--notify-session`）

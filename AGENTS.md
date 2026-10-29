@@ -10,7 +10,7 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 
 ## コード検証（本プロジェクト）
 
-- **Python変更後**: `pytest scripts/tests/ -v`。`maintenance/`（開発ツール）変更時は加えて `pytest maintenance/tests/ -v`。正典ツール（task_manager / archive_memory_bank）のテストは Kilo_Commons `tests/`。
+- **Python変更後**: `pytest scripts/tests/ -v`。正典ツール（Kilo_Commons `bin/`）変更時は加えて Kilo_Commons で `python -m pytest tests/ -v`。プロジェクト固有テストのみ `maintenance/tests/`。
 - **Astro変更後・記事生成後**: `npm run build` でビルド成功を確認。
 - **`scripts/prompts/` のみ変更**: 検証不要。
 - **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時に `I:\マイドライブ\kilo` 下のスクリーンショットを送付（サブフォルダで日付・タスク名を区切可）。
@@ -41,7 +41,7 @@ my-auto-blog/
 │   ├── article/               # article/ パッケージ（config/gemini/image/affiliate/trends/frontmatter/slug_links/meta/characters/geninfo）
 │   └── prompts/               # プロンプトテンプレート
 ├── hf-space/                  # 自社 HuggingFace Space のデプロイ元ソース（blume/kemono-image-api / SDXL パイプライン）
-├── maintenance/               # 開発ツール（正典ツールは Kilo_Commons bin/。本プロジェクトは vscode_graceful_restart.py 等のみ）
+├── maintenance/               # 開発ツール（プロジェクト固有のみ。正典は Kilo_Commons bin/・PATH。VS Code 再起動ツールは 2026-10-29 正典化）
 ├── src/                       # Astro ソース
 │   └── content/posts/         # 生成された Markdown 記事
 ├── public/                    # 静的アセット（public/images/ = 生成画像）

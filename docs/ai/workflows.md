@@ -14,7 +14,7 @@
 git push 前に以下の確認を行う:
 
 - [ ] 編集したファイルの内容を `git diff` で確認（hex 解析・codepoint 検証は不要）
-- [ ] Pythonファイルを変更した場合はテストが全件通過したか (`pytest scripts/tests/ -v`。`maintenance/` を変更した場合は加えて `pytest maintenance/tests/ -v`)
+- [ ] Pythonファイルを変更した場合はテストが全件通過したか (`pytest scripts/tests/ -v`。正典ツール（Kilo_Commons `bin/`）変更時は加えて Kilo_Commons で `python -m pytest tests/ -v`)
 - [ ] Astroファイルを変更した場合はビルドが成功したか (`npm run build`)
 - [ ] タスクファイルの `Status` が『完了』へ更新され、`current-task.tsv` の参照行が削除されたか
 - [ ] 新規問題が `known-issues/` に新ファイルとして記録されたか

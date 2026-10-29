@@ -6,9 +6,9 @@
 
 | バッチ | 実行口 | 呼び出し | 目的 |
 |--------|--------|----------|------|
-| Memory Bank クリーンアップ | `maintenance/archive_memory_bank.py` | タスク開始時 | `tasks/`・`verification/`・`tmp/` の保持管理 |
-| タスク開始/終了 | `maintenance/task_manager.py` | タスク開始時・終了時 | `tasks/` と `current-task.tsv` の更新・報告 |
-| VS Code 再起動 | `maintenance/restart-vscode.bat` | 手動 (Agent / ユーザー) | VS Code 正規クローズ＋再起動（強制終了なし） |
+| Memory Bank クリーンアップ | `kilo-safe-*` / `python <bin>/archive_memory_bank.py`（Kilo_Commons 正典） | タスク開始時 | `tasks/`・`verification/`・`tmp/` の保持管理 |
+| タスク開始/終了 | `python <bin>/task_manager.py`（Kilo_Commons 正典） | タスク開始時・終了時 | `tasks/` と `current-task.tsv` の更新・報告 |
+| VS Code 再起動 | `kilo-vscode-restart`（Kilo_Commons bin・PATH） | 手動 (Agent / ユーザー) | VS Code 正規クローズ＋再起動（強制終了なし） |
 
 ## `archive_memory_bank.py`
 
@@ -16,9 +16,9 @@
 
 **実行方法**:
 ```
-python maintenance/archive_memory_bank.py
-python maintenance/archive_memory_bank.py --apply
-python maintenance/archive_memory_bank.py --tmp-retention-days 14
+python S:\Documents\Kilo_Commons\Common_Operations\bin\archive_memory_bank.py
+python S:\Documents\Kilo_Commons\Common_Operations\bin\archive_memory_bank.py --apply
+python S:\Documents\Kilo_Commons\Common_Operations\bin\archive_memory_bank.py --tmp-retention-days 14
 ```
 
 **保持基準**:
@@ -35,7 +35,7 @@ python maintenance/archive_memory_bank.py --tmp-retention-days 14
 - 判定は mtime 基準（ファイル名日付方式は不採用）。
 
 **関連**:
-- テスト: `maintenance/tests/test_archive_memory_bank.py`
+- テスト: Kilo_Commons `tests/test_archive_memory_bank.py`（正典）
 - 設計: `docs/ai/decisions/2026-10-14-memory-bank-cleanup-script.md`、`2026-10-15-tmp-retention.md`
 
 ## `task_manager.py`
@@ -45,9 +45,9 @@ python maintenance/archive_memory_bank.py --tmp-retention-days 14
 **実行方法**:
 ```
 # 開始（タスクファイル作成 + current-task.tsv 参照行追加）
-python maintenance/task_manager.py add --slug <slug> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]
+python S:\Documents\Kilo_Commons\Common_Operations\bin\task_manager.py add --slug <slug> --title "<タスク名>" [--backlog "P<N> #<N>"] [--next-action "<next action>"]
 # 終了（Status→完了 + current-task.tsv 参照行削除 + レポート）
-python maintenance/task_manager.py end --task <パス / date-slug / slug>
+python S:\Documents\Kilo_Commons\Common_Operations\bin\task_manager.py end --task <パス / date-slug / slug>
 ```
 - 既定は反映。`--dry-run` でプレビュー、`--no-git-add` で staging スキップ。
 
@@ -59,26 +59,29 @@ python maintenance/task_manager.py end --task <パス / date-slug / slug>
 - 完了タスクの `known-issues/` 行は `known-issues/archive/` へ mv、`backlog.md` 完了行は削除（対応項目チェックの推奨）。
 
 **関連**:
-- テスト: `maintenance/tests/test_task_manager.py`
+- テスト: Kilo_Commons `tests/test_task_manager.py`（正典）
 - 設計: `docs/ai/decisions/2026-10-19-task-end-related-check.md`
 
-## `restart-vscode.bat`
+## `kilo-vscode-restart`（Kilo_Commons bin 正典・全プロジェクト共用）
 
 **目的**: VS Code の**正規クローズ（WM_CLOSE）＋再起動**を VS Code の PowerShell（Agent）から実行。`taskkill` 等の強制終了は不使用。
 
-**実行口**（3 ファイル）:
-- `restart-vscode.bat` — 実行口（ASCII のみ・CRLF）
+**実行口**（正典 `Kilo_Commons\Common_Operations\bin\`。プロジェクト内コピーは置かない — 2026-10-29 正典化）:
+- `kilo-vscode-restart.cmd` — 実行口（ASCII のみ・CRLF、PATH 登録）
 - `vscode_graceful_restart.py` — 特定・WM_CLOSE・タスク委譲・自己テスト
 - `vscode_relaunch_worker.py` — タスクスケジューラ worker（再起動実行）
+- `vscode_restart_common.py` — 共有（ルート判定チェーン・`code` 解決・report/notify 口）
 
 **実行方法**:
 ```
-maintenance\restart-vscode.bat                  # 無引数: Y/N 確認
-maintenance\restart-vscode.bat --yes            # 非対話 (Agent 用)
-maintenance\restart-vscode.bat --dry-run <cwd>  # 特定のみ
-maintenance\restart-vscode.bat --self-test <cwd>  # 新規ウィンドウ 起動/クローズ 自己テスト
-python maintenance/vscode_graceful_restart.py <cwd> --notify-session <sessionID>  # Agent 経路（推奨）＋完了通知
+kilo-vscode-restart.cmd                       # 無引数: Y/N 確認（対象 = cwd）
+kilo-vscode-restart.cmd --yes                 # 非対話 (Agent 用)
+kilo-vscode-restart.cmd --dry-run [target]    # 特定のみ
+kilo-vscode-restart.cmd --self-test <scratch> # 新規ウィンドウ 起動/クローズ 自己テスト
+pythonw S:\Documents\Kilo_Commons\Common_Operations\bin\vscode_graceful_restart.py <target> --notify-session <sessionID>  # Agent 経路（推奨）＋完了通知
 ```
+- プロジェクトルートは対象フォルダから判定（`--root` 明示 > `.git` 親方向探索 > 対象フォルダ自身）。report / notify は `<root>/docs/ai/tmp/`
+- `--new-window` を付けると VS Code `-n` で新規ウィンドウとして開く（再起動時にプロジェクトフォルダを切り替える口。単一インスタンス環境では `code <folder>` は既存ウィンドウのフォーカスになる）
 
 **完了通知（--notify-session, 2026-10-28）**:
 - 呼出し元セッション ID を渡すと、worker が完了時（成功・失敗双方）に `kilo run --session <id> "<message>"` で follow-up を送る（追加ターン1回）。local DB にあるセッションのみ。`kilo` 不在・失敗は skip/失敗行をレポートへ
@@ -89,20 +92,20 @@ python maintenance/vscode_graceful_restart.py <cwd> --notify-session <sessionID>
 
 **使い方変更（2026-10-28）**:
 - `--yes`（execute）は `start /b pythonw` 分離起動のため**コンソールに出力が出ない**。bat の終了コードは 0（即時 exit）で、結果はレポートファイル `docs/ai/tmp/vscode_relaunch_report.txt`（`entry:` 行＋worker 行）で読む
-- Agent 経路の推奨: `cmd /c bat` を経由しない（中断時ツールラッパーのコンソールが孤児化し得る）。`pythonw maintenance/vscode_graceful_restart.py <cwd>` をシェル/background_process から直接。console app を経路に入れない（KI-20261028-01）
+- Agent 経路の推奨: `cmd /c` を経由しない（中断時ツールラッパーのコンソールが孤児化し得る）。`pythonw <bin>\vscode_graceful_restart.py <target>` をシェル/background_process から直接。console app を経路に入れない（KI-20261028-01）
 - 終了コードは従来どおり 0 成功 / 1 usage・ウィンドウなし / 2 失敗 / 3 非昇格・UIPI（直接呼出時に有効）
 - `--self-test` のスクラッチ後始末は同一実装のまま cmd 経由をやめ、正典 bin の `safe-rmdir.ps1`（`kilo-safe-rmdir.cmd` の実体）を `powershell -File` で直接呼出（ゴミ箱送り）
 
 **動作**（設計・2026-10-28 改訂）:
 - エージェントの shell は Code.exe 子ツリー内 → バッチ内の直接再起動はクローズ時にツリー kill されうる。
-- 回避: **タスクスケジューラの一発タスク `my-auto-blog\vscode-restart`** へ再起動委譲（`/Create` `/RL HIGHEST` ＋ 約5分バックストップ ＋ `/Run` 即時）。`/RL` なし（既定 Limited）では worker が非昇格トークンで Code.exe を起動し、再起動インスタンスが昇格しない。`/RL HIGHEST` の登録には昇格トークンが必要 → 非昇格シェルは exit 3。
+- 回避: **タスクスケジューラの一発タスク `Kilo_Commons\vscode-restart`**（正典化で単一のグローバル名）へ再起動委譲（`/Create` `/RL HIGHEST` ＋ 約5分バックストップ ＋ `/Run` 即時）。`/RL` なし（既定 Limited）では worker が非昇格トークンで Code.exe を起動し、再起動インスタンスが昇格しない。`/RL HIGHEST` の登録には昇格トークンが必要 → 非昇格シェルは exit 3。
 - task action は `cmd /c` を経由せず `pythonw.exe`（GUI subsystem）を直接実行 → console app 経由しないのでコンソールウィンドウが出ない（`KI-20261028-01`）。pythonw がなければ `python.exe` へフォールバック。worker の出力はレポートファイルのみ（stdout なしでも例外を出さない）。
-- bat の execute モード（`--yes`）は `start "" /b pythonw` 起動（cmd 即 exit・コンソールウィンドウ非生成。`KI-20261028-01` 実装・実測済み）。スクリプト側出力は `log()` 統一で、stdout 不可時はレポートファイル `docs/ai/tmp/vscode_relaunch_report.txt` へ追記。
+- ラッパー（`kilo-vscode-restart.cmd`）の execute モード（`--yes`）は `start "" /b pythonw` 起動（cmd 即 exit・コンソールウィンドウ非生成。`KI-20261028-01` 実装・実測済み）。スクリプト側出力は `log()` 統一で、stdout 不可時はレポートファイル `<root>/docs/ai/tmp/vscode_relaunch_report.txt` へ追記。
 - `/Run` は ONCE トリガーを消費しないためバックストップで再発動し得る。worker は attempt id（タスク TR に埋める）で `already_ran` を判定し、再実行は静かに exit 0。
 - 対象は code.exe の**可視** Electron メインウィンドウのみ（クラス `Chrome_WidgetWin_1`）。不可視 helper（`Chrome_WidgetWin_0`）は WM_CLOSE で閉じないため除外。IME・crashpad 等は除外。
 - 判定は `SendMessageW` の返り値では行わない（返り値は窓プロックの返り値で正常処理後も 0）。送信後の**ウィンドウ消失**で判定（最大 15 秒。ベストエフォート — 自分のウィンドウが閉じた瞬間に shell も殺される）。実際の再起動確認は worker（180 秒）。
 - インテグリティチェック: ターゲットが実行シェルより高インテグリティなら UIPI が WM_CLOSE をフィルタする → 終了コード 3 で「昇格シェルで実行必須」を通知。
-- `code` は PATH にない → `code.cmd` 全パスで **DETACHED_PROCESS(0x10)** 起動。単一インスタンス環境で新規ウィンドウを作るには `-n` が必要。
+- `code` は native 実行ファイル優先で解決（`shutil.which` > install ルートの `Code.exe` / `bin\code.exe`、`code.cmd` はフォールバックのみ）。**DETACHED_PROCESS(0x10)** 起動。単一インスタンス環境で新規ウィンドウを作るには `-n` が必要。
 
 **呼び出しタイミング**: 手動（Agent / ユーザー）。
 
@@ -115,13 +118,13 @@ python maintenance/vscode_graceful_restart.py <cwd> --notify-session <sessionID>
 **終了コード**（`vscode_graceful_restart.py`）: 0 成功 / 1 ウィンドウなし・usage / 2 失敗（ウィンドウが閉じない）/ 3 インテグリティ不一致（UIPI）またはシェル非昇格
 
 **関連**:
-- 設計: `docs/ai/decisions/2026-10-22-vscode-graceful-restart.md`（2026-10-28 改訂追記）
-- テスト: `maintenance/tests/test_vscode_graceful_restart.py`（判定ロジック）。実ウィンドウ検証は `--self-test`（scratch は `kilo-safe-rmdir.cmd` でゴミ箱へ）
+- 設計: `docs/ai/decisions/2026-10-22-vscode-graceful-restart.md`（2026-10-28 改訂追記）、正典化: Kilo_Commons `docs/ai/decisions/2026-10-29-vscode-restart-canonicalization.md`
+- テスト: Kilo_Commons `tests/test_vscode_graceful_restart.py`（判定ロジック）。実ウィンドウ検証は `--self-test`（scratch は正典 bin の `safe-rmdir.ps1` でゴミ箱へ）
 
 ## 新規バッチの追加手順（将来）
 
-1. `maintenance/` にバッチを実装（Python は標準ライブラリのみ・削除は `kilo-safe-*.cmd` へ委譲）。
+1. 本プロジェクト固有のバッチは `maintenance/` に実装（Python は標準ライブラリのみ・削除は正典 `kilo-safe-*` へ委譲）。プロジェクト横断で使うツールは Kilo_Commons `bin/`（単一正典・PATH）。
 2. 本ファイル「一覧」表に 1 行追加し、該当バッチのセクション（目的・実行方法・呼び出しタイミング・副作用・関連）を追加。
 3. `docs/ai/architecture.md` の Development Tools 表に 1 行追加。
-4. 関連テスト（あれば）を `maintenance/tests/` に追加し `pytest maintenance/tests/ -v` で確認。
+4. 関連テスト（あれば）は正典ツールのテストと同一場所に集約（Kilo_Commons `tests/` → `python -m pytest tests/ -v`）。プロジェクト固有テストのみ `maintenance/tests/`。
 5. 設計判断があれば `docs/ai/decisions/` に新ファイルを記録。

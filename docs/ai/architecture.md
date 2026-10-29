@@ -156,12 +156,12 @@ Scripts use `python-dotenv` (`from dotenv import load_dotenv`) to load environme
 | Tool | Purpose |
 |------|---------|
 | `bin/archive_memory_bank.py`（Kilo_Commons 正典） | Memory Bank バッチクリーンアップ（cwd ルート判定）。dry-run 既定・`--apply` で反映。tasks/ は mtime 14 日基準でアーカイブ、verification/ は mtime 順直近 2 ラン保持、tmp/ は最更新 mtime が 7 日以上経過したエントリを削除（保持期間は `--tmp-retention-days` で変更）。削除は正典 `kilo-safe-remove` / `kilo-safe-rmdir`（Windows ゴミ箱へ・復元可能）へ委譲。git add は repo 存在時のみ（なければ skipped） |
-| `maintenance/task_manager.py` | タスク開始/終了。tasks/ と current-task.tsv の更新、完了時の「対応項目チェック」 |
-| `maintenance/restart-vscode.bat` | VS Code 正規クローズ（WM_CLOSE）＋再起動。強制終了なし、タスクスケジューラへ委譲 |
+| `bin/task_manager.py`（Kilo_Commons 正典） | タスク開始/終了。tasks/ と current-task.tsv の更新、完了時の「対応項目チェック」 |
+| `bin/kilo-vscode-restart.cmd`（Kilo_Commons 正典） | VS Code 正規クローズ（WM_CLOSE）＋再起動。強制終了なし、タスクスケジューラへ委譲。正典化（2026-10-29）でプロジェクト内コピーをリタイア |
 
 > 各バッチの実行方法・呼び出しタイミング・副作用・関連テスト/設計の詳細: [`docs/ai/maintenance-batches.md`](ai/maintenance-batches.md)
 
-テスト: `maintenance/tests/`（`maintenance/` 変更時のみ実行。標準コマンドは `pytest scripts/tests/ -v`）
+テスト: 正典ツールは Kilo_Commons `tests/`（`python -m pytest tests/ -v`）。プロジェクト固有テストのみ `maintenance/tests/`（標準コマンドは `pytest scripts/tests/ -v`）
 
 ## Configuration
 

@@ -122,7 +122,7 @@ docs/ai/ は git 追跡対象。変更履歴は git commit に委ね、docs/ai/ 
 
 ### バッチクリーンアップ（新規タスク開始時に実行）
 
-`python maintenance/archive_memory_bank.py` で実行（dry-run が既定・`--apply` で反映）。`--apply` 時にスクリプト自身が touch したパスは `git add` される（staging のみ・`--no-git-add` でスキップ。commit/push はエージェントが担当）。
+正典 `python S:\Documents\Kilo_Commons\Common_Operations\bin\archive_memory_bank.py`（cwd ルート判定）で実行（dry-run が既定・`--apply` で反映）。`--apply` 時にスクリプト自身が touch したパスは `git add` される（staging のみ・`--no-git-add` でスキップ。commit/push はエージェントが担当）。
 
 | ディレクトリ・ファイル | 処理 |
 |---------|------|
