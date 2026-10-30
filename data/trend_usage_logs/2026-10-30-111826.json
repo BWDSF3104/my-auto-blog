@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-30T11:18:26.367488+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-30T11:17:46.580398+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Star Trek Talent Mourn Patrick Stewart: 'Captain Picard Stood For the Best of Us'",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/star-trek-mourns-patrick-stewart-tributes",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Sir Patrick Stewart’s friends and colleagues from the world of Star Trek have taken to social media to share their tributes to the late Jean-Luc Picard actor, who died Thursday at the age of 86 from A"
+    },
+    {
+      "title": "How To Find The Three-Faced Puppet In Phantom Blade Zero – Triple Threat Guide",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/phantom-blade-zero-three-faced-puppet-triple-threat/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Are you scouring the Wulin in search of the Three-Faced Puppet in Phantom Blade Zero ? This foe might be one of the toughest that you face early in the campaign. If you achieve victory, you're bound t"
+    }
+  ],
+  "affiliate_keywords": [
+    "Captain Picard Stood For the B",
+    "How To Find"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/star-trek-mourns-patrick-stewart-tributes",
+    "https://www.gamespot.com/articles/phantom-blade-zero-three-faced-puppet-triple-threat/"
+  ]
+}
