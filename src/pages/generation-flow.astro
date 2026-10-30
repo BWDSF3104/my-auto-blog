@@ -1,0 +1,146 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ThemeInit from '../components/ThemeInit.astro';
+import '../styles/global.css';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = "生成フロー | BWD's AI Auto Blog";
+const pageDescription = "このブログの記事が自動生成される仕組み（トレンド収集から公開まで）を図解するページ";
+
+const steps = [
+  {
+    no: 1,
+    title: 'トレンド収集',
+    script: 'scripts/fetch_topics.py',
+    body: 'Hacker News / RSS / GitHub Search / ゲーム・アニメニュースなど複数ソースからトレンドを収集します（APIキー不要）。ソースごとにカテゴリ（tech / kemono / pokemon）と TTL（既定24時間）で鮮度を管理し、e621 はキャラクター特徴の集計専用として扱います。',
+    out: 'data/topics/{timestamp}.json + latest.json',
+  },
+  {
+    no: 2,
+    title: 'ジャンルスコアリング',
+    script: 'scripts/genre_score.py',
+    body: 'Cloudflare Workers AI（Clef-flash）が各トピックのジャンル適合度を 0〜100 点で採点します。失敗時やスコアファイルが無い場合はランダム選択にフォールバックし、フローは止まりません。',
+    out: 'data/genre_scores/topics.json',
+  },
+  {
+    no: 3,
+    title: '記事・画像生成',
+    script: 'scripts/generate_article.py',
+    body: 'パイプラインの中核です。被り防止の指示を注入し、世界設定を重み付きランダムで決め、プロンプトを構築して Gemini が2段階（下書き→精製）で記事を生成します。画像は HuggingFace Space（ZeroGPU、SDXL）が第一候補で、残量が閾値未満などの場合は Pollinations.ai（Flux）に切り替わります。',
+    out: 'src/content/posts/*.md + public/images/*.avif',
+  },
+  {
+    no: 4,
+    title: 'コミット・プッシュ',
+    script: 'github-actions[bot]',
+    body: '生成物（記事・画像・キャッシュ JSON・ログ）を [skip ci] 付きの自動コミットでプッシュします。',
+    out: 'Git リポジトリ（main）',
+  },
+  {
+    no: 5,
+    title: 'GSC インデックス再確認',
+    script: 'scripts/gsc_index.py',
+    body: '新記事の URL について Google Search Console の index:inspect で再確認を依頼します。失敗してもパイプラインはブロックしません。',
+    out: 'Google Search Console',
+  },
+  {
+    no: 6,
+    title: 'ビルド',
+    script: 'npm run build',
+    body: 'サイト内検索インデックスを生成し、Astro で静的サイトをビルドします。',
+    out: 'dist/',
+  },
+  {
+    no: 7,
+    title: 'デプロイ',
+    script: 'GitHub Pages',
+    body: 'ビルド結果を GitHub Pages（ベースパス /my-auto-blog/）へデプロイします。',
+    out: 'https://bwdsf3104.github.io/my-auto-blog/',
+  },
+];
+
+const models = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <link rel="manifest" href={`${baseUrl}/manifest.json`} />
+    <meta name="theme-color" content="#f1f5f9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="google-site-verification" content="1mHkEb2UNbzsWZB98HrQVu2oI62PzkMBsMVVed8Kwug" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BWD's AI Auto Blog" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <ThemeInit />
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 antialiased min-h-screen py-10 px-4 font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    <div class="max-w-3xl mx-auto">
+      <Header />
+
+      <main>
+        <h1 class="text-3xl font-bold mb-4">生成フロー</h1>
+        <p class="mb-8">
+          このブログは GitHub Actions の <code>deploy.yml</code> が毎朝 日本時間 8:00（cron <code>0 23 * * *</code> UTC）と手動トリガーで起動し、
+          トレンド収集から公開までを全自動で実行しています。データベースも認証も SSR も使わない、Astro の SSG 構成です。
+        </p>
+
+        <ol class="space-y-6 list-none pl-0">
+          {steps.map((s) => (
+            <li class="border border-slate-200 dark:border-slate-700 rounded-xl p-5 bg-white dark:bg-slate-800">
+              <div class="flex items-baseline gap-3 flex-wrap">
+                <span class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{s.no}</span>
+                <h2 class="text-xl font-semibold">{s.title}</h2>
+                <code class="text-sm text-slate-500 dark:text-slate-400">{s.script}</code>
+              </div>
+              <p class="mt-2">{s.body}</p>
+              {s.no === 3 && (
+                <div class="mt-3 text-sm space-y-2">
+                  <p>
+                    <strong>Gemini のフォールバック順序</strong>（モデルごとに最大3回試行、404 / NOT_FOUND なら即次のモデルへ）：
+                  </p>
+                  <p class="font-mono">{models.join(' → ')}</p>
+                  <p>
+                    <strong>記事タイプ</strong>：ワークフローの環境変数 <code>PROMPT_TYPE=kemono_story</code> で固定されており、自動実行は常にストーリー系です。
+                    技術系（default）・AI 深掘り（ai_deep）は手動実行時のみ使われます。
+                  </p>
+                  <p>
+                    <strong>ZeroGPU 残量確認</strong>：<code>https://huggingface.co/api/spaces/zero-gpu/quota</code> を確認し、
+                    残量が 40 GPU秒 未満なら Pollinations.ai に切り替えます（確認は最大3回試行、失敗時は fail-open で HF を試します）。
+                  </p>
+                </div>
+              )}
+              <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">出力先：<code>{s.out}</code></p>
+            </li>
+          ))}
+        </ol>
+
+        <h2 class="text-2xl font-bold mt-10 mb-3">出典</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a href="https://github.com/BWDSF3104/my-auto-blog" target="_blank" rel="noopener noreferrer">README（リポジトリ）</a></li>
+          <li><a href="https://github.com/BWDSF3104/my-auto-blog/blob/main/.github/workflows/deploy.yml" target="_blank" rel="noopener noreferrer">.github/workflows/deploy.yml</a></li>
+          <li><a href="https://github.com/BWDSF3104/my-auto-blog/blob/main/scripts/generate_article.py" target="_blank" rel="noopener noreferrer">scripts/generate_article.py</a></li>
+          <li><a href="https://github.com/BWDSF3104/my-auto-blog/blob/main/scripts/article/config.py" target="_blank" rel="noopener noreferrer">scripts/article/config.py</a>（モデル順序・ZeroGPU 閾値）</li>
+          <li><a href="https://github.com/BWDSF3104/my-auto-blog/blob/main/scripts/article/gemini.py" target="_blank" rel="noopener noreferrer">scripts/article/gemini.py</a>（リトライ処理）</li>
+        </ul>
+      </main>
+
+      <Footer />
+    </div>
+
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/my-auto-blog/sw.js').catch(() => {});
+      }
+    </script>
+  </body>
+</html>
