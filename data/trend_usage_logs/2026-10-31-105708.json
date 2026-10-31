@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-31T10:57:08.507769+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-10-31T10:56:29.546704+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "North American Anime, Manga Releases, October 25-31",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-10-30/north-american-anime-manga-releases-october-25-31/.243223",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "2026 Upcoming Games Release Schedule",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "2026 has entered the home stretch, and it has been a very exciting year for video games. In addition to being the first full year for the Switch 2, 2026 will also see the release of Grand Theft Auto 6"
+    }
+  ],
+  "affiliate_keywords": [
+    "North American Anime",
+    "2026 Upcoming Games Release Sc"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-10-30/north-american-anime-manga-releases-october-25-31/.243223",
+    "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/"
+  ]
+}
