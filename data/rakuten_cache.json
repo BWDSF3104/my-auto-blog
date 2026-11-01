@@ -598,5 +598,27 @@
     "fetched_at": "2026-10-31T02:00:53.079376+00:00",
     "product": null,
     "hits": 0
+  },
+  "大神": {
+    "fetched_at": "2026-11-01T01:47:14.566894+00:00",
+    "product": {
+      "itemName": "[11/1限定11％OFFクーポン!] 神棚・神具 『札入れ』【z0083】【札差し お札 御札 御神札 おふだ 天照皇大神宮 氏神 桧 檜 ヒノキ 国産 板 神社 合格祈願】(御札立て お札立て 神社 立て マンション 合格祈願 宝くじ お参り シンプル デザイン モダン神棚 現代 )",
+      "itemPrice": 6160,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q09io.eo1qw4a7.g00q09io.eo1qx1e2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkb-hayashi%2F801kc-m006%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkb-hayashi%2Fi%2F10000619%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/kb-hayashi/cabinet/01/801kc-m006.jpg?_ex=128x128",
+      "reviewCount": 135
+    },
+    "hits": 3
+  },
+  "狼と香辛料 Merchant Meets the Wise Wolf Blu-ray BOX": {
+    "fetched_at": "2026-11-01T01:47:16.080771+00:00",
+    "product": {
+      "itemName": "【限定特典付き】TVアニメ『狼と香辛料 MERCHANT MEETS THE WISE WOLF』第3巻 初回生産限定版 [Blu-ray]（全巻購入特典：描き下ろし全巻収納BOX引き換えシリアルコード付）-福山 潤, 小清水亜美",
+      "itemPrice": 18800,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00uoeyo.eo1qwa70.g00uoeyo.eo1qx5f6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcreacoshop%2Fb0cy2g1gsp-mv-18800%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fcreacoshop%2Fi%2F10039578%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/creacoshop/cabinet/13215782/13886485/imgrc0123177578.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 1
   }
 }
