@@ -15,6 +15,8 @@ Astro、Gemini AI、トレンドデータ収集で動作する自動ブログ生
 - **`scripts/prompts/` のみ変更**: 検証不要。
 - **レイアウト変更後**: ビルド後、出力HTMLを解析して構造を検証（クラス名、要素階層、コンテンツ順序）。修正完了時に `I:\マイドライブ\kilo` 下のスクリーンショットを送付（サブフォルダで日付・タスク名を区切可）。
 - **fetch_topics.py 更新後**: `python scripts/tests/test_real_apis.py --save`（結果は `scripts/data/api_test_results/` に保存）。
+- **テストの外部 API 呼出し**: 禁止を継続（API キー・クォータ・レート制限を要するサービスは `unittest.mock`）。例外: 公開・認証不要・クォータ不要の RSS フィードは実呼出し可。決定: `docs/ai/decisions/2026-11-02-tests-must-not-call-external-api.md`
+- `scripts/tests/test_real_apis.py` は `__test__ = False` により pytest 集外の独立実測スクリプト（本決定の対象外・`docs/ai/api-rate-limits.md` のレート制限遵守）
 
 ## 開発
 
