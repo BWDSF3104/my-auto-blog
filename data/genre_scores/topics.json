@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-11-01T01:44:46.754595+00:00",
+  "scored_at": "2026-11-02T02:00:20.195986+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -14,6 +14,51 @@
         "slice_of_life": 52,
         "mystery": 24,
         "historical": 10
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/heres-everything-you-can-unlock-for-pokemon-go-halloween-2026/",
+      "title": "You Can Unlock Lots Of Free Stuff In Pokemon Go’s Halloween 2026 Event",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 15,
+        "fantasy": 36,
+        "cyberpunk": 5,
+        "action": 26,
+        "slice_of_life": 21,
+        "mystery": 16,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/everything-new-in-fortnite-treasure-hunters-mini-season/",
+      "title": "Everything New In Fortnite Treasure Hunters Mini-Season",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 18,
+        "fantasy": 27,
+        "cyberpunk": 5,
+        "action": 48,
+        "slice_of_life": 11,
+        "mystery": 20,
+        "historical": 29
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/the-biggest-new-game-releases-of-november-2026/",
+      "title": "The Biggest New Game Releases Of November 2026",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 10,
+        "fantasy": 12,
+        "cyberpunk": 28,
+        "action": 62,
+        "slice_of_life": 15,
+        "mystery": 18,
+        "historical": 13
       }
     },
     {
@@ -122,48 +167,93 @@
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/life-sim-meets-otherworldly-encroaching-horror-in-village-in-the-shade/",
-      "title": "Life-Sim Meets Otherworldly, Encroaching Horror in Village In The Shade",
-      "source": "GameSpot RSS",
+      "key": "https://www.ign.com/articles/heat-director-michael-mann-hospitalized-after-accidentally-shooting-himself-in-the-leg",
+      "title": "Heat Director Michael Mann Hospitalized After Accidentally Shooting Himself in the Leg",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 22,
-        "fantasy": 30,
-        "cyberpunk": 4,
-        "action": 5,
-        "slice_of_life": 67,
-        "mystery": 31,
-        "historical": 29
+        "sf": 21,
+        "fantasy": 4,
+        "cyberpunk": 40,
+        "action": 57,
+        "slice_of_life": 15,
+        "mystery": 34,
+        "historical": 7
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/2027-upcoming-games-release-schedule/",
-      "title": "2027 Upcoming Games Release Schedule",
-      "source": "GameSpot RSS",
+      "key": "https://www.ign.com/articles/taika-waititi-blasts-critics-as-irrelevant-out-of-touch-obsolete-following-klara-and-the-suns-negative-reviews",
+      "title": "Taika Waititi Blasts Critics as 'Irrelevant, Out of Touch, Obsolete' Following Klara and the Sun's Negative Reviews",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 29,
-        "fantasy": 20,
-        "cyberpunk": 27,
-        "action": 43,
-        "slice_of_life": 21,
-        "mystery": 21,
+        "sf": 56,
+        "fantasy": 26,
+        "cyberpunk": 22,
+        "action": 6,
+        "slice_of_life": 35,
+        "mystery": 13,
         "historical": 13
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/2026-upcoming-games-release-schedule/1100-6534941/",
-      "title": "2026 Upcoming Games Release Schedule",
-      "source": "GameSpot RSS",
+      "key": "https://www.ign.com/articles/petit-planet-switch-2-release-date",
+      "title": "Hoyoverse’s Cozy Sim Petit Planet Coming to Nintendo Switch 2 in 2027",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 29,
-        "fantasy": 15,
-        "cyberpunk": 37,
-        "action": 73,
-        "slice_of_life": 11,
-        "mystery": 17,
-        "historical": 11
+        "sf": 36,
+        "fantasy": 37,
+        "cyberpunk": 16,
+        "action": 5,
+        "slice_of_life": 76,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/robert-downey-jr-and-pedro-pascal-swap-places-for-halloween-with-mister-fantastic-and-doctor-doom-costumes",
+      "title": "Robert Downey Jr. and Pedro Pascal Swap Places for Halloween With Mister Fantastic and Doctor Doom Costumes",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 34,
+        "fantasy": 17,
+        "cyberpunk": 11,
+        "action": 25,
+        "slice_of_life": 14,
+        "mystery": 11,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/everyone-is-running-a-con-in-you-can-see-everything",
+      "title": "Everyone Is Running a Con in You Can See Everything",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 23,
+        "fantasy": 11,
+        "cyberpunk": 34,
+        "action": 26,
+        "slice_of_life": 29,
+        "mystery": 58,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/uk-deals-aliexpress-has-a-ton-of-early-black-friday-deals-for-gamers",
+      "title": "UK Deals: AliExpress Has a Ton of Early Black Friday Deals for Gamers",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
+        "fantasy": 5,
+        "cyberpunk": 14,
+        "action": 10,
+        "slice_of_life": 23,
+        "mystery": 7,
+        "historical": 6
       }
     },
     {
@@ -227,93 +317,138 @@
       }
     },
     {
-      "key": "https://www.ign.com/articles/whats-new-on-apple-tv-november-2026",
-      "title": "Everything Coming to Apple TV in November",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/japanese-animation-tv-ranking-october-19-25/.243409",
+      "title": "Japanese Animation TV Ranking, October 19-25",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 10,
-        "fantasy": 5,
-        "cyberpunk": 5,
-        "action": 16,
-        "slice_of_life": 61,
-        "mystery": 15,
-        "historical": 7
+        "sf": 41,
+        "fantasy": 56,
+        "cyberpunk": 30,
+        "action": 58,
+        "slice_of_life": 43,
+        "mystery": 28,
+        "historical": 20
       }
     },
     {
-      "key": "https://www.ign.com/articles/persona-1-remake-footage-seemingly-leaks-online",
-      "title": "Persona 1 Remake Footage Seemingly Leaks Online",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 10,
-        "fantasy": 33,
-        "cyberpunk": 19,
-        "action": 25,
-        "slice_of_life": 44,
-        "mystery": 41,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/how-to-read-the-redwall-books-in-order",
-      "title": "How to Read the Redwall Books in Order",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 13,
-        "fantasy": 84,
-        "cyberpunk": 3,
-        "action": 26,
-        "slice_of_life": 18,
-        "mystery": 13,
-        "historical": 24
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/best-deals-for-october-31-2026",
-      "title": "The Best Deals Today: Apple Watch Ultra 4, Ocarina of Time Remake, Pikmin 4, and More",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/japan-video-game-rankings-october-19-25/.243410",
+      "title": "Japan's Video Game Rankings, October 19-25",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
         "sf": 36,
-        "fantasy": 36,
-        "cyberpunk": 23,
-        "action": 44,
-        "slice_of_life": 21,
-        "mystery": 20,
-        "historical": 13
+        "fantasy": 45,
+        "cyberpunk": 41,
+        "action": 64,
+        "slice_of_life": 30,
+        "mystery": 30,
+        "historical": 15
       }
     },
     {
-      "key": "https://www.ign.com/articles/joe-manganiello-says-he-will-never-give-up-hope-on-his-dd-dragonlance-tv-series",
-      "title": "Joe Manganiello Says He 'Will Never Give Up Hope' on His D&D Dragonlance TV Series",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/bocchi-the-rock-manga-gets-anime-film-in-2027/.243417",
+      "title": "Bocchi the Rock! Manga Gets Anime Film in 2027",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 27,
-        "fantasy": 82,
+        "sf": 5,
+        "fantasy": 8,
         "cyberpunk": 3,
-        "action": 23,
-        "slice_of_life": 8,
-        "mystery": 12,
-        "historical": 10
+        "action": 11,
+        "slice_of_life": 80,
+        "mystery": 10,
+        "historical": 4
       }
     },
     {
-      "key": "https://www.ign.com/articles/it-welcome-to-derry-drops-surprise-halloween-episode",
-      "title": "It: Welcome to Derry Drops Surprise Halloween Episode",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/jun-kirarazaka-blobtopia-manga-ends-in-3-chapters/.243401",
+      "title": "Jun Kirarazaka's Blobtopia Manga Ends in 3 Chapters",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 15,
-        "fantasy": 13,
-        "cyberpunk": 4,
-        "action": 22,
-        "slice_of_life": 11,
-        "mystery": 36,
-        "historical": 6
+        "sf": 41,
+        "fantasy": 53,
+        "cyberpunk": 12,
+        "action": 27,
+        "slice_of_life": 30,
+        "mystery": 16,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/hiromasa-okujima-shijukara-ga-naku-koro-ni-manga-ends-in-next-chapter/.243394",
+      "title": "Hiromasa Okujima Shijūkara ga Naku Koro ni Manga Ends in Next Chapter",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 24,
+        "fantasy": 17,
+        "cyberpunk": 24,
+        "action": 29,
+        "slice_of_life": 51,
+        "mystery": 30,
+        "historical": 12
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/charisma-tv-anime-reveals-january-7-debut-in-teaser-video/.243413",
+      "title": "Charisma TV Anime Reveals January 7 Debut in Teaser Video",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 34,
+        "fantasy": 43,
+        "cyberpunk": 34,
+        "action": 48,
+        "slice_of_life": 41,
+        "mystery": 29,
+        "historical": 12
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/rock-is-a-lady-modesty-hiroshi-fukuda-launches-new-manga/.243399",
+      "title": "Rock is a Lady's Modesty's Hiroshi Fukuda Launches New Manga",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 21,
+        "fantasy": 30,
+        "cyberpunk": 22,
+        "action": 39,
+        "slice_of_life": 42,
+        "mystery": 27,
+        "historical": 19
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-01/idoly-pride-game-ends-service-on-march-1/.243397",
+      "title": "Idoly Pride Game Ends Service on March 1",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 22,
+        "fantasy": 22,
+        "cyberpunk": 13,
+        "action": 24,
+        "slice_of_life": 49,
+        "mystery": 12,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-10-31/shiba-inu-rooms-manga-gets-tv-anime-in-summer-2027/.243404",
+      "title": "Shiba Inu Rooms Manga Gets TV Anime in Summer 2027",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 19,
+        "fantasy": 28,
+        "cyberpunk": 33,
+        "action": 16,
+        "slice_of_life": 49,
+        "mystery": 32,
+        "historical": 7
       }
     },
     {
@@ -329,141 +464,6 @@
         "slice_of_life": 15,
         "mystery": 20,
         "historical": 31
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-31/comisma-sumitomo-mitsui-trust-bank-establish-anime-production-fund/.243384",
-      "title": "Comisma, Sumitomo Mitsui Trust Bank Establish Anime Production Fund",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 12,
-        "fantasy": 15,
-        "cyberpunk": 19,
-        "action": 20,
-        "slice_of_life": 24,
-        "mystery": 14,
-        "historical": 12
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-31/cosplayer-enako-sings-voice-acts-in-isshiki-san-wants-to-know-about-love-anime/.243383",
-      "title": "Cosplayer Enako Sings, Voice-Acts in Isshiki-san Wants to Know About Love Anime",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 10,
-        "fantasy": 14,
-        "cyberpunk": 6,
-        "action": 12,
-        "slice_of_life": 48,
-        "mystery": 9,
-        "historical": 4
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-31/final-fantasy-xiv-game-reveals-february-19-early-access-date-for-evercold-expansion-new-job-zephyr/.243380",
-      "title": "Final Fantasy XIV Game Reveals February 19 Early Access Date for 'Evercold' Expansion, New Job Zephyr",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 19,
-        "fantasy": 76,
-        "cyberpunk": 7,
-        "action": 41,
-        "slice_of_life": 15,
-        "mystery": 16,
-        "historical": 18
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-31/inherit-the-winds-anime-reveals-4-more-cast-members-new-visual/.243373",
-      "title": "Inherit the Winds Anime Reveals 4 More Cast Members, New Visual",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 35,
-        "fantasy": 44,
-        "cyberpunk": 17,
-        "action": 54,
-        "slice_of_life": 26,
-        "mystery": 23,
-        "historical": 29
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-30/sanrio-kuromi-character-gets-1st-film-in-2027/.243372",
-      "title": "Sanrio's Kuromi Character Gets 1st Film in 2027",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 8,
-        "fantasy": 20,
-        "cyberpunk": 3,
-        "action": 12,
-        "slice_of_life": 50,
-        "mystery": 10,
-        "historical": 5
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-30/north-american-anime-manga-releases-october-25-31/.243223",
-      "title": "North American Anime, Manga Releases, October 25-31",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 41,
-        "fantasy": 44,
-        "cyberpunk": 38,
-        "action": 51,
-        "slice_of_life": 40,
-        "mystery": 34,
-        "historical": 19
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-30/brazil-ccxp-screens-world-premiere-of-garena-free-fire-game-free-fire-daybreak-anime/.243371",
-      "title": "Brazil's CCXP Screens World Premiere of Garena Free Fire Game's Free Fire Daybreak Anime",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 26,
-        "fantasy": 20,
-        "cyberpunk": 32,
-        "action": 45,
-        "slice_of_life": 12,
-        "mystery": 11,
-        "historical": 7
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-30/hiragi-san-house-of-vampires-manga-gets-tv-anime/.243370",
-      "title": "Hiragi-san's House of Vampires Manga Gets TV Anime",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 22,
-        "fantasy": 48,
-        "cyberpunk": 6,
-        "action": 29,
-        "slice_of_life": 34,
-        "mystery": 19,
-        "historical": 7
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-30/king-gnu-band-hold-1st-u.s-headline-shows-in-los-angeles-on-march-26-new-york-on-april-2/.243369",
-      "title": "King Gnu Band Hold 1st U.S. Headline Shows in Los Angeles on March 26, New York on April 2",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 7,
-        "fantasy": 4,
-        "cyberpunk": 8,
-        "action": 9,
-        "slice_of_life": 32,
-        "mystery": 11,
-        "historical": 6
       }
     },
     {
@@ -1114,123 +1114,111 @@
   ],
   "copyrights": [
     {
-      "name": "bambi_(film)",
+      "name": "animal_crossing",
       "scores": {
-        "sf": 6,
-        "fantasy": 45,
-        "cyberpunk": 2,
-        "action": 9,
-        "slice_of_life": 42,
-        "mystery": 7,
-        "historical": 28
-      }
-    },
-    {
-      "name": "capcom",
-      "scores": {
-        "sf": 29,
-        "fantasy": 20,
-        "cyberpunk": 36,
-        "action": 76,
-        "slice_of_life": 9,
-        "mystery": 18,
-        "historical": 14
-      }
-    },
-    {
-      "name": "clover_studio",
-      "scores": {
-        "sf": 40,
-        "fantasy": 37,
-        "cyberpunk": 37,
-        "action": 34,
-        "slice_of_life": 42,
-        "mystery": 31,
-        "historical": 15
-      }
-    },
-    {
-      "name": "disney",
-      "scores": {
-        "sf": 19,
-        "fantasy": 68,
-        "cyberpunk": 6,
-        "action": 26,
-        "slice_of_life": 25,
-        "mystery": 16,
-        "historical": 18
-      }
-    },
-    {
-      "name": "dreamworks",
-      "scores": {
-        "sf": 27,
-        "fantasy": 47,
-        "cyberpunk": 11,
-        "action": 29,
-        "slice_of_life": 24,
-        "mystery": 15,
-        "historical": 16
-      }
-    },
-    {
-      "name": "european_mythology",
-      "scores": {
-        "sf": 20,
-        "fantasy": 68,
+        "sf": 12,
+        "fantasy": 24,
         "cyberpunk": 4,
-        "action": 19,
-        "slice_of_life": 17,
-        "mystery": 20,
+        "action": 13,
+        "slice_of_life": 42,
+        "mystery": 10,
+        "historical": 7
+      }
+    },
+    {
+      "name": "asian_mythology",
+      "scores": {
+        "sf": 22,
+        "fantasy": 57,
+        "cyberpunk": 7,
+        "action": 30,
+        "slice_of_life": 19,
+        "mystery": 17,
         "historical": 45
       }
     },
     {
-      "name": "five_nights_at_freddy's",
+      "name": "carolina_panthers",
       "scores": {
-        "sf": 17,
-        "fantasy": 8,
-        "cyberpunk": 5,
-        "action": 24,
-        "slice_of_life": 6,
-        "mystery": 41,
-        "historical": 4
+        "sf": 16,
+        "fantasy": 9,
+        "cyberpunk": 14,
+        "action": 39,
+        "slice_of_life": 22,
+        "mystery": 16,
+        "historical": 12
       }
     },
     {
-      "name": "freefall_(webcomic)",
+      "name": "cinderfrost",
       "scores": {
-        "sf": 37,
-        "fantasy": 20,
-        "cyberpunk": 28,
-        "action": 35,
-        "slice_of_life": 45,
-        "mystery": 32,
-        "historical": 10
+        "sf": 46,
+        "fantasy": 44,
+        "cyberpunk": 34,
+        "action": 32,
+        "slice_of_life": 21,
+        "mystery": 22,
+        "historical": 14
       }
     },
     {
-      "name": "glitch_productions",
+      "name": "creatures_(company)",
       "scores": {
-        "sf": 41,
-        "fantasy": 14,
-        "cyberpunk": 45,
-        "action": 33,
+        "sf": 40,
+        "fantasy": 53,
+        "cyberpunk": 29,
+        "action": 41,
         "slice_of_life": 28,
-        "mystery": 26,
+        "mystery": 31,
+        "historical": 16
+      }
+    },
+    {
+      "name": "east_asian_mythology",
+      "scores": {
+        "sf": 21,
+        "fantasy": 52,
+        "cyberpunk": 8,
+        "action": 24,
+        "slice_of_life": 23,
+        "mystery": 19,
+        "historical": 43
+      }
+    },
+    {
+      "name": "green_bay_packers",
+      "scores": {
+        "sf": 11,
+        "fantasy": 4,
+        "cyberpunk": 6,
+        "action": 30,
+        "slice_of_life": 24,
+        "mystery": 10,
         "historical": 8
       }
     },
     {
-      "name": "how_to_train_your_dragon",
+      "name": "japanese_mythology",
       "scores": {
-        "sf": 18,
-        "fantasy": 82,
-        "cyberpunk": 2,
-        "action": 33,
-        "slice_of_life": 20,
-        "mystery": 11,
-        "historical": 35
+        "sf": 15,
+        "fantasy": 56,
+        "cyberpunk": 4,
+        "action": 20,
+        "slice_of_life": 18,
+        "mystery": 15,
+        "historical": 47
+      }
+    },
+    {
+      "name": "legend_of_ahya",
+      "scores": {
+        "sf": 36,
+        "fantasy": 66,
+        "cyberpunk": 21,
+        "action": 39,
+        "slice_of_life": 25,
+        "mystery": 26,
+        "historical": 29
       }
     },
     {
@@ -1246,6 +1234,18 @@
       }
     },
     {
+      "name": "nfl",
+      "scores": {
+        "sf": 17,
+        "fantasy": 7,
+        "cyberpunk": 12,
+        "action": 39,
+        "slice_of_life": 17,
+        "mystery": 14,
+        "historical": 14
+      }
+    },
+    {
       "name": "nintendo",
       "scores": {
         "sf": 26,
@@ -1258,15 +1258,15 @@
       }
     },
     {
-      "name": "okami_(capcom)",
+      "name": "pleasant_goat_and_big_big_wolf",
       "scores": {
-        "sf": 21,
-        "fantasy": 73,
-        "cyberpunk": 11,
-        "action": 62,
-        "slice_of_life": 18,
-        "mystery": 19,
-        "historical": 35
+        "sf": 13,
+        "fantasy": 44,
+        "cyberpunk": 5,
+        "action": 31,
+        "slice_of_life": 25,
+        "mystery": 13,
+        "historical": 15
       }
     },
     {
@@ -1280,56 +1280,8 @@
         "mystery": 17,
         "historical": 9
       }
-    },
-    {
-      "name": "pseudoregalia",
-      "scores": {
-        "sf": 24,
-        "fantasy": 33,
-        "cyberpunk": 20,
-        "action": 21,
-        "slice_of_life": 24,
-        "mystery": 20,
-        "historical": 16
-      }
-    },
-    {
-      "name": "scottgames",
-      "scores": {
-        "sf": 39,
-        "fantasy": 49,
-        "cyberpunk": 30,
-        "action": 33,
-        "slice_of_life": 31,
-        "mystery": 34,
-        "historical": 26
-      }
-    },
-    {
-      "name": "the_amazing_digital_circus",
-      "scores": {
-        "sf": 26,
-        "fantasy": 25,
-        "cyberpunk": 31,
-        "action": 22,
-        "slice_of_life": 24,
-        "mystery": 20,
-        "historical": 9
-      }
-    },
-    {
-      "name": "ultraman_(series)",
-      "scores": {
-        "sf": 76,
-        "fantasy": 11,
-        "cyberpunk": 12,
-        "action": 70,
-        "slice_of_life": 10,
-        "mystery": 12,
-        "historical": 6
-      }
     }
   ],
-  "api_calls": 24,
-  "cache_hits": 68
+  "api_calls": 64,
+  "cache_hits": 24
 }
