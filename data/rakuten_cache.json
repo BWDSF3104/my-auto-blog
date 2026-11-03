@@ -631,5 +631,32 @@
       "reviewCount": 4
     },
     "hits": 3
+  },
+  "リボルテック ズートピア ジュディ・ホップス": {
+    "fetched_at": "2026-11-03T03:58:27.755606+00:00",
+    "product": null,
+    "hits": 0
+  },
+  "リボルテック": {
+    "fetched_at": "2026-11-03T03:58:29.137711+00:00",
+    "product": {
+      "itemName": "リボルテック 遊☆戯☆王デュエルモンスターズ カオス・ソルジャー[海洋堂]【送料無料】《発売済・在庫品》",
+      "itemPrice": 12100,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00pr6bo.eo1qw9cc.g00pr6bo.eo1qx17a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Famiami%2Ffigure-185457%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Famiami%2Fi%2F12776369%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/amiami/cabinet/pb/2025/181/figure-185457.jpg?_ex=128x128",
+      "reviewCount": 2
+    },
+    "hits": 3
+  },
+  "ズートピア アートブック The Art of Zootopia": {
+    "fetched_at": "2026-11-03T03:58:30.611579+00:00",
+    "product": {
+      "itemName": "THE ART OF ズートピア[本/雑誌] (WALT Disney PICTURES / 原タイトル:THE ART OF ZOOTOPIA) / ジェシカ・ジュリアス/著 齋藤隼飛/訳 堀川夢/訳",
+      "itemPrice": 4400,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q63ao.eo1qwfbf.g00q63ao.eo1qxd87/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fneowing-r%2Fneobk-3163215%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fneowing-r%2Fi%2F15998857%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/neowing-r/cabinet/item_img_2143/neobk-3163215.jpg?_ex=128x128",
+      "reviewCount": 0
+    },
+    "hits": 3
   }
 }

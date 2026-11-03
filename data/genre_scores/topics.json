@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-11-02T02:00:20.195986+00:00",
+  "scored_at": "2026-11-03T03:48:44.787976+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -17,453 +17,453 @@
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/heres-everything-you-can-unlock-for-pokemon-go-halloween-2026/",
-      "title": "You Can Unlock Lots Of Free Stuff In Pokemon Go’s Halloween 2026 Event",
+      "key": "https://www.gamespot.com/articles/epic-just-saved-fortnite-for-now-anyway/",
+      "title": "Epic Just Saved Fortnite–For Now, Anyway",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 15,
-        "fantasy": 36,
-        "cyberpunk": 5,
-        "action": 26,
-        "slice_of_life": 21,
-        "mystery": 16,
-        "historical": 6
+        "sf": 14,
+        "fantasy": 26,
+        "cyberpunk": 13,
+        "action": 50,
+        "slice_of_life": 11,
+        "mystery": 15,
+        "historical": 10
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/everything-new-in-fortnite-treasure-hunters-mini-season/",
-      "title": "Everything New In Fortnite Treasure Hunters Mini-Season",
+      "key": "https://www.gamespot.com/articles/wow-forever-excavation-site-wetlands-dungeon-guide-quests-bosses-and-loot/",
+      "title": "WoW: Forever Excavation Site: Wetlands Dungeon Guide – Quests, Bosses, and Loot",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 11,
+        "fantasy": 76,
+        "cyberpunk": 4,
+        "action": 38,
+        "slice_of_life": 13,
+        "mystery": 16,
+        "historical": 22
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/wow-forever-ruins-of-lordaeron-dungeon-guide-quests-bosses-and-loot/",
+      "title": "WoW: Forever Ruins of Lordaeron Dungeon Guide – Quests, Bosses, and Loot",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 14,
+        "fantasy": 63,
+        "cyberpunk": 4,
+        "action": 28,
+        "slice_of_life": 11,
+        "mystery": 15,
+        "historical": 19
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/wow-forever-city-of-dalaran-dungeon-guide-quests-bosses-and-loot/",
+      "title": "WoW: Forever City of Dalaran Dungeon Guide – Quests, Bosses, and Loot",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
         "sf": 18,
-        "fantasy": 27,
+        "fantasy": 76,
         "cyberpunk": 5,
-        "action": 48,
-        "slice_of_life": 11,
-        "mystery": 20,
-        "historical": 29
+        "action": 25,
+        "slice_of_life": 12,
+        "mystery": 13,
+        "historical": 14
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/the-biggest-new-game-releases-of-november-2026/",
-      "title": "The Biggest New Game Releases Of November 2026",
+      "key": "https://www.gamespot.com/articles/best-wow-forever-addons-to-download-in-2026/",
+      "title": "Best WoW: Forever Addons To Download In 2026",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 10,
-        "fantasy": 12,
-        "cyberpunk": 28,
-        "action": 62,
-        "slice_of_life": 15,
-        "mystery": 18,
-        "historical": 13
+        "sf": 12,
+        "fantasy": 50,
+        "cyberpunk": 11,
+        "action": 25,
+        "slice_of_life": 13,
+        "mystery": 11,
+        "historical": 16
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/gears-of-war-should-have-killed-off-marcus-fenix-years-ago/",
-      "title": "Gears Of War Should Have Killed Off Marcus Fenix Years Ago",
+      "key": "https://www.gamespot.com/articles/super-smash-bros-was-the-best-thing-to-ever-happen-to-fire-emblem/",
+      "title": "Super Smash Bros. Was The Best Thing To Ever Happen To Fire Emblem",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 76,
+        "cyberpunk": 3,
+        "action": 44,
+        "slice_of_life": 15,
+        "mystery": 13,
+        "historical": 40
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/former-xbox-exec-shares-her-side-of-the-story-after-mysterious-depature/",
+      "title": "Former Xbox Exec Shares Her Side Of The Story After Mysterious Depature",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 6,
+        "fantasy": 3,
+        "cyberpunk": 9,
+        "action": 4,
+        "slice_of_life": 26,
+        "mystery": 27,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/gallery/all-call-of-duty-games-in-order/2900-7074/",
+      "title": "All Call of Duty Games In Order",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 12,
+        "fantasy": 3,
+        "cyberpunk": 21,
+        "action": 76,
+        "slice_of_life": 5,
+        "mystery": 11,
+        "historical": 34
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/cod-modern-warfare-4-arrives-to-warzone-with-new-maps-movement-and-features/",
+      "title": "CoD: Modern Warfare 4 Arrives To Warzone With New Maps, Movement, And Features",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
         "sf": 14,
         "fantasy": 3,
         "cyberpunk": 18,
-        "action": 84,
-        "slice_of_life": 5,
-        "mystery": 11,
-        "historical": 9
+        "action": 74,
+        "slice_of_life": 6,
+        "mystery": 12,
+        "historical": 12
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/nintendo-declares-november-1-is-pikmin-day-with-a-direct-featuring-game-news-and-animated-shorts/",
-      "title": "Nintendo Declares November 1 Is Pikmin Day With A Direct Featuring Game News And Animated Shorts",
+      "key": "https://www.gamespot.com/articles/the-new-resident-evil-movie-will-be-available-to-watch-at-home-november-3-report/",
+      "title": "When Is Resident Evil Coming To Home Video? It Could Be Very Soon",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 17,
-        "fantasy": 35,
-        "cyberpunk": 6,
-        "action": 31,
-        "slice_of_life": 18,
-        "mystery": 14,
-        "historical": 17
+        "sf": 26,
+        "fantasy": 6,
+        "cyberpunk": 33,
+        "action": 77,
+        "slice_of_life": 6,
+        "mystery": 24,
+        "historical": 5
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/the-games-we-couldnt-stop-playing-in-october-2026/",
-      "title": "The Games We Couldn’t Stop Playing In October 2026",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 11,
-        "fantasy": 8,
-        "cyberpunk": 28,
-        "action": 43,
-        "slice_of_life": 29,
-        "mystery": 31,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/phantom-blade-zero-secret-ending-true-ending-guide/",
-      "title": "How To Unlock The Secret Ending In Phantom Blade Zero – True Ending Guide",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 21,
-        "fantasy": 31,
-        "cyberpunk": 19,
-        "action": 71,
-        "slice_of_life": 11,
-        "mystery": 25,
-        "historical": 61
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/high-stakes-higher-boots-here-are-horror-games-best-dressed-women/",
-      "title": "High Stakes, Higher Boots: Here Are Horror Games’ Best-Dressed Women",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 8,
-        "fantasy": 15,
-        "cyberpunk": 9,
-        "action": 30,
-        "slice_of_life": 10,
-        "mystery": 28,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/gallery/best-indie-games/2900-5964/",
-      "title": "The Best Indie Games To Play In 2026",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 27,
-        "fantasy": 27,
-        "cyberpunk": 27,
-        "action": 36,
-        "slice_of_life": 47,
-        "mystery": 32,
-        "historical": 16
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/death-note-is-doing-an-unexpected-collab-and-im-already-obsessed/",
-      "title": "Death Note Is Doing An Unexpected Collab And I’m Already Obsessed",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 14,
-        "fantasy": 17,
-        "cyberpunk": 19,
-        "action": 26,
-        "slice_of_life": 27,
-        "mystery": 53,
-        "historical": 6
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/heat-director-michael-mann-hospitalized-after-accidentally-shooting-himself-in-the-leg",
-      "title": "Heat Director Michael Mann Hospitalized After Accidentally Shooting Himself in the Leg",
+      "key": "https://www.ign.com/articles/a-concerning-amount-of-gta-fans-would-give-up-their-pets-to-play-gta-6-early",
+      "title": "A Concerning Amount of GTA Fans Would Give Up Their Pets to Play GTA 6 Early",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 21,
-        "fantasy": 4,
-        "cyberpunk": 40,
-        "action": 57,
+        "sf": 16,
+        "fantasy": 5,
+        "cyberpunk": 36,
+        "action": 44,
         "slice_of_life": 15,
-        "mystery": 34,
+        "mystery": 12,
         "historical": 7
       }
     },
     {
-      "key": "https://www.ign.com/articles/taika-waititi-blasts-critics-as-irrelevant-out-of-touch-obsolete-following-klara-and-the-suns-negative-reviews",
-      "title": "Taika Waititi Blasts Critics as 'Irrelevant, Out of Touch, Obsolete' Following Klara and the Sun's Negative Reviews",
+      "key": "https://www.ign.com/articles/john-goodman-says-digger-reviews-killed-the-movie-before-it-was-released",
+      "title": "John Goodman Says Digger Reviews 'Killed' the Movie Before It Was Released",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 56,
-        "fantasy": 26,
+        "sf": 20,
+        "fantasy": 5,
+        "cyberpunk": 13,
+        "action": 56,
+        "slice_of_life": 17,
+        "mystery": 24,
+        "historical": 12
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/johnny-depp-is-open-to-playing-jack-sparrow-again-in-a-new-pirates-of-the-caribbean-movie",
+      "title": "Johnny Depp Is Open to Playing Jack Sparrow Again in a New Pirates of the Caribbean Movie",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 8,
+        "fantasy": 29,
+        "cyberpunk": 2,
+        "action": 36,
+        "slice_of_life": 10,
+        "mystery": 13,
+        "historical": 35
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/best-meta-quest-3-deal-november-2026",
+      "title": "Save 30% Off the Meta Quest 3 512GB VR Headset From the Meta Store Ahead of Black Friday",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 11,
+        "fantasy": 3,
         "cyberpunk": 22,
-        "action": 6,
-        "slice_of_life": 35,
+        "action": 11,
+        "slice_of_life": 15,
+        "mystery": 4,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/rings-of-power-season-3-harfoots-return",
+      "title": "The Rings of Power Season 3 Co-Showrunner Confirms Harfoots Will Return",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 85,
+        "cyberpunk": 2,
+        "action": 31,
+        "slice_of_life": 11,
+        "mystery": 18,
+        "historical": 36
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/project-hail-mary-author-andy-weir-explains-how-he-would-fix-the-star-wars-franchise",
+      "title": "Project Hail Mary Author Andy Weir Explains How He Would Fix the Star Wars Franchise",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 70,
+        "fantasy": 11,
+        "cyberpunk": 16,
+        "action": 26,
+        "slice_of_life": 16,
+        "mystery": 20,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/agon-x-counter-strike-2-limited-edition-monitor-giveaway",
+      "title": "How to Enter the AGON x COUNTER-STRIKE 2 Limited Edition Monitor Giveaway",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 14,
+        "fantasy": 4,
+        "cyberpunk": 23,
+        "action": 25,
+        "slice_of_life": 13,
+        "mystery": 5,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/black-friday-2026-sale-dates-and-what-to-expect",
+      "title": "Black Friday 2026 Sale Dates and What to Expect",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 4,
+        "cyberpunk": 13,
+        "action": 8,
+        "slice_of_life": 29,
+        "mystery": 7,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/pedro-pascal-is-hiding-an-avengers-doomsday-easter-egg-on-his-doctor-doom-halloween-costume-fans-say",
+      "title": "Pedro Pascal Is Hiding an Avengers: Doomsday Easter Egg on His Doctor Doom Halloween Costume, Fans Say",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 39,
+        "fantasy": 14,
+        "cyberpunk": 10,
+        "action": 35,
+        "slice_of_life": 13,
+        "mystery": 12,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/terminally-ill-gta-6-fan-dies-three-weeks-before-games-launch-fans-pay-their-respects",
+      "title": "Terminally Ill GTA 6 Fan Dies 3 Weeks Before Game's Launch, Fans Pay Their Respects",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 12,
+        "fantasy": 3,
+        "cyberpunk": 25,
+        "action": 18,
+        "slice_of_life": 31,
+        "mystery": 8,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/urban-myth-dissolution-center-manga-ends/.243452",
+      "title": "Urban Myth Dissolution Center Manga Ends",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 35,
+        "fantasy": 27,
+        "cyberpunk": 44,
+        "action": 42,
+        "slice_of_life": 32,
+        "mystery": 38,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/drama-queen-manga-ends-in-4-chapters/.243455",
+      "title": "Drama Queen Manga Ends in 4 Chapters",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 11,
+        "fantasy": 20,
+        "cyberpunk": 9,
+        "action": 23,
+        "slice_of_life": 53,
+        "mystery": 21,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/trigun-anime-gets-new-novel-this-winter/.243456",
+      "title": "Trigun Anime Gets New Novel This Winter",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 37,
+        "fantasy": 19,
+        "cyberpunk": 37,
+        "action": 63,
+        "slice_of_life": 17,
+        "mystery": 18,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/television-producer-distributor-sandy-frank-dies-at-97/.243457",
+      "title": "Television Producer/Distributor Sandy Frank Dies at 97",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
+        "fantasy": 5,
+        "cyberpunk": 4,
+        "action": 7,
+        "slice_of_life": 23,
         "mystery": 13,
         "historical": 13
       }
     },
     {
-      "key": "https://www.ign.com/articles/petit-planet-switch-2-release-date",
-      "title": "Hoyoverse’s Cozy Sim Petit Planet Coming to Nintendo Switch 2 in 2027",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 36,
-        "fantasy": 37,
-        "cyberpunk": 16,
-        "action": 5,
-        "slice_of_life": 76,
-        "mystery": 10,
-        "historical": 7
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/robert-downey-jr-and-pedro-pascal-swap-places-for-halloween-with-mister-fantastic-and-doctor-doom-costumes",
-      "title": "Robert Downey Jr. and Pedro Pascal Swap Places for Halloween With Mister Fantastic and Doctor Doom Costumes",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 34,
-        "fantasy": 17,
-        "cyberpunk": 11,
-        "action": 25,
-        "slice_of_life": 14,
-        "mystery": 11,
-        "historical": 6
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/everyone-is-running-a-con-in-you-can-see-everything",
-      "title": "Everyone Is Running a Con in You Can See Everything",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 11,
-        "cyberpunk": 34,
-        "action": 26,
-        "slice_of_life": 29,
-        "mystery": 58,
-        "historical": 9
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/uk-deals-aliexpress-has-a-ton-of-early-black-friday-deals-for-gamers",
-      "title": "UK Deals: AliExpress Has a Ton of Early Black Friday Deals for Gamers",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 7,
-        "fantasy": 5,
-        "cyberpunk": 14,
-        "action": 10,
-        "slice_of_life": 23,
-        "mystery": 7,
-        "historical": 6
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/input-lag-is-so-bad-in-call-of-duty-modern-warfare-4-on-nintendo-switch-2-that-players-suffer-from-a-competitive-disadvantage",
-      "title": "Input Lag Is So Bad in Call of Duty: Modern Warfare 4 on Nintendo Switch 2 That Players Suffer From a 'Competitive Disadvantage'",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 8,
-        "fantasy": 3,
-        "cyberpunk": 22,
-        "action": 59,
-        "slice_of_life": 7,
-        "mystery": 7,
-        "historical": 12
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/save-mass-effect-graffiti-reportedly-spray-painted-outside-ea-building",
-      "title": "Save Mass Effect Graffiti Reportedly Spray-Painted Outside EA Building",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 4,
-        "cyberpunk": 25,
-        "action": 9,
-        "slice_of_life": 17,
-        "mystery": 6,
-        "historical": 4
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/star-wars-actor-hayden-christensen-says-a-man-who-burgled-his-house-recognized-him-then-gave-his-stuff-back-mid-robbery",
-      "title": "Star Wars Actor Hayden Christensen Says a Man Who Burgled His House Recognized Him Then Gave His Stuff Back Mid-Robbery",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 55,
-        "fantasy": 12,
-        "cyberpunk": 8,
-        "action": 28,
-        "slice_of_life": 25,
-        "mystery": 10,
-        "historical": 6
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/anthropic-blocks-ai-game-clones-in-claude-opus-update",
-      "title": "Anthropic Blocks AI Game Clones in Claude Opus Update",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 25,
-        "fantasy": 7,
-        "cyberpunk": 27,
-        "action": 14,
-        "slice_of_life": 17,
-        "mystery": 11,
-        "historical": 6
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/japanese-animation-tv-ranking-october-19-25/.243409",
-      "title": "Japanese Animation TV Ranking, October 19-25",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/all-female-troupe-takarazuka-revue-to-perform-musical-for-my-happy-marriage-series/.243454",
+      "title": "All-Female Troupe Takarazuka Revue to Perform Musical for My Happy Marriage Series",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 41,
-        "fantasy": 56,
-        "cyberpunk": 30,
-        "action": 58,
-        "slice_of_life": 43,
-        "mystery": 28,
-        "historical": 20
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/japan-video-game-rankings-october-19-25/.243410",
-      "title": "Japan's Video Game Rankings, October 19-25",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 36,
-        "fantasy": 45,
-        "cyberpunk": 41,
-        "action": 64,
-        "slice_of_life": 30,
-        "mystery": 30,
-        "historical": 15
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/bocchi-the-rock-manga-gets-anime-film-in-2027/.243417",
-      "title": "Bocchi the Rock! Manga Gets Anime Film in 2027",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 5,
-        "fantasy": 8,
+        "sf": 6,
+        "fantasy": 13,
         "cyberpunk": 3,
-        "action": 11,
-        "slice_of_life": 80,
-        "mystery": 10,
-        "historical": 4
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/jun-kirarazaka-blobtopia-manga-ends-in-3-chapters/.243401",
-      "title": "Jun Kirarazaka's Blobtopia Manga Ends in 3 Chapters",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 41,
-        "fantasy": 53,
-        "cyberpunk": 12,
-        "action": 27,
-        "slice_of_life": 30,
-        "mystery": 16,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/hiromasa-okujima-shijukara-ga-naku-koro-ni-manga-ends-in-next-chapter/.243394",
-      "title": "Hiromasa Okujima Shijūkara ga Naku Koro ni Manga Ends in Next Chapter",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 24,
-        "fantasy": 17,
-        "cyberpunk": 24,
-        "action": 29,
-        "slice_of_life": 51,
-        "mystery": 30,
-        "historical": 12
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/charisma-tv-anime-reveals-january-7-debut-in-teaser-video/.243413",
-      "title": "Charisma TV Anime Reveals January 7 Debut in Teaser Video",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 34,
-        "fantasy": 43,
-        "cyberpunk": 34,
-        "action": 48,
-        "slice_of_life": 41,
-        "mystery": 29,
-        "historical": 12
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/rock-is-a-lady-modesty-hiroshi-fukuda-launches-new-manga/.243399",
-      "title": "Rock is a Lady's Modesty's Hiroshi Fukuda Launches New Manga",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 21,
-        "fantasy": 30,
-        "cyberpunk": 22,
-        "action": 39,
-        "slice_of_life": 42,
-        "mystery": 27,
+        "action": 8,
+        "slice_of_life": 52,
+        "mystery": 12,
         "historical": 19
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-01/idoly-pride-game-ends-service-on-march-1/.243397",
-      "title": "Idoly Pride Game Ends Service on March 1",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/recording-sound-mixer-yoshio-obara-dies/.243451",
+      "title": "Recording/Sound Mixer Yoshio Obara Dies",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 22,
-        "fantasy": 22,
-        "cyberpunk": 13,
-        "action": 24,
-        "slice_of_life": 49,
-        "mystery": 12,
-        "historical": 9
+        "sf": 11,
+        "fantasy": 4,
+        "cyberpunk": 10,
+        "action": 6,
+        "slice_of_life": 19,
+        "mystery": 8,
+        "historical": 12
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-31/shiba-inu-rooms-manga-gets-tv-anime-in-summer-2027/.243404",
-      "title": "Shiba Inu Rooms Manga Gets TV Anime in Summer 2027",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/crunchyroll-adds-gunma-chan-anime-english-dub/.243450",
+      "title": "Crunchyroll Adds Gunma-chan Anime's English Dub",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 19,
-        "fantasy": 28,
-        "cyberpunk": 33,
-        "action": 16,
+        "sf": 17,
+        "fantasy": 31,
+        "cyberpunk": 9,
+        "action": 37,
         "slice_of_life": 49,
-        "mystery": 32,
-        "historical": 7
+        "mystery": 15,
+        "historical": 11
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-10-31/romelia-war-chronicle-anime-2nd-part-unveils-april-2027-debut-ending-song-artist/.243390",
-      "title": "Romelia War Chronicle Anime's 2nd Part Unveils April 2027 Debut, Ending Song's Artist",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/we-are-aliens-film-wins-award-at-hawaii-intl-film-festival/.243448",
+      "title": "We Are Aliens Film Wins Award at Hawai'i Int'l Film Festival",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 38,
-        "fantasy": 40,
-        "cyberpunk": 17,
-        "action": 64,
-        "slice_of_life": 15,
+        "sf": 64,
+        "fantasy": 16,
+        "cyberpunk": 28,
+        "action": 26,
+        "slice_of_life": 27,
         "mystery": 20,
-        "historical": 31
+        "historical": 11
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/new-nippon-anime-awards-event-announced-for-november-2027/.243447",
+      "title": "New 'Nippon Anime Awards' Event Announced for November 2027",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 32,
+        "fantasy": 24,
+        "cyberpunk": 21,
+        "action": 32,
+        "slice_of_life": 29,
+        "mystery": 21,
+        "historical": 13
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-02/voice-actor-ryuji-nakagi-dies-at-89/.243446",
+      "title": "Voice Actor Ryūji Nakagi Dies at 89",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 11,
+        "fantasy": 6,
+        "cyberpunk": 9,
+        "action": 10,
+        "slice_of_life": 20,
+        "mystery": 8,
+        "historical": 15
       }
     },
     {
@@ -1114,111 +1114,147 @@
   ],
   "copyrights": [
     {
-      "name": "animal_crossing",
+      "name": "beastars",
       "scores": {
-        "sf": 12,
+        "sf": 20,
+        "fantasy": 37,
+        "cyberpunk": 9,
+        "action": 40,
+        "slice_of_life": 48,
+        "mystery": 33,
+        "historical": 10
+      }
+    },
+    {
+      "name": "demon_core",
+      "scores": {
+        "sf": 39,
+        "fantasy": 36,
+        "cyberpunk": 45,
+        "action": 41,
+        "slice_of_life": 20,
+        "mystery": 28,
+        "historical": 11
+      }
+    },
+    {
+      "name": "disney",
+      "scores": {
+        "sf": 19,
+        "fantasy": 68,
+        "cyberpunk": 6,
+        "action": 26,
+        "slice_of_life": 25,
+        "mystery": 16,
+        "historical": 18
+      }
+    },
+    {
+      "name": "final_destination_(film)",
+      "scores": {
+        "sf": 38,
         "fantasy": 24,
-        "cyberpunk": 4,
-        "action": 13,
-        "slice_of_life": 42,
+        "cyberpunk": 34,
+        "action": 40,
+        "slice_of_life": 29,
+        "mystery": 35,
+        "historical": 19
+      }
+    },
+    {
+      "name": "five_nights_at_freddy's",
+      "scores": {
+        "sf": 17,
+        "fantasy": 8,
+        "cyberpunk": 5,
+        "action": 24,
+        "slice_of_life": 6,
+        "mystery": 41,
+        "historical": 4
+      }
+    },
+    {
+      "name": "friendship_is_magic",
+      "scores": {
+        "sf": 15,
+        "fantasy": 37,
+        "cyberpunk": 7,
+        "action": 19,
+        "slice_of_life": 49,
+        "mystery": 13,
+        "historical": 8
+      }
+    },
+    {
+      "name": "hasbro",
+      "scores": {
+        "sf": 28,
+        "fantasy": 8,
+        "cyberpunk": 15,
+        "action": 40,
+        "slice_of_life": 13,
         "mystery": 10,
         "historical": 7
       }
     },
     {
-      "name": "asian_mythology",
+      "name": "idw_publishing",
       "scores": {
-        "sf": 22,
-        "fantasy": 57,
-        "cyberpunk": 7,
-        "action": 30,
-        "slice_of_life": 19,
-        "mystery": 17,
-        "historical": 45
+        "sf": 44,
+        "fantasy": 34,
+        "cyberpunk": 37,
+        "action": 36,
+        "slice_of_life": 38,
+        "mystery": 32,
+        "historical": 18
       }
     },
     {
-      "name": "carolina_panthers",
+      "name": "kitty_pride",
       "scores": {
-        "sf": 16,
-        "fantasy": 9,
-        "cyberpunk": 14,
-        "action": 39,
-        "slice_of_life": 22,
-        "mystery": 16,
-        "historical": 12
-      }
-    },
-    {
-      "name": "cinderfrost",
-      "scores": {
-        "sf": 46,
-        "fantasy": 44,
-        "cyberpunk": 34,
+        "sf": 29,
+        "fantasy": 30,
+        "cyberpunk": 27,
         "action": 32,
-        "slice_of_life": 21,
-        "mystery": 22,
-        "historical": 14
+        "slice_of_life": 40,
+        "mystery": 26,
+        "historical": 13
       }
     },
     {
-      "name": "creatures_(company)",
+      "name": "legend_of_mana",
+      "scores": {
+        "sf": 37,
+        "fantasy": 82,
+        "cyberpunk": 11,
+        "action": 37,
+        "slice_of_life": 17,
+        "mystery": 21,
+        "historical": 21
+      }
+    },
+    {
+      "name": "mana_(series)",
       "scores": {
         "sf": 40,
-        "fantasy": 53,
-        "cyberpunk": 29,
-        "action": 41,
-        "slice_of_life": 28,
+        "fantasy": 61,
+        "cyberpunk": 34,
+        "action": 44,
+        "slice_of_life": 39,
         "mystery": 31,
-        "historical": 16
+        "historical": 25
       }
     },
     {
-      "name": "east_asian_mythology",
+      "name": "my_little_pony",
       "scores": {
-        "sf": 21,
-        "fantasy": 52,
-        "cyberpunk": 8,
-        "action": 24,
-        "slice_of_life": 23,
-        "mystery": 19,
-        "historical": 43
-      }
-    },
-    {
-      "name": "green_bay_packers",
-      "scores": {
-        "sf": 11,
-        "fantasy": 4,
-        "cyberpunk": 6,
-        "action": 30,
-        "slice_of_life": 24,
+        "sf": 14,
+        "fantasy": 65,
+        "cyberpunk": 3,
+        "action": 16,
+        "slice_of_life": 37,
         "mystery": 10,
         "historical": 8
-      }
-    },
-    {
-      "name": "japanese_mythology",
-      "scores": {
-        "sf": 15,
-        "fantasy": 56,
-        "cyberpunk": 4,
-        "action": 20,
-        "slice_of_life": 18,
-        "mystery": 15,
-        "historical": 47
-      }
-    },
-    {
-      "name": "legend_of_ahya",
-      "scores": {
-        "sf": 36,
-        "fantasy": 66,
-        "cyberpunk": 21,
-        "action": 39,
-        "slice_of_life": 25,
-        "mystery": 26,
-        "historical": 29
       }
     },
     {
@@ -1234,15 +1270,15 @@
       }
     },
     {
-      "name": "nfl",
+      "name": "new_year",
       "scores": {
-        "sf": 17,
-        "fantasy": 7,
-        "cyberpunk": 12,
-        "action": 39,
-        "slice_of_life": 17,
-        "mystery": 14,
-        "historical": 14
+        "sf": 28,
+        "fantasy": 18,
+        "cyberpunk": 20,
+        "action": 27,
+        "slice_of_life": 35,
+        "mystery": 16,
+        "historical": 18
       }
     },
     {
@@ -1258,18 +1294,6 @@
       }
     },
     {
-      "name": "pleasant_goat_and_big_big_wolf",
-      "scores": {
-        "sf": 13,
-        "fantasy": 44,
-        "cyberpunk": 5,
-        "action": 31,
-        "slice_of_life": 25,
-        "mystery": 13,
-        "historical": 15
-      }
-    },
-    {
       "name": "pokemon",
       "scores": {
         "sf": 24,
@@ -1280,8 +1304,128 @@
         "mystery": 17,
         "historical": 9
       }
+    },
+    {
+      "name": "scottgames",
+      "scores": {
+        "sf": 39,
+        "fantasy": 49,
+        "cyberpunk": 30,
+        "action": 33,
+        "slice_of_life": 31,
+        "mystery": 34,
+        "historical": 26
+      }
+    },
+    {
+      "name": "sega",
+      "scores": {
+        "sf": 31,
+        "fantasy": 17,
+        "cyberpunk": 31,
+        "action": 48,
+        "slice_of_life": 17,
+        "mystery": 18,
+        "historical": 9
+      }
+    },
+    {
+      "name": "sister_location",
+      "scores": {
+        "sf": 31,
+        "fantasy": 21,
+        "cyberpunk": 28,
+        "action": 32,
+        "slice_of_life": 43,
+        "mystery": 28,
+        "historical": 15
+      }
+    },
+    {
+      "name": "sonic_the_hedgehog_(comics)",
+      "scores": {
+        "sf": 35,
+        "fantasy": 16,
+        "cyberpunk": 28,
+        "action": 58,
+        "slice_of_life": 13,
+        "mystery": 18,
+        "historical": 8
+      }
+    },
+    {
+      "name": "sonic_the_hedgehog_(idw)",
+      "scores": {
+        "sf": 37,
+        "fantasy": 14,
+        "cyberpunk": 24,
+        "action": 58,
+        "slice_of_life": 14,
+        "mystery": 14,
+        "historical": 6
+      }
+    },
+    {
+      "name": "sonic_the_hedgehog_(series)",
+      "scores": {
+        "sf": 33,
+        "fantasy": 18,
+        "cyberpunk": 22,
+        "action": 65,
+        "slice_of_life": 12,
+        "mystery": 13,
+        "historical": 6
+      }
+    },
+    {
+      "name": "square_enix",
+      "scores": {
+        "sf": 46,
+        "fantasy": 33,
+        "cyberpunk": 57,
+        "action": 45,
+        "slice_of_life": 23,
+        "mystery": 26,
+        "historical": 12
+      }
+    },
+    {
+      "name": "texnatsu",
+      "scores": {
+        "sf": 32,
+        "fantasy": 15,
+        "cyberpunk": 31,
+        "action": 28,
+        "slice_of_life": 22,
+        "mystery": 18,
+        "historical": 10
+      }
+    },
+    {
+      "name": "the_temptation_of_saint_anthony_(dali)",
+      "scores": {
+        "sf": 7,
+        "fantasy": 20,
+        "cyberpunk": 2,
+        "action": 2,
+        "slice_of_life": 16,
+        "mystery": 7,
+        "historical": 24
+      }
+    },
+    {
+      "name": "zootopia",
+      "scores": {
+        "sf": 20,
+        "fantasy": 29,
+        "cyberpunk": 17,
+        "action": 31,
+        "slice_of_life": 33,
+        "mystery": 40,
+        "historical": 5
+      }
     }
   ],
-  "api_calls": 64,
-  "cache_hits": 24
+  "api_calls": 39,
+  "cache_hits": 61
 }
