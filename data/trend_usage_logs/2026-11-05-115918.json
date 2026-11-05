@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-05T11:59:18.777788+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-05T11:58:50.618276+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "GTA 6 Will Now Come To Stores Sooner, But It’s Not Playable Right Away",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/gta-6-will-now-come-to-stores-sooner-but-its-not-playable-right-away/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Rockstar Games has announced that Grand Theft Auto 6 will now released in stores two days earlier than anticipated--but this doesn't change anything about when you'll actually be able to play the game"
+    },
+    {
+      "title": "GTA 6 Survey Reveals People Really Want GTA Online, But It Hasn’t Been Confirmed Yet",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/gta-6-survey-reveals-people-really-want-gta-online-but-it-hasnt-been-confirmed-yet/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Grand Theft Auto 6 releases on November 19, and a lot of people are very excited to play some kind of online mode, according to a new study. The only problem is that GTA 6 is a strictly single-player "
+    }
+  ],
+  "affiliate_keywords": [
+    "GTA Will Now",
+    "GTA Survey Reveals"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/gta-6-will-now-come-to-stores-sooner-but-its-not-playable-right-away/",
+    "https://www.gamespot.com/articles/gta-6-survey-reveals-people-really-want-gta-online-but-it-hasnt-been-confirmed-yet/"
+  ]
+}

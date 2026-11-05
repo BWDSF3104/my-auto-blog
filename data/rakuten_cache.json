@@ -678,5 +678,38 @@
     "fetched_at": "2026-11-04T02:55:14.820707+00:00",
     "product": null,
     "hits": 0
+  },
+  "ペルソナ5 ザ・ロイヤル": {
+    "fetched_at": "2026-11-05T03:04:53.915574+00:00",
+    "product": {
+      "itemName": "ペルソナ5 ザ・ロイヤル 公式コンプリートガイド [ 電撃ゲーム書籍編集部 ]",
+      "itemPrice": 2530,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16118888%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19837333%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8871/9784049128871_1_4.jpg?_ex=128x128",
+      "reviewCount": 4
+    },
+    "hits": 3
+  },
+  "ペルソナ5": {
+    "fetched_at": "2026-11-05T03:04:55.340869+00:00",
+    "product": {
+      "itemName": "『ペルソナ5』オリジナル・サウンドトラック [ (ゲーム・ミュージック) ]",
+      "itemPrice": 3777,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F14575284%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F18284110%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1605/4580357661605.jpg?_ex=128x128",
+      "reviewCount": 7
+    },
+    "hits": 3
+  },
+  "ダンジョン飯 1巻": {
+    "fetched_at": "2026-11-05T03:04:56.818342+00:00",
+    "product": {
+      "itemName": "ダンジョン飯 1巻 【電子書籍】[ 九井　諒子 ]",
+      "itemPrice": 759,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00reb4o.eo1qw8b7.g00reb4o.eo1qx933/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F62a9941029833affab1b52b5948c3e36%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F14024790%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakutenkobo-ebooks/cabinet/9108/2000002739108.jpg?_ex=128x128",
+      "reviewCount": 33
+    },
+    "hits": 3
   }
 }
