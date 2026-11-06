@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-06T12:00:30.793521+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-06T11:59:54.422792+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "What Romance Tropes Saka Mikami Avoided With The Fragrant Flower Blooms With Dignity Manga",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-28/what-romance-tropes-saka-mikami-avoided-with-the-fragrant-flower-blooms-with-dignity-manga/.243085",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Interview: Princess Jellyfish Manga Artist Akiko Higashimura Celebrates 25 Years",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-19/princess-jellyfish-manga-artist-akiko-higashimura-celebrates-25-years/.242847",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "What Romance Tropes",
+    "Princess Jellyfish Manga"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/interview/2026-10-28/what-romance-tropes-saka-mikami-avoided-with-the-fragrant-flower-blooms-with-dignity-manga/.243085",
+    "https://www.animenewsnetwork.com/interview/2026-10-19/princess-jellyfish-manga-artist-akiko-higashimura-celebrates-25-years/.242847"
+  ]
+}
