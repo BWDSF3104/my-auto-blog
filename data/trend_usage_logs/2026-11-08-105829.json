@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-08T10:58:29.743701+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-08T10:58:01.216965+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "We Bet You Didn’t Know All 25 Of These Things About Ocarina Of Time",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/we-bet-you-didnt-know-all-25-of-these-things-about-ocarina-of-time/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "The Legend of Zelda: Ocarina of Time is a faithful remake, but that doesn't mean it can't pack a few surprises. Between updates and modernizations, and just the way some new systems interact, there ar"
+    },
+    {
+      "title": "25 Things You STILL Didn’t Know In Ocarina Of Time Remake",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/videos/25-things-you-still-didnt-know-in-ocarina-of-time-remake/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Ocarina Of Time Remake has a vast amount of both old and new secrets. We uncover many of them, including a jump mechanic that's actually an old demo mechanic, hidden dialogue dependent on your approac"
+    }
+  ],
+  "affiliate_keywords": [
+    "We Bet You",
+    "Things You STILL"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/we-bet-you-didnt-know-all-25-of-these-things-about-ocarina-of-time/",
+    "https://www.gamespot.com/videos/25-things-you-still-didnt-know-in-ocarina-of-time-remake/"
+  ]
+}
