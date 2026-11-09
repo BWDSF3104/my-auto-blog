@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-11-08T01:58:29.115556+00:00",
+  "scored_at": "2026-11-09T02:16:53.978143+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -7,13 +7,43 @@
       "source": "GitHub",
       "category": "kemono",
       "scores": {
-        "sf": 23,
-        "fantasy": 45,
-        "cyberpunk": 13,
-        "action": 15,
-        "slice_of_life": 52,
+        "sf": 27,
+        "fantasy": 47,
+        "cyberpunk": 11,
+        "action": 14,
+        "slice_of_life": 50,
         "mystery": 24,
-        "historical": 10
+        "historical": 12
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/wow-forever-ruins-of-lordaeron-dungeon-guide-quests-bosses-and-loot/",
+      "title": "WoW: Forever Ruins of Lordaeron Dungeon Guide – Quests, Bosses, and Loot",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 14,
+        "fantasy": 63,
+        "cyberpunk": 4,
+        "action": 28,
+        "slice_of_life": 11,
+        "mystery": 15,
+        "historical": 19
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/2026s-games-you-should-play-before-the-game-awards-described-in-one-sentence/",
+      "title": "2026’s Games You Should Play Before The Game Awards, Described In One Sentence",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 22,
+        "fantasy": 13,
+        "cyberpunk": 28,
+        "action": 35,
+        "slice_of_life": 26,
+        "mystery": 27,
+        "historical": 16
       }
     },
     {
@@ -137,33 +167,138 @@
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/looking-at-xbox-you-can-see-everything/",
-      "title": "Looking at Xbox, You Can See Everything",
-      "source": "GameSpot RSS",
+      "key": "https://www.ign.com/articles/petit-planet-aka-hoyoverses-take-on-animal-crossing-is-packed-with-charm-and-attention-to-detail-ign-preview",
+      "title": "Petit Planet, aka HoYoverse's Take on Animal Crossing, Is Packed With Charm and Attention to Detail | IGN Preview",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 9,
-        "fantasy": 4,
-        "cyberpunk": 13,
-        "action": 4,
-        "slice_of_life": 58,
-        "mystery": 11,
-        "historical": 7
+        "sf": 8,
+        "fantasy": 17,
+        "cyberpunk": 3,
+        "action": 7,
+        "slice_of_life": 78,
+        "mystery": 6,
+        "historical": 6
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/donuts-beat-ai-nvidia-has-lost-1-trillion-in-the-past-month-while-krispy-kreme-surges/",
-      "title": "Donuts Beat AI: Nvidia Has Lost $1 Trillion+ In The Past Month, While Krispy Kreme Surges",
-      "source": "GameSpot RSS",
+      "key": "https://www.ign.com/articles/nvidia-launches-investigation-into-ceo-jensen-huang-following-affair-with-alleged-chinese-spy",
+      "title": "Nvidia Launches Investigation Into CEO Jensen Huang Following Affair With Alleged Chinese Spy",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 10,
+        "fantasy": 2,
+        "cyberpunk": 19,
+        "action": 4,
+        "slice_of_life": 21,
+        "mystery": 23,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/austin-butler-miami-vice-85-black-ferrari-legal-reason",
+      "title": "Why Austin Butler Cannot Drive the Iconic Black Ferrari in Miami Vice '85",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
+        "fantasy": 3,
+        "cyberpunk": 10,
+        "action": 23,
+        "slice_of_life": 18,
+        "mystery": 10,
+        "historical": 22
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/jesse-eisenberg-says-he-experiments-with-ai-just-to-make-sure-its-not-good-at-writing-yet",
+      "title": "Jesse Eisenberg Says He 'Experiments With AI' Just to Make Sure It's Not 'Good at Writing' Yet",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 28,
+        "fantasy": 5,
+        "cyberpunk": 24,
+        "action": 13,
+        "slice_of_life": 28,
+        "mystery": 12,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/best-deals-for-november-8-2026",
+      "title": "The Best Deals Today: Sony Inzone H9 Gaming Headset, Criterion Collection Sale, Pikmin 4, and More",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 35,
+        "fantasy": 29,
+        "cyberpunk": 24,
+        "action": 50,
+        "slice_of_life": 17,
+        "mystery": 19,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/former-playstation-boss-says-sony-doesnt-need-a-ps6-for-1200-it-needs-a-ps5-for-300",
+      "title": "Former PlayStation Boss Says Sony Doesn't Need a 'PS6 for $1,200,' It Needs a 'PS5 for $300'",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 9,
         "fantasy": 2,
         "cyberpunk": 10,
-        "action": 3,
-        "slice_of_life": 11,
-        "mystery": 5,
-        "historical": 8
+        "action": 4,
+        "slice_of_life": 15,
+        "mystery": 6,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/godzilla-minus-zero-stomps-on-expectations-with-63-million-box-office-opening-weekend",
+      "title": "Godzilla Minus Zero Stomps on Expectations With $63 Million Box Office Opening Weekend",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 40,
+        "fantasy": 9,
+        "cyberpunk": 13,
+        "action": 71,
+        "slice_of_life": 8,
+        "mystery": 11,
+        "historical": 17
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/the-legend-of-zelda-ocarina-of-time-speedrunners-have-already-found-new-ways-to-break-the-remake",
+      "title": "The Legend of Zelda: Ocarina of Time Speedrunners Have Already Found New Ways to Break the Remake",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 67,
+        "cyberpunk": 4,
+        "action": 65,
+        "slice_of_life": 9,
+        "mystery": 31,
+        "historical": 35
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/epic-reveals-drop-rate-for-fortnites-pirate-token-following-pressure-from-fans",
+      "title": "Epic Reveals Drop Rate for Fortnite's Pirate Token Following Pressure From Fans",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 15,
+        "fantasy": 10,
+        "cyberpunk": 22,
+        "action": 35,
+        "slice_of_life": 12,
+        "mystery": 9,
+        "historical": 7
       }
     },
     {
@@ -182,138 +317,93 @@
       }
     },
     {
-      "key": "https://www.ign.com/articles/best-deals-for-november-7-2026",
-      "title": "The Best Deals Today: Frakenstein 4K UHD Blu-ray, Dragon Ball Super Complete Series, Gears of War: E-Day, and More",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-08/gen-hoshino-performs-hirayasumi-tv-anime-opening-song/.243631",
+      "title": "Gen Hoshino Performs Hirayasumi TV Anime's Opening Song",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 40,
-        "fantasy": 26,
-        "cyberpunk": 26,
-        "action": 54,
-        "slice_of_life": 12,
-        "mystery": 12,
-        "historical": 21
+        "sf": 25,
+        "fantasy": 25,
+        "cyberpunk": 21,
+        "action": 35,
+        "slice_of_life": 41,
+        "mystery": 19,
+        "historical": 11
       }
     },
     {
-      "key": "https://www.ign.com/articles/missing-teen-saved-from-alleged-kidnapper-after-seeking-help-in-among-us",
-      "title": "Missing Teen Saved From Alleged Kidnapper After Seeking Help in Among Us",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-08/godzilla-minus-zero-earns-record-32-million-in-n-american-opening-weekend/.243628",
+      "title": "Godzilla Minus Zero Earns Record $32 Million in N. American Opening Weekend",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 9,
-        "fantasy": 3,
-        "cyberpunk": 18,
-        "action": 12,
-        "slice_of_life": 31,
-        "mystery": 20,
-        "historical": 3
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/sony-announces-indefinite-delay-for-playstations-pulse-elevate-wireless-speakers-days-before-launch",
-      "title": "Sony Announces Indefinite Delay for PlayStation's Pulse Elevate Wireless Speakers Days Before Launch",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 9,
-        "fantasy": 2,
-        "cyberpunk": 9,
-        "action": 4,
-        "slice_of_life": 18,
-        "mystery": 3,
-        "historical": 3
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/mass-effect-cast-celebrates-n7-day-with-video-asking-fans-to-help-save-the-franchise",
-      "title": "Mass Effect Cast Celebrates N7 Day With Video Asking Fans to Help Save the Franchise",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 49,
+        "sf": 70,
         "fantasy": 8,
-        "cyberpunk": 41,
-        "action": 26,
-        "slice_of_life": 9,
-        "mystery": 21,
-        "historical": 6
+        "cyberpunk": 23,
+        "action": 63,
+        "slice_of_life": 10,
+        "mystery": 13,
+        "historical": 13
       }
     },
     {
-      "key": "https://www.ign.com/articles/bioware-may-be-dead-but-a-modder-has-rebuilt-mass-effect-3s-multiplayer-into-the-legendary-edition",
-      "title": "BioWare May Be Dead, But a Modder Has Rebuilt Mass Effect 3's Multiplayer Into the Legendary Edition",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-08/my-crush-crush-anime-teaser-unveils-cast-staff-april-debut/.243627",
+      "title": "My Crush's Crush Anime's Teaser Unveils Cast, Staff, April Debut",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 73,
-        "fantasy": 10,
-        "cyberpunk": 30,
-        "action": 42,
-        "slice_of_life": 9,
-        "mystery": 24,
+        "sf": 17,
+        "fantasy": 24,
+        "cyberpunk": 8,
+        "action": 22,
+        "slice_of_life": 63,
+        "mystery": 17,
         "historical": 8
       }
     },
     {
-      "key": "https://www.ign.com/articles/i-feel-like-modding-is-kind-of-dying-mass-effect-3-multiplayer-modder-on-ais-impact-on-the-scene",
-      "title": "'I Feel Like Modding is Kind Of Dying' – Mass Effect 3 Multiplayer Modder on AI's Impact on the Scene",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-08/spy-family-anime-gets-4th-season-theatrical-film-in-2027/.243614",
+      "title": "Spy×Family Anime Gets 4th Season, Theatrical Film in 2027",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 21,
-        "fantasy": 3,
-        "cyberpunk": 26,
-        "action": 12,
-        "slice_of_life": 21,
-        "mystery": 10,
-        "historical": 6
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/godzilla-minus-zero-where-is-the-rest-of-godzillas-rogues-gallery",
-      "title": "Godzilla Minus Zero: Where Is the Rest of Godzilla’s Rogues' Gallery?",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 14,
-        "cyberpunk": 16,
-        "action": 58,
-        "slice_of_life": 16,
-        "mystery": 15,
-        "historical": 18
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/gundam-assemble-hands-on-with-mobile-suit-gundams-miniatures-tabletop-game",
-      "title": "Gundam Assemble: Hands-On With Mobile Suit Gundam’s Miniatures Tabletop Game",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 32,
-        "fantasy": 6,
-        "cyberpunk": 22,
-        "action": 38,
-        "slice_of_life": 11,
-        "mystery": 7,
+        "sf": 15,
+        "fantasy": 12,
+        "cyberpunk": 7,
+        "action": 40,
+        "slice_of_life": 55,
+        "mystery": 30,
         "historical": 9
       }
     },
     {
-      "key": "https://www.ign.com/articles/world-of-warcraft-forever-world-first-level-60-character-hits-cap-three-days-after-launch",
-      "title": "World of Warcraft Forever World First Level 60 Character Hits Cap Three Days After Launch",
-      "source": "IGN RSS",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-08/bride-of-the-barrier-master-anime-streams-videos-for-leads-hana-ichise-saku-ichinomiya/.243623",
+      "title": "Bride of the Barrier Master Anime Streams Videos for Leads Hana Ichise, Saku Ichinomiya",
+      "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 19,
-        "fantasy": 79,
-        "cyberpunk": 5,
-        "action": 34,
-        "slice_of_life": 21,
-        "mystery": 11,
-        "historical": 24
+        "sf": 25,
+        "fantasy": 62,
+        "cyberpunk": 8,
+        "action": 42,
+        "slice_of_life": 36,
+        "mystery": 23,
+        "historical": 20
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-08/new-minami-ke-korekara-tv-anime-teaser-unveils-cast-staff-april-debut/.243619",
+      "title": "New Minami-ke Korekara TV Anime's Teaser Unveils Cast, Staff, April Debut",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 34,
+        "fantasy": 39,
+        "cyberpunk": 23,
+        "action": 36,
+        "slice_of_life": 41,
+        "mystery": 30,
+        "historical": 17
       }
     },
     {
@@ -374,96 +464,6 @@
         "slice_of_life": 33,
         "mystery": 21,
         "historical": 10
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-07/there-was-a-cute-girl-in-the-hero-party-so-i-tried-confessing-to-her-anime-gets-2nd-season/.243604",
-      "title": "'There Was a Cute Girl in the Hero's Party, So I Tried Confessing to Her' Anime Gets 2nd Season",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 9,
-        "fantasy": 25,
-        "cyberpunk": 3,
-        "action": 17,
-        "slice_of_life": 66,
-        "mystery": 10,
-        "historical": 7
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-07/everyone-darling-has-a-secret-anime-new-teaser-unveils-more-cast-ending-song/.243603",
-      "title": "Everyone's Darling Has a Secret Anime's New Teaser Unveils More Cast, Ending Song",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 19,
-        "fantasy": 28,
-        "cyberpunk": 14,
-        "action": 27,
-        "slice_of_life": 59,
-        "mystery": 42,
-        "historical": 9
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-07/abema-selects-project-prismation-1st-open-call-finalists-to-make-3-pilot-anime/.243602",
-      "title": "Abema Selects Project PRISMation's 1st Open Call Finalists to Make 3 Pilot Anime",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 29,
-        "fantasy": 24,
-        "cyberpunk": 32,
-        "action": 31,
-        "slice_of_life": 34,
-        "mystery": 27,
-        "historical": 11
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-06/hana-kimi-manga-gets-new-live-action-series-1st-stage-play/.243601",
-      "title": "Hana-Kimi Manga Gets New Live-Action Series, 1st Stage Play",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 19,
-        "fantasy": 30,
-        "cyberpunk": 16,
-        "action": 34,
-        "slice_of_life": 55,
-        "mystery": 26,
-        "historical": 35
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-06/north-american-anime-manga-releases-november-1-7/.243459",
-      "title": "North American Anime, Manga Releases, November 1-7",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 40,
-        "fantasy": 49,
-        "cyberpunk": 33,
-        "action": 52,
-        "slice_of_life": 40,
-        "mystery": 35,
-        "historical": 21
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-06/odd-taxi-manga-author-launches-new-rematch-with-you-manga-in-late-november/.243576",
-      "title": "Odd Taxi Manga Author Launches New Rematch With You Manga in Late November",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 22,
-        "fantasy": 13,
-        "cyberpunk": 27,
-        "action": 26,
-        "slice_of_life": 42,
-        "mystery": 47,
-        "historical": 7
       }
     },
     {
@@ -547,12 +547,12 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 29,
-        "fantasy": 24,
-        "cyberpunk": 31,
-        "action": 24,
-        "slice_of_life": 31,
-        "mystery": 17,
+        "sf": 27,
+        "fantasy": 25,
+        "cyberpunk": 27,
+        "action": 20,
+        "slice_of_life": 30,
+        "mystery": 16,
         "historical": 9
       }
     },
@@ -562,13 +562,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 23,
-        "cyberpunk": 18,
-        "action": 8,
-        "slice_of_life": 32,
-        "mystery": 9,
-        "historical": 7
+        "sf": 11,
+        "fantasy": 21,
+        "cyberpunk": 11,
+        "action": 9,
+        "slice_of_life": 31,
+        "mystery": 8,
+        "historical": 8
       }
     },
     {
@@ -577,13 +577,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 28,
-        "fantasy": 47,
-        "cyberpunk": 30,
-        "action": 30,
-        "slice_of_life": 56,
-        "mystery": 26,
-        "historical": 15
+        "sf": 29,
+        "fantasy": 41,
+        "cyberpunk": 28,
+        "action": 31,
+        "slice_of_life": 53,
+        "mystery": 27,
+        "historical": 14
       }
     },
     {
@@ -592,13 +592,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 8,
-        "fantasy": 16,
-        "cyberpunk": 10,
+        "sf": 9,
+        "fantasy": 15,
+        "cyberpunk": 11,
         "action": 6,
-        "slice_of_life": 23,
+        "slice_of_life": 22,
         "mystery": 6,
-        "historical": 4
+        "historical": 5
       }
     },
     {
@@ -607,13 +607,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 17,
-        "fantasy": 47,
-        "cyberpunk": 10,
-        "action": 34,
-        "slice_of_life": 33,
-        "mystery": 16,
-        "historical": 8
+        "sf": 15,
+        "fantasy": 44,
+        "cyberpunk": 8,
+        "action": 30,
+        "slice_of_life": 30,
+        "mystery": 15,
+        "historical": 7
       }
     },
     {
@@ -622,13 +622,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 19,
-        "fantasy": 38,
+        "sf": 20,
+        "fantasy": 39,
         "cyberpunk": 15,
-        "action": 23,
-        "slice_of_life": 32,
-        "mystery": 16,
-        "historical": 9
+        "action": 25,
+        "slice_of_life": 35,
+        "mystery": 18,
+        "historical": 10
       }
     },
     {
@@ -637,11 +637,11 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 17,
+        "sf": 15,
         "fantasy": 29,
-        "cyberpunk": 21,
-        "action": 12,
-        "slice_of_life": 27,
+        "cyberpunk": 18,
+        "action": 11,
+        "slice_of_life": 32,
         "mystery": 10,
         "historical": 7
       }
@@ -652,13 +652,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 29,
-        "fantasy": 47,
-        "cyberpunk": 15,
-        "action": 20,
-        "slice_of_life": 42,
-        "mystery": 15,
-        "historical": 10
+        "sf": 25,
+        "fantasy": 41,
+        "cyberpunk": 10,
+        "action": 13,
+        "slice_of_life": 43,
+        "mystery": 14,
+        "historical": 8
       }
     },
     {
@@ -667,13 +667,13 @@
       "source": "PokéCommunity Art Studio",
       "category": "pokemon",
       "scores": {
-        "sf": 21,
-        "fantasy": 27,
-        "cyberpunk": 25,
-        "action": 23,
-        "slice_of_life": 36,
-        "mystery": 14,
-        "historical": 10
+        "sf": 17,
+        "fantasy": 28,
+        "cyberpunk": 24,
+        "action": 17,
+        "slice_of_life": 31,
+        "mystery": 13,
+        "historical": 11
       }
     },
     {
@@ -683,10 +683,10 @@
       "category": "pokemon",
       "scores": {
         "sf": 15,
-        "fantasy": 18,
-        "cyberpunk": 16,
-        "action": 13,
-        "slice_of_life": 43,
+        "fantasy": 17,
+        "cyberpunk": 14,
+        "action": 12,
+        "slice_of_life": 38,
         "mystery": 14,
         "historical": 8
       }
@@ -697,13 +697,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 13,
-        "fantasy": 27,
+        "sf": 14,
+        "fantasy": 25,
         "cyberpunk": 5,
-        "action": 20,
-        "slice_of_life": 19,
-        "mystery": 10,
-        "historical": 5
+        "action": 16,
+        "slice_of_life": 17,
+        "mystery": 8,
+        "historical": 6
       }
     },
     {
@@ -712,12 +712,12 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 20,
-        "cyberpunk": 6,
+        "sf": 13,
+        "fantasy": 24,
+        "cyberpunk": 5,
         "action": 13,
-        "slice_of_life": 15,
-        "mystery": 9,
+        "slice_of_life": 19,
+        "mystery": 7,
         "historical": 5
       }
     },
@@ -727,13 +727,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 10,
-        "fantasy": 32,
-        "cyberpunk": 7,
-        "action": 27,
-        "slice_of_life": 24,
-        "mystery": 13,
-        "historical": 7
+        "sf": 15,
+        "fantasy": 35,
+        "cyberpunk": 5,
+        "action": 25,
+        "slice_of_life": 21,
+        "mystery": 14,
+        "historical": 8
       }
     },
     {
@@ -742,13 +742,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 17,
+        "sf": 16,
         "fantasy": 35,
         "cyberpunk": 9,
-        "action": 29,
-        "slice_of_life": 20,
-        "mystery": 15,
-        "historical": 9
+        "action": 30,
+        "slice_of_life": 17,
+        "mystery": 14,
+        "historical": 7
       }
     },
     {
@@ -760,9 +760,9 @@
         "sf": 18,
         "fantasy": 26,
         "cyberpunk": 15,
-        "action": 28,
-        "slice_of_life": 18,
-        "mystery": 14,
+        "action": 23,
+        "slice_of_life": 19,
+        "mystery": 13,
         "historical": 8
       }
     },
@@ -772,13 +772,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 14,
-        "fantasy": 19,
-        "cyberpunk": 12,
-        "action": 20,
-        "slice_of_life": 10,
-        "mystery": 10,
-        "historical": 9
+        "sf": 12,
+        "fantasy": 21,
+        "cyberpunk": 9,
+        "action": 14,
+        "slice_of_life": 12,
+        "mystery": 9,
+        "historical": 8
       }
     },
     {
@@ -787,13 +787,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 11,
-        "fantasy": 17,
-        "cyberpunk": 4,
-        "action": 7,
+        "sf": 9,
+        "fantasy": 19,
+        "cyberpunk": 6,
+        "action": 14,
         "slice_of_life": 17,
-        "mystery": 6,
-        "historical": 7
+        "mystery": 5,
+        "historical": 6
       }
     },
     {
@@ -802,13 +802,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 9,
-        "cyberpunk": 8,
-        "action": 21,
-        "slice_of_life": 16,
-        "mystery": 7,
-        "historical": 4
+        "sf": 15,
+        "fantasy": 12,
+        "cyberpunk": 12,
+        "action": 27,
+        "slice_of_life": 15,
+        "mystery": 9,
+        "historical": 7
       }
     },
     {
@@ -817,13 +817,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 9,
-        "fantasy": 21,
+        "sf": 10,
+        "fantasy": 23,
         "cyberpunk": 4,
-        "action": 10,
+        "action": 8,
         "slice_of_life": 13,
-        "mystery": 7,
-        "historical": 6
+        "mystery": 5,
+        "historical": 5
       }
     },
     {
@@ -832,13 +832,13 @@
       "source": "PokeBeach News",
       "category": "pokemon",
       "scores": {
-        "sf": 14,
+        "sf": 13,
         "fantasy": 20,
         "cyberpunk": 5,
-        "action": 32,
-        "slice_of_life": 14,
-        "mystery": 10,
-        "historical": 6
+        "action": 33,
+        "slice_of_life": 15,
+        "mystery": 11,
+        "historical": 7
       }
     },
     {
@@ -847,13 +847,13 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 9,
+        "sf": 11,
         "fantasy": 4,
-        "cyberpunk": 10,
-        "action": 12,
-        "slice_of_life": 11,
+        "cyberpunk": 13,
+        "action": 10,
+        "slice_of_life": 14,
         "mystery": 5,
-        "historical": 3
+        "historical": 4
       }
     },
     {
@@ -862,12 +862,12 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 4,
-        "cyberpunk": 9,
+        "sf": 10,
+        "fantasy": 6,
+        "cyberpunk": 8,
         "action": 12,
-        "slice_of_life": 12,
-        "mystery": 6,
+        "slice_of_life": 11,
+        "mystery": 5,
         "historical": 4
       }
     },
@@ -877,13 +877,13 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 46,
+        "sf": 10,
+        "fantasy": 39,
         "cyberpunk": 5,
-        "action": 30,
-        "slice_of_life": 27,
-        "mystery": 10,
-        "historical": 7
+        "action": 31,
+        "slice_of_life": 26,
+        "mystery": 13,
+        "historical": 6
       }
     },
     {
@@ -893,12 +893,12 @@
       "category": "pokemon",
       "scores": {
         "sf": 11,
-        "fantasy": 42,
-        "cyberpunk": 6,
-        "action": 22,
-        "slice_of_life": 24,
+        "fantasy": 31,
+        "cyberpunk": 4,
+        "action": 20,
+        "slice_of_life": 22,
         "mystery": 10,
-        "historical": 8
+        "historical": 7
       }
     },
     {
@@ -907,12 +907,12 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 9,
-        "fantasy": 32,
-        "cyberpunk": 5,
-        "action": 18,
-        "slice_of_life": 17,
-        "mystery": 9,
+        "sf": 10,
+        "fantasy": 30,
+        "cyberpunk": 4,
+        "action": 14,
+        "slice_of_life": 14,
+        "mystery": 10,
         "historical": 7
       }
     },
@@ -922,13 +922,13 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 11,
-        "fantasy": 34,
-        "cyberpunk": 4,
-        "action": 38,
-        "slice_of_life": 13,
-        "mystery": 12,
-        "historical": 6
+        "sf": 12,
+        "fantasy": 33,
+        "cyberpunk": 3,
+        "action": 39,
+        "slice_of_life": 12,
+        "mystery": 11,
+        "historical": 8
       }
     },
     {
@@ -937,13 +937,13 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 10,
-        "fantasy": 26,
+        "sf": 12,
+        "fantasy": 32,
         "cyberpunk": 5,
-        "action": 20,
-        "slice_of_life": 21,
-        "mystery": 6,
-        "historical": 6
+        "action": 19,
+        "slice_of_life": 20,
+        "mystery": 9,
+        "historical": 7
       }
     },
     {
@@ -952,12 +952,12 @@
       "source": "PokemonBlog",
       "category": "pokemon",
       "scores": {
-        "sf": 13,
-        "fantasy": 28,
+        "sf": 12,
+        "fantasy": 32,
         "cyberpunk": 14,
-        "action": 16,
-        "slice_of_life": 20,
-        "mystery": 11,
+        "action": 21,
+        "slice_of_life": 21,
+        "mystery": 12,
         "historical": 7
       }
     },
@@ -967,13 +967,13 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 13,
-        "fantasy": 40,
+        "sf": 16,
+        "fantasy": 36,
         "cyberpunk": 6,
-        "action": 30,
-        "slice_of_life": 14,
-        "mystery": 12,
-        "historical": 5
+        "action": 32,
+        "slice_of_life": 13,
+        "mystery": 11,
+        "historical": 6
       }
     },
     {
@@ -982,13 +982,13 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 66,
+        "sf": 15,
+        "fantasy": 57,
         "cyberpunk": 5,
-        "action": 27,
-        "slice_of_life": 39,
+        "action": 24,
+        "slice_of_life": 41,
         "mystery": 14,
-        "historical": 8
+        "historical": 7
       }
     },
     {
@@ -999,10 +999,10 @@
       "scores": {
         "sf": 17,
         "fantasy": 50,
-        "cyberpunk": 8,
-        "action": 39,
-        "slice_of_life": 17,
-        "mystery": 15,
+        "cyberpunk": 9,
+        "action": 38,
+        "slice_of_life": 16,
+        "mystery": 13,
         "historical": 7
       }
     },
@@ -1013,12 +1013,12 @@
       "category": "pokemon",
       "scores": {
         "sf": 13,
-        "fantasy": 44,
-        "cyberpunk": 5,
-        "action": 28,
-        "slice_of_life": 20,
+        "fantasy": 40,
+        "cyberpunk": 4,
+        "action": 24,
+        "slice_of_life": 23,
         "mystery": 11,
-        "historical": 8
+        "historical": 9
       }
     },
     {
@@ -1028,12 +1028,12 @@
       "category": "pokemon",
       "scores": {
         "sf": 9,
-        "fantasy": 43,
+        "fantasy": 36,
         "cyberpunk": 5,
-        "action": 23,
-        "slice_of_life": 22,
-        "mystery": 9,
-        "historical": 8
+        "action": 17,
+        "slice_of_life": 23,
+        "mystery": 11,
+        "historical": 7
       }
     },
     {
@@ -1042,12 +1042,12 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 11,
-        "fantasy": 52,
+        "sf": 12,
+        "fantasy": 48,
         "cyberpunk": 3,
-        "action": 19,
-        "slice_of_life": 40,
-        "mystery": 17,
+        "action": 21,
+        "slice_of_life": 33,
+        "mystery": 15,
         "historical": 5
       }
     },
@@ -1057,13 +1057,13 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 20,
-        "fantasy": 56,
+        "sf": 25,
+        "fantasy": 53,
         "cyberpunk": 6,
         "action": 35,
-        "slice_of_life": 18,
+        "slice_of_life": 19,
         "mystery": 16,
-        "historical": 14
+        "historical": 9
       }
     },
     {
@@ -1072,13 +1072,13 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 12,
-        "fantasy": 34,
+        "sf": 9,
+        "fantasy": 35,
         "cyberpunk": 5,
         "action": 10,
-        "slice_of_life": 23,
-        "mystery": 6,
-        "historical": 3
+        "slice_of_life": 22,
+        "mystery": 5,
+        "historical": 4
       }
     },
     {
@@ -1087,11 +1087,11 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 14,
-        "fantasy": 35,
-        "cyberpunk": 8,
-        "action": 26,
-        "slice_of_life": 13,
+        "sf": 13,
+        "fantasy": 33,
+        "cyberpunk": 5,
+        "action": 21,
+        "slice_of_life": 11,
         "mystery": 10,
         "historical": 7
       }
@@ -1102,29 +1102,17 @@
       "source": "PocketMonsters",
       "category": "pokemon",
       "scores": {
-        "sf": 10,
+        "sf": 11,
         "fantasy": 41,
-        "cyberpunk": 7,
-        "action": 36,
-        "slice_of_life": 16,
-        "mystery": 14,
-        "historical": 8
+        "cyberpunk": 6,
+        "action": 33,
+        "slice_of_life": 14,
+        "mystery": 15,
+        "historical": 9
       }
     }
   ],
   "copyrights": [
-    {
-      "name": "alice_in_wonderland",
-      "scores": {
-        "sf": 24,
-        "fantasy": 77,
-        "cyberpunk": 4,
-        "action": 8,
-        "slice_of_life": 17,
-        "mystery": 17,
-        "historical": 8
-      }
-    },
     {
       "name": "bandai_namco",
       "scores": {
@@ -1138,39 +1126,15 @@
       }
     },
     {
-      "name": "beastars",
+      "name": "christmas",
       "scores": {
         "sf": 20,
-        "fantasy": 37,
-        "cyberpunk": 9,
-        "action": 40,
-        "slice_of_life": 48,
-        "mystery": 33,
-        "historical": 10
-      }
-    },
-    {
-      "name": "capcom",
-      "scores": {
-        "sf": 29,
-        "fantasy": 20,
-        "cyberpunk": 36,
-        "action": 76,
-        "slice_of_life": 9,
-        "mystery": 18,
-        "historical": 14
-      }
-    },
-    {
-      "name": "clover_studio",
-      "scores": {
-        "sf": 40,
-        "fantasy": 37,
-        "cyberpunk": 37,
-        "action": 34,
+        "fantasy": 32,
+        "cyberpunk": 8,
+        "action": 22,
         "slice_of_life": 42,
-        "mystery": 31,
-        "historical": 15
+        "mystery": 18,
+        "historical": 19
       }
     },
     {
@@ -1186,27 +1150,27 @@
       }
     },
     {
-      "name": "eurofurence",
+      "name": "digimon_ghost_game",
       "scores": {
-        "sf": 37,
-        "fantasy": 16,
-        "cyberpunk": 27,
-        "action": 17,
-        "slice_of_life": 29,
-        "mystery": 23,
-        "historical": 11
+        "sf": 29,
+        "fantasy": 37,
+        "cyberpunk": 25,
+        "action": 47,
+        "slice_of_life": 14,
+        "mystery": 20,
+        "historical": 7
       }
     },
     {
-      "name": "european_mythology",
+      "name": "disney",
       "scores": {
-        "sf": 20,
+        "sf": 19,
         "fantasy": 68,
-        "cyberpunk": 4,
-        "action": 19,
-        "slice_of_life": 17,
-        "mystery": 20,
-        "historical": 45
+        "cyberpunk": 6,
+        "action": 26,
+        "slice_of_life": 25,
+        "mystery": 16,
+        "historical": 18
       }
     },
     {
@@ -1222,18 +1186,6 @@
       }
     },
     {
-      "name": "greek_mythology",
-      "scores": {
-        "sf": 18,
-        "fantasy": 59,
-        "cyberpunk": 3,
-        "action": 16,
-        "slice_of_life": 15,
-        "mystery": 16,
-        "historical": 60
-      }
-    },
-    {
       "name": "hasbro",
       "scores": {
         "sf": 28,
@@ -1243,6 +1195,42 @@
         "slice_of_life": 13,
         "mystery": 10,
         "historical": 7
+      }
+    },
+    {
+      "name": "jurassic_park",
+      "scores": {
+        "sf": 25,
+        "fantasy": 5,
+        "cyberpunk": 6,
+        "action": 55,
+        "slice_of_life": 6,
+        "mystery": 25,
+        "historical": 43
+      }
+    },
+    {
+      "name": "jurassic_world",
+      "scores": {
+        "sf": 25,
+        "fantasy": 8,
+        "cyberpunk": 4,
+        "action": 65,
+        "slice_of_life": 6,
+        "mystery": 10,
+        "historical": 60
+      }
+    },
+    {
+      "name": "jurassic_world:_fallen_kingdom",
+      "scores": {
+        "sf": 20,
+        "fantasy": 7,
+        "cyberpunk": 5,
+        "action": 71,
+        "slice_of_life": 5,
+        "mystery": 10,
+        "historical": 54
       }
     },
     {
@@ -1294,111 +1282,15 @@
       }
     },
     {
-      "name": "nintendo_ds",
+      "name": "star_fox",
       "scores": {
-        "sf": 30,
-        "fantasy": 27,
-        "cyberpunk": 21,
-        "action": 45,
-        "slice_of_life": 33,
-        "mystery": 32,
-        "historical": 14
-      }
-    },
-    {
-      "name": "nintendo_ds_family",
-      "scores": {
-        "sf": 24,
-        "fantasy": 36,
-        "cyberpunk": 13,
+        "sf": 50,
+        "fantasy": 21,
+        "cyberpunk": 42,
         "action": 40,
-        "slice_of_life": 39,
-        "mystery": 30,
-        "historical": 19
-      }
-    },
-    {
-      "name": "okami_(capcom)",
-      "scores": {
-        "sf": 21,
-        "fantasy": 73,
-        "cyberpunk": 11,
-        "action": 62,
-        "slice_of_life": 18,
-        "mystery": 19,
-        "historical": 35
-      }
-    },
-    {
-      "name": "sailor_moon_(series)",
-      "scores": {
-        "sf": 22,
-        "fantasy": 42,
-        "cyberpunk": 5,
-        "action": 45,
-        "slice_of_life": 32,
-        "mystery": 16,
-        "historical": 10
-      }
-    },
-    {
-      "name": "sailor_moon_redraw_challenge",
-      "scores": {
-        "sf": 13,
-        "fantasy": 39,
-        "cyberpunk": 6,
-        "action": 44,
-        "slice_of_life": 22,
-        "mystery": 14,
-        "historical": 8
-      }
-    },
-    {
-      "name": "sdorica",
-      "scores": {
-        "sf": 36,
-        "fantasy": 29,
-        "cyberpunk": 29,
-        "action": 31,
-        "slice_of_life": 33,
-        "mystery": 28,
+        "slice_of_life": 31,
+        "mystery": 31,
         "historical": 16
-      }
-    },
-    {
-      "name": "sega",
-      "scores": {
-        "sf": 31,
-        "fantasy": 17,
-        "cyberpunk": 31,
-        "action": 48,
-        "slice_of_life": 17,
-        "mystery": 18,
-        "historical": 9
-      }
-    },
-    {
-      "name": "sonic_the_hedgehog_(series)",
-      "scores": {
-        "sf": 33,
-        "fantasy": 18,
-        "cyberpunk": 22,
-        "action": 65,
-        "slice_of_life": 12,
-        "mystery": 13,
-        "historical": 6
-      }
-    },
-    {
-      "name": "toei_animation",
-      "scores": {
-        "sf": 35,
-        "fantasy": 50,
-        "cyberpunk": 23,
-        "action": 73,
-        "slice_of_life": 22,
-        "mystery": 22,
-        "historical": 19
       }
     },
     {
@@ -1412,8 +1304,32 @@
         "mystery": 22,
         "historical": 12
       }
+    },
+    {
+      "name": "universal_studios",
+      "scores": {
+        "sf": 32,
+        "fantasy": 19,
+        "cyberpunk": 21,
+        "action": 52,
+        "slice_of_life": 15,
+        "mystery": 19,
+        "historical": 12
+      }
+    },
+    {
+      "name": "zootopia",
+      "scores": {
+        "sf": 20,
+        "fantasy": 29,
+        "cyberpunk": 17,
+        "action": 31,
+        "slice_of_life": 33,
+        "mystery": 40,
+        "historical": 5
+      }
     }
   ],
-  "api_calls": 39,
-  "cache_hits": 60
+  "api_calls": 59,
+  "cache_hits": 33
 }
