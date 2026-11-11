@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-11T11:27:02.566613+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-11T11:26:32.584698+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Lanterns Not Renewed for Season 2, Says DC Studios Insider",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/lanterns-not-renewed-for-season-2-says-dc-studios-insider",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "An insider at DC Studios claims that HBO’s Lanterns was not renewed for a second season in spite of rave reviews and audience interest, as told in a report from Variety. Variety’s report comes on the "
+    },
+    {
+      "title": "Interview: What We Know About Mobile Suit Gundam RG XARX-ZERO with Director Kenji Kamiyama",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/interview/2026-10-23/what-we-know-about-mobile-suit-gundam-rg-xarx-zero-with-director-kenji-kamiyama/.242526",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Lanterns Not Renewed",
+    "What We Know"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/lanterns-not-renewed-for-season-2-says-dc-studios-insider",
+    "https://www.animenewsnetwork.com/interview/2026-10-23/what-we-know-about-mobile-suit-gundam-rg-xarx-zero-with-director-kenji-kamiyama/.242526"
+  ]
+}
