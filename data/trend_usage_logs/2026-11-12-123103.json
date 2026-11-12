@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-12T12:31:03.022425+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-12T12:30:20.722706+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 36,
+    "after_score_filter": 36,
+    "after_rating_filter": 36,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "The Legend of Zelda: Ocarina of Time Remake Sells Over 5.2 Million Units to Become Nintendo's Fastest-Selling Switch 2 Game",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-11/the-legend-of-zelda-ocarina-of-time-remake-sells-over-5.2-million-units-to-become-nintendo-fastest-/.243722",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Monster Hunter Outlanders Review",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/monster-hunter-outlanders-review",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "If there's a singular idea that defines Monster Hunter, it's the grind. Capcom's mega-hit franchise, ever since its inception on the PSP, has flourished because of how it embraces the very idea of gri"
+    }
+  ],
+  "affiliate_keywords": [
+    "Ocarina Time Remake",
+    "Monster Hunter Outlanders Revi"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-11-11/the-legend-of-zelda-ocarina-of-time-remake-sells-over-5.2-million-units-to-become-nintendo-fastest-/.243722",
+    "https://www.ign.com/articles/monster-hunter-outlanders-review"
+  ]
+}
