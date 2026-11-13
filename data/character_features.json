@@ -1,1428 +1,1439 @@
 {
   "posts": [
     {
-      "id": 84310,
+      "id": 5463786,
       "species": [
-        "lagomorph",
-        "leporid",
-        "mammal",
-        "rabbit"
-      ],
-      "colors": [
-        "red_eyes"
-      ],
-      "physical": [
-        "heart_symbol",
-        "kemono"
-      ],
-      "characters": [
-        "captain_bokko"
-      ],
-      "copyrights": [
-        "osamu_tezuka",
-        "the_amazing_3"
-      ],
-      "artists": [
-        "sindoll"
-      ]
-    },
-    {
-      "id": 84768,
-      "species": [
-        "canid",
-        "canine",
-        "canis",
-        "domestic_dog",
-        "dragon",
-        "felid",
-        "mammal",
-        "mythological_creature",
-        "mythological_scalie",
-        "pantherine",
-        "scalie",
-        "tiger",
-        "wolf"
-      ],
-      "colors": [
-        "black_eyes",
-        "brown_body",
-        "brown_fur",
-        "brown_hair",
-        "long_hair",
-        "orange_body",
-        "orange_fur",
-        "orange_hair",
-        "tan_body",
-        "tan_fur",
-        "tan_hair"
-      ],
-      "physical": [
-        "4_fingers",
-        "banana_peel",
-        "barefoot",
-        "boots",
-        "border",
-        "bottomwear",
-        "breasts",
-        "brown_scales",
-        "cleavage",
-        "clothed",
-        "clothing",
-        "falling",
-        "feet",
-        "fingers",
-        "footwear",
-        "fur",
-        "hair",
-        "holding_container",
-        "holding_cup",
-        "kemono",
-        "legwear",
-        "motion_lines",
-        "mouth_coming_off_face",
-        "musical_note",
-        "musical_symbol",
-        "pointing",
-        "pointing_up",
-        "raised_finger",
-        "raised_index_finger",
-        "scales",
-        "shoes",
-        "skirt",
-        "socks",
-        "stripes",
-        "symbol",
-        "tail",
-        "topwear",
-        "tube_top",
-        "wings",
-        "yellow_border"
-      ],
-      "characters": [
-        "alt-b-shephelie",
-        "elena_(shio_inu)",
-        "ema_(shio_inu)"
-      ],
-      "copyrights": [
-        "mythology"
-      ],
-      "artists": [
-        "shio_inu"
-      ]
-    },
-    {
-      "id": 85006,
-      "species": [
-        "avian",
-        "bird",
-        "dragonair",
-        "elemental_creature",
-        "farfetch'd",
-        "flora_fauna",
-        "generation_1_pokemon",
-        "generation_2_pokemon",
-        "generation_3_pokemon",
-        "generation_4_pokemon",
-        "gulpin",
-        "land_forme_shaymin",
-        "legendary_pokemon",
-        "parasect",
-        "pokemon_(species)",
-        "quagsire",
-        "shaymin",
-        "wooper"
-      ],
-      "colors": [],
-      "physical": [
-        "dutch_angle",
-        "feathered_wings",
-        "feathers",
-        "feral",
-        "flower",
-        "flower_(anatomy)",
-        "grass",
-        "head_flower",
-        "head_wings",
-        "kemono",
-        "outside",
-        "rock",
-        "tree",
-        "unusual_wing_placement",
-        "water",
-        "wings",
-        "wood"
-      ],
-      "characters": [],
-      "copyrights": [
-        "nintendo",
-        "pokemon"
-      ],
-      "artists": [
-        "utsuki_maito"
-      ]
-    },
-    {
-      "id": 85966,
-      "species": [
-        "aquatic",
+        "ailurid",
+        "bear",
         "carnivoran",
-        "dunkleosteus",
-        "fish",
-        "hybrid",
+        "giant_panda",
         "mammal",
-        "mustelid",
-        "otter",
-        "placoderm",
-        "prehistoric_species"
-      ],
-      "colors": [],
-      "physical": [
-        "bottomwear",
-        "clothing",
-        "fishing_rod",
-        "footwear",
-        "kemono",
-        "legwear",
-        "navel",
-        "pants",
-        "socks",
-        "stirrup_socks",
-        "tail"
-      ],
-      "characters": [
-        "mikhaila_kirov"
-      ],
-      "copyrights": [],
-      "artists": [
-        "tsampikos"
-      ]
-    },
-    {
-      "id": 84492,
-      "species": [
-        "canid",
-        "canine",
-        "canis",
-        "dragon",
-        "mammal",
-        "mythological_creature",
-        "mythological_scalie",
-        "scalie",
-        "wolf"
-      ],
-      "colors": [
-        "green_eyes",
-        "short_hair",
-        "white_hair"
-      ],
-      "physical": [
-        "armor",
-        "black_nose",
-        "claws",
-        "clothed",
-        "clothing",
-        "hair",
-        "horn",
-        "kemono",
-        "markings",
-        "tail",
-        "topless",
-        "wings"
-      ],
-      "characters": [],
-      "copyrights": [
-        "mythology"
-      ],
-      "artists": [
-        "dragoon86"
-      ]
-    },
-    {
-      "id": 2578049,
-      "species": [
-        "dragon",
-        "mythological_creature",
-        "mythological_scalie",
-        "scalie"
-      ],
-      "colors": [
-        "dark_body",
-        "dark_fur",
-        "green_body",
-        "green_fur",
-        "green_hair",
-        "green_skin",
-        "pink_eyes"
-      ],
-      "physical": [
-        "3_fingers",
-        "breasts",
-        "broken_horn",
-        "featureless_breasts",
-        "fingers",
-        "fur",
-        "hair",
-        "horn",
-        "navel"
-      ],
-      "characters": [
-        "kyisha"
-      ],
-      "copyrights": [
-        "mythology"
-      ],
-      "artists": [
-        "spacesmilodon"
-      ]
-    },
-    {
-      "id": 2576073,
-      "species": [
-        "bird_dog",
-        "canid",
-        "canine",
-        "canis",
-        "domestic_dog",
-        "dragon",
-        "furred_dragon",
-        "furred_scalie",
-        "golden_retriever",
-        "hunting_dog",
-        "labrador",
-        "mammal",
-        "mythological_creature",
-        "mythological_scalie",
-        "retriever",
-        "scalie"
-      ],
-      "colors": [
-        "blonde_hair",
-        "blue_eyes",
-        "braided_hair",
-        "dark_body",
-        "dark_skin",
-        "long_hair",
-        "orange_eyes",
-        "orange_hair",
-        "yellow_body",
-        "yellow_fur"
-      ],
-      "physical": [
-        "barmaid",
-        "black_nails",
-        "bow_(feature)",
-        "breasts",
-        "choker",
-        "cleavage",
-        "clothed",
-        "clothing",
-        "colored_nails",
-        "crossed_arms",
-        "cuff_links",
-        "dirndl",
-        "fur",
-        "hair",
-        "holding_beverage",
-        "holding_food",
-        "horn",
-        "jewelry",
-        "nails_(anatomy)",
-        "neck_tuft",
-        "necklace",
-        "pointy_ears",
-        "pupils",
-        "saliva",
-        "saliva_on_tongue",
-        "square_pupils",
-        "steam",
-        "tail",
-        "tankard",
-        "tuft",
-        "unusual_pupils"
-      ],
-      "characters": [
-        "hestia_(cliffpadfoot)",
-        "jeane_(ceehaz)"
-      ],
-      "copyrights": [
-        "dog_knight_rpg",
-        "mythology"
-      ],
-      "artists": [
-        "ceehaz"
-      ]
-    },
-    {
-      "id": 2578834,
-      "species": [
-        "dragon",
-        "lizard",
-        "mythological_creature",
-        "mythological_scalie",
-        "reptile",
-        "scalie"
-      ],
-      "colors": [
-        "blue_body",
-        "blue_skin",
-        "raised_tail"
-      ],
-      "physical": [
-        "breasts",
-        "cleavage",
-        "clothed",
-        "clothing",
-        "crop_top",
-        "ear_piercing",
-        "horn",
-        "nipple_outline",
-        "non-mammal_breasts",
-        "piercing",
-        "shirt",
-        "tail",
-        "thick_thighs",
-        "topwear",
-        "wings"
-      ],
-      "characters": [
-        "mia_(shilon2)"
-      ],
-      "copyrights": [
-        "mythology"
-      ],
-      "artists": [
-        "kingpillar"
-      ]
-    },
-    {
-      "id": 2579315,
-      "species": [
-        "dragon",
-        "mythological_creature",
-        "mythological_scalie",
-        "scalie"
-      ],
-      "colors": [],
-      "physical": [
-        "armor",
-        "clothed",
-        "clothing",
-        "freezer",
-        "hair",
-        "headgear",
-        "helmet",
-        "membrane_(anatomy)",
-        "membranous_wings",
-        "pith_helmet",
-        "wings"
-      ],
-      "characters": [
-        "hazard_drake"
-      ],
-      "copyrights": [
-        "mythology"
-      ],
-      "artists": [
-        "flinters"
-      ]
-    },
-    {
-      "id": 2565581,
-      "species": [
-        "aquatic",
-        "aquatic_dragon",
-        "dragon",
-        "hybrid",
-        "mythological_creature",
-        "mythological_scalie",
-        "scalie"
-      ],
-      "colors": [
-        "long_hair",
-        "purple_hair"
-      ],
-      "physical": [
-        "bottomwear",
-        "breasts",
-        "clothed",
-        "clothing",
-        "gloves",
-        "hair",
-        "handwear",
-        "horn",
-        "shorts"
-      ],
-      "characters": [
-        "sash_lilac"
-      ],
-      "copyrights": [
-        "freedom_planet",
-        "galaxytrail",
-        "mythology"
-      ],
-      "artists": [
-        "lilboulder"
-      ]
-    },
-    {
-      "id": 1858689,
-      "species": [
-        "animate_inanimate",
-        "canid",
-        "canine",
-        "canis",
-        "latex_creature",
-        "mammal",
-        "wolf"
-      ],
-      "colors": [],
-      "physical": [
-        "claws",
-        "collar",
-        "featureless_crotch",
-        "latex",
-        "mouthless",
-        "null",
-        "plantigrade"
-      ],
-      "characters": [],
-      "copyrights": [],
-      "artists": [
-        "ebonyrubberwolf"
-      ]
-    },
-    {
-      "id": 1864861,
-      "species": [
-        "aardwolf",
-        "canid",
-        "canine",
-        "canis",
-        "fox",
-        "hyena",
-        "lagomorph",
-        "leporid",
-        "mammal",
-        "rabbit",
-        "wolf"
-      ],
-      "colors": [],
-      "physical": [
-        "barefoot",
-        "cheek_tuft",
-        "clothed",
-        "clothing",
-        "facial_tuft",
-        "feet",
-        "hat",
-        "head_tuft",
-        "headgear",
-        "headwear",
-        "motion_lines",
-        "musical_note",
-        "musical_symbol",
-        "open_smile",
-        "outside",
-        "sofa",
-        "symbol",
-        "tree",
-        "tuft",
-        "water",
-        "waterfall"
-      ],
-      "characters": [
-        "al_(weaver)",
-        "charlie_(weaver)",
-        "fan_character",
-        "judy_hopps",
-        "wolter_(weaver)"
-      ],
-      "copyrights": [
-        "disney",
-        "pack_street",
-        "zootopia"
-      ],
-      "artists": [
-        "ittybittykittytittys"
-      ]
-    },
-    {
-      "id": 1869710,
-      "species": [
-        "canid",
-        "canine",
-        "canis",
-        "domestic_cat",
-        "felid",
-        "feline",
-        "felis",
-        "generation_1_pokemon",
-        "mammal",
-        "pikachu",
-        "pokemon_(species)",
-        "wolf"
+        "red_panda"
       ],
       "colors": [
         "black_body",
-        "black_fur",
-        "black_hair",
-        "brown_hair",
-        "green_eyes",
-        "red_eyes",
-        "white_body",
-        "white_fur"
+        "white_body"
       ],
       "physical": [
-        "clothed",
+        "accessory",
+        "black_nose",
+        "bottomwear",
         "clothing",
-        "fruit",
-        "fully_clothed",
-        "fur",
-        "hair",
-        "slightly_chubby"
-      ],
-      "characters": [
-        "o-kemono_(character)",
-        "pussycat_(o-kemono)"
-      ],
-      "copyrights": [
-        "nintendo",
-        "pokemon"
-      ],
-      "artists": [
-        "o-kemono"
-      ]
-    },
-    {
-      "id": 1864975,
-      "species": [
-        "antelope",
-        "bovid",
-        "canid",
-        "canine",
-        "canis",
-        "dingo",
-        "fox",
-        "lagomorph",
-        "leporid",
-        "lizard",
-        "mammal",
-        "rabbit",
-        "reptile",
-        "rodent",
-        "scalie",
-        "sciurid",
-        "tree_squirrel",
-        "wolf"
-      ],
-      "colors": [],
-      "physical": [
-        "adolescent",
-        "bedroom",
-        "gaming",
-        "mohawk",
-        "sidecut"
-      ],
-      "characters": [
-        "ariadne_(falseseke)"
-      ],
-      "copyrights": [],
-      "artists": [
-        "falseseke"
-      ]
-    },
-    {
-      "id": 1871702,
-      "species": [
-        "canid",
-        "canine",
-        "canis",
-        "mammal",
-        "wolf"
-      ],
-      "colors": [
-        "blue_body",
-        "blue_fur",
-        "red_eyes"
-      ],
-      "physical": [
-        "blue_nose",
-        "feral",
-        "fur",
-        "moon",
-        "night",
-        "outside",
-        "sky",
-        "star",
-        "starry_sky"
-      ],
-      "characters": [],
-      "copyrights": [],
-      "artists": [
-        "yasmil"
-      ]
-    },
-    {
-      "id": 655899,
-      "species": [
-        "canid",
-        "canine",
-        "fox",
-        "mammal"
-      ],
-      "colors": [
-        "blonde_hair",
-        "blue_eyes",
-        "pink_body",
-        "pink_fur"
-      ],
-      "physical": [
-        "bell",
-        "bottomless",
-        "clothed",
-        "clothing",
-        "fur",
-        "hair",
-        "hoodie",
+        "eyewear",
+        "glasses",
         "kemono",
+        "necktie",
+        "overweight",
+        "overweight_male",
+        "pants",
+        "shirt",
         "topwear"
       ],
       "characters": [],
       "copyrights": [],
       "artists": [
-        "ingi"
+        "bari_mu"
       ]
     },
     {
-      "id": 658986,
+      "id": 5484548,
       "species": [
-        "canid",
-        "canine",
-        "fox",
-        "mammal"
+        "ailurid",
+        "carnivoran",
+        "mammal",
+        "red_panda"
       ],
       "colors": [
-        "fluffy_tail",
-        "red_eyes"
+        "black_eyes",
+        "dot_eyes",
+        "simple_eyes"
       ],
       "physical": [
-        "cheek_tuft",
-        "chest_tuft",
-        "ear_tuft",
-        "facial_tuft",
+        "dessert",
         "feral",
-        "fluffy",
-        "fur",
-        "inner_ear_fluff",
-        "tail",
-        "tuft",
-        "yellow_sclera"
+        "ice_cream",
+        "kemono",
+        "musical_note",
+        "musical_symbol",
+        "symbol",
+        "worried"
+      ],
+      "characters": [],
+      "copyrights": [],
+      "artists": [
+        "shi_nominmin"
+      ]
+    },
+    {
+      "id": 5475559,
+      "species": [
+        "domestic_cat",
+        "felid",
+        "feline",
+        "felis",
+        "mammal"
+      ],
+      "colors": [],
+      "physical": [
+        "belly",
+        "big_belly",
+        "bottomwear",
+        "clothing",
+        "kemono",
+        "moobs",
+        "navel",
+        "outside",
+        "overweight",
+        "overweight_male",
+        "pants"
       ],
       "characters": [
-        "suzu_(character)"
+        "black_cat_(trail_arnak)"
       ],
       "copyrights": [],
       "artists": [
-        "jotaku"
+        "trail_arnak"
       ]
     },
     {
-      "id": 654567,
+      "id": 5452930,
       "species": [
-        "animatronic",
-        "avian",
-        "bear",
-        "bird",
-        "canid",
-        "canine",
-        "carnivoran",
-        "chicken",
-        "fox",
-        "galliform",
-        "lagomorph",
-        "leporid",
+        "aquatic",
+        "eeveelution",
+        "generation_1_pokemon",
         "mammal",
-        "phasianid",
-        "rabbit",
-        "robot"
+        "pokemon_(species)",
+        "vaporeon"
       ],
       "colors": [
-        "blue_eyes",
-        "glowing_eyes",
-        "green_eyes",
-        "pink_eyes"
+        "big_tail",
+        "black_eyes",
+        "blue_body",
+        "blue_skin",
+        "blue_tail",
+        "glistening_body",
+        "glistening_skin",
+        "monotone_tail",
+        "thick_tail"
       ],
       "physical": [
-        "beak",
-        "exposed_endoskeleton",
-        "eye_patch",
-        "eyeless",
-        "eyewear",
+        "ambiguous_feral",
+        "bubble",
+        "cave",
+        "ear_fins",
+        "feet",
+        "feral",
+        "fin",
+        "frill_(anatomy)",
+        "head_fin",
+        "kemono",
+        "neck_frill",
+        "tail",
+        "tail_fin",
+        "toes",
+        "underwater",
+        "water"
+      ],
+      "characters": [],
+      "copyrights": [
+        "nintendo",
+        "pokemon"
+      ],
+      "artists": [
+        "murasawa"
+      ]
+    },
+    {
+      "id": 5461742,
+      "species": [
+        "canid",
+        "canine",
+        "canis",
+        "mammal",
+        "wolf"
+      ],
+      "colors": [
+        "grey_body",
+        "grey_fur",
+        "grey_hair",
+        "tan_body",
+        "tan_fur",
+        "yellow_eyes"
+      ],
+      "physical": [
+        "5_fingers",
+        "accessory",
+        "claws",
+        "clothed",
+        "clothing",
+        "eyebrows",
+        "fangs",
+        "fingers",
+        "fur",
+        "hair",
+        "heart_gesture",
+        "heart_symbol",
+        "kemono",
+        "necktie",
+        "pawpads",
+        "red_necktie",
+        "shirt",
+        "tail",
+        "teeth",
+        "topwear",
+        "white_clothing",
+        "white_shirt",
+        "white_topwear"
+      ],
+      "characters": [],
+      "copyrights": [],
+      "artists": [
+        "tomoyamaru"
+      ]
+    },
+    {
+      "id": 4966561,
+      "species": [
+        "dragon",
+        "mythological_creature",
+        "mythological_scalie",
+        "scalie"
+      ],
+      "colors": [
+        "black_body",
+        "black_hair"
+      ],
+      "physical": [
+        "big_breasts",
+        "breasts",
+        "clothed",
+        "clothing",
+        "dress",
+        "ear_piercing",
+        "hair",
+        "horn",
+        "industrial_piercing",
+        "markings",
+        "piercing",
+        "red_markings",
+        "tail"
+      ],
+      "characters": [
+        "nesa_(drakeraynier)"
+      ],
+      "copyrights": [
+        "mythology"
+      ],
+      "artists": [
+        "harucat"
+      ]
+    },
+    {
+      "id": 4949464,
+      "species": [
+        "canid",
+        "canine",
+        "canis",
+        "cougar",
+        "domestic_dog",
+        "dragon",
+        "dutch_angel_dragon",
+        "felid",
+        "feline",
+        "furred_dragon",
+        "furred_scalie",
+        "husky",
+        "lion",
+        "mammal",
+        "mythological_creature",
+        "mythological_scalie",
+        "nordic_sled_dog",
+        "pantherine",
+        "scalie",
+        "sergal",
+        "spitz",
+        "tiger",
+        "wolf"
+      ],
+      "colors": [],
+      "physical": [
+        "2_horns",
+        "angry",
+        "ear_piercing",
+        "ear_ring",
+        "fur",
+        "furs",
+        "holding_horn",
+        "holding_microphone",
+        "holding_paper",
+        "horn",
+        "jewelry",
+        "paper",
+        "piercing",
+        "ring_piercing",
+        "scales"
+      ],
+      "characters": [
+        "sanlich"
+      ],
+      "copyrights": [
+        "mythology",
+        "would_(reaction_image)"
+      ],
+      "artists": [
+        "spinal22"
+      ]
+    },
+    {
+      "id": 4956638,
+      "species": [
+        "dragon",
+        "mythological_creature",
+        "mythological_scalie",
+        "scalie"
+      ],
+      "colors": [],
+      "physical": [
+        "facial_markings",
+        "forehead_markings",
+        "hair",
+        "head_markings",
+        "heterochromia",
+        "horn",
+        "lava",
+        "markings",
+        "spikes",
+        "spikes_(anatomy)",
         "teeth"
       ],
       "characters": [
-        "balloon_boy_(fnaf)",
-        "bonnie_(fnaf)",
-        "chica_(fnaf)",
-        "cupcake_(fnaf)",
-        "foxy_(fnaf)",
-        "freddy_(fnaf)",
-        "golden_freddy_(fnaf)",
-        "mangle_(fnaf)",
-        "phantom_marionette_(fnaf)",
-        "shadow_bonnie_(fnaf)",
-        "springtrap_(fnaf)",
-        "toy_bonnie_(fnaf)",
-        "toy_chica_(fnaf)",
-        "toy_freddy_(fnaf)"
+        "swiftbeauty"
       ],
       "copyrights": [
-        "five_nights_at_freddy's",
-        "five_nights_at_freddy's_2",
-        "five_nights_at_freddy's_3",
-        "scottgames"
+        "mythology"
       ],
       "artists": [
-        "redelisa_(artist)"
+        "artansy"
       ]
     },
     {
-      "id": 659185,
+      "id": 4978966,
       "species": [
-        "animatronic",
-        "bear",
-        "canid",
-        "canine",
-        "carnivoran",
-        "fox",
-        "mammal",
-        "robot"
+        "dragon",
+        "mythological_creature",
+        "mythological_scalie",
+        "scalie"
+      ],
+      "colors": [
+        "grey_body"
+      ],
+      "physical": [
+        "abs",
+        "facial_piercing",
+        "featureless_crotch",
+        "horn",
+        "jewelry",
+        "muscular",
+        "muscular_male",
+        "muscular_thighs",
+        "naughty_face",
+        "necklace",
+        "nose_piercing",
+        "obliques",
+        "pecs",
+        "piercing",
+        "serratus",
+        "tail",
+        "wings"
+      ],
+      "characters": [],
+      "copyrights": [
+        "mythology"
+      ],
+      "artists": [
+        "pacelic"
+      ]
+    },
+    {
+      "id": 4978037,
+      "species": [
+        "dragon",
+        "mythological_creature",
+        "mythological_scalie",
+        "scalie",
+        "western_dragon"
       ],
       "colors": [],
       "physical": [
-        "eye_patch",
-        "eyewear"
+        "2_horns",
+        "armor",
+        "athletic",
+        "athletic_anthro",
+        "athletic_male",
+        "bottomwear",
+        "clothed",
+        "clothing",
+        "curved_horn",
+        "gauntlets",
+        "gloves",
+        "handwear",
+        "headgear",
+        "helmet",
+        "holding_melee_weapon",
+        "holding_sword",
+        "holding_weapon",
+        "horn",
+        "horn_through_headwear",
+        "knight",
+        "knight_armor",
+        "leg_armor",
+        "melee_weapon",
+        "membrane_(anatomy)",
+        "membranous_wings",
+        "pants",
+        "shirt",
+        "sword",
+        "tail",
+        "tank_top",
+        "topwear",
+        "warrior",
+        "wings"
       ],
       "characters": [
-        "foxy_(fnaf)",
-        "freddy_(fnaf)"
+        "nameless_character"
       ],
       "copyrights": [
-        "five_nights_at_freddy's",
-        "scottgames"
+        "european_mythology",
+        "mythology"
       ],
       "artists": [
-        "the_weaver"
+        "dama624"
       ]
     },
     {
-      "id": 655539,
+      "id": 6636439,
+      "species": [
+        "canid",
+        "canine",
+        "canis",
+        "mammal",
+        "wolf"
+      ],
+      "colors": [
+        "yellow_eyes"
+      ],
+      "physical": [
+        "arm_warmers",
+        "armwear",
+        "bracelet",
+        "clothing",
+        "green_highlights",
+        "highlights_(coloring)",
+        "jewelry",
+        "studded_bracelet",
+        "studded_jewelry",
+        "studs"
+      ],
+      "characters": [
+        "roxanne_wolf"
+      ],
+      "copyrights": [
+        "five_nights_at_freddy's",
+        "five_nights_at_freddy's:_security_breach",
+        "scottgames",
+        "steel_wool_studios"
+      ],
+      "artists": [
+        "anonamine"
+      ]
+    },
+    {
+      "id": 6658298,
+      "species": [
+        "canid",
+        "canine",
+        "canis",
+        "mammal",
+        "wolf"
+      ],
+      "colors": [
+        "blue_body",
+        "blue_eyes",
+        "blue_fur",
+        "white_body",
+        "white_fur"
+      ],
+      "physical": [
+        "black_clothing",
+        "black_hoodie",
+        "black_nose",
+        "black_topwear",
+        "blue_clothing",
+        "blue_jacket",
+        "blue_topwear",
+        "bottomwear",
+        "clothed",
+        "clothing",
+        "confession",
+        "ear_piercing",
+        "fur",
+        "hair",
+        "hoodie",
+        "jacket",
+        "nervous",
+        "nervous_sweat",
+        "piercing",
+        "pink_scarf",
+        "ponytail",
+        "scarf",
+        "shorts",
+        "topwear",
+        "yelling"
+      ],
+      "characters": [
+        "mason_(doginacafe)"
+      ],
+      "copyrights": [
+        "duncan_and_eddie"
+      ],
+      "artists": [
+        "doginacafe"
+      ]
+    },
+    {
+      "id": 6631407,
+      "species": [
+        "avian",
+        "bird",
+        "canid",
+        "canine",
+        "canis",
+        "generation_1_pokemon",
+        "generation_3_pokemon",
+        "gull",
+        "lari",
+        "larid",
+        "mammal",
+        "pikachu",
+        "pokemon_(species)",
+        "rodent",
+        "wingull",
+        "wolf",
+        "wolf_(minecraft)"
+      ],
+      "colors": [
+        "blocky_body",
+        "grey_body",
+        "white_body",
+        "yellow_body"
+      ],
+      "physical": [
+        "ambiguous_feral",
+        "beak",
+        "bird's-eye_view",
+        "blocky_snout",
+        "blurred_foreground",
+        "boat",
+        "collar",
+        "duo_focus",
+        "ears_down",
+        "feral",
+        "flying",
+        "high-angle_view",
+        "multiple_poses",
+        "on_boat",
+        "on_surface",
+        "paddle",
+        "pivoted_ears",
+        "rosy_cheeks",
+        "rowing",
+        "sand",
+        "seaweed",
+        "snout",
+        "watercraft",
+        "wings"
+      ],
+      "characters": [],
+      "copyrights": [
+        "microsoft",
+        "minecraft",
+        "mojang",
+        "nintendo",
+        "pokemon",
+        "pokemon_quest",
+        "xbox_game_studios"
+      ],
+      "artists": [
+        "chufflepop"
+      ]
+    },
+    {
+      "id": 6635114,
+      "species": [
+        "canid",
+        "canine",
+        "canis",
+        "mammal",
+        "wolf"
+      ],
+      "colors": [
+        "grey_body",
+        "grey_fur"
+      ],
+      "physical": [
+        "abs",
+        "clothed",
+        "clothing",
+        "fur",
+        "hand_behind_head",
+        "hand_on_side",
+        "nipples",
+        "shirtless",
+        "shirtless_anthro",
+        "shirtless_male",
+        "topless",
+        "topless_anthro",
+        "topless_male",
+        "yawn"
+      ],
+      "characters": [],
+      "copyrights": [],
+      "artists": [
+        "mrak_grossman"
+      ]
+    },
+    {
+      "id": 6645983,
+      "species": [
+        "canid",
+        "canine",
+        "canis",
+        "lagomorph",
+        "leporid",
+        "mammal",
+        "rabbit",
+        "wolf"
+      ],
+      "colors": [],
+      "physical": [
+        "after_sex",
+        "aftercare",
+        "amputee",
+        "bandage",
+        "bandaged_arm",
+        "canon_couple",
+        "claws",
+        "disability",
+        "eye_scar",
+        "facial_scar",
+        "heart_symbol",
+        "hearts_around_head",
+        "hug",
+        "male/male",
+        "missing_arm",
+        "missing_limb",
+        "pawpads",
+        "paws",
+        "scar"
+      ],
+      "characters": [
+        "chief_wulf",
+        "stumbler_o'hare"
+      ],
+      "copyrights": [
+        "broadside_beach",
+        "hi_09",
+        "shipwrecked_64"
+      ],
+      "artists": [
+        "pastarammi"
+      ]
+    },
+    {
+      "id": 816633,
+      "species": [
+        "canid",
+        "canine",
+        "fox",
+        "mammal",
+        "mouse",
+        "murid",
+        "murine",
+        "rodent"
+      ],
+      "colors": [
+        "black_body",
+        "black_eyes",
+        "black_fur",
+        "black_tail",
+        "dipstick_tail",
+        "multicolored_tail",
+        "two_tone_tail",
+        "white_body",
+        "white_fur",
+        "white_tail"
+      ],
+      "physical": [
+        "black_ears",
+        "black_nose",
+        "black_text",
+        "blinking",
+        "clothed",
+        "clothing",
+        "dress",
+        "eye_contact",
+        "featureless_arms",
+        "featureless_crotch",
+        "featureless_feet",
+        "featureless_hands",
+        "featureless_legs",
+        "feet",
+        "fur",
+        "markings",
+        "motivational_poster",
+        "outside",
+        "question",
+        "red_clothing",
+        "red_dress",
+        "size_difference",
+        "tail",
+        "tail_markings",
+        "tall",
+        "white_ears"
+      ],
+      "characters": [],
+      "copyrights": [],
+      "artists": [
+        "keke_(artist)"
+      ]
+    },
+    {
+      "id": 822723,
+      "species": [
+        "canid",
+        "canine",
+        "digimon_(species)",
+        "felid",
+        "fox",
+        "gazimon",
+        "hybrid",
+        "lagomorph",
+        "mammal"
+      ],
+      "colors": [
+        "blue_eyes",
+        "grey_body",
+        "grey_fur",
+        "multicolored_body",
+        "multicolored_fur",
+        "orange_eyes",
+        "two_tone_body",
+        "two_tone_fur",
+        "white_body",
+        "white_fur"
+      ],
+      "physical": [
+        "black_nose",
+        "day",
+        "fur",
+        "outside",
+        "sky",
+        "tree"
+      ],
+      "characters": [
+        "miles_prower"
+      ],
+      "copyrights": [
+        "bandai_namco",
+        "digimon",
+        "sega",
+        "sonic_the_hedgehog_(series)"
+      ],
+      "artists": [
+        "gazimondefense"
+      ]
+    },
+    {
+      "id": 817888,
       "species": [
         "canid",
         "canine",
         "fox",
         "mammal"
       ],
-      "colors": [
-        "red_eyes"
-      ],
+      "colors": [],
       "physical": [
-        "eating",
-        "fur",
-        "japanese",
-        "kemono"
+        "breasts",
+        "featureless_breasts",
+        "featureless_crotch",
+        "navel"
       ],
       "characters": [],
       "copyrights": [],
       "artists": [
-        "1boshi"
+        "pixelannex"
       ]
     },
     {
-      "id": 748674,
+      "id": 822749,
       "species": [
+        "blue_virus_(dr._mario)",
         "canid",
         "canine",
         "fox",
-        "ghost",
-        "lagomorph",
-        "leporid",
         "mammal",
-        "rabbit",
-        "spirit"
+        "micro_organism_(organism)",
+        "red_virus_(dr._mario)",
+        "virus_(dr._mario)",
+        "virus_(organism)",
+        "waddling_head",
+        "yellow_virus_(dr._mario)"
       ],
       "colors": [],
       "physical": [
-        "tears"
+        "3_toes",
+        "barefoot",
+        "bottle",
+        "drugs",
+        "feet",
+        "feral",
+        "micro",
+        "nurse",
+        "pills",
+        "toes"
       ],
-      "characters": [],
-      "copyrights": [],
+      "characters": [
+        "chill_(dr._mario)",
+        "fever_(dr._mario)",
+        "weird_(dr._mario)"
+      ],
+      "copyrights": [
+        "dr._mario",
+        "mario_bros",
+        "nintendo"
+      ],
       "artists": [
-        "shane_frost"
+        "toonvasion"
       ]
     },
     {
-      "id": 754171,
+      "id": 816655,
       "species": [
+        "animatronic",
+        "canid",
+        "canine",
+        "fox",
+        "mammal",
+        "robot"
+      ],
+      "colors": [],
+      "physical": [],
+      "characters": [
+        "foxy_(fnaf)"
+      ],
+      "copyrights": [
+        "five_nights_at_freddy's",
+        "scottgames"
+      ],
+      "artists": [
+        "tj-otter"
+      ]
+    },
+    {
+      "id": 447444,
+      "species": [
+        "canid",
+        "canine",
         "lagomorph",
         "leporid",
         "mammal",
         "rabbit"
       ],
       "colors": [
-        "big_eyes"
-      ],
-      "physical": [],
-      "characters": [],
-      "copyrights": [
-        "you're_home"
-      ],
-      "artists": [
-        "shane_frost"
-      ]
-    },
-    {
-      "id": 749635,
-      "species": [
-        "android",
-        "faraden",
-        "lagomorph",
-        "leporid",
-        "mammal",
-        "pure_faraden",
-        "rabbit",
-        "robot"
-      ],
-      "colors": [
-        "glowing_eyes",
-        "orange_eyes",
-        "white_body",
-        "white_fur",
-        "white_hair"
-      ],
-      "physical": [
-        "clothed",
-        "clothing",
-        "fur",
-        "hair"
-      ],
-      "characters": [
-        "avalenna"
-      ],
-      "copyrights": [
-        "legacy_(ratte)"
-      ],
-      "artists": [
-        "conditional_dnp",
-        "ratte"
-      ]
-    },
-    {
-      "id": 748039,
-      "species": [
-        "canid",
-        "canine",
-        "canis",
-        "chihuahua",
-        "chipmunk",
-        "domestic_dog",
-        "eulipotyphlan",
-        "gaia",
-        "ground_squirrel",
-        "hedgehog",
-        "lagomorph",
-        "leporid",
-        "mammal",
-        "rabbit",
-        "rodent",
-        "sciurid",
-        "toy_dog",
-        "wolf"
-      ],
-      "colors": [
-        "blue_body",
         "brown_body",
         "brown_fur",
-        "red_hair"
+        "tan_body",
+        "tan_fur"
       ],
       "physical": [
+        "cigarette",
+        "clothing",
+        "disregarding_notices",
+        "fuck_the_police",
         "fur",
+        "jacket",
+        "no_smoking",
+        "smoke",
+        "smoking",
+        "topwear"
+      ],
+      "characters": [],
+      "copyrights": [],
+      "artists": [
+        "hotaruarc"
+      ]
+    },
+    {
+      "id": 449106,
+      "species": [
+        "cyborg",
+        "lagomorph",
+        "leporid",
+        "mammal",
+        "rabbit"
+      ],
+      "colors": [
+        "blonde_hair",
+        "green_eyes"
+      ],
+      "physical": [
+        "breasts",
+        "cleavage",
+        "clothed",
+        "clothing",
+        "cybernetics",
         "hair"
       ],
       "characters": [
-        "bunnie_rabbot",
-        "chip_(sonic)",
-        "lupe_the_wolf",
-        "sally_acorn",
-        "sally_acorn_(post-sgw)",
-        "sonic_the_hedgehog"
+        "bunnie_rabbot"
       ],
       "copyrights": [
         "archie_comics",
         "sega",
         "sonic_the_hedgehog_(archie)",
         "sonic_the_hedgehog_(comics)",
-        "sonic_the_hedgehog_(series)",
-        "sonic_unleashed"
+        "sonic_the_hedgehog_(series)"
       ],
       "artists": [
-        "unknown_artist"
+        "one-dimensional-man"
       ]
     },
     {
-      "id": 750540,
+      "id": 452573,
       "species": [
-        "domestic_cat",
-        "felid",
-        "feline",
-        "felis",
         "lagomorph",
         "leporid",
         "mammal",
         "rabbit"
       ],
       "colors": [
-        "brown_body",
-        "brown_fur",
-        "green_eyes",
-        "grey_body",
-        "grey_fur",
-        "yellow_eyes"
+        "red_body",
+        "red_eyes",
+        "red_fur",
+        "red_hair",
+        "scut_tail",
+        "short_tail"
       ],
       "physical": [
-        "birch",
-        "building",
-        "cloud",
-        "digitigrade",
-        "duo_focus",
-        "feral",
-        "fluffy",
+        "breasts",
+        "butt",
+        "cleavage",
+        "clothed",
+        "clothing",
         "fur",
-        "golf_club",
-        "grass",
-        "house",
-        "inner_ear_fluff",
-        "neck_tuft",
-        "outside",
-        "poetry",
-        "pointing",
-        "sky",
-        "tree",
-        "tuft",
-        "walking",
-        "whiskers"
+        "hair",
+        "navel",
+        "pawpads",
+        "paws",
+        "skimpy",
+        "tail",
+        "turnaround"
       ],
-      "characters": [],
+      "characters": [
+        "rabbu"
+      ],
+      "copyrights": [],
+      "artists": [
+        "redrabbu"
+      ]
+    },
+    {
+      "id": 449105,
+      "species": [
+        "cyborg",
+        "lagomorph",
+        "leporid",
+        "mammal",
+        "rabbit"
+      ],
+      "colors": [
+        "blonde_hair",
+        "green_eyes"
+      ],
+      "physical": [
+        "breasts",
+        "cleavage",
+        "clothed",
+        "clothing",
+        "cybernetics",
+        "hair"
+      ],
+      "characters": [
+        "bunnie_rabbot"
+      ],
       "copyrights": [
-        "license_info",
-        "public_domain"
+        "archie_comics",
+        "sega",
+        "sonic_the_hedgehog_(archie)",
+        "sonic_the_hedgehog_(comics)",
+        "sonic_the_hedgehog_(series)"
       ],
       "artists": [
-        "louis_wain"
+        "one-dimensional-man"
+      ]
+    },
+    {
+      "id": 449480,
+      "species": [
+        "lagomorph",
+        "leporid",
+        "mammal",
+        "rabbit"
+      ],
+      "colors": [
+        "red_eyes"
+      ],
+      "physical": [
+        "breasts",
+        "clothed",
+        "clothing",
+        "eyewear",
+        "glasses",
+        "grumpy",
+        "hair",
+        "kemono",
+        "skimpy",
+        "underwear"
+      ],
+      "characters": [],
+      "copyrights": [],
+      "artists": [
+        "kikurage"
       ]
     }
   ],
   "aggregates": {
     "species": {
-      "lagomorph": 9,
-      "leporid": 9,
-      "mammal": 20,
-      "rabbit": 9,
-      "canid": 15,
-      "canine": 15,
-      "canis": 9,
-      "domestic_dog": 3,
-      "dragon": 7,
+      "ailurid": 2,
+      "bear": 1,
+      "carnivoran": 2,
+      "giant_panda": 1,
+      "mammal": 21,
+      "red_panda": 2,
+      "domestic_cat": 1,
       "felid": 3,
-      "mythological_creature": 7,
-      "mythological_scalie": 7,
-      "pantherine": 1,
-      "scalie": 8,
-      "tiger": 1,
-      "wolf": 8,
-      "avian": 2,
-      "bird": 2,
-      "dragonair": 1,
-      "elemental_creature": 1,
-      "farfetch'd": 1,
-      "flora_fauna": 1,
+      "feline": 2,
+      "felis": 1,
+      "aquatic": 1,
+      "eeveelution": 1,
       "generation_1_pokemon": 2,
-      "generation_2_pokemon": 1,
-      "generation_3_pokemon": 1,
-      "generation_4_pokemon": 1,
-      "gulpin": 1,
-      "land_forme_shaymin": 1,
-      "legendary_pokemon": 1,
-      "parasect": 1,
       "pokemon_(species)": 2,
-      "quagsire": 1,
-      "shaymin": 1,
-      "wooper": 1,
-      "aquatic": 2,
-      "carnivoran": 3,
-      "dunkleosteus": 1,
-      "fish": 1,
-      "hybrid": 2,
-      "mustelid": 1,
-      "otter": 1,
-      "placoderm": 1,
-      "prehistoric_species": 1,
-      "bird_dog": 1,
+      "vaporeon": 1,
+      "canid": 13,
+      "canine": 13,
+      "canis": 7,
+      "wolf": 7,
+      "dragon": 5,
+      "mythological_creature": 5,
+      "mythological_scalie": 5,
+      "scalie": 5,
+      "cougar": 1,
+      "domestic_dog": 1,
+      "dutch_angel_dragon": 1,
       "furred_dragon": 1,
       "furred_scalie": 1,
-      "golden_retriever": 1,
-      "hunting_dog": 1,
-      "labrador": 1,
-      "retriever": 1,
-      "lizard": 2,
-      "reptile": 2,
-      "aquatic_dragon": 1,
-      "animate_inanimate": 1,
-      "latex_creature": 1,
-      "aardwolf": 1,
-      "fox": 8,
-      "hyena": 1,
-      "domestic_cat": 2,
-      "feline": 2,
-      "felis": 2,
+      "husky": 1,
+      "lion": 1,
+      "nordic_sled_dog": 1,
+      "pantherine": 1,
+      "sergal": 1,
+      "spitz": 1,
+      "tiger": 1,
+      "western_dragon": 1,
+      "avian": 1,
+      "bird": 1,
+      "generation_3_pokemon": 1,
+      "gull": 1,
+      "lari": 1,
+      "larid": 1,
       "pikachu": 1,
-      "antelope": 1,
-      "bovid": 1,
-      "dingo": 1,
       "rodent": 2,
-      "sciurid": 2,
-      "tree_squirrel": 1,
-      "animatronic": 2,
-      "bear": 2,
-      "chicken": 1,
-      "galliform": 1,
-      "phasianid": 1,
-      "robot": 3,
-      "ghost": 1,
-      "spirit": 1,
-      "android": 1,
-      "faraden": 1,
-      "pure_faraden": 1,
-      "chihuahua": 1,
-      "chipmunk": 1,
-      "eulipotyphlan": 1,
-      "gaia": 1,
-      "ground_squirrel": 1,
-      "hedgehog": 1,
-      "toy_dog": 1
+      "wingull": 1,
+      "wolf_(minecraft)": 1,
+      "lagomorph": 7,
+      "leporid": 6,
+      "rabbit": 6,
+      "fox": 5,
+      "mouse": 1,
+      "murid": 1,
+      "murine": 1,
+      "digimon_(species)": 1,
+      "gazimon": 1,
+      "hybrid": 1,
+      "blue_virus_(dr._mario)": 1,
+      "micro_organism_(organism)": 1,
+      "red_virus_(dr._mario)": 1,
+      "virus_(dr._mario)": 1,
+      "virus_(organism)": 1,
+      "waddling_head": 1,
+      "yellow_virus_(dr._mario)": 1,
+      "animatronic": 1,
+      "robot": 1,
+      "cyborg": 2
     },
     "colors": {
-      "red_eyes": 5,
-      "black_eyes": 1,
-      "brown_body": 3,
-      "brown_fur": 3,
-      "brown_hair": 2,
-      "long_hair": 3,
-      "orange_body": 1,
-      "orange_fur": 1,
-      "orange_hair": 2,
-      "tan_body": 1,
-      "tan_fur": 1,
-      "tan_hair": 1,
-      "green_eyes": 4,
-      "short_hair": 1,
-      "white_hair": 2,
-      "dark_body": 2,
-      "dark_fur": 1,
-      "green_body": 1,
-      "green_fur": 1,
-      "green_hair": 1,
-      "green_skin": 1,
-      "pink_eyes": 2,
-      "blonde_hair": 2,
-      "blue_eyes": 3,
-      "braided_hair": 1,
-      "dark_skin": 1,
-      "orange_eyes": 2,
-      "yellow_body": 1,
-      "yellow_fur": 1,
-      "blue_body": 3,
+      "black_body": 3,
+      "white_body": 5,
+      "black_eyes": 3,
+      "dot_eyes": 1,
+      "simple_eyes": 1,
+      "big_tail": 1,
+      "blue_body": 2,
       "blue_skin": 1,
-      "raised_tail": 1,
-      "purple_hair": 1,
-      "black_body": 1,
-      "black_fur": 1,
+      "blue_tail": 1,
+      "glistening_body": 1,
+      "glistening_skin": 1,
+      "monotone_tail": 1,
+      "thick_tail": 1,
+      "grey_body": 5,
+      "grey_fur": 3,
+      "grey_hair": 1,
+      "tan_body": 2,
+      "tan_fur": 2,
+      "yellow_eyes": 2,
       "black_hair": 1,
-      "white_body": 2,
-      "white_fur": 2,
+      "blue_eyes": 2,
       "blue_fur": 1,
-      "pink_body": 1,
-      "pink_fur": 1,
-      "fluffy_tail": 1,
-      "glowing_eyes": 2,
-      "big_eyes": 1,
+      "white_fur": 3,
+      "blocky_body": 1,
+      "yellow_body": 1,
+      "black_fur": 1,
+      "black_tail": 1,
+      "dipstick_tail": 1,
+      "multicolored_tail": 1,
+      "two_tone_tail": 1,
+      "white_tail": 1,
+      "multicolored_body": 1,
+      "multicolored_fur": 1,
+      "orange_eyes": 1,
+      "two_tone_body": 1,
+      "two_tone_fur": 1,
+      "brown_body": 1,
+      "brown_fur": 1,
+      "blonde_hair": 2,
+      "green_eyes": 2,
+      "red_body": 1,
+      "red_eyes": 2,
+      "red_fur": 1,
       "red_hair": 1,
-      "grey_body": 1,
-      "grey_fur": 1,
-      "yellow_eyes": 1
+      "scut_tail": 1,
+      "short_tail": 1
     },
     "physical_features": {
-      "heart_symbol": 1,
-      "kemono": 7,
-      "4_fingers": 1,
-      "banana_peel": 1,
-      "barefoot": 2,
-      "boots": 1,
-      "border": 1,
-      "bottomwear": 3,
-      "breasts": 5,
-      "brown_scales": 1,
-      "cleavage": 3,
-      "clothed": 10,
-      "clothing": 11,
-      "falling": 1,
-      "feet": 2,
-      "fingers": 2,
-      "footwear": 2,
-      "fur": 11,
-      "hair": 10,
-      "holding_container": 1,
-      "holding_cup": 1,
-      "legwear": 2,
-      "motion_lines": 2,
-      "mouth_coming_off_face": 1,
-      "musical_note": 2,
-      "musical_symbol": 2,
-      "pointing": 2,
-      "pointing_up": 1,
-      "raised_finger": 1,
-      "raised_index_finger": 1,
-      "scales": 1,
-      "shoes": 1,
-      "skirt": 1,
-      "socks": 2,
-      "stripes": 1,
-      "symbol": 2,
-      "tail": 6,
-      "topwear": 3,
-      "tube_top": 1,
-      "wings": 5,
-      "yellow_border": 1,
-      "dutch_angle": 1,
-      "feathered_wings": 1,
-      "feathers": 1,
+      "accessory": 2,
+      "black_nose": 4,
+      "bottomwear": 4,
+      "clothing": 14,
+      "eyewear": 2,
+      "glasses": 2,
+      "kemono": 6,
+      "necktie": 2,
+      "overweight": 2,
+      "overweight_male": 2,
+      "pants": 3,
+      "shirt": 3,
+      "topwear": 5,
+      "dessert": 1,
       "feral": 4,
-      "flower": 1,
-      "flower_(anatomy)": 1,
-      "grass": 2,
-      "head_flower": 1,
-      "head_wings": 1,
-      "outside": 4,
-      "rock": 1,
-      "tree": 3,
-      "unusual_wing_placement": 1,
-      "water": 2,
-      "wood": 1,
-      "fishing_rod": 1,
-      "navel": 2,
-      "pants": 1,
-      "stirrup_socks": 1,
-      "armor": 2,
-      "black_nose": 1,
+      "ice_cream": 1,
+      "musical_note": 1,
+      "musical_symbol": 1,
+      "symbol": 1,
+      "worried": 1,
+      "belly": 1,
+      "big_belly": 1,
+      "moobs": 1,
+      "navel": 3,
+      "outside": 3,
+      "ambiguous_feral": 2,
+      "bubble": 1,
+      "cave": 1,
+      "ear_fins": 1,
+      "feet": 3,
+      "fin": 1,
+      "frill_(anatomy)": 1,
+      "head_fin": 1,
+      "neck_frill": 1,
+      "tail": 7,
+      "tail_fin": 1,
+      "toes": 2,
+      "underwater": 1,
+      "water": 1,
+      "5_fingers": 1,
       "claws": 2,
+      "clothed": 10,
+      "eyebrows": 1,
+      "fangs": 1,
+      "fingers": 1,
+      "fur": 8,
+      "hair": 8,
+      "heart_gesture": 1,
+      "heart_symbol": 2,
+      "pawpads": 3,
+      "red_necktie": 1,
+      "teeth": 2,
+      "white_clothing": 1,
+      "white_shirt": 1,
+      "white_topwear": 1,
+      "big_breasts": 1,
+      "breasts": 6,
+      "dress": 2,
+      "ear_piercing": 3,
       "horn": 5,
-      "markings": 1,
-      "topless": 1,
-      "3_fingers": 1,
-      "broken_horn": 1,
-      "featureless_breasts": 1,
-      "barmaid": 1,
-      "black_nails": 1,
-      "bow_(feature)": 1,
-      "choker": 1,
-      "colored_nails": 1,
-      "crossed_arms": 1,
-      "cuff_links": 1,
-      "dirndl": 1,
-      "holding_beverage": 1,
-      "holding_food": 1,
-      "jewelry": 1,
-      "nails_(anatomy)": 1,
-      "neck_tuft": 2,
+      "industrial_piercing": 1,
+      "markings": 3,
+      "piercing": 4,
+      "red_markings": 1,
+      "2_horns": 2,
+      "angry": 1,
+      "ear_ring": 1,
+      "furs": 1,
+      "holding_horn": 1,
+      "holding_microphone": 1,
+      "holding_paper": 1,
+      "jewelry": 3,
+      "paper": 1,
+      "ring_piercing": 1,
+      "scales": 1,
+      "facial_markings": 1,
+      "forehead_markings": 1,
+      "head_markings": 1,
+      "heterochromia": 1,
+      "lava": 1,
+      "spikes": 1,
+      "spikes_(anatomy)": 1,
+      "abs": 2,
+      "facial_piercing": 1,
+      "featureless_crotch": 3,
+      "muscular": 1,
+      "muscular_male": 1,
+      "muscular_thighs": 1,
+      "naughty_face": 1,
       "necklace": 1,
-      "pointy_ears": 1,
-      "pupils": 1,
-      "saliva": 1,
-      "saliva_on_tongue": 1,
-      "square_pupils": 1,
-      "steam": 1,
-      "tankard": 1,
-      "tuft": 4,
-      "unusual_pupils": 1,
-      "crop_top": 1,
-      "ear_piercing": 1,
-      "nipple_outline": 1,
-      "non-mammal_breasts": 1,
-      "piercing": 1,
-      "shirt": 1,
-      "thick_thighs": 1,
-      "freezer": 1,
-      "headgear": 2,
-      "helmet": 1,
-      "membrane_(anatomy)": 1,
-      "membranous_wings": 1,
-      "pith_helmet": 1,
+      "nose_piercing": 1,
+      "obliques": 1,
+      "pecs": 1,
+      "serratus": 1,
+      "wings": 3,
+      "armor": 1,
+      "athletic": 1,
+      "athletic_anthro": 1,
+      "athletic_male": 1,
+      "curved_horn": 1,
+      "gauntlets": 1,
       "gloves": 1,
       "handwear": 1,
-      "shorts": 1,
-      "collar": 1,
-      "featureless_crotch": 1,
-      "latex": 1,
-      "mouthless": 1,
-      "null": 1,
-      "plantigrade": 1,
-      "cheek_tuft": 2,
-      "facial_tuft": 2,
-      "hat": 1,
-      "head_tuft": 1,
-      "headwear": 1,
-      "open_smile": 1,
-      "sofa": 1,
-      "waterfall": 1,
-      "fruit": 1,
-      "fully_clothed": 1,
-      "slightly_chubby": 1,
-      "adolescent": 1,
-      "bedroom": 1,
-      "gaming": 1,
-      "mohawk": 1,
-      "sidecut": 1,
-      "blue_nose": 1,
-      "moon": 1,
-      "night": 1,
-      "sky": 2,
-      "star": 1,
-      "starry_sky": 1,
-      "bell": 1,
-      "bottomless": 1,
+      "headgear": 1,
+      "helmet": 1,
+      "holding_melee_weapon": 1,
+      "holding_sword": 1,
+      "holding_weapon": 1,
+      "horn_through_headwear": 1,
+      "knight": 1,
+      "knight_armor": 1,
+      "leg_armor": 1,
+      "melee_weapon": 1,
+      "membrane_(anatomy)": 1,
+      "membranous_wings": 1,
+      "sword": 1,
+      "tank_top": 1,
+      "warrior": 1,
+      "arm_warmers": 1,
+      "armwear": 1,
+      "bracelet": 1,
+      "green_highlights": 1,
+      "highlights_(coloring)": 1,
+      "studded_bracelet": 1,
+      "studded_jewelry": 1,
+      "studs": 1,
+      "black_clothing": 1,
+      "black_hoodie": 1,
+      "black_topwear": 1,
+      "blue_clothing": 1,
+      "blue_jacket": 1,
+      "blue_topwear": 1,
+      "confession": 1,
       "hoodie": 1,
-      "chest_tuft": 1,
-      "ear_tuft": 1,
-      "fluffy": 2,
-      "inner_ear_fluff": 2,
-      "yellow_sclera": 1,
+      "jacket": 2,
+      "nervous": 1,
+      "nervous_sweat": 1,
+      "pink_scarf": 1,
+      "ponytail": 1,
+      "scarf": 1,
+      "shorts": 1,
+      "yelling": 1,
       "beak": 1,
-      "exposed_endoskeleton": 1,
-      "eye_patch": 2,
-      "eyeless": 1,
-      "eyewear": 2,
-      "teeth": 1,
-      "eating": 1,
-      "japanese": 1,
-      "tears": 1,
-      "birch": 1,
-      "building": 1,
-      "cloud": 1,
-      "digitigrade": 1,
+      "bird's-eye_view": 1,
+      "blocky_snout": 1,
+      "blurred_foreground": 1,
+      "boat": 1,
+      "collar": 1,
       "duo_focus": 1,
-      "golf_club": 1,
-      "house": 1,
-      "poetry": 1,
-      "walking": 1,
-      "whiskers": 1
+      "ears_down": 1,
+      "flying": 1,
+      "high-angle_view": 1,
+      "multiple_poses": 1,
+      "on_boat": 1,
+      "on_surface": 1,
+      "paddle": 1,
+      "pivoted_ears": 1,
+      "rosy_cheeks": 1,
+      "rowing": 1,
+      "sand": 1,
+      "seaweed": 1,
+      "snout": 1,
+      "watercraft": 1,
+      "hand_behind_head": 1,
+      "hand_on_side": 1,
+      "nipples": 1,
+      "shirtless": 1,
+      "shirtless_anthro": 1,
+      "shirtless_male": 1,
+      "topless": 1,
+      "topless_anthro": 1,
+      "topless_male": 1,
+      "yawn": 1,
+      "after_sex": 1,
+      "aftercare": 1,
+      "amputee": 1,
+      "bandage": 1,
+      "bandaged_arm": 1,
+      "canon_couple": 1,
+      "disability": 1,
+      "eye_scar": 1,
+      "facial_scar": 1,
+      "hearts_around_head": 1,
+      "hug": 1,
+      "male/male": 1,
+      "missing_arm": 1,
+      "missing_limb": 1,
+      "paws": 2,
+      "scar": 1,
+      "black_ears": 1,
+      "black_text": 1,
+      "blinking": 1,
+      "eye_contact": 1,
+      "featureless_arms": 1,
+      "featureless_feet": 1,
+      "featureless_hands": 1,
+      "featureless_legs": 1,
+      "motivational_poster": 1,
+      "question": 1,
+      "red_clothing": 1,
+      "red_dress": 1,
+      "size_difference": 1,
+      "tail_markings": 1,
+      "tall": 1,
+      "white_ears": 1,
+      "day": 1,
+      "sky": 1,
+      "tree": 1,
+      "featureless_breasts": 1,
+      "3_toes": 1,
+      "barefoot": 1,
+      "bottle": 1,
+      "drugs": 1,
+      "micro": 1,
+      "nurse": 1,
+      "pills": 1,
+      "cigarette": 1,
+      "disregarding_notices": 1,
+      "fuck_the_police": 1,
+      "no_smoking": 1,
+      "smoke": 1,
+      "smoking": 1,
+      "cleavage": 3,
+      "cybernetics": 2,
+      "butt": 1,
+      "skimpy": 2,
+      "turnaround": 1,
+      "grumpy": 1,
+      "underwear": 1
     },
     "characters": {
-      "captain_bokko": 1,
-      "alt-b-shephelie": 1,
-      "elena_(shio_inu)": 1,
-      "ema_(shio_inu)": 1,
-      "mikhaila_kirov": 1,
-      "kyisha": 1,
-      "hestia_(cliffpadfoot)": 1,
-      "jeane_(ceehaz)": 1,
-      "mia_(shilon2)": 1,
-      "hazard_drake": 1,
-      "sash_lilac": 1,
-      "al_(weaver)": 1,
-      "charlie_(weaver)": 1,
-      "fan_character": 1,
-      "judy_hopps": 1,
-      "wolter_(weaver)": 1,
-      "o-kemono_(character)": 1,
-      "pussycat_(o-kemono)": 1,
-      "ariadne_(falseseke)": 1,
-      "suzu_(character)": 1,
-      "balloon_boy_(fnaf)": 1,
-      "bonnie_(fnaf)": 1,
-      "chica_(fnaf)": 1,
-      "cupcake_(fnaf)": 1,
-      "foxy_(fnaf)": 2,
-      "freddy_(fnaf)": 2,
-      "golden_freddy_(fnaf)": 1,
-      "mangle_(fnaf)": 1,
-      "phantom_marionette_(fnaf)": 1,
-      "shadow_bonnie_(fnaf)": 1,
-      "springtrap_(fnaf)": 1,
-      "toy_bonnie_(fnaf)": 1,
-      "toy_chica_(fnaf)": 1,
-      "toy_freddy_(fnaf)": 1,
-      "avalenna": 1,
-      "bunnie_rabbot": 1,
-      "chip_(sonic)": 1,
-      "lupe_the_wolf": 1,
-      "sally_acorn": 1,
-      "sally_acorn_(post-sgw)": 1,
-      "sonic_the_hedgehog": 1
+      "black_cat_(trail_arnak)": 1,
+      "nesa_(drakeraynier)": 1,
+      "sanlich": 1,
+      "swiftbeauty": 1,
+      "nameless_character": 1,
+      "roxanne_wolf": 1,
+      "mason_(doginacafe)": 1,
+      "chief_wulf": 1,
+      "stumbler_o'hare": 1,
+      "miles_prower": 1,
+      "chill_(dr._mario)": 1,
+      "fever_(dr._mario)": 1,
+      "weird_(dr._mario)": 1,
+      "foxy_(fnaf)": 1,
+      "bunnie_rabbot": 2,
+      "rabbu": 1
     },
     "copyrights": {
-      "osamu_tezuka": 1,
-      "the_amazing_3": 1,
-      "mythology": 7,
-      "nintendo": 2,
+      "nintendo": 3,
       "pokemon": 2,
-      "dog_knight_rpg": 1,
-      "freedom_planet": 1,
-      "galaxytrail": 1,
-      "disney": 1,
-      "pack_street": 1,
-      "zootopia": 1,
+      "mythology": 5,
+      "would_(reaction_image)": 1,
+      "european_mythology": 1,
       "five_nights_at_freddy's": 2,
-      "five_nights_at_freddy's_2": 1,
-      "five_nights_at_freddy's_3": 1,
+      "five_nights_at_freddy's:_security_breach": 1,
       "scottgames": 2,
-      "you're_home": 1,
-      "legacy_(ratte)": 1,
-      "archie_comics": 1,
-      "sega": 1,
-      "sonic_the_hedgehog_(archie)": 1,
-      "sonic_the_hedgehog_(comics)": 1,
-      "sonic_the_hedgehog_(series)": 1,
-      "sonic_unleashed": 1,
-      "license_info": 1,
-      "public_domain": 1
+      "steel_wool_studios": 1,
+      "duncan_and_eddie": 1,
+      "microsoft": 1,
+      "minecraft": 1,
+      "mojang": 1,
+      "pokemon_quest": 1,
+      "xbox_game_studios": 1,
+      "broadside_beach": 1,
+      "hi_09": 1,
+      "shipwrecked_64": 1,
+      "bandai_namco": 1,
+      "digimon": 1,
+      "sega": 3,
+      "sonic_the_hedgehog_(series)": 3,
+      "dr._mario": 1,
+      "mario_bros": 1,
+      "archie_comics": 2,
+      "sonic_the_hedgehog_(archie)": 2,
+      "sonic_the_hedgehog_(comics)": 2
     },
     "artists": {
-      "sindoll": 1,
-      "shio_inu": 1,
-      "utsuki_maito": 1,
-      "tsampikos": 1,
-      "dragoon86": 1,
-      "spacesmilodon": 1,
-      "ceehaz": 1,
-      "kingpillar": 1,
-      "flinters": 1,
-      "lilboulder": 1,
-      "ebonyrubberwolf": 1,
-      "ittybittykittytittys": 1,
-      "o-kemono": 1,
-      "falseseke": 1,
-      "yasmil": 1,
-      "ingi": 1,
-      "jotaku": 1,
-      "redelisa_(artist)": 1,
-      "the_weaver": 1,
-      "1boshi": 1,
-      "shane_frost": 2,
-      "conditional_dnp": 1,
-      "ratte": 1,
-      "louis_wain": 1
+      "bari_mu": 1,
+      "shi_nominmin": 1,
+      "trail_arnak": 1,
+      "murasawa": 1,
+      "tomoyamaru": 1,
+      "harucat": 1,
+      "spinal22": 1,
+      "artansy": 1,
+      "pacelic": 1,
+      "dama624": 1,
+      "anonamine": 1,
+      "doginacafe": 1,
+      "chufflepop": 1,
+      "mrak_grossman": 1,
+      "pastarammi": 1,
+      "keke_(artist)": 1,
+      "gazimondefense": 1,
+      "pixelannex": 1,
+      "toonvasion": 1,
+      "tj-otter": 1,
+      "hotaruarc": 1,
+      "one-dimensional-man": 2,
+      "redrabbu": 1,
+      "kikurage": 1
     }
   },
-  "updated_at": "2026-11-12T03:30:29.284377+00:00",
+  "updated_at": "2026-11-13T03:04:14.977319+00:00",
   "total_posts_analyzed": 25
 }
