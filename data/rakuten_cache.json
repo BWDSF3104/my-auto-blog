@@ -1,31 +1,4 @@
 {
-  "スターフォックス アサルト": {
-    "fetched_at": "2026-10-14T01:50:01.753883+00:00",
-    "product": {
-      "itemName": "【送料無料】【中古】GC ゲームキューブ スターフォックス アサルト ソフト",
-      "itemPrice": 2641,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00s2hro.eo1qw0c9.g00s2hro.eo1qx713/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkaitoriheroes%2F10000530%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkaitoriheroes%2Fi%2F10000530%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/kaitoriheroes/cabinet/04217988/04246617/imgrc0062182781.jpg?_ex=128x128",
-      "reviewCount": 1
-    },
-    "hits": 3
-  },
-  "スターフォックス": {
-    "fetched_at": "2026-10-14T01:50:02.966196+00:00",
-    "product": {
-      "itemName": "Star Fox (スターフォックス)",
-      "itemPrice": 5270,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18627807%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21953530%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4328/4902370554328.jpg?_ex=128x128",
-      "reviewCount": 9
-    },
-    "hits": 3
-  },
-  "ケモノ スペースオペラ": {
-    "fetched_at": "2026-10-14T01:50:04.498243+00:00",
-    "product": null,
-    "hits": 0
-  },
   "ダンジョンズ&ドラゴンズ プレイヤーズ・ハンドブック第5版": {
     "fetched_at": "2026-10-15T01:24:38.160444+00:00",
     "product": {
@@ -639,6 +612,28 @@
       "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00uo9no.eo1qw0bb.g00uo9no.eo1qx50f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fajyuri%2F36qbldt5cw3evj4ryhqb7wgo7e-ala%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fajyuri%2Fi%2F10737310%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
       "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/ajyuri/cabinet/12998715/alb12630171_1.jpg?_ex=128x128",
       "reviewCount": 0
+    },
+    "hits": 3
+  },
+  "ソニックフロンティア": {
+    "fetched_at": "2026-11-13T03:13:30.122657+00:00",
+    "product": {
+      "itemName": "【中古】Switch ソニックフロンティア (ニンテンドースイッチ)",
+      "itemPrice": 2735,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tjvso.eo1qwe0a.g00tjvso.eo1qxbce/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frenet20%2Fr0013600940%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frenet20%2Fi%2F11869956%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/renet20/cabinet/zisya34/0013600940.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "デジモンストーリー": {
+    "fetched_at": "2026-11-13T03:13:39.138042+00:00",
+    "product": {
+      "itemName": "デジモンストーリー タイムストレンジャー Switch版",
+      "itemPrice": 6873,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18530327%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21871177%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5448/4573685185448.jpg?_ex=128x128",
+      "reviewCount": 3
     },
     "hits": 3
   }
