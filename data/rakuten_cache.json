@@ -1,31 +1,4 @@
 {
-  "ロードス島戦記": {
-    "fetched_at": "2026-10-17T01:15:19.241515+00:00",
-    "product": {
-      "itemName": "ロードス島戦記　誓約の宝冠1 （角川スニーカー文庫） [ 水野　良 ]",
-      "itemPrice": 748,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15836931%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19534239%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2417/9784041072417_1_10.jpg?_ex=128x128",
-      "reviewCount": 7
-    },
-    "hits": 3
-  },
-  "ケモノ ダンジョンクライム": {
-    "fetched_at": "2026-10-17T01:15:20.696679+00:00",
-    "product": null,
-    "hits": 0
-  },
-  "獣人": {
-    "fetched_at": "2026-10-17T01:15:22.337224+00:00",
-    "product": {
-      "itemName": "ダブル ガーゼ 手ぬぐい 通年用 日本製 彩 鳥獣人物戯画 手拭い 粗品 プチギフト お年賀 年始挨拶 内祝い お祝い 暑さ 熱中症 対策 おしゃれ 女性 男性",
-      "itemPrice": 980,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00qhplo.eo1qw39e.g00qhplo.eo1qx95a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2F753ya%2F10019884%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F753ya%2Fi%2F10015528%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/753ya/cabinet/wakmn46/10019884_01.jpg?_ex=128x128",
-      "reviewCount": 29
-    },
-    "hits": 3
-  },
   "スターフォックス ゼロ ザ・バトル・ビギンズ": {
     "fetched_at": "2026-10-18T02:30:02.228035+00:00",
     "product": null,
@@ -634,6 +607,33 @@
       "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tvujo.eo1qw1ed.g00tvujo.eo1qxf6e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmixshop2%2Fhb-figure-box%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmixshop2%2Fi%2F10000348%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
       "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/mixshop2/cabinet/12035381/imgrc0146741337.jpg?_ex=128x128",
       "reviewCount": 125
+    },
+    "hits": 3
+  },
+  "ポケモン不思議のダンジョン": {
+    "fetched_at": "2026-11-16T02:36:58.080486+00:00",
+    "product": {
+      "itemName": "【中古】 ポケモン不思議のダンジョン　闇の探検隊／ニンテンドーDS",
+      "itemPrice": 1089,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00rc68o.eo1qw3a3.g00rc68o.eo1qx292/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbookoffonline%2F0015597352%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbookoffonline%2Fi%2F10091782%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/bookoffonline/cabinet/19/0015597352l.jpg?_ex=128x128",
+      "reviewCount": 3
+    },
+    "hits": 3
+  },
+  "Pokemon fit ヒバニー ぬいぐるみ": {
+    "fetched_at": "2026-11-16T02:36:59.762009+00:00",
+    "product": null,
+    "hits": 0
+  },
+  "ケモノ バディ": {
+    "fetched_at": "2026-11-16T02:37:01.098829+00:00",
+    "product": {
+      "itemName": "Delta Children Cozee Buddy Chair, Sloth (ナマケモノ) - 子供用 フォームチェア",
+      "itemPrice": 11980,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00upw5o.eo1qwd6b.g00upw5o.eo1qx009/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Famericagoodvibes%2Fay33w8rkpz%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Famericagoodvibes%2Fi%2F10012373%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/americagoodvibes/cabinet/img_20260309/4/ay33w8rkpz_0.jpg?_ex=128x128",
+      "reviewCount": 0
     },
     "hits": 3
   }

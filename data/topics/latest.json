@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-15T11:18:34.110839+09:00",
+  "fetched_at": "2026-11-16T11:30:40.915686+09:00",
   "ttl_hours": 24,
   "total": 72,
   "by_category": {
@@ -10,6 +10,30 @@
         "url": "https://github.com/LinKennt/LoFS-VN",
         "score": 1,
         "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "All Hail Blood Gulch, Halo’s Greatest Multiplayer Map",
+        "url": "https://www.gamespot.com/articles/all-hail-blood-gulch-halos-greatest-multiplayer-map/",
+        "description": "After 25 years, Halo can be remembered for many things. It's among the best launch games of all time, which was pivotal in making Xbox a serious console contender. Its campaign was so brilliantly designed, from set pieces like The Silent Cartographer to the distinct and believable AI behaviors, that",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "I Loved My Xbox 360s–All Four Of Them",
+        "url": "https://www.gamespot.com/articles/i-loved-my-xbox-360s-all-four-of-them/",
+        "description": "Xbox is celebrating its 25-year anniversary today, November 15, 2026. Below, we take a look back at Microsoft's great, and infamously buggy, second console. In the mid to late aughts, the Xbox 360 reigned supreme. It felt like the center of the gaming universe , as the best place to play multiplatfo",
+        "score": 0,
+        "source": "GameSpot RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "GTA 6 Is Like The Olympics – “A Rare Cultural Moment” With Massive Ripple Effects",
+        "url": "https://www.gamespot.com/articles/gta-6-is-like-the-olympics-a-rare-cultural-moment-with-massive-ripple-effects/",
+        "description": "After years of development, multiple delays, and what can only be assumed to be one of the biggest production budgets ever, Rockstar's Grand Theft Auto 6 launches on November 19. The game is poised to \"blot out the sun,\" some experts believe, and its release looms so large that other gaming companie",
+        "score": 0,
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
@@ -69,27 +93,59 @@
         "category": "kemono"
       },
       {
-        "title": "Magic: The Gathering Planeswalker Hits Netflix In 2027, Watch The Trailer Now",
-        "url": "https://www.gamespot.com/articles/magic-the-gathering-planeswalker-hits-netflix-in-2027/",
-        "description": "MagicCon: Atlanta has kicked off with The Preview Panel, which usually shows off cards from future sets. While Nauctis: The Sunken Realm did feature during the panel, Wizards of the Coast then gave the Atlanta crowd more information on Planeswalker, the upcoming animated series set in the Magic mult",
+        "title": "Jensen Huang Reportedly Weighing Return as Nvidia CEO With Allies",
+        "url": "https://www.ign.com/articles/jensen-huang-reportedly-weighing-return-as-nvidia-ceo-with-allies",
+        "description": "Jensen Huang has reportedly had discussions with his allies about a potential return as Nvidia's CEO just days after reports of affairs with an alleged Chinese spy and multiple employees led to his resignation. Information on what is only the latest unexpected turn in a tangled web of updates for th",
         "score": 0,
-        "source": "GameSpot RSS",
+        "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Super Mario 3D Land Dared To Embrace 2D Mario In A 3D World",
-        "url": "https://www.gamespot.com/articles/super-mario-3d-land-dared-to-embrace-2d-mario-in-a-3d-world/",
-        "description": "Super Mario 3D Land is celebrating its 15-year anniversary today, November 13, 2026. Below, we examine how 3D Land was a true iteration of the classic 2D Mario formula. I remember when the first preview images of Super Mario 64 began circulating in gaming magazines. The thought of playing a Mario ga",
+        "title": "Xbox Confirms Project Helix Is 'a Console Capable of Playing Games From Your PC'",
+        "url": "https://www.ign.com/articles/xbox-confirms-project-helix-is-a-console-capable-of-playing-games-from-your-pc",
+        "description": "Xbox has confirmed Project Helix is \"designed to be a console capable of playing games from your PC.\" Microsoft unveiled a slew of details about its past, present, and future with the surprise publication of the Xbox 25th Anniversary Magazine . It's all part of surprise festivities meant to help cel",
         "score": 0,
-        "source": "GameSpot RSS",
+        "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "After A Week With WoW: Forever, Classic WoW Feels New Again",
-        "url": "https://www.gamespot.com/articles/after-a-week-with-wow-forever-classic-wow-feels-new-again/",
-        "description": "It's been just over a week since the record-breaking launch of World of Warcraft: Forever . In that time a handful of players have raced to level 60, but the overwhelming majority are still weeks away from reaching max level, as they quest through Azeroth and see all the new sights and sounds Blizza",
+        "title": "The Best Deals Today: Control Resonant, Apple AirPods Pro 3, 4K Blu-ray Sales, and More",
+        "url": "https://www.ign.com/articles/best-deals-for-november-15-2026",
+        "description": "A new weekend has arrived, and today, you can save big on Control Resonant, Saros, the Criterion Collection sale, Gears of War: E-Day, Dragon Ball Super, Apple Watch Ultra 4, Xenoblade Chronicles 2, Persona 3 Reload, The Super Mario Galaxy Movie, Star Wars Zero Company, and more. Check out our top p",
         "score": 0,
-        "source": "GameSpot RSS",
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Xbox Reveals Original and 360 Boot-Up Options for 25th Anniversary",
+        "url": "https://www.ign.com/articles/xbox-reveals-original-and-360-boot-up-options-for-25th-anniversary",
+        "description": "Microsoft has revealed three new nostalgic Xbox console boot-up options for Xbox Series X/S and Xbox One as part of a new update for the brand's 25th anniversary. Xbox has been around a long time, and those who have stuck around for the full ride have seen it through plenty of ups and downs. To mark",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "GTA 6's Jason and Lucia Will Start as Small-Time Criminals Who Have to Work Up to High-Value Jobs",
+        "url": "https://www.ign.com/articles/gta-6s-jason-and-lucia-will-start-as-small-time-criminals-who-have-to-work-up-to-high-value-jobs",
+        "description": "GTA 6 will let Jason and Lucia pull off high-value jobs, but Rockstar Games asks players to work up from being small-time criminals first. The latest peek at this week's new Grand Theft Auto game arrived courtesy of a preview piece from The Guardian (via @GameRoll_ ). It included interviews with Roc",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "EA Adds 'Don't Delete' Message to Madden NFL 27 in Bid to Keep Players From Making Room Ahead of GTA 6",
+        "url": "https://www.ign.com/articles/ea-adds-dont-delete-message-to-madden-nfl-27-in-bid-to-keep-players-from-making-room-ahead-of-gta-6",
+        "description": "EA has added a \"don't delete\" pop-up message to Madden NFL 27 , and players can't help but feel the company is begging them not to make room for Grand Theft Auto 6 . Reports of the new in-game notice began cropping up over the weekend, with CharlieIntel relaying their findings online. EA doesn't exp",
+        "score": 0,
+        "source": "IGN RSS",
+        "category": "kemono"
+      },
+      {
+        "title": "Xbox at 25: My Memories From Across Xbox’s Entire (and Quite Incredible) History",
+        "url": "https://www.ign.com/articles/xbox-at-25-my-memories-from-across-xboxs-entire-and-quite-incredible-history",
+        "description": "The first day of my career was October 1, 2002. I’d been lucky enough to get hired by Official Xbox Magazine. The fledgling Xbox console was not quite a year old, and when I got settled in on the staff, it quickly became clear that Xbox was really about one thing above all else: Halo. I remember bei",
+        "score": 0,
+        "source": "IGN RSS",
         "category": "kemono"
       },
       {
@@ -117,136 +173,80 @@
         "category": "kemono"
       },
       {
-        "title": "Resident Evil Requiem Star Hopes Grace Ashcroft Has 'a Long Way to Go' Even if She Won't 'Ever Be a Leon Character'",
-        "url": "https://www.ign.com/articles/resident-evil-requiem-star-hopes-grace-ashcroft-has-a-long-way-to-go-even-if-she-wont-ever-be-a-leon-character",
-        "description": "Grace Ashcroft actress Angela Sant'Albano doesn't think her Resident Evil Requiem hero will \"ever be a Leon character,\" but she's still hoping \"there's a long way to go with her.\" The person behind one of 2026's standout video game roles laid out her hopes for the future during an interview with Gam",
+        "title": "SPITZ Band's Drummer Tatsuo Sakiyama Seriously Injured in Traffic Accident",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/spitz-band-drummer-tatsuo-sakiyama-seriously-injured-in-traffic-accident/.243836",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "'It Felt Criminal' — Adam Driver Still Can't Believe How Disney Handled Canceled Star Wars Movie The Hunt for Ben Solo",
-        "url": "https://www.ign.com/articles/it-felt-criminal-adam-driver-still-cant-believe-how-disney-handled-canceled-star-wars-movie-the-hunt-for-ben-solo",
-        "description": "Adam Driver still can't believe Disney killed his Star Wars movie, The Hunt for Ben Solo, and has now gone so far as to say that the move \"felt criminal.\" The Kylo Ren/Ben Solo actor relived some of the darker parts of his past with the massive sci-fi franchise during a recent conversation with AP .",
+        "title": "Witch Watch Manga Ends With Anime Season 2 to Air in 2027",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/witch-watch-manga-ends-with-anime-season-2-to-air-in-2027/.243834",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "Chris Pratt Says He 'Would Love' James Gunn to Return for Guardians of the Galaxy Vol. 4 After Leaving DC",
-        "url": "https://www.ign.com/articles/chris-pratt-says-he-would-love-james-gunn-to-return-for-guardians-of-the-galaxy-vol-4-after-leaving-dc",
-        "description": "Chris Pratt said he would love to reunite with James Gunn for Guardians of the Galaxy Vol. 4 after the director abruptly announced he would be leaving DC Studios earlier this week. Gunn is no longer running DC movies with Peter Safran – so what comes next? That's the question many comic book fans ar",
+        "title": "Uzono Shiniko Hōkoku Manga Ends in 4th Volume",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/uzono-shiniko-hokoku-manga-ends-in-4th-volume/.243817",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "GTA 6 Will Do Something the Franchise Has Never Done Before: Encourage Empathy",
-        "url": "https://www.ign.com/articles/gta-6-will-do-something-the-franchise-has-never-done-before-encourage-empathy",
-        "description": "Rockstar has confirmed GTA 6 features something the franchise has never had before: mechanisms that encourage empathy. Rockstar North co-studio head Rob Nelson and head of publishing Jennifer Kolbe talked about how next week's Grand Theft Auto changes the formula the series is known for during an in",
+        "title": "Odekake Kozame Anime Gets 2nd Film",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/odekake-kozame-anime-gets-2nd-film/.243832",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "Daggerheart: Hope & Fear Expansion Review",
-        "url": "https://www.ign.com/articles/daggerheart-hope-fear-expansion-ttrpg-review",
-        "description": "Critical Role’s TTRPG system, Daggerheart, puts a greater emphasis on story-telling than some of its peers. A year after the core book was released, Daggerheart offered players and Game Masters new options for telling their stories.with the system’s first expansion. As someone who plays a variety of",
+        "title": "WEBTOON CEO Junkoo Kim Receives Outstanding Contribution Award at Korea's 26th Cartoon Day Ceremony",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/webtoon-ceo-junkoo-kim-receives-outstanding-contribution-award-at-korea-26th-cartoon-day-ceremony/.243642",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "When GTA 5 Took On Zuckerberg and Hit Peak Satire",
-        "url": "https://www.ign.com/articles/when-gta-5-took-on-zuckerberg-and-hit-peak-satire",
-        "description": "There’s a lot of shooting and driving in Grand Theft Auto missions, they’re kind of your main verbs in the game. You drive, shoot, and drive some more with the possibility of shooting again. They’re not very dynamic as a wireframe, so it’s a good thing that Rockstar leads the industry in storytellin",
+        "title": "Stranger Than Heaven Game Streams Story Trailer for 2nd Act 'Kure'",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/stranger-than-heaven-game-streams-story-trailer-for-2nd-act-kure/.243829",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
-        "title": "Breaking Down Theo's Shock Moment in The Lord of the Rings: The Rings of Power Season 3 and the Mystery of His Father With Actor Tyroe Muhafidin",
-        "url": "https://www.ign.com/articles/breaking-down-theos-shock-moment-in-the-lord-of-the-rings-the-rings-of-power-season-3-and-the-mystery-of-his-father-with-actor-tyroe-muhafidin",
-        "description": "Warning! Spoilers for The Lord of the Rings: The Rings of Power Season 3 Episodes 1-4 follow. If you’re caught up with The Lord of the Rings: The Rings of Power , you’ll have watched Season 3, Episode 4 and were probably left reeling by a shock character death that leaves the elves in a spot of both",
+        "title": "RetroCrush Streams Sugar Sugar Rune, Genocyber Anime",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/retrocrush-streams-sugar-sugar-rune-genocyber-anime/.243828",
         "score": 0,
-        "source": "IGN RSS",
-        "category": "kemono"
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "Bride of the Barrier Master Anime Streams Video for Hana's Twin Hazuki Ichise",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/bride-of-the-barrier-master-anime-streams-video-for-hana-twin-hazuki-ichise/.243831",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "MAGES Develops Girls und Panzer Mahjong Game For PS5, Switch 2",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-15/mages-develops-girls-und-panzer-mahjong-game-for-ps5-switch-2/.243827",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
       },
       {
         "title": "Even the Student Council Has It's Holes! Anime Casts Yōko Hikasa",
         "url": "https://www.animenewsnetwork.com/news/2026-11-14/even-the-student-council-has-its-holes-anime-casts-yoko-hikasa/.243815",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Kakao, OpenAI Collaborate on AI-Generated Short Animation Based on Ryan Begins Webtoon",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/kakao-openai-collaborate-on-ai-generated-short-animation-based-on-ryan-begins-webtoon/.243712",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Classroom of the Elite: Year 3 Tops Oricon's Light Novel Ranking for October",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/classroom-of-the-elite-year-3-tops-oricon-light-novel-ranking-for-october/.243810",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Love Live! Hasu no Sora Jogakuin School Idol Club Anime's Special Video Previews TV Footage",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/love-live-hasu-no-sora-jogakuin-school-idol-club-anime-special-video-previews-tv-footage/.243814",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "World Trigger Tops Oricon's Comic Ranking for October",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/world-trigger-tops-oricon-comic-ranking-for-october/.243760",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Japan's Video Game Rankings, November 2-8",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/japan-video-game-rankings-november-2-8/.243786",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Re:ZERO -Starting Life in Another World- TV Anime Gets 5th Season",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/re-zero-starting-life-in-another-world-tv-anime-gets-5th-season/.243813",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Japanese Animation TV Ranking, November 2-8",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/japanese-animation-tv-ranking-november-2-8/.243787",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "Gushing Over Magical Girls Anime's 2nd Season Debuts in 2027",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-14/gushing-over-magical-girls-anime-2nd-season-debuts-in-2027/.243812",
-        "score": 0,
-        "source": "Anime News Network",
-        "category": "kemono",
-        "description": ""
-      },
-      {
-        "title": "North American Anime, Manga Releases, November 8-14",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-13/north-american-anime-manga-releases-november-8-14/.243661",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
@@ -558,10 +558,34 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-11-15T11:18:34.110839+09:00"
+      "fetched_at": "2026-11-16T11:30:40.915686+09:00"
     },
     "GameSpot RSS": {
       "topics": [
+        {
+          "title": "All Hail Blood Gulch, Halo’s Greatest Multiplayer Map",
+          "url": "https://www.gamespot.com/articles/all-hail-blood-gulch-halos-greatest-multiplayer-map/",
+          "description": "After 25 years, Halo can be remembered for many things. It's among the best launch games of all time, which was pivotal in making Xbox a serious console contender. Its campaign was so brilliantly designed, from set pieces like The Silent Cartographer to the distinct and believable AI behaviors, that",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "I Loved My Xbox 360s–All Four Of Them",
+          "url": "https://www.gamespot.com/articles/i-loved-my-xbox-360s-all-four-of-them/",
+          "description": "Xbox is celebrating its 25-year anniversary today, November 15, 2026. Below, we take a look back at Microsoft's great, and infamously buggy, second console. In the mid to late aughts, the Xbox 360 reigned supreme. It felt like the center of the gaming universe , as the best place to play multiplatfo",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "GTA 6 Is Like The Olympics – “A Rare Cultural Moment” With Massive Ripple Effects",
+          "url": "https://www.gamespot.com/articles/gta-6-is-like-the-olympics-a-rare-cultural-moment-with-massive-ripple-effects/",
+          "description": "After years of development, multiple delays, and what can only be assumed to be one of the biggest production budgets ever, Rockstar's Grand Theft Auto 6 launches on November 19. The game is poised to \"blot out the sun,\" some experts believe, and its release looms so large that other gaming companie",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
         {
           "title": "Casualties: Unknown Is A Brutal 97%-Rated Survival Game That Will Make You Realize Your Mortality, And At A Cheap Price, Too",
           "url": "https://www.gamespot.com/articles/casualties-unknown-is-a-brutal-97-rated-survival-game-that-will-make-you-realize-your-mortality-and-at-a-cheap-price-too/",
@@ -617,36 +641,68 @@
           "score": 0,
           "source": "GameSpot RSS",
           "category": "kemono"
-        },
-        {
-          "title": "Magic: The Gathering Planeswalker Hits Netflix In 2027, Watch The Trailer Now",
-          "url": "https://www.gamespot.com/articles/magic-the-gathering-planeswalker-hits-netflix-in-2027/",
-          "description": "MagicCon: Atlanta has kicked off with The Preview Panel, which usually shows off cards from future sets. While Nauctis: The Sunken Realm did feature during the panel, Wizards of the Coast then gave the Atlanta crowd more information on Planeswalker, the upcoming animated series set in the Magic mult",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Super Mario 3D Land Dared To Embrace 2D Mario In A 3D World",
-          "url": "https://www.gamespot.com/articles/super-mario-3d-land-dared-to-embrace-2d-mario-in-a-3d-world/",
-          "description": "Super Mario 3D Land is celebrating its 15-year anniversary today, November 13, 2026. Below, we examine how 3D Land was a true iteration of the classic 2D Mario formula. I remember when the first preview images of Super Mario 64 began circulating in gaming magazines. The thought of playing a Mario ga",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "After A Week With WoW: Forever, Classic WoW Feels New Again",
-          "url": "https://www.gamespot.com/articles/after-a-week-with-wow-forever-classic-wow-feels-new-again/",
-          "description": "It's been just over a week since the record-breaking launch of World of Warcraft: Forever . In that time a handful of players have raced to level 60, but the overwhelming majority are still weeks away from reaching max level, as they quest through Azeroth and see all the new sights and sounds Blizza",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-11-15T11:18:34.110839+09:00"
+      "fetched_at": "2026-11-16T11:30:40.915686+09:00"
     },
     "IGN RSS": {
       "topics": [
+        {
+          "title": "Jensen Huang Reportedly Weighing Return as Nvidia CEO With Allies",
+          "url": "https://www.ign.com/articles/jensen-huang-reportedly-weighing-return-as-nvidia-ceo-with-allies",
+          "description": "Jensen Huang has reportedly had discussions with his allies about a potential return as Nvidia's CEO just days after reports of affairs with an alleged Chinese spy and multiple employees led to his resignation. Information on what is only the latest unexpected turn in a tangled web of updates for th",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Xbox Confirms Project Helix Is 'a Console Capable of Playing Games From Your PC'",
+          "url": "https://www.ign.com/articles/xbox-confirms-project-helix-is-a-console-capable-of-playing-games-from-your-pc",
+          "description": "Xbox has confirmed Project Helix is \"designed to be a console capable of playing games from your PC.\" Microsoft unveiled a slew of details about its past, present, and future with the surprise publication of the Xbox 25th Anniversary Magazine . It's all part of surprise festivities meant to help cel",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "The Best Deals Today: Control Resonant, Apple AirPods Pro 3, 4K Blu-ray Sales, and More",
+          "url": "https://www.ign.com/articles/best-deals-for-november-15-2026",
+          "description": "A new weekend has arrived, and today, you can save big on Control Resonant, Saros, the Criterion Collection sale, Gears of War: E-Day, Dragon Ball Super, Apple Watch Ultra 4, Xenoblade Chronicles 2, Persona 3 Reload, The Super Mario Galaxy Movie, Star Wars Zero Company, and more. Check out our top p",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Xbox Reveals Original and 360 Boot-Up Options for 25th Anniversary",
+          "url": "https://www.ign.com/articles/xbox-reveals-original-and-360-boot-up-options-for-25th-anniversary",
+          "description": "Microsoft has revealed three new nostalgic Xbox console boot-up options for Xbox Series X/S and Xbox One as part of a new update for the brand's 25th anniversary. Xbox has been around a long time, and those who have stuck around for the full ride have seen it through plenty of ups and downs. To mark",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "GTA 6's Jason and Lucia Will Start as Small-Time Criminals Who Have to Work Up to High-Value Jobs",
+          "url": "https://www.ign.com/articles/gta-6s-jason-and-lucia-will-start-as-small-time-criminals-who-have-to-work-up-to-high-value-jobs",
+          "description": "GTA 6 will let Jason and Lucia pull off high-value jobs, but Rockstar Games asks players to work up from being small-time criminals first. The latest peek at this week's new Grand Theft Auto game arrived courtesy of a preview piece from The Guardian (via @GameRoll_ ). It included interviews with Roc",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "EA Adds 'Don't Delete' Message to Madden NFL 27 in Bid to Keep Players From Making Room Ahead of GTA 6",
+          "url": "https://www.ign.com/articles/ea-adds-dont-delete-message-to-madden-nfl-27-in-bid-to-keep-players-from-making-room-ahead-of-gta-6",
+          "description": "EA has added a \"don't delete\" pop-up message to Madden NFL 27 , and players can't help but feel the company is begging them not to make room for Grand Theft Auto 6 . Reports of the new in-game notice began cropping up over the weekend, with CharlieIntel relaying their findings online. EA doesn't exp",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
+        {
+          "title": "Xbox at 25: My Memories From Across Xbox’s Entire (and Quite Incredible) History",
+          "url": "https://www.ign.com/articles/xbox-at-25-my-memories-from-across-xboxs-entire-and-quite-incredible-history",
+          "description": "The first day of my career was October 1, 2002. I’d been lucky enough to get hired by Official Xbox Magazine. The fledgling Xbox console was not quite a year old, and when I got settled in on the staff, it quickly became clear that Xbox was really about one thing above all else: Halo. I remember bei",
+          "score": 0,
+          "source": "IGN RSS",
+          "category": "kemono"
+        },
         {
           "title": "The Best Deals Today: Asus TUF Gaming Laptop, Saros, 4K Blu-ray Sale, and More",
           "url": "https://www.ign.com/articles/best-deals-for-november-14-2026",
@@ -670,143 +726,87 @@
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
-        },
-        {
-          "title": "Resident Evil Requiem Star Hopes Grace Ashcroft Has 'a Long Way to Go' Even if She Won't 'Ever Be a Leon Character'",
-          "url": "https://www.ign.com/articles/resident-evil-requiem-star-hopes-grace-ashcroft-has-a-long-way-to-go-even-if-she-wont-ever-be-a-leon-character",
-          "description": "Grace Ashcroft actress Angela Sant'Albano doesn't think her Resident Evil Requiem hero will \"ever be a Leon character,\" but she's still hoping \"there's a long way to go with her.\" The person behind one of 2026's standout video game roles laid out her hopes for the future during an interview with Gam",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "'It Felt Criminal' — Adam Driver Still Can't Believe How Disney Handled Canceled Star Wars Movie The Hunt for Ben Solo",
-          "url": "https://www.ign.com/articles/it-felt-criminal-adam-driver-still-cant-believe-how-disney-handled-canceled-star-wars-movie-the-hunt-for-ben-solo",
-          "description": "Adam Driver still can't believe Disney killed his Star Wars movie, The Hunt for Ben Solo, and has now gone so far as to say that the move \"felt criminal.\" The Kylo Ren/Ben Solo actor relived some of the darker parts of his past with the massive sci-fi franchise during a recent conversation with AP .",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Chris Pratt Says He 'Would Love' James Gunn to Return for Guardians of the Galaxy Vol. 4 After Leaving DC",
-          "url": "https://www.ign.com/articles/chris-pratt-says-he-would-love-james-gunn-to-return-for-guardians-of-the-galaxy-vol-4-after-leaving-dc",
-          "description": "Chris Pratt said he would love to reunite with James Gunn for Guardians of the Galaxy Vol. 4 after the director abruptly announced he would be leaving DC Studios earlier this week. Gunn is no longer running DC movies with Peter Safran – so what comes next? That's the question many comic book fans ar",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "GTA 6 Will Do Something the Franchise Has Never Done Before: Encourage Empathy",
-          "url": "https://www.ign.com/articles/gta-6-will-do-something-the-franchise-has-never-done-before-encourage-empathy",
-          "description": "Rockstar has confirmed GTA 6 features something the franchise has never had before: mechanisms that encourage empathy. Rockstar North co-studio head Rob Nelson and head of publishing Jennifer Kolbe talked about how next week's Grand Theft Auto changes the formula the series is known for during an in",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Daggerheart: Hope & Fear Expansion Review",
-          "url": "https://www.ign.com/articles/daggerheart-hope-fear-expansion-ttrpg-review",
-          "description": "Critical Role’s TTRPG system, Daggerheart, puts a greater emphasis on story-telling than some of its peers. A year after the core book was released, Daggerheart offered players and Game Masters new options for telling their stories.with the system’s first expansion. As someone who plays a variety of",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "When GTA 5 Took On Zuckerberg and Hit Peak Satire",
-          "url": "https://www.ign.com/articles/when-gta-5-took-on-zuckerberg-and-hit-peak-satire",
-          "description": "There’s a lot of shooting and driving in Grand Theft Auto missions, they’re kind of your main verbs in the game. You drive, shoot, and drive some more with the possibility of shooting again. They’re not very dynamic as a wireframe, so it’s a good thing that Rockstar leads the industry in storytellin",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
-        },
-        {
-          "title": "Breaking Down Theo's Shock Moment in The Lord of the Rings: The Rings of Power Season 3 and the Mystery of His Father With Actor Tyroe Muhafidin",
-          "url": "https://www.ign.com/articles/breaking-down-theos-shock-moment-in-the-lord-of-the-rings-the-rings-of-power-season-3-and-the-mystery-of-his-father-with-actor-tyroe-muhafidin",
-          "description": "Warning! Spoilers for The Lord of the Rings: The Rings of Power Season 3 Episodes 1-4 follow. If you’re caught up with The Lord of the Rings: The Rings of Power , you’ll have watched Season 3, Episode 4 and were probably left reeling by a shock character death that leaves the elves in a spot of both",
-          "score": 0,
-          "source": "IGN RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-11-15T11:18:34.110839+09:00"
+      "fetched_at": "2026-11-16T11:30:40.915686+09:00"
     },
     "Anime News Network": {
       "topics": [
         {
+          "title": "SPITZ Band's Drummer Tatsuo Sakiyama Seriously Injured in Traffic Accident",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/spitz-band-drummer-tatsuo-sakiyama-seriously-injured-in-traffic-accident/.243836",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Witch Watch Manga Ends With Anime Season 2 to Air in 2027",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/witch-watch-manga-ends-with-anime-season-2-to-air-in-2027/.243834",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Uzono Shiniko Hōkoku Manga Ends in 4th Volume",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/uzono-shiniko-hokoku-manga-ends-in-4th-volume/.243817",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Odekake Kozame Anime Gets 2nd Film",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/odekake-kozame-anime-gets-2nd-film/.243832",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "WEBTOON CEO Junkoo Kim Receives Outstanding Contribution Award at Korea's 26th Cartoon Day Ceremony",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/webtoon-ceo-junkoo-kim-receives-outstanding-contribution-award-at-korea-26th-cartoon-day-ceremony/.243642",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Stranger Than Heaven Game Streams Story Trailer for 2nd Act 'Kure'",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/stranger-than-heaven-game-streams-story-trailer-for-2nd-act-kure/.243829",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "RetroCrush Streams Sugar Sugar Rune, Genocyber Anime",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/retrocrush-streams-sugar-sugar-rune-genocyber-anime/.243828",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "Bride of the Barrier Master Anime Streams Video for Hana's Twin Hazuki Ichise",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/bride-of-the-barrier-master-anime-streams-video-for-hana-twin-hazuki-ichise/.243831",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
+          "title": "MAGES Develops Girls und Panzer Mahjong Game For PS5, Switch 2",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-15/mages-develops-girls-und-panzer-mahjong-game-for-ps5-switch-2/.243827",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
+        },
+        {
           "title": "Even the Student Council Has It's Holes! Anime Casts Yōko Hikasa",
           "url": "https://www.animenewsnetwork.com/news/2026-11-14/even-the-student-council-has-its-holes-anime-casts-yoko-hikasa/.243815",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Kakao, OpenAI Collaborate on AI-Generated Short Animation Based on Ryan Begins Webtoon",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/kakao-openai-collaborate-on-ai-generated-short-animation-based-on-ryan-begins-webtoon/.243712",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Classroom of the Elite: Year 3 Tops Oricon's Light Novel Ranking for October",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/classroom-of-the-elite-year-3-tops-oricon-light-novel-ranking-for-october/.243810",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Love Live! Hasu no Sora Jogakuin School Idol Club Anime's Special Video Previews TV Footage",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/love-live-hasu-no-sora-jogakuin-school-idol-club-anime-special-video-previews-tv-footage/.243814",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "World Trigger Tops Oricon's Comic Ranking for October",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/world-trigger-tops-oricon-comic-ranking-for-october/.243760",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Japan's Video Game Rankings, November 2-8",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/japan-video-game-rankings-november-2-8/.243786",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Re:ZERO -Starting Life in Another World- TV Anime Gets 5th Season",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/re-zero-starting-life-in-another-world-tv-anime-gets-5th-season/.243813",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Japanese Animation TV Ranking, November 2-8",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/japanese-animation-tv-ranking-november-2-8/.243787",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "Gushing Over Magical Girls Anime's 2nd Season Debuts in 2027",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-14/gushing-over-magical-girls-anime-2nd-season-debuts-in-2027/.243812",
-          "score": 0,
-          "source": "Anime News Network",
-          "category": "kemono",
-          "description": ""
-        },
-        {
-          "title": "North American Anime, Manga Releases, November 8-14",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-13/north-american-anime-manga-releases-november-8-14/.243661",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
@@ -837,7 +837,7 @@
           "description": ""
         }
       ],
-      "fetched_at": "2026-11-15T11:18:34.110839+09:00"
+      "fetched_at": "2026-11-16T11:30:40.915686+09:00"
     },
     "PokéCommunity Art Studio": {
       "topics": [
@@ -1135,6 +1135,30 @@
       "category": "kemono"
     },
     {
+      "title": "All Hail Blood Gulch, Halo’s Greatest Multiplayer Map",
+      "url": "https://www.gamespot.com/articles/all-hail-blood-gulch-halos-greatest-multiplayer-map/",
+      "description": "After 25 years, Halo can be remembered for many things. It's among the best launch games of all time, which was pivotal in making Xbox a serious console contender. Its campaign was so brilliantly designed, from set pieces like The Silent Cartographer to the distinct and believable AI behaviors, that",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "I Loved My Xbox 360s–All Four Of Them",
+      "url": "https://www.gamespot.com/articles/i-loved-my-xbox-360s-all-four-of-them/",
+      "description": "Xbox is celebrating its 25-year anniversary today, November 15, 2026. Below, we take a look back at Microsoft's great, and infamously buggy, second console. In the mid to late aughts, the Xbox 360 reigned supreme. It felt like the center of the gaming universe , as the best place to play multiplatfo",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "GTA 6 Is Like The Olympics – “A Rare Cultural Moment” With Massive Ripple Effects",
+      "url": "https://www.gamespot.com/articles/gta-6-is-like-the-olympics-a-rare-cultural-moment-with-massive-ripple-effects/",
+      "description": "After years of development, multiple delays, and what can only be assumed to be one of the biggest production budgets ever, Rockstar's Grand Theft Auto 6 launches on November 19. The game is poised to \"blot out the sun,\" some experts believe, and its release looms so large that other gaming companie",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
       "title": "Casualties: Unknown Is A Brutal 97%-Rated Survival Game That Will Make You Realize Your Mortality, And At A Cheap Price, Too",
       "url": "https://www.gamespot.com/articles/casualties-unknown-is-a-brutal-97-rated-survival-game-that-will-make-you-realize-your-mortality-and-at-a-cheap-price-too/",
       "description": "There’s no light. The shuttle that brought me into the depths is fitted with just a shower, and the darkness swallows everything around me. Each step is as painful as the last, like walking barefoot on LEGO bricks, as I narrowly miss traps. Corpses are frozen as I head further down, a reminder of wh",
@@ -1191,27 +1215,59 @@
       "category": "kemono"
     },
     {
-      "title": "Magic: The Gathering Planeswalker Hits Netflix In 2027, Watch The Trailer Now",
-      "url": "https://www.gamespot.com/articles/magic-the-gathering-planeswalker-hits-netflix-in-2027/",
-      "description": "MagicCon: Atlanta has kicked off with The Preview Panel, which usually shows off cards from future sets. While Nauctis: The Sunken Realm did feature during the panel, Wizards of the Coast then gave the Atlanta crowd more information on Planeswalker, the upcoming animated series set in the Magic mult",
+      "title": "Jensen Huang Reportedly Weighing Return as Nvidia CEO With Allies",
+      "url": "https://www.ign.com/articles/jensen-huang-reportedly-weighing-return-as-nvidia-ceo-with-allies",
+      "description": "Jensen Huang has reportedly had discussions with his allies about a potential return as Nvidia's CEO just days after reports of affairs with an alleged Chinese spy and multiple employees led to his resignation. Information on what is only the latest unexpected turn in a tangled web of updates for th",
       "score": 0,
-      "source": "GameSpot RSS",
+      "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Super Mario 3D Land Dared To Embrace 2D Mario In A 3D World",
-      "url": "https://www.gamespot.com/articles/super-mario-3d-land-dared-to-embrace-2d-mario-in-a-3d-world/",
-      "description": "Super Mario 3D Land is celebrating its 15-year anniversary today, November 13, 2026. Below, we examine how 3D Land was a true iteration of the classic 2D Mario formula. I remember when the first preview images of Super Mario 64 began circulating in gaming magazines. The thought of playing a Mario ga",
+      "title": "Xbox Confirms Project Helix Is 'a Console Capable of Playing Games From Your PC'",
+      "url": "https://www.ign.com/articles/xbox-confirms-project-helix-is-a-console-capable-of-playing-games-from-your-pc",
+      "description": "Xbox has confirmed Project Helix is \"designed to be a console capable of playing games from your PC.\" Microsoft unveiled a slew of details about its past, present, and future with the surprise publication of the Xbox 25th Anniversary Magazine . It's all part of surprise festivities meant to help cel",
       "score": 0,
-      "source": "GameSpot RSS",
+      "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "After A Week With WoW: Forever, Classic WoW Feels New Again",
-      "url": "https://www.gamespot.com/articles/after-a-week-with-wow-forever-classic-wow-feels-new-again/",
-      "description": "It's been just over a week since the record-breaking launch of World of Warcraft: Forever . In that time a handful of players have raced to level 60, but the overwhelming majority are still weeks away from reaching max level, as they quest through Azeroth and see all the new sights and sounds Blizza",
+      "title": "The Best Deals Today: Control Resonant, Apple AirPods Pro 3, 4K Blu-ray Sales, and More",
+      "url": "https://www.ign.com/articles/best-deals-for-november-15-2026",
+      "description": "A new weekend has arrived, and today, you can save big on Control Resonant, Saros, the Criterion Collection sale, Gears of War: E-Day, Dragon Ball Super, Apple Watch Ultra 4, Xenoblade Chronicles 2, Persona 3 Reload, The Super Mario Galaxy Movie, Star Wars Zero Company, and more. Check out our top p",
       "score": 0,
-      "source": "GameSpot RSS",
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Xbox Reveals Original and 360 Boot-Up Options for 25th Anniversary",
+      "url": "https://www.ign.com/articles/xbox-reveals-original-and-360-boot-up-options-for-25th-anniversary",
+      "description": "Microsoft has revealed three new nostalgic Xbox console boot-up options for Xbox Series X/S and Xbox One as part of a new update for the brand's 25th anniversary. Xbox has been around a long time, and those who have stuck around for the full ride have seen it through plenty of ups and downs. To mark",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "GTA 6's Jason and Lucia Will Start as Small-Time Criminals Who Have to Work Up to High-Value Jobs",
+      "url": "https://www.ign.com/articles/gta-6s-jason-and-lucia-will-start-as-small-time-criminals-who-have-to-work-up-to-high-value-jobs",
+      "description": "GTA 6 will let Jason and Lucia pull off high-value jobs, but Rockstar Games asks players to work up from being small-time criminals first. The latest peek at this week's new Grand Theft Auto game arrived courtesy of a preview piece from The Guardian (via @GameRoll_ ). It included interviews with Roc",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "EA Adds 'Don't Delete' Message to Madden NFL 27 in Bid to Keep Players From Making Room Ahead of GTA 6",
+      "url": "https://www.ign.com/articles/ea-adds-dont-delete-message-to-madden-nfl-27-in-bid-to-keep-players-from-making-room-ahead-of-gta-6",
+      "description": "EA has added a \"don't delete\" pop-up message to Madden NFL 27 , and players can't help but feel the company is begging them not to make room for Grand Theft Auto 6 . Reports of the new in-game notice began cropping up over the weekend, with CharlieIntel relaying their findings online. EA doesn't exp",
+      "score": 0,
+      "source": "IGN RSS",
+      "category": "kemono"
+    },
+    {
+      "title": "Xbox at 25: My Memories From Across Xbox’s Entire (and Quite Incredible) History",
+      "url": "https://www.ign.com/articles/xbox-at-25-my-memories-from-across-xboxs-entire-and-quite-incredible-history",
+      "description": "The first day of my career was October 1, 2002. I’d been lucky enough to get hired by Official Xbox Magazine. The fledgling Xbox console was not quite a year old, and when I got settled in on the staff, it quickly became clear that Xbox was really about one thing above all else: Halo. I remember bei",
+      "score": 0,
+      "source": "IGN RSS",
       "category": "kemono"
     },
     {
@@ -1239,136 +1295,80 @@
       "category": "kemono"
     },
     {
-      "title": "Resident Evil Requiem Star Hopes Grace Ashcroft Has 'a Long Way to Go' Even if She Won't 'Ever Be a Leon Character'",
-      "url": "https://www.ign.com/articles/resident-evil-requiem-star-hopes-grace-ashcroft-has-a-long-way-to-go-even-if-she-wont-ever-be-a-leon-character",
-      "description": "Grace Ashcroft actress Angela Sant'Albano doesn't think her Resident Evil Requiem hero will \"ever be a Leon character,\" but she's still hoping \"there's a long way to go with her.\" The person behind one of 2026's standout video game roles laid out her hopes for the future during an interview with Gam",
+      "title": "SPITZ Band's Drummer Tatsuo Sakiyama Seriously Injured in Traffic Accident",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/spitz-band-drummer-tatsuo-sakiyama-seriously-injured-in-traffic-accident/.243836",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "'It Felt Criminal' — Adam Driver Still Can't Believe How Disney Handled Canceled Star Wars Movie The Hunt for Ben Solo",
-      "url": "https://www.ign.com/articles/it-felt-criminal-adam-driver-still-cant-believe-how-disney-handled-canceled-star-wars-movie-the-hunt-for-ben-solo",
-      "description": "Adam Driver still can't believe Disney killed his Star Wars movie, The Hunt for Ben Solo, and has now gone so far as to say that the move \"felt criminal.\" The Kylo Ren/Ben Solo actor relived some of the darker parts of his past with the massive sci-fi franchise during a recent conversation with AP .",
+      "title": "Witch Watch Manga Ends With Anime Season 2 to Air in 2027",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/witch-watch-manga-ends-with-anime-season-2-to-air-in-2027/.243834",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "Chris Pratt Says He 'Would Love' James Gunn to Return for Guardians of the Galaxy Vol. 4 After Leaving DC",
-      "url": "https://www.ign.com/articles/chris-pratt-says-he-would-love-james-gunn-to-return-for-guardians-of-the-galaxy-vol-4-after-leaving-dc",
-      "description": "Chris Pratt said he would love to reunite with James Gunn for Guardians of the Galaxy Vol. 4 after the director abruptly announced he would be leaving DC Studios earlier this week. Gunn is no longer running DC movies with Peter Safran – so what comes next? That's the question many comic book fans ar",
+      "title": "Uzono Shiniko Hōkoku Manga Ends in 4th Volume",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/uzono-shiniko-hokoku-manga-ends-in-4th-volume/.243817",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "GTA 6 Will Do Something the Franchise Has Never Done Before: Encourage Empathy",
-      "url": "https://www.ign.com/articles/gta-6-will-do-something-the-franchise-has-never-done-before-encourage-empathy",
-      "description": "Rockstar has confirmed GTA 6 features something the franchise has never had before: mechanisms that encourage empathy. Rockstar North co-studio head Rob Nelson and head of publishing Jennifer Kolbe talked about how next week's Grand Theft Auto changes the formula the series is known for during an in",
+      "title": "Odekake Kozame Anime Gets 2nd Film",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/odekake-kozame-anime-gets-2nd-film/.243832",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "Daggerheart: Hope & Fear Expansion Review",
-      "url": "https://www.ign.com/articles/daggerheart-hope-fear-expansion-ttrpg-review",
-      "description": "Critical Role’s TTRPG system, Daggerheart, puts a greater emphasis on story-telling than some of its peers. A year after the core book was released, Daggerheart offered players and Game Masters new options for telling their stories.with the system’s first expansion. As someone who plays a variety of",
+      "title": "WEBTOON CEO Junkoo Kim Receives Outstanding Contribution Award at Korea's 26th Cartoon Day Ceremony",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/webtoon-ceo-junkoo-kim-receives-outstanding-contribution-award-at-korea-26th-cartoon-day-ceremony/.243642",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "When GTA 5 Took On Zuckerberg and Hit Peak Satire",
-      "url": "https://www.ign.com/articles/when-gta-5-took-on-zuckerberg-and-hit-peak-satire",
-      "description": "There’s a lot of shooting and driving in Grand Theft Auto missions, they’re kind of your main verbs in the game. You drive, shoot, and drive some more with the possibility of shooting again. They’re not very dynamic as a wireframe, so it’s a good thing that Rockstar leads the industry in storytellin",
+      "title": "Stranger Than Heaven Game Streams Story Trailer for 2nd Act 'Kure'",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/stranger-than-heaven-game-streams-story-trailer-for-2nd-act-kure/.243829",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
-      "title": "Breaking Down Theo's Shock Moment in The Lord of the Rings: The Rings of Power Season 3 and the Mystery of His Father With Actor Tyroe Muhafidin",
-      "url": "https://www.ign.com/articles/breaking-down-theos-shock-moment-in-the-lord-of-the-rings-the-rings-of-power-season-3-and-the-mystery-of-his-father-with-actor-tyroe-muhafidin",
-      "description": "Warning! Spoilers for The Lord of the Rings: The Rings of Power Season 3 Episodes 1-4 follow. If you’re caught up with The Lord of the Rings: The Rings of Power , you’ll have watched Season 3, Episode 4 and were probably left reeling by a shock character death that leaves the elves in a spot of both",
+      "title": "RetroCrush Streams Sugar Sugar Rune, Genocyber Anime",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/retrocrush-streams-sugar-sugar-rune-genocyber-anime/.243828",
       "score": 0,
-      "source": "IGN RSS",
-      "category": "kemono"
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "Bride of the Barrier Master Anime Streams Video for Hana's Twin Hazuki Ichise",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/bride-of-the-barrier-master-anime-streams-video-for-hana-twin-hazuki-ichise/.243831",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "MAGES Develops Girls und Panzer Mahjong Game For PS5, Switch 2",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-15/mages-develops-girls-und-panzer-mahjong-game-for-ps5-switch-2/.243827",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
     },
     {
       "title": "Even the Student Council Has It's Holes! Anime Casts Yōko Hikasa",
       "url": "https://www.animenewsnetwork.com/news/2026-11-14/even-the-student-council-has-its-holes-anime-casts-yoko-hikasa/.243815",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Kakao, OpenAI Collaborate on AI-Generated Short Animation Based on Ryan Begins Webtoon",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/kakao-openai-collaborate-on-ai-generated-short-animation-based-on-ryan-begins-webtoon/.243712",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Classroom of the Elite: Year 3 Tops Oricon's Light Novel Ranking for October",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/classroom-of-the-elite-year-3-tops-oricon-light-novel-ranking-for-october/.243810",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Love Live! Hasu no Sora Jogakuin School Idol Club Anime's Special Video Previews TV Footage",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/love-live-hasu-no-sora-jogakuin-school-idol-club-anime-special-video-previews-tv-footage/.243814",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "World Trigger Tops Oricon's Comic Ranking for October",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/world-trigger-tops-oricon-comic-ranking-for-october/.243760",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Japan's Video Game Rankings, November 2-8",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/japan-video-game-rankings-november-2-8/.243786",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Re:ZERO -Starting Life in Another World- TV Anime Gets 5th Season",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/re-zero-starting-life-in-another-world-tv-anime-gets-5th-season/.243813",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Japanese Animation TV Ranking, November 2-8",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/japanese-animation-tv-ranking-november-2-8/.243787",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "Gushing Over Magical Girls Anime's 2nd Season Debuts in 2027",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-14/gushing-over-magical-girls-anime-2nd-season-debuts-in-2027/.243812",
-      "score": 0,
-      "source": "Anime News Network",
-      "category": "kemono",
-      "description": ""
-    },
-    {
-      "title": "North American Anime, Manga Releases, November 8-14",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-13/north-american-anime-manga-releases-november-8-14/.243661",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
