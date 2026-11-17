@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-17T13:54:56.911524+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-17T13:54:20.861927+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 34,
+    "after_score_filter": 34,
+    "after_rating_filter": 34,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "GTA 6 Gets New Screenshots Highlighting Leonida's Dynamic Weather",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/gta-6-gets-new-screenshots-highlighting-leonidas-dynamic-weather",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Rockstar has revealed a new batch of GTA 6 screenshots – and even a Weather Channel forecast – showcasing Leonida's dynamic weather. The 13-year wait for a proper return to Vice City is almost over, b"
+    },
+    {
+      "title": "MEGATERA・ZERO and VK Blanka Bring Fresh Beats to Dragon Ball Super: Beerus Anime",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/interview/2026-11-09/megatera-zero-and-vk-blanka-bring-fresh-beats-to-dragon-ball-super-beerus-anime/.243291",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "GTA Gets New",
+    "Beerus Anime"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/gta-6-gets-new-screenshots-highlighting-leonidas-dynamic-weather",
+    "https://www.animenewsnetwork.com/interview/2026-11-09/megatera-zero-and-vk-blanka-bring-fresh-beats-to-dragon-ball-super-beerus-anime/.243291"
+  ]
+}
