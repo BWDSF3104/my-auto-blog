@@ -1,7 +1,9 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-獣人のキャラクターたちが活躍するミステリー、TF(変身・変形)から単一または複数のテーマを選択し短編物語を作成してください。
-同性愛（男性同士の恋愛）、クローンによる自分同士からランダムにテーマを選択してください。
-登場キャラクターは2人（バディ）を中心に設定してください。
+獣人(anthro) / 動物(feral)のキャラクターたちが活躍するSFから単一または複数のテーマを選択し短編物語を作成してください。
+百合（女性同士の恋愛）、クローンによる自分同士からランダムにテーマを選択してください。
+登場キャラクターは2人（カップル）を中心に設定してください。
+
+【視点】第3人称全知的で執筆せよ。全キャラクターの思考・感情を知る視点から記述し、場面に応じて各キャラクターの視点に切り替えられる。
 
 【物語の質を高めるための必須条件】
 1. **キャラクターの深み**: 各主要キャラクターには外見だけでなく「性格の核（強みと弱み）」「背景（過去の出来事）」「動機（この物語で何を求めているか）」を設定してください。キャラクターの行動はこれらの設定に一貫して従ってください。
@@ -26,7 +28,7 @@
 ・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
-・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-10語程度に簡潔にしてください。
+・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-12語程度に簡潔にしてください。
 ・各キャラクターの場面ごとの表情を、キャラクターIDの直後にコロン（:）で区切って指定してください。
   - 表情はDanbooruの実在タグ（英語）を使用し、1人につき1-2個にしてください。
   - 表情はその場面の2匹の感情・緊張感・関係性に必ず一致させてください。
@@ -66,8 +68,9 @@
 
 
 【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
-- [GameSpot RSS] Silver Pines Is A 2D Silent Hill Meets Alan Wake, And It Even Scares Me At Its Lowest Price — Starting in an empty diner, with no other people in sight, Silver Pines immediately grips you with a
-- [GameSpot RSS] Tenebris Somnia Blends 2D Visuals With Live-Action Horror Scenes, And It’s Already On Sale At Launch — Horror games live or die by their scares and tension. If the player isn’t uncomfortable guiding a ch
+- [Anime News Network] Ultraman Teo Actress Noa Nakada Dies at 23
+      Ongoing Ultraman Teo series will broadcast as planned with Nakada's already-filmed scenes
+- [Anime News Network] Reading Our Way to a Happy New World Manga Listed to End With 3rd Volume
 
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
@@ -76,7 +79,7 @@
 ---
 title: "物語のタイトル"
 slug: "seo-friendly-romaji-slug-based-on-title"
-pubDate: "2026-10-19 10:02:12"
+pubDate: "2026-11-18 12:59:14"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
@@ -88,10 +91,8 @@ image_prompt: "[character_1: teary eyes, character_2: frown, narrowed eyes] face
 product_recommendations:
   - name: "関連グッズ名"
     category: "グッズ"
-    price_range: "3000円台"
   - name: "関連書籍のタイトル"
     category: "書籍"
-    price_range: "1000円台"
 ---
 
 【slug の指定ルール】
@@ -100,9 +101,14 @@ product_recommendations:
 ・2-5語程度に簡潔にしてください。
 
 【character_1 / character_2 の指定ルール】
-・性別（1boy, 1girl等）＋種族（例: wolf, fox）＋anthro/feral/semi-anthroの種族タイプタグ＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリ（0-2つ）のみを英語で簡潔に記述してください。
+・英語のDanbooruタグ形式で、性別（1boy, 1girl等）＋種族（例: wolf, fox）＋体型タグ＋身体特徴（毛色、瞳など）＋象徴的な服装・アクセサリ（0-2つ）のみを簡潔に記述してください。
+  - 動物: feral
+  - 二足歩行の動物: semi-anthro, [feral]
+  - 獣人: anthro
+  - chibi: chibi
+・anthro/feral/semi-anthro等の体型タイプ関連の英語タグは character_1/character_2 のfrontmatterに限定し、基本的に指定されたものを使用する。本文のキャラクター体型表現は英語でなく日本語（例: 二足歩行の動物）を使う。
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
-・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
+・4-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
 ・character_1 と character_2 の両方を必ず定義してください。クローンによる自分同士の場合は character_2 の外見は character_1 と同一（区別のため小物・装飾のみ差異可）。
 
@@ -110,27 +116,27 @@ product_recommendations:
 
 ・参考キャラクター1:
   種族: canid, canine, canis, mammal, wolf
-  色: black_body, black_fur, blue_hair, green_body, green_eyes, green_fur, green_hair, white_body, white_fur
-  身体的特徴: black_pawpads, cloud, feral, fur, grass, hair, licking, outside
+  色: grey_hair, long_hair, yellow_eyes
+  身体的特徴: asian_clothing, athletic_wear, big_breasts, black_clothing, black_legwear, bottomwear, breast_suppress, breasts
   参照: -
   作品: -
 
 ・参考キャラクター2:
-  種族: canid, canine, canis, fox, hybrid, mammal, wolf
-  色: black_body, black_fur, blue_body, blue_fur, blue_hair, dipstick_tail, multicolored_tail
-  身体的特徴: curled_up, feral, fur, hair, markings, sleeping, stripes, tail
-  参照: dexthefolf
+  種族: canid, canine, canis, mammal, wolf
+  色: big_eyes, brown_eyes, purple_hair, short_hair, tan_body, tan_fur
+  身体的特徴: :<, absolute_territory, armwear, asian_sword, belt, big_ears, black_nose, bottomwear
+  参照: -
   作品: -
 
-・人気版権: five_nights_at_freddy's, scottgames, demon_days, star_fox, archie_comics, sonic_forces, kemono_friends, star_wars_visions
-・人気artist: ke_mo_suke, kloe_mone, lordyanyu, wolfox004, dr_comet, reiger, peppersupreme, eonixa
+・人気版権: star_fox, nsa
+・人気artist: andy_234
 
 アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
 
 【product_recommendations の指定ルール】
 ・物語の種族・世界観に合った実在商品を1つ以上選定してください。
 ・「ケモノ 図鑑」「ライトノベル おすすめ」などの汎用キーワードは避けてください。
-・各商品には `name`（具体名）, `category`（フィギュア, グッズ, BD, ゲーム, 書籍等）, `price_range`（例: 1000円台, 3000円台, 無料）を指定してください。
+・各商品には `name`（具体名）, `category`（フィギュア, グッズ, BD, ゲーム, 書籍等）を指定してください。
 ・架空の商品名は使用しないでください。
 
 ## 第1章：タイトル

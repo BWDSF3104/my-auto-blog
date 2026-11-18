@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-18T12:59:14.778505+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-18T12:58:45.983953+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 33,
+    "after_score_filter": 33,
+    "after_rating_filter": 33,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Ultraman Teo Actress Noa Nakada Dies at 23\n      Ongoing Ultraman Teo series will broadcast as planned with Nakada's already-filmed scenes",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-16/ultraman-teo-actress-noa-nakada-dies-at-23/.243868",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Reading Our Way to a Happy New World Manga Listed to End With 3rd Volume",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-17/reading-our-way-to-a-happy-new-world-manga-listed-to-end-with-3rd-volume/.243882",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Ultraman Teo Actress",
+    "Reading Our Way"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-11-16/ultraman-teo-actress-noa-nakada-dies-at-23/.243868",
+    "https://www.animenewsnetwork.com/news/2026-11-17/reading-our-way-to-a-happy-new-world-manga-listed-to-end-with-3rd-volume/.243882"
+  ]
+}
