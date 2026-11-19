@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-19T12:56:25.849955+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-19T12:56:05.814189+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 34,
+    "after_score_filter": 34,
+    "after_rating_filter": 34,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "New Avengers: Doomsday Posters Reveal Key Characters and Tease Thor’s Odinforce",
+      "source": "IGN RSS",
+      "url": "https://www.ign.com/articles/new-avengers-doomsday-posters-reveal-key-characters-and-tease-thors-odinforce",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Apparently, no one told Marvel that GTA VI is out today, because they've been busy showing off new glimpses of Avengers: Doomsday. In addition to a behind-the-scenes video featuring Robert Downey, Jr."
+    },
+    {
+      "title": "Duel Masters GT Manga Gets 4th Part",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-18/duel-masters-gt-manga-gets-4th-part/.243957",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Doomsday Posters Reveal",
+    "Duel Masters GT Manga Gets 4th"
+  ],
+  "trend_source_urls": [
+    "https://www.ign.com/articles/new-avengers-doomsday-posters-reveal-key-characters-and-tease-thors-odinforce",
+    "https://www.animenewsnetwork.com/news/2026-11-18/duel-masters-gt-manga-gets-4th-part/.243957"
+  ]
+}

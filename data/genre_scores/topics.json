@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-11-18T03:59:14.179833+00:00",
+  "scored_at": "2026-11-19T03:56:24.976606+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -17,453 +17,468 @@
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/bioware-is-dead-but-mass-effects-spiritual-successor-exodus-just-gave-us-a-glimpse-of-a-spicy-romance/",
-      "title": "BioWare Is Dead, But Mass Effect’s Spiritual Successor Exodus Just Gave Us A Glimpse of A Spicy Romance",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 81,
-        "fantasy": 8,
-        "cyberpunk": 38,
-        "action": 21,
-        "slice_of_life": 20,
-        "mystery": 18,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/this-cozy-new-mmo-is-a-delight-but-time-gating-during-gta-6-week-is-a-tough-ask/",
-      "title": "This Cozy New MMO Is A Delight, But Time-Gating During GTA 6 Week Is A Tough Ask",
+      "key": "https://www.gamespot.com/articles/gta-6-romance-relationships/",
+      "title": "GTA 6 Romance Guide: How To Romance Lucia And Jason",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
         "sf": 14,
-        "fantasy": 29,
-        "cyberpunk": 3,
-        "action": 8,
-        "slice_of_life": 80,
-        "mystery": 11,
-        "historical": 16
+        "fantasy": 9,
+        "cyberpunk": 36,
+        "action": 74,
+        "slice_of_life": 22,
+        "mystery": 19,
+        "historical": 11
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/the-gta-6-uninstallation-graveyard-everything-we-deleted-to-make-room/",
-      "title": "The GTA 6 Uninstallation Graveyard: Everything We Deleted To Make Room",
+      "key": "https://www.gamespot.com/articles/can-you-romance-mandy-in-gta-6/",
+      "title": "Can You Romance Mandy In GTA 6?",
       "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 12,
-        "fantasy": 7,
-        "cyberpunk": 35,
-        "action": 73,
-        "slice_of_life": 14,
-        "mystery": 14,
+        "sf": 10,
+        "fantasy": 5,
+        "cyberpunk": 41,
+        "action": 74,
+        "slice_of_life": 21,
+        "mystery": 27,
+        "historical": 11
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/the-new-non-gta-6-games-you-should-be-playing-right-now/",
+      "title": "The New, Non-GTA 6 Games You Should Be Playing Right Now",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 17,
+        "fantasy": 11,
+        "cyberpunk": 37,
+        "action": 66,
+        "slice_of_life": 23,
+        "mystery": 23,
+        "historical": 13
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/fortnites-treasure-hunt-burned-me-out-just-in-time-for-gta-6/",
+      "title": "Fortnite’s Treasure Hunt Burned Me Out Just In Time For GTA 6",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 6,
+        "fantasy": 8,
+        "cyberpunk": 16,
+        "action": 48,
+        "slice_of_life": 15,
+        "mystery": 15,
+        "historical": 5
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/all-gta-6-radio-stations-and-songs/",
+      "title": "All GTA 6 Radio Stations And Songs",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 8,
+        "cyberpunk": 34,
+        "action": 38,
+        "slice_of_life": 24,
+        "mystery": 16,
         "historical": 12
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/this-fighting-game-is-nominated-for-a-tga-despite-development-shutting-down/",
-      "title": "This Fighting Game Is Nominated For A TGA Despite Development Shutting Down",
+      "key": "https://www.gamespot.com/articles/gta-6s-best-song-is-a-nelly-furtado-cover-from-azerbaijan/",
+      "title": "GTA 6’s Best Song Is A Nelly Furtado Cover From Azerbaijan",
       "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 26,
-        "fantasy": 27,
-        "cyberpunk": 36,
-        "action": 75,
-        "slice_of_life": 12,
-        "mystery": 15,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/put-down-your-pitchforks-gta-vi-was-always-eligible-for-the-game-awards-this-year/",
-      "title": "How GTA 6 Is Eligible For The Game Awards This Year",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 20,
-        "fantasy": 6,
-        "cyberpunk": 33,
-        "action": 76,
-        "slice_of_life": 15,
-        "mystery": 13,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/civilization-dev-lays-off-1-3-of-staff-new-xcom-game-facing-development-struggles-report/",
-      "title": "Civilization Dev Lays Off 1/3 Of  Staff, New XCOM Game Facing “Development Struggles” – Report",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 40,
-        "fantasy": 15,
-        "cyberpunk": 26,
-        "action": 33,
-        "slice_of_life": 9,
-        "mystery": 14,
-        "historical": 55
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/007-first-light-might-be-the-end-of-the-line-for-james-bonds-favorite-watch/",
-      "title": "007 First Light Might Be The End Of The Line For James Bond’s Favorite Watch",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 9,
-        "fantasy": 5,
-        "cyberpunk": 7,
-        "action": 55,
-        "slice_of_life": 13,
-        "mystery": 31,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/these-are-some-of-the-biggest-snubs-at-the-game-awards-2026/",
-      "title": "These Are Some Of The Biggest Snubs At The Game Awards 2026",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 16,
-        "fantasy": 14,
-        "cyberpunk": 33,
-        "action": 61,
-        "slice_of_life": 14,
-        "mystery": 18,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/this-gta-6-inspired-keycap-set-will-make-the-wait-for-a-pc-version-slightly-easier/",
-      "title": "This GTA 6-Inspired Keycap Set Will Make The Wait For A PC Version Slightly Easier",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 10,
-        "cyberpunk": 30,
-        "action": 65,
-        "slice_of_life": 16,
-        "mystery": 15,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.gamespot.com/articles/what-does-it-take-for-world-of-warcraft-to-be-nominated-at-the-game-awards/",
-      "title": "What Does It Take For World Of Warcraft To Be Nominated At The Game Awards?",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 32,
-        "fantasy": 79,
-        "cyberpunk": 6,
-        "action": 32,
-        "slice_of_life": 11,
-        "mystery": 9,
-        "historical": 19
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/its-been-a-shtshow-esports-casters-call-for-change-after-embark-studios-replaces-talent-for-the-finals-grand-major-qualifier-highlight-reel-with-games-ai-commentators",
-      "title": "'It's Been a Sh*tshow' — Esports Casters Call for Change After Embark Studios Replaces Talent for The Finals' Grand Major Qualifier Highlight Reel With Game's AI Commentators",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 14,
-        "fantasy": 2,
-        "cyberpunk": 23,
-        "action": 23,
-        "slice_of_life": 19,
-        "mystery": 8,
-        "historical": 4
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/target-reveals-black-friday-sale-ad-for-2026",
-      "title": "Target Reveals Black Friday Sale Date and Free Gift Cards for Shopping in Stores",
-      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 8,
-        "fantasy": 4,
-        "cyberpunk": 7,
-        "action": 4,
-        "slice_of_life": 22,
-        "mystery": 4,
-        "historical": 6
+        "fantasy": 6,
+        "cyberpunk": 31,
+        "action": 27,
+        "slice_of_life": 19,
+        "mystery": 10,
+        "historical": 12
       }
     },
     {
-      "key": "https://www.ign.com/articles/gta-6-vice-city-nba-court-revealed-by-miami-heat",
-      "title": "GTA 6 Vice City NBA Court Revealed by Miami Heat",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/psn-went-down-sorta-on-gta-6-eve/",
+      "title": "PSN Went Down Sorta On GTA 6 Eve",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 15,
+        "fantasy": 8,
+        "cyberpunk": 24,
+        "action": 51,
+        "slice_of_life": 16,
+        "mystery": 7,
+        "historical": 9
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/gta-6-easter-eggs-list-and-locations/",
+      "title": "GTA 6 Easter Eggs Are Everywhere, But These Are The Best Ones",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
         "sf": 16,
-        "fantasy": 5,
-        "cyberpunk": 14,
-        "action": 20,
-        "slice_of_life": 16,
-        "mystery": 6,
+        "fantasy": 7,
+        "cyberpunk": 38,
+        "action": 42,
+        "slice_of_life": 18,
+        "mystery": 23,
         "historical": 16
       }
     },
     {
-      "key": "https://www.ign.com/articles/gta-6-fans-baffled-after-jasons-actor-gets-left-out-of-game-awards-nominations",
-      "title": "GTA 6 Fans Baffled After Jason's Actor Gets Left Out of Game Awards Nominations",
-      "source": "IGN RSS",
+      "key": "https://www.gamespot.com/articles/kfc-announces-gta-6-promo-where-you-get-a-disc-shaped-piece-of-chicken/",
+      "title": "KFC Announces GTA 6 Promo Where You Get A Disc-Shaped Piece Of Chicken",
+      "source": "GameSpot RSS",
       "category": "kemono",
       "scores": {
-        "sf": 16,
-        "fantasy": 8,
-        "cyberpunk": 40,
-        "action": 72,
-        "slice_of_life": 12,
-        "mystery": 13,
-        "historical": 8
+        "sf": 12,
+        "fantasy": 4,
+        "cyberpunk": 12,
+        "action": 15,
+        "slice_of_life": 22,
+        "mystery": 5,
+        "historical": 5
       }
     },
     {
-      "key": "https://www.ign.com/articles/baseus-20000mah-45w-power-bank-deal-november-2026",
-      "title": "The Baseus 20,000mAh 45W Power Bank With Dual USB-C Cables Drops to $21 After Coupon",
+      "key": "https://www.gamespot.com/articles/the-new-game-that-will-be-pulling-me-away-from-gta-6/",
+      "title": "The New Game That Will Be Pulling Me Away From GTA 6",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 28,
+        "fantasy": 8,
+        "cyberpunk": 23,
+        "action": 44,
+        "slice_of_life": 42,
+        "mystery": 31,
+        "historical": 44
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/gta-6-launch-causes-massive-spike-in-traffic-for-internet-provider-xfinity",
+      "title": "GTA 6 Launch Causes Massive Spike in Traffic for Internet Provider Xfinity",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 4,
+        "sf": 18,
+        "fantasy": 4,
+        "cyberpunk": 24,
+        "action": 28,
+        "slice_of_life": 13,
+        "mystery": 6,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/acemagic-mini-pc-deal-november-2026",
+      "title": "The Mac Mini Sized Acemagic Ryzen 7 Micro PC With 24GB RAM and 512GB SSD Is on Sale for Black Friday",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
         "fantasy": 2,
-        "cyberpunk": 8,
-        "action": 2,
-        "slice_of_life": 18,
+        "cyberpunk": 9,
+        "action": 3,
+        "slice_of_life": 14,
         "mystery": 3,
         "historical": 2
       }
     },
     {
-      "key": "https://www.ign.com/articles/amazon-and-best-buy-2026-black-friday-sales-will-be-competing-with-gta-6",
-      "title": "Amazon and Best Buy's Black Friday Sales Will Be Competing With GTA 6",
+      "key": "https://www.ign.com/articles/gta-6-doesnt-let-players-pick-up-prostitutes-but-rockstar-has-a-logical-reason-for-it",
+      "title": "GTA 6 Doesn't Let Players Pick Up Prostitutes, but Rockstar Has a Logical Reason for It",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 13,
-        "fantasy": 8,
-        "cyberpunk": 33,
-        "action": 65,
-        "slice_of_life": 14,
-        "mystery": 18,
+        "fantasy": 5,
+        "cyberpunk": 35,
+        "action": 67,
+        "slice_of_life": 21,
+        "mystery": 11,
         "historical": 9
       }
     },
     {
-      "key": "https://www.ign.com/articles/infinity-nikki-players-baffled-after-elon-musks-mom-appears-in-games-update-trailers",
-      "title": "Infinity Nikki Players Baffled After Elon Musk's Mom Appears in Game's Update Trailers",
+      "key": "https://www.ign.com/articles/the-lego-poke-ball-set-gets-its-first-discount-amazon-black-friday-2026",
+      "title": "The LEGO Poké Ball Set Gets Its First Discount Ahead of Amazon's Black Friday Sale",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 15,
-        "fantasy": 29,
-        "cyberpunk": 20,
-        "action": 35,
-        "slice_of_life": 42,
-        "mystery": 14,
-        "historical": 13
+        "sf": 12,
+        "fantasy": 17,
+        "cyberpunk": 5,
+        "action": 15,
+        "slice_of_life": 19,
+        "mystery": 5,
+        "historical": 4
       }
     },
     {
-      "key": "https://www.ign.com/articles/bose-quietcomfort-noise-canceling-headphone-deal-november-2026",
-      "title": "The Bose QuietComfort Noise Canceling Headphone Drops to Its Lowest Price Ever for Black Friday",
+      "key": "https://www.ign.com/articles/43-army-members-reenlisted-in-exchange-for-paid-time-off-to-play-gta-6",
+      "title": "43 Army Members Reenlisted in Exchange for Paid Time Off to Play GTA 6",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 4,
-        "fantasy": 2,
-        "cyberpunk": 11,
-        "action": 4,
-        "slice_of_life": 21,
+        "sf": 6,
+        "fantasy": 3,
+        "cyberpunk": 30,
+        "action": 23,
+        "slice_of_life": 22,
+        "mystery": 7,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/alienware-aw3926qw-39-5k-oled-gaming-monitor-deal-november-2026",
+      "title": "Alienware's 39\" 5K Monitor With RGB Stripe Tandem OLED Technology Hits a New Price Low for Black Friday",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 10,
+        "fantasy": 3,
+        "cyberpunk": 17,
+        "action": 5,
+        "slice_of_life": 13,
         "mystery": 4,
         "historical": 3
       }
     },
     {
-      "key": "https://www.ign.com/articles/robert-pattinsons-james-bond-casting-process-details-revealed-by-amazons-jeff-bezos",
-      "title": "Robert Pattinson's James Bond Casting Process Details Revealed by Amazon's Jeff Bezos",
+      "key": "https://www.ign.com/articles/a-gta-6-location-was-teased-by-rockstar-all-the-way-back-in-2021-and-whats-inside-was-worth-the-wait",
+      "title": "A GTA 6 Location Was Teased by Rockstar All the Way Back in 2021 — And What's Inside Was Worth the Wait",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 9,
-        "fantasy": 7,
-        "cyberpunk": 6,
-        "action": 39,
-        "slice_of_life": 14,
-        "mystery": 22,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/amazon-early-black-friday-audible-deal-2026",
-      "title": "Amazon's Black Friday Audible Deal Is Now Live: Pay $0.99 Per Month Plus Get $20 Credit",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 13,
+        "sf": 19,
         "fantasy": 6,
-        "cyberpunk": 10,
-        "action": 5,
-        "slice_of_life": 23,
-        "mystery": 20,
-        "historical": 9
+        "cyberpunk": 37,
+        "action": 62,
+        "slice_of_life": 20,
+        "mystery": 23,
+        "historical": 13
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/yaiba-samurai-legend-season-2-reveals-cast-member-yuma-uchida-opening-song-artists/.243924",
-      "title": "Yaiba: Samurai Legend Season 2 Reveals Cast Member Yūma Uchida, Opening Song Artists",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/burger-kings-chocolate-whopper-prank-is-being-turned-into-a-real-burger",
+      "title": "Burger King’s Chocolate Whopper Prank Is Being Turned Into a Real Burger",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 15,
-        "fantasy": 35,
-        "cyberpunk": 8,
-        "action": 74,
-        "slice_of_life": 10,
-        "mystery": 13,
-        "historical": 64
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/otherworldly-munchkin-anime-new-video-reveals-more-cast-staff-theme-songs-january-7-debut/.243921",
-      "title": "Otherworldly Munchkin Anime's New Video Reveals More Cast, Staff, Theme Songs, January 7 Debut",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 27,
-        "fantasy": 50,
-        "cyberpunk": 10,
-        "action": 39,
-        "slice_of_life": 32,
-        "mystery": 18,
-        "historical": 9
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/sakamoto-days-season-2-trailer-unveils-more-cast-opening-song-january-18-debut/.243925",
-      "title": "Sakamoto Days Season 2's Trailer Unveils More Cast, Opening Song, January 18 Debut",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 18,
-        "fantasy": 11,
-        "cyberpunk": 12,
-        "action": 75,
+        "sf": 6,
+        "fantasy": 7,
+        "cyberpunk": 5,
+        "action": 3,
         "slice_of_life": 31,
-        "mystery": 22,
-        "historical": 8
+        "mystery": 6,
+        "historical": 7
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/soara-and-the-house-of-monsters-anime-casts-reiji-kawashima-kenta-miyake/.243906",
-      "title": "Soara and the House of Monsters Anime Casts Reiji Kawashima, Kenta Miyake",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 26,
-        "fantasy": 57,
-        "cyberpunk": 16,
-        "action": 44,
-        "slice_of_life": 27,
-        "mystery": 27,
-        "historical": 9
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/rpg-maker-u2u-software-launches-for-pc-via-steam-on-january-28/.243916",
-      "title": "RPG Maker U2U Software Launches for PC via Steam on January 28",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 21,
-        "fantasy": 40,
-        "cyberpunk": 8,
-        "action": 28,
-        "slice_of_life": 19,
-        "mystery": 20,
-        "historical": 21
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/reading-our-way-to-a-happy-new-world-manga-listed-to-end-with-3rd-volume/.243882",
-      "title": "Reading Our Way to a Happy New World Manga Listed to End With 3rd Volume",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 34,
-        "fantasy": 28,
-        "cyberpunk": 33,
-        "action": 30,
-        "slice_of_life": 41,
-        "mystery": 26,
-        "historical": 17
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/yametai-~anata-no-reset-daiko-shimasu~-manga-ends/.243881",
-      "title": "Yametai! ~Anata no Reset, Daikō Shimasu~ Manga Ends",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/devgamm-awards-2026-winners-revealed",
+      "title": "DevGamm Awards 2026 Winners Revealed",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 32,
         "fantasy": 33,
-        "cyberpunk": 31,
-        "action": 37,
-        "slice_of_life": 46,
-        "mystery": 28,
-        "historical": 10
+        "cyberpunk": 35,
+        "action": 44,
+        "slice_of_life": 25,
+        "mystery": 32,
+        "historical": 18
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/battle-spirits-re-zekkai-no-ku-anime-gets-light-novel/.243914",
-      "title": "Battle Spirits [Re] Zekkai no Kū Anime Gets Light Novel",
+      "key": "https://www.ign.com/articles/new-avengers-doomsday-posters-reveal-key-characters-and-tease-thors-odinforce",
+      "title": "New Avengers: Doomsday Posters Reveal Key Characters and Tease Thor’s Odinforce",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 32,
+        "fantasy": 29,
+        "cyberpunk": 8,
+        "action": 79,
+        "slice_of_life": 5,
+        "mystery": 12,
+        "historical": 7
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/the-detective-is-already-dead-game-launches-in-2027/.243970",
+      "title": "The Detective Is Already Dead Game Launches in 2027",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 29,
-        "fantasy": 48,
-        "cyberpunk": 9,
+        "sf": 26,
+        "fantasy": 6,
+        "cyberpunk": 34,
+        "action": 41,
+        "slice_of_life": 15,
+        "mystery": 80,
+        "historical": 12
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/live-action-leviathan-film-casts-shun-oguri-ai-hashimoto/.243960",
+      "title": "Live-Action  Leviathan Film Casts Shun Oguri, Ai Hashimoto",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 21,
+        "fantasy": 8,
+        "cyberpunk": 18,
         "action": 40,
-        "slice_of_life": 20,
-        "mystery": 15,
-        "historical": 11
+        "slice_of_life": 29,
+        "mystery": 36,
+        "historical": 25
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/hidive-streams-giant-ojosama-tv-anime-this-winter-screens-n-american-premiere-at-anime-frontier-on-/.243917",
-      "title": "HIDIVE Streams Giant Ojosama TV Anime This Winter; Screens N. American Premiere at Anime Frontier on December 4",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/seven-seas-licenses-i-am-blue-in-pain-and-fragile-predator-witches-audiobooks/.243959",
+      "title": "Seven Seas Licenses 'I am Blue, in Pain, and Fragile,' Predator Witches Audiobooks",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
         "sf": 29,
-        "fantasy": 35,
-        "cyberpunk": 23,
-        "action": 37,
-        "slice_of_life": 44,
-        "mystery": 24,
+        "fantasy": 52,
+        "cyberpunk": 12,
+        "action": 24,
+        "slice_of_life": 27,
+        "mystery": 31,
+        "historical": 12
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/blood-addict-manga-ends/.243919",
+      "title": "Blood Addict Manga Ends",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 27,
+        "fantasy": 25,
+        "cyberpunk": 36,
+        "action": 53,
+        "slice_of_life": 20,
+        "mystery": 27,
         "historical": 10
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-17/the-game-awards-2026-reveals-nominees/.243915",
-      "title": "The Game Awards 2026 Reveals Nominees",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/sesuji-about-a-pilgrimage-to-the-defiled-sacred-grounds-novel-gets-live-action-film-in-2027/.243940",
+      "title": "Sesuji's About a Pilgrimage to the Defiled Sacred Grounds Novel Gets Live-Action Film in 2027",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 22,
-        "fantasy": 20,
-        "cyberpunk": 36,
-        "action": 46,
-        "slice_of_life": 26,
+        "sf": 32,
+        "fantasy": 51,
+        "cyberpunk": 12,
+        "action": 28,
+        "slice_of_life": 27,
         "mystery": 25,
-        "historical": 14
+        "historical": 38
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/k-manga-adds-godmother-manga/.243918",
+      "title": "K Manga Adds Godmother Manga",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 20,
+        "fantasy": 48,
+        "cyberpunk": 10,
+        "action": 37,
+        "slice_of_life": 39,
+        "mystery": 28,
+        "historical": 16
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/hiromasa-okujima-announces-1st-original-boys-love-manga/.243958",
+      "title": "Hiromasa Okujima Announces 1st Original Boys-Love Manga",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 12,
+        "fantasy": 12,
+        "cyberpunk": 6,
+        "action": 10,
+        "slice_of_life": 56,
+        "mystery": 11,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/duel-masters-gt-manga-gets-4th-part/.243957",
+      "title": "Duel Masters GT Manga Gets 4th Part",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 29,
+        "fantasy": 39,
+        "cyberpunk": 12,
+        "action": 45,
+        "slice_of_life": 15,
+        "mystery": 14,
+        "historical": 10
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/youre-so-sloppy-hotta-sensei-manga-ends-in-2-chapters/.243956",
+      "title": "'You're So Sloppy, Hotta-Sensei' Manga Ends in 2 Chapters",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 15,
+        "fantasy": 14,
+        "cyberpunk": 14,
+        "action": 26,
+        "slice_of_life": 53,
+        "mystery": 14,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-18/online-retailer-cdjapan-confirms-potential-customer-information-leaks-caused-by-unauthorized-access/.243951",
+      "title": "Online Retailer CDJapan Confirms Potential Customer Information Leaks Caused by Unauthorized Access",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 7,
+        "fantasy": 2,
+        "cyberpunk": 26,
+        "action": 4,
+        "slice_of_life": 12,
+        "mystery": 13,
+        "historical": 3
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/interview/2026-11-18/how-ed-goldfarb-brings-regional-authenticity-to-pokemon-music/.243504",
+      "title": "How Ed Goldfarb Brings Regional Authenticity to Pokémon Music",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 10,
+        "fantasy": 13,
+        "cyberpunk": 10,
+        "action": 9,
+        "slice_of_life": 29,
+        "mystery": 13,
+        "historical": 9
       }
     },
     {
@@ -1321,6 +1336,6 @@
       }
     }
   ],
-  "api_calls": 38,
-  "cache_hits": 54
+  "api_calls": 32,
+  "cache_hits": 61
 }
