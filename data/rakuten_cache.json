@@ -1,15 +1,4 @@
 {
-  "五等分の花嫁": {
-    "fetched_at": "2026-10-21T01:29:36.248267+00:00",
-    "product": {
-      "itemName": "[新品]五等分の花嫁(1-14巻 全巻) 全巻セット",
-      "itemPrice": 8349,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00qci0o.eo1qw544.g00qci0o.eo1qx21a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmangazenkan%2Fm1560479420%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmangazenkan%2Fi%2F10233930%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/mangazenkan/cabinet/syncip_0021/m1560479420.jpg?_ex=128x128",
-      "reviewCount": 40
-    },
-    "hits": 3
-  },
   "ねんどろいど ズートピア ニック・ワイルド": {
     "fetched_at": "2026-10-22T01:27:57.421898+00:00",
     "product": null,
@@ -646,5 +635,16 @@
     "fetched_at": "2026-11-19T04:00:40.610914+00:00",
     "product": null,
     "hits": 0
+  },
+  "ポケットモンスター ソード・シールド": {
+    "fetched_at": "2026-11-20T03:52:44.008221+00:00",
+    "product": {
+      "itemName": "ポケットモンスター ソード・シールド　公式ガイドブック　完全ストーリー攻略＋ガラル図鑑 [ 元宮秀介 ]",
+      "itemPrice": 1760,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16092922%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19810533%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5814/9784865545814.jpg?_ex=128x128",
+      "reviewCount": 94
+    },
+    "hits": 3
   }
 }

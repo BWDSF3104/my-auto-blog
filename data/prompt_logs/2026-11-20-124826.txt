@@ -1,9 +1,9 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-chibiのキャラクターたちが活躍するファンタジーとSF、TSF（性転換フィクション）から単一または複数のテーマを選択し短編物語を作成してください。
+二足歩行の動物(semi-anthro, [feral])のキャラクターたちが活躍するファンタジーから単一または複数のテーマを選択し短編物語を作成してください。
 同性愛（男性同士の恋愛）、dark persona（もう一人の自分は自身の闇版。体色は黒っぽい）からランダムにテーマを選択してください。
 登場キャラクターは2人（ライバル）を中心に設定してください。
 
-【視点】第3人称限定的で執筆せよ。全文を通じて主人公を視点の中心にし、他のキャラクターの思考・感情・意図を直接記述しないこと（対話・表情・行動・反応から伝わせて示せ）。
+【視点】第3人称全知的で執筆せよ。全キャラクターの思考・感情を知る視点から記述し、場面に応じて各キャラクターの視点に切り替えられる。
 
 【物語の質を高めるための必須条件】
 1. **キャラクターの深み**: 各主要キャラクターには外見だけでなく「性格の核（強みと弱み）」「背景（過去の出来事）」「動機（この物語で何を求めているか）」を設定してください。キャラクターの行動はこれらの設定に一貫して従ってください。
@@ -28,7 +28,7 @@ chibiのキャラクターたちが活躍するファンタジーとSF、TSF（�
 ・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
-・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-10語程度に簡潔にしてください。
+・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-12語程度に簡潔にしてください。
 ・各キャラクターの場面ごとの表情を、キャラクターIDの直後にコロン（:）で区切って指定してください。
   - 表情はDanbooruの実在タグ（英語）を使用し、1人につき1-2個にしてください。
   - 表情はその場面の2匹の感情・緊張感・関係性に必ず一致させてください。
@@ -68,8 +68,8 @@ chibiのキャラクターたちが活躍するファンタジーとSF、TSF（�
 
 
 【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
-- [Anime News Network] Interview: A Deep Dive into the Creation and Philosophy of The Ninth Jedi
-- [IGN RSS] Greta Gerwig Reportedly Clashed With Netflix Film Boss Over Narnia: The Magician’s Nephew — Barbie writer-director Greta Gerwig reportedly had a bitter falling out with Netflix’s then-head of 
+- [GameSpot RSS] WoW: Forever Wants To Get Rid Of The Idea Of “BiS” Gear — World of Warcraft: Forever is approaching itemization and "best-in-slot" (BiS) gear differently, wit
+- [Anime News Network] Masanao Kawajiri's Cherry and Virgin Film Wins at Aichi Nagoya Int'l Animation Film Fest
 
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
@@ -78,7 +78,7 @@ chibiのキャラクターたちが活躍するファンタジーとSF、TSF（�
 ---
 title: "物語のタイトル"
 slug: "seo-friendly-romaji-slug-based-on-title"
-pubDate: "2026-10-21 10:27:03"
+pubDate: "2026-11-20 12:48:26"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
@@ -105,30 +105,30 @@ product_recommendations:
   - 二足歩行の動物: semi-anthro, [feral]
   - 獣人: anthro
   - chibi: chibi
-・anthro/feral/semi-anthro の英語タグは character_1/character_2 のfrontmatterに限定。本文のキャラクター体型表現は英語でなく日本語（例: 二足歩行の動物）を使う。
+・anthro/feral/semi-anthro等の体型タイプ関連の英語タグは character_1/character_2 のfrontmatterに限定し、基本的に指定されたものを使用する。本文のキャラクター体型表現は英語でなく日本語（例: 二足歩行の動物）を使う。
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
-・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
+・4-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
 ・character_1 と character_2 の両方を必ず定義してください。もう一人の自分（character_2）の体色は黒っぽく変更してください。
 
 【キャラクター特徴のトレンドデータ（参考）】
 
 ・参考キャラクター1:
-  種族: animatronic, human, lagomorph, leporid, mammal, rabbit, robot, robot_anthro
-  色: -
-  身体的特徴: age_difference, birthday, bow_(feature), bow_tie, buckteeth, child, coin, feels
-  参照: bonnie_(fnaf), weaver_bonnie
-  作品: five_nights_at_freddy's, scottgames
-
-・参考キャラクター2:
-  種族: avian, bear, bird, brown_bear, canid, canine, canis, deer, felid, feline, hare, lagomorph, leporid, mammal, moose, mountain_hare, new_world_deer, ursine, wolf
-  色: black_body, brown_body, brown_fur, glowing_body, white_body, white_fur
-  身体的特徴: black_feathers, blue_glow, clothed, clothing, dialogue_box, feathered_wings, feathers, fur
-  参照: hjordis, nanna_(bjekkergauken), vide_(bjekkergauken)
+  種族: canid, canine, canis, dragon, mammal, mythological_creature, mythological_scalie, scalie, western_dragon, wolf
+  色: dipstick_tail, green_body, green_fur, multicolored_tail, red_hair
+  身体的特徴: 5_fingers, bioluminescence, claws, cuddling, fingers, fur, hair, horn
+  参照: fareed, snowywolf
   作品: -
 
-・人気版権: five_nights_at_freddy's, scottgames
-・人気artist: alasou
+・参考キャラクター2:
+  種族: canid, canine, canis, felid, mammal, pantherine, tiger, wolf
+  色: brown_body, brown_fur, dipstick_tail, multicolored_body, multicolored_fur, multicolored_tail, orange_eyes, two_tone_body, two_tone_fur, white_body, white_fur, yellow_body, yellow_fur
+  身体的特徴: 5_fingers, 5_toes, barefoot, black_nose, bottomwear, clothed, clothing, crouching
+  参照: -
+  作品: -
+
+・人気版権: disney, pokemon
+・人気artist: andy_234
 
 アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
 

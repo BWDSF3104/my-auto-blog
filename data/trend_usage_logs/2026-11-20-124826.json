@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-20T12:48:26.926640+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-20T12:48:04.370483+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 34,
+    "after_score_filter": 34,
+    "after_rating_filter": 34,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "WoW: Forever Wants To Get Rid Of The Idea Of “BiS” Gear",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/wow-forever-wants-to-get-rid-of-the-idea-of-bis-gear/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "World of Warcraft: Forever is approaching itemization and \"best-in-slot\" (BiS) gear differently, with developer Blizzard instead wanting players to have more boss- or biome-specific choices. In the la"
+    },
+    {
+      "title": "Masanao Kawajiri's Cherry and Virgin Film Wins at Aichi Nagoya Int'l Animation Film Fest",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-19/masanao-kawajiri-cherry-and-virgin-film-wins-at-aichi-nagoya-intl-animation-film-fest/.243991",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Forever Wants To Get Rid Of Th",
+    "Masanao Kawajiri s Cherry"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/wow-forever-wants-to-get-rid-of-the-idea-of-bis-gear/",
+    "https://www.animenewsnetwork.com/news/2026-11-19/masanao-kawajiri-cherry-and-virgin-film-wins-at-aichi-nagoya-intl-animation-film-fest/.243991"
+  ]
+}
