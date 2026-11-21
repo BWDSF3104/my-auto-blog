@@ -222,7 +222,7 @@ def _fix_duplicate_yaml_keys(fm_text: str) -> str:
             result.append(line)
             continue
 
-        match = re.match(r'^([A-Za-z\u3000-\u9fff]+)\s*:\s*', stripped)
+        match = re.match(r'^([A-Za-z0-9_\-\u3000-\u9fff]+)\s*:\s*', stripped)
         if not match:
             result.append(line)
             continue
