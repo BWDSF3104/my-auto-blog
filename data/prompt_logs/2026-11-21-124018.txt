@@ -1,7 +1,7 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-動物のキャラクターたちが活躍する異世界から単一または複数のテーマを選択し短編物語を作成してください。
-同性愛（男性同士の恋愛）、クローンによる自分同士からランダムにテーマを選択してください。
-登場キャラクターは2人（カップル）を中心に設定してください。
+獣人(anthro) / 二足歩行の動物(semi-anthro, [feral])のキャラクターたちが活躍する冒険から単一または複数のテーマを選択し短編物語を作成してください。
+同性愛（男性同士の恋愛）、dark persona（もう一人の自分は自身の闇版。体色は黒っぽい）からランダムにテーマを選択してください。
+登場キャラクターは2人（バディ）を中心に設定してください。
 
 【視点】第3人称全知的で執筆せよ。全キャラクターの思考・感情を知る視点から記述し、場面に応じて各キャラクターの視点に切り替えられる。
 
@@ -28,7 +28,7 @@
 ・物語に登場する主要キャラクターの外見特徴（性別、種族、毛・鱗・羽の色、目の色、象徴的な衣装や装飾）を決定し、Frontmatterに定義してください。
   - 主人公: `character_1`（必須）
   - 2人目の主要キャラがいる場合: `character_2`（任意）
-・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-10語程度に簡潔にしてください。
+・画像プロンプトでは、登場させたいキャラクターのID（例: `[character_1]` または `[character_1, character_2]`）を先頭に必ず指定し、続けてそのシーンのキーワードをカンマ区切りで記述してください。6-12語程度に簡潔にしてください。
 ・各キャラクターの場面ごとの表情を、キャラクターIDの直後にコロン（:）で区切って指定してください。
   - 表情はDanbooruの実在タグ（英語）を使用し、1人につき1-2個にしてください。
   - 表情はその場面の2匹の感情・緊張感・関係性に必ず一致させてください。
@@ -68,8 +68,8 @@
 
 
 【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
-- [Anime News Network] A-DO Manga to End on November 18
-- [GameSpot RSS] Rayman Legends Retold’s New Baguette Costumes Are A Tip Of The Beret To Expedition 33 — Rayman Legends Retold is almost here, and as you'd expect from this remake, it's a pretty noticeable
+- [Anime News Network] Crunchyroll Streams My Hero Academia The Movie: World Heroes' Mission Anime
+- [IGN RSS] GTA 6 Triggers Busiest Traffic Day in Comcast History — Comcast has said GTA 6 's launch triggered the busiest traffic day the company has seen since it was
 
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
@@ -78,7 +78,7 @@
 ---
 title: "物語のタイトル"
 slug: "seo-friendly-romaji-slug-based-on-title"
-pubDate: "2026-10-22 10:25:16"
+pubDate: "2026-11-21 12:40:18"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
@@ -105,30 +105,30 @@ product_recommendations:
   - 二足歩行の動物: semi-anthro, [feral]
   - 獣人: anthro
   - chibi: chibi
-・anthro/feral/semi-anthro の英語タグは character_1/character_2 のfrontmatterに限定。本文のキャラクター体型表現は英語でなく日本語（例: 二足歩行の動物）を使う。
+・anthro/feral/semi-anthro等の体型タイプ関連の英語タグは character_1/character_2 のfrontmatterに限定し、基本的に指定されたものを使用する。本文のキャラクター体型表現は英語でなく日本語（例: 二足歩行の動物）を使う。
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
-・5-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
+・4-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
-・character_1 と character_2 の両方を必ず定義してください。クローンによる自分同士の場合は character_2 の外見は character_1 と同一（区別のため小物・装飾のみ差異可）。
+・character_1 と character_2 の両方を必ず定義してください。もう一人の自分（character_2）の体色は黒っぽく変更してください。
 
 【キャラクター特徴のトレンドデータ（参考）】
 
 ・参考キャラクター1:
-  種族: dragon, mythological_creature, mythological_scalie, scalie
-  色: -
-  身体的特徴: 4_arms, breasts, multi_arm, multi_limb, nervous, non-mammal_breasts, seductive, tail
-  参照: crackle_(mlp), garble_(mlp)
-  作品: friendship_is_magic, hasbro, my_little_pony
+  種族: avian, bear, beaver, bird, canid, canine, corvid, corvus_(genus), crow, fox, lagomorph, leporid, mammal, mustelid, oscine, passerine, procyonid, rabbit, raccoon, rodent, sciurid, tree_squirrel
+  色: fluffy_tail, ringed_tail, striped_tail
+  身体的特徴: axe, barefoot, beak, bottomwear, claws, clothed, clothing, doorway
+  参照: -
+  作品: -
 
 ・参考キャラクター2:
-  種族: canid, canine, fox, lagomorph, leporid, mammal, rabbit, red_fox, true_fox
-  色: brown_body, brown_fur, dipstick_tail, green_eyes, multicolored_tail, orange_body, orange_fur, purple_eyes
-  身体的特徴: apron, barefoot, black_nose, bottomwear, cheek_tuft, clothed, clothing, facial_tuft
-  参照: judy_hopps, nick_wilde
-  作品: disney, zootopia
+  種族: canid, canine, canis, mammal, wolf
+  色: big_eyes, brown_eyes, purple_hair, short_hair, tan_body, tan_fur
+  身体的特徴: :<, absolute_territory, armwear, asian_sword, belt, big_ears, black_nose, bottomwear
+  参照: -
+  作品: -
 
-・人気版権: friendship_is_magic, hasbro
-・人気artist: 327b_(artist)
+・人気版権: navy_seal, disney
+・人気artist: andy_234
 
 アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
 
