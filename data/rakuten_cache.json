@@ -1,15 +1,4 @@
 {
-  "ガーディアンズ・オブ・ギャラクシー MovieNEX": {
-    "fetched_at": "2026-10-23T01:26:40.210756+00:00",
-    "product": {
-      "itemName": "ガーディアンズ・オブ・ギャラクシー：リミックス 4K UHD MovieNEX【4K ULTRA HD】 [ クリス・プラット ]",
-      "itemPrice": 6864,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15275653%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F18960549%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9688/4959241769688.jpg?_ex=128x128",
-      "reviewCount": 1
-    },
-    "hits": 3
-  },
   "ねんどろいど しずえ": {
     "fetched_at": "2026-10-24T01:36:30.115406+00:00",
     "product": {
@@ -633,6 +622,28 @@
       "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00qci0o.eo1qw544.g00qci0o.eo1qx21a/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmangazenkan%2Fm8880404620%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmangazenkan%2Fi%2F10159529%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
       "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/mangazenkan/cabinet/syncip_0020/m8880404620_02.jpg?_ex=128x128",
       "reviewCount": 191
+    },
+    "hits": 3
+  },
+  "狼への嫁入り〜異種婚姻譚〜": {
+    "fetched_at": "2026-11-22T02:49:40.828108+00:00",
+    "product": {
+      "itemName": "狼への嫁入り～異種婚姻譚～（3） （on　BLUE　COMICS） [ 犬居葉菜 ]",
+      "itemPrice": 902,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17909584%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21302625%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5918/9784396785918_1_2.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "ケモノ ファンタジー": {
+    "fetched_at": "2026-11-22T02:49:42.252501+00:00",
+    "product": {
+      "itemName": "＼期間限定クーポン有／ 化物語 コンプリート DVD-BOX アニメ TV版 全巻セット バケモノガタリ 西尾維新 ライトノベル 青春怪異小説 ファンタジー【新品】",
+      "itemPrice": 5480,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00svwro.eo1qwb06.g00svwro.eo1qx4db/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fanimestore%2Fb00ovdzyhg%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fanimestore%2Fi%2F10000156%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/animestore/cabinet/05806903/b00ovdzyhg/b00ovdzyhg_01.jpg?_ex=128x128",
+      "reviewCount": 3
     },
     "hits": 3
   }

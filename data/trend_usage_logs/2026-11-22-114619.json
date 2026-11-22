@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-22T11:46:19.886570+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-22T11:46:04.434190+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.0,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 34,
+    "after_score_filter": 34,
+    "after_rating_filter": 34,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "'May I Ask for One Final Thing?' Novel Series Ends in 8th Volume",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/may-i-ask-for-one-final-thing-novel-series-ends-in-8th-volume/.244044",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "Japanese Animation TV Ranking, November 9-15",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/japanese-animation-tv-ranking-november-9-15/.244015",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Ask One Final",
+    "Japanese Animation TV Ranking "
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-11-21/may-i-ask-for-one-final-thing-novel-series-ends-in-8th-volume/.244044",
+    "https://www.animenewsnetwork.com/news/2026-11-21/japanese-animation-tv-ranking-november-9-15/.244015"
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-11-21T12:40:00.856558+09:00",
+  "fetched_at": "2026-11-22T11:46:04.434190+09:00",
   "ttl_hours": 24,
-  "total": 71,
+  "total": 72,
   "by_category": {
     "tech": [],
     "kemono": [
@@ -10,6 +10,14 @@
         "url": "https://github.com/LinKennt/LoFS-VN",
         "score": 1,
         "source": "GitHub",
+        "category": "kemono"
+      },
+      {
+        "title": "This Musical Adventure Tells A Very British Tale Through Deep Cleaning And Ghost Busting",
+        "url": "https://www.gamespot.com/articles/this-musical-adventure-tells-a-very-british-tale-through-deep-cleaning-and-ghost-busting/",
+        "description": "Don’t let the title fool you; the Grand Hotel is definitely haunted in There Are No Ghosts at The Grand, a supernatural clean-‘em-up where you’ll renovate a dilapidated building, investigate ghastly happenings, and break into song with fellow townsfolk. Your janitorial duties include blasting old fu",
+        "score": 0,
+        "source": "GameSpot RSS",
         "category": "kemono"
       },
       {
@@ -85,168 +93,160 @@
         "category": "kemono"
       },
       {
-        "title": "GTA 6 Sets Even More Records",
-        "url": "https://www.gamespot.com/articles/gta-6-sets-even-more-records/",
-        "description": "Rockstar's Grand Theft Auto 6 has finally arrived, and, to the surprise of no one, it's putting up some big numbers that speak to the pent-up demand. GTA 6 sold more than 30 million copies and hit almost $4 billion on day one , but that's just the start of understanding the impact of the game's rele",
-        "score": 0,
-        "source": "GameSpot RSS",
-        "category": "kemono"
-      },
-      {
-        "title": "The Official Lord of the Rings Pizza Cutter Drops to a New Low Price at Amazon",
-        "url": "https://www.ign.com/articles/the-official-lord-of-the-rings-pizza-cutter-drops-to-a-new-low-price-at-amazon-black-friday-2026",
-        "description": "Amazon's Black Friday sale is a great time to find discounts on things you actually need. It's also a great time to buy expensive gifts for yourself that you absolutely don't need. Somewhere in between those two extremes is where I like to do most of my online window shopping, which is what led me t",
+        "title": "The Binding of Isaac Dev Removes Undisclosed AI-Generated Music From Repentance+ Following Creator Response, Review-Bombing",
+        "url": "https://www.ign.com/articles/the-binding-of-isaac-dev-removes-undisclosed-ai-generated-music-from-repentance-following-creator-response-review-bombing",
+        "description": "The Binding of Isaac developer Nicalis has removed undisclosed AI-generated music included in Repentance+ after backlash led to a review-bombing campaign on Steam and a response from the game's creator, Edmund McMillen. McMillen and Nicalis spent months building up to the November 19, 2026, release ",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "RayNeo's Black Friday Sale Includes Discounts on AR Glasses, Plus a New Release of GT Max Call of Duty: Modern Warfare 4 Limited Edition AR Glasses",
-        "url": "https://www.ign.com/articles/rayneos-black-friday-sale-includes-discounts-on-ar-glasses-and-more",
-        "description": "Editor's Note: This article is sponsored by RayNeo. RayNeo's Black Friday and Cyber Monday sale is now live, featuring discounts across its popular AR glasses lineup through November 30. As part of this sale, you can score the flagship RayNeo GT Max AR glasses for just $335, or pick up the all-new G",
+        "title": "The Ecovacs Deebot T90 Pro Omni Robot Vacuum Delivers Incredible 30,000Pa Suction and More High-End Features for $549 During Black Friday",
+        "url": "https://www.ign.com/articles/the-ecovacs-deebot-t90-pro-omni-robot-vacuum-delivers-incredible-30000pa-suction-and-more-high-end-features-for-549-during-black-friday",
+        "description": "Who wouldn’t love to have a few chores taken off their hands? This holiday season, give someone you love one of the most useful gifts: a brand-new robot vacuum that will leave floors sparkling. The Ecovacs Deebot T90 Pro Onmi delivers a state-of-the-art clean with boosted vacuum suction power, conti",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Actor Who Plays Mandy in GTA 6 Excitedly Speaks Out After Character Goes Viral",
-        "url": "https://www.ign.com/articles/actor-who-plays-mandy-in-gta-6-excitedly-speaks-out-after-character-goes-viral",
-        "description": "Lexie Shoaibi, the actor who plays Mandy in GTA 6, is speaking out now that the game has been officially released worldwide. GTA 6 is finally here, and players have wasted no time looking up the actors behind some of its colorful cast of characters. As the days go on, more and more performers are re",
+        "title": "The Best Deals Today: Silent Hill Townfall, Ocarina of Time Remake, Control Resonant, and More",
+        "url": "https://www.ign.com/articles/best-deals-for-november-21-2026",
+        "description": "Black Friday is under a week away, and today, you can save big on Silent Hill Townfall, Castlevania: Belmont's Curse, Ocarina of Time remake, Control Resonant, and more. Check out our top picks for Saturday, November 21, below. Silent Hill Townfall for $29.99 Silent Hill Townfall was one of the bigg",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "GTA 6 Triggers Busiest Traffic Day in Comcast History",
-        "url": "https://www.ign.com/articles/gta-6-triggers-busiest-traffic-day-in-comcast-history",
-        "description": "Comcast has said GTA 6 's launch triggered the busiest traffic day the company has seen since it was founded in 1963. The latest record broken by Rockstar Games' latest actually comes from one of the biggest media and technology companies in the United States. After previously reporting that Grand T",
+        "title": "GTA 6 Players Report Crashes on PS5 With Error CE-108255-1",
+        "url": "https://www.ign.com/articles/gta-6-players-report-crashes-on-ps5-with-error-ce-108255-1",
+        "description": "GTA 6 players on PlayStation 5 have reported frequent crashes tied to error code CE-108255-1, and it looks like it's blocking them from progressing through the story while they wait for Sony and Rockstar to send out a fix. Although Rockstar Games spent a decade making its new Grand Theft Auto game, ",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Percy Jackson Actors Reveal They Watched Attack on Titan Fan Edits to Help Themselves Cry While Filming Emotional Scenes",
-        "url": "https://www.ign.com/articles/percy-jackson-actors-reveal-they-watched-attack-on-titan-fan-edits-to-help-themselves-cry-while-filming-emotional-scenes",
-        "description": "Walker Scobell and Aryan Simhadri revealed that they would watch Attack on Titan fan edits to help them prepare to film emotional scenes for Percy Jackson and the Olympians. Attack on Titan is one of the most popular anime series in the world, in no small part due to its tragic storylines and brutal",
+        "title": "Avengers: Doomsday Star Hayley Atwell Teases New Trailer for Monday",
+        "url": "https://www.ign.com/articles/avengers-doomsday-star-hayley-atwell-teases-new-trailer-for-monday",
+        "description": "Avengers: Doomsday star and Captain Carter actor Hayley Atwell appears to have let it slip that a new Avengers: Doomsday trailer is set to premiere this Monday. The longtime Marvel Cinematic Universe actor volunteered the information to a group of fans following a performance of her new Broadway pla",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Eureka Ergonomic Has Black Friday Deals to Give Your Space the Upgrade It Needs",
-        "url": "https://www.ign.com/articles/eureka-ergonomic-has-black-friday-deals-to-give-your-space-the-upgrade-it-needs",
-        "description": "If you’re trying to reinvigorate your office or gaming den with some fresh furniture, Eureka Ergonomic has a Black Friday sale on a whole host of gear that will let you go for a full redesign of your space without a full redesign of your budget. For the gaming den, Eureka Ergonomic’s Typhon II Hybri",
+        "title": "Digital Nintendo Switch and Switch 2 Games Are on Sale for Black Friday",
+        "url": "https://www.ign.com/articles/digital-nintendo-switch-and-switch-2-games-are-on-sale-for-black-friday",
+        "description": "We’ve almost made it to Black Friday . The official retail holiday lands on November 27 this year, but metric tons of deals are already available as we speak. That includes digital games for Nintendo Switch 2 and Nintendo Switch. You can save up to 30% off a selection of games, which is about as muc",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Save 33% Off the Shokz OpenRun Pro 2 Sport Headphone With Bone Conduction Tech for Black Friday",
-        "url": "https://www.ign.com/articles/shokz-openrun-pro-2-sport-headphone-deal-november-2026",
-        "description": "If you enjoy listening to music while you run or work out, then you should consider getting a headset that's specifically designed for it. Shokz is one of the best known and well-respected sport headphone brands and, fortunately for you, the Shokz Black Friday Sale has officially kicked off on Amazo",
+        "title": "Neuralink Participant Showcases What It's Like to Play GTA 6 With His Mind",
+        "url": "https://www.ign.com/articles/neuralink-participant-showcases-what-its-like-to-play-gta-6-with-his-mind",
+        "description": "A Neuralink participant has shared a video showcasing how the technology has allowed him to drive boats, fly planes, and get in shootouts in GTA 6 with his mind. Neuralink shared a video of one of its few participants playing Rockstar Games' latest on social media yesterday. The two-minute highlight",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "GTA 6 Players React After Exclusive Shops Greet Non-Ultimate Edition Buyers With Locked Doors",
-        "url": "https://www.ign.com/articles/gta-6-players-react-after-exclusive-shops-greet-non-ultimate-edition-buyers-with-locked-doors",
-        "description": "GTA 6 players are being locked out of in-game stores because they don't own the Ultimate Edition, and they've got some thoughts about how Rockstar handled it. We've known for months that the developer's latest sprawling open-world video game would have a $79.99 Standard Edition and $99.99 Ultimate E",
+        "title": "Blade Director Says He Walked Away From Marvel's Canceled Movie Because 'Life's Too Short to Make S**t Films'",
+        "url": "https://www.ign.com/articles/blade-director-says-he-walked-away-from-marvels-canceled-movie-because-lifes-too-short-to-make-st-films",
+        "description": "Director Bassam Tariq has opened up about why he exited Marvel's Blade movie, saying, \"life's too short to make s**t films.\" The Your Mother Your Mother Your Mother filmmaker explained his reasoning for walking away from the Mahershala Ali superhero period piece during an interview with The New Arab",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Fallout-Themed AriZona Iced Tea Gets Black Friday Discount, Including New 'Apocalyptic Orange' Flavor",
-        "url": "https://www.ign.com/articles/fallout-themed-arizona-iced-tea-gets-black-friday-discount-2026",
-        "description": "Amazon’s Black Friday sale is officially live , making it a great time to pick up some serious bulk of whatever your drink of choice is. Mine happens to be AriZona Iced Tea, because who can hate cheap caffeine, and I’ll certainly never complain about a deal dropping those prices even further. The 15",
+        "title": "GTA 6’s Weirdest Cow Shows Why You Should Pause the Story Early To Explore Its Vast Map",
+        "url": "https://www.ign.com/articles/gta-6s-weirdest-cow-shows-why-you-should-pause-the-story-early-to-explore-its-vast-map",
+        "description": "Warning: this story features spoilers for an optional side activity. \"Save me.\" Those two chilling words were so soft I wondered if I'd heard them correctly – after all, the only souls in this orchard were me and Tootsie, an escaped cow draped in red cloth with a rosette stuck to her forehead. But n",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "Jensen Huang Allegedly Threatened Nvidia Workers and Told Employee He Would Rip Off the Top of Their Head and 'Pee on Your Brain'",
-        "url": "https://www.ign.com/articles/jensen-huang-verbal-abuse-allegations",
-        "description": "Former Nvidia CEO Jensen Huang allegedly threatened employees with violence and \"humiliated\" them for decades. According to sources speaking to The New York Times , Huang — who stepped down as Nvidia's CEO amid a scandal involving infidelity and alleged espionage — has a history of using threatening",
+        "title": "LEGO Insiders Weekend Is Live: Free Gifts with Purchase, Exclusive Discounts, and More",
+        "url": "https://www.ign.com/articles/lego-insiders-weekend-is-live-free-gifts-with-purchase-exclusive-discounts-and-more",
+        "description": "Black Friday is next week, but this weekend is LEGO Insiders weekend. That’s a special event where anyone who has a free LEGO Insiders account can access exclusive promotions ( you can become an Insider here for free ). This weekend, November 21 - 22, LEGO Insiders can get exclusive discounts (inclu",
         "score": 0,
         "source": "IGN RSS",
         "category": "kemono"
       },
       {
-        "title": "North American Anime, Manga Releases, November 15-21",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/north-american-anime-manga-releases-november-15-21/.243879",
+        "title": "Mawaru Penguindrum Anime Inspires Stage Reading Production by Kunihiko Ikuhara",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/mawaru-penguindrum-anime-inspires-stage-reading-production-by-kunihiko-ikuhara/.244065",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Yen Press Licenses [Oshi No Ko] Étude for Two, Bungo Stray Dogs: The Untold Origins of the Detective Agency, More Manga/Novels",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/yen-press-licenses-oshi-no-ko-etude-for-two-bungo-stray-dogs-the-untold-origins-of-the-detective-/.244035",
+        "title": "Kurumizawa's Folly Manga Ends in 3 Chapters",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/kurumizawa-folly-manga-ends-in-3-chapters/.244064",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Chiruran Manga Gets New Stage Play by All-Female Troupe O'Clock Kumamoto Revue",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/chiruran-manga-gets-new-stage-play-by-all-female-troupe-oclock-kumamoto-revue/.244024",
+        "title": "New Hana-Kimi Live-Action Series Reveals Theme Songs, Short Video",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/new-hana-kimi-live-action-series-reveals-theme-songs-short-video/.244043",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Duel Masters LOST Anime Gets 5th Part",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/duel-masters-lost-anime-gets-5th-part/.244025",
+        "title": "Japan's Video Game Rankings, November 9-15",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/japan-video-game-rankings-november-9-15/.244013",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
+        "title": "Omniscient Reader's Viewpoint Webtoon Returns With Season 2 on November 24",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/omniscient-reader-viewpoint-webtoon-returns-with-season-2-on-november-24/.244045",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Crunchyroll Streams My Hero Academia The Movie: World Heroes' Mission Anime",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/crunchyroll-streams-my-hero-academia-the-movie-world-heroes-mission-anime/.244023",
+        "title": "Tamon's B-Side Anime Gets 2nd Season",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/tamon-b-side-anime-gets-2nd-season/.244056",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Maison and the Man-Eating Apartment Manga Ends in Next Chapter",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/maison-and-the-man-eating-apartment-manga-ends-in-next-chapter/.244004",
+        "title": "Japanese Animation TV Ranking, November 9-15",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/japanese-animation-tv-ranking-november-9-15/.244015",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Mitei Hattori's Smile! Manga Gets Epilogue Chapter",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/mitei-hattori-smile-manga-gets-epilogue-chapter/.244005",
+        "title": "Doraemon Anime's 1-Hour New Year's Special to Feature New Tool",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/doraemon-anime-1-hour-new-year-special-to-feature-new-tool/.244050",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "Life with an Ordinary Guy Who Reincarnated into a Total Fantasy Knockout Manga Ends With 20th Volume",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/life-with-an-ordinary-guy-who-reincarnated-into-a-total-fantasy-knockout-manga-ends-with-20th-volume/.244002",
+        "title": "'May I Ask for One Final Thing?' Novel Series Ends in 8th Volume",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/may-i-ask-for-one-final-thing-novel-series-ends-in-8th-volume/.244044",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
         "description": ""
       },
       {
-        "title": "'A Pen, Handcuffs, and a Common-Law Marriage' TV Anime Reveals Theme Song Artists, More Cast, January 9 Debut in Video",
-        "url": "https://www.animenewsnetwork.com/news/2026-11-20/a-pen-handcuffs-and-a-common-law-marriage-tv-anime-reveals-theme-song-artists-more-cast-january-9-/.244022",
+        "title": "'Please Put Them On, Takamine-san' Manga Ends in January",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-21/please-put-them-on-takamine-san-manga-ends-in-january/.244048",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
@@ -263,6 +263,14 @@
       {
         "title": "Director Yuta Shimotsu Stirs Up Scares in Strange: Junji Ito's Tales for Sleepless Nights",
         "url": "https://www.animenewsnetwork.com/interview/2026-11-11/director-yuta-shimotsu-stirs-up-scares-in-strange-junji-ito-tales-for-sleepless-nights/.243599",
+        "score": 0,
+        "source": "Anime News Network",
+        "category": "kemono",
+        "description": ""
+      },
+      {
+        "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production\n      TV anime based on BanG Dream! project's Mugendai Mewtype band premiered on July 2",
+        "url": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
         "score": 0,
         "source": "Anime News Network",
         "category": "kemono",
@@ -550,10 +558,18 @@
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-11-21T12:40:00.856558+09:00"
+      "fetched_at": "2026-11-22T11:46:04.434190+09:00"
     },
     "GameSpot RSS": {
       "topics": [
+        {
+          "title": "This Musical Adventure Tells A Very British Tale Through Deep Cleaning And Ghost Busting",
+          "url": "https://www.gamespot.com/articles/this-musical-adventure-tells-a-very-british-tale-through-deep-cleaning-and-ghost-busting/",
+          "description": "Don’t let the title fool you; the Grand Hotel is definitely haunted in There Are No Ghosts at The Grand, a supernatural clean-‘em-up where you’ll renovate a dilapidated building, investigate ghastly happenings, and break into song with fellow townsfolk. Your janitorial duties include blasting old fu",
+          "score": 0,
+          "source": "GameSpot RSS",
+          "category": "kemono"
+        },
         {
           "title": "Play GTA 6 In First Person With This Glitch",
           "url": "https://www.gamespot.com/videos/play-gta-6-in-first-person-with-this-glitch/",
@@ -625,180 +641,172 @@
           "score": 0,
           "source": "GameSpot RSS",
           "category": "kemono"
-        },
-        {
-          "title": "GTA 6 Sets Even More Records",
-          "url": "https://www.gamespot.com/articles/gta-6-sets-even-more-records/",
-          "description": "Rockstar's Grand Theft Auto 6 has finally arrived, and, to the surprise of no one, it's putting up some big numbers that speak to the pent-up demand. GTA 6 sold more than 30 million copies and hit almost $4 billion on day one , but that's just the start of understanding the impact of the game's rele",
-          "score": 0,
-          "source": "GameSpot RSS",
-          "category": "kemono"
         }
       ],
-      "fetched_at": "2026-11-21T12:40:00.856558+09:00"
+      "fetched_at": "2026-11-22T11:46:04.434190+09:00"
     },
     "IGN RSS": {
       "topics": [
         {
-          "title": "The Official Lord of the Rings Pizza Cutter Drops to a New Low Price at Amazon",
-          "url": "https://www.ign.com/articles/the-official-lord-of-the-rings-pizza-cutter-drops-to-a-new-low-price-at-amazon-black-friday-2026",
-          "description": "Amazon's Black Friday sale is a great time to find discounts on things you actually need. It's also a great time to buy expensive gifts for yourself that you absolutely don't need. Somewhere in between those two extremes is where I like to do most of my online window shopping, which is what led me t",
+          "title": "The Binding of Isaac Dev Removes Undisclosed AI-Generated Music From Repentance+ Following Creator Response, Review-Bombing",
+          "url": "https://www.ign.com/articles/the-binding-of-isaac-dev-removes-undisclosed-ai-generated-music-from-repentance-following-creator-response-review-bombing",
+          "description": "The Binding of Isaac developer Nicalis has removed undisclosed AI-generated music included in Repentance+ after backlash led to a review-bombing campaign on Steam and a response from the game's creator, Edmund McMillen. McMillen and Nicalis spent months building up to the November 19, 2026, release ",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "RayNeo's Black Friday Sale Includes Discounts on AR Glasses, Plus a New Release of GT Max Call of Duty: Modern Warfare 4 Limited Edition AR Glasses",
-          "url": "https://www.ign.com/articles/rayneos-black-friday-sale-includes-discounts-on-ar-glasses-and-more",
-          "description": "Editor's Note: This article is sponsored by RayNeo. RayNeo's Black Friday and Cyber Monday sale is now live, featuring discounts across its popular AR glasses lineup through November 30. As part of this sale, you can score the flagship RayNeo GT Max AR glasses for just $335, or pick up the all-new G",
+          "title": "The Ecovacs Deebot T90 Pro Omni Robot Vacuum Delivers Incredible 30,000Pa Suction and More High-End Features for $549 During Black Friday",
+          "url": "https://www.ign.com/articles/the-ecovacs-deebot-t90-pro-omni-robot-vacuum-delivers-incredible-30000pa-suction-and-more-high-end-features-for-549-during-black-friday",
+          "description": "Who wouldn’t love to have a few chores taken off their hands? This holiday season, give someone you love one of the most useful gifts: a brand-new robot vacuum that will leave floors sparkling. The Ecovacs Deebot T90 Pro Onmi delivers a state-of-the-art clean with boosted vacuum suction power, conti",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "Actor Who Plays Mandy in GTA 6 Excitedly Speaks Out After Character Goes Viral",
-          "url": "https://www.ign.com/articles/actor-who-plays-mandy-in-gta-6-excitedly-speaks-out-after-character-goes-viral",
-          "description": "Lexie Shoaibi, the actor who plays Mandy in GTA 6, is speaking out now that the game has been officially released worldwide. GTA 6 is finally here, and players have wasted no time looking up the actors behind some of its colorful cast of characters. As the days go on, more and more performers are re",
+          "title": "The Best Deals Today: Silent Hill Townfall, Ocarina of Time Remake, Control Resonant, and More",
+          "url": "https://www.ign.com/articles/best-deals-for-november-21-2026",
+          "description": "Black Friday is under a week away, and today, you can save big on Silent Hill Townfall, Castlevania: Belmont's Curse, Ocarina of Time remake, Control Resonant, and more. Check out our top picks for Saturday, November 21, below. Silent Hill Townfall for $29.99 Silent Hill Townfall was one of the bigg",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "GTA 6 Triggers Busiest Traffic Day in Comcast History",
-          "url": "https://www.ign.com/articles/gta-6-triggers-busiest-traffic-day-in-comcast-history",
-          "description": "Comcast has said GTA 6 's launch triggered the busiest traffic day the company has seen since it was founded in 1963. The latest record broken by Rockstar Games' latest actually comes from one of the biggest media and technology companies in the United States. After previously reporting that Grand T",
+          "title": "GTA 6 Players Report Crashes on PS5 With Error CE-108255-1",
+          "url": "https://www.ign.com/articles/gta-6-players-report-crashes-on-ps5-with-error-ce-108255-1",
+          "description": "GTA 6 players on PlayStation 5 have reported frequent crashes tied to error code CE-108255-1, and it looks like it's blocking them from progressing through the story while they wait for Sony and Rockstar to send out a fix. Although Rockstar Games spent a decade making its new Grand Theft Auto game, ",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "Percy Jackson Actors Reveal They Watched Attack on Titan Fan Edits to Help Themselves Cry While Filming Emotional Scenes",
-          "url": "https://www.ign.com/articles/percy-jackson-actors-reveal-they-watched-attack-on-titan-fan-edits-to-help-themselves-cry-while-filming-emotional-scenes",
-          "description": "Walker Scobell and Aryan Simhadri revealed that they would watch Attack on Titan fan edits to help them prepare to film emotional scenes for Percy Jackson and the Olympians. Attack on Titan is one of the most popular anime series in the world, in no small part due to its tragic storylines and brutal",
+          "title": "Avengers: Doomsday Star Hayley Atwell Teases New Trailer for Monday",
+          "url": "https://www.ign.com/articles/avengers-doomsday-star-hayley-atwell-teases-new-trailer-for-monday",
+          "description": "Avengers: Doomsday star and Captain Carter actor Hayley Atwell appears to have let it slip that a new Avengers: Doomsday trailer is set to premiere this Monday. The longtime Marvel Cinematic Universe actor volunteered the information to a group of fans following a performance of her new Broadway pla",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "Eureka Ergonomic Has Black Friday Deals to Give Your Space the Upgrade It Needs",
-          "url": "https://www.ign.com/articles/eureka-ergonomic-has-black-friday-deals-to-give-your-space-the-upgrade-it-needs",
-          "description": "If you’re trying to reinvigorate your office or gaming den with some fresh furniture, Eureka Ergonomic has a Black Friday sale on a whole host of gear that will let you go for a full redesign of your space without a full redesign of your budget. For the gaming den, Eureka Ergonomic’s Typhon II Hybri",
+          "title": "Digital Nintendo Switch and Switch 2 Games Are on Sale for Black Friday",
+          "url": "https://www.ign.com/articles/digital-nintendo-switch-and-switch-2-games-are-on-sale-for-black-friday",
+          "description": "We’ve almost made it to Black Friday . The official retail holiday lands on November 27 this year, but metric tons of deals are already available as we speak. That includes digital games for Nintendo Switch 2 and Nintendo Switch. You can save up to 30% off a selection of games, which is about as muc",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "Save 33% Off the Shokz OpenRun Pro 2 Sport Headphone With Bone Conduction Tech for Black Friday",
-          "url": "https://www.ign.com/articles/shokz-openrun-pro-2-sport-headphone-deal-november-2026",
-          "description": "If you enjoy listening to music while you run or work out, then you should consider getting a headset that's specifically designed for it. Shokz is one of the best known and well-respected sport headphone brands and, fortunately for you, the Shokz Black Friday Sale has officially kicked off on Amazo",
+          "title": "Neuralink Participant Showcases What It's Like to Play GTA 6 With His Mind",
+          "url": "https://www.ign.com/articles/neuralink-participant-showcases-what-its-like-to-play-gta-6-with-his-mind",
+          "description": "A Neuralink participant has shared a video showcasing how the technology has allowed him to drive boats, fly planes, and get in shootouts in GTA 6 with his mind. Neuralink shared a video of one of its few participants playing Rockstar Games' latest on social media yesterday. The two-minute highlight",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "GTA 6 Players React After Exclusive Shops Greet Non-Ultimate Edition Buyers With Locked Doors",
-          "url": "https://www.ign.com/articles/gta-6-players-react-after-exclusive-shops-greet-non-ultimate-edition-buyers-with-locked-doors",
-          "description": "GTA 6 players are being locked out of in-game stores because they don't own the Ultimate Edition, and they've got some thoughts about how Rockstar handled it. We've known for months that the developer's latest sprawling open-world video game would have a $79.99 Standard Edition and $99.99 Ultimate E",
+          "title": "Blade Director Says He Walked Away From Marvel's Canceled Movie Because 'Life's Too Short to Make S**t Films'",
+          "url": "https://www.ign.com/articles/blade-director-says-he-walked-away-from-marvels-canceled-movie-because-lifes-too-short-to-make-st-films",
+          "description": "Director Bassam Tariq has opened up about why he exited Marvel's Blade movie, saying, \"life's too short to make s**t films.\" The Your Mother Your Mother Your Mother filmmaker explained his reasoning for walking away from the Mahershala Ali superhero period piece during an interview with The New Arab",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "Fallout-Themed AriZona Iced Tea Gets Black Friday Discount, Including New 'Apocalyptic Orange' Flavor",
-          "url": "https://www.ign.com/articles/fallout-themed-arizona-iced-tea-gets-black-friday-discount-2026",
-          "description": "Amazon’s Black Friday sale is officially live , making it a great time to pick up some serious bulk of whatever your drink of choice is. Mine happens to be AriZona Iced Tea, because who can hate cheap caffeine, and I’ll certainly never complain about a deal dropping those prices even further. The 15",
+          "title": "GTA 6’s Weirdest Cow Shows Why You Should Pause the Story Early To Explore Its Vast Map",
+          "url": "https://www.ign.com/articles/gta-6s-weirdest-cow-shows-why-you-should-pause-the-story-early-to-explore-its-vast-map",
+          "description": "Warning: this story features spoilers for an optional side activity. \"Save me.\" Those two chilling words were so soft I wondered if I'd heard them correctly – after all, the only souls in this orchard were me and Tootsie, an escaped cow draped in red cloth with a rosette stuck to her forehead. But n",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         },
         {
-          "title": "Jensen Huang Allegedly Threatened Nvidia Workers and Told Employee He Would Rip Off the Top of Their Head and 'Pee on Your Brain'",
-          "url": "https://www.ign.com/articles/jensen-huang-verbal-abuse-allegations",
-          "description": "Former Nvidia CEO Jensen Huang allegedly threatened employees with violence and \"humiliated\" them for decades. According to sources speaking to The New York Times , Huang — who stepped down as Nvidia's CEO amid a scandal involving infidelity and alleged espionage — has a history of using threatening",
+          "title": "LEGO Insiders Weekend Is Live: Free Gifts with Purchase, Exclusive Discounts, and More",
+          "url": "https://www.ign.com/articles/lego-insiders-weekend-is-live-free-gifts-with-purchase-exclusive-discounts-and-more",
+          "description": "Black Friday is next week, but this weekend is LEGO Insiders weekend. That’s a special event where anyone who has a free LEGO Insiders account can access exclusive promotions ( you can become an Insider here for free ). This weekend, November 21 - 22, LEGO Insiders can get exclusive discounts (inclu",
           "score": 0,
           "source": "IGN RSS",
           "category": "kemono"
         }
       ],
-      "fetched_at": "2026-11-21T12:40:00.856558+09:00"
+      "fetched_at": "2026-11-22T11:46:04.434190+09:00"
     },
     "Anime News Network": {
       "topics": [
         {
-          "title": "North American Anime, Manga Releases, November 15-21",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/north-american-anime-manga-releases-november-15-21/.243879",
+          "title": "Mawaru Penguindrum Anime Inspires Stage Reading Production by Kunihiko Ikuhara",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/mawaru-penguindrum-anime-inspires-stage-reading-production-by-kunihiko-ikuhara/.244065",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Yen Press Licenses [Oshi No Ko] Étude for Two, Bungo Stray Dogs: The Untold Origins of the Detective Agency, More Manga/Novels",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/yen-press-licenses-oshi-no-ko-etude-for-two-bungo-stray-dogs-the-untold-origins-of-the-detective-/.244035",
+          "title": "Kurumizawa's Folly Manga Ends in 3 Chapters",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/kurumizawa-folly-manga-ends-in-3-chapters/.244064",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Chiruran Manga Gets New Stage Play by All-Female Troupe O'Clock Kumamoto Revue",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/chiruran-manga-gets-new-stage-play-by-all-female-troupe-oclock-kumamoto-revue/.244024",
+          "title": "New Hana-Kimi Live-Action Series Reveals Theme Songs, Short Video",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/new-hana-kimi-live-action-series-reveals-theme-songs-short-video/.244043",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Duel Masters LOST Anime Gets 5th Part",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/duel-masters-lost-anime-gets-5th-part/.244025",
+          "title": "Japan's Video Game Rankings, November 9-15",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/japan-video-game-rankings-november-9-15/.244013",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
+          "title": "Omniscient Reader's Viewpoint Webtoon Returns With Season 2 on November 24",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/omniscient-reader-viewpoint-webtoon-returns-with-season-2-on-november-24/.244045",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Crunchyroll Streams My Hero Academia The Movie: World Heroes' Mission Anime",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/crunchyroll-streams-my-hero-academia-the-movie-world-heroes-mission-anime/.244023",
+          "title": "Tamon's B-Side Anime Gets 2nd Season",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/tamon-b-side-anime-gets-2nd-season/.244056",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Maison and the Man-Eating Apartment Manga Ends in Next Chapter",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/maison-and-the-man-eating-apartment-manga-ends-in-next-chapter/.244004",
+          "title": "Japanese Animation TV Ranking, November 9-15",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/japanese-animation-tv-ranking-november-9-15/.244015",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Mitei Hattori's Smile! Manga Gets Epilogue Chapter",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/mitei-hattori-smile-manga-gets-epilogue-chapter/.244005",
+          "title": "Doraemon Anime's 1-Hour New Year's Special to Feature New Tool",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/doraemon-anime-1-hour-new-year-special-to-feature-new-tool/.244050",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "Life with an Ordinary Guy Who Reincarnated into a Total Fantasy Knockout Manga Ends With 20th Volume",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/life-with-an-ordinary-guy-who-reincarnated-into-a-total-fantasy-knockout-manga-ends-with-20th-volume/.244002",
+          "title": "'May I Ask for One Final Thing?' Novel Series Ends in 8th Volume",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/may-i-ask-for-one-final-thing-novel-series-ends-in-8th-volume/.244044",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
         },
         {
-          "title": "'A Pen, Handcuffs, and a Common-Law Marriage' TV Anime Reveals Theme Song Artists, More Cast, January 9 Debut in Video",
-          "url": "https://www.animenewsnetwork.com/news/2026-11-20/a-pen-handcuffs-and-a-common-law-marriage-tv-anime-reveals-theme-song-artists-more-cast-january-9-/.244022",
+          "title": "'Please Put Them On, Takamine-san' Manga Ends in January",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-21/please-put-them-on-takamine-san-manga-ends-in-january/.244048",
           "score": 0,
           "source": "Anime News Network",
           "category": "kemono",
@@ -819,9 +827,17 @@
           "source": "Anime News Network",
           "category": "kemono",
           "description": ""
+        },
+        {
+          "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production\n      TV anime based on BanG Dream! project's Mugendai Mewtype band premiered on July 2",
+          "url": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
+          "score": 0,
+          "source": "Anime News Network",
+          "category": "kemono",
+          "description": ""
         }
       ],
-      "fetched_at": "2026-11-21T12:40:00.856558+09:00"
+      "fetched_at": "2026-11-22T11:46:04.434190+09:00"
     },
     "PokéCommunity Art Studio": {
       "topics": [
@@ -1119,6 +1135,14 @@
       "category": "kemono"
     },
     {
+      "title": "This Musical Adventure Tells A Very British Tale Through Deep Cleaning And Ghost Busting",
+      "url": "https://www.gamespot.com/articles/this-musical-adventure-tells-a-very-british-tale-through-deep-cleaning-and-ghost-busting/",
+      "description": "Don’t let the title fool you; the Grand Hotel is definitely haunted in There Are No Ghosts at The Grand, a supernatural clean-‘em-up where you’ll renovate a dilapidated building, investigate ghastly happenings, and break into song with fellow townsfolk. Your janitorial duties include blasting old fu",
+      "score": 0,
+      "source": "GameSpot RSS",
+      "category": "kemono"
+    },
+    {
       "title": "Play GTA 6 In First Person With This Glitch",
       "url": "https://www.gamespot.com/videos/play-gta-6-in-first-person-with-this-glitch/",
       "description": "So it turns out you can play GTA 6 in first person mode right now with a glitch. Check out the video on how to play in this mode. (Note it's probably going to get patched so enjoy it while it lasts)",
@@ -1191,168 +1215,160 @@
       "category": "kemono"
     },
     {
-      "title": "GTA 6 Sets Even More Records",
-      "url": "https://www.gamespot.com/articles/gta-6-sets-even-more-records/",
-      "description": "Rockstar's Grand Theft Auto 6 has finally arrived, and, to the surprise of no one, it's putting up some big numbers that speak to the pent-up demand. GTA 6 sold more than 30 million copies and hit almost $4 billion on day one , but that's just the start of understanding the impact of the game's rele",
-      "score": 0,
-      "source": "GameSpot RSS",
-      "category": "kemono"
-    },
-    {
-      "title": "The Official Lord of the Rings Pizza Cutter Drops to a New Low Price at Amazon",
-      "url": "https://www.ign.com/articles/the-official-lord-of-the-rings-pizza-cutter-drops-to-a-new-low-price-at-amazon-black-friday-2026",
-      "description": "Amazon's Black Friday sale is a great time to find discounts on things you actually need. It's also a great time to buy expensive gifts for yourself that you absolutely don't need. Somewhere in between those two extremes is where I like to do most of my online window shopping, which is what led me t",
+      "title": "The Binding of Isaac Dev Removes Undisclosed AI-Generated Music From Repentance+ Following Creator Response, Review-Bombing",
+      "url": "https://www.ign.com/articles/the-binding-of-isaac-dev-removes-undisclosed-ai-generated-music-from-repentance-following-creator-response-review-bombing",
+      "description": "The Binding of Isaac developer Nicalis has removed undisclosed AI-generated music included in Repentance+ after backlash led to a review-bombing campaign on Steam and a response from the game's creator, Edmund McMillen. McMillen and Nicalis spent months building up to the November 19, 2026, release ",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "RayNeo's Black Friday Sale Includes Discounts on AR Glasses, Plus a New Release of GT Max Call of Duty: Modern Warfare 4 Limited Edition AR Glasses",
-      "url": "https://www.ign.com/articles/rayneos-black-friday-sale-includes-discounts-on-ar-glasses-and-more",
-      "description": "Editor's Note: This article is sponsored by RayNeo. RayNeo's Black Friday and Cyber Monday sale is now live, featuring discounts across its popular AR glasses lineup through November 30. As part of this sale, you can score the flagship RayNeo GT Max AR glasses for just $335, or pick up the all-new G",
+      "title": "The Ecovacs Deebot T90 Pro Omni Robot Vacuum Delivers Incredible 30,000Pa Suction and More High-End Features for $549 During Black Friday",
+      "url": "https://www.ign.com/articles/the-ecovacs-deebot-t90-pro-omni-robot-vacuum-delivers-incredible-30000pa-suction-and-more-high-end-features-for-549-during-black-friday",
+      "description": "Who wouldn’t love to have a few chores taken off their hands? This holiday season, give someone you love one of the most useful gifts: a brand-new robot vacuum that will leave floors sparkling. The Ecovacs Deebot T90 Pro Onmi delivers a state-of-the-art clean with boosted vacuum suction power, conti",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Actor Who Plays Mandy in GTA 6 Excitedly Speaks Out After Character Goes Viral",
-      "url": "https://www.ign.com/articles/actor-who-plays-mandy-in-gta-6-excitedly-speaks-out-after-character-goes-viral",
-      "description": "Lexie Shoaibi, the actor who plays Mandy in GTA 6, is speaking out now that the game has been officially released worldwide. GTA 6 is finally here, and players have wasted no time looking up the actors behind some of its colorful cast of characters. As the days go on, more and more performers are re",
+      "title": "The Best Deals Today: Silent Hill Townfall, Ocarina of Time Remake, Control Resonant, and More",
+      "url": "https://www.ign.com/articles/best-deals-for-november-21-2026",
+      "description": "Black Friday is under a week away, and today, you can save big on Silent Hill Townfall, Castlevania: Belmont's Curse, Ocarina of Time remake, Control Resonant, and more. Check out our top picks for Saturday, November 21, below. Silent Hill Townfall for $29.99 Silent Hill Townfall was one of the bigg",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "GTA 6 Triggers Busiest Traffic Day in Comcast History",
-      "url": "https://www.ign.com/articles/gta-6-triggers-busiest-traffic-day-in-comcast-history",
-      "description": "Comcast has said GTA 6 's launch triggered the busiest traffic day the company has seen since it was founded in 1963. The latest record broken by Rockstar Games' latest actually comes from one of the biggest media and technology companies in the United States. After previously reporting that Grand T",
+      "title": "GTA 6 Players Report Crashes on PS5 With Error CE-108255-1",
+      "url": "https://www.ign.com/articles/gta-6-players-report-crashes-on-ps5-with-error-ce-108255-1",
+      "description": "GTA 6 players on PlayStation 5 have reported frequent crashes tied to error code CE-108255-1, and it looks like it's blocking them from progressing through the story while they wait for Sony and Rockstar to send out a fix. Although Rockstar Games spent a decade making its new Grand Theft Auto game, ",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Percy Jackson Actors Reveal They Watched Attack on Titan Fan Edits to Help Themselves Cry While Filming Emotional Scenes",
-      "url": "https://www.ign.com/articles/percy-jackson-actors-reveal-they-watched-attack-on-titan-fan-edits-to-help-themselves-cry-while-filming-emotional-scenes",
-      "description": "Walker Scobell and Aryan Simhadri revealed that they would watch Attack on Titan fan edits to help them prepare to film emotional scenes for Percy Jackson and the Olympians. Attack on Titan is one of the most popular anime series in the world, in no small part due to its tragic storylines and brutal",
+      "title": "Avengers: Doomsday Star Hayley Atwell Teases New Trailer for Monday",
+      "url": "https://www.ign.com/articles/avengers-doomsday-star-hayley-atwell-teases-new-trailer-for-monday",
+      "description": "Avengers: Doomsday star and Captain Carter actor Hayley Atwell appears to have let it slip that a new Avengers: Doomsday trailer is set to premiere this Monday. The longtime Marvel Cinematic Universe actor volunteered the information to a group of fans following a performance of her new Broadway pla",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Eureka Ergonomic Has Black Friday Deals to Give Your Space the Upgrade It Needs",
-      "url": "https://www.ign.com/articles/eureka-ergonomic-has-black-friday-deals-to-give-your-space-the-upgrade-it-needs",
-      "description": "If you’re trying to reinvigorate your office or gaming den with some fresh furniture, Eureka Ergonomic has a Black Friday sale on a whole host of gear that will let you go for a full redesign of your space without a full redesign of your budget. For the gaming den, Eureka Ergonomic’s Typhon II Hybri",
+      "title": "Digital Nintendo Switch and Switch 2 Games Are on Sale for Black Friday",
+      "url": "https://www.ign.com/articles/digital-nintendo-switch-and-switch-2-games-are-on-sale-for-black-friday",
+      "description": "We’ve almost made it to Black Friday . The official retail holiday lands on November 27 this year, but metric tons of deals are already available as we speak. That includes digital games for Nintendo Switch 2 and Nintendo Switch. You can save up to 30% off a selection of games, which is about as muc",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Save 33% Off the Shokz OpenRun Pro 2 Sport Headphone With Bone Conduction Tech for Black Friday",
-      "url": "https://www.ign.com/articles/shokz-openrun-pro-2-sport-headphone-deal-november-2026",
-      "description": "If you enjoy listening to music while you run or work out, then you should consider getting a headset that's specifically designed for it. Shokz is one of the best known and well-respected sport headphone brands and, fortunately for you, the Shokz Black Friday Sale has officially kicked off on Amazo",
+      "title": "Neuralink Participant Showcases What It's Like to Play GTA 6 With His Mind",
+      "url": "https://www.ign.com/articles/neuralink-participant-showcases-what-its-like-to-play-gta-6-with-his-mind",
+      "description": "A Neuralink participant has shared a video showcasing how the technology has allowed him to drive boats, fly planes, and get in shootouts in GTA 6 with his mind. Neuralink shared a video of one of its few participants playing Rockstar Games' latest on social media yesterday. The two-minute highlight",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "GTA 6 Players React After Exclusive Shops Greet Non-Ultimate Edition Buyers With Locked Doors",
-      "url": "https://www.ign.com/articles/gta-6-players-react-after-exclusive-shops-greet-non-ultimate-edition-buyers-with-locked-doors",
-      "description": "GTA 6 players are being locked out of in-game stores because they don't own the Ultimate Edition, and they've got some thoughts about how Rockstar handled it. We've known for months that the developer's latest sprawling open-world video game would have a $79.99 Standard Edition and $99.99 Ultimate E",
+      "title": "Blade Director Says He Walked Away From Marvel's Canceled Movie Because 'Life's Too Short to Make S**t Films'",
+      "url": "https://www.ign.com/articles/blade-director-says-he-walked-away-from-marvels-canceled-movie-because-lifes-too-short-to-make-st-films",
+      "description": "Director Bassam Tariq has opened up about why he exited Marvel's Blade movie, saying, \"life's too short to make s**t films.\" The Your Mother Your Mother Your Mother filmmaker explained his reasoning for walking away from the Mahershala Ali superhero period piece during an interview with The New Arab",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Fallout-Themed AriZona Iced Tea Gets Black Friday Discount, Including New 'Apocalyptic Orange' Flavor",
-      "url": "https://www.ign.com/articles/fallout-themed-arizona-iced-tea-gets-black-friday-discount-2026",
-      "description": "Amazon’s Black Friday sale is officially live , making it a great time to pick up some serious bulk of whatever your drink of choice is. Mine happens to be AriZona Iced Tea, because who can hate cheap caffeine, and I’ll certainly never complain about a deal dropping those prices even further. The 15",
+      "title": "GTA 6’s Weirdest Cow Shows Why You Should Pause the Story Early To Explore Its Vast Map",
+      "url": "https://www.ign.com/articles/gta-6s-weirdest-cow-shows-why-you-should-pause-the-story-early-to-explore-its-vast-map",
+      "description": "Warning: this story features spoilers for an optional side activity. \"Save me.\" Those two chilling words were so soft I wondered if I'd heard them correctly – after all, the only souls in this orchard were me and Tootsie, an escaped cow draped in red cloth with a rosette stuck to her forehead. But n",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "Jensen Huang Allegedly Threatened Nvidia Workers and Told Employee He Would Rip Off the Top of Their Head and 'Pee on Your Brain'",
-      "url": "https://www.ign.com/articles/jensen-huang-verbal-abuse-allegations",
-      "description": "Former Nvidia CEO Jensen Huang allegedly threatened employees with violence and \"humiliated\" them for decades. According to sources speaking to The New York Times , Huang — who stepped down as Nvidia's CEO amid a scandal involving infidelity and alleged espionage — has a history of using threatening",
+      "title": "LEGO Insiders Weekend Is Live: Free Gifts with Purchase, Exclusive Discounts, and More",
+      "url": "https://www.ign.com/articles/lego-insiders-weekend-is-live-free-gifts-with-purchase-exclusive-discounts-and-more",
+      "description": "Black Friday is next week, but this weekend is LEGO Insiders weekend. That’s a special event where anyone who has a free LEGO Insiders account can access exclusive promotions ( you can become an Insider here for free ). This weekend, November 21 - 22, LEGO Insiders can get exclusive discounts (inclu",
       "score": 0,
       "source": "IGN RSS",
       "category": "kemono"
     },
     {
-      "title": "North American Anime, Manga Releases, November 15-21",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/north-american-anime-manga-releases-november-15-21/.243879",
+      "title": "Mawaru Penguindrum Anime Inspires Stage Reading Production by Kunihiko Ikuhara",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/mawaru-penguindrum-anime-inspires-stage-reading-production-by-kunihiko-ikuhara/.244065",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Yen Press Licenses [Oshi No Ko] Étude for Two, Bungo Stray Dogs: The Untold Origins of the Detective Agency, More Manga/Novels",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/yen-press-licenses-oshi-no-ko-etude-for-two-bungo-stray-dogs-the-untold-origins-of-the-detective-/.244035",
+      "title": "Kurumizawa's Folly Manga Ends in 3 Chapters",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/kurumizawa-folly-manga-ends-in-3-chapters/.244064",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Chiruran Manga Gets New Stage Play by All-Female Troupe O'Clock Kumamoto Revue",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/chiruran-manga-gets-new-stage-play-by-all-female-troupe-oclock-kumamoto-revue/.244024",
+      "title": "New Hana-Kimi Live-Action Series Reveals Theme Songs, Short Video",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/new-hana-kimi-live-action-series-reveals-theme-songs-short-video/.244043",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Duel Masters LOST Anime Gets 5th Part",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/duel-masters-lost-anime-gets-5th-part/.244025",
+      "title": "Japan's Video Game Rankings, November 9-15",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/japan-video-game-rankings-november-9-15/.244013",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
+      "title": "Omniscient Reader's Viewpoint Webtoon Returns With Season 2 on November 24",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/omniscient-reader-viewpoint-webtoon-returns-with-season-2-on-november-24/.244045",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Crunchyroll Streams My Hero Academia The Movie: World Heroes' Mission Anime",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/crunchyroll-streams-my-hero-academia-the-movie-world-heroes-mission-anime/.244023",
+      "title": "Tamon's B-Side Anime Gets 2nd Season",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/tamon-b-side-anime-gets-2nd-season/.244056",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Maison and the Man-Eating Apartment Manga Ends in Next Chapter",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/maison-and-the-man-eating-apartment-manga-ends-in-next-chapter/.244004",
+      "title": "Japanese Animation TV Ranking, November 9-15",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/japanese-animation-tv-ranking-november-9-15/.244015",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Mitei Hattori's Smile! Manga Gets Epilogue Chapter",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/mitei-hattori-smile-manga-gets-epilogue-chapter/.244005",
+      "title": "Doraemon Anime's 1-Hour New Year's Special to Feature New Tool",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/doraemon-anime-1-hour-new-year-special-to-feature-new-tool/.244050",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "Life with an Ordinary Guy Who Reincarnated into a Total Fantasy Knockout Manga Ends With 20th Volume",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/life-with-an-ordinary-guy-who-reincarnated-into-a-total-fantasy-knockout-manga-ends-with-20th-volume/.244002",
+      "title": "'May I Ask for One Final Thing?' Novel Series Ends in 8th Volume",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/may-i-ask-for-one-final-thing-novel-series-ends-in-8th-volume/.244044",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
       "description": ""
     },
     {
-      "title": "'A Pen, Handcuffs, and a Common-Law Marriage' TV Anime Reveals Theme Song Artists, More Cast, January 9 Debut in Video",
-      "url": "https://www.animenewsnetwork.com/news/2026-11-20/a-pen-handcuffs-and-a-common-law-marriage-tv-anime-reveals-theme-song-artists-more-cast-january-9-/.244022",
+      "title": "'Please Put Them On, Takamine-san' Manga Ends in January",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-21/please-put-them-on-takamine-san-manga-ends-in-january/.244048",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",
@@ -1369,6 +1385,14 @@
     {
       "title": "Director Yuta Shimotsu Stirs Up Scares in Strange: Junji Ito's Tales for Sleepless Nights",
       "url": "https://www.animenewsnetwork.com/interview/2026-11-11/director-yuta-shimotsu-stirs-up-scares-in-strange-junji-ito-tales-for-sleepless-nights/.243599",
+      "score": 0,
+      "source": "Anime News Network",
+      "category": "kemono",
+      "description": ""
+    },
+    {
+      "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production\n      TV anime based on BanG Dream! project's Mugendai Mewtype band premiered on July 2",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
       "score": 0,
       "source": "Anime News Network",
       "category": "kemono",

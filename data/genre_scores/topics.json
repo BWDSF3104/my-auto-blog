@@ -1,5 +1,5 @@
 {
-  "scored_at": "2026-11-21T03:40:18.318646+00:00",
+  "scored_at": "2026-11-22T02:46:19.157288+00:00",
   "topics": [
     {
       "key": "https://github.com/LinKennt/LoFS-VN",
@@ -14,6 +14,21 @@
         "slice_of_life": 50,
         "mystery": 24,
         "historical": 12
+      }
+    },
+    {
+      "key": "https://www.gamespot.com/articles/this-musical-adventure-tells-a-very-british-tale-through-deep-cleaning-and-ghost-busting/",
+      "title": "This Musical Adventure Tells A Very British Tale Through Deep Cleaning And Ghost Busting",
+      "source": "GameSpot RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 19,
+        "fantasy": 39,
+        "cyberpunk": 3,
+        "action": 12,
+        "slice_of_life": 32,
+        "mystery": 41,
+        "historical": 22
       }
     },
     {
@@ -152,318 +167,303 @@
       }
     },
     {
-      "key": "https://www.gamespot.com/articles/gta-6-sets-even-more-records/",
-      "title": "GTA 6 Sets Even More Records",
-      "source": "GameSpot RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 17,
-        "fantasy": 7,
-        "cyberpunk": 36,
-        "action": 77,
-        "slice_of_life": 11,
-        "mystery": 14,
-        "historical": 10
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/the-official-lord-of-the-rings-pizza-cutter-drops-to-a-new-low-price-at-amazon-black-friday-2026",
-      "title": "The Official Lord of the Rings Pizza Cutter Drops to a New Low Price at Amazon",
+      "key": "https://www.ign.com/articles/the-binding-of-isaac-dev-removes-undisclosed-ai-generated-music-from-repentance-following-creator-response-review-bombing",
+      "title": "The Binding of Isaac Dev Removes Undisclosed AI-Generated Music From Repentance+ Following Creator Response, Review-Bombing",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 14,
-        "fantasy": 16,
-        "cyberpunk": 5,
-        "action": 11,
-        "slice_of_life": 30,
-        "mystery": 6,
-        "historical": 11
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/rayneos-black-friday-sale-includes-discounts-on-ar-glasses-and-more",
-      "title": "RayNeo's Black Friday Sale Includes Discounts on AR Glasses, Plus a New Release of GT Max Call of Duty: Modern Warfare 4 Limited Edition AR Glasses",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 23,
-        "fantasy": 4,
-        "cyberpunk": 30,
-        "action": 21,
-        "slice_of_life": 17,
-        "mystery": 4,
+        "sf": 11,
+        "fantasy": 12,
+        "cyberpunk": 11,
+        "action": 35,
+        "slice_of_life": 9,
+        "mystery": 13,
         "historical": 4
       }
     },
     {
-      "key": "https://www.ign.com/articles/actor-who-plays-mandy-in-gta-6-excitedly-speaks-out-after-character-goes-viral",
-      "title": "Actor Who Plays Mandy in GTA 6 Excitedly Speaks Out After Character Goes Viral",
+      "key": "https://www.ign.com/articles/the-ecovacs-deebot-t90-pro-omni-robot-vacuum-delivers-incredible-30000pa-suction-and-more-high-end-features-for-549-during-black-friday",
+      "title": "The Ecovacs Deebot T90 Pro Omni Robot Vacuum Delivers Incredible 30,000Pa Suction and More High-End Features for $549 During Black Friday",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 19,
-        "fantasy": 9,
-        "cyberpunk": 41,
-        "action": 65,
-        "slice_of_life": 19,
-        "mystery": 16,
-        "historical": 8
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/gta-6-triggers-busiest-traffic-day-in-comcast-history",
-      "title": "GTA 6 Triggers Busiest Traffic Day in Comcast History",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 20,
-        "fantasy": 7,
-        "cyberpunk": 41,
-        "action": 77,
-        "slice_of_life": 13,
-        "mystery": 14,
-        "historical": 9
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/percy-jackson-actors-reveal-they-watched-attack-on-titan-fan-edits-to-help-themselves-cry-while-filming-emotional-scenes",
-      "title": "Percy Jackson Actors Reveal They Watched Attack on Titan Fan Edits to Help Themselves Cry While Filming Emotional Scenes",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 27,
-        "fantasy": 30,
-        "cyberpunk": 6,
-        "action": 51,
-        "slice_of_life": 22,
-        "mystery": 27,
-        "historical": 23
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/eureka-ergonomic-has-black-friday-deals-to-give-your-space-the-upgrade-it-needs",
-      "title": "Eureka Ergonomic Has Black Friday Deals to Give Your Space the Upgrade It Needs",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 9,
+        "sf": 5,
         "fantasy": 3,
-        "cyberpunk": 12,
+        "cyberpunk": 9,
         "action": 4,
-        "slice_of_life": 23,
+        "slice_of_life": 29,
         "mystery": 4,
         "historical": 3
       }
     },
     {
-      "key": "https://www.ign.com/articles/shokz-openrun-pro-2-sport-headphone-deal-november-2026",
-      "title": "Save 33% Off the Shokz OpenRun Pro 2 Sport Headphone With Bone Conduction Tech for Black Friday",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 5,
-        "fantasy": 2,
-        "cyberpunk": 7,
-        "action": 8,
-        "slice_of_life": 21,
-        "mystery": 5,
-        "historical": 3
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/gta-6-players-react-after-exclusive-shops-greet-non-ultimate-edition-buyers-with-locked-doors",
-      "title": "GTA 6 Players React After Exclusive Shops Greet Non-Ultimate Edition Buyers With Locked Doors",
+      "key": "https://www.ign.com/articles/best-deals-for-november-21-2026",
+      "title": "The Best Deals Today: Silent Hill Townfall, Ocarina of Time Remake, Control Resonant, and More",
       "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 17,
-        "fantasy": 10,
-        "cyberpunk": 35,
-        "action": 74,
-        "slice_of_life": 14,
-        "mystery": 12,
-        "historical": 13
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/fallout-themed-arizona-iced-tea-gets-black-friday-discount-2026",
-      "title": "Fallout-Themed AriZona Iced Tea Gets Black Friday Discount, Including New 'Apocalyptic Orange' Flavor",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 21,
-        "fantasy": 3,
-        "cyberpunk": 7,
-        "action": 4,
-        "slice_of_life": 34,
-        "mystery": 3,
-        "historical": 3
-      }
-    },
-    {
-      "key": "https://www.ign.com/articles/jensen-huang-verbal-abuse-allegations",
-      "title": "Jensen Huang Allegedly Threatened Nvidia Workers and Told Employee He Would Rip Off the Top of Their Head and 'Pee on Your Brain'",
-      "source": "IGN RSS",
-      "category": "kemono",
-      "scores": {
-        "sf": 5,
-        "fantasy": 2,
-        "cyberpunk": 11,
-        "action": 8,
-        "slice_of_life": 27,
-        "mystery": 9,
+        "fantasy": 24,
+        "cyberpunk": 29,
+        "action": 45,
+        "slice_of_life": 12,
+        "mystery": 38,
         "historical": 16
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/north-american-anime-manga-releases-november-15-21/.243879",
-      "title": "North American Anime, Manga Releases, November 15-21",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/gta-6-players-report-crashes-on-ps5-with-error-ce-108255-1",
+      "title": "GTA 6 Players Report Crashes on PS5 With Error CE-108255-1",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 42,
-        "fantasy": 46,
-        "cyberpunk": 38,
-        "action": 53,
-        "slice_of_life": 41,
-        "mystery": 36,
-        "historical": 23
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/yen-press-licenses-oshi-no-ko-etude-for-two-bungo-stray-dogs-the-untold-origins-of-the-detective-/.244035",
-      "title": "Yen Press Licenses [Oshi No Ko] Étude for Two, Bungo Stray Dogs: The Untold Origins of the Detective Agency, More Manga/Novels",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 9,
-        "fantasy": 13,
-        "cyberpunk": 16,
-        "action": 41,
-        "slice_of_life": 37,
-        "mystery": 62,
-        "historical": 13
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/chiruran-manga-gets-new-stage-play-by-all-female-troupe-oclock-kumamoto-revue/.244024",
-      "title": "Chiruran Manga Gets New Stage Play by All-Female Troupe O'Clock Kumamoto Revue",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 7,
-        "fantasy": 16,
-        "cyberpunk": 8,
-        "action": 22,
-        "slice_of_life": 43,
-        "mystery": 24,
-        "historical": 15
-      }
-    },
-    {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/duel-masters-lost-anime-gets-5th-part/.244025",
-      "title": "Duel Masters LOST Anime Gets 5th Part",
-      "source": "Anime News Network",
-      "category": "kemono",
-      "scores": {
-        "sf": 22,
-        "fantasy": 42,
-        "cyberpunk": 9,
-        "action": 43,
-        "slice_of_life": 15,
+        "sf": 15,
+        "fantasy": 7,
+        "cyberpunk": 40,
+        "action": 67,
+        "slice_of_life": 10,
         "mystery": 13,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/avengers-doomsday-star-hayley-atwell-teases-new-trailer-for-monday",
+      "title": "Avengers: Doomsday Star Hayley Atwell Teases New Trailer for Monday",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 44,
+        "fantasy": 12,
+        "cyberpunk": 6,
+        "action": 80,
+        "slice_of_life": 7,
+        "mystery": 10,
         "historical": 9
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
-      "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/digital-nintendo-switch-and-switch-2-games-are-on-sale-for-black-friday",
+      "title": "Digital Nintendo Switch and Switch 2 Games Are on Sale for Black Friday",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
         "sf": 9,
-        "fantasy": 19,
-        "cyberpunk": 7,
-        "action": 15,
-        "slice_of_life": 67,
-        "mystery": 9,
-        "historical": 5
+        "fantasy": 4,
+        "cyberpunk": 13,
+        "action": 17,
+        "slice_of_life": 12,
+        "mystery": 6,
+        "historical": 4
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/crunchyroll-streams-my-hero-academia-the-movie-world-heroes-mission-anime/.244023",
-      "title": "Crunchyroll Streams My Hero Academia The Movie: World Heroes' Mission Anime",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/neuralink-participant-showcases-what-its-like-to-play-gta-6-with-his-mind",
+      "title": "Neuralink Participant Showcases What It's Like to Play GTA 6 With His Mind",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 23,
-        "fantasy": 29,
-        "cyberpunk": 9,
-        "action": 75,
-        "slice_of_life": 14,
-        "mystery": 12,
+        "sf": 22,
+        "fantasy": 6,
+        "cyberpunk": 41,
+        "action": 28,
+        "slice_of_life": 21,
+        "mystery": 8,
         "historical": 7
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/maison-and-the-man-eating-apartment-manga-ends-in-next-chapter/.244004",
-      "title": "Maison and the Man-Eating Apartment Manga Ends in Next Chapter",
-      "source": "Anime News Network",
+      "key": "https://www.ign.com/articles/blade-director-says-he-walked-away-from-marvels-canceled-movie-because-lifes-too-short-to-make-st-films",
+      "title": "Blade Director Says He Walked Away From Marvel's Canceled Movie Because 'Life's Too Short to Make S**t Films'",
+      "source": "IGN RSS",
       "category": "kemono",
       "scores": {
-        "sf": 21,
+        "sf": 25,
         "fantasy": 20,
-        "cyberpunk": 19,
+        "cyberpunk": 14,
+        "action": 43,
+        "slice_of_life": 19,
+        "mystery": 13,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/gta-6s-weirdest-cow-shows-why-you-should-pause-the-story-early-to-explore-its-vast-map",
+      "title": "GTA 6’s Weirdest Cow Shows Why You Should Pause the Story Early To Explore Its Vast Map",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 19,
+        "fantasy": 12,
+        "cyberpunk": 23,
         "action": 41,
-        "slice_of_life": 39,
-        "mystery": 31,
+        "slice_of_life": 25,
+        "mystery": 25,
+        "historical": 8
+      }
+    },
+    {
+      "key": "https://www.ign.com/articles/lego-insiders-weekend-is-live-free-gifts-with-purchase-exclusive-discounts-and-more",
+      "title": "LEGO Insiders Weekend Is Live: Free Gifts with Purchase, Exclusive Discounts, and More",
+      "source": "IGN RSS",
+      "category": "kemono",
+      "scores": {
+        "sf": 9,
+        "fantasy": 4,
+        "cyberpunk": 8,
+        "action": 9,
+        "slice_of_life": 22,
+        "mystery": 5,
+        "historical": 4
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/mawaru-penguindrum-anime-inspires-stage-reading-production-by-kunihiko-ikuhara/.244065",
+      "title": "Mawaru Penguindrum Anime Inspires Stage Reading Production by Kunihiko Ikuhara",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 22,
+        "fantasy": 39,
+        "cyberpunk": 10,
+        "action": 9,
+        "slice_of_life": 53,
+        "mystery": 21,
         "historical": 7
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/mitei-hattori-smile-manga-gets-epilogue-chapter/.244005",
-      "title": "Mitei Hattori's Smile! Manga Gets Epilogue Chapter",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/kurumizawa-folly-manga-ends-in-3-chapters/.244064",
+      "title": "Kurumizawa's Folly Manga Ends in 3 Chapters",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 16,
-        "fantasy": 23,
-        "cyberpunk": 15,
-        "action": 37,
-        "slice_of_life": 51,
+        "sf": 24,
+        "fantasy": 32,
+        "cyberpunk": 28,
+        "action": 35,
+        "slice_of_life": 46,
+        "mystery": 32,
+        "historical": 16
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/new-hana-kimi-live-action-series-reveals-theme-songs-short-video/.244043",
+      "title": "New Hana-Kimi Live-Action Series Reveals Theme Songs, Short Video",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 13,
+        "fantasy": 43,
+        "cyberpunk": 9,
+        "action": 40,
+        "slice_of_life": 34,
         "mystery": 22,
+        "historical": 54
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/japan-video-game-rankings-november-9-15/.244013",
+      "title": "Japan's Video Game Rankings, November 9-15",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 34,
+        "fantasy": 44,
+        "cyberpunk": 44,
+        "action": 68,
+        "slice_of_life": 30,
+        "mystery": 29,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/omniscient-reader-viewpoint-webtoon-returns-with-season-2-on-november-24/.244045",
+      "title": "Omniscient Reader's Viewpoint Webtoon Returns With Season 2 on November 24",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 44,
+        "fantasy": 55,
+        "cyberpunk": 22,
+        "action": 40,
+        "slice_of_life": 18,
+        "mystery": 30,
+        "historical": 15
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/tamon-b-side-anime-gets-2nd-season/.244056",
+      "title": "Tamon's B-Side Anime Gets 2nd Season",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 24,
+        "fantasy": 28,
+        "cyberpunk": 20,
+        "action": 35,
+        "slice_of_life": 52,
+        "mystery": 28,
         "historical": 10
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/life-with-an-ordinary-guy-who-reincarnated-into-a-total-fantasy-knockout-manga-ends-with-20th-volume/.244002",
-      "title": "Life with an Ordinary Guy Who Reincarnated into a Total Fantasy Knockout Manga Ends With 20th Volume",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/japanese-animation-tv-ranking-november-9-15/.244015",
+      "title": "Japanese Animation TV Ranking, November 9-15",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 20,
-        "fantasy": 81,
-        "cyberpunk": 3,
-        "action": 43,
-        "slice_of_life": 55,
-        "mystery": 13,
-        "historical": 11
+        "sf": 36,
+        "fantasy": 50,
+        "cyberpunk": 29,
+        "action": 56,
+        "slice_of_life": 37,
+        "mystery": 26,
+        "historical": 19
       }
     },
     {
-      "key": "https://www.animenewsnetwork.com/news/2026-11-20/a-pen-handcuffs-and-a-common-law-marriage-tv-anime-reveals-theme-song-artists-more-cast-january-9-/.244022",
-      "title": "'A Pen, Handcuffs, and a Common-Law Marriage' TV Anime Reveals Theme Song Artists, More Cast, January 9 Debut in Video",
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/doraemon-anime-1-hour-new-year-special-to-feature-new-tool/.244050",
+      "title": "Doraemon Anime's 1-Hour New Year's Special to Feature New Tool",
       "source": "Anime News Network",
       "category": "kemono",
       "scores": {
-        "sf": 28,
-        "fantasy": 17,
-        "cyberpunk": 16,
-        "action": 45,
-        "slice_of_life": 39,
-        "mystery": 42,
-        "historical": 23
+        "sf": 65,
+        "fantasy": 27,
+        "cyberpunk": 19,
+        "action": 21,
+        "slice_of_life": 47,
+        "mystery": 15,
+        "historical": 6
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/may-i-ask-for-one-final-thing-novel-series-ends-in-8th-volume/.244044",
+      "title": "'May I Ask for One Final Thing?' Novel Series Ends in 8th Volume",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 32,
+        "fantasy": 56,
+        "cyberpunk": 19,
+        "action": 38,
+        "slice_of_life": 29,
+        "mystery": 39,
+        "historical": 24
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-21/please-put-them-on-takamine-san-manga-ends-in-january/.244048",
+      "title": "'Please Put Them On, Takamine-san' Manga Ends in January",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 24,
+        "fantasy": 33,
+        "cyberpunk": 18,
+        "action": 37,
+        "slice_of_life": 55,
+        "mystery": 26,
+        "historical": 21
       }
     },
     {
@@ -494,6 +494,21 @@
         "slice_of_life": 17,
         "mystery": 30,
         "historical": 6
+      }
+    },
+    {
+      "key": "https://www.animenewsnetwork.com/news/2026-11-20/bang-dream-yume-mita-series-confirms-new-anime-in-production/.244026",
+      "title": "BanG Dream! Yume∞Mita Series Confirms New Anime in Production\n      TV anime based on BanG Dream! project's Mugendai Mewtype band premiered on July 2",
+      "source": "Anime News Network",
+      "category": "kemono",
+      "scores": {
+        "sf": 11,
+        "fantasy": 13,
+        "cyberpunk": 7,
+        "action": 12,
+        "slice_of_life": 67,
+        "mystery": 9,
+        "historical": 5
       }
     },
     {
@@ -1321,6 +1336,6 @@
       }
     }
   ],
-  "api_calls": 29,
-  "cache_hits": 63
+  "api_calls": 22,
+  "cache_hits": 71
 }
