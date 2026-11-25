@@ -1,6 +1,6 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-動物(feral)のキャラクターたちが活躍するSF、TSF（性転換フィクション）から単一または複数のテーマを選択し短編物語を作成してください。
-相棒関係、クローンによる自分同士からランダムにテーマを選択してください。
+獣人(anthro)のキャラクターたちが活躍する冒険から単一または複数のテーマを選択し短編物語を作成してください。
+相棒関係、dark persona（もう一人の自分は自身の闇版。体色は黒っぽい）からランダムにテーマを選択してください。
 登場キャラクターは2人（バディ）を中心に設定してください。
 
 【視点】一人称で執筆せよ。全描写は主人公の視点・感覚に基づく。他のキャラクターの思考・感情・意図を直接記述しないこと（対話・表情・行動・反応から伝わせて示せ）。
@@ -68,8 +68,8 @@
 
 
 【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
-- [Anime News Network] Interview: What We Know About Mobile Suit Gundam RG XARX-ZERO with Director Kenji Kamiyama
-- [IGN RSS] New Avengers: Doomsday Trailer Pokes Fun at Multiple 'Captains America' — Marvel dropped a new trailer for Avengers: Doomsday on Saturday, roughly 24 hours after debuting a M
+- [GameSpot RSS] Call Of Duty’s 19-Year Sales Streak Continues — Circana has released its latest monthly sales report for the US video game industry, and in terms of
+- [Anime News Network] Frieren: Beyond Journey's End Manga Gets Spinoff Manga Mini-Series
 
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
@@ -78,7 +78,7 @@
 ---
 title: "物語のタイトル"
 slug: "seo-friendly-romaji-slug-based-on-title"
-pubDate: "2026-10-26 10:06:20"
+pubDate: "2026-11-25 14:10:27"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
@@ -109,26 +109,26 @@ product_recommendations:
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
 ・4-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
-・character_1 と character_2 の両方を必ず定義してください。クローンによる自分同士の場合は character_2 の外見は character_1 と同一（区別のため小物・装飾のみ差異可）。
+・character_1 と character_2 の両方を必ず定義してください。もう一人の自分（character_2）の体色は黒っぽく変更してください。
 
 【キャラクター特徴のトレンドデータ（参考）】
 
 ・参考キャラクター1:
-  種族: dragon, icewing_(wof), mythological_creature, mythological_scalie, sandwing_(wof), scalie, western_dragon
+  種族: canid, canine, fox, krazoa, krazoa_spirit, mammal
   色: -
-  身体的特徴: bottomwear, clothed, clothed_feral, clothing, crossdressing, feral, skirt
-  参照: qibli_(wof), winter_(wof)
-  作品: wings_of_fire
+  身体的特徴: breasts, cleavage, clothed, clothing, fur, hair, tentacles
+  参照: fox_mccloud, krystal_(star_fox)
+  作品: nintendo, star_fox
 
 ・参考キャラクター2:
-  種族: canid, canine, canis, dragon, fox, mammal, mythological_creature, mythological_scalie, scalie, wolf
-  色: blue_eyes, brown_body, brown_fur
-  身体的特徴: 4_toes, 5_fingers, claws, clothed, clothing, day, feet, fingers
-  参照: -
-  作品: -
+  種族: canid, canine, dragon, mammal, mythological_creature, mythological_scalie, scalie
+  色: black_hair, blue_eyes, dark_body, dark_skin, fluffy_tail, pale_skin, short_hair, white_body, white_fur, white_hair, white_tail
+  身体的特徴: 2_horns, accessory, angry_mob, armwear, asking_to_guess, barefoot, black_clothing, black_panties
+  参照: anon, kyu_(crunnchy), yuki_(crunnchy)
+  作品: cia, navy_seal, nsa, twitter, your_mother
 
-・人気版権: wings_of_fire
-・人気artist: mofuaki
+・人気版権: nintendo, star_fox
+・人気artist: andy_234
 
 アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
 

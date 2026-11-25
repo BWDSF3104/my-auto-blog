@@ -1,37 +1,4 @@
 {
-  "シドニアの騎士 新装版 1巻": {
-    "fetched_at": "2026-10-25T01:05:07.934813+00:00",
-    "product": {
-      "itemName": "【中古】新装版 シドニアの騎士 コミック 全7巻セット z2zed1b",
-      "itemPrice": 52273,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00ufvto.eo1qw8b5.g00ufvto.eo1qx89d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fiinex%2Fdb0791h7qng%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fiinex%2Fi%2F11753712%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/iinex/cabinet/sm106/sm106-b0791h7qng.jpg?_ex=128x128",
-      "reviewCount": 0
-    },
-    "hits": 3
-  },
-  "シドニアの騎士": {
-    "fetched_at": "2026-10-25T01:05:09.255034+00:00",
-    "product": {
-      "itemName": "シドニアの騎士（3） 【電子書籍】[ 弐瓶勉 ]",
-      "itemPrice": 792,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00reb4o.eo1qw8b7.g00reb4o.eo1qx933/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F91c966257f273786aaf8b00d9a8d5b89%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F11549541%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakutenkobo-ebooks/cabinet/8239/2000000118239.jpg?_ex=128x128",
-      "reviewCount": 4
-    },
-    "hits": 3
-  },
-  "プラネテス 1巻": {
-    "fetched_at": "2026-10-25T01:05:10.698760+00:00",
-    "product": {
-      "itemName": "【中古】プラネテス　第1巻幸村誠",
-      "itemPrice": 220,
-      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00u0dno.eo1qw5e4.g00u0dno.eo1qx0aa/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fazuma-hon%2F2001010021052%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fazuma-hon%2Fi%2F10013665%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
-      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/azuma-hon/cabinet/compass1640680946.jpg?_ex=128x128",
-      "reviewCount": 0
-    },
-    "hits": 1
-  },
   "ポケットモンスター Legends Z-A": {
     "fetched_at": "2026-10-29T02:09:06.224224+00:00",
     "product": {
@@ -655,6 +622,28 @@
       "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00reb4o.eo1qw8b7.g00reb4o.eo1qx933/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F71de55f94d3f3fe585071b1aa422c522%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F16933100%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
       "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakutenkobo-ebooks/cabinet/3687/2000005713687.jpg?_ex=128x128",
       "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "スターフォックス ゼロ": {
+    "fetched_at": "2026-11-25T05:16:59.272530+00:00",
+    "product": {
+      "itemName": "【送料無料】【中古】Wii U スターフォックス ゼロ(ソフト単品)",
+      "itemPrice": 2050,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00s2hro.eo1qw0c9.g00s2hro.eo1qx713/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkaitoriheroes%2F19130216%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fkaitoriheroes%2Fi%2F10026200%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/kaitoriheroes/cabinet/kaitoriheroes2019/2010280052.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "スターフォックス": {
+    "fetched_at": "2026-11-25T05:17:00.617768+00:00",
+    "product": {
+      "itemName": "Star Fox (スターフォックス)",
+      "itemPrice": 4999,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18627807%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21953530%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4328/4902370554328.jpg?_ex=128x128",
+      "reviewCount": 10
     },
     "hits": 3
   }

@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-25T14:10:27.377125+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-25T14:10:04.360639+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 32,
+    "after_score_filter": 32,
+    "after_rating_filter": 32,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Call Of Duty’s 19-Year Sales Streak Continues",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/call-of-dutys-19-year-sales-streak-continues/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Circana has released its latest monthly sales report for the US video game industry, and in terms of game sales, Call of Duty: Modern Warfare 4 led the way. It was the No. 1 best-selling game of Octob"
+    },
+    {
+      "title": "Frieren: Beyond Journey's End Manga Gets Spinoff Manga Mini-Series",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-24/frieren-beyond-journey-end-manga-gets-spinoff-manga-mini-series/.244165",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "Call Of Duty s 19 Year Sales S",
+    "Beyond Journey s End"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/call-of-dutys-19-year-sales-streak-continues/",
+    "https://www.animenewsnetwork.com/news/2026-11-24/frieren-beyond-journey-end-manga-gets-spinoff-manga-mini-series/.244165"
+  ]
+}
