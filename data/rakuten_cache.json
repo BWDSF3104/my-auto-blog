@@ -646,5 +646,27 @@
       "reviewCount": 10
     },
     "hits": 3
+  },
+  "仁王2 Complete Edition": {
+    "fetched_at": "2026-11-26T04:54:35.733053+00:00",
+    "product": {
+      "itemName": "仁王2 Remastered Complete Edition",
+      "itemPrice": 5387,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16528269%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F20190052%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2567/4988615142567.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
+  },
+  "仁王2": {
+    "fetched_at": "2026-11-26T04:54:37.086188+00:00",
+    "product": {
+      "itemName": "仁王2 Remastered Complete Edition",
+      "itemPrice": 5387,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072o.eo1qwe56.g00q072o.eo1qx20b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16528269%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F20190052%2F&rafcid=wsc_i_is_8df5dd9a-a2e5-49fb-be18-a23da967fa10",
+      "imageUrl": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2567/4988615142567.jpg?_ex=128x128",
+      "reviewCount": 1
+    },
+    "hits": 3
   }
 }

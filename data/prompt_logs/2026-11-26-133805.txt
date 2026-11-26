@@ -1,6 +1,6 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-獣人(anthro)のキャラクターたちが活躍するダンジョンクライム、TF(変身・変形)から単一または複数のテーマを選択し短編物語を作成してください。
-相棒関係、クローンによる自分同士からランダムにテーマを選択してください。
+二足歩行の動物(semi-anthro, [feral]) / 動物(feral)のキャラクターたちが活躍する異世界から単一または複数のテーマを選択し短編物語を作成してください。
+同性愛（男性同士の恋愛）からランダムにテーマを選択してください。
 登場キャラクターは2人（カップル）を中心に設定してください。
 
 【視点】一人称で執筆せよ。全描写は主人公の視点・感覚に基づく。他のキャラクターの思考・感情・意図を直接記述しないこと（対話・表情・行動・反応から伝わせて示せ）。
@@ -68,8 +68,8 @@
 
 
 【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
-- [GameSpot RSS] The Best PS5 Games In 2026 — These are the very best PS5 games. The PlayStation 5 library is large and growing, so we've rounded 
-- [GameSpot RSS] Total War: Warhammer 3 And DLC Are Cheaper Than Ever, And The Chaos Gods Approve — War. War never changes. But what does change is the price of some of the best strategy games . Total
+- [GameSpot RSS] How To Complete The Project Rumba Secret In GTA 6 — There are a lot of secrets left to be discovered in Grand Theft Auto 6 . Some have an eerie flair as
+- [Anime News Network] Nioh 3 Game Streams First Look Trailer for New DLC
 
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
@@ -78,7 +78,7 @@
 ---
 title: "物語のタイトル"
 slug: "seo-friendly-romaji-slug-based-on-title"
-pubDate: "2026-10-27 10:46:01"
+pubDate: "2026-11-26 13:38:05"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
@@ -109,26 +109,26 @@ product_recommendations:
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
 ・4-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
-・character_1 と character_2 の両方を必ず定義してください。クローンによる自分同士の場合は character_2 の外見は character_1 と同一（区別のため小物・装飾のみ差異可）。
+・character_1 と character_2 の両方を必ず定義してください。character_2 の外見は character_1 と明確に区別できるものにしてください。
 
 【キャラクター特徴のトレンドデータ（参考）】
 
 ・参考キャラクター1:
   種族: canid, canine, canis, domestic_dog, mammal
-  色: long_hair
-  身体的特徴: breasts, clothing, dress, hair, kemono
+  色: blue_eyes, grey_body, grey_fur, white_hair
+  身体的特徴: cape, cloak, clothing, collar, digitigrade, digitigrade_heels, footwear, fur
   参照: -
   作品: -
 
 ・参考キャラクター2:
-  種族: animatronic, avian, bear, bird, canid, canine, carnivoran, chicken, fox, galliform, human, lagomorph, leporid, mammal, phasianid, rabbit, robot
-  色: glowing_eyes
-  身体的特徴: axe, clothing, hat, headgear, headwear, hook, melee_weapon, top_hat
-  参照: purple_guy_(fnaf), springtrap_(fnaf), william_afton, withered_bonnie_(fnaf), withered_chica_(fnaf), withered_foxy_(fnaf), withered_freddy_(fnaf)
-  作品: five_nights_at_freddy's, five_nights_at_freddy's_2, five_nights_at_freddy's_3, scottgames
+  種族: canid, canine, canis, mammal, wolf
+  色: big_eyes, brown_eyes, purple_hair, short_hair, tan_body, tan_fur
+  身体的特徴: :<, absolute_territory, armwear, asian_sword, belt, big_ears, black_nose, bottomwear
+  参照: -
+  作品: -
 
-・人気版権: five_nights_at_freddy's, five_nights_at_freddy's_2
-・人気artist: conditional_dnp
+・人気版権: navy_seal, disney
+・人気artist: andy_234
 
 アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
 

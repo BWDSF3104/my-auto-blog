@@ -38655,2822 +38655,6 @@
     "source": "e621",
     "timestamp": "2026-11-18T03:59:14.073533+00:00"
   },
-  "ed451ae258f22e0555b639802e529ec7b43713a1275a333c51d68680d038a3ef": {
-    "input": "GTA 6 Romance Guide: How To Romance Lucia And Jason\nGrand Theft Auto 6 is a massive open-world game on a scale no other game has really tried to bring to life before, but for some players, the romance Lucia and Jason can experience together is all they",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 14,
-      "fantasy": 9,
-      "cyberpunk": 36,
-      "action": 74,
-      "slice_of_life": 22,
-      "mystery": 19,
-      "historical": 11
-    },
-    "raw_scores": {
-      "sf": 0.5525,
-      "fantasy": 0.3515,
-      "cyberpunk": 1.4389,
-      "action": 2.957,
-      "slice_of_life": 0.8985,
-      "mystery": 0.7518,
-      "historical": 0.4373
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.6841,
-        "1": 0.1572,
-        "2": 0.1052,
-        "3": 0.0291,
-        "4": 0.0244
-      },
-      "fantasy": {
-        "0": 0.7771,
-        "1": 0.127,
-        "2": 0.0749,
-        "3": 0.0094,
-        "4": 0.0116
-      },
-      "cyberpunk": {
-        "0": 0.2287,
-        "1": 0.317,
-        "2": 0.3148,
-        "3": 0.0659,
-        "4": 0.0736
-      },
-      "action": {
-        "0": 0.059,
-        "1": 0.0676,
-        "2": 0.1136,
-        "3": 0.3769,
-        "4": 0.3829
-      },
-      "slice_of_life": {
-        "0": 0.4079,
-        "1": 0.3269,
-        "2": 0.2374,
-        "3": 0.0144,
-        "4": 0.0134
-      },
-      "mystery": {
-        "0": 0.4775,
-        "1": 0.3138,
-        "2": 0.194,
-        "3": 0.0087,
-        "4": 0.006
-      },
-      "historical": {
-        "0": 0.6946,
-        "1": 0.1946,
-        "2": 0.0969,
-        "3": 0.0065,
-        "4": 0.0074
-      }
-    },
-    "usage": {
-      "input_tokens": 1240,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:15.285851+00:00"
-  },
-  "55004994bb6dbf535e6082160fb13a941603e624cc09b8bc0cfb6a8135455ddf": {
-    "input": "Can You Romance Mandy In GTA 6?\nThere are plenty of memorable moments from the first few hours of the story in Grand Theft Auto 6. From rescuing a friend at a gang hideout to reliving Lucia's run-in with the law, the story certainly",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 10,
-      "fantasy": 5,
-      "cyberpunk": 41,
-      "action": 74,
-      "slice_of_life": 21,
-      "mystery": 27,
-      "historical": 11
-    },
-    "raw_scores": {
-      "sf": 0.4155,
-      "fantasy": 0.1885,
-      "cyberpunk": 1.627,
-      "action": 2.9772,
-      "slice_of_life": 0.8572,
-      "mystery": 1.0689,
-      "historical": 0.4572
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.7355,
-        "1": 0.1617,
-        "2": 0.071,
-        "3": 0.0156,
-        "4": 0.0162
-      },
-      "fantasy": {
-        "0": 0.8746,
-        "1": 0.0809,
-        "2": 0.0329,
-        "3": 0.0047,
-        "4": 0.0069
-      },
-      "cyberpunk": {
-        "0": 0.1986,
-        "1": 0.2943,
-        "2": 0.3008,
-        "3": 0.0939,
-        "4": 0.1124
-      },
-      "action": {
-        "0": 0.0465,
-        "1": 0.0569,
-        "2": 0.1267,
-        "3": 0.4127,
-        "4": 0.3572
-      },
-      "slice_of_life": {
-        "0": 0.4336,
-        "1": 0.3394,
-        "2": 0.1826,
-        "3": 0.0249,
-        "4": 0.0195
-      },
-      "mystery": {
-        "0": 0.3184,
-        "1": 0.3772,
-        "2": 0.2485,
-        "3": 0.029,
-        "4": 0.0269
-      },
-      "historical": {
-        "0": 0.669,
-        "1": 0.2277,
-        "2": 0.0885,
-        "3": 0.0069,
-        "4": 0.0079
-      }
-    },
-    "usage": {
-      "input_tokens": 1240,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:15.661944+00:00"
-  },
-  "a191521cef787f994c55d380a1c809a2036a47c0922831ac7e99bc3e4c072805": {
-    "input": "The New, Non-GTA 6 Games You Should Be Playing Right Now\nWhile Grand Theft Auto 6 is set to dominate what GameSpot covers for the next month (at least), it doesn't mean there aren't plenty of other games out there that those of us are playing at the same ti",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 17,
-      "fantasy": 11,
-      "cyberpunk": 37,
-      "action": 66,
-      "slice_of_life": 23,
-      "mystery": 23,
-      "historical": 13
-    },
-    "raw_scores": {
-      "sf": 0.6962,
-      "fantasy": 0.4478,
-      "cyberpunk": 1.4864,
-      "action": 2.6296,
-      "slice_of_life": 0.9089,
-      "mystery": 0.9237,
-      "historical": 0.5194
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.5712,
-        "1": 0.2598,
-        "2": 0.1057,
-        "3": 0.0282,
-        "4": 0.0351
-      },
-      "fantasy": {
-        "0": 0.7354,
-        "1": 0.1455,
-        "2": 0.0753,
-        "3": 0.0233,
-        "4": 0.0205
-      },
-      "cyberpunk": {
-        "0": 0.2541,
-        "1": 0.287,
-        "2": 0.276,
-        "3": 0.0844,
-        "4": 0.0985
-      },
-      "action": {
-        "0": 0.1071,
-        "1": 0.0937,
-        "2": 0.1641,
-        "3": 0.3328,
-        "4": 0.3023
-      },
-      "slice_of_life": {
-        "0": 0.4269,
-        "1": 0.3349,
-        "2": 0.1746,
-        "3": 0.0297,
-        "4": 0.0339
-      },
-      "mystery": {
-        "0": 0.4115,
-        "1": 0.3308,
-        "2": 0.2055,
-        "3": 0.0269,
-        "4": 0.0253
-      },
-      "historical": {
-        "0": 0.6386,
-        "1": 0.244,
-        "2": 0.0909,
-        "3": 0.0125,
-        "4": 0.014
-      }
-    },
-    "usage": {
-      "input_tokens": 1245,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:15.940216+00:00"
-  },
-  "124d45dace21d8f05400f308929808fd313e787f0aab839b21cef51bc64cfe07": {
-    "input": "Fortnite’s Treasure Hunt Burned Me Out Just In Time For GTA 6\nI'm a male Millennial gamer pushing 40, so GTA is in my bones. But I currently like Fortnite more than I like any other game, and I figured I'd have a hard time pulling myself away even for an occasio",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 6,
-      "fantasy": 8,
-      "cyberpunk": 16,
-      "action": 48,
-      "slice_of_life": 15,
-      "mystery": 15,
-      "historical": 5
-    },
-    "raw_scores": {
-      "sf": 0.2439,
-      "fantasy": 0.325,
-      "cyberpunk": 0.6414,
-      "action": 1.9339,
-      "slice_of_life": 0.5834,
-      "mystery": 0.5982,
-      "historical": 0.2092
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.8501,
-        "1": 0.0946,
-        "2": 0.0305,
-        "3": 0.0109,
-        "4": 0.0139
-      },
-      "fantasy": {
-        "0": 0.7977,
-        "1": 0.117,
-        "2": 0.0614,
-        "3": 0.0104,
-        "4": 0.0135
-      },
-      "cyberpunk": {
-        "0": 0.6036,
-        "1": 0.2228,
-        "2": 0.1244,
-        "3": 0.027,
-        "4": 0.0222
-      },
-      "action": {
-        "0": 0.1894,
-        "1": 0.1932,
-        "2": 0.2741,
-        "3": 0.1807,
-        "4": 0.1626
-      },
-      "slice_of_life": {
-        "0": 0.5747,
-        "1": 0.297,
-        "2": 0.1074,
-        "3": 0.0119,
-        "4": 0.009
-      },
-      "mystery": {
-        "0": 0.5631,
-        "1": 0.307,
-        "2": 0.1086,
-        "3": 0.0113,
-        "4": 0.01
-      },
-      "historical": {
-        "0": 0.8432,
-        "1": 0.1184,
-        "2": 0.0293,
-        "3": 0.004,
-        "4": 0.0051
-      }
-    },
-    "usage": {
-      "input_tokens": 1250,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:16.257629+00:00"
-  },
-  "960c0f09b889425d963da3930d00c614d45ee5a5e3669ee9b13e7fecdbf45a59": {
-    "input": "All GTA 6 Radio Stations And Songs\nWhile the official GTA 6 soundtrack is a behemoth of its own, featuring over 30 tracks of fantastic music, the radio stations you'll tune into while you're cruising around Leonida--or listening in on ",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 13,
-      "fantasy": 8,
-      "cyberpunk": 34,
-      "action": 38,
-      "slice_of_life": 24,
-      "mystery": 16,
-      "historical": 12
-    },
-    "raw_scores": {
-      "sf": 0.51,
-      "fantasy": 0.3338,
-      "cyberpunk": 1.3503,
-      "action": 1.5295,
-      "slice_of_life": 0.9617,
-      "mystery": 0.6509,
-      "historical": 0.4871
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.7038,
-        "1": 0.1651,
-        "2": 0.0761,
-        "3": 0.0273,
-        "4": 0.0277
-      },
-      "fantasy": {
-        "0": 0.7818,
-        "1": 0.132,
-        "2": 0.0671,
-        "3": 0.0086,
-        "4": 0.0105
-      },
-      "cyberpunk": {
-        "0": 0.289,
-        "1": 0.2864,
-        "2": 0.2841,
-        "3": 0.0663,
-        "4": 0.0742
-      },
-      "action": {
-        "0": 0.293,
-        "1": 0.2588,
-        "2": 0.2142,
-        "3": 0.0936,
-        "4": 0.1404
-      },
-      "slice_of_life": {
-        "0": 0.4094,
-        "1": 0.3336,
-        "2": 0.1833,
-        "3": 0.0334,
-        "4": 0.0403
-      },
-      "mystery": {
-        "0": 0.5505,
-        "1": 0.2798,
-        "2": 0.1491,
-        "3": 0.0095,
-        "4": 0.0111
-      },
-      "historical": {
-        "0": 0.647,
-        "1": 0.2469,
-        "2": 0.0866,
-        "3": 0.0107,
-        "4": 0.0088
-      }
-    },
-    "usage": {
-      "input_tokens": 1238,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:16.531664+00:00"
-  },
-  "ddcad33749238b4d4cb6dc25e27b043af59d9e514e5834d4b8c2a0134ca6ca0c": {
-    "input": "GTA 6’s Best Song Is A Nelly Furtado Cover From Azerbaijan\nOne of the mainstay features in Rockstar's Grand Theft Auto series is radio stations that can be listened to while driving in cars or, as in GTA 6, on the go if you acquire headphones. As a music-disc",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 8,
-      "fantasy": 6,
-      "cyberpunk": 31,
-      "action": 27,
-      "slice_of_life": 19,
-      "mystery": 10,
-      "historical": 12
-    },
-    "raw_scores": {
-      "sf": 0.3095,
-      "fantasy": 0.2252,
-      "cyberpunk": 1.2302,
-      "action": 1.064,
-      "slice_of_life": 0.7414,
-      "mystery": 0.4,
-      "historical": 0.4697
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.8149,
-        "1": 0.1094,
-        "2": 0.0456,
-        "3": 0.0116,
-        "4": 0.0185
-      },
-      "fantasy": {
-        "0": 0.8408,
-        "1": 0.1134,
-        "2": 0.0325,
-        "3": 0.0064,
-        "4": 0.0069
-      },
-      "cyberpunk": {
-        "0": 0.3297,
-        "1": 0.2987,
-        "2": 0.2463,
-        "3": 0.0624,
-        "4": 0.0629
-      },
-      "action": {
-        "0": 0.3997,
-        "1": 0.3003,
-        "2": 0.1903,
-        "3": 0.0557,
-        "4": 0.054
-      },
-      "slice_of_life": {
-        "0": 0.495,
-        "1": 0.3259,
-        "2": 0.1395,
-        "3": 0.0217,
-        "4": 0.0179
-      },
-      "mystery": {
-        "0": 0.7134,
-        "1": 0.1906,
-        "2": 0.084,
-        "3": 0.0066,
-        "4": 0.0054
-      },
-      "historical": {
-        "0": 0.6608,
-        "1": 0.2278,
-        "2": 0.0985,
-        "3": 0.0068,
-        "4": 0.0061
-      }
-    },
-    "usage": {
-      "input_tokens": 1248,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:16.842892+00:00"
-  },
-  "31308be88ca5c5aa29912ae0ba5e3540c5044f77009bc83473566d1173eafe2a": {
-    "input": "PSN Went Down Sorta On GTA 6 Eve\nOn the eve of GTA 6' s official launch on November 19, Sony's PlayStation Network appears to be facing some issues, at least for some people, at some point, today. Reports have emerged that the PSN is",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 15,
-      "fantasy": 8,
-      "cyberpunk": 24,
-      "action": 51,
-      "slice_of_life": 16,
-      "mystery": 7,
-      "historical": 9
-    },
-    "raw_scores": {
-      "sf": 0.6106,
-      "fantasy": 0.3188,
-      "cyberpunk": 0.9649,
-      "action": 2.0235,
-      "slice_of_life": 0.6221,
-      "mystery": 0.2853,
-      "historical": 0.3464
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.7003,
-        "1": 0.1331,
-        "2": 0.077,
-        "3": 0.035,
-        "4": 0.0546
-      },
-      "fantasy": {
-        "0": 0.8263,
-        "1": 0.0864,
-        "2": 0.0493,
-        "3": 0.0183,
-        "4": 0.0197
-      },
-      "cyberpunk": {
-        "0": 0.4917,
-        "1": 0.2171,
-        "2": 0.1837,
-        "3": 0.0495,
-        "4": 0.058
-      },
-      "action": {
-        "0": 0.2632,
-        "1": 0.1387,
-        "2": 0.1507,
-        "3": 0.2062,
-        "4": 0.2412
-      },
-      "slice_of_life": {
-        "0": 0.5974,
-        "1": 0.2577,
-        "2": 0.0948,
-        "3": 0.0258,
-        "4": 0.0243
-      },
-      "mystery": {
-        "0": 0.8109,
-        "1": 0.1196,
-        "2": 0.0525,
-        "3": 0.0073,
-        "4": 0.0097
-      },
-      "historical": {
-        "0": 0.7638,
-        "1": 0.1511,
-        "2": 0.0685,
-        "3": 0.0081,
-        "4": 0.0085
-      }
-    },
-    "usage": {
-      "input_tokens": 1244,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:17.036262+00:00"
-  },
-  "5d57624ac19dcae9eceace04087b711814a517de6e7b58ea16c96aca3b921ec6": {
-    "input": "GTA 6 Easter Eggs Are Everywhere, But These Are The Best Ones\nGTA 6 Easter eggs are everywhere, it feels like. We've only just begun gathering them in this roundup, and it feels like there are so many more. From books and store items to little nods in the dialog",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 16,
-      "fantasy": 7,
-      "cyberpunk": 38,
-      "action": 42,
-      "slice_of_life": 18,
-      "mystery": 23,
-      "historical": 16
-    },
-    "raw_scores": {
-      "sf": 0.6371,
-      "fantasy": 0.2771,
-      "cyberpunk": 1.5393,
-      "action": 1.6838,
-      "slice_of_life": 0.7108,
-      "mystery": 0.9324,
-      "historical": 0.6264
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.6308,
-        "1": 0.2081,
-        "2": 0.0897,
-        "3": 0.0362,
-        "4": 0.0352
-      },
-      "fantasy": {
-        "0": 0.8221,
-        "1": 0.1055,
-        "2": 0.055,
-        "3": 0.008,
-        "4": 0.0094
-      },
-      "cyberpunk": {
-        "0": 0.2282,
-        "1": 0.2847,
-        "2": 0.3009,
-        "3": 0.0921,
-        "4": 0.0941
-      },
-      "action": {
-        "0": 0.2287,
-        "1": 0.267,
-        "2": 0.2441,
-        "3": 0.1123,
-        "4": 0.1479
-      },
-      "slice_of_life": {
-        "0": 0.5069,
-        "1": 0.323,
-        "2": 0.1368,
-        "3": 0.0189,
-        "4": 0.0144
-      },
-      "mystery": {
-        "0": 0.4084,
-        "1": 0.3298,
-        "2": 0.2077,
-        "3": 0.0291,
-        "4": 0.025
-      },
-      "historical": {
-        "0": 0.5777,
-        "1": 0.2539,
-        "2": 0.1446,
-        "3": 0.012,
-        "4": 0.0118
-      }
-    },
-    "usage": {
-      "input_tokens": 1245,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:17.311509+00:00"
-  },
-  "9aec49c4e3546099b247d40a3951b645eff73c22aa75fdfc14b558aa33d319c7": {
-    "input": "KFC Announces GTA 6 Promo Where You Get A Disc-Shaped Piece Of Chicken\nA lot of people are upset that they can't get GTA 6 on a physical disc, and KFC is now stepping up to do what Rockstar isn't. KFC Spain has announced a \"Replace the Disc\" campaign where customers can ",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 12,
-      "fantasy": 4,
-      "cyberpunk": 12,
-      "action": 15,
-      "slice_of_life": 22,
-      "mystery": 5,
-      "historical": 5
-    },
-    "raw_scores": {
-      "sf": 0.4649,
-      "fantasy": 0.1652,
-      "cyberpunk": 0.4616,
-      "action": 0.5918,
-      "slice_of_life": 0.8782,
-      "mystery": 0.209,
-      "historical": 0.2013
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.6947,
-        "1": 0.1914,
-        "2": 0.0832,
-        "3": 0.0156,
-        "4": 0.0151
-      },
-      "fantasy": {
-        "0": 0.8834,
-        "1": 0.0825,
-        "2": 0.0249,
-        "3": 0.0041,
-        "4": 0.0051
-      },
-      "cyberpunk": {
-        "0": 0.7067,
-        "1": 0.1728,
-        "2": 0.0909,
-        "3": 0.0114,
-        "4": 0.0182
-      },
-      "action": {
-        "0": 0.6032,
-        "1": 0.2557,
-        "2": 0.1053,
-        "3": 0.0175,
-        "4": 0.0183
-      },
-      "slice_of_life": {
-        "0": 0.4255,
-        "1": 0.3782,
-        "2": 0.1282,
-        "3": 0.0288,
-        "4": 0.0393
-      },
-      "mystery": {
-        "0": 0.8318,
-        "1": 0.1401,
-        "2": 0.0198,
-        "3": 0.0039,
-        "4": 0.0044
-      },
-      "historical": {
-        "0": 0.8458,
-        "1": 0.1213,
-        "2": 0.0239,
-        "3": 0.004,
-        "4": 0.005
-      }
-    },
-    "usage": {
-      "input_tokens": 1253,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:17.583738+00:00"
-  },
-  "d04375d78acb66afbb496be355e5257e2360e15743ecb96130364ecc328e5e0b": {
-    "input": "The New Game That Will Be Pulling Me Away From GTA 6\nThe hype around GTA 6 is enormous, but as we've been spotlighting, it's not the only new game worthy of your attention this month . Case in point: Australia Did It, which recently suffered a delay due",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 28,
-      "fantasy": 8,
-      "cyberpunk": 23,
-      "action": 44,
-      "slice_of_life": 42,
-      "mystery": 31,
-      "historical": 44
-    },
-    "raw_scores": {
-      "sf": 1.125,
-      "fantasy": 0.3071,
-      "cyberpunk": 0.9377,
-      "action": 1.7795,
-      "slice_of_life": 1.6812,
-      "mystery": 1.2502,
-      "historical": 1.7692
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.44,
-        "1": 0.2307,
-        "2": 0.1775,
-        "3": 0.0679,
-        "4": 0.0839
-      },
-      "fantasy": {
-        "0": 0.8045,
-        "1": 0.1165,
-        "2": 0.0569,
-        "3": 0.0116,
-        "4": 0.0105
-      },
-      "cyberpunk": {
-        "0": 0.4539,
-        "1": 0.2834,
-        "2": 0.1785,
-        "3": 0.0395,
-        "4": 0.0447
-      },
-      "action": {
-        "0": 0.2228,
-        "1": 0.2319,
-        "2": 0.2311,
-        "3": 0.1714,
-        "4": 0.1428
-      },
-      "slice_of_life": {
-        "0": 0.2525,
-        "1": 0.246,
-        "2": 0.2174,
-        "3": 0.1359,
-        "4": 0.1482
-      },
-      "mystery": {
-        "0": 0.3277,
-        "1": 0.3209,
-        "2": 0.2053,
-        "3": 0.0656,
-        "4": 0.0805
-      },
-      "historical": {
-        "0": 0.2756,
-        "1": 0.2143,
-        "2": 0.1833,
-        "3": 0.1189,
-        "4": 0.2079
-      }
-    },
-    "usage": {
-      "input_tokens": 1244,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "GameSpot RSS",
-    "timestamp": "2026-11-19T03:56:17.799642+00:00"
-  },
-  "e5ddac10dc01b2a7232851d3631cccf9f6c3f8c57a94b41d3fceeb3fa5868b62": {
-    "input": "GTA 6 Launch Causes Massive Spike in Traffic for Internet Provider Xfinity\nInternet provider Xfinity has reported a massive spike in traffic on Xbox consoles for GTA 6's New Zealand launch. Xfinity says it saw a jump in Xbox hardware traffic four times more than normal aroun",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 18,
-      "fantasy": 4,
-      "cyberpunk": 24,
-      "action": 28,
-      "slice_of_life": 13,
-      "mystery": 6,
-      "historical": 6
-    },
-    "raw_scores": {
-      "sf": 0.7,
-      "fantasy": 0.1565,
-      "cyberpunk": 0.9487,
-      "action": 1.1125,
-      "slice_of_life": 0.5269,
-      "mystery": 0.2419,
-      "historical": 0.231
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.639,
-        "1": 0.1798,
-        "2": 0.083,
-        "3": 0.0387,
-        "4": 0.0595
-      },
-      "fantasy": {
-        "0": 0.9051,
-        "1": 0.0556,
-        "2": 0.0251,
-        "3": 0.0061,
-        "4": 0.0081
-      },
-      "cyberpunk": {
-        "0": 0.4895,
-        "1": 0.2296,
-        "2": 0.1796,
-        "3": 0.0452,
-        "4": 0.0561
-      },
-      "action": {
-        "0": 0.4713,
-        "1": 0.216,
-        "2": 0.1343,
-        "3": 0.0858,
-        "4": 0.0926
-      },
-      "slice_of_life": {
-        "0": 0.6473,
-        "1": 0.2375,
-        "2": 0.0772,
-        "3": 0.0169,
-        "4": 0.0211
-      },
-      "mystery": {
-        "0": 0.8379,
-        "1": 0.11,
-        "2": 0.0346,
-        "3": 0.007,
-        "4": 0.0105
-      },
-      "historical": {
-        "0": 0.8383,
-        "1": 0.1121,
-        "2": 0.037,
-        "3": 0.0054,
-        "4": 0.0072
-      }
-    },
-    "usage": {
-      "input_tokens": 1241,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:18.053649+00:00"
-  },
-  "dad932dff1f42b8c9dfce2bb46e597ff58c8e91b1766c8140d4ce62bba14e23c": {
-    "input": "The Mac Mini Sized Acemagic Ryzen 7 Micro PC With 24GB RAM and 512GB SSD Is on Sale for Black Friday\nCheck out this versatile mini PC packed into a case about the size of an Apple Mac Mini. Amazon is currently offering Amazon Prime members the Acemagic M1 AMD Ryzen 7 7735HS Mini PC with 24GB of RAM a",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 7,
-      "fantasy": 2,
-      "cyberpunk": 9,
-      "action": 3,
-      "slice_of_life": 14,
-      "mystery": 3,
-      "historical": 2
-    },
-    "raw_scores": {
-      "sf": 0.2613,
-      "fantasy": 0.0746,
-      "cyberpunk": 0.3672,
-      "action": 0.1373,
-      "slice_of_life": 0.5556,
-      "mystery": 0.1215,
-      "historical": 0.091
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.8607,
-        "1": 0.0727,
-        "2": 0.0309,
-        "3": 0.0158,
-        "4": 0.0199
-      },
-      "fantasy": {
-        "0": 0.9603,
-        "1": 0.0213,
-        "2": 0.0078,
-        "3": 0.0046,
-        "4": 0.006
-      },
-      "cyberpunk": {
-        "0": 0.7987,
-        "1": 0.0987,
-        "2": 0.061,
-        "3": 0.0199,
-        "4": 0.0217
-      },
-      "action": {
-        "0": 0.9154,
-        "1": 0.0527,
-        "2": 0.0181,
-        "3": 0.0067,
-        "4": 0.0071
-      },
-      "slice_of_life": {
-        "0": 0.6201,
-        "1": 0.2616,
-        "2": 0.0802,
-        "3": 0.0188,
-        "4": 0.0193
-      },
-      "mystery": {
-        "0": 0.9157,
-        "1": 0.062,
-        "2": 0.0125,
-        "3": 0.0046,
-        "4": 0.0052
-      },
-      "historical": {
-        "0": 0.9389,
-        "1": 0.044,
-        "2": 0.0091,
-        "3": 0.0032,
-        "4": 0.0048
-      }
-    },
-    "usage": {
-      "input_tokens": 1268,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:18.394211+00:00"
-  },
-  "68cf1cd3ca5df01d0619f86e5572ebcf7349fc17c8cafb9f8fc666bd3a02c011": {
-    "input": "GTA 6 Doesn't Let Players Pick Up Prostitutes, but Rockstar Has a Logical Reason for It\nRockstar Games has revealed why they chose to forego the ability to pick up prostitutes in GTA 6 . That's right — GTA 6 doesn't let you pick up ladies of the night when you're feeling lonely anymore. ",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 13,
-      "fantasy": 5,
-      "cyberpunk": 35,
-      "action": 67,
-      "slice_of_life": 21,
-      "mystery": 11,
-      "historical": 9
-    },
-    "raw_scores": {
-      "sf": 0.5179,
-      "fantasy": 0.2084,
-      "cyberpunk": 1.3845,
-      "action": 2.6821,
-      "slice_of_life": 0.8387,
-      "mystery": 0.4461,
-      "historical": 0.3693
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.6885,
-        "1": 0.1802,
-        "2": 0.0826,
-        "3": 0.0222,
-        "4": 0.0265
-      },
-      "fantasy": {
-        "0": 0.8578,
-        "1": 0.0973,
-        "2": 0.0316,
-        "3": 0.0055,
-        "4": 0.0078
-      },
-      "cyberpunk": {
-        "0": 0.2671,
-        "1": 0.3132,
-        "2": 0.2723,
-        "3": 0.063,
-        "4": 0.0844
-      },
-      "action": {
-        "0": 0.097,
-        "1": 0.1101,
-        "2": 0.1525,
-        "3": 0.2946,
-        "4": 0.3458
-      },
-      "slice_of_life": {
-        "0": 0.4407,
-        "1": 0.3442,
-        "2": 0.1721,
-        "3": 0.0218,
-        "4": 0.0212
-      },
-      "mystery": {
-        "0": 0.6675,
-        "1": 0.2346,
-        "2": 0.0877,
-        "3": 0.0045,
-        "4": 0.0057
-      },
-      "historical": {
-        "0": 0.7454,
-        "1": 0.1649,
-        "2": 0.0729,
-        "3": 0.0088,
-        "4": 0.008
-      }
-    },
-    "usage": {
-      "input_tokens": 1254,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:18.700957+00:00"
-  },
-  "90c205b562c008ff7c648be88a546dfd4c71af1aff82390021b030c98a21622d": {
-    "input": "The LEGO Poké Ball Set Gets Its First Discount Ahead of Amazon's Black Friday Sale\nAmazon's Black Friday sale isn't going live until midnight tonight, but some of the best LEGO Pokémon deals have already been dropping early. That includes one of the most expensive sets in the entire",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 12,
-      "fantasy": 17,
-      "cyberpunk": 5,
-      "action": 15,
-      "slice_of_life": 19,
-      "mystery": 5,
-      "historical": 4
-    },
-    "raw_scores": {
-      "sf": 0.4924,
-      "fantasy": 0.6702,
-      "cyberpunk": 0.2042,
-      "action": 0.6076,
-      "slice_of_life": 0.7781,
-      "mystery": 0.191,
-      "historical": 0.1441
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.7062,
-        "1": 0.1785,
-        "2": 0.0611,
-        "3": 0.025,
-        "4": 0.0292
-      },
-      "fantasy": {
-        "0": 0.5979,
-        "1": 0.2211,
-        "2": 0.1222,
-        "3": 0.0303,
-        "4": 0.0285
-      },
-      "cyberpunk": {
-        "0": 0.8755,
-        "1": 0.0748,
-        "2": 0.0309,
-        "3": 0.0077,
-        "4": 0.0111
-      },
-      "action": {
-        "0": 0.6041,
-        "1": 0.2505,
-        "2": 0.1008,
-        "3": 0.0231,
-        "4": 0.0215
-      },
-      "slice_of_life": {
-        "0": 0.4765,
-        "1": 0.359,
-        "2": 0.1038,
-        "3": 0.0311,
-        "4": 0.0296
-      },
-      "mystery": {
-        "0": 0.8548,
-        "1": 0.1128,
-        "2": 0.0234,
-        "3": 0.0044,
-        "4": 0.0046
-      },
-      "historical": {
-        "0": 0.8931,
-        "1": 0.0831,
-        "2": 0.0152,
-        "3": 0.0039,
-        "4": 0.0047
-      }
-    },
-    "usage": {
-      "input_tokens": 1240,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:18.994933+00:00"
-  },
-  "e7a28102fc1f4b9f74ea380b976e1097ecc08405b1cbd8d6ddd246337ad0de2f": {
-    "input": "43 Army Members Reenlisted in Exchange for Paid Time Off to Play GTA 6\nIf you’ve been following the GTA 6 hype train, you’ll probably remember the time that an army battalion went viral for offering service members four days of paid time off to play Rockstar's highly-ant",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 6,
-      "fantasy": 3,
-      "cyberpunk": 30,
-      "action": 23,
-      "slice_of_life": 22,
-      "mystery": 7,
-      "historical": 7
-    },
-    "raw_scores": {
-      "sf": 0.2365,
-      "fantasy": 0.1234,
-      "cyberpunk": 1.2121,
-      "action": 0.9036,
-      "slice_of_life": 0.8874,
-      "mystery": 0.2745,
-      "historical": 0.2809
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.8533,
-        "1": 0.0899,
-        "2": 0.0361,
-        "3": 0.0084,
-        "4": 0.0123
-      },
-      "fantasy": {
-        "0": 0.9165,
-        "1": 0.0599,
-        "2": 0.0131,
-        "3": 0.0046,
-        "4": 0.0059
-      },
-      "cyberpunk": {
-        "0": 0.394,
-        "1": 0.2529,
-        "2": 0.1845,
-        "3": 0.0841,
-        "4": 0.0845
-      },
-      "action": {
-        "0": 0.4316,
-        "1": 0.349,
-        "2": 0.1377,
-        "3": 0.0475,
-        "4": 0.0342
-      },
-      "slice_of_life": {
-        "0": 0.4243,
-        "1": 0.3596,
-        "2": 0.1535,
-        "3": 0.0295,
-        "4": 0.0331
-      },
-      "mystery": {
-        "0": 0.7725,
-        "1": 0.1947,
-        "2": 0.0235,
-        "3": 0.0046,
-        "4": 0.0047
-      },
-      "historical": {
-        "0": 0.7979,
-        "1": 0.1394,
-        "2": 0.0521,
-        "3": 0.005,
-        "4": 0.0056
-      }
-    },
-    "usage": {
-      "input_tokens": 1245,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:19.229485+00:00"
-  },
-  "1ca4ac7552e3d236156c3caa20b11a41c8cbd7380284b5011bfd9c968b2965c7": {
-    "input": "Alienware's 39\" 5K Monitor With RGB Stripe Tandem OLED Technology Hits a New Price Low for Black Friday\nEarlier this year, Dell announced the \"world's first 39\" 5K monitor with RGB stripe tandem OLED technology.\" You can finally get your hands on one. The new Alienware AW3926QW has just been listed at D",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 10,
-      "fantasy": 3,
-      "cyberpunk": 17,
-      "action": 5,
-      "slice_of_life": 13,
-      "mystery": 4,
-      "historical": 3
-    },
-    "raw_scores": {
-      "sf": 0.3926,
-      "fantasy": 0.1025,
-      "cyberpunk": 0.6952,
-      "action": 0.1855,
-      "slice_of_life": 0.5011,
-      "mystery": 0.1791,
-      "historical": 0.1007
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.8034,
-        "1": 0.0944,
-        "2": 0.0436,
-        "3": 0.0235,
-        "4": 0.0351
-      },
-      "fantasy": {
-        "0": 0.9457,
-        "1": 0.028,
-        "2": 0.012,
-        "3": 0.0067,
-        "4": 0.0076
-      },
-      "cyberpunk": {
-        "0": 0.6205,
-        "1": 0.1825,
-        "2": 0.1195,
-        "3": 0.0361,
-        "4": 0.0414
-      },
-      "action": {
-        "0": 0.8817,
-        "1": 0.0735,
-        "2": 0.0293,
-        "3": 0.0084,
-        "4": 0.0071
-      },
-      "slice_of_life": {
-        "0": 0.6724,
-        "1": 0.2211,
-        "2": 0.0616,
-        "3": 0.0228,
-        "4": 0.0221
-      },
-      "mystery": {
-        "0": 0.8659,
-        "1": 0.1069,
-        "2": 0.0154,
-        "3": 0.0058,
-        "4": 0.006
-      },
-      "historical": {
-        "0": 0.9375,
-        "1": 0.0409,
-        "2": 0.011,
-        "3": 0.0046,
-        "4": 0.006
-      }
-    },
-    "usage": {
-      "input_tokens": 1264,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:19.636217+00:00"
-  },
-  "ee86e9a3072a74a08d840349fac2cf6d87f2b62b4a9005a582ab77f0b44b469a": {
-    "input": "A GTA 6 Location Was Teased by Rockstar All the Way Back in 2021 — And What's Inside Was Worth the Wait\nSPOILER WARNING: This article features details on a GTA 6 Easter egg. Although it won't ruin the game's story or anything like that, we recognize some people want to organically discover and find inte",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 19,
-      "fantasy": 6,
-      "cyberpunk": 37,
-      "action": 62,
-      "slice_of_life": 20,
-      "mystery": 23,
-      "historical": 13
-    },
-    "raw_scores": {
-      "sf": 0.7684,
-      "fantasy": 0.2365,
-      "cyberpunk": 1.4665,
-      "action": 2.4642,
-      "slice_of_life": 0.7977,
-      "mystery": 0.9089,
-      "historical": 0.5124
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.5666,
-        "1": 0.2272,
-        "2": 0.1248,
-        "3": 0.0339,
-        "4": 0.0475
-      },
-      "fantasy": {
-        "0": 0.8518,
-        "1": 0.0891,
-        "2": 0.0409,
-        "3": 0.0072,
-        "4": 0.011
-      },
-      "cyberpunk": {
-        "0": 0.2468,
-        "1": 0.2905,
-        "2": 0.2978,
-        "3": 0.0792,
-        "4": 0.0857
-      },
-      "action": {
-        "0": 0.1356,
-        "1": 0.1284,
-        "2": 0.1653,
-        "3": 0.2775,
-        "4": 0.2932
-      },
-      "slice_of_life": {
-        "0": 0.4868,
-        "1": 0.3007,
-        "2": 0.1653,
-        "3": 0.0226,
-        "4": 0.0246
-      },
-      "mystery": {
-        "0": 0.4212,
-        "1": 0.3125,
-        "2": 0.2242,
-        "3": 0.0203,
-        "4": 0.0218
-      },
-      "historical": {
-        "0": 0.6529,
-        "1": 0.2164,
-        "2": 0.1083,
-        "3": 0.0103,
-        "4": 0.0121
-      }
-    },
-    "usage": {
-      "input_tokens": 1258,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:19.920323+00:00"
-  },
-  "96ed163748b998a5f09e62e1e6fc5a555edc69cd43356f9cf31a632c59cc0cc6": {
-    "input": "Burger King’s Chocolate Whopper Prank Is Being Turned Into a Real Burger\nIn 2018, Burger King posted a Chocolate Whopper as an April Fool’s Joke. Nearly a decade later, the decadent burger is actually coming to life. The Chocolate Whopper is coming to Burger King Korea’s n",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 6,
-      "fantasy": 7,
-      "cyberpunk": 5,
-      "action": 3,
-      "slice_of_life": 31,
-      "mystery": 6,
-      "historical": 7
-    },
-    "raw_scores": {
-      "sf": 0.2547,
-      "fantasy": 0.273,
-      "cyberpunk": 0.1916,
-      "action": 0.1379,
-      "slice_of_life": 1.2316,
-      "mystery": 0.2514,
-      "historical": 0.2799
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.849,
-        "1": 0.0879,
-        "2": 0.0363,
-        "3": 0.013,
-        "4": 0.0138
-      },
-      "fantasy": {
-        "0": 0.8172,
-        "1": 0.1186,
-        "2": 0.0468,
-        "3": 0.0087,
-        "4": 0.0087
-      },
-      "cyberpunk": {
-        "0": 0.8754,
-        "1": 0.0826,
-        "2": 0.0259,
-        "3": 0.0072,
-        "4": 0.0089
-      },
-      "action": {
-        "0": 0.8964,
-        "1": 0.0816,
-        "2": 0.014,
-        "3": 0.0039,
-        "4": 0.0041
-      },
-      "slice_of_life": {
-        "0": 0.2964,
-        "1": 0.3708,
-        "2": 0.2061,
-        "3": 0.0581,
-        "4": 0.0686
-      },
-      "mystery": {
-        "0": 0.7932,
-        "1": 0.1748,
-        "2": 0.0238,
-        "3": 0.0037,
-        "4": 0.0045
-      },
-      "historical": {
-        "0": 0.7816,
-        "1": 0.1701,
-        "2": 0.0395,
-        "3": 0.0044,
-        "4": 0.0044
-      }
-    },
-    "usage": {
-      "input_tokens": 1251,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:20.204528+00:00"
-  },
-  "a2e55c62f4d3d0bac5965cd70ae1a1079136c7182807e7ceafecaf99c7c9a330": {
-    "input": "DevGamm Awards 2026 Winners Revealed\nThe 3rd annual DevGAMM Awards took place today, November 18, in Lisbon, Portugal, and celebrated 70 nominated games from 25 countries across 17 award categories. The show streamed on IGN and can check",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 32,
-      "fantasy": 33,
-      "cyberpunk": 35,
-      "action": 44,
-      "slice_of_life": 25,
-      "mystery": 32,
-      "historical": 18
-    },
-    "raw_scores": {
-      "sf": 1.2782,
-      "fantasy": 1.3202,
-      "cyberpunk": 1.3845,
-      "action": 1.7718,
-      "slice_of_life": 0.9903,
-      "mystery": 1.279,
-      "historical": 0.716
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.367,
-        "1": 0.253,
-        "2": 0.2091,
-        "3": 0.0765,
-        "4": 0.0944
-      },
-      "fantasy": {
-        "0": 0.3473,
-        "1": 0.258,
-        "2": 0.2134,
-        "3": 0.0899,
-        "4": 0.0914
-      },
-      "cyberpunk": {
-        "0": 0.3234,
-        "1": 0.2561,
-        "2": 0.2293,
-        "3": 0.0949,
-        "4": 0.0963
-      },
-      "action": {
-        "0": 0.2183,
-        "1": 0.2383,
-        "2": 0.2386,
-        "3": 0.1627,
-        "4": 0.1421
-      },
-      "slice_of_life": {
-        "0": 0.4192,
-        "1": 0.3086,
-        "2": 0.1801,
-        "3": 0.0471,
-        "4": 0.045
-      },
-      "mystery": {
-        "0": 0.3123,
-        "1": 0.3045,
-        "2": 0.2453,
-        "3": 0.0678,
-        "4": 0.0701
-      },
-      "historical": {
-        "0": 0.5512,
-        "1": 0.277,
-        "2": 0.1078,
-        "3": 0.0324,
-        "4": 0.0316
-      }
-    },
-    "usage": {
-      "input_tokens": 1248,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:20.557770+00:00"
-  },
-  "fc818e7e74e7bbe3a7b5f8f0747d400885a8de6d5f2a3faeb7c916f3261d9dce": {
-    "input": "New Avengers: Doomsday Posters Reveal Key Characters and Tease Thor’s Odinforce\nApparently, no one told Marvel that GTA VI is out today, because they've been busy showing off new glimpses of Avengers: Doomsday. In addition to a behind-the-scenes video featuring Robert Downey, Jr.",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 32,
-      "fantasy": 29,
-      "cyberpunk": 8,
-      "action": 79,
-      "slice_of_life": 5,
-      "mystery": 12,
-      "historical": 7
-    },
-    "raw_scores": {
-      "sf": 1.2672,
-      "fantasy": 1.1785,
-      "cyberpunk": 0.3065,
-      "action": 3.1491,
-      "slice_of_life": 0.2094,
-      "mystery": 0.4641,
-      "historical": 0.2728
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.3436,
-        "1": 0.2538,
-        "2": 0.2633,
-        "3": 0.0703,
-        "4": 0.069
-      },
-      "fantasy": {
-        "0": 0.3387,
-        "1": 0.2855,
-        "2": 0.2787,
-        "3": 0.0528,
-        "4": 0.0443
-      },
-      "cyberpunk": {
-        "0": 0.7807,
-        "1": 0.1509,
-        "2": 0.0563,
-        "3": 0.0053,
-        "4": 0.0068
-      },
-      "action": {
-        "0": 0.0383,
-        "1": 0.0423,
-        "2": 0.0817,
-        "3": 0.4074,
-        "4": 0.4303
-      },
-      "slice_of_life": {
-        "0": 0.8324,
-        "1": 0.1394,
-        "2": 0.0195,
-        "3": 0.0037,
-        "4": 0.005
-      },
-      "mystery": {
-        "0": 0.647,
-        "1": 0.2591,
-        "2": 0.0829,
-        "3": 0.0048,
-        "4": 0.0062
-      },
-      "historical": {
-        "0": 0.8093,
-        "1": 0.1229,
-        "2": 0.0586,
-        "3": 0.0039,
-        "4": 0.0053
-      }
-    },
-    "usage": {
-      "input_tokens": 1249,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "IGN RSS",
-    "timestamp": "2026-11-19T03:56:20.765488+00:00"
-  },
-  "abe30e206197247ed5fde78330c62944ba23215945f884a19f943dea1cf7a54c": {
-    "input": "The Detective Is Already Dead Game Launches in 2027",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 26,
-      "fantasy": 6,
-      "cyberpunk": 34,
-      "action": 41,
-      "slice_of_life": 15,
-      "mystery": 80,
-      "historical": 12
-    },
-    "raw_scores": {
-      "sf": 1.043,
-      "fantasy": 0.2525,
-      "cyberpunk": 1.3662,
-      "action": 1.6522,
-      "slice_of_life": 0.6147,
-      "mystery": 3.1958,
-      "historical": 0.4714
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.4025,
-        "1": 0.2996,
-        "2": 0.2042,
-        "3": 0.0398,
-        "4": 0.0539
-      },
-      "fantasy": {
-        "0": 0.8383,
-        "1": 0.1012,
-        "2": 0.0414,
-        "3": 0.008,
-        "4": 0.0111
-      },
-      "cyberpunk": {
-        "0": 0.2915,
-        "1": 0.32,
-        "2": 0.2154,
-        "3": 0.0771,
-        "4": 0.096
-      },
-      "action": {
-        "0": 0.2081,
-        "1": 0.2826,
-        "2": 0.2742,
-        "3": 0.1191,
-        "4": 0.116
-      },
-      "slice_of_life": {
-        "0": 0.5568,
-        "1": 0.3135,
-        "2": 0.1014,
-        "3": 0.0147,
-        "4": 0.0136
-      },
-      "mystery": {
-        "0": 0.0438,
-        "1": 0.0425,
-        "2": 0.0642,
-        "3": 0.3731,
-        "4": 0.4764
-      },
-      "historical": {
-        "0": 0.6708,
-        "1": 0.2321,
-        "2": 0.0673,
-        "3": 0.0145,
-        "4": 0.0153
-      }
-    },
-    "usage": {
-      "input_tokens": 1198,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:21.087386+00:00"
-  },
-  "e7ccc244ca8421a493f6e6abba0956ce695490f5218f65d93321eec6e55569e4": {
-    "input": "Live-Action  Leviathan Film Casts Shun Oguri, Ai Hashimoto",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 21,
-      "fantasy": 8,
-      "cyberpunk": 18,
-      "action": 40,
-      "slice_of_life": 29,
-      "mystery": 36,
-      "historical": 25
-    },
-    "raw_scores": {
-      "sf": 0.8572,
-      "fantasy": 0.3265,
-      "cyberpunk": 0.7152,
-      "action": 1.5932,
-      "slice_of_life": 1.17,
-      "mystery": 1.4505,
-      "historical": 1.0105
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.5202,
-        "1": 0.2209,
-        "2": 0.1765,
-        "3": 0.0463,
-        "4": 0.0361
-      },
-      "fantasy": {
-        "0": 0.7809,
-        "1": 0.1421,
-        "2": 0.057,
-        "3": 0.0095,
-        "4": 0.0105
-      },
-      "cyberpunk": {
-        "0": 0.572,
-        "1": 0.2381,
-        "2": 0.1272,
-        "3": 0.0282,
-        "4": 0.0345
-      },
-      "action": {
-        "0": 0.2178,
-        "1": 0.2922,
-        "2": 0.2763,
-        "3": 0.1065,
-        "4": 0.1072
-      },
-      "slice_of_life": {
-        "0": 0.3272,
-        "1": 0.3408,
-        "2": 0.2224,
-        "3": 0.0539,
-        "4": 0.0557
-      },
-      "mystery": {
-        "0": 0.2606,
-        "1": 0.3082,
-        "2": 0.2492,
-        "3": 0.0842,
-        "4": 0.0978
-      },
-      "historical": {
-        "0": 0.4263,
-        "1": 0.3049,
-        "2": 0.1588,
-        "3": 0.052,
-        "4": 0.058
-      }
-    },
-    "usage": {
-      "input_tokens": 1201,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:21.414912+00:00"
-  },
-  "bb4b1ed3dcd6193c485476f40133a4b5bef2dabc97215b5fab92c44e452697c1": {
-    "input": "Seven Seas Licenses 'I am Blue, in Pain, and Fragile,' Predator Witches Audiobooks",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 29,
-      "fantasy": 52,
-      "cyberpunk": 12,
-      "action": 24,
-      "slice_of_life": 27,
-      "mystery": 31,
-      "historical": 12
-    },
-    "raw_scores": {
-      "sf": 1.1436,
-      "fantasy": 2.0753,
-      "cyberpunk": 0.4994,
-      "action": 0.9675,
-      "slice_of_life": 1.0873,
-      "mystery": 1.2417,
-      "historical": 0.4946
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.3638,
-        "1": 0.2994,
-        "2": 0.225,
-        "3": 0.053,
-        "4": 0.0588
-      },
-      "fantasy": {
-        "0": 0.1742,
-        "1": 0.1959,
-        "2": 0.2205,
-        "3": 0.1992,
-        "4": 0.2102
-      },
-      "cyberpunk": {
-        "0": 0.6763,
-        "1": 0.2009,
-        "2": 0.0896,
-        "3": 0.0136,
-        "4": 0.0196
-      },
-      "action": {
-        "0": 0.4122,
-        "1": 0.3264,
-        "2": 0.1808,
-        "3": 0.0428,
-        "4": 0.0378
-      },
-      "slice_of_life": {
-        "0": 0.3497,
-        "1": 0.3498,
-        "2": 0.2086,
-        "3": 0.0474,
-        "4": 0.0445
-      },
-      "mystery": {
-        "0": 0.3089,
-        "1": 0.3305,
-        "2": 0.2327,
-        "3": 0.0657,
-        "4": 0.0622
-      },
-      "historical": {
-        "0": 0.6554,
-        "1": 0.234,
-        "2": 0.0847,
-        "3": 0.0123,
-        "4": 0.0136
-      }
-    },
-    "usage": {
-      "input_tokens": 1206,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:21.651132+00:00"
-  },
-  "aad82110dea1d794fcd4d8bb2a32ee78dfca3cbc7f7084c2c9227dd847f5a860": {
-    "input": "Blood Addict Manga Ends",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 27,
-      "fantasy": 25,
-      "cyberpunk": 36,
-      "action": 53,
-      "slice_of_life": 20,
-      "mystery": 27,
-      "historical": 10
-    },
-    "raw_scores": {
-      "sf": 1.0676,
-      "fantasy": 1.0135,
-      "cyberpunk": 1.4214,
-      "action": 2.1178,
-      "slice_of_life": 0.7925,
-      "mystery": 1.0658,
-      "historical": 0.4049
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.4011,
-        "1": 0.2802,
-        "2": 0.2213,
-        "3": 0.0449,
-        "4": 0.0525
-      },
-      "fantasy": {
-        "0": 0.4143,
-        "1": 0.2983,
-        "2": 0.1938,
-        "3": 0.047,
-        "4": 0.0466
-      },
-      "cyberpunk": {
-        "0": 0.2738,
-        "1": 0.3013,
-        "2": 0.2503,
-        "3": 0.079,
-        "4": 0.0956
-      },
-      "action": {
-        "0": 0.1544,
-        "1": 0.1779,
-        "2": 0.2606,
-        "3": 0.2096,
-        "4": 0.1975
-      },
-      "slice_of_life": {
-        "0": 0.4567,
-        "1": 0.3453,
-        "2": 0.1646,
-        "3": 0.0158,
-        "4": 0.0176
-      },
-      "mystery": {
-        "0": 0.3386,
-        "1": 0.3564,
-        "2": 0.2348,
-        "3": 0.0412,
-        "4": 0.029
-      },
-      "historical": {
-        "0": 0.7047,
-        "1": 0.2082,
-        "2": 0.0725,
-        "3": 0.0068,
-        "4": 0.0078
-      }
-    },
-    "usage": {
-      "input_tokens": 1189,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:22.006348+00:00"
-  },
-  "973fe8254171e491e24dc1272613d5f37cd0e09f391fee33b42cb53c05551379": {
-    "input": "Sesuji's About a Pilgrimage to the Defiled Sacred Grounds Novel Gets Live-Action Film in 2027",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 32,
-      "fantasy": 51,
-      "cyberpunk": 12,
-      "action": 28,
-      "slice_of_life": 27,
-      "mystery": 25,
-      "historical": 38
-    },
-    "raw_scores": {
-      "sf": 1.2707,
-      "fantasy": 2.0521,
-      "cyberpunk": 0.4609,
-      "action": 1.1055,
-      "slice_of_life": 1.0673,
-      "mystery": 1.0036,
-      "historical": 1.5199
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.334,
-        "1": 0.2906,
-        "2": 0.2249,
-        "3": 0.0719,
-        "4": 0.0786
-      },
-      "fantasy": {
-        "0": 0.196,
-        "1": 0.1845,
-        "2": 0.2011,
-        "3": 0.2083,
-        "4": 0.2101
-      },
-      "cyberpunk": {
-        "0": 0.7098,
-        "1": 0.169,
-        "2": 0.0899,
-        "3": 0.013,
-        "4": 0.0183
-      },
-      "action": {
-        "0": 0.321,
-        "1": 0.3612,
-        "2": 0.2448,
-        "3": 0.0373,
-        "4": 0.0357
-      },
-      "slice_of_life": {
-        "0": 0.3681,
-        "1": 0.3372,
-        "2": 0.2015,
-        "3": 0.0455,
-        "4": 0.0477
-      },
-      "mystery": {
-        "0": 0.3606,
-        "1": 0.3715,
-        "2": 0.2049,
-        "3": 0.0298,
-        "4": 0.0332
-      },
-      "historical": {
-        "0": 0.272,
-        "1": 0.2784,
-        "2": 0.2252,
-        "3": 0.1063,
-        "4": 0.1181
-      }
-    },
-    "usage": {
-      "input_tokens": 1212,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:22.288885+00:00"
-  },
-  "e3460b4fc1b46da7bcdce6031806095b7d0e02b8aeb559364ff86bb12aa29cb6": {
-    "input": "K Manga Adds Godmother Manga",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 20,
-      "fantasy": 48,
-      "cyberpunk": 10,
-      "action": 37,
-      "slice_of_life": 39,
-      "mystery": 28,
-      "historical": 16
-    },
-    "raw_scores": {
-      "sf": 0.7959,
-      "fantasy": 1.9064,
-      "cyberpunk": 0.3905,
-      "action": 1.4858,
-      "slice_of_life": 1.5427,
-      "mystery": 1.1166,
-      "historical": 0.6565
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.5407,
-        "1": 0.2447,
-        "2": 0.1326,
-        "3": 0.0419,
-        "4": 0.0401
-      },
-      "fantasy": {
-        "0": 0.1981,
-        "1": 0.2169,
-        "2": 0.233,
-        "3": 0.1844,
-        "4": 0.1676
-      },
-      "cyberpunk": {
-        "0": 0.7362,
-        "1": 0.1763,
-        "2": 0.062,
-        "3": 0.0119,
-        "4": 0.0136
-      },
-      "action": {
-        "0": 0.2445,
-        "1": 0.3079,
-        "2": 0.2595,
-        "3": 0.0936,
-        "4": 0.0945
-      },
-      "slice_of_life": {
-        "0": 0.2465,
-        "1": 0.29,
-        "2": 0.2477,
-        "3": 0.106,
-        "4": 0.1098
-      },
-      "mystery": {
-        "0": 0.3249,
-        "1": 0.3737,
-        "2": 0.2082,
-        "3": 0.0464,
-        "4": 0.0468
-      },
-      "historical": {
-        "0": 0.5447,
-        "1": 0.3095,
-        "2": 0.1093,
-        "3": 0.0175,
-        "4": 0.019
-      }
-    },
-    "usage": {
-      "input_tokens": 1190,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:22.563098+00:00"
-  },
-  "483120201b905be7a44f42272f410d83b64d4c592a9f10937f088a57873d3055": {
-    "input": "Hiromasa Okujima Announces 1st Original Boys-Love Manga",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 12,
-      "fantasy": 12,
-      "cyberpunk": 6,
-      "action": 10,
-      "slice_of_life": 56,
-      "mystery": 11,
-      "historical": 10
-    },
-    "raw_scores": {
-      "sf": 0.4752,
-      "fantasy": 0.4638,
-      "cyberpunk": 0.2378,
-      "action": 0.4014,
-      "slice_of_life": 2.2405,
-      "mystery": 0.4257,
-      "historical": 0.3898
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.7529,
-        "1": 0.1262,
-        "2": 0.0515,
-        "3": 0.0316,
-        "4": 0.0378
-      },
-      "fantasy": {
-        "0": 0.6953,
-        "1": 0.2017,
-        "2": 0.0643,
-        "3": 0.0212,
-        "4": 0.0175
-      },
-      "cyberpunk": {
-        "0": 0.8343,
-        "1": 0.1189,
-        "2": 0.03,
-        "3": 0.0084,
-        "4": 0.0084
-      },
-      "action": {
-        "0": 0.68,
-        "1": 0.2558,
-        "2": 0.0528,
-        "3": 0.0057,
-        "4": 0.0057
-      },
-      "slice_of_life": {
-        "0": 0.1656,
-        "1": 0.151,
-        "2": 0.2149,
-        "3": 0.2143,
-        "4": 0.2542
-      },
-      "mystery": {
-        "0": 0.657,
-        "1": 0.2758,
-        "2": 0.057,
-        "3": 0.005,
-        "4": 0.0052
-      },
-      "historical": {
-        "0": 0.6896,
-        "1": 0.2497,
-        "2": 0.0484,
-        "3": 0.0057,
-        "4": 0.0066
-      }
-    },
-    "usage": {
-      "input_tokens": 1200,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:22.889103+00:00"
-  },
-  "b2fe01e69c2829a7d20d9d03411d656514d1938b6f9a1f4e9a7f9a1d04bc124e": {
-    "input": "Duel Masters GT Manga Gets 4th Part",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 29,
-      "fantasy": 39,
-      "cyberpunk": 12,
-      "action": 45,
-      "slice_of_life": 15,
-      "mystery": 14,
-      "historical": 10
-    },
-    "raw_scores": {
-      "sf": 1.1721,
-      "fantasy": 1.5485,
-      "cyberpunk": 0.4897,
-      "action": 1.786,
-      "slice_of_life": 0.5903,
-      "mystery": 0.5517,
-      "historical": 0.3936
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.3784,
-        "1": 0.2762,
-        "2": 0.2087,
-        "3": 0.0683,
-        "4": 0.0684
-      },
-      "fantasy": {
-        "0": 0.2439,
-        "1": 0.2859,
-        "2": 0.2509,
-        "3": 0.1166,
-        "4": 0.1027
-      },
-      "cyberpunk": {
-        "0": 0.6691,
-        "1": 0.2202,
-        "2": 0.0787,
-        "3": 0.0157,
-        "4": 0.0163
-      },
-      "action": {
-        "0": 0.1902,
-        "1": 0.2446,
-        "2": 0.2817,
-        "3": 0.156,
-        "4": 0.1275
-      },
-      "slice_of_life": {
-        "0": 0.5386,
-        "1": 0.3588,
-        "2": 0.0847,
-        "3": 0.0095,
-        "4": 0.0084
-      },
-      "mystery": {
-        "0": 0.5667,
-        "1": 0.3338,
-        "2": 0.0862,
-        "3": 0.0077,
-        "4": 0.0056
-      },
-      "historical": {
-        "0": 0.697,
-        "1": 0.2284,
-        "2": 0.0641,
-        "3": 0.0051,
-        "4": 0.0054
-      }
-    },
-    "usage": {
-      "input_tokens": 1194,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:23.159120+00:00"
-  },
-  "ee9ac0ed7cb3bd9d9d32cc7e682faefef129bbbd0316b0a8f35f76db97f0771b": {
-    "input": "'You're So Sloppy, Hotta-Sensei' Manga Ends in 2 Chapters",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 15,
-      "fantasy": 14,
-      "cyberpunk": 14,
-      "action": 26,
-      "slice_of_life": 53,
-      "mystery": 14,
-      "historical": 6
-    },
-    "raw_scores": {
-      "sf": 0.6007,
-      "fantasy": 0.5627,
-      "cyberpunk": 0.5622,
-      "action": 1.0232,
-      "slice_of_life": 2.1223,
-      "mystery": 0.571,
-      "historical": 0.2534
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.6555,
-        "1": 0.1752,
-        "2": 0.1126,
-        "3": 0.0265,
-        "4": 0.0302
-      },
-      "fantasy": {
-        "0": 0.6611,
-        "1": 0.1947,
-        "2": 0.0911,
-        "3": 0.0267,
-        "4": 0.0264
-      },
-      "cyberpunk": {
-        "0": 0.6287,
-        "1": 0.2321,
-        "2": 0.1048,
-        "3": 0.0173,
-        "4": 0.0171
-      },
-      "action": {
-        "0": 0.3644,
-        "1": 0.3639,
-        "2": 0.1916,
-        "3": 0.0442,
-        "4": 0.0359
-      },
-      "slice_of_life": {
-        "0": 0.1696,
-        "1": 0.1932,
-        "2": 0.2048,
-        "3": 0.21,
-        "4": 0.2224
-      },
-      "mystery": {
-        "0": 0.5915,
-        "1": 0.282,
-        "2": 0.1017,
-        "3": 0.0134,
-        "4": 0.0114
-      },
-      "historical": {
-        "0": 0.81,
-        "1": 0.144,
-        "2": 0.0348,
-        "3": 0.0051,
-        "4": 0.0061
-      }
-    },
-    "usage": {
-      "input_tokens": 1203,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:23.419527+00:00"
-  },
-  "46bad578d6eeb738dade6ac4feb33b1db24f73fceecd8af181b420f40f52c2ce": {
-    "input": "Online Retailer CDJapan Confirms Potential Customer Information Leaks Caused by Unauthorized Access",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 7,
-      "fantasy": 2,
-      "cyberpunk": 26,
-      "action": 4,
-      "slice_of_life": 12,
-      "mystery": 13,
-      "historical": 3
-    },
-    "raw_scores": {
-      "sf": 0.2754,
-      "fantasy": 0.086,
-      "cyberpunk": 1.0365,
-      "action": 0.172,
-      "slice_of_life": 0.4837,
-      "mystery": 0.5232,
-      "historical": 0.1149
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.8664,
-        "1": 0.0652,
-        "2": 0.0233,
-        "3": 0.0168,
-        "4": 0.0283
-      },
-      "fantasy": {
-        "0": 0.9527,
-        "1": 0.026,
-        "2": 0.0101,
-        "3": 0.005,
-        "4": 0.0062
-      },
-      "cyberpunk": {
-        "0": 0.4731,
-        "1": 0.2205,
-        "2": 0.181,
-        "3": 0.0475,
-        "4": 0.0779
-      },
-      "action": {
-        "0": 0.8798,
-        "1": 0.0842,
-        "2": 0.0254,
-        "3": 0.0053,
-        "4": 0.0053
-      },
-      "slice_of_life": {
-        "0": 0.6644,
-        "1": 0.2363,
-        "2": 0.0668,
-        "3": 0.0163,
-        "4": 0.0162
-      },
-      "mystery": {
-        "0": 0.6705,
-        "1": 0.1983,
-        "2": 0.0891,
-        "3": 0.0215,
-        "4": 0.0206
-      },
-      "historical": {
-        "0": 0.9192,
-        "1": 0.0584,
-        "2": 0.0149,
-        "3": 0.0034,
-        "4": 0.0041
-      }
-    },
-    "usage": {
-      "input_tokens": 1201,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:23.792809+00:00"
-  },
-  "5db80ff8caa246ad78197045e28cc8dc567a58ed2a900f0fcb58ab65eb91b4b9": {
-    "input": "How Ed Goldfarb Brings Regional Authenticity to Pokémon Music",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 10,
-      "fantasy": 13,
-      "cyberpunk": 10,
-      "action": 9,
-      "slice_of_life": 29,
-      "mystery": 13,
-      "historical": 9
-    },
-    "raw_scores": {
-      "sf": 0.4136,
-      "fantasy": 0.529,
-      "cyberpunk": 0.3852,
-      "action": 0.3798,
-      "slice_of_life": 1.1433,
-      "mystery": 0.5095,
-      "historical": 0.3799
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.735,
-        "1": 0.1732,
-        "2": 0.0553,
-        "3": 0.0162,
-        "4": 0.0203
-      },
-      "fantasy": {
-        "0": 0.6745,
-        "1": 0.1927,
-        "2": 0.088,
-        "3": 0.0188,
-        "4": 0.026
-      },
-      "cyberpunk": {
-        "0": 0.7381,
-        "1": 0.1739,
-        "2": 0.0643,
-        "3": 0.0124,
-        "4": 0.0113
-      },
-      "action": {
-        "0": 0.7131,
-        "1": 0.2131,
-        "2": 0.0608,
-        "3": 0.007,
-        "4": 0.006
-      },
-      "slice_of_life": {
-        "0": 0.3501,
-        "1": 0.3288,
-        "2": 0.2075,
-        "3": 0.0549,
-        "4": 0.0587
-      },
-      "mystery": {
-        "0": 0.6221,
-        "1": 0.2788,
-        "2": 0.0775,
-        "3": 0.0107,
-        "4": 0.0109
-      },
-      "historical": {
-        "0": 0.7319,
-        "1": 0.1829,
-        "2": 0.0673,
-        "3": 0.009,
-        "4": 0.0089
-      }
-    },
-    "usage": {
-      "input_tokens": 1197,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:24.075103+00:00"
-  },
-  "05d7589963d5b97347644c4c4294089ad1b86305cf94ea88dd74ccdb62ce6b3d": {
-    "input": "Director Yuta Shimotsu Stirs Up Scares in Strange: Junji Ito's Tales for Sleepless Nights",
-    "genres": [
-      "action",
-      "cyberpunk",
-      "fantasy",
-      "historical",
-      "mystery",
-      "sf",
-      "slice_of_life"
-    ],
-    "scores": {
-      "sf": 9,
-      "fantasy": 16,
-      "cyberpunk": 5,
-      "action": 6,
-      "slice_of_life": 17,
-      "mystery": 30,
-      "historical": 6
-    },
-    "raw_scores": {
-      "sf": 0.3514,
-      "fantasy": 0.6207,
-      "cyberpunk": 0.1834,
-      "action": 0.2381,
-      "slice_of_life": 0.6849,
-      "mystery": 1.2098,
-      "historical": 0.253
-    },
-    "probabilities": {
-      "sf": {
-        "0": 0.7725,
-        "1": 0.1407,
-        "2": 0.0624,
-        "3": 0.0117,
-        "4": 0.0127
-      },
-      "fantasy": {
-        "0": 0.5892,
-        "1": 0.2501,
-        "2": 0.1267,
-        "3": 0.0187,
-        "4": 0.0153
-      },
-      "cyberpunk": {
-        "0": 0.8752,
-        "1": 0.0836,
-        "2": 0.0298,
-        "3": 0.0054,
-        "4": 0.006
-      },
-      "action": {
-        "0": 0.8173,
-        "1": 0.1393,
-        "2": 0.0355,
-        "3": 0.004,
-        "4": 0.0039
-      },
-      "slice_of_life": {
-        "0": 0.5205,
-        "1": 0.3132,
-        "2": 0.1396,
-        "3": 0.0143,
-        "4": 0.0124
-      },
-      "mystery": {
-        "0": 0.3159,
-        "1": 0.3228,
-        "2": 0.254,
-        "3": 0.0504,
-        "4": 0.0569
-      },
-      "historical": {
-        "0": 0.7926,
-        "1": 0.1714,
-        "2": 0.0299,
-        "3": 0.0028,
-        "4": 0.0033
-      }
-    },
-    "usage": {
-      "input_tokens": 1209,
-      "output_tokens": 0
-    },
-    "model": "@cf/cloudflare/clef-flash",
-    "source": "Anime News Network",
-    "timestamp": "2026-11-19T03:56:24.350123+00:00"
-  },
   "9f993438af12457cfe2c8a99b780961c0d6e8afd9cd172949bd02ffa1bee8929": {
     "input": "How To Make Money Fast In GTA 6\nMoney is important in GTAVI, and each chapter introduces new ways to earn cash. Here are some of the best ways to make money in each chapter.",
     "genres": [
@@ -58542,5 +55726,2821 @@
     "model": "@cf/cloudflare/clef-flash",
     "source": "Anime News Network",
     "timestamp": "2026-11-25T05:10:26.357985+00:00"
+  },
+  "f33f021eb0fdfe8afa76b54dfac6cc60723a57dec0e72084fea5322fd499535a": {
+    "input": "Mario, Pikachu, And Other Gaming Icon Balloons Won’t Be Flying This Thanksgiving\nNew York City is no stranger to bad weather, be it blazing-hot summers, snow-packed winters, or fierce windstorms. Unfortunately for countless families who have made it a holiday tradition to turn on ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 9,
+      "fantasy": 8,
+      "cyberpunk": 6,
+      "action": 7,
+      "slice_of_life": 45,
+      "mystery": 5,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.372,
+      "fantasy": 0.3184,
+      "cyberpunk": 0.237,
+      "action": 0.282,
+      "slice_of_life": 1.7813,
+      "mystery": 0.1899,
+      "historical": 0.1972
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8212,
+        "1": 0.0781,
+        "2": 0.0422,
+        "3": 0.0245,
+        "4": 0.034
+      },
+      "fantasy": {
+        "0": 0.8077,
+        "1": 0.1175,
+        "2": 0.0429,
+        "3": 0.0126,
+        "4": 0.0193
+      },
+      "cyberpunk": {
+        "0": 0.8565,
+        "1": 0.0911,
+        "2": 0.0262,
+        "3": 0.0114,
+        "4": 0.0148
+      },
+      "action": {
+        "0": 0.8099,
+        "1": 0.1287,
+        "2": 0.0413,
+        "3": 0.0098,
+        "4": 0.0103
+      },
+      "slice_of_life": {
+        "0": 0.2333,
+        "1": 0.2123,
+        "2": 0.2445,
+        "3": 0.1597,
+        "4": 0.1502
+      },
+      "mystery": {
+        "0": 0.8544,
+        "1": 0.118,
+        "2": 0.017,
+        "3": 0.0045,
+        "4": 0.0061
+      },
+      "historical": {
+        "0": 0.8552,
+        "1": 0.1107,
+        "2": 0.0228,
+        "3": 0.0045,
+        "4": 0.0068
+      }
+    },
+    "usage": {
+      "input_tokens": 1242,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:53.200506+00:00"
+  },
+  "b2b6d16ad56b0dec481f3245161942860473e72ff60bad08ca6b2b0efb4fd12d": {
+    "input": "How To Unlock The Alien Questline in GTA 6\nAliens are real (In Grand Theft Auto VI) and we’re going to show you exactly how to kick off and complete the secret UFO missions in Rockstar’s open world game.",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 33,
+      "fantasy": 16,
+      "cyberpunk": 33,
+      "action": 64,
+      "slice_of_life": 14,
+      "mystery": 21,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 1.3169,
+      "fantasy": 0.6476,
+      "cyberpunk": 1.3396,
+      "action": 2.5759,
+      "slice_of_life": 0.5673,
+      "mystery": 0.855,
+      "historical": 0.3103
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.33,
+        "1": 0.2624,
+        "2": 0.2515,
+        "3": 0.0729,
+        "4": 0.0832
+      },
+      "fantasy": {
+        "0": 0.591,
+        "1": 0.2014,
+        "2": 0.1873,
+        "3": 0.0096,
+        "4": 0.0107
+      },
+      "cyberpunk": {
+        "0": 0.2948,
+        "1": 0.2868,
+        "2": 0.2745,
+        "3": 0.0717,
+        "4": 0.0722
+      },
+      "action": {
+        "0": 0.1067,
+        "1": 0.1127,
+        "2": 0.1883,
+        "3": 0.2825,
+        "4": 0.3098
+      },
+      "slice_of_life": {
+        "0": 0.5955,
+        "1": 0.2758,
+        "2": 0.1058,
+        "3": 0.0117,
+        "4": 0.0112
+      },
+      "mystery": {
+        "0": 0.4252,
+        "1": 0.3359,
+        "2": 0.2106,
+        "3": 0.0152,
+        "4": 0.0131
+      },
+      "historical": {
+        "0": 0.7573,
+        "1": 0.1899,
+        "2": 0.0431,
+        "3": 0.0046,
+        "4": 0.0051
+      }
+    },
+    "usage": {
+      "input_tokens": 1233,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:53.517208+00:00"
+  },
+  "cc33a6c2af088f137e1f06542bac28d939f00e761944f16219e4e88ed2e8c99d": {
+    "input": "How To Talk To Your Relatives (And Their Cool-Ass Kids) About GTA 6 This Thanksgiving\nEvery Thanksgiving brings the possibility of fraught conversations. Your sister's divorce. Your second cousin's polycule. Politics . So surely one of the biggest entertainment launches of all time, an",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 6,
+      "cyberpunk": 30,
+      "action": 34,
+      "slice_of_life": 36,
+      "mystery": 11,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.5694,
+      "fantasy": 0.2234,
+      "cyberpunk": 1.2128,
+      "action": 1.3562,
+      "slice_of_life": 1.4425,
+      "mystery": 0.4205,
+      "historical": 0.2556
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6632,
+        "1": 0.1983,
+        "2": 0.0782,
+        "3": 0.0266,
+        "4": 0.0337
+      },
+      "fantasy": {
+        "0": 0.8631,
+        "1": 0.0829,
+        "2": 0.0336,
+        "3": 0.0083,
+        "4": 0.0121
+      },
+      "cyberpunk": {
+        "0": 0.4197,
+        "1": 0.231,
+        "2": 0.1669,
+        "3": 0.0817,
+        "4": 0.1007
+      },
+      "action": {
+        "0": 0.3672,
+        "1": 0.2197,
+        "2": 0.2044,
+        "3": 0.1072,
+        "4": 0.1015
+      },
+      "slice_of_life": {
+        "0": 0.2778,
+        "1": 0.2861,
+        "2": 0.2544,
+        "3": 0.0793,
+        "4": 0.1024
+      },
+      "mystery": {
+        "0": 0.6719,
+        "1": 0.2587,
+        "2": 0.0546,
+        "3": 0.0066,
+        "4": 0.0082
+      },
+      "historical": {
+        "0": 0.8108,
+        "1": 0.1398,
+        "2": 0.0386,
+        "3": 0.0046,
+        "4": 0.0062
+      }
+    },
+    "usage": {
+      "input_tokens": 1241,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:53.912459+00:00"
+  },
+  "c2ba8b30be393877f4382ad28d5a258974a490070c896883fe99057136aea269": {
+    "input": "How To Rob Banks In GTA 6\nIt goes without saying that you’ll commit countless crimes in Grand Theft Auto 6 . From punching hapless civilians and stealing their cars, to threatening storeowners as you take their hard-earned cas",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 11,
+      "fantasy": 5,
+      "cyberpunk": 27,
+      "action": 64,
+      "slice_of_life": 7,
+      "mystery": 12,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.4506,
+      "fantasy": 0.2014,
+      "cyberpunk": 1.0677,
+      "action": 2.5479,
+      "slice_of_life": 0.2991,
+      "mystery": 0.4764,
+      "historical": 0.325
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7452,
+        "1": 0.1387,
+        "2": 0.0629,
+        "3": 0.0266,
+        "4": 0.0266
+      },
+      "fantasy": {
+        "0": 0.8685,
+        "1": 0.082,
+        "2": 0.0367,
+        "3": 0.0051,
+        "4": 0.0077
+      },
+      "cyberpunk": {
+        "0": 0.4115,
+        "1": 0.2658,
+        "2": 0.2211,
+        "3": 0.0468,
+        "4": 0.0548
+      },
+      "action": {
+        "0": 0.1037,
+        "1": 0.1017,
+        "2": 0.2166,
+        "3": 0.2989,
+        "4": 0.2791
+      },
+      "slice_of_life": {
+        "0": 0.781,
+        "1": 0.1548,
+        "2": 0.0538,
+        "3": 0.0047,
+        "4": 0.0057
+      },
+      "mystery": {
+        "0": 0.6431,
+        "1": 0.2553,
+        "2": 0.0899,
+        "3": 0.0057,
+        "4": 0.006
+      },
+      "historical": {
+        "0": 0.777,
+        "1": 0.1416,
+        "2": 0.0681,
+        "3": 0.006,
+        "4": 0.0073
+      }
+    },
+    "usage": {
+      "input_tokens": 1232,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:54.392180+00:00"
+  },
+  "e9ee3efd6434dcfbb26fab2935b7f03640c9e7f8f4d1455c2e8648d59e09df11": {
+    "input": "How To Open Bank Vaults In GTA 6\nFrom the start of Chapter 4 in Grand Theft Auto 6 , you'll get the opportunity to rob banks in GTA 6 . Previously, you could rob pawn shops, jewelry stores, and other small-time locations. However, af",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 5,
+      "cyberpunk": 31,
+      "action": 69,
+      "slice_of_life": 10,
+      "mystery": 19,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.7336,
+      "fantasy": 0.195,
+      "cyberpunk": 1.2544,
+      "action": 2.7427,
+      "slice_of_life": 0.3925,
+      "mystery": 0.7412,
+      "historical": 0.3327
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6021,
+        "1": 0.193,
+        "2": 0.1243,
+        "3": 0.0303,
+        "4": 0.0503
+      },
+      "fantasy": {
+        "0": 0.8875,
+        "1": 0.0618,
+        "2": 0.0306,
+        "3": 0.0086,
+        "4": 0.0115
+      },
+      "cyberpunk": {
+        "0": 0.343,
+        "1": 0.2723,
+        "2": 0.251,
+        "3": 0.0547,
+        "4": 0.079
+      },
+      "action": {
+        "0": 0.0844,
+        "1": 0.0941,
+        "2": 0.1611,
+        "3": 0.3153,
+        "4": 0.3451
+      },
+      "slice_of_life": {
+        "0": 0.7249,
+        "1": 0.1856,
+        "2": 0.0712,
+        "3": 0.0087,
+        "4": 0.0096
+      },
+      "mystery": {
+        "0": 0.499,
+        "1": 0.2964,
+        "2": 0.1812,
+        "3": 0.0112,
+        "4": 0.0122
+      },
+      "historical": {
+        "0": 0.7633,
+        "1": 0.1644,
+        "2": 0.0572,
+        "3": 0.0064,
+        "4": 0.0087
+      }
+    },
+    "usage": {
+      "input_tokens": 1241,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:54.795818+00:00"
+  },
+  "2b8fe6d3afc13b66010391b7ecc71c37757b3a1ef775ca8b4c7156d7484f6515": {
+    "input": "Fastest Land, Air, And Sea Vehicles In GTA 6 And How To Get Them\nFrom the moment you set foot on the map of Leonida, you likely have a side goal of acquiring the fastest vehicle possible in Grand Theft Auto 6 . It might not be your immediate objective, especially s",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 7,
+      "cyberpunk": 32,
+      "action": 50,
+      "slice_of_life": 16,
+      "mystery": 12,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.7145,
+      "fantasy": 0.2795,
+      "cyberpunk": 1.2704,
+      "action": 2.0161,
+      "slice_of_life": 0.622,
+      "mystery": 0.4796,
+      "historical": 0.3128
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6239,
+        "1": 0.1865,
+        "2": 0.0969,
+        "3": 0.0367,
+        "4": 0.056
+      },
+      "fantasy": {
+        "0": 0.8147,
+        "1": 0.1176,
+        "2": 0.0513,
+        "3": 0.0064,
+        "4": 0.01
+      },
+      "cyberpunk": {
+        "0": 0.3218,
+        "1": 0.296,
+        "2": 0.2435,
+        "3": 0.0674,
+        "4": 0.0713
+      },
+      "action": {
+        "0": 0.1877,
+        "1": 0.1999,
+        "2": 0.2358,
+        "3": 0.1617,
+        "4": 0.2149
+      },
+      "slice_of_life": {
+        "0": 0.5369,
+        "1": 0.3297,
+        "2": 0.1168,
+        "3": 0.0075,
+        "4": 0.0091
+      },
+      "mystery": {
+        "0": 0.6547,
+        "1": 0.2323,
+        "2": 0.0993,
+        "3": 0.0062,
+        "4": 0.0075
+      },
+      "historical": {
+        "0": 0.7736,
+        "1": 0.1581,
+        "2": 0.0564,
+        "3": 0.0057,
+        "4": 0.0062
+      }
+    },
+    "usage": {
+      "input_tokens": 1245,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:55.129527+00:00"
+  },
+  "22f54bf0bbdf112f305a370777d7b5cea2fedd8e9421ab396fa292c750045553": {
+    "input": "All Missable Missions In GTA 6 And How To Start Them\nStrangers and Freaks have returned in GTA 6. Though you only see these missable side missions referred to in that way in the Achievement and Trophy lists, there are still some weird NPCs who offer wil",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 15,
+      "fantasy": 5,
+      "cyberpunk": 32,
+      "action": 61,
+      "slice_of_life": 27,
+      "mystery": 18,
+      "historical": 14
+    },
+    "raw_scores": {
+      "sf": 0.6079,
+      "fantasy": 0.1851,
+      "cyberpunk": 1.2922,
+      "action": 2.433,
+      "slice_of_life": 1.0896,
+      "mystery": 0.7065,
+      "historical": 0.5588
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6497,
+        "1": 0.1912,
+        "2": 0.0951,
+        "3": 0.0295,
+        "4": 0.0345
+      },
+      "fantasy": {
+        "0": 0.8771,
+        "1": 0.0795,
+        "2": 0.0312,
+        "3": 0.0054,
+        "4": 0.0068
+      },
+      "cyberpunk": {
+        "0": 0.2964,
+        "1": 0.3004,
+        "2": 0.2806,
+        "3": 0.06,
+        "4": 0.0626
+      },
+      "action": {
+        "0": 0.1245,
+        "1": 0.132,
+        "2": 0.2025,
+        "3": 0.2682,
+        "4": 0.2728
+      },
+      "slice_of_life": {
+        "0": 0.3431,
+        "1": 0.3363,
+        "2": 0.247,
+        "3": 0.0353,
+        "4": 0.0383
+      },
+      "mystery": {
+        "0": 0.5083,
+        "1": 0.3112,
+        "2": 0.1573,
+        "3": 0.0122,
+        "4": 0.011
+      },
+      "historical": {
+        "0": 0.6477,
+        "1": 0.1917,
+        "2": 0.1295,
+        "3": 0.0163,
+        "4": 0.0148
+      }
+    },
+    "usage": {
+      "input_tokens": 1241,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:55.574961+00:00"
+  },
+  "85ecbabf52269fdb168ac4db4bccc8e1ca8f5886a840a4a5efcd0dcaacfb6485": {
+    "input": "What Is The Point Of No Return In The GTA 6 Story?\nWe've never seen a main story in the Grand Theft Auto franchise like the one in GTA 6 . It's an absolute behemoth, stretching across five chapters and just under 100 main story missions. It'll take yo",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 5,
+      "cyberpunk": 37,
+      "action": 72,
+      "slice_of_life": 18,
+      "mystery": 23,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 0.6686,
+      "fantasy": 0.219,
+      "cyberpunk": 1.4932,
+      "action": 2.8632,
+      "slice_of_life": 0.7028,
+      "mystery": 0.926,
+      "historical": 0.4508
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5951,
+        "1": 0.2237,
+        "2": 0.1261,
+        "3": 0.0277,
+        "4": 0.0274
+      },
+      "fantasy": {
+        "0": 0.8607,
+        "1": 0.0866,
+        "2": 0.0367,
+        "3": 0.005,
+        "4": 0.011
+      },
+      "cyberpunk": {
+        "0": 0.2202,
+        "1": 0.3026,
+        "2": 0.3275,
+        "3": 0.063,
+        "4": 0.0867
+      },
+      "action": {
+        "0": 0.0748,
+        "1": 0.0695,
+        "2": 0.1494,
+        "3": 0.3302,
+        "4": 0.3761
+      },
+      "slice_of_life": {
+        "0": 0.5264,
+        "1": 0.2878,
+        "2": 0.1566,
+        "3": 0.0149,
+        "4": 0.0143
+      },
+      "mystery": {
+        "0": 0.3828,
+        "1": 0.3452,
+        "2": 0.2464,
+        "3": 0.0144,
+        "4": 0.0112
+      },
+      "historical": {
+        "0": 0.6881,
+        "1": 0.1984,
+        "2": 0.0972,
+        "3": 0.0073,
+        "4": 0.009
+      }
+    },
+    "usage": {
+      "input_tokens": 1246,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:55.872472+00:00"
+  },
+  "24cb956f02885a530c19443654c3daf4bbecb8f5f8eb9570762b7dc110857acb": {
+    "input": "How To Complete The Project Rumba Secret In GTA 6\nThere are a lot of secrets left to be discovered in Grand Theft Auto 6 . Some have an eerie flair as they delve into the supernatural, while others are hilarious Easter eggs and references. Then, ther",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 21,
+      "fantasy": 10,
+      "cyberpunk": 36,
+      "action": 75,
+      "slice_of_life": 16,
+      "mystery": 25,
+      "historical": 8
+    },
+    "raw_scores": {
+      "sf": 0.855,
+      "fantasy": 0.4178,
+      "cyberpunk": 1.459,
+      "action": 2.9847,
+      "slice_of_life": 0.6335,
+      "mystery": 1.0173,
+      "historical": 0.3362
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4816,
+        "1": 0.2668,
+        "2": 0.1913,
+        "3": 0.0355,
+        "4": 0.0248
+      },
+      "fantasy": {
+        "0": 0.7155,
+        "1": 0.1773,
+        "2": 0.0902,
+        "3": 0.008,
+        "4": 0.009
+      },
+      "cyberpunk": {
+        "0": 0.2366,
+        "1": 0.3012,
+        "2": 0.3076,
+        "3": 0.0758,
+        "4": 0.0788
+      },
+      "action": {
+        "0": 0.0533,
+        "1": 0.059,
+        "2": 0.126,
+        "3": 0.373,
+        "4": 0.3887
+      },
+      "slice_of_life": {
+        "0": 0.5616,
+        "1": 0.28,
+        "2": 0.1331,
+        "3": 0.0141,
+        "4": 0.0112
+      },
+      "mystery": {
+        "0": 0.3408,
+        "1": 0.3688,
+        "2": 0.2458,
+        "3": 0.0212,
+        "4": 0.0234
+      },
+      "historical": {
+        "0": 0.7568,
+        "1": 0.1644,
+        "2": 0.0695,
+        "3": 0.0045,
+        "4": 0.0048
+      }
+    },
+    "usage": {
+      "input_tokens": 1238,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:56.329187+00:00"
+  },
+  "d5d8167362556ad11023696c0fda1cabd5f746c8f43893c6a5e60b7c7aba9d64": {
+    "input": "Where To Find President Russo’s Bunkers In GTA 6\nGrand Theft Auto 6 has its fair share of secrets. While the vast majority can be found in building interiors and far-flung islands, a few are located deep underground in long-abandoned facilities. In ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 27,
+      "fantasy": 4,
+      "cyberpunk": 37,
+      "action": 68,
+      "slice_of_life": 13,
+      "mystery": 25,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 1.0976,
+      "fantasy": 0.1561,
+      "cyberpunk": 1.4651,
+      "action": 2.7324,
+      "slice_of_life": 0.5178,
+      "mystery": 1.0081,
+      "historical": 0.4123
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.3878,
+        "1": 0.2888,
+        "2": 0.2139,
+        "3": 0.0571,
+        "4": 0.0524
+      },
+      "fantasy": {
+        "0": 0.8956,
+        "1": 0.0678,
+        "2": 0.0271,
+        "3": 0.004,
+        "4": 0.0055
+      },
+      "cyberpunk": {
+        "0": 0.2414,
+        "1": 0.3008,
+        "2": 0.2974,
+        "3": 0.0722,
+        "4": 0.0882
+      },
+      "action": {
+        "0": 0.0834,
+        "1": 0.0903,
+        "2": 0.1837,
+        "3": 0.2958,
+        "4": 0.3468
+      },
+      "slice_of_life": {
+        "0": 0.6178,
+        "1": 0.2726,
+        "2": 0.0917,
+        "3": 0.0098,
+        "4": 0.0081
+      },
+      "mystery": {
+        "0": 0.3452,
+        "1": 0.3577,
+        "2": 0.2596,
+        "3": 0.0189,
+        "4": 0.0186
+      },
+      "historical": {
+        "0": 0.7038,
+        "1": 0.198,
+        "2": 0.0865,
+        "3": 0.0055,
+        "4": 0.0062
+      }
+    },
+    "usage": {
+      "input_tokens": 1240,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "GameSpot RSS",
+    "timestamp": "2026-11-26T04:37:56.694203+00:00"
+  },
+  "89032fcf54cdb5ffc24bf9ee7327b322d2b1bb9d2296b50dba1bbbe3782ffa00": {
+    "input": "Save 25% on the Trending Meta Ray-Ban AI 2nd Generation Glasses During Amazon's Black Friday Sale\nMeta has discounted the entire lineup of Meta AI glasses , offering up to 25% off all models, as part of its Black Friday sale. The 2nd generation Meta Ray-Ban Wayfarer AI Glasses, the \"#1 selling AI ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 20,
+      "fantasy": 5,
+      "cyberpunk": 33,
+      "action": 6,
+      "slice_of_life": 21,
+      "mystery": 5,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 0.7909,
+      "fantasy": 0.1895,
+      "cyberpunk": 1.3043,
+      "action": 0.252,
+      "slice_of_life": 0.8362,
+      "mystery": 0.1805,
+      "historical": 0.1491
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5434,
+        "1": 0.236,
+        "2": 0.1484,
+        "3": 0.0308,
+        "4": 0.0414
+      },
+      "fantasy": {
+        "0": 0.8654,
+        "1": 0.0951,
+        "2": 0.0293,
+        "3": 0.0049,
+        "4": 0.0053
+      },
+      "cyberpunk": {
+        "0": 0.2878,
+        "1": 0.3184,
+        "2": 0.2669,
+        "3": 0.0557,
+        "4": 0.0712
+      },
+      "action": {
+        "0": 0.8086,
+        "1": 0.1465,
+        "2": 0.0342,
+        "3": 0.0055,
+        "4": 0.0052
+      },
+      "slice_of_life": {
+        "0": 0.4575,
+        "1": 0.3434,
+        "2": 0.1355,
+        "3": 0.0325,
+        "4": 0.0311
+      },
+      "mystery": {
+        "0": 0.8636,
+        "1": 0.1067,
+        "2": 0.0203,
+        "3": 0.0046,
+        "4": 0.0048
+      },
+      "historical": {
+        "0": 0.8918,
+        "1": 0.0821,
+        "2": 0.0167,
+        "3": 0.004,
+        "4": 0.0054
+      }
+    },
+    "usage": {
+      "input_tokens": 1261,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:57.065179+00:00"
+  },
+  "d063abe2ae596fe80059aff7122628ad5c833884916cb1af63a823e36c51ae13": {
+    "input": "reMarkable’s Super Digital Reader Bundle Lets You Get More Than Double the Savings\nEditor's Note: This article is sponsored by reMarkable. If you’re looking for a convenient way to take notes or read and mark up documents, reMarkable has been making some of the best options on the m",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 4,
+      "cyberpunk": 14,
+      "action": 4,
+      "slice_of_life": 20,
+      "mystery": 5,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.4681,
+      "fantasy": 0.1659,
+      "cyberpunk": 0.5754,
+      "action": 0.1443,
+      "slice_of_life": 0.784,
+      "mystery": 0.2079,
+      "historical": 0.2526
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7198,
+        "1": 0.1525,
+        "2": 0.0867,
+        "3": 0.0219,
+        "4": 0.0191
+      },
+      "fantasy": {
+        "0": 0.8849,
+        "1": 0.0784,
+        "2": 0.0274,
+        "3": 0.0046,
+        "4": 0.0047
+      },
+      "cyberpunk": {
+        "0": 0.6632,
+        "1": 0.1797,
+        "2": 0.104,
+        "3": 0.0248,
+        "4": 0.0283
+      },
+      "action": {
+        "0": 0.8971,
+        "1": 0.075,
+        "2": 0.0187,
+        "3": 0.0048,
+        "4": 0.0044
+      },
+      "slice_of_life": {
+        "0": 0.4947,
+        "1": 0.3235,
+        "2": 0.1183,
+        "3": 0.03,
+        "4": 0.0335
+      },
+      "mystery": {
+        "0": 0.8431,
+        "1": 0.1241,
+        "2": 0.0205,
+        "3": 0.0064,
+        "4": 0.0059
+      },
+      "historical": {
+        "0": 0.8129,
+        "1": 0.1421,
+        "2": 0.0313,
+        "3": 0.0068,
+        "4": 0.0069
+      }
+    },
+    "usage": {
+      "input_tokens": 1246,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:57.430197+00:00"
+  },
+  "f4944b1b0ad0f33457dd42e4e6f280abba8be55f6a518d2b5b7a934989bd2369": {
+    "input": "Nex Playground Hits Lowest Price This Year for Black Friday\nBlack Friday deals are already here, and if you’re looking for an exciting, interactive gift for kids and families, grab the Nex Playground . It’s down to just $209 from $299, which is the biggest pri",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 6,
+      "fantasy": 5,
+      "cyberpunk": 7,
+      "action": 10,
+      "slice_of_life": 27,
+      "mystery": 4,
+      "historical": 3
+    },
+    "raw_scores": {
+      "sf": 0.2447,
+      "fantasy": 0.2149,
+      "cyberpunk": 0.2669,
+      "action": 0.4051,
+      "slice_of_life": 1.0765,
+      "mystery": 0.1569,
+      "historical": 0.1335
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8633,
+        "1": 0.0715,
+        "2": 0.0368,
+        "3": 0.0141,
+        "4": 0.0143
+      },
+      "fantasy": {
+        "0": 0.8757,
+        "1": 0.0715,
+        "2": 0.0288,
+        "3": 0.0104,
+        "4": 0.0136
+      },
+      "cyberpunk": {
+        "0": 0.8491,
+        "1": 0.0829,
+        "2": 0.0382,
+        "3": 0.0117,
+        "4": 0.0181
+      },
+      "action": {
+        "0": 0.7604,
+        "1": 0.1336,
+        "2": 0.0654,
+        "3": 0.0216,
+        "4": 0.019
+      },
+      "slice_of_life": {
+        "0": 0.3995,
+        "1": 0.3183,
+        "2": 0.1516,
+        "3": 0.0675,
+        "4": 0.0631
+      },
+      "mystery": {
+        "0": 0.8919,
+        "1": 0.0768,
+        "2": 0.0197,
+        "3": 0.0057,
+        "4": 0.0059
+      },
+      "historical": {
+        "0": 0.9031,
+        "1": 0.0749,
+        "2": 0.0125,
+        "3": 0.0044,
+        "4": 0.0051
+      }
+    },
+    "usage": {
+      "input_tokens": 1244,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:57.628621+00:00"
+  },
+  "35e3338a556c52d3fd0d8ee7c645744c3fd575b6fae3635a6ed06b9c3ea3aca4": {
+    "input": "The Best Gift Ideas at Men's Wearhouse This Holiday Season\nEditor's Note: This article is sponsored by Men's Wearhouse. Black Friday is almost here, and with it come some of the biggest savings of the year. While there are numerous deals to be found on video ",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 5,
+      "fantasy": 3,
+      "cyberpunk": 3,
+      "action": 4,
+      "slice_of_life": 28,
+      "mystery": 6,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.1928,
+      "fantasy": 0.1123,
+      "cyberpunk": 0.1317,
+      "action": 0.1507,
+      "slice_of_life": 1.1007,
+      "mystery": 0.2438,
+      "historical": 0.1992
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8918,
+        "1": 0.0548,
+        "2": 0.0335,
+        "3": 0.0085,
+        "4": 0.0114
+      },
+      "fantasy": {
+        "0": 0.9267,
+        "1": 0.0514,
+        "2": 0.0108,
+        "3": 0.005,
+        "4": 0.0061
+      },
+      "cyberpunk": {
+        "0": 0.9203,
+        "1": 0.0492,
+        "2": 0.0169,
+        "3": 0.0057,
+        "4": 0.0079
+      },
+      "action": {
+        "0": 0.8912,
+        "1": 0.0815,
+        "2": 0.0178,
+        "3": 0.0044,
+        "4": 0.0051
+      },
+      "slice_of_life": {
+        "0": 0.3784,
+        "1": 0.3273,
+        "2": 0.1769,
+        "3": 0.0501,
+        "4": 0.0673
+      },
+      "mystery": {
+        "0": 0.8028,
+        "1": 0.1676,
+        "2": 0.0185,
+        "3": 0.0051,
+        "4": 0.006
+      },
+      "historical": {
+        "0": 0.8441,
+        "1": 0.1284,
+        "2": 0.0172,
+        "3": 0.0047,
+        "4": 0.0056
+      }
+    },
+    "usage": {
+      "input_tokens": 1241,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:58.008117+00:00"
+  },
+  "5e7856428d4453f5eb1c97f82c854fa16636ec85224adc47ebe1ba46a4e897d7": {
+    "input": "We Build LEGO Godzilla, Who Will Tower Over Your Other LEGO Models\nFor Black Friday 2026 , LEGO is launching a massive model of Godzilla, King of the Monsters. It is a LEGO Ideas model, which means it began its life as a fan design by Matthew Esposito . He received t",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 25,
+      "fantasy": 15,
+      "cyberpunk": 7,
+      "action": 23,
+      "slice_of_life": 10,
+      "mystery": 5,
+      "historical": 9
+    },
+    "raw_scores": {
+      "sf": 1.0008,
+      "fantasy": 0.5924,
+      "cyberpunk": 0.2633,
+      "action": 0.9216,
+      "slice_of_life": 0.3839,
+      "mystery": 0.2198,
+      "historical": 0.37
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.4749,
+        "1": 0.2244,
+        "2": 0.19,
+        "3": 0.0464,
+        "4": 0.0643
+      },
+      "fantasy": {
+        "0": 0.5937,
+        "1": 0.2572,
+        "2": 0.124,
+        "3": 0.0134,
+        "4": 0.0117
+      },
+      "cyberpunk": {
+        "0": 0.8115,
+        "1": 0.1338,
+        "2": 0.0417,
+        "3": 0.0059,
+        "4": 0.0071
+      },
+      "action": {
+        "0": 0.4424,
+        "1": 0.3153,
+        "2": 0.1634,
+        "3": 0.0361,
+        "4": 0.0428
+      },
+      "slice_of_life": {
+        "0": 0.7203,
+        "1": 0.2022,
+        "2": 0.0603,
+        "3": 0.0077,
+        "4": 0.0095
+      },
+      "mystery": {
+        "0": 0.8232,
+        "1": 0.1496,
+        "2": 0.0168,
+        "3": 0.005,
+        "4": 0.0054
+      },
+      "historical": {
+        "0": 0.7353,
+        "1": 0.1871,
+        "2": 0.0585,
+        "3": 0.0104,
+        "4": 0.0087
+      }
+    },
+    "usage": {
+      "input_tokens": 1246,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:58.326860+00:00"
+  },
+  "2778fb2599d177075bb20a8bc9648810e8f7d3630b498154473ef03734f71cb7": {
+    "input": "Rockstar Explains Why it Added Consequences to GTA 6's Violence and Crimes\nRockstar Games boss Rob Nelson has explained why the studio added the divisive criminal profile system to GTA 6 . In an interview with Eurogamer , Nelson was asked about Rockstar's approach to the sys",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 21,
+      "fantasy": 6,
+      "cyberpunk": 30,
+      "action": 66,
+      "slice_of_life": 22,
+      "mystery": 16,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.8207,
+      "fantasy": 0.2431,
+      "cyberpunk": 1.1956,
+      "action": 2.6561,
+      "slice_of_life": 0.8653,
+      "mystery": 0.6495,
+      "historical": 0.4143
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5575,
+        "1": 0.2174,
+        "2": 0.1278,
+        "3": 0.0415,
+        "4": 0.0558
+      },
+      "fantasy": {
+        "0": 0.8572,
+        "1": 0.0805,
+        "2": 0.0384,
+        "3": 0.0098,
+        "4": 0.0141
+      },
+      "cyberpunk": {
+        "0": 0.3407,
+        "1": 0.2952,
+        "2": 0.2531,
+        "3": 0.0496,
+        "4": 0.0614
+      },
+      "action": {
+        "0": 0.1011,
+        "1": 0.1017,
+        "2": 0.1591,
+        "3": 0.3163,
+        "4": 0.3218
+      },
+      "slice_of_life": {
+        "0": 0.4425,
+        "1": 0.3173,
+        "2": 0.194,
+        "3": 0.0248,
+        "4": 0.0214
+      },
+      "mystery": {
+        "0": 0.5321,
+        "1": 0.3124,
+        "2": 0.1382,
+        "3": 0.0086,
+        "4": 0.0087
+      },
+      "historical": {
+        "0": 0.7239,
+        "1": 0.1731,
+        "2": 0.0803,
+        "3": 0.0101,
+        "4": 0.0126
+      }
+    },
+    "usage": {
+      "input_tokens": 1243,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:58.546113+00:00"
+  },
+  "9fe4846d8da277de458da1d8f4b772d4c38b27725997e66c5725602e19d6ae0a": {
+    "input": "T-Mobile Is Offering $1,200 Off Discount on the Apple iPhone Duo Foldable Smartphone for Black Friday\nApple's first foldable smartphone - the iPhone Duo - has officially been released and T-Mobile is offering a tempting deal for anyone who doesn't want to pay $2,000 outright for one of these coveted p",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 3,
+      "cyberpunk": 18,
+      "action": 3,
+      "slice_of_life": 18,
+      "mystery": 5,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 0.4044,
+      "fantasy": 0.1146,
+      "cyberpunk": 0.7275,
+      "action": 0.1132,
+      "slice_of_life": 0.7312,
+      "mystery": 0.1914,
+      "historical": 0.1471
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7522,
+        "1": 0.1464,
+        "2": 0.0645,
+        "3": 0.0186,
+        "4": 0.0183
+      },
+      "fantasy": {
+        "0": 0.9305,
+        "1": 0.0429,
+        "2": 0.0145,
+        "3": 0.0056,
+        "4": 0.0065
+      },
+      "cyberpunk": {
+        "0": 0.5842,
+        "1": 0.2082,
+        "2": 0.1407,
+        "3": 0.0297,
+        "4": 0.0372
+      },
+      "action": {
+        "0": 0.9211,
+        "1": 0.0564,
+        "2": 0.0145,
+        "3": 0.0041,
+        "4": 0.0039
+      },
+      "slice_of_life": {
+        "0": 0.5228,
+        "1": 0.3121,
+        "2": 0.105,
+        "3": 0.0313,
+        "4": 0.0288
+      },
+      "mystery": {
+        "0": 0.8457,
+        "1": 0.1315,
+        "2": 0.0136,
+        "3": 0.0041,
+        "4": 0.0051
+      },
+      "historical": {
+        "0": 0.8994,
+        "1": 0.071,
+        "2": 0.0189,
+        "3": 0.0046,
+        "4": 0.0061
+      }
+    },
+    "usage": {
+      "input_tokens": 1252,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:58.899789+00:00"
+  },
+  "f93993cd5e45c86d86549e6bc0718128f44eefa384a18ffcf874fe0165a6cffc": {
+    "input": "Proton’s Black Friday Deal Brings Our Favorite VPN Down to Its Lowest Price Yet\nEditor's Note: This article is sponsored by Proton VPN. Proton has built a solid reputation for itself around the privacy it provides for its customers, and that’s just what you want from a VPN provid",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 8,
+      "fantasy": 3,
+      "cyberpunk": 23,
+      "action": 5,
+      "slice_of_life": 17,
+      "mystery": 6,
+      "historical": 4
+    },
+    "raw_scores": {
+      "sf": 0.304,
+      "fantasy": 0.1018,
+      "cyberpunk": 0.9173,
+      "action": 0.1905,
+      "slice_of_life": 0.6658,
+      "mystery": 0.2402,
+      "historical": 0.1627
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.8112,
+        "1": 0.1137,
+        "2": 0.0489,
+        "3": 0.0123,
+        "4": 0.0139
+      },
+      "fantasy": {
+        "0": 0.9397,
+        "1": 0.0364,
+        "2": 0.0122,
+        "3": 0.0057,
+        "4": 0.006
+      },
+      "cyberpunk": {
+        "0": 0.4848,
+        "1": 0.2597,
+        "2": 0.161,
+        "3": 0.0424,
+        "4": 0.0521
+      },
+      "action": {
+        "0": 0.8654,
+        "1": 0.0943,
+        "2": 0.03,
+        "3": 0.005,
+        "4": 0.0053
+      },
+      "slice_of_life": {
+        "0": 0.5563,
+        "1": 0.2963,
+        "2": 0.0978,
+        "3": 0.0245,
+        "4": 0.0251
+      },
+      "mystery": {
+        "0": 0.8224,
+        "1": 0.1346,
+        "2": 0.0297,
+        "3": 0.0071,
+        "4": 0.0062
+      },
+      "historical": {
+        "0": 0.8893,
+        "1": 0.0763,
+        "2": 0.0233,
+        "3": 0.0047,
+        "4": 0.0064
+      }
+    },
+    "usage": {
+      "input_tokens": 1244,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:59.201385+00:00"
+  },
+  "08a1be37fd144606cb8c57d8e2d9da4a33f77001b5d07e349c0851513a9b6cd4": {
+    "input": "Spotify Reveals Massive Spike in Streams for Music Featured in GTA 6\nSpotify has released new data that shows huge spikes in streams for music featured in GTA 6 , including a Carly Rae Jepsen song from over a decade ago. In an email sent to IGN, Spotify revealed that t",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 12,
+      "fantasy": 4,
+      "cyberpunk": 19,
+      "action": 21,
+      "slice_of_life": 18,
+      "mystery": 7,
+      "historical": 6
+    },
+    "raw_scores": {
+      "sf": 0.4842,
+      "fantasy": 0.1599,
+      "cyberpunk": 0.7727,
+      "action": 0.8301,
+      "slice_of_life": 0.7097,
+      "mystery": 0.284,
+      "historical": 0.2335
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7444,
+        "1": 0.129,
+        "2": 0.062,
+        "3": 0.0272,
+        "4": 0.0374
+      },
+      "fantasy": {
+        "0": 0.8953,
+        "1": 0.071,
+        "2": 0.0193,
+        "3": 0.0072,
+        "4": 0.0072
+      },
+      "cyberpunk": {
+        "0": 0.5847,
+        "1": 0.187,
+        "2": 0.1409,
+        "3": 0.0459,
+        "4": 0.0415
+      },
+      "action": {
+        "0": 0.5485,
+        "1": 0.2249,
+        "2": 0.1234,
+        "3": 0.0543,
+        "4": 0.0489
+      },
+      "slice_of_life": {
+        "0": 0.4983,
+        "1": 0.3673,
+        "2": 0.0865,
+        "3": 0.0223,
+        "4": 0.0256
+      },
+      "mystery": {
+        "0": 0.7875,
+        "1": 0.1588,
+        "2": 0.0415,
+        "3": 0.0064,
+        "4": 0.0058
+      },
+      "historical": {
+        "0": 0.8395,
+        "1": 0.1074,
+        "2": 0.0403,
+        "3": 0.0057,
+        "4": 0.0071
+      }
+    },
+    "usage": {
+      "input_tokens": 1245,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:59.498362+00:00"
+  },
+  "41c167523cf2287d1b54800ee5aec2e951604ed734d472e4430c77e8a7372326": {
+    "input": "The Lord of the Rings Illustrated Editions Are on Sale for Black Friday\nAmazon's popular '3 for 2' deal on books , vinyl, and more is back for Black Friday , with some great inclusions to pick from. In the books section, you can save on both versions of The Lord of the Ri",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 88,
+      "cyberpunk": 3,
+      "action": 26,
+      "slice_of_life": 12,
+      "mystery": 14,
+      "historical": 23
+    },
+    "raw_scores": {
+      "sf": 0.683,
+      "fantasy": 3.5082,
+      "cyberpunk": 0.1367,
+      "action": 1.0553,
+      "slice_of_life": 0.4656,
+      "mystery": 0.5452,
+      "historical": 0.9065
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6436,
+        "1": 0.1607,
+        "2": 0.1126,
+        "3": 0.0355,
+        "4": 0.0476
+      },
+      "fantasy": {
+        "0": 0.0185,
+        "1": 0.0172,
+        "2": 0.0237,
+        "3": 0.3188,
+        "4": 0.6218
+      },
+      "cyberpunk": {
+        "0": 0.9149,
+        "1": 0.0527,
+        "2": 0.0203,
+        "3": 0.0051,
+        "4": 0.007
+      },
+      "action": {
+        "0": 0.3447,
+        "1": 0.3479,
+        "2": 0.2465,
+        "3": 0.029,
+        "4": 0.0319
+      },
+      "slice_of_life": {
+        "0": 0.6566,
+        "1": 0.2461,
+        "2": 0.0815,
+        "3": 0.0067,
+        "4": 0.0091
+      },
+      "mystery": {
+        "0": 0.6064,
+        "1": 0.2644,
+        "2": 0.1145,
+        "3": 0.0069,
+        "4": 0.0078
+      },
+      "historical": {
+        "0": 0.4425,
+        "1": 0.3157,
+        "2": 0.172,
+        "3": 0.0325,
+        "4": 0.0373
+      }
+    },
+    "usage": {
+      "input_tokens": 1247,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "IGN RSS",
+    "timestamp": "2026-11-26T04:37:59.720335+00:00"
+  },
+  "8d523958601f12fefb5b3f4e752f760194392a3a6662210c0edc89ab27e358ac": {
+    "input": "Live-Action 'Kekkon Shimashō, Koi Suru Mae ni' Series Reveals Cast, Theme Song Artists, January 2027 Streaming Debut",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 8,
+      "fantasy": 13,
+      "cyberpunk": 4,
+      "action": 23,
+      "slice_of_life": 73,
+      "mystery": 15,
+      "historical": 12
+    },
+    "raw_scores": {
+      "sf": 0.3084,
+      "fantasy": 0.5343,
+      "cyberpunk": 0.1691,
+      "action": 0.915,
+      "slice_of_life": 2.9091,
+      "mystery": 0.6038,
+      "historical": 0.4856
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.817,
+        "1": 0.1089,
+        "2": 0.0386,
+        "3": 0.0197,
+        "4": 0.0158
+      },
+      "fantasy": {
+        "0": 0.6715,
+        "1": 0.1845,
+        "2": 0.1029,
+        "3": 0.0205,
+        "4": 0.0206
+      },
+      "cyberpunk": {
+        "0": 0.8907,
+        "1": 0.0726,
+        "2": 0.0221,
+        "3": 0.0061,
+        "4": 0.0085
+      },
+      "action": {
+        "0": 0.4118,
+        "1": 0.3633,
+        "2": 0.1561,
+        "3": 0.0358,
+        "4": 0.033
+      },
+      "slice_of_life": {
+        "0": 0.0788,
+        "1": 0.0714,
+        "2": 0.1165,
+        "3": 0.3285,
+        "4": 0.4048
+      },
+      "mystery": {
+        "0": 0.5568,
+        "1": 0.317,
+        "2": 0.1024,
+        "3": 0.0133,
+        "4": 0.0105
+      },
+      "historical": {
+        "0": 0.6405,
+        "1": 0.2732,
+        "2": 0.0602,
+        "3": 0.0125,
+        "4": 0.0136
+      }
+    },
+    "usage": {
+      "input_tokens": 1220,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:00.074534+00:00"
+  },
+  "a399b8adc01f17451cfe9e43a408692b63e37205d1ce3df45e3202f128b4d51c": {
+    "input": "Nioh 3 Game Streams First Look Trailer for New DLC",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 48,
+      "cyberpunk": 12,
+      "action": 73,
+      "slice_of_life": 7,
+      "mystery": 14,
+      "historical": 49
+    },
+    "raw_scores": {
+      "sf": 0.5262,
+      "fantasy": 1.9186,
+      "cyberpunk": 0.4761,
+      "action": 2.9218,
+      "slice_of_life": 0.275,
+      "mystery": 0.5681,
+      "historical": 1.9638
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6875,
+        "1": 0.1732,
+        "2": 0.0887,
+        "3": 0.0268,
+        "4": 0.0238
+      },
+      "fantasy": {
+        "0": 0.1803,
+        "1": 0.2014,
+        "2": 0.3034,
+        "3": 0.1494,
+        "4": 0.1655
+      },
+      "cyberpunk": {
+        "0": 0.6845,
+        "1": 0.195,
+        "2": 0.0938,
+        "3": 0.0133,
+        "4": 0.0134
+      },
+      "action": {
+        "0": 0.0613,
+        "1": 0.0634,
+        "2": 0.1352,
+        "3": 0.3722,
+        "4": 0.3679
+      },
+      "slice_of_life": {
+        "0": 0.7684,
+        "1": 0.2015,
+        "2": 0.0213,
+        "3": 0.0044,
+        "4": 0.0044
+      },
+      "mystery": {
+        "0": 0.565,
+        "1": 0.3227,
+        "2": 0.0982,
+        "3": 0.0076,
+        "4": 0.0065
+      },
+      "historical": {
+        "0": 0.157,
+        "1": 0.2079,
+        "2": 0.3089,
+        "3": 0.1668,
+        "4": 0.1594
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:00.548857+00:00"
+  },
+  "738bc3cefdebba5921047fce815da7e85823123348a9ab4efa0ce5840975125a": {
+    "input": "Live-Action High School Family: Kokosei Kazoku Film Gets Spinoff Shorts",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 13,
+      "fantasy": 16,
+      "cyberpunk": 8,
+      "action": 35,
+      "slice_of_life": 66,
+      "mystery": 13,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.502,
+      "fantasy": 0.6202,
+      "cyberpunk": 0.3161,
+      "action": 1.4135,
+      "slice_of_life": 2.6342,
+      "mystery": 0.527,
+      "historical": 0.4108
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.696,
+        "1": 0.1911,
+        "2": 0.057,
+        "3": 0.0267,
+        "4": 0.0292
+      },
+      "fantasy": {
+        "0": 0.6039,
+        "1": 0.2495,
+        "2": 0.0929,
+        "3": 0.0297,
+        "4": 0.024
+      },
+      "cyberpunk": {
+        "0": 0.7864,
+        "1": 0.1478,
+        "2": 0.0426,
+        "3": 0.0096,
+        "4": 0.0136
+      },
+      "action": {
+        "0": 0.2816,
+        "1": 0.3028,
+        "2": 0.2256,
+        "3": 0.1005,
+        "4": 0.0895
+      },
+      "slice_of_life": {
+        "0": 0.1162,
+        "1": 0.0977,
+        "2": 0.1559,
+        "3": 0.2962,
+        "4": 0.334
+      },
+      "mystery": {
+        "0": 0.5962,
+        "1": 0.3099,
+        "2": 0.0752,
+        "3": 0.0079,
+        "4": 0.0108
+      },
+      "historical": {
+        "0": 0.6761,
+        "1": 0.2663,
+        "2": 0.0395,
+        "3": 0.0067,
+        "4": 0.0114
+      }
+    },
+    "usage": {
+      "input_tokens": 1201,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:01.090015+00:00"
+  },
+  "f3f9b8cc916e2cd1385c6a7a074f1488fabd17905725e813c3bd4836b54c0c9c": {
+    "input": "Under Ninja Manga Goes on 4-Week Hiatus",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 32,
+      "cyberpunk": 18,
+      "action": 53,
+      "slice_of_life": 32,
+      "mystery": 21,
+      "historical": 15
+    },
+    "raw_scores": {
+      "sf": 0.7027,
+      "fantasy": 1.2994,
+      "cyberpunk": 0.7335,
+      "action": 2.1316,
+      "slice_of_life": 1.2645,
+      "mystery": 0.8223,
+      "historical": 0.6086
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6208,
+        "1": 0.1672,
+        "2": 0.1355,
+        "3": 0.0414,
+        "4": 0.0351
+      },
+      "fantasy": {
+        "0": 0.3465,
+        "1": 0.2613,
+        "2": 0.2227,
+        "3": 0.0853,
+        "4": 0.0842
+      },
+      "cyberpunk": {
+        "0": 0.5862,
+        "1": 0.202,
+        "2": 0.1407,
+        "3": 0.0344,
+        "4": 0.0367
+      },
+      "action": {
+        "0": 0.1695,
+        "1": 0.1718,
+        "2": 0.2245,
+        "3": 0.226,
+        "4": 0.2082
+      },
+      "slice_of_life": {
+        "0": 0.3396,
+        "1": 0.2819,
+        "2": 0.2267,
+        "3": 0.0781,
+        "4": 0.0737
+      },
+      "mystery": {
+        "0": 0.4816,
+        "1": 0.2944,
+        "2": 0.1662,
+        "3": 0.0355,
+        "4": 0.0223
+      },
+      "historical": {
+        "0": 0.5917,
+        "1": 0.2678,
+        "2": 0.0998,
+        "3": 0.0215,
+        "4": 0.0192
+      }
+    },
+    "usage": {
+      "input_tokens": 1195,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:01.609829+00:00"
+  },
+  "410657bb2ea49fe485474c2aa1ab77eeebd39b11ee709e9e453ba1816d0e5a1f": {
+    "input": "Exoprimal Game Ends Service in September 2027",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 54,
+      "fantasy": 8,
+      "cyberpunk": 41,
+      "action": 44,
+      "slice_of_life": 16,
+      "mystery": 28,
+      "historical": 22
+    },
+    "raw_scores": {
+      "sf": 2.1423,
+      "fantasy": 0.3047,
+      "cyberpunk": 1.6599,
+      "action": 1.7572,
+      "slice_of_life": 0.6286,
+      "mystery": 1.1049,
+      "historical": 0.8773
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.1625,
+        "1": 0.174,
+        "2": 0.2354,
+        "3": 0.2148,
+        "4": 0.2133
+      },
+      "fantasy": {
+        "0": 0.7955,
+        "1": 0.1267,
+        "2": 0.0632,
+        "3": 0.0068,
+        "4": 0.0078
+      },
+      "cyberpunk": {
+        "0": 0.2227,
+        "1": 0.2662,
+        "2": 0.2712,
+        "3": 0.1083,
+        "4": 0.1316
+      },
+      "action": {
+        "0": 0.1862,
+        "1": 0.2471,
+        "2": 0.3083,
+        "3": 0.14,
+        "4": 0.1184
+      },
+      "slice_of_life": {
+        "0": 0.5437,
+        "1": 0.3194,
+        "2": 0.1138,
+        "3": 0.0109,
+        "4": 0.0122
+      },
+      "mystery": {
+        "0": 0.3329,
+        "1": 0.3485,
+        "2": 0.2378,
+        "3": 0.0423,
+        "4": 0.0385
+      },
+      "historical": {
+        "0": 0.5135,
+        "1": 0.241,
+        "2": 0.1501,
+        "3": 0.0456,
+        "4": 0.0498
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:02.025235+00:00"
+  },
+  "80ed14cd68075ed50b07e421ea7f42f5e0e08afd739cec2e911ee3c2f8f2ad77": {
+    "input": "Melty Blood:Twi-Lumina 2D Fighter Game's New Trailer Confirms Crossplay",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 32,
+      "cyberpunk": 19,
+      "action": 59,
+      "slice_of_life": 8,
+      "mystery": 10,
+      "historical": 10
+    },
+    "raw_scores": {
+      "sf": 0.7084,
+      "fantasy": 1.2857,
+      "cyberpunk": 0.7523,
+      "action": 2.3544,
+      "slice_of_life": 0.3199,
+      "mystery": 0.3915,
+      "historical": 0.3913
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5683,
+        "1": 0.2377,
+        "2": 0.1381,
+        "3": 0.0289,
+        "4": 0.027
+      },
+      "fantasy": {
+        "0": 0.2972,
+        "1": 0.2924,
+        "2": 0.2945,
+        "3": 0.0594,
+        "4": 0.0565
+      },
+      "cyberpunk": {
+        "0": 0.5301,
+        "1": 0.2591,
+        "2": 0.1639,
+        "3": 0.0221,
+        "4": 0.0248
+      },
+      "action": {
+        "0": 0.1377,
+        "1": 0.1164,
+        "2": 0.2489,
+        "3": 0.2479,
+        "4": 0.2491
+      },
+      "slice_of_life": {
+        "0": 0.7414,
+        "1": 0.2108,
+        "2": 0.0389,
+        "3": 0.0043,
+        "4": 0.0046
+      },
+      "mystery": {
+        "0": 0.7071,
+        "1": 0.2148,
+        "2": 0.0644,
+        "3": 0.0069,
+        "4": 0.0068
+      },
+      "historical": {
+        "0": 0.7132,
+        "1": 0.2032,
+        "2": 0.07,
+        "3": 0.0062,
+        "4": 0.0074
+      }
+    },
+    "usage": {
+      "input_tokens": 1204,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:02.464799+00:00"
+  },
+  "1008da07f0c2912ccdb4b6ac828b0d0f36a7ad708dea9ff2c51b14f30d8cc3d9": {
+    "input": "Bandai Card Games Launches Digimon Alysion Game",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 22,
+      "fantasy": 23,
+      "cyberpunk": 20,
+      "action": 28,
+      "slice_of_life": 10,
+      "mystery": 12,
+      "historical": 7
+    },
+    "raw_scores": {
+      "sf": 0.8621,
+      "fantasy": 0.924,
+      "cyberpunk": 0.8081,
+      "action": 1.1049,
+      "slice_of_life": 0.4119,
+      "mystery": 0.4657,
+      "historical": 0.2617
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5146,
+        "1": 0.2296,
+        "2": 0.1763,
+        "3": 0.038,
+        "4": 0.0415
+      },
+      "fantasy": {
+        "0": 0.4292,
+        "1": 0.3111,
+        "2": 0.1945,
+        "3": 0.0369,
+        "4": 0.0283
+      },
+      "cyberpunk": {
+        "0": 0.5005,
+        "1": 0.2763,
+        "2": 0.1671,
+        "3": 0.0267,
+        "4": 0.0294
+      },
+      "action": {
+        "0": 0.3675,
+        "1": 0.3076,
+        "2": 0.223,
+        "3": 0.0564,
+        "4": 0.0455
+      },
+      "slice_of_life": {
+        "0": 0.6642,
+        "1": 0.2751,
+        "2": 0.0505,
+        "3": 0.005,
+        "4": 0.0052
+      },
+      "mystery": {
+        "0": 0.6405,
+        "1": 0.2712,
+        "2": 0.0763,
+        "3": 0.0061,
+        "4": 0.0059
+      },
+      "historical": {
+        "0": 0.7961,
+        "1": 0.1592,
+        "2": 0.036,
+        "3": 0.0042,
+        "4": 0.0045
+      }
+    },
+    "usage": {
+      "input_tokens": 1196,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:02.803723+00:00"
+  },
+  "2627b734924ae0ef55cbac9183111dd96b3b3bcb10ac6fd878fe1bd8dc293261": {
+    "input": "Nobunaga's Ambition Series Gets New Game Next March",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 12,
+      "cyberpunk": 6,
+      "action": 27,
+      "slice_of_life": 9,
+      "mystery": 13,
+      "historical": 85
+    },
+    "raw_scores": {
+      "sf": 0.3968,
+      "fantasy": 0.4861,
+      "cyberpunk": 0.2289,
+      "action": 1.0932,
+      "slice_of_life": 0.3728,
+      "mystery": 0.517,
+      "historical": 3.4
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7857,
+        "1": 0.1058,
+        "2": 0.0562,
+        "3": 0.0307,
+        "4": 0.0216
+      },
+      "fantasy": {
+        "0": 0.6867,
+        "1": 0.1912,
+        "2": 0.0884,
+        "3": 0.0166,
+        "4": 0.0171
+      },
+      "cyberpunk": {
+        "0": 0.858,
+        "1": 0.0822,
+        "2": 0.0426,
+        "3": 0.0072,
+        "4": 0.01
+      },
+      "action": {
+        "0": 0.3317,
+        "1": 0.3454,
+        "2": 0.2532,
+        "3": 0.0376,
+        "4": 0.0321
+      },
+      "slice_of_life": {
+        "0": 0.7105,
+        "1": 0.2273,
+        "2": 0.0484,
+        "3": 0.0063,
+        "4": 0.0075
+      },
+      "mystery": {
+        "0": 0.6166,
+        "1": 0.2717,
+        "2": 0.0968,
+        "3": 0.008,
+        "4": 0.0069
+      },
+      "historical": {
+        "0": 0.0237,
+        "1": 0.0221,
+        "2": 0.0368,
+        "3": 0.3654,
+        "4": 0.552
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:03.116315+00:00"
+  },
+  "52fbb7c5252880c9d9f2f19a36a24df1c670ad05e303e4e5408ab9805ba5cd41": {
+    "input": "Sentimental Graffiti Remake Game Listed on March 25",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 18,
+      "fantasy": 12,
+      "cyberpunk": 25,
+      "action": 23,
+      "slice_of_life": 48,
+      "mystery": 21,
+      "historical": 13
+    },
+    "raw_scores": {
+      "sf": 0.7092,
+      "fantasy": 0.4995,
+      "cyberpunk": 1.0164,
+      "action": 0.9144,
+      "slice_of_life": 1.9236,
+      "mystery": 0.8558,
+      "historical": 0.5381
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.5476,
+        "1": 0.2625,
+        "2": 0.1428,
+        "3": 0.0274,
+        "4": 0.0197
+      },
+      "fantasy": {
+        "0": 0.6789,
+        "1": 0.1963,
+        "2": 0.0903,
+        "3": 0.0154,
+        "4": 0.0191
+      },
+      "cyberpunk": {
+        "0": 0.4128,
+        "1": 0.316,
+        "2": 0.1696,
+        "3": 0.0451,
+        "4": 0.0565
+      },
+      "action": {
+        "0": 0.4059,
+        "1": 0.3603,
+        "2": 0.1731,
+        "3": 0.035,
+        "4": 0.0257
+      },
+      "slice_of_life": {
+        "0": 0.2001,
+        "1": 0.2102,
+        "2": 0.2376,
+        "3": 0.1701,
+        "4": 0.182
+      },
+      "mystery": {
+        "0": 0.4294,
+        "1": 0.3654,
+        "2": 0.1524,
+        "3": 0.0255,
+        "4": 0.0273
+      },
+      "historical": {
+        "0": 0.6033,
+        "1": 0.2895,
+        "2": 0.0855,
+        "3": 0.0092,
+        "4": 0.0125
+      }
+    },
+    "usage": {
+      "input_tokens": 1198,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:03.309044+00:00"
+  },
+  "53933c426e368794e28f48d9af61b813d5fe6670212a69c1a93c635daefb4e75": {
+    "input": "Live-Action 'The Long Summer of August 31' Series Trailer Unveils Cast, Staff, Disney+ Streaming, January 8 Debut",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 14,
+      "fantasy": 14,
+      "cyberpunk": 8,
+      "action": 33,
+      "slice_of_life": 58,
+      "mystery": 24,
+      "historical": 36
+    },
+    "raw_scores": {
+      "sf": 0.5775,
+      "fantasy": 0.5535,
+      "cyberpunk": 0.3,
+      "action": 1.3132,
+      "slice_of_life": 2.3098,
+      "mystery": 0.9551,
+      "historical": 1.4248
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6125,
+        "1": 0.2549,
+        "2": 0.0919,
+        "3": 0.0239,
+        "4": 0.0168
+      },
+      "fantasy": {
+        "0": 0.6242,
+        "1": 0.2546,
+        "2": 0.0819,
+        "3": 0.0219,
+        "4": 0.0174
+      },
+      "cyberpunk": {
+        "0": 0.7634,
+        "1": 0.1935,
+        "2": 0.0299,
+        "3": 0.0062,
+        "4": 0.007
+      },
+      "action": {
+        "0": 0.2801,
+        "1": 0.3359,
+        "2": 0.242,
+        "3": 0.0748,
+        "4": 0.0672
+      },
+      "slice_of_life": {
+        "0": 0.1579,
+        "1": 0.1468,
+        "2": 0.1912,
+        "3": 0.2359,
+        "4": 0.2682
+      },
+      "mystery": {
+        "0": 0.3788,
+        "1": 0.3832,
+        "2": 0.1747,
+        "3": 0.0307,
+        "4": 0.0326
+      },
+      "historical": {
+        "0": 0.2866,
+        "1": 0.3049,
+        "2": 0.2138,
+        "3": 0.0866,
+        "4": 0.1081
+      }
+    },
+    "usage": {
+      "input_tokens": 1215,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:03.512808+00:00"
+  },
+  "5db80ff8caa246ad78197045e28cc8dc567a58ed2a900f0fcb58ab65eb91b4b9": {
+    "input": "How Ed Goldfarb Brings Regional Authenticity to Pokémon Music",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 10,
+      "fantasy": 21,
+      "cyberpunk": 10,
+      "action": 9,
+      "slice_of_life": 31,
+      "mystery": 14,
+      "historical": 11
+    },
+    "raw_scores": {
+      "sf": 0.419,
+      "fantasy": 0.8547,
+      "cyberpunk": 0.3992,
+      "action": 0.3741,
+      "slice_of_life": 1.2587,
+      "mystery": 0.5537,
+      "historical": 0.4296
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.7432,
+        "1": 0.1527,
+        "2": 0.0662,
+        "3": 0.0176,
+        "4": 0.0203
+      },
+      "fantasy": {
+        "0": 0.4921,
+        "1": 0.2866,
+        "2": 0.1372,
+        "3": 0.0428,
+        "4": 0.0413
+      },
+      "cyberpunk": {
+        "0": 0.741,
+        "1": 0.1608,
+        "2": 0.0715,
+        "3": 0.0115,
+        "4": 0.0152
+      },
+      "action": {
+        "0": 0.7178,
+        "1": 0.2089,
+        "2": 0.0605,
+        "3": 0.007,
+        "4": 0.0058
+      },
+      "slice_of_life": {
+        "0": 0.339,
+        "1": 0.297,
+        "2": 0.21,
+        "3": 0.0744,
+        "4": 0.0796
+      },
+      "mystery": {
+        "0": 0.6025,
+        "1": 0.2798,
+        "2": 0.0917,
+        "3": 0.0137,
+        "4": 0.0123
+      },
+      "historical": {
+        "0": 0.6887,
+        "1": 0.2225,
+        "2": 0.0692,
+        "3": 0.0097,
+        "4": 0.0099
+      }
+    },
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:03.941987+00:00"
+  },
+  "d849da7c89d19901eb8106a72477f7366db4c46c163d7d58d8ed99d9b2cf0cb8": {
+    "input": "Precure Franchise Announces FUNtasic Precure! Anime\n      New anime marks 24th main entry in magical girl franchise",
+    "genres": [
+      "action",
+      "cyberpunk",
+      "fantasy",
+      "historical",
+      "mystery",
+      "sf",
+      "slice_of_life"
+    ],
+    "scores": {
+      "sf": 17,
+      "fantasy": 54,
+      "cyberpunk": 3,
+      "action": 35,
+      "slice_of_life": 34,
+      "mystery": 13,
+      "historical": 5
+    },
+    "raw_scores": {
+      "sf": 0.6601,
+      "fantasy": 2.1609,
+      "cyberpunk": 0.1276,
+      "action": 1.413,
+      "slice_of_life": 1.3444,
+      "mystery": 0.5118,
+      "historical": 0.2009
+    },
+    "probabilities": {
+      "sf": {
+        "0": 0.6782,
+        "1": 0.127,
+        "2": 0.0924,
+        "3": 0.0613,
+        "4": 0.0411
+      },
+      "fantasy": {
+        "0": 0.1376,
+        "1": 0.1765,
+        "2": 0.2723,
+        "3": 0.2147,
+        "4": 0.1989
+      },
+      "cyberpunk": {
+        "0": 0.913,
+        "1": 0.0617,
+        "2": 0.0156,
+        "3": 0.0043,
+        "4": 0.0054
+      },
+      "action": {
+        "0": 0.2071,
+        "1": 0.3414,
+        "2": 0.3349,
+        "3": 0.0645,
+        "4": 0.0521
+      },
+      "slice_of_life": {
+        "0": 0.2323,
+        "1": 0.3382,
+        "2": 0.3334,
+        "3": 0.045,
+        "4": 0.0511
+      },
+      "mystery": {
+        "0": 0.6047,
+        "1": 0.2955,
+        "2": 0.0886,
+        "3": 0.0055,
+        "4": 0.0057
+      },
+      "historical": {
+        "0": 0.8526,
+        "1": 0.1112,
+        "2": 0.0253,
+        "3": 0.0046,
+        "4": 0.0063
+      }
+    },
+    "usage": {
+      "input_tokens": 1212,
+      "output_tokens": 0
+    },
+    "model": "@cf/cloudflare/clef-flash",
+    "source": "Anime News Network",
+    "timestamp": "2026-11-26T04:38:04.157220+00:00"
   }
 }
