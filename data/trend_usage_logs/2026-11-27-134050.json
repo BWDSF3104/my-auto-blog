@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-27T13:40:50.698055+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-27T13:40:33.126428+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.0,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 33,
+    "after_score_filter": 33,
+    "after_rating_filter": 33,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "No Longer Heroine's Momoko Kōda Launches New Manga on December 21",
+      "source": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/news/2026-11-26/no-longer-heroine-momoko-koda-launches-new-manga-on-december-21/.244110",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    },
+    {
+      "title": "LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server \" Library of Fluffy(Furry) Stories\"",
+      "source": "GitHub",
+      "url": "https://github.com/LinKennt/LoFS-VN",
+      "score": 1,
+      "category": "kemono",
+      "rating": "",
+      "description": ""
+    }
+  ],
+  "affiliate_keywords": [
+    "No Longer Heroine s",
+    "LoFS-VN"
+  ],
+  "trend_source_urls": [
+    "https://www.animenewsnetwork.com/news/2026-11-26/no-longer-heroine-momoko-koda-launches-new-manga-on-december-21/.244110",
+    "https://github.com/LinKennt/LoFS-VN"
+  ]
+}

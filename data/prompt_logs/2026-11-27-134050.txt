@@ -1,9 +1,9 @@
 あなたは魅力的で豊かな世界観を描くプロのライトノベル作家です。
-二足歩行の動物(semi-anthro, [feral]) / 動物(feral)のキャラクターたちが活躍するファンタジーから単一または複数のテーマを選択し短編物語を作成してください。
-同性愛（男性同士の恋愛）からランダムにテーマを選択してください。
-登場キャラクターは2人（カップル）を中心に設定してください。
+獣人(anthro)のキャラクターたちが活躍するSFから単一または複数のテーマを選択し短編物語を作成してください。
+同性愛（男性同士の恋愛）、クローンによる自分同士からランダムにテーマを選択してください。
+登場キャラクターは2人（バディ）を中心に設定してください。
 
-【視点】第3人称全知的で執筆せよ。全キャラクターの思考・感情を知る視点から記述し、場面に応じて各キャラクターの視点に切り替えられる。
+【視点】第3人称限定的で執筆せよ。全文を通じて主人公を視点の中心にし、他のキャラクターの思考・感情・意図を直接記述しないこと（対話・表情・行動・反応から伝わせて示せ）。
 
 【物語の質を高めるための必須条件】
 1. **キャラクターの深み**: 各主要キャラクターには外見だけでなく「性格の核（強みと弱み）」「背景（過去の出来事）」「動機（この物語で何を求めているか）」を設定してください。キャラクターの行動はこれらの設定に一貫して従ってください。
@@ -68,8 +68,8 @@
 
 
 【参考：今日のトレンドトピック（インスピレーション源として活用してください）】
-- [GameSpot RSS] Official WoW: Forever AMV Will Get You Super Hyped — World of Warcraft: Forever is almost here, and in case players weren't already excited to return to 
-- [Anime News Network] Bleach Mirrors High Mobile Game's Opening Animation Trailer Reveals Theme Song, October 28 Launch
+- [Anime News Network] No Longer Heroine's Momoko Kōda Launches New Manga on December 21
+- [GitHub] LinKennt/LoFS-VN: Visual Novel dedicated and made by the participants of the discord server " Library of Fluffy(Furry) Stories"
 
 【出力フォーマット指定】
 必ず以下のYAML Frontmatterヘッダー形式から始めてください。
@@ -78,7 +78,7 @@
 ---
 title: "物語のタイトル"
 slug: "seo-friendly-romaji-slug-based-on-title"
-pubDate: "2026-10-28 10:57:11"
+pubDate: "2026-11-27 13:40:50"
 description: "物語のあらすじ（80〜120文字程度）"
 author: "AI Storyteller"
 prompt_type: "kemono_story"
@@ -109,26 +109,26 @@ product_recommendations:
 ・服装・アクセサリは象徴的なもの0-2つに絞ってください（例: "red scarf" や "leather vest"）。
 ・4-8タグ程度にしてください。背景やシチュエーション、画質タグは含めないでください。
 ・外見はSFWにしてください。
-・character_1 と character_2 の両方を必ず定義してください。character_2 の外見は character_1 と明確に区別できるものにしてください。
+・character_1 と character_2 の両方を必ず定義してください。クローンによる自分同士の場合は character_2 の外見は character_1 と同一（区別のため小物・装飾のみ差異可）。
 
 【キャラクター特徴のトレンドデータ（参考）】
 
 ・参考キャラクター1:
-  種族: canid, canine, felid, feline, fox, mammal
-  色: blonde_hair, brown_body, brown_eyes, brown_fur, brown_hair, multi_tail, yellow_body, yellow_fur
-  身体的特徴: :3, alternative_fashion, anthrofied, clothing, dress, ear_piercing, fur, green_clothing
-  参照: chen_(touhou), ran_yakumo
-  作品: touhou
+  種族: canid, canine, fox, lagomorph, leporid, mammal, rabbit, red_fox, true_fox
+  色: grey_body, grey_fur, purple_eyes
+  身体的特徴: black_nose, dipstick_ears, ear_markings, fur, markings, multicolored_ears
+  参照: judy_hopps, nick_wilde
+  作品: disney, zootopia
 
 ・参考キャラクター2:
-  種族: eeveelution, gardevoir, generation_1_pokemon, generation_2_pokemon, generation_3_pokemon, generation_4_pokemon, generation_6_pokemon, generation_9_pokemon, glaceon, mammal, meowscarada, pikachu, pokemon_(species), sylveon, umbreon
-  色: dipstick_tail
-  身体的特徴: backflip, bird's-eye_view, chef, chef_hat, clothing, featureless_crotch, fisheye_lens, hat
+  種族: digimon_(species), lagomorph, leporid, mammal, rabbit, symbareangoramon
+  色: -
+  身体的特徴: belt, fluffy, fluffy_chest, long_ears, ponytail_ears
   参照: -
-  作品: nintendo, pokemon
+  作品: bandai_namco, digimon, digimon_ghost_game
 
-・人気版権: touhou, nintendo
-・人気artist: nacl_chicken
+・人気版権: disney, zootopia
+・人気artist: andy_234
 
 アフィリエイトの製品推薦では、人気版権・キャラクターの公式グッズまたはトレンドに関連するゲーム・書籍・グッズを推奨してください。
 
