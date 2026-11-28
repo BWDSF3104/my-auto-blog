@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-28T13:26:58.615857+09:00",
+  "prompt_type": "kemono_story",
+  "data_file": "/home/runner/work/my-auto-blog/my-auto-blog/data/topics/latest.json",
+  "data_fetched_at": "2026-11-28T13:26:37.839286+09:00",
+  "global_ttl": {
+    "ttl_hours": 24,
+    "elapsed_hours": 0.01,
+    "expired": false
+  },
+  "per_source_ttl": {},
+  "auto_fetch": {
+    "triggered": false,
+    "success": true
+  },
+  "candidate_pool": {
+    "categories": [
+      "kemono"
+    ],
+    "total_raw": 33,
+    "after_score_filter": 33,
+    "after_rating_filter": 33,
+    "final_candidates": 2
+  },
+  "selected": [
+    {
+      "title": "Hollow Knight: Silksong’s First Major Expansion Arrives December 11, And It’s Free",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/hollow-knight-silksongs-first-major-expansion-is-a-free-trip-under-the-sea/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Hollow Knight: Silksong developer Team Cherry has shown a first look at the upcoming Sea of Sorrow expansion. The first major--and free--expansion for Silksong takes players to a new aquatic region, w"
+    },
+    {
+      "title": "Hollow Knight: Silksong’s First Expansion Details Coming Friday, Here’s How To Watch",
+      "source": "GameSpot RSS",
+      "url": "https://www.gamespot.com/articles/hollow-knight-silksongs-first-expansion-details-coming-friday-heres-how-to-watch/",
+      "score": 0,
+      "category": "kemono",
+      "rating": "",
+      "description": "Hollow Knight: Silksong was such a highly anticipated sequel that it became a meme, so naturally, as soon as it was released, Hollow Knight fans started looking forward to the next big event: the prom"
+    }
+  ],
+  "affiliate_keywords": [
+    "Silksong s First Major",
+    "Silksong s First Expansion"
+  ],
+  "trend_source_urls": [
+    "https://www.gamespot.com/articles/hollow-knight-silksongs-first-major-expansion-is-a-free-trip-under-the-sea/",
+    "https://www.gamespot.com/articles/hollow-knight-silksongs-first-expansion-details-coming-friday-heres-how-to-watch/"
+  ]
+}
